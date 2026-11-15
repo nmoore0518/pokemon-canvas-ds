@@ -38,6 +38,26 @@ all 18 types once.
 | Galar | Fairy / Dragon | Pink |
 | Paldea | Rock / Ground | Brown |
 
+**Rules settled (Nick, 2026-11-15):**
+- The player can still start with any type. The **first** type cleared, wherever it belongs, is cleared by the
+  existing gym streak challenge, and counts for its region: start with Grass and Johto's Elite Four isn't needed for
+  Grass (Bug is still needed to clear Johto); start with Psychic and that's one Kanto clear.
+- Any cleared type can be used for the gym challenge; it isn't tied to its region.
+- A region's colour returns on its **story clear** (first type). Its second type is post-game, toward clearing
+  every type.
+- **One legendary per region.** After clearing a type, going back to the gym, Oak offers the switch; the new type
+  picks the region, its legendary appears and brings the ticket. Regions in any order.
+- A new team for every region, by design.
+- Colours: try the missing blacks (Kalos) and rust/sepia (Unova) effects first, swap colours later if they don't
+  read. Where colours sit close together, remove aggressively so it's noticeable even if it bleeds a little.
+- *Pinned:* the Kanto finale with Arceus may drop the type requirement entirely.
+
+**Region legendaries** (Nick): Johto Celebi, Hoenn Kyogre, Unova Meloetta, Kalos Yveltal, Galar Zacian;
+Sinnoh, Alola and Paldea open (no legendary with Electric/Flying, Fire/Fighting or Rock/Ground as its first type).
+*Suggestion:* Celebi already matches on its second type (Psychic/Grass), so matching on either type gives:
+Sinnoh **Shaymin** (Sky Forme, Grass/Flying), Alola **Marshadow** (Fighting/Ghost; or Blacephalon, Fire/Ghost),
+Paldea **Ting-Lu** (Dark/Ground).
+
 **Mastery changes** (after the first type): no more win streaks; a type is mastered by beating that region's
 Elite Four with it. The first time is through the region's story; the second is with the region's other type.
 
