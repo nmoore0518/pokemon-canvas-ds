@@ -2,17 +2,49 @@
   "key": 9226,
   "messages": [
     {
-      "id": "msg_0448_T01R0102_00000",
+      "id": "msg_0448_T01R0102_PalletTown_PlayersHouse_2F_Text_PlayedWithNES",
       "en_US": [
-        "It’s a Wii!\n",
-        "Wii is huge in Kanto, too!"
+        "{STRVAR_1 3, 6, 0} played with the NES.\r",
+        "…Okay!\n",
+        "It’s time to go!"
       ]
     },
     {
-      "id": "msg_0448_T01R0102_00001",
+      "id": "msg_0448_T01R0102_gText_PlayerHouseBootPC",
+      "en_US": "{STRVAR_1 3, 6, 0} booted up the PC."
+    },
+    {
+      "id": "msg_0448_T01R0102_PalletTown_PlayersHouse_2F_Text_PressLRForHelp",
       "en_US": [
-        "It looks like it hasn’t been used\n",
-        "in a long time..."
+        "It’s a posted notice…\r",
+        "If you’re confused, ask for HELP!\n",
+        "Press the L or R Button!"
+      ]
+    },
+    {
+      "id": "msg_0448_T01R0102_Outfits_Text_WhichOutfit",
+      "en_US": "Which outfit will you wear?"
+    },
+    {
+      "id": "msg_0448_T01R0102_Outfits_Text_ChangedInto",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} changed into the\n",
+        "{STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0448_T01R0102_Outfits_Text_OnlyOne",
+      "en_US": [
+        "It’s your wardrobe.\n",
+        "You don’t have any other outfits\f",
+        "yet."
+      ]
+    },
+    {
+      "id": "msg_0448_T01R0102_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

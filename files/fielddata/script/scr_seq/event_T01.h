@@ -21,13 +21,16 @@
 #define _EV_BerryField_EventScript_Sign 17
 #define _EV_BerryField_EventScript_Plot 18
 #define _EV_PalletTown_EventScript_ChanseyStatue 19
-#define _EV_PalletTown_OnLoad 20
-#define _EV_PalletTown_OnTransition 21
-#define _EV_GymFinale_EventScript_Ceremony 22
-#define _EV_GymFinale_EventScript_OakAtTheDoor 23
-#define _EV_PalletTown_EventScript_OakRatingScene 24
-#define _EV_DadStory_EventScript_Sendoff 25
-#define _EV_DadStory_EventScript_Memorial 26
+#define _EV_PalletTown_EventScript_OakTriggerLeft 20
+#define _EV_PalletTown_EventScript_OakTriggerRight 21
+#define _EV_PalletTown_EventScript_SignLadyTrigger 22
+#define _EV_PalletTown_OnLoad 23
+#define _EV_PalletTown_OnTransition 24
+#define _EV_GymFinale_EventScript_Ceremony 25
+#define _EV_GymFinale_EventScript_OakAtTheDoor 26
+#define _EV_PalletTown_EventScript_OakRatingScene 27
+#define _EV_DadStory_EventScript_Sendoff 28
+#define _EV_DadStory_EventScript_Memorial 29
 
 #define LOCALID_PALLET_SIGN_LADY 1
 #define LOCALID_PALLET_FAT_MAN 2

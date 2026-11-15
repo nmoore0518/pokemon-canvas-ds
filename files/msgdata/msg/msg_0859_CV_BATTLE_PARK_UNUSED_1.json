@@ -1,0 +1,16 @@
+{
+  "key": 19821,
+  "messages": [
+    {
+      "id": "msg_0859_CV_BATTLE_PARK_UNUSED_1_GymDecor_Text_BootedUpGymPC",
+      "en_US": "{STRVAR_1 3, 6, 0} booted up the Gym PC."
+    },
+    {
+      "id": "msg_0859_CV_BATTLE_PARK_UNUSED_1_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

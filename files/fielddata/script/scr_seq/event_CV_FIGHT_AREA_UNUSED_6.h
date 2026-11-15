@@ -1,0 +1,25 @@
+#ifndef SCR_SEQ_CV_FIGHT_AREA_UNUSED_6_H_
+#define SCR_SEQ_CV_FIGHT_AREA_UNUSED_6_H_
+
+#define _EV_PlayersHouse_B1F_EventScript_Synthesizer 0
+#define _EV_PlayersHouse_B1F_EventScript_BallMaker 1
+#define _EV_PlayersHouse_B1F_EventScript_BallChanger 2
+#define _EV_PlayersHouse_B1F_EventScript_Switch 3
+#define _EV_PlayersHouse_B1F_EventScript_Paper1 4
+#define _EV_PlayersHouse_B1F_EventScript_Paper2 5
+#define _EV_PlayersHouse_B1F_EventScript_Paper3 6
+#define _EV_PlayersHouse_B1F_EventScript_Paper4 7
+#define _EV_PlayersHouse_B1F_EventScript_Chalkboard 8
+#define _EV_PlayersHouse_B1F_EventScript_Bookshelf 9
+#define _EV_PlayersHouse_B1F_EventScript_Workbench 10
+#define _EV_PlayersHouse_B1F_EventScript_LabTable 11
+#define _EV_PlayersHouse_B1F_EventScript_Desk 12
+#define _EV_PlayersHouse_B1F_EventScript_TrashCan 13
+#define _EV_PlayersHouse_B1F_EventScript_Crates 14
+#define _EV_PlayersHouse_B1F_OnLoad 15
+#define _EV_PlayersHouse_B1F_OnTransition 16
+#define _EV_DadStory_EventScript_Basement 17
+
+#define LOCALID_BASEMENT_MOM 1
+
+#endif

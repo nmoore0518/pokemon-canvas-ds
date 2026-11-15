@@ -1,6 +1,15 @@
 {
     "header": "fielddata/script/scr_seq/event_T01R0202.h",
-    "bgs": [],
+    "bgs": [
+        {
+            "scriptId": "_EV_PalletTown_House1_EventScript_Sign + 1",
+            "type": 0,
+            "x": 7,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        }
+    ],
     "warps": [
         {
             "x": 3,
@@ -24,5 +33,58 @@
             "y": 0
         }
     ],
-    "objects": []
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSOLDMAN1",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_House1_EventScript_OldMan + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSBABYBOY1",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_EventMons_EventScript_CapBoy + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 2,
+            "x": 2,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 5,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_House1_EventScript_Pidgey + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 4,
+            "yRange": 1,
+            "x": 6,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "coords": []
 }

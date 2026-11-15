@@ -34,9 +34,28 @@ class Gba:
         for f in files:
             self._read(f)
         self.defines = {}
-        for h in glob.glob(P('include/constants/*.h')):
-            for n, v in re.findall(r'#define\s+(\w+)\s+([^\s/]+)', open(h, errors='ignore').read()):
+        for h in sorted(glob.glob(P('include/constants/*.h'))) + [P('include/global.h')]:
+            if not os.path.exists(h): continue
+            src = open(h, errors='ignore').read()
+            for n, v in re.findall(r'#define\s+(\w+)\s+([^\s/]+)', src):
                 self.defines.setdefault(n, v)
+            src = re.sub(r'//[^\n]*|/\*.*?\*/', '', src, flags=re.S)
+            for body in re.findall(r'\benum\s*\w*\s*\{([^}]*)\}', src):     # enum members count up
+                i = 0
+                for item in body.split(','):
+                    item = item.strip()
+                    if not item or item.startswith('#'): continue
+                    n, _, v = item.partition('=')
+                    n = n.strip()
+                    if not re.match(r'^[A-Za-z_]\w*$', n): continue
+                    if v.strip():
+                        self.defines.setdefault(n, v.strip())
+                        i = None
+                        try: i = int(v.strip(), 0)
+                        except ValueError: pass
+                    else:
+                        if i is not None: self.defines.setdefault(n, str(i))
+                    if i is not None: i += 1
 
     def _read(self, f):
         cur = None
@@ -78,6 +97,17 @@ class Gba:
             name = name.strip()
             if re.match(r'^-?(0x[0-9a-fA-F]+|\d+)$', name):
                 return int(name, 0)
+            if re.search(r'[-+*/()<>|&]', name):         # a small expression: X + 1, (A << 2)...
+                parts = re.split(r'(\W)', name)
+                vals = []
+                for t in parts:
+                    if re.match(r'^[A-Za-z_]\w*$', t):
+                        v = self.value(t)
+                        if v is None: return None
+                        vals.append(str(v))
+                    else: vals.append(t)
+                try: return int(eval(''.join(vals), {'__builtins__': {}}))
+                except Exception: return None
             name = self.equ.get(name, self.defines.get(name, None))
             seen += 1
         return None
@@ -85,3 +115,19 @@ class Gba:
 
 def map_json(name):
     return json.load(open(P('data/maps', name, 'map.json')))
+
+
+_MAP_DIRS = None
+
+
+def map_dir(map_id):
+    """MAP_PALLET_TOWN -> PalletTown_Frlg (the map's folder in data/maps)"""
+    global _MAP_DIRS
+    if _MAP_DIRS is None:
+        _MAP_DIRS = {}
+        for d in sorted(os.listdir(P('data/maps'))):
+            f = P('data/maps', d, 'map.json')
+            if os.path.exists(f):
+                i = json.load(open(f)).get('id')
+                if i and (i not in _MAP_DIRS or d.endswith('_Frlg')): _MAP_DIRS[i] = d
+    return _MAP_DIRS.get(map_id)

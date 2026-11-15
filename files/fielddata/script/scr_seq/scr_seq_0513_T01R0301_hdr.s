@@ -3,14 +3,13 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T01R0301_010 + 1
-	InitScriptEntry_OnFrameTable scr_seq_T01R0301_map_scripts_2
+	InitScriptEntry_OnFrameTable _cv_T01R0301_frame
+	InitScriptEntry_OnTransition _EV_PalletTown_ProfessorOaksLab_OnTransition + 1
 	InitScriptEntryEnd
 
-scr_seq_T01R0301_map_scripts_2:
-	InitScriptGoToIfEqual VAR_UNK_4131, 1, _EV_scr_seq_T01R0301_006 + 1
+_cv_T01R0301_frame:
+	InitScriptGoToIfEqual 0x5006, 1, _EV_PalletTown_ProfessorOaksLab_ChooseStarterScene + 1
+	InitScriptGoToIfEqual 0x5006, 7, _EV_PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

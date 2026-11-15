@@ -17,6 +17,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.dirname(HERE))
 import gba as G
+import specials as SP
+import trainers as TR
+RIVAL_STAGES, RIVAL_TEAMS = TR.rival_stages(), TR.rival_team_ids()
 import slots
 
 ROOT = slots.ROOT
@@ -34,9 +37,37 @@ def pallet_xy(x, y):
     return 32 * PALLET_CELL[0] + PALLET_OX + x, 32 * PALLET_CELL[1] + y
 
 
+same = lambda x, y: (x, y)       # rooms we built from the GBA layouts keep its squares
+
 MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PalletTown_Frlg': ('MAP_PALLET', pallet_xy),
+    'PalletTown_PlayersHouse_1F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_1F', same),
+    'PalletTown_PlayersHouse_2F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_2F', same),
+    'PalletTown_PlayersHouse_B1F_Frlg': ('MAP_FIGHT_AREA_UNUSED_6', same),
+    'PalletTown_RivalsHouse_Frlg': ('MAP_PALLET_TOWN_BLUES_HOUSE_1F', same),
+    'PalletTown_House1_Frlg': ('MAP_PALLET_TOWN_BLUES_HOUSE_2F', same),
+    'PalletTown_House2_Frlg': ('MAP_FIGHT_AREA_UNUSED_1', same),
+    'PalletTown_ProfessorOaksLab_Frlg': ('MAP_PALLET_TOWN_OAKS_LAB', same),
+    'PalletTown_Gym_Frlg': ('MAP_FIGHT_AREA_UNUSED_7', same),
+    'PalletTown_Gym_BackRoom': ('MAP_FIGHT_AREA_UNUSED_8', same),
+    'PalletTown_Gym_LeftRoom': ('MAP_FIGHT_AREA_UNUSED_9', same),
+    'PalletTown_Gym_RightRoom': ('MAP_BATTLE_PARK_UNUSED_1', same),
 }
+
+# Lines of our own, before the first given command of a label. The GBA game names the rival in Oak's intro;
+# HeartGold's intro only names the player, so he's named the first time he speaks.
+INSERTS = {
+    'PalletTown_ProfessorOaksLab_ChooseStarterScene': ('msgbox', [
+        'GoToIfSet {flag[CV_RIVAL_NAMED]}, _cv_rival_named',
+        'FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'NameRival VAR_SPECIAL_RESULT', 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade',
+        'SetFlag {flag[CV_RIVAL_NAMED]}', '_cv_rival_named:']),
+}
+
+
+class _Lookup:
+    def __init__(self, f): self.f = f
+    def __getitem__(self, k): return self.f(k)
+
 
 # ---------------------------------------------------------------- ids
 class Ids:
@@ -82,7 +113,7 @@ WORDS = [('POKéMON', 'Pokémon'), ('POKéDEX', 'Pokédex'), ('POKé BALL', 'Pok
 def text(s):
     """GBA string -> HeartGold message lines (\\n line, \\r new box, \\f scroll); returns (lines, buffers)"""
     s = s.split('$')[0]
-    for a, b in WORDS: s = s.replace(a, b)
+    for a, b in WORDS: s = re.sub(re.escape(a) + r'S\b', b + 's', s).replace(a, b)     # (POKé BALLS -> Poké Balls)
     bufs = set()
 
     def code(m):
@@ -128,12 +159,35 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
 }
 
+NO_OPS = ('opendoor', 'closedoor', 'waitdooranim', 'setworldmapflag', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
+          'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
 MOVETYPE = {'MOVEMENT_TYPE_NONE': 0, 'MOVEMENT_TYPE_LOOK_AROUND': 2, 'MOVEMENT_TYPE_WANDER_AROUND': 3,
             'MOVEMENT_TYPE_WANDER_UP_AND_DOWN': 4, 'MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT': 5, 'MOVEMENT_TYPE_FACE_UP': 14,
             'MOVEMENT_TYPE_FACE_DOWN': 15, 'MOVEMENT_TYPE_FACE_LEFT': 16, 'MOVEMENT_TYPE_FACE_RIGHT': 17}
 FACING = {14: 0, 15: 1, 16: 2, 17: 3}
 
+# HeartGold's (hg-engine's) type numbers; the GBA game numbers them differently
+HG_TYPES = ['NORMAL', 'FIGHTING', 'FLYING', 'POISON', 'GROUND', 'ROCK', 'BUG', 'GHOST', 'STEEL', 'FAIRY', 'FIRE', 'WATER',
+            'GRASS', 'ELECTRIC', 'PSYCHIC', 'ICE', 'DRAGON', 'DARK']
+HG_DEFINES = {}
+for _h in ('include/constants/items.h', 'include/constants/species.h'):
+    for _n in re.findall(r'#define\s+((?:ITEM|SPECIES)_\w+)\s', open(os.path.join(ROOT, _h)).read()):
+        HG_DEFINES[_n] = True
+
+BGM = {'MUS_RG_ENCOUNTER_RIVAL': 'SEQ_GS_E_RIVAL1', 'MUS_RG_RIVAL_EXIT': 'SEQ_GS_E_RIVAL2', 'MUS_RG_OAK': 'SEQ_GS_OHKIDO',
+       'MUS_RG_FOLLOW_ME': 'SEQ_GS_E_TSURETEKE1', 'MUS_FOLLOW_ME': 'SEQ_GS_E_TSURETEKE1', 'MUS_RG_ENCOUNTER_ROCKET': 'SEQ_GS_EYE_ROCKET',
+       'MUS_RG_ENCOUNTER_BOY': 'SEQ_GS_EYE_K_SHOUNEN', 'MUS_RG_ENCOUNTER_GIRL': 'SEQ_GS_EYE_K_SHOUJO',
+       'MUS_RG_SLOW_PALLET': 'SEQ_GS_T_MASARA', 'MUS_RG_PALLET': 'SEQ_GS_T_MASARA', 'MUS_POKE_CENTER': 'SEQ_GS_POKESEN',
+       'MUS_RG_POKE_CENTER': 'SEQ_GS_POKESEN', 'MUS_RG_ENCOUNTER_GYM_LEADER': 'SEQ_GS_GYM', 'MUS_RG_GYM': 'SEQ_GS_GYM',
+       'MUS_RG_POKE_MANSION': 'SEQ_GS_D_AJITO', 'MUS_RG_ENCOUNTER_DEOXYS': 'SEQ_GS_E_ARCEUS'}
+SCRATCH = ('0x401E', '0x401F')
+MENU_PAGE, MENU_MORE = 7, 254
+OWN_TEXT = {'cv_more': ['More…']}       # free temp vars (the GBA's VAR_TEMP_0..F are 0x4000..0x400F)
+
 STEP = {'up': 'North', 'down': 'South', 'left': 'West', 'right': 'East'}
+
+
+QUIET_STEPS = ('face_original_direction',)   # (HeartGold people turn back by themselves)
 
 
 def step(cmd):
@@ -161,8 +215,17 @@ class Port:
         self.lines, self.done, self.todo, self.queue = [], set(), [], []
         self.msgs, self.msg_order = {}, []
         self.movements, self.n = {}, 0
+        self.xy = MAPS[gba_map][1]
+        self.dyn, self.faded = [], False
+        self.ox, self.oy = self.xy(0, 0)
+        self.hide_flags = {}          # a person's flag -> their local ids
+        for o in G.map_json(gba_map).get('object_events', []):
+            if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
+                self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
 
     def msg(self, label):
+        if label not in self.msgs and label in OWN_TEXT:
+            self.msgs[label] = (OWN_TEXT[label], set()); self.msg_order.append(label)
         if label not in self.msgs:
             if label not in self.g.texts:
                 self.todo.append('text %s missing' % label)
@@ -172,20 +235,50 @@ class Port:
             self.msg_order.append(label)
         return '%s_%s' % (self.bank, label)
 
-    def flag(self, f): return f if re.match(r'^(0x)?\d', f) else self.ids.flag(f)
-    def var(self, v): return v if re.match(r'^(0x)?\d', v) else self.ids.var(v)
+    def alias(self, a):
+        """follow .equ names (PLAYER_STARTER_SPECIES -> VAR_TEMP_2)"""
+        for _ in range(5):
+            b = self.g.equ.get(a)
+            if b is None or not re.match(r'^[A-Za-z_]\w*$', b): break
+            a = b
+        return a
+
+    def flag(self, f):
+        f = self.alias(f)
+        return f if re.match(r'^(0x)?\d', f) else self.ids.flag(f)
+
+    def var(self, v):
+        v = self.alias(v)
+        return v if re.match(r'^(0x)?\d', v) else self.ids.var(v)
 
     def val(self, a):
         """a value: number, constant, or a var"""
+        a = self.alias(a)
         if a.startswith('VAR_'): return self.var(a)
         if a in ('TRUE', 'YES'): return '1'
         if a in ('FALSE', 'NO'): return '0'
+        if a.startswith('TYPE_') and a[5:] in HG_TYPES: return str(HG_TYPES.index(a[5:]))
+        if a.startswith('OBJ_EVENT_GFX_'):        # a person's look, for a sprite var
+            gfx = a.replace('OBJ_EVENT_GFX_', '').replace('_FRLG', '')
+            if gfx not in SPRITE: self.todo.append('sprite %s (as a value)' % gfx)
+            return 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')
+        if a in ('DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'): return str(['DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'].index(a))
+        if a.startswith(('SPECIES_', 'ITEM_')):
+            if a in HG_DEFINES: return a
+            self.todo.append('constant %s not in HeartGold' % a)
+            return '0'
         v = self.g.value(a)
+        if v is None and re.match(r'^[A-Z_][A-Z0-9_]*$', a) and not a.startswith(('SPECIES_', 'ITEM_')):
+            self.todo.append('constant %s unknown' % a); return '0'
         return str(v) if v is not None else a
 
     def localid(self, a):
         if a in ('OBJ_EVENT_ID_PLAYER', 'LOCALID_PLAYER', '255'): return 'obj_player'
+        a = self.alias(a)
+        if a.startswith('VAR_'): return self.var(a)
         v = self.g.value(a)
+        if v is None and re.match(r'^[A-Z_][A-Z0-9_]*$', a) and not a.startswith(('SPECIES_', 'ITEM_')):
+            self.todo.append('constant %s unknown' % a); return '0'
         return str(v) if v is not None else a
 
     def label(self, l):
@@ -206,6 +299,99 @@ class Port:
         self.emit('NPCMsg %s' % m)
         if wait: self.emit('WaitButton')
 
+    def strvar(self, a):
+        return int(a[-1]) - 1 if a.startswith('STR_VAR_') else int(self.val(a))
+
+    def place(self, x, y):
+        """a GBA square (numbers, constants or vars) -> this map's x, z (vars go through the scratch vars)"""
+        x, y = self.alias(x), self.alias(y)
+        vx, vy = self.g.value(x), self.g.value(y)
+        if vx is not None and vy is not None and not x.startswith('VAR_') and not y.startswith('VAR_'):
+            return tuple(str(c) for c in self.xy(vx, vy))
+        out = []
+        for v, o, s in ((x, self.ox, SCRATCH[0]), (y, self.oy, SCRATCH[1])):
+            if v.startswith('VAR_'):
+                self.emit('CopyVar %s, %s' % (s, self.var(v)))
+                if o: self.emit('AddVar %s, %d' % (s, o))
+                out.append(s)
+            else:
+                out.append(str(self.g.value(v) + o))
+        return tuple(out)
+
+    def face_movement(self, d):
+        l = '_cv_face_%d' % d
+        self.movements[l] = [[['FaceNorth', 'FaceSouth', 'FaceWest', 'FaceEast'][d], 1]]
+        return l
+
+    def warp(self, a):
+        dest = G.map_dir(a[0])
+        if dest in MAPS: slot, xy = MAPS[dest]
+        elif a[0] in slots.ROOM_SLOTS: slot, xy = slots.ROOM_SLOTS[a[0]], same    # (rooms built from the GBA layouts)
+        else: return None
+        if len(a) >= 3:
+            x, y = self.g.value(a[1]), self.g.value(a[2])
+        else:
+            w = G.map_json(dest)['warp_events'][self.g.value(a[1])]
+            x, y = w['x'], w['y']
+        if x is None or y is None: return None
+        return (slot,) + tuple(xy(x, y))
+
+    def item(self, cmd, item, n):
+        it, n = self.val(item), self.val(n)
+        if item.startswith('ITEM_') and item not in HG_DEFINES:
+            # (an item HeartGold doesn't have yet: carried as a flag until we add it)
+            f = self.flag('CV_HAS_' + item)
+            if cmd in ('giveitem', 'additem'): self.emit('SetFlag %s' % f, 'SetVar VAR_SPECIAL_RESULT, 1')
+            elif cmd == 'removeitem': self.emit('ClearFlag %s' % f, 'SetVar VAR_SPECIAL_RESULT, 1')
+            elif cmd == 'checkitemspace': self.emit('SetVar VAR_SPECIAL_RESULT, 1')
+            else:
+                l = self.new('has')
+                self.emit('SetVar VAR_SPECIAL_RESULT, 0', 'GoToIfUnset %s, %s' % (f, l), 'SetVar VAR_SPECIAL_RESULT, 1', l + ':')
+            return
+        op = {'giveitem': 'GiveItem', 'additem': 'GiveItem', 'checkitem': 'HasItem', 'removeitem': 'TakeItem',
+              'checkitemspace': 'HasSpaceForItem'}[cmd]
+        self.emit('%s %s, %s, VAR_SPECIAL_RESULT' % (op, it, n))
+
+    def menu(self, items, ignore_b, initial):
+        """a GBA dynamic multichoice -> a HeartGold list menu; B gives the GBA's MULTI_B_PRESSED (127)"""
+        b = self.val(ignore_b) in ('1', 'TRUE')
+        first = self.val(initial)
+        if not re.match(r'^\d+$', first): first = '0'      # (HeartGold's menus start on a fixed item)
+        if not items: self.todo.append('menu items pushed in another script (%s)' % self.cur)
+        # (HeartGold's script menus don't scroll: a long list goes in pages of 7, with "More" between them)
+        pages = [items[i:i + MENU_PAGE] for i in range(0, len(items), MENU_PAGE)] or [[]]
+        names = [self.new('page') for _ in pages]
+        self.emit('TouchscreenMenuHide')          # (or the list never shows: the touch screen keeps the input)
+        for k, page in enumerate(pages):
+            if len(pages) > 1: self.emit(names[k] + ':')
+            self.emit('MenuInit 1, 1, %s, %d, VAR_SPECIAL_RESULT' % (first if k == 0 else '0', 0 if b else 1))
+            for t, v in page: self.emit('MenuItemAdd %s, 255, %s' % (self.msg(t), self.val(v)))
+            if len(pages) > 1: self.emit('MenuItemAdd %s, 255, %d' % (self.msg('cv_more'), MENU_MORE))
+            self.emit('MenuExec')
+            if len(pages) > 1:
+                self.emit('CompareVarToValue VAR_SPECIAL_RESULT, %d' % MENU_MORE, 'GoToIfEq %s' % names[(k + 1) % len(pages)])
+                if k < len(pages) - 1: self.emit('GoTo %s' % names[-1] + '_end')
+        if len(pages) > 1: self.emit(names[-1] + '_end:')
+        self.emit('TouchscreenMenuShow')
+        l = self.new('menu')
+        self.emit('CompareVarToValue VAR_SPECIAL_RESULT, 65000', 'GoToIfLt %s' % l, 'SetVar VAR_SPECIAL_RESULT, 127', l + ':')
+
+    def rival_battle(self, trainer, lose_ok):
+        """the rival's team is the one for this stage and the type he took (VAR_RIVAL_TYPE)"""
+        teams = RIVAL_TEAMS.get(RIVAL_STAGES[trainer], {})
+        done = self.new('battle')
+        rv = self.var('VAR_RIVAL_TYPE')
+        for t, num in sorted(teams.items()):
+            nxt = self.new('next')
+            self.emit('CompareVarToValue %s, %s' % (rv, self.val('TYPE_' + t)), 'GoToIfNe %s' % nxt,
+                      'TrainerBattle %d, 0, %d, 0' % (num, 1 if lose_ok else 0), 'GoTo %s' % done, nxt + ':')
+        self.emit('TrainerBattle %d, 0, %d, 0' % (min(teams.values()), 1 if lose_ok else 0), done + ':')
+        if not lose_ok:
+            won = self.new('won')
+            self.emit('CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0', 'GoToIfNe %s' % won,
+                      'WhiteOut', 'End', won + ':')
+        self.emit('SetFlag %s' % self.flag('CV_DEFEATED_' + trainer))
+
     def cond(self, kind, a, b, dest, call=False):
         va = self.var(a)
         if b.startswith('VAR_'): self.emit('CompareVarToVar %s, %s' % (va, self.var(b)))
@@ -218,13 +404,20 @@ class Port:
         self.done.add(label)
         cmds = self.g.labels.get(label)
         if cmds is None:
-            self.todo.append('script %s missing' % label); return
-        if cmds and step(cmds[0][0]) is not None or (cmds and cmds[0][0] in ('step_end', 'face_player', 'face_away_player')):
+            self.todo.append('script %s missing' % label)
+            self.movements[label] = []          # (made in C in the GBA game: a still movement here, for now)
+            return
+        if cmds and step(cmds[0][0]) is not None or (cmds and cmds[0][0] in ('step_end', 'face_player', 'face_away_player') + QUIET_STEPS):
             return self.movement(label, cmds)
         self.emit('', label + ':')
+        self.cur, self.dyn = label, []
+        removed = set()
         open_msg = False
         sw = None
+        insert = INSERTS.get(label)
         for cmd, a in cmds:
+            if insert and cmd == insert[0]:
+                self.emit(*[l.format(flag=_Lookup(self.flag)) for l in insert[1]]); insert = None
             close = ['CloseMsg'] if open_msg else []
             if cmd == 'end':
                 self.emit(*close, 'End'); open_msg = False
@@ -257,7 +450,12 @@ class Port:
             elif cmd == 'waitbuttonpress': self.emit('WaitButton')
             elif cmd == 'closemessage': self.emit('CloseMsg'); open_msg = False
             elif cmd == 'setflag': self.emit('SetFlag %s' % self.flag(a[0]))
-            elif cmd == 'clearflag': self.emit('ClearFlag %s' % self.flag(a[0]))
+            elif cmd == 'clearflag':
+                self.emit('ClearFlag %s' % self.flag(a[0]))
+                # (the GBA game brings a removed person back as soon as their flag is clear and they're in view;
+                # HeartGold only on the next map load)
+                for lid in self.hide_flags.get(self.alias(a[0]), []):
+                    if lid in removed: self.emit('ShowPerson %s' % lid)
             elif cmd in ('goto_if_set', 'goto_if_unset', 'call_if_set', 'call_if_unset'):
                 self.emit('%sIf%s %s, %s' % ('GoTo' if cmd.startswith('goto') else 'Call', 'Set' if cmd.endswith('_set') else 'Unset',
                                              self.flag(a[0]), self.label(a[1])))
@@ -275,7 +473,8 @@ class Port:
             elif cmd == 'applymovement':
                 self.emit('ApplyMovement %s, %s' % (self.localid(a[0]), self.label(a[1])))
             elif cmd == 'waitmovement': self.emit('WaitMovement')
-            elif cmd == 'removeobject': self.emit('HidePerson %s' % self.localid(a[0]))
+            elif cmd == 'removeobject':
+                self.emit('HidePerson %s' % self.localid(a[0])); removed.add(self.localid(a[0]))
             elif cmd == 'addobject': self.emit('ShowPerson %s' % self.localid(a[0]))
             elif cmd == 'delay': self.emit('Wait %s, VAR_SPECIAL_RESULT' % self.val(a[0]))
             elif cmd == 'playse': self.emit('PlaySE %s' % SE.get(a[0], 'SEQ_SE_DP_SELECT'))
@@ -283,10 +482,89 @@ class Port:
             elif cmd == 'playfanfare': self.emit('PlayFanfare %s' % FANFARE.get(a[0], 'SEQ_ME_ITEM'))
             elif cmd == 'waitfanfare': self.emit('WaitFanfare')
             elif cmd == 'checkplayergender': self.emit('GetPlayerGender VAR_SPECIAL_RESULT')
-            elif cmd == 'playmoncry': self.emit('PlayCry %s, 0' % a[0])
+            elif cmd == 'playmoncry': self.emit('PlayCry %s, 0' % self.val(a[0]))
             elif cmd == 'waitmoncry': self.emit('WaitCry')
             elif cmd == 'specialvar':
-                self.emit('SetVar %s, 0  // TODO(gba) specialvar %s' % (self.var(a[0]), a[1])); self.todo.append('special %s' % a[1])
+                lines = SP.special(self, a[1], self.var(a[0]))
+                if lines is None:
+                    self.emit('SetVar %s, 0  // TODO(gba) specialvar %s' % (self.var(a[0]), a[1])); self.todo.append('special %s (%s)' % (a[1], label))
+                else: self.emit(*lines)
+            elif cmd == 'special':
+                lines = SP.special(self, a[0], None)
+                if lines is None:
+                    self.emit('// TODO(gba) special %s' % a[0]); self.todo.append('special %s (%s)' % (a[0], label))
+                else: self.emit(*lines)
+            elif cmd in ('fadescreen', 'fadescreenswapbuffers', 'fadescreenspeed'):
+                mode = self.g.value(a[0])
+                to = mode in (1, 3)
+                self.emit('FadeScreen 6, 1, %d, %s' % (0 if to else 1, 'RGB_WHITE' if mode in (2, 3) else 'RGB_BLACK'), 'WaitFade')
+                self.faded = to
+            elif cmd == 'setobjectxyperm':
+                self.emit('MovePerson %s, %s, %s' % ((self.localid(a[0]),) + self.place(a[1], a[2])))
+            elif cmd == 'copyobjectxytoperm':
+                self.emit('GetPersonCoords %s, %s, %s' % (self.localid(a[0]), SCRATCH[0], SCRATCH[1]),
+                          'MovePerson %s, %s, %s' % (self.localid(a[0]), SCRATCH[0], SCRATCH[1]))
+            elif cmd == 'getplayerxy':
+                vx, vy = self.var(a[0]), self.var(a[1])
+                self.emit('GetPlayerCoords %s, %s' % (vx, vy))
+                if self.ox: self.emit('SubVar %s, %d' % (vx, self.ox))
+                if self.oy: self.emit('SubVar %s, %d' % (vy, self.oy))
+            elif cmd == 'setobjectmovementtype':
+                mv = MOVETYPE.get(a[1])
+                if mv is None:
+                    self.emit('// TODO(gba) %s %s' % (cmd, ', '.join(a))); self.todo.append('%s %s (%s)' % (cmd, a[1], label))
+                else:
+                    self.emit('SetObjectMovementType %s, %d' % (self.localid(a[0]), mv))
+                    if mv in FACING: self.emit('SetObjectFacing %s, %d' % (self.localid(a[0]), FACING[mv]))
+            elif cmd == 'turnobject':
+                d = {'DIR_NORTH': 0, 'DIR_SOUTH': 1, 'DIR_WEST': 2, 'DIR_EAST': 3}.get(a[1])
+                self.emit('ApplyMovement %s, %s' % (self.localid(a[0]), self.face_movement(d)), 'WaitMovement')
+            elif cmd == 'warp' or cmd == 'warpsilent':
+                w = self.warp(a)
+                if w is None:
+                    self.emit('// TODO(gba) %s %s' % (cmd, ', '.join(a))); self.todo.append('%s %s (%s)' % (cmd, a[0], label))
+                else:
+                    if not self.faded: self.emit('FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade')
+                    self.emit('Warp %s, 0, %s, %s, DIR_SOUTH' % w, 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade')
+                    self.faded = False
+            elif cmd == 'playbgm':
+                if a[0] in BGM: self.emit('PlayBGM %s' % BGM[a[0]])
+                else: self.emit('// (music %s: no HeartGold match yet)' % a[0])
+            elif cmd == 'fadedefaultbgm': self.emit('ResetBGM')
+            elif cmd in NO_OPS: pass
+            elif cmd == 'callnative' and a[0] in SP.CALLNATIVE_NO_OPS: pass
+            elif cmd in ('giveitem', 'additem', 'checkitem', 'removeitem', 'checkitemspace'):
+                self.item(cmd, a[0], a[1] if len(a) > 1 else '1')
+            elif cmd == 'giveitem_msg':
+                self.item('giveitem', a[1], a[2] if len(a) > 2 else '1')
+                self.emit('BufferItemName 1, %s' % self.val(a[1]))
+                self.say(a[0], wait=False)
+                self.emit('PlayFanfare %s' % FANFARE.get(a[3] if len(a) > 3 else 'MUS_LEVEL_UP', 'SEQ_ME_ITEM'), 'WaitFanfare', 'WaitButton')
+                open_msg = True
+            elif cmd == 'buffernumberstring': self.emit('BufferInt %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'bufferitemname': self.emit('BufferItemName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'bufferspeciesname': self.emit('BufferSpeciesName %d, %s, 0, 0' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'buffermovename': self.emit('BufferMoveName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'buffertypename': self.emit('BufferTypeName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'dynmultipush': self.dyn.append((a[0], a[1]))
+            elif cmd == 'dynmultistack':
+                if a[6] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[6], label))
+                self.menu(self.dyn, a[2], a[5]); self.dyn = []
+            elif cmd == 'dynmultichoice':
+                if a[5] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[5], label))
+                self.menu([(t, str(i)) for i, t in enumerate(a[6:])], a[2], a[4])
+            elif cmd == 'goto_if_defeated':
+                self.emit('GoToIfSet %s, %s' % (self.flag('CV_DEFEATED_' + a[0]), self.label(a[1])))
+            elif cmd in ('trainerbattle_earlyrival', 'trainerbattle_no_intro', 'trainerbattle_single') and a[0] in RIVAL_STAGES:
+                self.rival_battle(a[0], lose_ok=(cmd == 'trainerbattle_earlyrival'))
+            elif cmd in ('cleartrainerflag', 'settrainerflag'):
+                self.emit('%s %s' % ('ClearFlag' if cmd.startswith('clear') else 'SetFlag', self.flag('CV_DEFEATED_' + a[0])))
+            elif cmd == 'givemon':
+                pos = [x for x in a if '=' not in x]
+                kw = dict(x.split('=', 1) for x in a if '=' in x)
+                if set(kw) - {'item'}: self.todo.append('givemon %s (%s)' % (', '.join(sorted(kw)), label))
+                item = kw.get('item', pos[2] if len(pos) > 2 else '0')
+                self.emit('GiveMon %s, %s, %s, 0, 0, VAR_SPECIAL_RESULT' % (self.val(pos[0]), self.val(pos[1]), self.val(item)))
             else:
                 self.emit('// TODO(gba) %s %s' % (cmd, ', '.join(a))); self.todo.append('%s (%s)' % (cmd, label))
         if not cmds or cmds[-1][0] not in ('end', 'return', 'goto'):
@@ -297,6 +575,7 @@ class Port:
         for cmd, a in cmds:
             if cmd == 'step_end': break
             s = step(cmd)
+            if s is None and cmd in QUIET_STEPS: continue
             if s is None:
                 if cmd in ('face_player', 'face_away_player'):
                     s = None; self.todo.append('movement %s (%s)' % (cmd, label))
@@ -326,8 +605,51 @@ def write_messages(port, msg_file):
     open(path, 'a').write('\n')
 
 
+def own_banks(slot):
+    """A map in one of our slots still shares HeartGold's EVERYWHERE scripts and text: give it files of its own
+    (script, map-script header, event header, message bank), numbered after HeartGold's"""
+    tag = 'CV_' + slot.replace('MAP_', '')
+    names = sorted(os.listdir(SCR))
+    have = [n for n in names if n.startswith('scr_seq_') and n.endswith('_%s.s' % tag)]
+    if have:
+        num = int(have[0].split('_')[2])
+    else:
+        num = max(int(n.split('_')[2].split('.')[0]) for n in names if re.match(r'scr_seq_\d{4}', n)) + 1
+    scr, hdr = 'scr_seq_%04d_%s.s' % (num, tag), 'scr_seq_%04d_%s_hdr.s' % (num + 1, tag)
+    if not have:
+        hdr = 'scr_seq_%04d_%s_hdr.s' % (num + 1, tag)
+    else:
+        hdr = [n for n in names if n.endswith('_%s_hdr.s' % tag)][0]
+    msgs = sorted(os.listdir(MSG))
+    mh = [n for n in msgs if n.endswith('_%s.json' % tag)]
+    mnum = int(mh[0].split('_')[1]) if mh else max(int(n.split('_')[1].split('.')[0]) for n in msgs if re.match(r'msg_\d{4}', n)) + 1
+    msg = 'msg_%04d_%s.json' % (mnum, tag)
+    for f in (os.path.join(SCR, scr), os.path.join(SCR, hdr)):
+        if not os.path.exists(f): open(f, 'w').write('')
+    if not os.path.exists(os.path.join(MSG, msg)):
+        json.dump({'key': 0x4A2B + mnum, 'messages': []}, open(os.path.join(MSG, msg), 'w'))
+    meson = os.path.join(SCR, 'meson.build')
+    m = open(meson).read()
+    if "'%s'" % scr not in m:
+        i = m.index('scr_seq_asm = files(')
+        j = m.index(')', i)
+        m = m[:j] + "    '%s',\n    '%s',\n" % (scr, hdr) + m[j:]
+        i = m.index('scr_seq_event_headers = files(')
+        j = m.index(')', i)
+        m = m[:j] + "    'event_%s.h',\n" % tag + m[j:]
+        open(meson, 'w').write(m)
+    txt = os.path.join(ROOT, 'files/msgdata/NARC_msg.txt')
+    t = open(txt).read()
+    const = 'NARC_msg_%s_bin' % msg[:-5]
+    if const not in t:
+        open(txt, 'w').write(t.rstrip('\n') + '\n' + const + '\n')
+    slots.set_header(slot, {'scriptsBank': scr[:-2] + '_bin', 'scriptHeaderBank': hdr[:-2] + '_bin', 'msgBank': msg[:-5]})
+
+
 def port(gba_map, g, ids, report):
     slot, xy = MAPS[gba_map]
+    if 'EVERYWHERE' in slots.header(slot)['scriptsBank']:
+        own_banks(slot)
     h = slots.header(slot)
     bank = h['msgBank']                           # e.g. msg_0446_T01
     scr = h['scriptsBank'][:-4] + '.s'           # scr_seq_0735_T01_bin -> scr_seq_0735_T01.s
@@ -345,6 +667,9 @@ def port(gba_map, g, ids, report):
         if o['script'] not in ('0x0', '0') and o['script'] not in entries: entries.append(o['script'])
     for b in signs:
         if b['script'] not in entries: entries.append(b['script'])
+    triggers = [c for c in mj.get('coord_events', []) if c.get('type') == 'trigger' and c.get('script') not in ('0x0', '0', None)]
+    for c in triggers:
+        if c['script'] not in entries: entries.append(c['script'])
     mapscripts = [(c, a) for c, a in g.labels.get(gba_map.replace('_Frlg', '') + '_Frlg_MapScripts', g.labels.get(gba_map + '_MapScripts', []))]
     on = {}
     for c, a in mapscripts:
@@ -422,7 +747,7 @@ def port(gba_map, g, ids, report):
         x, z = xy(o['x'], o['y'])
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
-        objs.append({'id': o.get('local_id') or str(lid), 'spriteId': ('0x%X' % (0x4020 + int(m.group(1), 16)) if m else 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')),
+        objs.append({'id': o.get('local_id') or str(lid), 'spriteId': ('SPRITE_VAR_%d' % int(m.group(1), 16) if m else 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')),
                      'movement': mv, 'type': 0, 'eventFlag': p.flag(o['flag']) if o['flag'] not in ('0', '0x0') else 'FLAG_NOTHING',
                      'scriptId': ('_EV_%s + 1' % o['script']) if o['script'] not in ('0x0', '0') else '0',
                      'facingDirection': FACING.get(mv, 1), 'param0': 0, 'param1': 0, 'param2': 0,
@@ -432,11 +757,19 @@ def port(gba_map, g, ids, report):
     for b in signs:
         x, z = xy(b['x'], b['y'])
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})
-    ev['objects'], ev['bgs'] = objs, bgs
+    coords = []
+    for c in triggers:
+        x, z = xy(c['x'], c['y'])
+        if c['script'] in unfinished:
+            continue                                  # (a half-ported scene could leave you stuck)
+        coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': 1, 'h': 1, 'y': 0,
+                       'val': int(p.val(c['var_value']), 0), 'var': p.var(c['var'])})
+    ev['objects'], ev['bgs'], ev['coords'] = objs, bgs, coords
     ev['header'] = 'fielddata/script/scr_seq/event_%s.h' % tag
     json.dump(ev, open(ev_path, 'w'), indent=4); open(ev_path, 'a').write('\n')
-    report.append('%s -> %s: %d scripts, %d messages, %d people, %d signs; %d entry points not finished' %
-                  (gba_map, slot, len(p.done), len(p.msg_order), len(objs), len(bgs), len(unfinished)))
+    report.append('%s -> %s: %d scripts, %d messages, %d people, %d signs, %d triggers; %d entry points not finished' %
+                  (gba_map, slot, len(p.done), len(p.msg_order), len(objs), len(bgs), len(coords), len(unfinished)))
+    report += ['  unfinished: ' + e for e in entries if e in unfinished]
     report += ['  todo: ' + t for t in sorted(set(p.todo))]
 
 

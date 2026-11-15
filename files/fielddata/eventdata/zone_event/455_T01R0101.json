@@ -2,23 +2,23 @@
     "header": "fielddata/script/scr_seq/event_T01R0101.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_T01R0101_001 + 1",
+            "scriptId": "_EV_PalletTown_PlayersHouse_1F_EventScript_TV + 1",
             "type": 0,
             "x": 6,
             "z": 1,
             "y": 0,
-            "dir": 0
+            "dir": 4
         }
     ],
     "objects": [
         {
-            "id": "obj_T01R0101_redmama",
-            "spriteId": "SPRITE_REDMAMA",
-            "movement": 14,
+            "id": "LOCALID_PLAYERS_HOUSE_1F_MOM",
+            "spriteId": "SPRITE_GSMAMA",
+            "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T01R0101_000 + 1",
-            "facingDirection": 0,
+            "scriptId": "_EV_PalletTown_PlayersHouse_1F_EventScript_Mom + 1",
+            "facingDirection": 2,
             "param0": 0,
             "param1": 0,
             "param2": 0,
@@ -65,5 +65,6 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

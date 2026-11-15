@@ -1,8 +1,13 @@
 #ifndef SCR_SEQ_T01R0201_H_
 #define SCR_SEQ_T01R0201_H_
 
-#define _EV_scr_seq_T01R0201_000 0
+#define _EV_PalletTown_RivalsHouse_EventScript_Daisy 0
+#define _EV_PalletTown_RivalsHouse_EventScript_TownMap 1
+#define _EV_PalletTown_RivalsHouse_EventScript_Bookshelf 2
+#define _EV_PalletTown_RivalsHouse_EventScript_Picture 3
+#define _EV_PalletTown_RivalsHouse_OnTransition 4
 
-#define obj_T01R0201_nanami 0
+#define LOCALID_DAISY 1
+#define LOCALID_TOWN_MAP 2
 
-#endif // SCR_SEQ_T01R0201_H_
+#endif

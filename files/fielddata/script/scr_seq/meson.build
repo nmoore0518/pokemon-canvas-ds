@@ -535,6 +535,12 @@ scr_seq_event_headers = files(
     'event_W40.h',
     'event_W40R0101.h',
     'event_W41.h',
+    'event_CV_FIGHT_AREA_UNUSED_6.h',
+    'event_CV_FIGHT_AREA_UNUSED_1.h',
+    'event_CV_FIGHT_AREA_UNUSED_7.h',
+    'event_CV_FIGHT_AREA_UNUSED_8.h',
+    'event_CV_FIGHT_AREA_UNUSED_9.h',
+    'event_CV_BATTLE_PARK_UNUSED_1.h',
 )
 
 scr_seq_asm = files(
@@ -1503,4 +1509,16 @@ scr_seq_asm = files(
     'scr_seq_0962_W40.s',
     'scr_seq_0963_W40R0101.s',
     'scr_seq_0964_W41.s',
+    'scr_seq_0965_CV_FIGHT_AREA_UNUSED_6.s',
+    'scr_seq_0966_CV_FIGHT_AREA_UNUSED_6_hdr.s',
+    'scr_seq_0967_CV_FIGHT_AREA_UNUSED_1.s',
+    'scr_seq_0968_CV_FIGHT_AREA_UNUSED_1_hdr.s',
+    'scr_seq_0969_CV_FIGHT_AREA_UNUSED_7.s',
+    'scr_seq_0970_CV_FIGHT_AREA_UNUSED_7_hdr.s',
+    'scr_seq_0971_CV_FIGHT_AREA_UNUSED_8.s',
+    'scr_seq_0972_CV_FIGHT_AREA_UNUSED_8_hdr.s',
+    'scr_seq_0973_CV_FIGHT_AREA_UNUSED_9.s',
+    'scr_seq_0974_CV_FIGHT_AREA_UNUSED_9_hdr.s',
+    'scr_seq_0975_CV_BATTLE_PARK_UNUSED_1.s',
+    'scr_seq_0976_CV_BATTLE_PARK_UNUSED_1_hdr.s',
 )

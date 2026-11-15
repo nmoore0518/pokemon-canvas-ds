@@ -1,24 +1,30 @@
 #ifndef SCR_SEQ_T01R0301_H_
 #define SCR_SEQ_T01R0301_H_
 
-#define _EV_scr_seq_T01R0301_000 0
-#define _EV_scr_seq_T01R0301_001 1
-#define _EV_scr_seq_T01R0301_002 2
-#define _EV_scr_seq_T01R0301_003 3
-#define _EV_scr_seq_T01R0301_004 4
-#define _EV_scr_seq_T01R0301_005 5
-#define _EV_scr_seq_T01R0301_006 6
-#define _EV_scr_seq_T01R0301_007 7
-#define _EV_scr_seq_T01R0301_008 8
-#define _EV_scr_seq_T01R0301_009 9
-#define _EV_scr_seq_T01R0301_010 10
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Aide1 0
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Aide3 1
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Aide2 2
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_ProfOak 3
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Rival 4
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Pokedex 5
+#define _EV_LeaderAide_EventScript_Aide 6
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_Computer 7
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_LeftSign 8
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_RightSign 9
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_BallShelf 10
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger 11
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerLeft 12
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerMid 13
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerRight 14
+#define _EV_PalletTown_ProfessorOaksLab_OnTransition 15
+#define _EV_PalletTown_ProfessorOaksLab_ChooseStarterScene 16
+#define _EV_PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene 17
 
-#define obj_T01R0301_ookido        0
-#define obj_T01R0301_assistantm    1
-#define obj_T01R0301_assistantm_2  2
-#define obj_T01R0301_assistantm_3  3
-#define obj_T01R0301_monstarball   4
-#define obj_T01R0301_monstarball_2 5
-#define obj_T01R0301_monstarball_3 6
+#define LOCALID_OAKS_LAB_PROF_OAK 4
+#define LOCALID_OAKS_LAB_RIVAL 5
+#define LOCALID_POKEDEX_1 6
+#define LOCALID_POKEDEX_2 7
+#define LOCALID_OAKS_LAB_MENTOR 8
+#define LOCALID_OAKS_LAB_LEADER_AIDE 9
 
-#endif // SCR_SEQ_T01R0301_H_
+#endif

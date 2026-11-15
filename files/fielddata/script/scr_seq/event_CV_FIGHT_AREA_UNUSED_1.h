@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_FIGHT_AREA_UNUSED_1_H_
+#define SCR_SEQ_CV_FIGHT_AREA_UNUSED_1_H_
+
+#define _EV_PalletTown_House2_EventScript_Woman 0
+#define _EV_PalletTown_House2_EventScript_LittleGirl 1
+#define _EV_PalletTown_House2_EventScript_Meowth 2
+#define _EV_PalletTown_House2_EventScript_Sign 3
+
+
+#endif

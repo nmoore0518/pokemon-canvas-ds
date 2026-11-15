@@ -20,19 +20,22 @@
 	ScrDef PalletTown_EventScript_House2Sign
 	ScrDef PalletTown_EventScript_TownSign
 	ScrDef PalletTown_EventScript_TrainerTips
-	ScrDef PalletTown_EventScript_GymSign
+	ScrDef _cv_unported_14
 	ScrDef PalletTown_EventScript_TrainingHallSign
 	ScrDef PalletTown_EventScript_GymDoorLocked
 	ScrDef BerryField_EventScript_Sign
 	ScrDef _cv_unported_18
 	ScrDef _cv_unported_19
+	ScrDef PalletTown_EventScript_OakTriggerLeft
+	ScrDef PalletTown_EventScript_OakTriggerRight
+	ScrDef _cv_unported_22
 	ScrDef PalletTown_OnLoad
 	ScrDef PalletTown_OnTransition
-	ScrDef _cv_unported_22
-	ScrDef _cv_unported_23
-	ScrDef _cv_unported_24
+	ScrDef _cv_unported_25
+	ScrDef GymFinale_EventScript_OakAtTheDoor
+	ScrDef PalletTown_EventScript_OakRatingScene
 	ScrDef DadStory_EventScript_Sendoff
-	ScrDef _cv_unported_26
+	ScrDef DadStory_EventScript_Memorial
 	ScrDefEnd
 	
 PalletTown_EventScript_SignLady:
@@ -41,7 +44,7 @@ PalletTown_EventScript_SignLady:
 	GoToIfEq PalletTown_EventScript_SignLadyDone
 	CompareVarToValue 0x5000, 1
 	GoToIfEq PalletTown_EventScript_SignLadyJustShowedSign
-	CompareVarToValue 0x5001, 1
+	CompareVarToValue 0x4002, 1
 	GoToIfEq PalletTown_EventScript_SignLadyStartShowSign
 	GoToIfSet 2, PalletTown_EventScript_SignLadyGoReadSign
 	NPCMsg msg_0446_T01_PalletTown_Text_HmmIsThatRight
@@ -56,11 +59,12 @@ PalletTown_EventScript_SignLady:
 	NPCMsg msg_0446_T01_PalletTown_Text_OhLookLook
 	WaitButton
 	CloseMsg
-	CompareVarToValue 0x5002, DIR_EAST
+	CompareVarToValue 0x5002, 3
 	CallIfEq PalletTown_EventScript_SignLadyMoveOutOfWayRight
-	CompareVarToValue 0x5002, DIR_EAST
+	CompareVarToValue 0x5002, 3
 	CallIfNe PalletTown_EventScript_SignLadyMoveOutOfWayLeft
-	// TODO(gba) copyobjectxytoperm LOCALID_PALLET_SIGN_LADY
+	GetPersonCoords 1, 0x401E, 0x401F
+	MovePerson 1, 0x401E, 0x401F
 	SetFlag 2
 	ReleaseAll
 	End
@@ -244,7 +248,6 @@ _cv_yn_2:
 	GoToIfEq BerryField_EventScript_End
 	CloseMsg
 	// TODO(gba) special Bag_ChooseBerry
-	// TODO(gba) waitstate 
 	CompareVarToValue 0x5003, ITEM_NONE
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_Plant
@@ -271,13 +274,33 @@ PalletTown_EventScript_ChanseyStatue:
 	SetFlag 0x2002
 	End
 	
+PalletTown_EventScript_OakTriggerLeft:
+	LockAll
+	SetVar 0x4001, 0
+	GoTo PalletTown_EventScript_OakTrigger
+	End
+	
+PalletTown_EventScript_OakTriggerRight:
+	LockAll
+	SetVar 0x4001, 1
+	GoTo PalletTown_EventScript_OakTrigger
+	End
+	
+PalletTown_EventScript_SignLadyTrigger:
+	LockAll
+	ApplyMovement 1, Common_Movement_WalkInPlaceFasterRight
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterLeft
+	WaitMovement
+	Call PalletTown_EventScript_SignLadyShowSign
+	ReleaseAll
+	End
+	
 PalletTown_OnLoad:
 	// TODO(gba) special BerryField_DrawPlots
 	CallIfUnset 0x2000, PalletTown_EventScript_LockGymDoor
 	End
 	
 PalletTown_OnTransition:
-	// TODO(gba) setworldmapflag FLAG_WORLD_MAP_PALLET_TOWN
 	Call DadStory_EventScript_PalletTransition
 	Call Johto_EventScript_TryInviteWaiting
 	Call GymFinale_EventScript_CeremonyTransition
@@ -290,7 +313,7 @@ PalletTown_OnTransition:
 	
 GymFinale_EventScript_Ceremony:
 	LockAll
-	// TODO(gba) playbgm MUS_RG_FOLLOW_ME, 0
+	PlayBGM SEQ_GS_E_TSURETEKE1
 	ApplyMovement obj_player, GymFinale_Movement_UpTheSteps
 	WaitMovement
 	BufferPlayersName 6
@@ -343,41 +366,47 @@ GymFinale_EventScript_Ceremony:
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyOfficialGoIn
 	WaitButton
 	CloseMsg
-	// TODO(gba) fadescreen FADE_TO_BLACK
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
 	HidePerson 6
 	HidePerson 5
-	// TODO(gba) fadescreen FADE_FROM_BLACK
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	SetVar 0x5004, 5
 	SetVar 0x5005, 3
-	// TODO(gba) fadedefaultbgm 
+	ResetBGM
 	ReleaseAll
 	End
 	
 GymFinale_EventScript_OakAtTheDoor:
 	LockAll
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_PROF_OAK, PALLET_OAK_RATING_X, PALLET_OAK_RATING_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT
+	MovePerson 3, 1032, 395
+	SetObjectMovementType 3, 16
+	SetObjectFacing 3, 2
 	ShowPerson 3
-	// TODO(gba) playbgm MUS_RG_OAK, 0
+	PlayBGM SEQ_GS_OHKIDO
 	ApplyMovement 3, PalletTown_Movement_OakWalkToPlayersDoor
 	WaitMovement
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_OakComeToTheGym
 	WaitButton
 	CloseMsg
-	// TODO(gba) fadescreen FADE_TO_BLACK
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
 	HidePerson 3
 	SetFlag 0x2004
 	SetVar 0x5005, 3
-	// TODO(gba) warp MAP_PALLET_TOWN_GYM, GYM_PC_FRONT_X + 4, GYM_PC_FRONT_Y - 1
-	// TODO(gba) waitstate 
+	Warp MAP_FIGHT_AREA_UNUSED_7, 0, 12, 25, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
 PalletTown_EventScript_OakRatingScene:
 	LockAll
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_PROF_OAK, PALLET_OAK_RATING_X, PALLET_OAK_RATING_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT
+	MovePerson 3, 1032, 395
+	SetObjectMovementType 3, 16
+	SetObjectFacing 3, 2
 	ShowPerson 3
 	ApplyMovement 3, PalletTown_Movement_OakWalkToPlayersDoor
 	WaitMovement
@@ -386,11 +415,16 @@ PalletTown_EventScript_OakRatingScene:
 	NPCMsg msg_0446_T01_PalletTown_Text_OakLetMeSeePokedex
 	WaitButton
 	SetVar 0x8004, 0
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetFrlgPokedexCount
+	CountNationalDexSeen 0x8005
+	CountNationalDexOwned 0x8006
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x2026, _cv_dex_3
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_dex_3:
 	CopyVar 0x8008, 0x8005
 	CopyVar 0x8009, 0x8006
-	// TODO(gba) buffernumberstring STR_VAR_1, VAR_0x8008
-	// TODO(gba) buffernumberstring STR_VAR_2, VAR_0x8009
+	BufferInt 0, 0x8008
+	BufferInt 1, 0x8009
 	CompareVarToValue 0x8009, 60
 	GoToIfLt PalletTown_EventScript_NotEnoughMonsForNationalDex
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -399,22 +433,21 @@ PalletTown_EventScript_OakRatingScene:
 	NPCMsg msg_0446_T01_PalletTown_Text_CaughtXImpressiveFollowMe
 	WaitButton
 	CloseMsg
-	// TODO(gba) playbgm MUS_FOLLOW_ME, 0
+	PlayBGM SEQ_GS_E_TSURETEKE1
 	ApplyMovement obj_player, PalletTown_Movement_FromHouse_PlayerWalkToLab
 	ApplyMovement 3, PalletTown_Movement_FromHouse_OakWalkToLab
 	WaitMovement
-	// TODO(gba) opendoor PALLET_LAB_DOOR_X, PALLET_LAB_DOOR_Y
-	// TODO(gba) waitdooranim 
 	ApplyMovement 3, PalletTown_Movement_OakEnterLab
 	ApplyMovement obj_player, PalletTown_Movement_FromHouse_PlayerEnterLab
 	WaitMovement
-	// TODO(gba) closedoor PALLET_LAB_DOOR_X, PALLET_LAB_DOOR_Y
-	// TODO(gba) waitdooranim 
 	SetVar 0x5006, 7
 	SetVar 0x5007, 3
 	SetFlag 0x2004
-	// TODO(gba) warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
-	// TODO(gba) waitstate 
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_PALLET_TOWN_OAKS_LAB, 0, 6, 12, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -438,7 +471,9 @@ DadStory_EventScript_Sendoff:
 	
 DadStory_EventScript_Memorial:
 	LockAll
-	// TODO(gba) getplayerxy VAR_0x8004, VAR_0x8005
+	GetPlayerCoords 0x8004, 0x8005
+	SubVar 0x8004, 1019
+	SubVar 0x8005, 352
 	CompareVarToValue 0x8004, 42
 	GoToIfNe DadStory_EventScript_MemorialGoThere
 	CompareVarToValue 0x8005, 8
@@ -472,16 +507,20 @@ DadStory_EventScript_Memorial:
 	CloseMsg
 	SetFlag 0x2007
 	SetVar 0x5008, 9
-	// TODO(gba) fadescreen FADE_TO_BLACK
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
 	HidePerson 4
 	HidePerson 3
 	SetFlag 0x2006
 	SetFlag 0x2004
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_SENDOFF_MOM, PALLET_MOM_SENDOFF_X, PALLET_MOM_SENDOFF_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_SENDOFF_MOM, MOVEMENT_TYPE_FACE_UP
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_PROF_OAK, PALLET_OAK_START_X, PALLET_OAK_START_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_PROF_OAK, MOVEMENT_TYPE_FACE_UP
-	// TODO(gba) fadescreen FADE_FROM_BLACK
+	MovePerson 4, 1057, 382
+	SetObjectMovementType 4, 14
+	SetObjectFacing 4, 0
+	MovePerson 3, 1040, 365
+	SetObjectMovementType 3, 14
+	SetObjectFacing 3, 0
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -572,12 +611,12 @@ BerryField_EventScript_Growing:
 	NPCMsg msg_0446_T01_BerryField_Text_PullUp
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_3
+	GoToIfEq _cv_yes_4
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_4
-_cv_yes_3:
+	GoTo _cv_yn_5
+_cv_yes_4:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_4:
+_cv_yn_5:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_PullUp
@@ -607,7 +646,7 @@ PalletTown_EventScript_ChanseyStatueEgg:
 	WaitButton
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueEgg
 	WaitButton
-	// TODO(gba) giveitem ITEM_LUCKY_EGG
+	GiveItem ITEM_LUCKY_EGG, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEggEnd
 	SetFlag 0x2001
@@ -621,17 +660,17 @@ PalletTown_EventScript_ChanseyStatueWish:
 	// TODO(gba) special ItemUpgrade_CheckCost
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueMaxed
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueShort
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueLeaveClovers
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_5
+	GoToIfEq _cv_yes_6
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_6
-_cv_yes_5:
+	GoTo _cv_yn_7
+_cv_yes_6:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_6:
+_cv_yn_7:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	// TODO(gba) special ItemUpgrade_PayAndUpgrade
@@ -644,6 +683,65 @@ _cv_yn_6:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueEggLevel
 	WaitButton
 	GoTo PalletTown_EventScript_ChanseyStatueEnd
+	
+PalletTown_EventScript_OakTrigger:
+	Wait 30, VAR_SPECIAL_RESULT
+	PlayBGM SEQ_GS_OHKIDO
+	NPCMsg msg_0446_T01_PalletTown_Text_OakDontGoOut
+	Wait 85, VAR_SPECIAL_RESULT
+	CloseMsg
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterDown
+	WaitMovement
+	PlaySE SEQ_SE_DP_SELECT
+	ApplyMovement obj_player, Common_Movement_ExclamationMark
+	WaitMovement
+	Wait 30, VAR_SPECIAL_RESULT
+	ShowPerson 3
+	CompareVarToValue 0x4001, 0
+	CallIfEq PalletTown_EventScript_OakEnterLeft
+	CompareVarToValue 0x4001, 1
+	CallIfEq PalletTown_EventScript_OakEnterRight
+	Wait 30, VAR_SPECIAL_RESULT
+	NPCMsg msg_0446_T01_PalletTown_Text_OakGrassUnsafeNeedMon
+	WaitButton
+	CloseMsg
+	Wait 30, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x4001, 0
+	CallIfEq PalletTown_EventScript_OakLeadPlayerToLabLeft
+	CompareVarToValue 0x4001, 1
+	CallIfEq PalletTown_EventScript_OakLeadPlayerToLabRight
+	ApplyMovement 3, PalletTown_Movement_OakEnterLab
+	CompareVarToValue 0x4001, 0
+	CallIfEq PalletTown_EventScript_PlayerEnterLabLeft
+	CompareVarToValue 0x4001, 1
+	CallIfEq PalletTown_EventScript_PlayerEnterLabRight
+	WaitMovement
+	SetVar 0x5006, 1
+	ClearFlag 0x2019
+	SetVar 0x5007, 1
+	SetFlag 0x2004
+	SetFlag 0x201A
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_PALLET_TOWN_OAKS_LAB, 0, 6, 12, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	ReleaseAll
+	End
+	
+PalletTown_EventScript_SignLadyShowSign:
+	NPCMsg msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign
+	WaitButton
+	CloseMsg
+	Wait 20, VAR_SPECIAL_RESULT
+	SetFlag 0x200A
+	SetVar 0x5000, 1
+	SetVar 0x4002, 0
+	// TODO(gba) special SetWalkingIntoSignVars
+	// TODO(gba) special DisableMsgBoxWalkaway
+	NPCMsg msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy
+	WaitButton
+	Return
 	
 PalletTown_EventScript_LockGymDoor:
 	// TODO(gba) setmetatile PALLET_GYM_DOOR_X, PALLET_GYM_DOOR_Y, METATILE_PALLET_GYM_DOOR_LOCKED, TRUE
@@ -684,8 +782,9 @@ PalletTown_EventScript_TryReadySignLady:
 	
 PalletTown_EventScript_SetSignLadyPos:
 	GoToIfSet 0x2003, PalletTown_EventScript_MoveSignLadyToRouteEntrance
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_SIGN_LADY, PALLET_SIGN_LADY_SIGN_X, PALLET_SIGN_LADY_SIGN_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_SIGN_LADY, MOVEMENT_TYPE_FACE_UP
+	MovePerson 1, 1035, 381
+	SetObjectMovementType 1, 14
+	SetObjectFacing 1, 0
 	Return
 	
 PalletTown_EventScript_SetSignLadyDone:
@@ -717,27 +816,13 @@ PalletTown_EventScript_NotEnoughMonsForNationalDex:
 	End
 	
 DadStory_EventScript_MemorialGoThere:
-	// TODO(gba) fadescreen FADE_TO_BLACK
-	// TODO(gba) warp MAP_PALLET_TOWN, DAD_STORY_MEMORIAL_X, DAD_STORY_MEMORIAL_Y
-	// TODO(gba) waitstate 
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_PALLET, 0, 1061, 360, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
-	
-PalletTown_EventScript_SignLadyShowSign:
-	NPCMsg msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign
-	WaitButton
-	CloseMsg
-	Wait 20, VAR_SPECIAL_RESULT
-	SetFlag 0x200A
-	SetVar 0x5000, 1
-	SetVar 0x5001, 0
-	// TODO(gba) special SetWalkingIntoSignVars
-	// TODO(gba) special DisableMsgBoxWalkaway
-	// TODO(gba) signmsg 
-	NPCMsg msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy
-	WaitButton
-	// TODO(gba) normalmsg 
-	Return
 	
 TypeTutor_EventScript_Intro:
 	// TODO(gba) special TypeTutor_BufferIntro
@@ -766,7 +851,14 @@ TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
 	NPCMsg msg_0446_T01_TypeTutor_Text_WhichMove
 	// TODO(gba) special TypeTutor_PushMoves
-	// TODO(gba) dynmultistack 17, 0, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_TYPE_TUTOR
+	TouchscreenMenuHide
+	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	MenuExec
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_9
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
@@ -799,22 +891,55 @@ PalletTown_EventScript_ChanseyStatueShort:
 	WaitButton
 	GoTo PalletTown_EventScript_ChanseyStatueEnd
 	
+PalletTown_EventScript_OakEnterLeft:
+	ApplyMovement 3, PalletTown_Movement_OakEnterLeft
+	WaitMovement
+	Return
+	
+PalletTown_EventScript_OakEnterRight:
+	ApplyMovement 3, PalletTown_Movement_OakEnterRight
+	WaitMovement
+	Return
+	
+PalletTown_EventScript_OakLeadPlayerToLabLeft:
+	ApplyMovement 3, PalletTown_Movement_Left_OakWalkToLab
+	ApplyMovement obj_player, PalletTown_Movement_Left_PlayerWalkToLab
+	WaitMovement
+	Return
+	
+PalletTown_EventScript_OakLeadPlayerToLabRight:
+	ApplyMovement 3, PalletTown_Movement_Right_OakWalkToLab
+	ApplyMovement obj_player, PalletTown_Movement_Right_PlayerWalkToLab
+	WaitMovement
+	Return
+	
+PalletTown_EventScript_PlayerEnterLabLeft:
+	ApplyMovement obj_player, PalletTown_Movement_Left_PlayerEnterLab
+	Return
+	
+PalletTown_EventScript_PlayerEnterLabRight:
+	ApplyMovement obj_player, PalletTown_Movement_Right_PlayerEnterLab
+	Return
+	
 DadStory_EventScript_MemorialSetup:
 	ClearFlag 0x2006
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_SENDOFF_MOM, DAD_STORY_MEMORIAL_X - 1, DAD_STORY_MEMORIAL_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_SENDOFF_MOM, MOVEMENT_TYPE_FACE_RIGHT
+	MovePerson 4, 1060, 360
+	SetObjectMovementType 4, 17
+	SetObjectFacing 4, 3
 	ClearFlag 0x2004
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_PROF_OAK, DAD_STORY_MEMORIAL_X + 1, DAD_STORY_MEMORIAL_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT
+	MovePerson 3, 1062, 360
+	SetObjectMovementType 3, 16
+	SetObjectFacing 3, 2
 	Return
 	
 Common_EventScript_NopReturn:
 	Return
 	
 PalletTown_EventScript_MoveSignLadyToRouteEntrance:
-	// TODO(gba) setobjectxyperm LOCALID_PALLET_SIGN_LADY, PALLET_SIGN_LADY_EXIT_X, PALLET_SIGN_LADY_EXIT_Y
-	// TODO(gba) setobjectmovementtype LOCALID_PALLET_SIGN_LADY, MOVEMENT_TYPE_FACE_DOWN
-	SetVar 0x5001, 1
+	MovePerson 1, 1039, 354
+	SetObjectMovementType 1, 15
+	SetObjectFacing 1, 1
+	SetVar 0x4002, 1
 	Return
 	
 PalletTown_EventScript_EndOakRatingScene:
@@ -866,6 +991,15 @@ _cv_unported_6:
 	ReleaseAll
 	End
 
+_cv_unported_14:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0446_T01_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+
 _cv_unported_18:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
@@ -893,25 +1027,7 @@ _cv_unported_22:
 	ReleaseAll
 	End
 
-_cv_unported_23:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_24:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_26:
+_cv_unported_25:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0446_T01_cv_unported
@@ -931,13 +1047,8 @@ Common_Movement_Delay48:
 	EndMovement
 
 	.balign 4, 0
-GymFinale_Movement_UpTheSteps:
-	WalkNormalNorth 3
-	EndMovement
-
-	.balign 4, 0
-Common_Movement_WalkInPlaceFasterUp:
-	WalkOnSpotFasterNorth
+Common_Movement_WalkInPlaceFasterRight:
+	WalkOnSpotFasterEast
 	EndMovement
 
 	.balign 4, 0
@@ -946,8 +1057,13 @@ Common_Movement_WalkInPlaceFasterLeft:
 	EndMovement
 
 	.balign 4, 0
-Common_Movement_WalkInPlaceFasterRight:
-	WalkOnSpotFasterEast
+GymFinale_Movement_UpTheSteps:
+	WalkNormalNorth 3
+	EndMovement
+
+	.balign 4, 0
+Common_Movement_WalkInPlaceFasterUp:
+	WalkOnSpotFasterNorth
 	EndMovement
 
 	.balign 4, 0
@@ -1022,6 +1138,69 @@ PalletTown_Movement_SignLadyMoveOutOfWayRight:
 PalletTown_Movement_SignLadyMoveOutOfWayLeft:
 	WalkNormalWest
 	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_OakEnterLeft:
+	WalkNormalNorth 11
+	WalkNormalWest
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_OakEnterRight:
+	WalkNormalNorth 11
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Left_OakWalkToLab:
+	WalkNormalSouth 13
+	WalkNormalEast 7
+	WalkNormalSouth 17
+	WalkNormalEast 11
+	WalkNormalNorth 4
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Left_PlayerWalkToLab:
+	WalkNormalSouth 14
+	WalkNormalEast 7
+	WalkNormalSouth 17
+	WalkNormalEast 11
+	WalkNormalNorth 3
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Right_OakWalkToLab:
+	WalkNormalSouth 13
+	WalkNormalEast 6
+	WalkNormalSouth 17
+	WalkNormalEast 11
+	WalkNormalNorth 4
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Right_PlayerWalkToLab:
+	WalkNormalSouth 14
+	WalkNormalEast 6
+	WalkNormalSouth 17
+	WalkNormalEast 11
+	WalkNormalNorth 3
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Left_PlayerEnterLab:
+	WalkNormalNorth 2
+	SetInvisible
+	EndMovement
+
+	.balign 4, 0
+PalletTown_Movement_Right_PlayerEnterLab:
+	WalkNormalNorth 2
+	SetInvisible
 	EndMovement
 
 	.balign 4, 0

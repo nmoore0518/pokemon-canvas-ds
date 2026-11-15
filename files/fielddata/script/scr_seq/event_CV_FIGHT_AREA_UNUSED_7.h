@@ -1,0 +1,50 @@
+#ifndef SCR_SEQ_CV_FIGHT_AREA_UNUSED_7_H_
+#define SCR_SEQ_CV_FIGHT_AREA_UNUSED_7_H_
+
+#define _EV_PalletTown_Gym_EventScript_Oak 0
+#define _EV_GymChallenge_EventScript_Aide 1
+#define _EV_GymPractice_EventScript_Trainer0 2
+#define _EV_GymPractice_EventScript_Trainer1 3
+#define _EV_GymPractice_EventScript_Trainer2 4
+#define _EV_GymPractice_EventScript_Trainer3 5
+#define _EV_GymPractice_EventScript_Trainer4 6
+#define _EV_GymPractice_EventScript_Trainer5 7
+#define _EV_GymPractice_EventScript_Trainer6 8
+#define _EV_GymPractice_EventScript_Trainer7 9
+#define _EV_GymPractice_EventScript_Trainer8 10
+#define _EV_GymPractice_EventScript_Trainer9 11
+#define _EV_GymPractice_EventScript_Trainer10 12
+#define _EV_GymLegend_EventScript_Legend 13
+#define _EV_Gauntlet_EventScript_Figure 14
+#define _EV_PalletTown_Gym_EventScript_GymStatue 15
+#define _EV_GymDecor_EventScript_GymPC 16
+#define _EV_PalletTown_Gym_OnLoad 17
+#define _EV_PalletTown_Gym_OnTransition 18
+#define _EV_GymFinale_EventScript_FirstDay 19
+#define _EV_PalletTown_Gym_EventScript_OakShowsGym 20
+#define _EV_PalletTown_Gym_EventScript_OakWantsTheGym 21
+#define _EV_GymLegend_EventScript_RivalEscaped 22
+#define _EV_GymLegend_EventScript_RivalCaught 23
+#define _EV_GymLegend_EventScript_ArrivesLater 24
+#define _EV_Johto_EventScript_Invitation 25
+#define _EV_Gauntlet_EventScript_Arrives 26
+
+#define LOCALID_PALLET_GYM_OAK 1
+#define LOCALID_PALLET_GYM_RIVAL 2
+#define LOCALID_PALLET_GYM_AIDE 3
+#define LOCALID_PALLET_GYM_CHALLENGER 4
+#define LOCALID_PALLET_GYM_TRAINER_0 5
+#define LOCALID_PALLET_GYM_TRAINER_1 6
+#define LOCALID_PALLET_GYM_TRAINER_2 7
+#define LOCALID_PALLET_GYM_TRAINER_3 8
+#define LOCALID_PALLET_GYM_TRAINER_4 9
+#define LOCALID_PALLET_GYM_TRAINER_5 10
+#define LOCALID_PALLET_GYM_TRAINER_6 11
+#define LOCALID_PALLET_GYM_TRAINER_7 12
+#define LOCALID_PALLET_GYM_TRAINER_8 13
+#define LOCALID_PALLET_GYM_TRAINER_9 14
+#define LOCALID_PALLET_GYM_TRAINER_10 15
+#define LOCALID_PALLET_GYM_LEGEND 16
+#define LOCALID_PALLET_GYM_FIGURE 17
+
+#endif

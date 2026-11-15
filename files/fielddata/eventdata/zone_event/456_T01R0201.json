@@ -2,20 +2,37 @@
     "header": "fielddata/script/scr_seq/event_T01R0201.h",
     "objects": [
         {
-            "id": "obj_T01R0201_nanami",
+            "id": "LOCALID_DAISY",
             "spriteId": "SPRITE_NANAMI",
-            "movement": 17,
+            "movement": 3,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T01R0201_000 + 1",
-            "facingDirection": 3,
+            "scriptId": "_EV_PalletTown_RivalsHouse_EventScript_Daisy + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
+            "xRange": 1,
+            "yRange": 3,
             "x": 10,
             "z": 6,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_TOWN_MAP",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2013",
+            "scriptId": "_EV_PalletTown_RivalsHouse_EventScript_TownMap + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 4,
             "y": 0
         }
     ],
@@ -42,5 +59,31 @@
             "y": 0
         }
     ],
-    "bgs": []
+    "bgs": [
+        {
+            "scriptId": "_EV_PalletTown_RivalsHouse_EventScript_Bookshelf + 1",
+            "type": 0,
+            "x": 12,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_RivalsHouse_EventScript_Bookshelf + 1",
+            "type": 0,
+            "x": 11,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_RivalsHouse_EventScript_Picture + 1",
+            "type": 0,
+            "x": 9,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": []
 }

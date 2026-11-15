@@ -2,7 +2,7 @@
     "header": "fielddata/script/scr_seq/event_T01R0102.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_T01R0102_000 + 1",
+            "scriptId": "_EV_PalletTown_PlayersHouse_2F_EventScript_NES + 1",
             "type": 0,
             "x": 6,
             "z": 5,
@@ -10,9 +10,25 @@
             "dir": 4
         },
         {
-            "scriptId": "_EV_scr_seq_T01R0102_001 + 1",
+            "scriptId": "_EV_EventScript_PalletTown_PlayersHouse_2F_TurnOnPC + 1",
             "type": 0,
             "x": 1,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_PlayersHouse_2F_EventScript_Sign + 1",
+            "type": 0,
+            "x": 11,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Outfits_EventScript_Wardrobe + 1",
+            "type": 0,
+            "x": 3,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -26,5 +42,7 @@
             "anchor": 2,
             "y": 0
         }
-    ]
+    ],
+    "objects": [],
+    "coords": []
 }

@@ -1,7 +1,322 @@
 {
-    "header": "fielddata/script/scr_seq/event_T01R0101.h",
-    "bgs": [],
-    "objects": [],
+    "header": "fielddata/script/scr_seq/event_CV_FIGHT_AREA_UNUSED_6.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Synthesizer + 1",
+            "type": 0,
+            "x": 1,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Synthesizer + 1",
+            "type": 0,
+            "x": 2,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Synthesizer + 1",
+            "type": 0,
+            "x": 3,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Synthesizer + 1",
+            "type": 0,
+            "x": 4,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallMaker + 1",
+            "type": 0,
+            "x": 6,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallMaker + 1",
+            "type": 0,
+            "x": 7,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallMaker + 1",
+            "type": 0,
+            "x": 8,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 6,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 7,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 5,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 5,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 8,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_BallChanger + 1",
+            "type": 0,
+            "x": 8,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Switch + 1",
+            "type": 0,
+            "x": 5,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Paper1 + 1",
+            "type": 0,
+            "x": 2,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Paper2 + 1",
+            "type": 0,
+            "x": 10,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Paper3 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Paper4 + 1",
+            "type": 0,
+            "x": 12,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Chalkboard + 1",
+            "type": 0,
+            "x": 9,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Chalkboard + 1",
+            "type": 0,
+            "x": 10,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Bookshelf + 1",
+            "type": 0,
+            "x": 11,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Workbench + 1",
+            "type": 0,
+            "x": 0,
+            "z": 5,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Workbench + 1",
+            "type": 0,
+            "x": 0,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Workbench + 1",
+            "type": 0,
+            "x": 1,
+            "z": 5,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Workbench + 1",
+            "type": 0,
+            "x": 1,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_LabTable + 1",
+            "type": 0,
+            "x": 11,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_LabTable + 1",
+            "type": 0,
+            "x": 11,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_LabTable + 1",
+            "type": 0,
+            "x": 12,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_LabTable + 1",
+            "type": 0,
+            "x": 12,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Desk + 1",
+            "type": 0,
+            "x": 13,
+            "z": 5,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Desk + 1",
+            "type": 0,
+            "x": 13,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Desk + 1",
+            "type": 0,
+            "x": 14,
+            "z": 5,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Desk + 1",
+            "type": 0,
+            "x": 14,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_TrashCan + 1",
+            "type": 0,
+            "x": 0,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Crates + 1",
+            "type": 0,
+            "x": 13,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Crates + 1",
+            "type": 0,
+            "x": 14,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PlayersHouse_B1F_EventScript_Crates + 1",
+            "type": 0,
+            "x": 14,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "LOCALID_BASEMENT_MOM",
+            "spriteId": "SPRITE_GSMAMA",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "0x200F",
+            "scriptId": "0",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 3,
+            "y": 0
+        }
+    ],
     "warps": [
         {
             "x": 12,
@@ -10,5 +325,6 @@
             "anchor": 4,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

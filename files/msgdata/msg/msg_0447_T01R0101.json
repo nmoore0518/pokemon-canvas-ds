@@ -2,29 +2,136 @@
   "key": 9222,
   "messages": [
     {
-      "id": "msg_0447_T01R0101_00000",
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_OopsWrongSide",
+      "en_US": "Oops, wrong side…"
+    },
+    {
+      "id": "msg_0447_T01R0101_DadStory_Text_MomDadsBall",
       "en_US": [
-        "Hi!\r",
-        "Red’s been away. He hasn’t called\n",
-        "either, so I have no idea where he\f",
-        "is or what he’s been doing.\r",
-        "They say no news is good news,\n",
-        "but I do worry about him."
+        "MOM: Hey, {STRVAR_1 3, 6, 0}! How is the Gym\n",
+        "Leader journey going so far?\r",
+        "I meant to give you something of your\n",
+        "father’s before you left, but I couldn’t\f",
+        "find it.\r",
+        "I dug it up, though. Here, take a look.\r",
+        "It’s a special Poké Ball your dad made.\r",
+        "I’ve told you how much he loved to work\n",
+        "with his hands. Well, that’s something he\f",
+        "made.\r",
+        "I guess it makes Pokémon a little\n",
+        "stronger if they’re inside it.\r",
+        "Use it to catch a Pokémon to use in your\n",
+        "Gym. Or maybe just hang on to it to\f",
+        "remember him by."
       ]
     },
     {
-      "id": "msg_0447_T01R0101_00001",
+      "id": "msg_0447_T01R0101_DadStory_Text_MomMoveExtractor",
       "en_US": [
-        "I worry about Red getting hurt or\n",
-        "sick, but he’s a boy. I’m proud that\f",
-        "he is doing what he wants to do."
+        "MOM: Wait… what is that thing in your\n",
+        "BAG? A MOVE EXTRACTOR?\r",
+        "How did you get that?\r",
+        "Just… be careful, honey. Please.\r",
+        "There are a lot of dangerous things…\n",
+        "dangerous people out there.\r",
+        "Promise me you’ll be safe."
       ]
     },
     {
-      "id": "msg_0447_T01R0101_00002",
+      "id": "msg_0447_T01R0101_DadStory_Text_MomWhyWithHim",
       "en_US": [
-        "They have shows that aren’t\n",
-        "aired in Johto..."
+        "MOM: I was shopping in SAFFRON when I\n",
+        "saw you go into SILPH CO. I followed you\f",
+        "all the way up.\r",
+        "Why were you with him…?\r",
+        "Those aren’t good people, you know that,\n",
+        "right?\r",
+        "They do more than just steal Pokémon.\n",
+        "They corrupt them.\r",
+        "They morph them into things they were\n",
+        "never meant to be.\r",
+        "Come here. I want to show you something."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest",
+      "en_US": [
+        "MOM: {STRVAR_1 3, 6, 0}!\n",
+        "You should take a quick rest."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare",
+      "en_US": [
+        "MOM: Oh, good! You and your\n",
+        "Pokémon are looking great.\f",
+        "Take care now!"
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou",
+      "en_US": [
+        "MOM: …Right.\n",
+        "All boys leave home someday.\f",
+        "It said so on TV.\r",
+        "Oh, yes. Prof. Oak, next door, was\n",
+        "looking for you."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou",
+      "en_US": [
+        "MOM: …Right.\n",
+        "All girls dream of traveling.\f",
+        "It said so on TV.\r",
+        "Oh, yes. Prof. Oak, next door, was\n",
+        "looking for you."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_DadStory_Text_MomAfterViridian",
+      "en_US": [
+        "MOM: {STRVAR_1 3, 6, 0}! How is CHANSEY doing?\r",
+        "She was always so gentle with you, even\n",
+        "when you were a baby. Your father made\f",
+        "sure of that.\r",
+        "He’d be so proud of you, you know. I know\n",
+        "I am.\r",
+        "Take care of each other out there."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad",
+      "en_US": [
+        "There’s a movie on TV.\n",
+        "Four boys are walking on railroad\f",
+        "tracks.\r",
+        "…I better go, too."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad",
+      "en_US": [
+        "There’s a movie on TV.\n",
+        "A girl with her hair in pigtails is\f",
+        "walking up a brick road.\r",
+        "…I better go, too."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_DadStory_Text_MomArcherNudge",
+      "en_US": [
+        "MOM: Professor OAK said the new\n",
+        "VIRIDIAN Leader was asking for you.\f",
+        "Something of your father’s?\r",
+        "Go and see him, honey. Just… be careful."
+      ]
+    },
+    {
+      "id": "msg_0447_T01R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

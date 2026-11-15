@@ -1,7 +1,16 @@
 diff --git a/Makefile b/Makefile
-index 60c93523..33bfd7b3 100644
+index 60c93523..623b64af 100644
 --- a/Makefile
 +++ b/Makefile
+@@ -268,7 +268,7 @@ $(SPECIESDATAGEN): $(wildcard tools/source/speciesdatagen/*.c) data/Species.c in
+ 
+ TOOLS += $(SPECIESDATAGEN)
+ 
+-$(TRAINERDATAGEN): $(wildcard tools/source/trainerdatagen/*.c) data/Trainers.c include/trainer_data.h include/constants/trainerclass.h include/constants/pokemon.h
++$(TRAINERDATAGEN): $(wildcard tools/source/trainerdatagen/*.c) data/Trainers.c data/canvas_trainers.h data/canvas_trainer_order.h include/trainer_data.h include/constants/trainerclass.h include/constants/pokemon.h
+ 	cd tools/source/trainerdatagen ; $(MAKE) clean; $(MAKE)
+ 
+ TOOLS += $(TRAINERDATAGEN)
 @@ -598,6 +598,9 @@ endif
  	@echo "machine moves:"
  	cp $(MACHINE_MOVES_PARAMS_BIN) $(MACHINE_MOVES_PARAMS_TARGET)
@@ -12,6 +21,26 @@ index 60c93523..33bfd7b3 100644
  update_machine_moves: $(VENV_ACTIVATE)
  	$(PYTHON) scripts/update_machine_moves.py --descriptions --sprites
  	@echo "Updated item descriptions and sprites. Double check formatting"
+diff --git a/data/Trainers.c b/data/Trainers.c
+index 73b4afe6..95564f23 100644
+--- a/data/Trainers.c
++++ b/data/Trainers.c
+@@ -31160,6 +31160,7 @@ const TrainerData sTrainerData[] = {
+         },
+     },
+ 
++#include "canvas_trainers.h"   // Pokemon Canvas (tools/canvas/port/trainers.py)
+ };
+ 
+ const u16 sTrainerTextOrder[] = {
+@@ -31799,6 +31800,7 @@ const u16 sTrainerTextOrder[] = {
+     628,
+     629,
+     630,
++#include "canvas_trainer_order.h"   // Pokemon Canvas (tools/canvas/port/trainers.py)
+ };
+ 
+ const u32 sTrainerDataCount = sizeof(sTrainerData) / sizeof(sTrainerData[0]);
 diff --git a/data/codetables.mk b/data/codetables.mk
 index 645bdc10..f44e9b40 100644
 --- a/data/codetables.mk
@@ -74,6 +103,19 @@ index 8fd46ff6..ba44214d 100644
  #endif
  };
  
+diff --git a/narcs.mk b/narcs.mk
+index 27ffefac..c2ff5964 100644
+--- a/narcs.mk
++++ b/narcs.mk
+@@ -274,7 +274,7 @@ NARC_FILES += $(TRAINERTEXT_NARC)
+ REQUIRED_DIRECTORIES += $(TRAINERTEXT_DIR) $(TRAINERTEXT_DIR_2) $(BUILD)/rawtext/728
+ MSGDATA_COMPILETIME_DEPENDENCIES += $(BUILD)/rawtext/728.txt
+ 
+-$(BUILD)/trainers/.generated: data/Trainers.c include/trainer_data.h include/constants/trainerclass.h include/constants/pokemon.h $(TRAINERDATAGEN)
++$(BUILD)/trainers/.generated: data/Trainers.c data/canvas_trainers.h data/canvas_trainer_order.h include/trainer_data.h include/constants/trainerclass.h include/constants/pokemon.h $(TRAINERDATAGEN)
+ 	mkdir -p $(BUILD)/trainers
+ 	mkdir -p $(BUILD_NARC)
+ 	rm -rf $(TRAINERDATA_DIR) $(TRAINERDATA_DIR_2) $(TRAINERTEXT_DIR) $(TRAINERTEXT_DIR_2) $(BUILD)/rawtext/728 $(BUILD)/rawtext/729
 diff --git a/src/canvas_flags.c b/src/canvas_flags.c
 new file mode 100644
 index 00000000..603df0a7

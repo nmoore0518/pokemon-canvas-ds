@@ -2,15 +2,104 @@
   "key": 9234,
   "messages": [
     {
-      "id": "msg_0450_T01R0202_00000",
+      "id": "msg_0450_T01R0202_PalletTown_House1_Text_GymOnTheHill",
       "en_US": [
-        "It’s a Wii!\n",
-        "Wii is huge in Kanto, too!"
+        "Prof. Oak has had folks hauling\n",
+        "things up that rocky hill all month.\r",
+        "They say it’s a Pokémon Gym!\n",
+        "In quiet little PALLET TOWN!"
       ]
     },
     {
-      "id": "msg_0450_T01R0202_00001",
-      "en_US": "...The power is turned off."
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyIntro",
+      "en_US": [
+        "Did you know a Trainer from\n",
+        "PALLET TOWN once went to every\r",
+        "region in the world?\r",
+        "I collected a cap from each one,\n",
+        "just like his! Then I took them\r",
+        "on a trip around KANTO…\r",
+        "…and lost every single one.\n",
+        "Seven caps! Waaah!\r",
+        "Hey, you travel a lot, right? If\n",
+        "you find my caps, I’ll trade you\r",
+        "something really special for\n",
+        "each one!\r",
+        "Here, put them in this!"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyCase",
+      "en_US": [
+        "My CAP CASE! Look carefully.\n",
+        "Caps get snagged in the\r",
+        "strangest places."
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_PalletTown_House1_Text_Pidgey",
+      "en_US": "PIDGEY: Pijji!"
+    },
+    {
+      "id": "msg_0450_T01R0202_PalletTown_House1_Text_Sign",
+      "en_US": [
+        "Family photo of the ASHFORDS.\n",
+        "Everyone is squinting at the sun."
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyThanks",
+      "en_US": [
+        "My {STRVAR_1 3, 0, 0}! You found it!\r",
+        "Here, this PIKACHU wears one\n",
+        "just like it. A trade’s a trade!"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyHint",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} caps are still out\n",
+        "there.\r",
+        "I think I lost the {STRVAR_1 3, 0, 0}\n",
+        "somewhere around {STRVAR_1 3, 1, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyAll",
+      "en_US": [
+        "All seven caps! My collection’s\n",
+        "back!\r",
+        "You’re a real partner. This\n",
+        "PIKACHU wears the PARTNER CAP.\r",
+        "It’s the most special of all!"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_CapBoyDone",
+      "en_US": [
+        "My caps are all back, thanks to\n",
+        "you! Take good care of those\r",
+        "PIKACHU!"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_Received",
+      "en_US": "{STRVAR_1 3, 6, 0} received {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "msg_0450_T01R0202_EventMons_Text_NoRoom",
+      "en_US": [
+        "Oh… There’s no room for it in\n",
+        "your party or your boxes. Make\r",
+        "some space and come back!"
+      ]
+    },
+    {
+      "id": "msg_0450_T01R0202_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

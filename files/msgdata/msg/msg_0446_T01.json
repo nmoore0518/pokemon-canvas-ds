@@ -405,6 +405,36 @@
       ]
     },
     {
+      "id": "msg_0446_T01_PalletTown_Text_OakDontGoOut",
+      "en_US": [
+        "OAK: Hey! Wait!\n",
+        "Don’t go yet!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_OakGrassUnsafeNeedMon",
+      "en_US": [
+        "OAK: There’s something we need to\n",
+        "talk about!\r",
+        "Come with me!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign",
+      "en_US": [
+        "Look, look!\r",
+        "I copied what it said on one of\n",
+        "those Trainer TIPS signs!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy",
+      "en_US": [
+        "Trainer TIPS!\r",
+        "Press START to open the MENU!"
+      ]
+    },
+    {
       "id": "msg_0446_T01_GymFinale_Text_CeremonyMentor",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Look at you up there!\r",
@@ -434,21 +464,6 @@
         "in an honest effort.\r",
         "When you manage to fill it some\n",
         "more, come show me, please."
-      ]
-    },
-    {
-      "id": "msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign",
-      "en_US": [
-        "Look, look!\r",
-        "I copied what it said on one of\n",
-        "those Trainer TIPS signs!"
-      ]
-    },
-    {
-      "id": "msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy",
-      "en_US": [
-        "Trainer TIPS!\r",
-        "Press START to open the MENU!"
       ]
     },
     {

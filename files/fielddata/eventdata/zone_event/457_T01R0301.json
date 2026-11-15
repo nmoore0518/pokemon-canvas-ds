@@ -1,7 +1,226 @@
 {
     "header": "fielddata/script/scr_seq/event_T01R0301.h",
-    "bgs": [],
-    "objects": [],
+    "bgs": [
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Computer + 1",
+            "type": 0,
+            "x": 2,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Computer + 1",
+            "type": 0,
+            "x": 3,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_LeftSign + 1",
+            "type": 0,
+            "x": 6,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_RightSign + 1",
+            "type": 0,
+            "x": 7,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_BallShelf + 1",
+            "type": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_BallShelf + 1",
+            "type": 0,
+            "x": 9,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_BallShelf + 1",
+            "type": 0,
+            "x": 10,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_BallShelf + 1",
+            "type": 0,
+            "x": 11,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Aide1 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 3,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 4,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Aide3 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 4,
+            "x": 2,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Aide2 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 11,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OAKS_LAB_PROF_OAK",
+            "spriteId": "SPRITE_OOKIDO",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2019",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_ProfOak + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OAKS_LAB_RIVAL",
+            "spriteId": "SPRITE_GSRIVEL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2024",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Rival + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEDEX_1",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2025",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Pokedex + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 1,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_POKEDEX_2",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2025",
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Pokedex + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
+            "z": 1,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OAKS_LAB_MENTOR",
+            "spriteId": "SPRITE_VAR_0",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "0x2017",
+            "scriptId": "0",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 6,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_OAKS_LAB_LEADER_AIDE",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x201D",
+            "scriptId": "_EV_LeaderAide_EventScript_Aide + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 8,
+            "z": 5,
+            "y": 0
+        }
+    ],
     "warps": [
         {
             "x": 6,
@@ -23,6 +242,68 @@
             "header": "MAP_PALLET",
             "anchor": 2,
             "y": 0
+        }
+    ],
+    "coords": [
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger + 1",
+            "x": 5,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5006"
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger + 1",
+            "x": 6,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5006"
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger + 1",
+            "x": 7,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5006"
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerLeft + 1",
+            "x": 5,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5006"
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerMid + 1",
+            "x": 6,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5006"
+        },
+        {
+            "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerRight + 1",
+            "x": 7,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5006"
         }
     ]
 }

@@ -1,9 +1,12 @@
 #ifndef SCR_SEQ_T01R0101_H_
 #define SCR_SEQ_T01R0101_H_
 
-#define _EV_scr_seq_T01R0101_000 0
-#define _EV_scr_seq_T01R0101_001 1
+#define _EV_PalletTown_PlayersHouse_1F_EventScript_Mom 0
+#define _EV_PalletTown_PlayersHouse_1F_EventScript_TV 1
+#define _EV_DadStory_EventScript_HouseOnLoad 2
+#define _EV_DadStory_EventScript_MomDadsBall 3
+#define _EV_DadStory_EventScript_MomWhyWithHim 4
 
-#define obj_T01R0101_redmama 0
+#define LOCALID_PLAYERS_HOUSE_1F_MOM 1
 
-#endif // SCR_SEQ_T01R0101_H_
+#endif

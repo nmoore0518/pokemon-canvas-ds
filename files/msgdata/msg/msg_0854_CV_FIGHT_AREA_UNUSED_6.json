@@ -1,0 +1,383 @@
+{
+  "key": 19816,
+  "messages": [
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_BallMaker",
+      "en_US": [
+        "A big hopper with a hand crank beside\n",
+        "it. A plate on its side reads:\f",
+        "BALL MAKER.\r",
+        "Scratched under the hatch:\n",
+        "LV. 50 OR HIGHER."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerAsk",
+      "en_US": "Put a Pokémon in the hopper?"
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerConfirmEvil",
+      "en_US": [
+        "Put {STRVAR_1 3, 0, 0} in the BALL MAKER?\n",
+        "It won’t be coming back out."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerGrinding",
+      "en_US": "GRINDING."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerExtracting",
+      "en_US": "EXTRACTING."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerEliminated",
+      "en_US": "Pokémon ELIMINATED."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerCreated",
+      "en_US": "{STRVAR_1 3, 1, 0} BALL CREATED."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_BallChanger",
+      "en_US": [
+        "Two pedestals, each with a dish for a\n",
+        "Poké Ball. A plate on the console\f",
+        "reads: BALL CHANGER."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerAsk",
+      "en_US": [
+        "Move a Pokémon into a different\n",
+        "BALL?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerPickBall",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is in a {STRVAR_1 3, 1, 0}.\n",
+        "Which BALL should it go into?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerConfirm",
+      "en_US": [
+        "Move {STRVAR_1 3, 0, 0} into the\n",
+        "{STRVAR_1 3, 2, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerDone",
+      "en_US": [
+        "The two BALLS leapt across and\n",
+        "traded places!\r",
+        "{STRVAR_1 3, 0, 0} is in the {STRVAR_1 3, 2, 0} now.\n",
+        "{STRVAR_1 3, 6, 0} took back the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SwitchToNice",
+      "en_US": [
+        "Switch machines from Evil Mode to\n",
+        "Nice Mode?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SwitchedToNice",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} threw the switch.\n",
+        "The machines hum softly. Nice Mode."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Chalkboard",
+      "en_US": [
+        "A Poké Ball, drawn split in two.\n",
+        "Arrows, numbers… and a question mark."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Bookshelf",
+      "en_US": [
+        "Dusty books on Pokémon abilities and\n",
+        "machinery. A jar holds something\f",
+        "murky."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Workbench",
+      "en_US": [
+        "Tools, a vise, and a blueprint\n",
+        "too smudged to read."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_LabTable",
+      "en_US": [
+        "Flasks of green, amber and rust-red\n",
+        "liquid. Something has dried in the\f",
+        "tubing."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Desk",
+      "en_US": [
+        "A typewriter and a stack of notes.\n",
+        "The lamp still works."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_TrashCan",
+      "en_US": "Crumpled papers. Nothing readable."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_DadStory_Text_MomBasement",
+      "en_US": [
+        "MOM: This is where your father did his\n",
+        "work.\r",
+        "I don’t really know what all he got into,\n",
+        "but he was down here day and night…\f",
+        "tinkering.\r",
+        "He didn’t really like me coming down here,\n",
+        "so I didn’t.\r",
+        "It scared me, {STRVAR_1 3, 6, 0}, at the height of\n",
+        "it. He wasn’t himself.\r",
+        "He had strange visitors at all hours. I\n",
+        "don’t think he slept.\r",
+        "When you were born, that all changed.\r",
+        "I don’t want you to ever think he didn’t\n",
+        "love you.\r",
+        "You were the only thing that I thought\n",
+        "could pull him out of his obsession.\r",
+        "But he was in too deep…\r",
+        "…\r",
+        "You can come down here whenever you\n",
+        "want. I should have told you about this\f",
+        "earlier."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Synthesizer",
+      "en_US": [
+        "A belt feeds into a falling sheet of\n",
+        "glowing liquid. It churns and hisses.\r",
+        "A plate on its side reads:\n",
+        "ABILITY SYNTHESIZER.\r",
+        "A tank on the back is labeled:\n",
+        "3 {STRVAR_1 3, 2, 0}."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthAsk",
+      "en_US": [
+        "Pour in 3 {STRVAR_1 3, 2, 0} and put a\n",
+        "Pokémon on the belt?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthConfirm",
+      "en_US": [
+        "The screen flickers on.\r",
+        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
+        "SYNTHETIC ABILITY: {STRVAR_1 3, 1, 0}.\f",
+        "BEGIN?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthRemoving",
+      "en_US": "REMOVING ABILITIES."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthImplanting",
+      "en_US": "IMPLANTING SYNTHETIC ABILITY."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneEvil",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} came out of the machine\n",
+        "with {STRVAR_1 3, 1, 0}!\r",
+        "It’s trembling… It looks like it’s in\n",
+        "a lot of pain.\r",
+        "{STRVAR_1 3, 0, 0} seems very unhappy…"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MachineEgg",
+      "en_US": "The machine won’t take an EGG."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerLowLevel",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is too small. The hatch\n",
+        "won’t open."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerLastMon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is the only Pokémon\n",
+        "with you! You can’t do that."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerBagFull",
+      "en_US": [
+        "There’s no room in the BAG for\n",
+        "what comes out."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerConfirmNice",
+      "en_US": [
+        "Put {STRVAR_1 3, 0, 0} in the BALL MAKER?\n",
+        "It will lose 5 levels."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerScanning",
+      "en_US": "SCANNING."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerSampling",
+      "en_US": [
+        "EXTRACTING SMALL DNA SAMPLE.\n",
+        "PAINLESS MODE ENGAGED."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerCreatedNice",
+      "en_US": [
+        "SAMPLE COMPLETE.\n",
+        "{STRVAR_1 3, 1, 0} BALL CREATED."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerNiceMonBack",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} hopped back out of the\n",
+        "hatch, none the worse for it.\r",
+        "{STRVAR_1 3, 0, 0} is now Lv. {STRVAR_1 3, 2, 0}."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerTookBall",
+      "en_US": "{STRVAR_1 3, 6, 0} took the {STRVAR_1 3, 2, 0}."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerSame",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is already in a\n",
+        "{STRVAR_1 3, 2, 0}."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerBagFull",
+      "en_US": [
+        "There’s no room in the BAG for the\n",
+        "{STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_Wall",
+      "en_US": [
+        "Cold concrete. It’s damp to\n",
+        "the touch."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SwitchToEvil",
+      "en_US": [
+        "Switch machines from Nice Mode to\n",
+        "Evil Mode?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SwitchedToEvil",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} threw the switch back.\n",
+        "The machines growl. Evil Mode."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_LooseCrate",
+      "en_US": [
+        "Wooden crates, nailed shut…\r",
+        "The lid of one of them is loose.\n",
+        "There’s something folded inside."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_FoundRocketUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} found a\n",
+        "TEAM ROCKET uniform!"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthNoFuel",
+      "en_US": [
+        "The tank is dry. It needs 3\n",
+        "{STRVAR_1 3, 2, 0} to run."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthBlocked",
+      "en_US": [
+        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
+        "ERROR. ABILITY CANNOT BE REMOVED."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthAlready",
+      "en_US": [
+        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
+        "ERROR. SYNTHETIC ABILITY {STRVAR_1 3, 1, 0}\f",
+        "ALREADY IMPLANTED."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneNice",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} loved the taste of the\n",
+        "APPLE JUICE so much, it didn’t even\f",
+        "notice the implant!\r",
+        "{STRVAR_1 3, 0, 0} came out with\n",
+        "{STRVAR_1 3, 1, 0}!\r",
+        "It seems a little happier!"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_CratesEmpty",
+      "en_US": [
+        "Wooden crates, nailed shut.\n",
+        "One of them is empty."
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_WhyIsThisHere",
+      "en_US": [
+        "A TEAM ROCKET uniform?\n",
+        "Why is this here?"
+      ]
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_DadStory_Text_CrateIsDads",
+      "en_US": "Oh… it’s DAD’s ROCKET uniform."
+    },
+    {
+      "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

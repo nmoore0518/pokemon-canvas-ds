@@ -10,10 +10,10 @@
 
 _cv_T01_frame:
 	// (not yet: GymFinale_EventScript_Ceremony)
-	// (not yet: GymFinale_EventScript_OakAtTheDoor)
-	// (not yet: PalletTown_EventScript_OakRatingScene)
+	InitScriptGoToIfEqual 0x5004, 1, _EV_GymFinale_EventScript_OakAtTheDoor + 1
+	InitScriptGoToIfEqual 0x5007, 2, _EV_PalletTown_EventScript_OakRatingScene + 1
 	InitScriptGoToIfEqual 0x5008, 1, _EV_DadStory_EventScript_Sendoff + 1
-	// (not yet: DadStory_EventScript_Memorial)
+	InitScriptGoToIfEqual 0x5008, 8, _EV_DadStory_EventScript_Memorial + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

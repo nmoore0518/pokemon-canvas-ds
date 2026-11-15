@@ -437,7 +437,7 @@
         },
         {
             "id": "LOCALID_PALLET_CEREMONY_MENTOR",
-            "spriteId": "0x4020",
+            "spriteId": "SPRITE_VAR_0",
             "movement": 16,
             "type": 0,
             "eventFlag": "0x2009",
@@ -454,7 +454,7 @@
         },
         {
             "id": "LOCALID_PALLET_CEREMONY_LEADER_1",
-            "spriteId": "0x4021",
+            "spriteId": "SPRITE_VAR_1",
             "movement": 16,
             "type": 0,
             "eventFlag": "0x2009",
@@ -471,7 +471,7 @@
         },
         {
             "id": "LOCALID_PALLET_CEREMONY_LEADER_2",
-            "spriteId": "0x4022",
+            "spriteId": "SPRITE_VAR_2",
             "movement": 16,
             "type": 0,
             "eventFlag": "0x2009",
@@ -652,6 +652,28 @@
             "header": "MAP_FIGHT_AREA_UNUSED_4",
             "anchor": 0,
             "y": 0
+        }
+    ],
+    "coords": [
+        {
+            "scriptId": "_EV_PalletTown_EventScript_OakTriggerLeft + 1",
+            "x": 1039,
+            "z": 353,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5007"
+        },
+        {
+            "scriptId": "_EV_PalletTown_EventScript_OakTriggerRight + 1",
+            "x": 1040,
+            "z": 353,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5007"
         }
     ]
 }

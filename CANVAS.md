@@ -110,6 +110,23 @@ numbers) as flags 0x2000+ and vars 0x5000+. The engine patch hooks HeartGold's f
 our part of the save (`engine/src/canvas_flags.c`), and every ordinary command works with them.
 See STORY.md for where the story is going.
 
+Run the porter after the map generators (build_pallet/rooms/clones/kanto), since those rewrite the events it fills.
+What else it does:
+- **Specials** (the GBA game's C functions) are written as HeartGold script in `port/specials.py` wherever they're
+  small (the starter table, the rival's choice, Pokedex counts...). Ones that need the engine come later.
+- **Trainers**: `port/trainers.py` turns the GBA party files into hg-engine trainer entries from id 738 on
+  (`tools/canvas/data/canvas_trainers.h`, copied into `engine/data` by build_rom.sh; ids kept in
+  `canvas_trainers.json`). So far the rival: every rival battle picks his team for that stage by `VAR_RIVAL_TYPE`.
+- **Menus**: the GBA's scrolling multichoice becomes HeartGold's touch-screen list, in pages of 7 with "More…".
+- **Items HeartGold doesn't have** (Oak's Parcel, the balloon...) are carried as flags until we add the items.
+- **Trigger squares** (coord events) come over; HeartGold doesn't respawn a removed person when their flag clears,
+  so the porter shows them again itself.
+- **The rival is named** the first time he speaks (HeartGold's intro only names the player).
+- **Message banks 829-853 belong to hg-engine** (it lays its own text over them): our own banks start at 854.
+- **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
+  table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
+  screen through Oak, the lab, the type choice and the rival battle.
+
 ## Rules for every map we build (from Nick's review of Pallet)
 
 - stairs: HeartGold's striped `slope` ramp, about three steps per block of height, with a low rail down each side;

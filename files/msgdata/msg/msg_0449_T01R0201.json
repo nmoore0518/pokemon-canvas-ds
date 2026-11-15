@@ -2,108 +2,274 @@
   "key": 9246,
   "messages": [
     {
-      "id": "msg_0449_T01R0201_00000",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_HiBrothersAtLab",
       "en_US": [
-        "Daisy: Hi! My kid brother is the Gym\n",
-        "Leader in Viridian City.\r",
-        "But he goes out of town so often,\n",
-        "it causes problems for the Trainers."
+        "DAISY: Hi, {STRVAR_1 3, 6, 0}!\r",
+        "My brother, {STRVAR_1 3, 7, 0}, is out at\n",
+        "Grandpa’s LAB."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00001",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ItsBigMapOfKanto",
       "en_US": [
-        "Daisy: Hi! Good timing. I’m about\n",
-        "to have some tea.\r",
+        "It’s a big map of the KANTO region.\n",
+        "Now this would be useful!"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ShelvesCrammedFullOfBooks",
+      "en_US": [
+        "The shelves are crammed full of\n",
+        "books on Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LovelyAndSweetClefairy",
+      "en_US": [
+        "“The lovely and sweet\n",
+        "CLEFAIRY”"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyGrandpasCoins",
+      "en_US": [
+        "Oh! Is that an AMULET COIN?\n",
+        "May I see? …It’s lovely.\r",
+        "You know, when Grandpa was young,\n",
+        "he went on expeditions all over.\r",
+        "Old caves, ruins…\n",
+        "He’d come home with coins nobody\f",
+        "had spent in a hundred years.\r",
+        "He taught me how to set them into\n",
+        "a charm like that one.\r",
+        "Each one makes it a little\n",
+        "luckier with money.\r",
+        "Grandpa never brought them all\n",
+        "home, though. He said the best\f",
+        "ones were still out there.\r",
+        "If you find any, bring them to me!"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LikeMeToGroomMon",
+      "en_US": [
+        "DAISY: Hi, {STRVAR_1 3, 6, 0}!\n",
+        "Good timing.\r",
+        "I’m about to have some tea.\n",
         "Would you like to join me?\r",
-        "Oh, you seem to keep your Pokémon\n",
-        "a bit on the dirty side.\r",
-        "Grooming helps them become more\n",
-        "beautiful and friendly.\r",
-        "Would you like me to groom one? {YESNO 0}"
+        "Oh, but look.\n",
+        "Your Pokémon are a little dirty.\r",
+        "Would you like me to groom one?"
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00002",
-      "en_US": "Daisy: Which one should I groom?\r"
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_GroomWhichOne",
+      "en_US": "Which one should I groom?"
     },
     {
-      "id": "msg_0449_T01R0201_00003",
-      "en_US": "{STRVAR_1 0, 0, 0} looks content."
-    },
-    {
-      "id": "msg_0449_T01R0201_00004",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LookingNiceInNoTime",
       "en_US": [
-        "Daisy: There you go!\n",
-        "All done.\r",
-        "See? Doesn’t it look nice?\n",
+        "DAISY: Okay, I’ll get it looking\n",
+        "nice in no time."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ThereYouGoAllDone",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} looks dreamily content…\r",
+        "DAISY: There you go! All done.\n",
+        "{STRVAR_1 3, 0, 0} looks dreamily content…\r",
+        "DAISY: There you go! All done.\n",
+        "See? Doesn’t it look nice?\r",
+        "Giggle…\n",
         "It’s such a cute Pokémon."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00005",
+      "id": "msg_0449_T01R0201_GymCandidate_Text_DaisyAside",
       "en_US": [
-        "Daisy: I always have tea around\n",
-        "this time. Come join me."
+        "DAISY: Grandpa’s been going over\n",
+        "to the Gym late at night lately.\r",
+        "He says he’s “inspecting.”\n",
+        "In his old Trainer’s cap."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00006",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_PleaseGiveMonsRest",
       "en_US": [
-        "Daisy: You don’t want to have one\n",
-        "groomed? OK, we’ll just have tea."
+        "DAISY: Just like people, Pokémon\n",
+        "are living things.\r",
+        "When they get tired, please give\n",
+        "them a rest."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00007",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ExplainTownMap",
       "en_US": [
-        "Daisy: Oh, sorry. I honestly can’t\n",
-        "groom an Egg."
+        "You can use the TOWN MAP to find\n",
+        "out where you are, or check the\f",
+        "names of places."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00008",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ErrandForGrandpaThisWillHelp",
       "en_US": [
-        "Daisy: You are really into grooming!\n",
-        "Say!\f",
-        "Would you like my kid brother’s number?\r",
-        "He is the Gym Leader at Viridian City.\n",
-        "Have you challenged him?\r",
-        "Do you want to register him? {YESNO 0}"
+        "Grandpa asked you to run an\n",
+        "errand?\r",
+        "Gee, that’s lazy of him.\n",
+        "Here, this will help you."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00009",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ReceivedTownMapFromDaisy",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} registered Blue\n",
-        "in the Pokégear!"
+        "{STRVAR_1 3, 6, 0} received a TOWN MAP\n",
+        "from DAISY."
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00010",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_HeardYouBattledRival",
       "en_US": [
-        "Daisy: Give him a call when you feel\n",
-        "like it.\r",
-        "He can be overly confident, but he\n",
-        "still needs company.\r",
-        "He said he won’t have any plans on\n",
-        "Sunday nights...\f",
-        "Giggle!"
+        "DAISY: {STRVAR_1 3, 6, 0}, I heard you had\n",
+        "a battle against {STRVAR_1 3, 7, 0}.\r",
+        "I wish I’d seen that!"
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00011",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisySetCoins",
       "en_US": [
-        "Daisy: Really? You won’t?\n",
-        "I see...\f",
-        "How disappointing."
+        "For the AMULET COIN, I’ll need\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "Shall I set it in for you?"
       ]
     },
     {
-      "id": "msg_0449_T01R0201_00012",
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyLetMeSee",
       "en_US": [
-        "Daisy: Do you want to register\n",
-        "my kid brother’s number? {YESNO 0}"
+        "Let me see… Just like Grandpa\n",
+        "showed me…"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyCoinLevel",
+      "en_US": [
+        "There! Your AMULET COIN is Lv. {STRVAR_1 3, 0, 0}.\n",
+        "It brings {STRVAR_1 3, 1, 0}x the prize money."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_MayISeeFirstMon",
+      "en_US": [
+        "DAISY: Your Pokémon grow to love\n",
+        "you if you raise them with love.\r",
+        "For example, {STRVAR_1 3, 6, 0}, may I see\n",
+        "your first Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DontNeedAnyGrooming",
+      "en_US": [
+        "You don’t need any grooming done?\n",
+        "Okay, we’ll just have tea."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_CantGroomAnEgg",
+      "en_US": [
+        "Oh, sorry. I honestly can’t\n",
+        "groom an EGG."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DontHaveSpaceForThis",
+      "en_US": [
+        "You don’t have space for this in\n",
+        "your BAG."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyCoinMaxed",
+      "en_US": [
+        "Your AMULET COIN can’t hold any\n",
+        "more. Grandpa would be amazed!"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyNeedMoreCoins",
+      "en_US": [
+        "To make the AMULET COIN luckier,\n",
+        "I’ll need {STRVAR_1 3, 0, 0}.\r",
+        "Grandpa always said to look in\n",
+        "the old places."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyKeepThem",
+      "en_US": "All right. Hang on to them, then."
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_WhyWouldMonHateYouSoMuch",
+      "en_US": [
+        "…Um, it’s not easy for me to say\n",
+        "this, but…\r",
+        "Is there some reason why your\n",
+        "Pokémon would hate you so much?"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DontLikeWayItGlaresAtYou",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0}, I don’t like the way it\n",
+        "glares at you.\r",
+        "Could you try being a little nicer\n",
+        "to it?"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_NotFamiliarWithYouYet",
+      "en_US": [
+        "It’s not quite familiar with you\n",
+        "yet.\r",
+        "Pokémon are all quite wary when\n",
+        "you first get them."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ItsWarmingUpToYou",
+      "en_US": [
+        "It’s warming up to you.\n",
+        "Trust must be growing between you."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ItsQuiteFriendly",
+      "en_US": [
+        "It’s quite friendly with you.\n",
+        "Keep being good to it!"
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ItLooksVeryHappy",
+      "en_US": [
+        "It looks very happy.\r",
+        "I wish {STRVAR_1 3, 7, 0} could see this and\n",
+        "learn something from it."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_CouldntLoveYouMore",
+      "en_US": [
+        "It couldn’t possibly love you\n",
+        "any more than it does now.\r",
+        "Your Pokémon is happy beyond\n",
+        "words."
+      ]
+    },
+    {
+      "id": "msg_0449_T01R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]
