@@ -56,6 +56,11 @@ models (tables in the script, by GBA metatile id), GBA warps, collision and beha
 `build_clones.py` gives rooms that look the same in both games (Pokemon Center, Mart, Training Hall) a copy of a
 HeartGold room, wired to our doors. GBA lets you leave from any square of a doormat; HeartGold only from an exit-mat
 square, so all of them are made exit mats.
+Rooms HeartGold has nothing like (the basement) are drawn in the GBA art (`gba_look` in `build_rooms.py`): the GBA
+wall rows on the wall, the plain floor tile on the floor, floor marks as flat decals, and each object folded into a
+solid from its picture: a profile says which rows are top surface (laid flat) and which are faces (stood up, 1.3x
+tall since the camera looks down), with sides in the face's edge colours and a soft shadow underneath. The room
+gets its own texture set and area entry so no other room pays for its textures.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
@@ -66,6 +71,7 @@ square, so all of them are made exit mats.
   wherever the GBA map has people walking right up to it (fields, paths along the edge)
 - keep paths between features centred, and line exits up with the neighbouring map's path (move our map if needed)
 - don't leave two signs side by side; carry over decorations like the Chansey statue rather than dropping them
+- our own GBA art gets dimension: fold it into top surfaces and faces (with sides and a shadow), never a flat card
 
 
 ## Plan

@@ -88,8 +88,21 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
     # HeartGold has no model for, stood up leaning back like HeartGold's billboards; other floor marks become decals
     dict(gba='PalletTown_PlayersHouse_B1F_Frlg', map='MAP_PALLET_TOWN_PLAYERS_HOUSE_B1F', keep_people=False,
          template='MAP_PALLET_TOWN_REDS_HOUSE_1F', texset=43, buildset=41, area=43,
-         gba_look=dict(tag='b1', floor=0x2AA, cards=[(1, 1, 4, 3), (6, 1, 3, 3), (0, 5, 2, 2), (5, 6, 4, 2), (11, 6, 2, 2),
-                                                     (13, 5, 2, 2), (0, 9, 1, 1), (13, 8, 2, 2)])),
+         gba_look=dict(tag='b1', floor=0x2AA, things=[
+             (16, 32, 34, 32, [('v', 6), ('h', 6), ('v', 20)]),      # rail bench
+             (48, 16, 32, 48, [('h', 6), ('v', 42)]),                 # synthesizer tank
+             (96, 16, 56, 48, [('h', 4), ('v', 44)]),                 # ball maker
+             (176, 0, 16, 32, [('h', 6), ('v', 26)]),                 # bookshelf
+             (0, 80, 32, 32, [('h', 15), ('v', 17)]),                 # workbench
+             (80, 104, 16, 24, [('h', 5), ('v', 19)]),                # ball changer: pillar
+             (96, 112, 32, 16, [('h', 4), ('v', 12)]),                #   console
+             (128, 104, 16, 24, [('h', 5), ('v', 19)]),               #   pillar
+             (176, 96, 32, 32, [('v', 12), ('h', 6), ('v', 14)]),     # lab table and flasks
+             (208, 80, 32, 32, [('v', 8), ('h', 8), ('v', 16)]),      # desk
+             (0, 144, 16, 16, [('h', 4), ('v', 12)]),                 # trash can
+             (224, 128, 16, 16, [('h', 3), ('v', 13)]),               # crates
+             (208, 144, 32, 16, [('h', 3), ('v', 13)]),
+         ])),
 ]
 
 
@@ -103,6 +116,30 @@ def texdims(texset):
         dims[nm.decode()] = (8 << ((p >> 20) & 7), 8 << ((p >> 23) & 7))
     pals = {nm.decode() for nm, _ in read_dict(d, t + u32(d, t + 0x34))}
     return dims, pals
+
+
+V_SCALE = 1.3     # the camera looks down on rooms, so stood-up GBA art is drawn a little taller to read the same
+
+
+def box(mesh, px, py, pw, ph, profile):
+    """GBA art of a thing (pw x ph pixels at room pixel px, py) folded into a solid: `profile` runs down the picture
+    from its top, ('h', n) = n rows of top surface lying flat, ('v', n) = n rows of face standing up.
+    It is built from the front bottom edge (the bottom of the picture, at the front of its squares) backwards."""
+    U = lambda v: v - 256                 # room pixels are land units
+    a, b = U(px), U(px + pw)
+    z, y, row = U(py + ph), 0.0, ph       # (texture row: counts up from the bottom of the picture)
+    for kind, n in reversed(profile):
+        if kind == 'v':
+            hgt = n * V_SCALE
+            mesh.quad([((a, y, z), (0, row)), ((b, y, z), (pw, row)), ((b, y + hgt, z), (pw, row - n)), ((a, y + hgt, z), (0, row - n))], (0, 0, 1))
+            y += hgt
+        else:
+            mesh.quad([((a, y, z), (0, row)), ((b, y, z), (pw, row)), ((b, y, z - n), (pw, row - n)), ((a, y, z - n), (0, row - n))], (0, 1, 0))
+            # its sides, from the floor up to here, in the colours of the face's edge
+            for xx, uu, nx in ((a, 0.5, -1), (b, pw - 0.5, 1)):
+                mesh.quad([((xx, 0, z), (uu, ph)), ((xx, 0, z - n), (uu, ph)), ((xx, y, z - n), (uu, row)), ((xx, y, z), (uu, row))], (nx, 0, 0))
+            z -= n
+        row -= n
 
 
 def build_room(spec, land_id):
@@ -164,19 +201,20 @@ def build_room(spec, land_id):
         M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, first * 16)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * 16, first * 16)),
                               ((U(x1), 48, U(wall_z)), ((x1 - x0) * 16, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
         covered = set()
-        for i, (cx, cy, cw, ch) in enumerate(look['cards']):
-            im = cards.cut_out(full.crop((cx * 16, cy * 16, (cx + cw) * 16, (cy + ch) * 16)), floor_im)
-            name = 'cv_%s_c%d' % (tag, i)
+        if look.get('things'):
+            t, q, wh = cards.shadow_texture('cv_shadow')
+            own.append((t, q)); dims['cv_shadow'] = wh; pals.add('cv_shadow_pl')
+        for i, (px, py, pw, ph, profile) in enumerate(look.get('things', [])):
+            im = cards.cut_out(full.crop((px, py, px + pw, py + ph)), floor_im, (px, py))
+            name = 'cv_%s_t%d' % (tag, i)
             add(name, im)
-            covered |= {(cx + i_, cy + j) for i_ in range(cw) for j in range(ch)}
-            # stood on the front edge of its squares, leaning back 45 degrees (but never through the wall)
-            hgt = ch * 16
-            zf = U(cy + ch)
-            lean = min(hgt * 0.707, zf - U(wall_z) - 2)
-            yt = (hgt * hgt - lean * lean) ** 0.5
-            a, b = U(cx), U(cx + cw)
-            M(name).quad([((a, 0, zf), (0, hgt)), ((b, 0, zf), (cw * 16, hgt)), ((b, yt, zf - lean), (cw * 16, 0)), ((a, yt, zf - lean), (0, 0))],
-                         (0, 0.707, 0.707))
+            covered |= {(x, y) for x in range(px // 16, (px + pw + 15) // 16) for y in range(py // 16, (py + ph + 15) // 16)}
+            box(M(name), px, py, pw, ph, profile)
+            # a soft shadow a little wider than its footprint
+            depth = sum(n for k, n in profile if k == 'h') or 4
+            a_, b_, zf = U(px / 16) - 3, U((px + pw) / 16) + 3, U((py + ph) / 16) + 3
+            zb = zf - depth - 8
+            M('cv_shadow').quad([((a_, 0.25, zf), (0, 16)), ((b_, 0.25, zf), (32, 16)), ((b_, 0.25, zb), (32, 0)), ((a_, 0.25, zb), (0, 0))], up)
         for y in range(first, H):
             for x in range(W):
                 m = mid(x, y)
@@ -244,6 +282,7 @@ def build_room(spec, land_id):
     groups = []
     for t, mesh in meshes.items():
         rep = 0 if t.startswith('red_h_mat') or (t.startswith('cv_') and t != spec['floor']) else 3
+        if t == 'cv_shadow': groups.append((t, t, pal_of(t), mesh, {'repeat': 0, 'size': dims[t], 'both_faces': False})); continue
         groups.append((t, t, pal_of(t), mesh, {'repeat': rep, 'size': dims[t]}))
     model = build_model('canvas_room_%d' % land_id, groups)
     model += b'\0' * (-len(model) % 4)

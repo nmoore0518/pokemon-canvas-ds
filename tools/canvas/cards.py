@@ -39,13 +39,29 @@ def texture(name, im, colours=255):
     return (name.encode(), prm, w | (h << 11) | 0x80000000, bytes(idx), b''), ((name + '_pl').encode(), 0, pal), (w, h)
 
 
-def cut_out(im, background):
-    """Make see-through every pixel of `im` (a block-aligned GBA picture) that matches the tiling `background`"""
+def cut_out(im, background, at=(0, 0)):
+    """Make see-through every pixel of `im` (cut from a GBA map at pixel `at`) that matches the tiling `background`"""
     im = im.convert('RGBA').copy()
     bg = background.convert('RGBA')
     p, b = im.load(), bg.load()
     for y in range(im.height):
         for x in range(im.width):
-            if p[x, y][:3] == b[x % bg.width, y % bg.height][:3]:
+            if p[x, y][:3] == b[(x + at[0]) % bg.width, (y + at[1]) % bg.height][:3]:
                 p[x, y] = (0, 0, 0, 0)
     return im
+
+
+def shadow_texture(name):
+    """A soft dark blot (A3I5: one black colour, 8 levels of see-through) for under things standing on the floor"""
+    w, h = 32, 16
+    data = bytearray()
+    for y in range(h):
+        for x in range(w):
+            # distance outside an inner rectangle, as a fraction of the soft edge
+            dx = max(0.0, abs(x + 0.5 - w / 2) - (w / 2 - 5)) / 5
+            dy = max(0.0, abs(y + 0.5 - h / 2) - (h / 2 - 5)) / 5
+            d = min(1.0, (dx * dx + dy * dy) ** 0.5)
+            data.append(int(round((1 - d) * 4)) << 5)      # at most half dark
+    pal = b'\0' * 64
+    prm = (2 << 20) | (1 << 23) | (1 << 26)
+    return (name.encode(), prm, w | (h << 11) | 0x80000000, bytes(data), b''), ((name + '_pl').encode(), 0, pal), (w, h)
