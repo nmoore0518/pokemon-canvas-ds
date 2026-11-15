@@ -3,7 +3,7 @@
   "messages": [
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakYouCameBack",
-      "en_US": "OAK: So, you’ve come back."
+      "en_US": "Oak: So, you’ve come back."
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_AideWelcome",
@@ -45,20 +45,20 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakFirstDay",
       "en_US": [
-        "OAK: Good morning, Leader {STRVAR_1 3, 6, 0}!\n",
+        "Oak: Good morning, Leader {STRVAR_1 3, 6, 0}!\n",
         "Ready for your first day?"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakHereWeAre",
       "en_US": [
-        "OAK: Here we are!\n",
-        "The PALLET TOWN Gym!\r",
+        "Oak: Here we are!\n",
+        "The Pallet Town Gym!\r",
         "The builders finished it just\n",
         "last week.\r",
         "As you can see, it’s…\n",
         "well, rather empty.\r",
-        "The LEAGUE left the inside up to\n",
+        "The League left the inside up to\n",
         "its new Gym Leader."
       ]
     },
@@ -72,11 +72,11 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakDecorateIt",
       "en_US": [
-        "OAK: Not so fast!\n",
+        "Oak: Not so fast!\n",
         "Neither of you is Leader yet.\r",
         "But a Gym should look like its\n",
         "Leader, so here’s my idea.\r",
-        "Whenever you’re back in PALLET\n",
+        "Whenever you’re back in Pallet\n",
         "TOWN, come in and fix it up.\r",
         "Furniture, puzzles, decorations…\n",
         "Whatever you like!\r",
@@ -89,21 +89,21 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakTakeBalloon",
       "en_US": [
-        "OAK: Oh, and {STRVAR_1 3, 6, 0}…\r",
+        "Oak: Oh, and {STRVAR_1 3, 6, 0}…\r",
         "Your father always dreamed of a\n",
         "Gym of his own, you know.\r",
         "I think he’d be very glad to see\n",
         "you standing here.\r",
         "Now, your journey will take you far\n",
-        "from PALLET TOWN.\r",
-        "So take this! It’s a HOT AIR\n",
+        "from Pallet Town.\r",
+        "So take this! It’s a Hot Air\n",
         "BALLOON of my own design."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakBalloonHowTo",
       "en_US": [
-        "OAK: Use it outdoors, and it will\n",
+        "Oak: Use it outdoors, and it will\n",
         "float you to any town you’ve\f",
         "already visited.\r",
         "Come home and decorate whenever\n",
@@ -113,7 +113,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_RivalTossYourJunk",
       "en_US": [
-        "{STRVAR_1 3, 7, 0}: Gramps! Where’s MY\n",
+        "{STRVAR_1 3, 7, 0}: Gramps! Where’s my\n",
         "balloon!?\r",
         "…Fine. Don’t get attached,\n",
         "{STRVAR_1 3, 6, 0}.\r",
@@ -124,7 +124,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakRunItMyself",
       "en_US": [
-        "OAK: Now, now.\r",
+        "Oak: Now, now.\r",
         "And if neither of you turns out\n",
         "to be good enough…\r",
         "…well, I suppose I’d just have\n",
@@ -145,15 +145,15 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakWaitingForYou",
       "en_US": [
-        "OAK: {STRVAR_1 3, 6, 0}, one more thing.\r",
-        "The LEAGUE has rules for new\n",
+        "Oak: {STRVAR_1 3, 6, 0}, one more thing.\r",
+        "The League has rules for new\n",
         "Leaders. A candidate needs the\f",
         "approval of all eight Gym Leaders.\r",
-        "Win a BADGE, and the Leader will\n",
+        "Win a Badge, and the Leader will\n",
         "test you. Hold their Gym against\f",
         "a challenger, and they’ll vouch\f",
         "for you.\r",
-        "Then the ELITE FOUR. Then the\n",
+        "Then the Elite Four. Then the\n",
         "CHAMPION.\r",
         "This Gym will be waiting for you.\n",
         "Now go! Get strong!"
@@ -162,7 +162,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHereWeAre",
       "en_US": [
-        "OAK: Here we are.\n",
+        "Oak: Here we are.\n",
         "Your Gym…"
       ]
     },
@@ -174,7 +174,7 @@
         "I’ve spent my whole life studying\n",
         "Pokémon. But long ago, I was a\f",
         "Trainer too. A strong one!\r",
-        "When the LEAGUE asked me to find\n",
+        "When the League asked me to find\n",
         "a Leader for this Gym, I told\f",
         "myself I was too old.\r",
         "But watching you two battle…\n",
@@ -184,8 +184,8 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakWontGiveItUp",
       "en_US": [
-        "This Gym is in MY town!\n",
-        "Right next to MY lab!\r",
+        "This Gym is in my town!\n",
+        "Right next to my lab!\r",
         "And I’m supposed to just hand it\n",
         "over to a kid?!\r",
         "…No. I won’t!\r",
@@ -203,11 +203,11 @@
         "You let a legendary Pokémon get\n",
         "away? In your own Gym?\r",
         "Some Leader. Gramps should’ve\n",
-        "given this place to ME.\r",
+        "given this place to me.\r",
         "…Not that I’m helping you, but\n",
         "something that strong would hide\f",
         "where only the toughest go.\r",
-        "Like that cave by CERULEAN nobody\n",
+        "Like that cave by Cerulean nobody\n",
         "was allowed into. Just saying.\r",
         "Smell ya later, “Leader”!"
       ]
@@ -217,7 +217,7 @@
       "en_US": [
         "{STRVAR_1 3, 7, 0}: So you caught a\n",
         "legendary Pokémon. Big deal.\r",
-        "Guess you NEED a legendary to win\n",
+        "Guess you Need a legendary to win\n",
         "battles now, huh?\r",
         "Some of us earned our wins.\n",
         "…This Gym should’ve been mine.\r",
@@ -227,9 +227,9 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_AideWhatOnEarth",
       "en_US": [
-        "AIDE: W-What!? That’s {STRVAR_1 3, 0, 0}!\r",
+        "Aide: W-What!? That’s {STRVAR_1 3, 0, 0}!\r",
         "It must have sensed the new\n",
-        "{STRVAR_1 3, 1, 0} Gym in KANTO!\r",
+        "{STRVAR_1 3, 1, 0} Gym in Kanto!\r",
         "Leader {STRVAR_1 3, 6, 0}, it’s waiting for\n",
         "you on the stage!"
       ]
@@ -240,11 +240,11 @@
         "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 6, 0}!\n",
         "So this is your gym. Not bad!\r",
         "I came with news. Every year, the\n",
-        "JOHTO LEAGUE holds the Gym Leader\f",
-        "CONVENTION in GOLDENROD CITY.\r",
-        "Gym Leaders and ELITE FOUR from\n",
-        "every region come. KANTO, JOHTO,\f",
-        "HOENN, SINNOH… all the way to\f",
+        "JOHTO League holds the Gym Leader\f",
+        "CONVENTION in Goldenrod City.\r",
+        "Gym Leaders and Elite Four from\n",
+        "every region come. Kanto, Johto,\f",
+        "HOENN, Sinnoh… all the way to\f",
         "PALDEA.\r",
         "And this year, there’s a new name\n",
         "on the list. Yours!\r",
@@ -257,10 +257,10 @@
         "{STRVAR_1 3, 0, 0}: There’s a hall for every\n",
         "type. Beat every Leader of a type,\f",
         "and you take home its trophy.\r",
-        "The ferry to OLIVINE CITY leaves\n",
-        "from VERMILION’s harbor. Show the\f",
+        "The ferry to Olivine City leaves\n",
+        "from Vermilion’s harbor. Show the\f",
         "sailor your invitation.\r",
-        "I’ll see you in GOLDENROD!"
+        "I’ll see you in Goldenrod!"
       ]
     },
     {
@@ -268,13 +268,13 @@
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, and one more thing.\n",
         "Every new Gym Leader gets one of\f",
-        "these. It’s a Gym CHARM."
+        "these. It’s a Gym Charm."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorGymCharmHow",
       "en_US": [
-        "{STRVAR_1 3, 0, 0}: SHINY Pokémon of your\n",
+        "{STRVAR_1 3, 0, 0}: Shiny Pokémon of your\n",
         "Gym’s type will turn up far more\f",
         "often around you.\r",
         "And if your Gym ever changes type,\n",
@@ -287,16 +287,16 @@
         "{STRVAR_1 3, 0, 0}: Being a Leader opens a\n",
         "lot of doors, you know.\r",
         "Gym Leaders can get a pass to the\n",
-        "EXOTIC Pokémon SAFARI in FUCHSIA.\r",
+        "EXOTIC Pokémon Safari in Fuchsia.\r",
         "Pokémon from every region live\n",
-        "there. HOENN, SINNOH, all the way\f",
-        "to PALDEA!\r",
+        "there. Hoenn, Sinnoh, all the way\f",
+        "to Paldea!\r",
         "Keep a streak going here, and\n",
-        "you’ll master your type. Then OAK\f",
+        "you’ll master your type. Then Oak\f",
         "will let you take on a new one.\r",
         "Catch enough kinds of Pokémon,\n",
-        "and OAK will build onto your Gym.\r",
-        "And there’s plenty more. OAK’s\n",
+        "and Oak will build onto your Gym.\r",
+        "And there’s plenty more. Oak’s\n",
         "AIDE in his lab keeps track of it\f",
         "all. Ask him anything!"
       ]
@@ -317,12 +317,12 @@
         "???: Relax. I’m not here to\n",
         "challenge your gym. I run a book.\r",
         "Bets. Odds. Quietly, you\n",
-        "understand. The LEAGUE wouldn’t.\r",
+        "understand. The League wouldn’t.\r",
         "And the biggest game in town is\n",
-        "a tournament. No LEAGUE, no\f",
+        "a tournament. No League, no\f",
         "rules, no cameras.\r",
-        "128 trainers. CHAMPIONS, the\n",
-        "ELITE FOUR, Gym Leaders…\r",
+        "128 trainers. Champions, the\n",
+        "ELITE Four, Gym Leaders…\r",
         "Rivals. Villains. Legends.\n",
         "The strongest there are."
       ]
@@ -344,13 +344,13 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakWillYouBattle",
       "en_US": [
         "Will you battle me for the\n",
-        "PALLET TOWN Gym?"
+        "PALLET Town Gym?"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakThenShowMe",
       "en_US": [
-        "OAK: Then show me what a real\n",
+        "Oak: Then show me what a real\n",
         "Gym Leader can do!"
       ]
     },
@@ -359,7 +359,7 @@
       "en_US": [
         "Hello! I’m one of Prof. Oak’s\n",
         "AIDES.\r",
-        "Once the LEAGUE names this Gym’s\n",
+        "Once the League names this Gym’s\n",
         "Leader, I’ll be running the\f",
         "challengers.\r",
         "For now, the PC over there is for\n",
@@ -383,7 +383,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_TeamBreaksRules",
       "en_US": [
-        "Hold on! LEAGUE rules: a Gym\n",
+        "Hold on! League rules: a Gym\n",
         "Leader battles with one type.\r",
         "Fix your team, then come see me!"
       ]
@@ -398,7 +398,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_NoStage",
       "en_US": [
-        "Tip: put the BATTLE STAGE anywhere\n",
+        "Tip: put the Battle Stage anywhere\n",
         "in the Gym using the PC.\r",
         "Until then, we’ll battle right here!"
       ]
@@ -406,7 +406,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_StageBlocked",
       "en_US": [
-        "Hmm, there’s no way to the BATTLE\n",
+        "Hmm, there’s no way to the Battle\n",
         "STAGE. We’ll battle right here!"
       ]
     },
@@ -440,14 +440,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Pilot",
       "en_US": [
-        "BILL’s PALM PILOT.\n",
+        "Bill’s Palm Pilot.\n",
         "The screen is still on."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk",
       "en_US": [
-        "Would you like to WITHDRAW\n",
+        "Would you like to Withdraw\n",
         "a Pokémon?"
       ]
     },
@@ -481,19 +481,19 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal3",
       "en_US": [
-        "BILL: My CELL SEPARATION SYSTEM.\n",
+        "Bill: My Cell Separation System.\n",
         "You remember it.\r",
         "I wanted to know what it’s like to\n",
-        "BE a Pokémon. A CLEFABLE.\r",
+        "BE a Pokémon. A Clefable.\r",
         "Gentle. Beloved. Dancing in the\n",
-        "moonlight on MT. MOON.\r",
+        "moonlight on Mt. Moon.\r",
         "So I ran the machine backward.\n",
         "On myself.\r",
         "Something went wrong.\n",
         "It wouldn’t stop.\r",
         "It kept pulling. Splicing.\n",
         "I could hear my bones change.\r",
-        "I didn’t become a CLEFABLE.\n",
+        "I didn’t become a Clefable.\n",
         "I became… this.\r",
         "Half a man, and half something no\n",
         "Pokédex has a page for.\r",
@@ -515,7 +515,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal4",
       "en_US": [
-        "BILL: So I needed someone strong.\n",
+        "Bill: So I needed someone strong.\n",
         "Strong enough to put it down.\r",
         "…To put me down.\r",
         "I put on the tournament to find\n",
@@ -540,7 +540,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_StatueLeader",
       "en_US": [
-        "PALLET TOWN Pokémon Gym\n",
+        "Pallet Town Pokémon Gym\n",
         "Leader: {STRVAR_1 3, 6, 0}\r",
         "Best streak: {STRVAR_1 3, 1, 0} in a row.\n",
         "Record: {STRVAR_1 3, 2, 0}."
@@ -560,7 +560,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHeardTheCheering",
       "en_US": [
-        "OAK: …Ah. {STRVAR_1 3, 6, 0}.\r",
+        "Oak: …Ah. {STRVAR_1 3, 6, 0}.\r",
         "I heard the cheering from in here.\n",
         "Sorry I missed the ceremony.\r",
         "I couldn’t bring myself to watch."
@@ -569,9 +569,9 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakWontGiveItUpSpeeches",
       "en_US": [
-        "This Gym is in MY town!\n",
-        "Right next to MY lab!\r",
-        "The LEAGUE can make all the\n",
+        "This Gym is in my town!\n",
+        "Right next to my lab!\r",
+        "The League can make all the\n",
         "speeches it likes. Balloons don’t\f",
         "make a Leader!\r",
         "Remember when I said I’d run it\n",
@@ -588,16 +588,16 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_InvitationByMail",
       "en_US": [
         "There’s a letter on the floor…\r",
-        "It’s from the JOHTO LEAGUE! An\n",
+        "It’s from the Johto League! An\n",
         "invitation to the Gym Leader\f",
-        "CONVENTION in GOLDENROD CITY!"
+        "CONVENTION in Goldenrod City!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_InvitationFerry",
       "en_US": [
-        "The ferry to OLIVINE CITY leaves\n",
-        "from VERMILION’s harbor."
+        "The ferry to Olivine City leaves\n",
+        "from Vermilion’s harbor."
       ]
     },
     {
@@ -610,8 +610,8 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_GymCharmHowByMail",
       "en_US": [
-        "“A Gym CHARM, for every new Gym\n",
-        "Leader. SHINY Pokémon of your Gym’s\f",
+        "“A Gym Charm, for every new Gym\n",
+        "Leader. Shiny Pokémon of your Gym’s\f",
         "type will turn up far more often.\r",
         "If your Gym changes type, the charm\n",
         "changes with it!”"
@@ -622,11 +622,11 @@
       "en_US": [
         "There’s a note at the bottom…\r",
         "“Gym Leaders may now buy a pass to\n",
-        "the EXOTIC Pokémon SAFARI in\f",
-        "FUCHSIA CITY, home to Pokémon from\f",
+        "the Exotic Pokémon Safari in\f",
+        "FUCHSIA City, home to Pokémon from\f",
         "every region.\r",
         "For everything else a Leader can\n",
-        "do, see Prof. Oak’s AIDE.”"
+        "do, see Prof. Oak’s Aide.”"
       ]
     },
     {
@@ -639,7 +639,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakComeBackWhenReady",
       "en_US": [
-        "OAK: Hmph! Not ready?\r",
+        "Oak: Hmph! Not ready?\r",
         "Then rest up and get your team in\n",
         "shape.\r",
         "Come challenge me in the Gym when\n",
@@ -649,21 +649,21 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakGivesUp",
       "en_US": [
-        "OAK: …\r",
+        "Oak: …\r",
         "Ho… ho ho…\n",
         "I lost, didn’t I?\r",
         "I’m sorry, {STRVAR_1 3, 6, 0}. I let an old\n",
         "man’s pride get the better of me.\r",
         "This Gym doesn’t need me.\n",
         "It needs a Leader like you.\r",
-        "The PALLET TOWN Gym is yours,\n",
+        "The Pallet Town Gym is yours,\n",
         "Leader {STRVAR_1 3, 6, 0}!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakStillHasIt",
       "en_US": [
-        "OAK: Ho ho ho!\n",
+        "Oak: Ho ho ho!\n",
         "The old man still has it!\r",
         "This Gym stays with me… for now.\r",
         "Go home and rest, {STRVAR_1 3, 6, 0}.\n",
@@ -703,7 +703,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_Won",
       "en_US": [
         "That’s {STRVAR_1 3, 1, 0} in a row!\r",
-        "The LEAGUE pays ¥{STRVAR_1 3, 0, 0}\n",
+        "The League pays ¥{STRVAR_1 3, 0, 0}\n",
         "for the win."
       ]
     },
@@ -769,7 +769,7 @@
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_PilotMenu",
-      "en_US": "BILL’S BATTLE SIMULATOR"
+      "en_US": "Bill’s Battle Simulator"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSim",
@@ -782,25 +782,25 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawWhich",
       "en_US": [
-        "WITHDRAW which Pokémon?\n",
-        " page  START next gen."
+        "Withdraw which Pokémon?\n",
+        " page  Start next gen."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawConfirm",
-      "en_US": "WITHDRAW a shiny {STRVAR_1 3, 0, 0}?"
+      "en_US": "Withdraw a shiny {STRVAR_1 3, 0, 0}?"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Withdrew",
       "en_US": [
-        "{STRVAR_1 3, 6, 0} WITHDREW the shiny\n",
+        "{STRVAR_1 3, 6, 0} Withdrew the shiny\n",
         "{STRVAR_1 3, 0, 0}!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillAgain",
       "en_US": [
-        "BILL: …You came back.\n",
+        "Bill: …You came back.\n",
         "Will you try again? Please?"
       ]
     },
@@ -811,7 +811,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillLost",
       "en_US": [
-        "BILL: …Not yet, then.\r",
+        "Bill: …Not yet, then.\r",
         "Rest. Get stronger. Try again.\n",
         "I’ll be waiting. I can’t do\f",
         "anything else."
@@ -832,13 +832,13 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillMenu",
       "en_US": [
-        "SIMULATION: Title won.\n",
+        "Simulation: Title won.\n",
         "BILL’s data is waiting."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBill",
-      "en_US": "Face BILL"
+      "en_US": "Face Bill"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_FigureAsk",
@@ -851,7 +851,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_StatueNoLeader",
       "en_US": [
-        "PALLET TOWN Pokémon Gym\n",
+        "Pallet Town Pokémon Gym\n",
         "Leader: To be decided!"
       ]
     },
@@ -865,7 +865,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakRulesStillApply",
       "en_US": [
-        "OAK: Hold on!\r",
+        "Oak: Hold on!\r",
         "LEAGUE rules still apply: a Gym\n",
         "Leader’s team is one type, and no\f",
         "two Pokémon alike.\r",
@@ -876,9 +876,9 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHallOfFame",
       "en_US": [
-        "OAK: One more thing, Leader.\r",
-        "A CHAMPION’s team belongs in the\n",
-        "HALL OF FAME. Yours has earned its\f",
+        "Oak: One more thing, Leader.\r",
+        "A Champion’s team belongs in the\n",
+        "HALL of Fame. Yours has earned its\f",
         "place twice over!\r",
         "Go home and get some rest,\n",
         "{STRVAR_1 3, 6, 0}. Tomorrow, your Gym opens\f",
@@ -888,7 +888,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_YourBadge",
       "en_US": [
-        "The LEAGUE has made it official!\r",
+        "The League has made it official!\r",
         "Challengers who beat you will earn\n",
         "the {STRVAR_1 3, 0, 0}!"
       ]
@@ -896,14 +896,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakMeetMyAide",
       "en_US": [
-        "OAK: Now, a Gym needs challengers.\n",
-        "Let me introduce my AIDE!"
+        "Oak: Now, a Gym needs challengers.\n",
+        "Let me introduce my Aide!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_AideHello",
       "en_US": [
-        "AIDE: Pleased to meet you,\n",
+        "Aide: Pleased to meet you,\n",
         "Leader {STRVAR_1 3, 6, 0}!\r",
         "I’ll be sending challengers in for\n",
         "you. Just talk to me when you’re\f",
@@ -913,8 +913,8 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks",
       "en_US": [
-        "OAK: Here’s how it works.\r",
-        "When you’re ready, tell my AIDE.\n",
+        "Oak: Here’s how it works.\r",
+        "When you’re ready, tell my Aide.\n",
         "Challengers will keep coming, one\f",
         "after another, until one beats you.\r",
         "Your team still has to follow the\n",
@@ -926,16 +926,16 @@
         "Anyone who beats you earns your\n",
         "BADGE, and their name goes on\f",
         "the Gym statue.\r",
-        "Put the BATTLE STAGE anywhere in\n",
+        "Put the Battle Stage anywhere in\n",
         "the Gym with the PC. That’s where\f",
         "you’ll battle.\r",
         "And now that the Gym is officially\n",
-        "yours, the PC sells a BADGE\f",
+        "yours, the PC sells a Badge\f",
         "PEDESTAL too.\r",
         "I’ll be in my lab. And my new\n",
         "AIDE there keeps track of all a\f",
         "Gym Leader can do. Ask anytime!\r",
-        "Make PALLET TOWN proud, {STRVAR_1 3, 6, 0}!"
+        "Make Pallet Town proud, {STRVAR_1 3, 6, 0}!"
       ]
     },
     {
@@ -952,7 +952,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymHack_Text_GiftSentToPC",
       "en_US": [
-        "Your BAG is full, so the\n",
+        "Your Bag is full, so the\n",
         "{STRVAR_1 3, 1, 0} was sent to your PC."
       ]
     },
@@ -980,19 +980,19 @@
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_KeepGoing",
-      "en_US": "KEEP GOING"
+      "en_US": "Keep Going"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CallItADay",
-      "en_US": "CALL IT A DAY"
+      "en_US": "Call it A Day"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_TakeABreak",
-      "en_US": "TAKE A BREAK"
+      "en_US": "Take A Break"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptWithdraw",
-      "en_US": "WITHDRAW a Pokémon"
+      "en_US": "Withdraw a Pokémon"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_PilotOff",
@@ -1015,15 +1015,15 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillWait",
       "en_US": [
-        "BILL: …I’ll be here.\n",
+        "Bill: …I’ll be here.\n",
         "I’m always here."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillLast",
       "en_US": [
-        "BILL: Thank you, {STRVAR_1 3, 6, 0}.\r",
-        "My PALM PILOT… everything I ever\n",
+        "Bill: Thank you, {STRVAR_1 3, 6, 0}.\r",
+        "My Palm Pilot… everything I ever\n",
         "stored is in there. Every Pokémon.\r",
         "Take whatever you like.\n",
         "Call it my thanks.\r",
@@ -1040,10 +1040,10 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Faded",
       "en_US": [
-        "What was left of BILL crumpled…\n",
+        "What was left of Bill crumpled…\n",
         "and faded away, like mist in the\f",
         "morning.\r",
-        "Only his PALM PILOT is left,\n",
+        "Only his Palm Pilot is left,\n",
         "its screen still glowing."
       ]
     },
@@ -1064,20 +1064,20 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillAnnounce",
       "en_US": [
-        "SIMULATION: The last one…\n",
+        "Simulation: The last one…\n",
         "BILL!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillLost",
       "en_US": [
-        "SIMULATION: BILL not cleared.\n",
+        "Simulation: Bill not cleared.\n",
         "Try again any time."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimAsk",
-      "en_US": "BATTLE SIMULATOR: TOURNAMENT MODE"
+      "en_US": "Battle Simulator: Tournament Mode"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Rules",
@@ -1097,15 +1097,15 @@
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFormat",
-      "en_US": "PALM PILOT: SINGLES or DOUBLES?"
+      "en_US": "Palm Pilot: Singles or Doubles?"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSingles",
-      "en_US": "SINGLES"
+      "en_US": "Singles"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptDoubles",
-      "en_US": "DOUBLES"
+      "en_US": "Doubles"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Draw",
@@ -1133,7 +1133,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Text_GymHack_WrongType",
       "en_US": [
-        "LEAGUE RULES: Only {STRVAR_1 3, 2, 0}-type\n",
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
         "Pokémon may be on your team.\r",
         "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
         "Leave it in a PC and come back."
@@ -1142,7 +1142,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Text_GymHack_Duplicate",
       "en_US": [
-        "LEAGUE RULES: No two Pokémon on\n",
+        "League Rules: No two Pokémon on\n",
         "your team may be the same species.\r",
         "You have more than one\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -1152,7 +1152,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Text_GymHack_DuplicateItem",
       "en_US": [
-        "LEAGUE RULES: No two Pokémon on\n",
+        "League Rules: No two Pokémon on\n",
         "your team may hold the same item.\r",
         "More than one is holding\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -1162,18 +1162,18 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth",
       "en_US": [
-        "OAK: W-What on earth!?\n",
+        "Oak: W-What on earth!?\n",
         "That’s {STRVAR_1 3, 0, 0}!\r",
         "They say no {STRVAR_1 3, 1, 0}-type\n",
         "Pokémon is more powerful!\r",
         "It must have sensed a new\n",
-        "{STRVAR_1 3, 1, 0} Gym in KANTO…"
+        "{STRVAR_1 3, 1, 0} Gym in Kanto…"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt",
       "en_US": [
-        "OAK: Most Gym Leaders don’t use\n",
+        "Oak: Most Gym Leaders don’t use\n",
         "legendary Pokémon, you know.\r",
         "But there’s no rule against it!\r",
         "And challengers are getting\n",
@@ -1195,7 +1195,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimNext",
       "en_US": [
-        "SIMULATION: {STRVAR_1 3, 1, 0}.\n",
+        "Simulation: {STRVAR_1 3, 1, 0}.\n",
         "Next: {STRVAR_1 3, 0, 0}."
       ]
     },
@@ -1221,22 +1221,22 @@
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeited",
-      "en_US": "SIMULATION ended."
+      "en_US": "Simulation ended."
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimComplete",
       "en_US": [
-        "SIMULATION COMPLETE!\n",
-        "A WITHDRAW is ready."
+        "Simulation Complete!\n",
+        "A Withdraw is ready."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimStart",
       "en_US": [
         "A new tournament: 128 trainers\n",
-        "from BILL’s records, and you.\r",
-        "Win it, then beat BILL’s own data,\n",
-        "for a WITHDRAW.\r",
+        "from Bill’s records, and you.\r",
+        "Win it, then beat Bill’s own data,\n",
+        "for a Withdraw.\r",
         "The team with you now is locked in.\n",
         "No two alike, no two items alike.\r",
         "Start the simulation?"
@@ -1262,7 +1262,7 @@
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimDraw",
-      "en_US": "SIMULATION: The draw is made."
+      "en_US": "Simulation: The draw is made."
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFirst",
@@ -1274,14 +1274,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimChampion",
       "en_US": [
-        "SIMULATION: {STRVAR_1 3, 0, 0} won\n",
+        "Simulation: {STRVAR_1 3, 0, 0} won\n",
         "the tournament."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother",
       "en_US": [
-        "OAK: Another legendary Pokémon,\n",
+        "Oak: Another legendary Pokémon,\n",
         "drawn to your new Gym!\r",
         "It’s waiting for you on the\n",
         "stage. Good luck, {STRVAR_1 3, 6, 0}!"
@@ -1290,7 +1290,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam",
       "en_US": [
-        "SIMULATION: That isn’t the team\n",
+        "Simulation: That isn’t the team\n",
         "entered. Bring the same Pokémon,\f",
         "or forfeit."
       ]
@@ -1302,14 +1302,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimSpeciesClause",
       "en_US": [
-        "RULES CHECK: no two of the same\n",
+        "Rules Check: no two of the same\n",
         "Pokémon. More than one {STRVAR_1 3, 0, 0}."
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimItemClause",
       "en_US": [
-        "RULES CHECK: no two Pokémon may\n",
+        "Rules Check: no two Pokémon may\n",
         "hold the same item. More than one\f",
         "is holding {STRVAR_1 3, 0, 0}."
       ]
@@ -1317,7 +1317,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered",
       "en_US": [
-        "OAK: {STRVAR_1 3, 6, 0}! I heard all about\n",
+        "Oak: {STRVAR_1 3, 6, 0}! I heard all about\n",
         "it from your mentor!\r",
         "You’ve truly mastered {STRVAR_1 3, 2, 0}-type\n",
         "Pokémon. At this rate, nobody will\f",
@@ -1331,29 +1331,29 @@
         "Your Gym could take a new type!\r",
         "You won’t lose {STRVAR_1 3, 2, 0}, either.\n",
         "Any type your Gym has had, you can\f",
-        "switch back to at my LAB, free.\r",
+        "switch back to at my Lab, free.\r",
         "Would you like to try another type?"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTeraTip",
       "en_US": [
-        "Oh, and your TERA ORB! {STRVAR_1 3, 2, 0} is\n",
+        "Oh, and your Tera Orb! {STRVAR_1 3, 2, 0} is\n",
         "yours for good now. Even when your\f",
         "Gym changes type, your Pokémon can\f",
         "TERASTALLIZE into it.\r",
-        "Not in LEAGUE battles, mind you. In\n",
-        "a Gym, against the ELITE FOUR or your\f",
+        "Not in League battles, mind you. In\n",
+        "a Gym, against the Elite Four or your\f",
         "rival, the rules say a Leader’s\f",
-        "Pokémon TERASTALLIZE into the Gym’s\f",
-        "type, whatever their TERA TYPE is.\r",
+        "Pokémon Terastallize into the Gym’s\f",
+        "type, whatever their Tera Type is.\r",
         "Everywhere else, each Pokémon uses\n",
-        "its own TERA TYPE, as long as it’s a\f",
+        "its own Tera Type, as long as it’s a\f",
         "type you’ve mastered.\r",
-        "ARCHER in VIRIDIAN can change your\n",
-        "Pokémon’s TERA TYPES. Go and see him!\r",
-        "You can check a Pokémon’s TERA TYPE\n",
-        "on its SKILLS page."
+        "ARCHER in Viridian can change your\n",
+        "Pokémon’s Tera Types. Go and see him!\r",
+        "You can check a Pokémon’s Tera Type\n",
+        "on its Skills page."
       ]
     },
     {
@@ -1366,10 +1366,10 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakOfferStands",
       "en_US": [
-        "OAK: I see! Well, you’ve earned it,\n",
+        "Oak: I see! Well, you’ve earned it,\n",
         "so the offer stands.\r",
         "If you change your mind, come see\n",
-        "me at my LAB!"
+        "me at my Lab!"
       ]
     },
     {
@@ -1383,11 +1383,11 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakAllMastered",
       "en_US": [
         "And that’s every type there is!\n",
-        "{STRVAR_1 3, 6, 0}, you’ve mastered them ALL!\r",
+        "{STRVAR_1 3, 6, 0}, you’ve mastered them All!\r",
         "I never thought I’d see the day…\r",
-        "Oh! That reminds me. The EXOTIC\n",
+        "Oh! That reminds me. The Exotic\n",
         "SAFARI’s staff told me a story.\r",
-        "Deep in its PALDEA CRATER, they\n",
+        "Deep in its Paldea Crater, they\n",
         "say, sleeps a Pokémon that holds\f",
         "the power of every type.\r",
         "It only shows itself to a trainer\n",
@@ -1424,14 +1424,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_BackToType",
       "en_US": [
-        "OAK: Back to {STRVAR_1 3, 0, 0} type!\n",
+        "Oak: Back to {STRVAR_1 3, 0, 0} type!\n",
         "Challengers, beware!"
       ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Outfits_Text_ReceivedAllGymUniforms",
       "en_US": [
-        "{STRVAR_1 3, 6, 0} received a Gym UNIFORM\n",
+        "{STRVAR_1 3, 6, 0} received a Gym Uniform\n",
         "for every type!"
       ]
     },
@@ -1442,7 +1442,7 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OldLegendLeaves",
       "en_US": [
-        "OAK: Hm? {STRVAR_1 3, 2, 0} left your Gym…\r",
+        "Oak: Hm? {STRVAR_1 3, 2, 0} left your Gym…\r",
         "I bet it’s gone somewhere only\n",
         "the toughest Trainers go…"
       ]
@@ -1450,13 +1450,13 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_NewTypeTips",
       "en_US": [
-        "OAK: Challengers will expect\n",
+        "Oak: Challengers will expect\n",
         "{STRVAR_1 3, 0, 0}-type Pokémon now, so\f",
         "you’ll need a new team!\r",
         "And remember: you can switch back\n",
         "to any type your Gym has had.\r",
         "It’s free! Just come see me at\n",
-        "my LAB."
+        "my Lab."
       ]
     },
     {

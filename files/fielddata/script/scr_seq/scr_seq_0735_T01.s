@@ -301,6 +301,59 @@ PalletTown_OnLoad:
 	End
 	
 PalletTown_OnTransition:
+	GoToIfSet 0x2059, _cv_new_game_3
+	SetFlag 0x2019
+	SetFlag 0x2004
+	SetFlag 0x205A
+	SetFlag 0x205B
+	SetFlag 0x205C
+	SetFlag 0x205D
+	SetFlag 0x205E
+	SetFlag 0x205F
+	SetFlag 0x2060
+	SetFlag 0x2061
+	SetFlag 0x2062
+	SetFlag 0x2063
+	SetFlag 0x2064
+	SetFlag 0x2065
+	SetFlag 0x2066
+	SetFlag 0x2067
+	SetFlag 0x2068
+	SetFlag 0x2069
+	SetFlag 0x206A
+	SetFlag 0x206B
+	SetFlag 0x206C
+	SetFlag 0x206D
+	SetFlag 0x206E
+	SetFlag 0x206F
+	SetFlag 0x2070
+	SetFlag 0x2071
+	SetFlag 0x2072
+	SetFlag 0x2073
+	SetFlag 0x2074
+	SetFlag 0x2075
+	SetFlag 0x2076
+	SetFlag 0x2077
+	SetFlag 0x2078
+	SetFlag 0x2079
+	SetFlag 0x207A
+	SetFlag 0x207B
+	SetFlag 0x207C
+	SetFlag 0x207D
+	SetFlag 0x207E
+	SetFlag 0x207F
+	SetFlag 0x2080
+	SetFlag 0x2081
+	SetFlag 0x2082
+	SetFlag 0x2083
+	SetFlag 0x203C
+	SetFlag 0x2084
+	SetFlag 0x2085
+	SetFlag 0x2086
+	SetFlag 0x2087
+	SetVar 0x500E, 500
+	SetFlag 0x2059
+_cv_new_game_3:
 	Call DadStory_EventScript_PalletTransition
 	Call Johto_EventScript_TryInviteWaiting
 	Call GymFinale_EventScript_CeremonyTransition
@@ -418,9 +471,9 @@ PalletTown_EventScript_OakRatingScene:
 	CountNationalDexSeen 0x8005
 	CountNationalDexOwned 0x8006
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_3
+	GoToIfUnset 0x2026, _cv_dex_4
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_3:
+_cv_dex_4:
 	CopyVar 0x8008, 0x8005
 	CopyVar 0x8009, 0x8006
 	BufferInt 0, 0x8008
@@ -611,12 +664,12 @@ BerryField_EventScript_Growing:
 	NPCMsg msg_0446_T01_BerryField_Text_PullUp
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_4
+	GoToIfEq _cv_yes_5
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_5
-_cv_yes_4:
+	GoTo _cv_yn_6
+_cv_yes_5:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_5:
+_cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_PullUp
@@ -665,12 +718,12 @@ PalletTown_EventScript_ChanseyStatueWish:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueLeaveClovers
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_6
+	GoToIfEq _cv_yes_7
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_7
-_cv_yes_6:
+	GoTo _cv_yn_8
+_cv_yes_7:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_7:
+_cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	// TODO(gba) special ItemUpgrade_PayAndUpgrade
@@ -852,13 +905,13 @@ TypeTutor_EventScript_Teach:
 	NPCMsg msg_0446_T01_TypeTutor_Text_WhichMove
 	// TODO(gba) special TypeTutor_PushMoves
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_9
+	GoToIfLt _cv_menu_10
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_9:
+_cv_menu_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

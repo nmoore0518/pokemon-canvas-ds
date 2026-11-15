@@ -386,7 +386,7 @@
         },
         {
             "id": "LOCALID_PALLET_CEREMONY_PODIUM",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GTOROPHY",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x2009",

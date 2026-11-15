@@ -117,7 +117,13 @@ What else it does:
 - **Trainers**: `port/trainers.py` turns the GBA party files into hg-engine trainer entries from id 738 on
   (`tools/canvas/data/canvas_trainers.h`, copied into `engine/data` by build_rom.sh; ids kept in
   `canvas_trainers.json`). So far the rival: every rival battle picks his team for that stage by `VAR_RIVAL_TYPE`.
-- **Menus**: the GBA's scrolling multichoice becomes HeartGold's touch-screen list, in pages of 7 with "More…".
+- **Menus**: the GBA's scrolling multichoice becomes HeartGold's top-screen list (as wide as its longest item),
+  in pages of 6 with "More…".
+- **The rival** is our own hg-engine trainer class (`TRAINERCLASS_CANVAS_RIVAL`, 138): Blue's battle picture, the
+  class name "Rival", and the name the player gave him; in the overworld he's Blue's sprite.
+- **Capitals**: names the GBA text writes in capitals (PALLET TOWN, HOT AIR BALLOON) come out as HeartGold writes
+  them (Pallet Town, Hot Air Balloon); a few acronyms (PC, TM, HP...) stay.
+- **New game**: the GBA's new-game flags (EventScript_ResetAllMapFlagsFrlg) are set the first time Pallet loads.
 - **Items HeartGold doesn't have** (Oak's Parcel, the balloon...) are carried as flags until we add the items.
 - **Trigger squares** (coord events) come over; HeartGold doesn't respawn a removed person when their flag clears,
   so the porter shows them again itself.

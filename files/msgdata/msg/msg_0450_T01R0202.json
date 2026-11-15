@@ -7,18 +7,18 @@
         "Prof. Oak has had folks hauling\n",
         "things up that rocky hill all month.\r",
         "They say it’s a Pokémon Gym!\n",
-        "In quiet little PALLET TOWN!"
+        "In quiet little Pallet Town!"
       ]
     },
     {
       "id": "msg_0450_T01R0202_EventMons_Text_CapBoyIntro",
       "en_US": [
         "Did you know a Trainer from\n",
-        "PALLET TOWN once went to every\r",
+        "PALLET Town once went to every\r",
         "region in the world?\r",
         "I collected a cap from each one,\n",
         "just like his! Then I took them\r",
-        "on a trip around KANTO…\r",
+        "on a trip around Kanto…\r",
         "…and lost every single one.\n",
         "Seven caps! Waaah!\r",
         "Hey, you travel a lot, right? If\n",
@@ -31,19 +31,19 @@
     {
       "id": "msg_0450_T01R0202_EventMons_Text_CapBoyCase",
       "en_US": [
-        "My CAP CASE! Look carefully.\n",
+        "My Cap Case! Look carefully.\n",
         "Caps get snagged in the\r",
         "strangest places."
       ]
     },
     {
       "id": "msg_0450_T01R0202_PalletTown_House1_Text_Pidgey",
-      "en_US": "PIDGEY: Pijji!"
+      "en_US": "Pidgey: Pijji!"
     },
     {
       "id": "msg_0450_T01R0202_PalletTown_House1_Text_Sign",
       "en_US": [
-        "Family photo of the ASHFORDS.\n",
+        "Family photo of the Ashfords.\n",
         "Everyone is squinting at the sun."
       ]
     },
@@ -51,7 +51,7 @@
       "id": "msg_0450_T01R0202_EventMons_Text_CapBoyThanks",
       "en_US": [
         "My {STRVAR_1 3, 0, 0}! You found it!\r",
-        "Here, this PIKACHU wears one\n",
+        "Here, this Pikachu wears one\n",
         "just like it. A trade’s a trade!"
       ]
     },
@@ -70,7 +70,7 @@
         "All seven caps! My collection’s\n",
         "back!\r",
         "You’re a real partner. This\n",
-        "PIKACHU wears the PARTNER CAP.\r",
+        "PIKACHU wears the Partner Cap.\r",
         "It’s the most special of all!"
       ]
     },

@@ -24,8 +24,8 @@ FIRST = 738                     # HeartGold's trainers are 0..737
 ENGINE_SPECIES = os.path.join(ROOT, 'engine/include/constants/species.h')
 ENGINE_ITEMS = os.path.join(ROOT, 'engine/include/constants/item.h')
 
-CLASS = {'Rival Early Frlg': 'TRAINERCLASS_RIVAL', 'Rival Late Frlg': 'TRAINERCLASS_RIVAL',
-         'Champion Frlg': 'TRAINERCLASS_RIVAL'}       # (HeartGold shows the rival's chosen name for this class)
+CLASS = {'Rival Early Frlg': 'TRAINERCLASS_CANVAS_RIVAL', 'Rival Late Frlg': 'TRAINERCLASS_CANVAS_RIVAL',
+         'Champion Frlg': 'TRAINERCLASS_CANVAS_RIVAL'}   # (our class: Blue's look, the rival's chosen name)
 AI = 'F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE'
 
 

@@ -317,11 +317,11 @@ EventMons_EventScript_OakPartners:
 	GoToIfEq EventMons_EventScript_EeveeQuiz
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizE1
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsGround, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsFlying, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsSteel, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsGround, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsFlying, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsSteel, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_2
@@ -331,11 +331,11 @@ _cv_menu_2:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizE2
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsGrass, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsDragon, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsWater, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsGrass, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsDragon, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsWater, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_4
@@ -345,11 +345,11 @@ _cv_menu_4:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizE3
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsStatic, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsVoltAbsorb, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsSwiftSwim, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsStatic, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsVoltAbsorb, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsSwiftSwim, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_6
@@ -359,11 +359,11 @@ _cv_menu_6:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizE4
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsParalysis, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsBurn, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsSleep, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsParalysis, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsBurn, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsSleep, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_8
@@ -373,11 +373,11 @@ _cv_menu_8:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizE5
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsWater, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsNormal, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsDragon, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsWater, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsNormal, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsDragon, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_10
@@ -683,27 +683,27 @@ LeaderAide_EventScript_Menu:
 	NPCMsg msg_0451_T01R0301_LeaderAide_Text_WhichTopic
 	TouchscreenMenuHide
 _cv_page_16:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptChallengers, 255, 0
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptConvention, 255, 1
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptSafari, 255, 2
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon, 255, 3
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptMastery, 255, 4
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptRooms, 255, 5
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptLegends, 255, 6
-	MenuItemAdd msg_0451_T01R0301_cv_more, 255, 254
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptChallengers, 0
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptConvention, 1
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptSafari, 2
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon, 3
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptMastery, 4
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptRooms, 5
+	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
+	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
 	GoToIfEq _cv_page_17
 	GoTo _cv_page_17_end
 _cv_page_17:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptPenny, 255, 7
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptCostumes, 255, 8
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptTutors, 255, 9
-	MenuItemAdd msg_0451_T01R0301_LeaderAide_Text_OptDone, 255, 10
-	MenuItemAdd msg_0451_T01R0301_cv_more, 255, 254
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptLegends, 6
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptPenny, 7
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptCostumes, 8
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptTutors, 9
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptDone, 10
+	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
+	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
 	GoToIfEq _cv_page_16
 _cv_page_17_end:
@@ -758,41 +758,41 @@ PalletTown_ProfessorOaksLab_EventScript_ChooseType:
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_WhichType
 	TouchscreenMenuHide
 _cv_page_19:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypePsychic, 255, 0
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeFire, 255, 1
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeNormal, 255, 2
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeWater, 255, 3
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeGrass, 255, 4
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeElectric, 255, 5
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeRock, 255, 6
-	MenuItemAdd msg_0451_T01R0301_cv_more, 255, 254
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypePsychic, 0
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeFire, 1
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeNormal, 2
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeWater, 3
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeGrass, 4
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeElectric, 5
+	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
+	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
 	GoToIfEq _cv_page_20
 	GoTo _cv_page_21_end
 _cv_page_20:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypePoison, 255, 7
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeBug, 255, 8
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeSteel, 255, 9
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeIce, 255, 10
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeGround, 255, 11
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeFlying, 255, 12
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeDragon, 255, 13
-	MenuItemAdd msg_0451_T01R0301_cv_more, 255, 254
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeRock, 6
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypePoison, 7
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeBug, 8
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeSteel, 9
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeIce, 10
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeGround, 11
+	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
+	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
 	GoToIfEq _cv_page_21
 	GoTo _cv_page_21_end
 _cv_page_21:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeFighting, 255, 14
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeDark, 255, 15
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeGhost, 255, 16
-	MenuItemAdd msg_0451_T01R0301_GymHack_Text_TypeFairy, 255, 17
-	MenuItemAdd msg_0451_T01R0301_cv_more, 255, 254
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeFlying, 12
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeDragon, 13
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeFighting, 14
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeDark, 15
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeGhost, 16
+	ScrCmd_559 msg_0451_T01R0301_GymHack_Text_TypeFairy, 17
+	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
+	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
 	GoToIfEq _cv_page_19
 _cv_page_21_end:
@@ -1252,11 +1252,11 @@ EventMons_EventScript_OakQuizLater:
 EventMons_EventScript_EeveeQuiz:
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizN1
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsRock, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsGhost, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsPsychic, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsRock, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsGhost, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsPsychic, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_68
@@ -1266,11 +1266,11 @@ _cv_menu_68:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizN2
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsFighting, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsGhost, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsDark, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsFighting, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsGhost, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsDark, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_70
@@ -1280,11 +1280,11 @@ _cv_menu_70:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizN3
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsPsychic, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsFighting, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsSteel, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsPsychic, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsFighting, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsSteel, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_72
@@ -1294,11 +1294,11 @@ _cv_menu_72:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizN4
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsRefrigerate, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsPixilate, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsAerilate, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsRefrigerate, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsPixilate, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsAerilate, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_74
@@ -1308,11 +1308,11 @@ _cv_menu_74:
 	CallIfEq EventMons_EventScript_QuizRight
 	NPCMsg msg_0451_T01R0301_EventMons_Text_QuizN5
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsHyperBeam, 255, 0
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsBodySlam, 255, 1
-	MenuItemAdd msg_0451_T01R0301_EventMons_Text_AnsQuickAttack, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsHyperBeam, 0
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsBodySlam, 1
+	ScrCmd_559 msg_0451_T01R0301_EventMons_Text_AnsQuickAttack, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_76
@@ -2124,8 +2124,8 @@ GymSwitch_EventScript_AskNewType:
 GymSwitch_EventScript_TypeMenu:
 	// TODO(gba) special GymSwitch_PushTypes
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_87

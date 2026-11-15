@@ -20,7 +20,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose",
       "en_US": [
-        "OAK: Now, {STRVAR_1 3, 6, 0}.\r",
+        "Oak: Now, {STRVAR_1 3, 6, 0}.\r",
         "Check a Poké Ball on the shelf\n",
         "and choose your type."
       ]
@@ -57,24 +57,24 @@
         "…\r",
         "Finally!\n",
         "The ultimate Trainers of the\f",
-        "Pokémon LEAGUE are ready to\f",
+        "Pokémon League are ready to\f",
         "take on all comers!\r",
         "Bring your best Pokémon and see\n",
         "how you rate as a Trainer!\r",
-        "Pokémon LEAGUE HQ\n",
-        "INDIGO PLATEAU\r",
+        "Pokémon League Hq\n",
+        "INDIGO Plateau\r",
         "Prof. Oak, please visit us!\n",
         "…"
       ]
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_PressStartToOpenMenu",
-      "en_US": "Press START to open the MENU!"
+      "en_US": "Press Start to open the Menu!"
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_SaveOptionInMenu",
       "en_US": [
-        "The SAVE option is on the MENU.\n",
+        "The Save option is on the Menu.\n",
         "Use it regularly."
       ]
     },
@@ -88,7 +88,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakHeyDontGoAwayYet",
       "en_US": [
-        "OAK: Hey!\n",
+        "Oak: Hey!\n",
         "Don’t go away yet!"
       ]
     },
@@ -102,29 +102,29 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne",
       "en_US": [
-        "OAK: {STRVAR_1 3, 7, 0}?\n",
+        "Oak: {STRVAR_1 3, 7, 0}?\n",
         "Let me think…\r",
         "Oh, that’s right, I told you to\n",
         "come! Just wait!\r",
         "I have big news for you both.\r",
         "So many Trainers reach the\n",
-        "Pokémon LEAGUE these days…\r",
-        "…that the ELITE FOUR never get\n",
+        "Pokémon League these days…\r",
+        "…that the Elite Four never get\n",
         "a single day off!\r",
-        "So the LEAGUE is adding a ninth\n",
-        "Gym to the LEAGUE CHALLENGE…\r",
-        "…right here in PALLET TOWN!\r",
+        "So the League is adding a ninth\n",
+        "Gym to the League Challenge…\r",
+        "…right here in Pallet Town!\r",
         "They asked me to find its\n",
         "Gym Leader.\r",
         "And I’ve chosen you two as my\n",
         "candidates!\r",
-        "Now, LEAGUE rules say a Gym\n",
+        "Now, League rules say a Gym\n",
         "Leader uses Pokémon of just one\f",
         "primary type.\r",
-        "So you’ll take on the LEAGUE that\n",
+        "So you’ll take on the League that\n",
         "way, too.\r",
         "Every Gym Leader, every battle\n",
-        "with your rival, and the ELITE\f",
+        "with your rival, and the Elite\f",
         "FOUR: one type only!\r",
         "And no two of the same Pokémon\n",
         "on your team, either.\r",
@@ -157,7 +157,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakBePatientRival",
       "en_US": [
-        "OAK: Be patient, {STRVAR_1 3, 7, 0}.\n",
+        "Oak: Be patient, {STRVAR_1 3, 7, 0}.\n",
         "You can have one, too!"
       ]
     },
@@ -166,8 +166,8 @@
       "en_US": [
         "Prof. Oak is going to have his own\n",
         "radio show soon.\r",
-        "The program will be called PROF.\n",
-        "OAK’s Pokémon SEMINAR."
+        "The program will be called Prof.\n",
+        "OAK’s Pokémon Seminar."
       ]
     },
     {
@@ -177,7 +177,7 @@
         "good friends with your Pokémon.\r",
         "By the way, did you know about\n",
         "DAISY?\r",
-        "If you show DAISY your Pokémon,\n",
+        "If you show Daisy your Pokémon,\n",
         "she can tell how much it likes you.\r",
         "Occasionally, she will even groom\n",
         "a Pokémon for you.\r",
@@ -209,83 +209,83 @@
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_OakQuizRules",
-      "en_US": "OAK: Here we go!"
+      "en_US": "Oak: Here we go!"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE1",
       "en_US": [
         "Which type takes no damage at\n",
-        "all from ELECTRIC moves?"
+        "all from Electric moves?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsGround",
-      "en_US": "GROUND"
+      "en_US": "Ground"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsFlying",
-      "en_US": "FLYING"
+      "en_US": "Flying"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsSteel",
-      "en_US": "STEEL"
+      "en_US": "Steel"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE2",
       "en_US": [
-        "ELECTRIC moves are super\n",
+        "Electric moves are super\n",
         "effective against which type?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsGrass",
-      "en_US": "GRASS"
+      "en_US": "Grass"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsDragon",
-      "en_US": "DRAGON"
+      "en_US": "Dragon"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsWater",
-      "en_US": "WATER"
+      "en_US": "Water"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE3",
       "en_US": [
         "Which ability heals a Pokémon\n",
-        "hit by an ELECTRIC move?"
+        "hit by an Electric move?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsStatic",
-      "en_US": "STATIC"
+      "en_US": "Static"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsVoltAbsorb",
-      "en_US": "VOLT ABSORB"
+      "en_US": "Volt Absorb"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsSwiftSwim",
-      "en_US": "SWIFT SWIM"
+      "en_US": "Swift Swim"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE4",
       "en_US": [
-        "What does THUNDER WAVE do to its\n",
+        "What does Thunder Wave do to its\n",
         "target?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsParalysis",
-      "en_US": "PARALYZES IT"
+      "en_US": "Paralyzes it"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsBurn",
-      "en_US": "BURNS IT"
+      "en_US": "Burns it"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsSleep",
-      "en_US": "PUTS IT TO SLEEP"
+      "en_US": "Puts it to Sleep"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE5",
@@ -296,12 +296,12 @@
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsNormal",
-      "en_US": "NORMAL"
+      "en_US": "Normal"
     },
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabSwitchBack",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! Would you like\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! Would you like\n",
         "your Gym to go back to a type\f",
         "it’s had before? It’s free!"
       ]
@@ -333,8 +333,8 @@
     {
       "id": "msg_0451_T01R0301_Text_OakMissedBalloon",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! I nearly forgot.\r",
-        "Take this HOT AIR BALLOON. It will\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! I nearly forgot.\r",
+        "Take this Hot Air Balloon. It will\n",
         "float you to any town you’ve\f",
         "visited, even back to your Gym!"
       ]
@@ -342,16 +342,16 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAside4",
       "en_US": [
-        "OAK: Nearly every Leader approves\n",
+        "Oak: Nearly every Leader approves\n",
         "of you.\r",
-        "The LEAGUE will be very pleased.\n",
+        "The League will be very pleased.\n",
         "…Yes. Very pleased."
       ]
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakHaveSomethingForMe",
       "en_US": [
-        "OAK: Oh, {STRVAR_1 3, 6, 0}!\n",
+        "Oak: Oh, {STRVAR_1 3, 6, 0}!\n",
         "How is my old Pokémon?\r",
         "Well, it seems to be growing more\n",
         "attached to you.\r",
@@ -363,7 +363,7 @@
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_DeliveredOaksParcel",
-      "en_US": "{STRVAR_1 3, 6, 0} delivered OAK’S PARCEL."
+      "en_US": "{STRVAR_1 3, 6, 0} delivered Oak’s Parcel."
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakCustomBallIOrdered",
@@ -376,7 +376,7 @@
         "Why, it’s from {STRVAR_1 3, 0, 0}!\r",
         "I wrote about you and your Gym\n",
         "plans. A reply already! It says…\r",
-        "“Coming to PALLET TOWN to meet\n",
+        "“Coming to Pallet Town to meet\n",
         "your candidate.” Today?!"
       ]
     },
@@ -394,7 +394,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakHaveRequestForYouTwo",
       "en_US": [
-        "OAK: Oh, right! Now that you’re\n",
+        "Oak: Oh, right! Now that you’re\n",
         "both here… about that Gym."
       ]
     },
@@ -415,7 +415,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakTakeTheseWithYou",
       "en_US": [
-        "OAK: {STRVAR_1 3, 6, 0} and {STRVAR_1 3, 7, 0}.\n",
+        "Oak: {STRVAR_1 3, 6, 0} and {STRVAR_1 3, 7, 0}.\n",
         "Take these with you."
       ]
     },
@@ -429,7 +429,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese",
       "en_US": [
-        "OAK: Seeing a Pokémon tells you\n",
+        "Oak: Seeing a Pokémon tells you\n",
         "a little. Catching one tells you\f",
         "everything.\r",
         "And a Leader needs a full team of\n",
@@ -461,19 +461,19 @@
         "once. A complete guide to every\f",
         "Pokémon…\r",
         "But these days, I’d settle for a\n",
-        "fine Gym Leader in PALLET TOWN.\r",
+        "fine Gym Leader in Pallet Town.\r",
         "So the Gym comes first! Fill your\n",
         "Pokédex along the way, and you’ll\f",
         "know any challenger’s team.\r",
         "Now get moving, you two!\n",
-        "The LEAGUE is waiting!"
+        "The League is waiting!"
       ]
     },
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalLeaveItToMeGramps",
       "en_US": [
         "{STRVAR_1 3, 7, 0}: Leave it to me, Gramps!\n",
-        "I’ll win the Gym AND fill the\f",
+        "I’ll win the Gym and fill the\f",
         "Pokédex!"
       ]
     },
@@ -482,7 +482,7 @@
       "en_US": [
         "{STRVAR_1 3, 6, 0}, you might as well give\n",
         "up now. That Gym is mine.\r",
-        "I know! I’ll borrow a TOWN MAP\n",
+        "I know! I’ll borrow a Town Map\n",
         "from my sis!\r",
         "I’ll tell her not to lend you one,\n",
         "{STRVAR_1 3, 6, 0}! Hahaha!\r",
@@ -493,7 +493,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakBattleMonForItToGrow",
       "en_US": [
-        "OAK: {STRVAR_1 3, 6, 0}, raise your young\n",
+        "Oak: {STRVAR_1 3, 6, 0}, raise your young\n",
         "Pokémon by making it battle.\r",
         "It has to battle for it to grow."
       ]
@@ -501,7 +501,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakCanReachNextTownWithMon",
       "en_US": [
-        "OAK: If a wild Pokémon appears,\n",
+        "Oak: If a wild Pokémon appears,\n",
         "your Pokémon can battle it.\r",
         "With it at your side, you should be\n",
         "able to reach the next town."
@@ -535,51 +535,51 @@
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptChallengers",
-      "en_US": "CHALLENGERS"
+      "en_US": "Challengers"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptConvention",
-      "en_US": "CONVENTION"
+      "en_US": "Convention"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptSafari",
-      "en_US": "EXOTIC SAFARI"
+      "en_US": "Exotic Safari"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon",
-      "en_US": "NEW Pokémon"
+      "en_US": "New Pokémon"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptMastery",
-      "en_US": "CHANGING TYPES"
+      "en_US": "Changing Types"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptRooms",
-      "en_US": "Gym ROOMS"
-    },
-    {
-      "id": "msg_0451_T01R0301_LeaderAide_Text_OptLegends",
-      "en_US": "LEGENDARIES"
+      "en_US": "Gym Rooms"
     },
     {
       "id": "msg_0451_T01R0301_cv_more",
       "en_US": "More…"
     },
     {
+      "id": "msg_0451_T01R0301_LeaderAide_Text_OptLegends",
+      "en_US": "Legendaries"
+    },
+    {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptPenny",
-      "en_US": "PENNY’S EEVEE"
+      "en_US": "Penny’s Eevee"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptCostumes",
-      "en_US": "COSTUMES"
+      "en_US": "Costumes"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptTutors",
-      "en_US": "TYPE TUTORS"
+      "en_US": "Type Tutors"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptDone",
-      "en_US": "THAT’S ALL"
+      "en_US": "That’s All"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Bye",
@@ -605,7 +605,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_WhichType",
       "en_US": [
-        "OAK: Which type will you\n",
+        "Oak: Which type will you\n",
         "specialize in?"
       ]
     },
@@ -684,7 +684,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakConfirmType",
       "en_US": [
-        "OAK: Ah, the {STRVAR_1 3, 1, 0} type!\n",
+        "Oak: Ah, the {STRVAR_1 3, 1, 0} type!\n",
         "Then your partner is {STRVAR_1 3, 0, 0}.\r",
         "Remember, your Gym will only use\n",
         "{STRVAR_1 3, 1, 0}-type Pokémon.\r",
@@ -706,7 +706,7 @@
         "Recently, there have been sightings\n",
         "of many rare Pokémon species.\r",
         "I’m talking about Pokémon that\n",
-        "have never been seen in KANTO.\r",
+        "have never been seen in Kanto.\r",
         "I would love to go see things for\n",
         "myself, but I’m much too old.\r",
         "Since I can’t do it, {STRVAR_1 3, 6, 0}, I’d\n",
@@ -728,7 +728,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakNeedYourHelpTooNeedToSeePokedexes",
       "en_US": [
-        "OAK: I know, I know.\n",
+        "Oak: I know, I know.\n",
         "Of course I need your help, too.\r",
         "Now, I need to see both your\n",
         "PokédexES."
@@ -775,7 +775,7 @@
         "I’ll get the Pokédex completed,\n",
         "don’t you worry about a thing.\r",
         "I think I’ll try looking around\n",
-        "ONE ISLAND first…\r",
+        "ONE Island first…\r",
         "Anyways, I’m outta here!"
       ]
     },
@@ -819,9 +819,9 @@
     {
       "id": "msg_0451_T01R0301_EventMons_Text_OakPikachuOffer",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
         "ELECTRIC types now!\r",
-        "A PIKACHU here at the lab has\n",
+        "A Pikachu here at the lab has\n",
         "been watching you on TV. It’s a\r",
         "strong one, and very picky.\r",
         "It will only go with a trainer\n",
@@ -833,9 +833,9 @@
     {
       "id": "msg_0451_T01R0301_EventMons_Text_OakEeveeOffer",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
         "NORMAL types now!\r",
-        "An EEVEE here at the lab has\n",
+        "An Eevee here at the lab has\n",
         "been watching you on TV. It’s a\r",
         "strong one, and very picky.\r",
         "It will only go with a trainer\n",
@@ -847,7 +847,7 @@
     {
       "id": "msg_0451_T01R0301_EventMons_Text_OakQuizLater",
       "en_US": [
-        "OAK: Ho ho! Any time you’re\n",
+        "Oak: Ho ho! Any time you’re\n",
         "ready, then."
       ]
     },
@@ -855,85 +855,85 @@
       "id": "msg_0451_T01R0301_EventMons_Text_QuizN1",
       "en_US": [
         "Which type takes no damage at\n",
-        "all from NORMAL moves?"
+        "all from Normal moves?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsRock",
-      "en_US": "ROCK"
+      "en_US": "Rock"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsGhost",
-      "en_US": "GHOST"
+      "en_US": "Ghost"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsPsychic",
-      "en_US": "PSYCHIC"
+      "en_US": "Psychic"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizN2",
       "en_US": [
-        "NORMAL-type Pokémon are weak to\n",
+        "Normal-type Pokémon are weak to\n",
         "which type?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsFighting",
-      "en_US": "FIGHTING"
+      "en_US": "Fighting"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsDark",
-      "en_US": "DARK"
+      "en_US": "Dark"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizN3",
       "en_US": [
-        "NORMAL moves are not very\n",
+        "Normal moves are not very\n",
         "effective against which type?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizN4",
       "en_US": [
-        "Which ability turns NORMAL moves\n",
-        "into FAIRY moves?"
+        "Which ability turns Normal moves\n",
+        "into Fairy moves?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsRefrigerate",
-      "en_US": "REFRIGERATE"
+      "en_US": "Refrigerate"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsPixilate",
-      "en_US": "PIXILATE"
+      "en_US": "Pixilate"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsAerilate",
-      "en_US": "AERILATE"
+      "en_US": "Aerilate"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizN5",
       "en_US": [
-        "Which NORMAL move always strikes\n",
+        "Which Normal move always strikes\n",
         "first?"
       ]
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsHyperBeam",
-      "en_US": "HYPER BEAM"
+      "en_US": "Hyper Beam"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsBodySlam",
-      "en_US": "BODY SLAM"
+      "en_US": "Body Slam"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_AnsQuickAttack",
-      "en_US": "QUICK ATTACK"
+      "en_US": "Quick Attack"
     },
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizPassed",
       "en_US": [
-        "OAK: Five out of five! Splendid!\r",
+        "Oak: Five out of five! Splendid!\r",
         "There’s no doubt about it. You\n",
         "and this Pokémon belong\r",
         "together."
@@ -942,7 +942,7 @@
     {
       "id": "msg_0451_T01R0301_EventMons_Text_OakPartnerAfter",
       "en_US": [
-        "OAK: It’s chosen you, {STRVAR_1 3, 6, 0}.\n",
+        "Oak: It’s chosen you, {STRVAR_1 3, 6, 0}.\n",
         "Raise it with all the care\r",
         "you’ve given your gym!"
       ]
@@ -950,14 +950,14 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabGymCharm",
       "en_US": [
-        "OAK: {STRVAR_1 3, 6, 0}! Your mentor left this\n",
-        "for you. A Gym CHARM!"
+        "Oak: {STRVAR_1 3, 6, 0}! Your mentor left this\n",
+        "for you. A Gym Charm!"
       ]
     },
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabGymCharmHow",
       "en_US": [
-        "OAK: SHINY Pokémon of your Gym’s\n",
+        "Oak: Shiny Pokémon of your Gym’s\n",
         "type will turn up far more often.\r",
         "If your Gym changes type, the charm\n",
         "changes with it!"
@@ -966,7 +966,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabGoal",
       "en_US": [
-        "OAK: How’s your Gym, {STRVAR_1 3, 6, 0}?\r",
+        "Oak: How’s your Gym, {STRVAR_1 3, 6, 0}?\r",
         "Win {STRVAR_1 3, 0, 0} in a row there, and\n",
         "you’ll have mastered {STRVAR_1 3, 1, 0} type.\r",
         "Then I’ll have a new challenge\n",
@@ -976,7 +976,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabMidStreak",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! {STRVAR_1 3, 0, 0} wins in a\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! {STRVAR_1 3, 0, 0} wins in a\n",
         "row and counting, I hear!\r",
         "Let’s talk about your Gym’s type\n",
         "once your streak is over."
@@ -992,7 +992,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabOffer",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! Have you changed\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! Have you changed\n",
         "your mind?\r",
         "You’ve earned a new type for your\n",
         "Gym. Would you like to choose it?"
@@ -1005,7 +1005,7 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAside1",
       "en_US": [
-        "OAK: Ah, {STRVAR_1 3, 6, 0}! I hear a Gym\n",
+        "Oak: Ah, {STRVAR_1 3, 6, 0}! I hear a Gym\n",
         "Leader has approved of you.\r",
         "Good, good… I picked out that Gym’s\n",
         "floor tiles myself, you know."
@@ -1014,7 +1014,7 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAside2",
       "en_US": [
-        "OAK: Several approvals already!\n",
+        "Oak: Several approvals already!\n",
         "My, my.\r",
         "You know, I was quite the Trainer\n",
         "in my day.\r",
@@ -1024,7 +1024,7 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAside3",
       "en_US": [
-        "OAK: Hm? Oh, I was just at the\n",
+        "Oak: Hm? Oh, I was just at the\n",
         "Gym. Checking the lights.\r",
         "It’s a fine Gym. Very fine…\n",
         "Ahem! Now, your Pokédex."
@@ -1040,7 +1040,7 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakWelcomesMentor",
       "en_US": [
-        "OAK: {STRVAR_1 3, 0, 0}! You came all\n",
+        "Oak: {STRVAR_1 3, 0, 0}! You came all\n",
         "this way!\r",
         "{STRVAR_1 3, 6, 0}, this is the one I wrote\n",
         "to about you. Go on, say hello!"
@@ -1053,7 +1053,7 @@
     {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAfterMentor",
       "en_US": [
-        "OAK: My, my! One letter, and\n",
+        "Oak: My, my! One letter, and\n",
         "{STRVAR_1 3, 0, 0} comes all this way!\r",
         "A fine mentor for you, {STRVAR_1 3, 6, 0}.\n",
         "Yes… I’m sure of it. Mostly."
@@ -1062,7 +1062,7 @@
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Challengers",
       "en_US": [
-        "Talk to the AIDE in your Gym when\n",
+        "Talk to the Aide in your Gym when\n",
         "you’re ready to take challengers.\r",
         "They keep coming, one after\n",
         "another, until one beats you.\r",
@@ -1074,20 +1074,20 @@
         "your Gym’s statue.\r",
         "Your Gym’s PC sells decorations\n",
         "and practice trainers. Battles\f",
-        "happen on your BATTLE STAGE."
+        "happen on your Battle Stage."
       ]
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Convention",
       "en_US": [
-        "Every year, the JOHTO LEAGUE holds\n",
-        "the Gym Leader CONVENTION in\f",
-        "GOLDENROD CITY’s RADIO TOWER.\r",
+        "Every year, the Johto League holds\n",
+        "the Gym Leader Convention in\f",
+        "GOLDENROD City’s Radio Tower.\r",
         "Your invitation comes to your Gym.\n",
         "Show it to the sailor at\f",
         "VERMILION’s harbor, and the ferry\f",
-        "takes you to OLIVINE CITY.\r",
-        "Gym Leaders, ELITE FOUR and\n",
+        "takes you to Olivine City.\r",
+        "Gym Leaders, Elite Four and\n",
         "CHAMPIONS from every region battle\f",
         "there, in a hall for every type.\r",
         "Beat everyone in a hall to win its\n",
@@ -1098,14 +1098,14 @@
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Safari",
       "en_US": [
-        "The EXOTIC Pokémon SAFARI is the\n",
-        "second door of FUCHSIA CITY’s\f",
-        "SAFARI ZONE building.\r",
+        "The Exotic Pokémon Safari is the\n",
+        "second door of Fuchsia City’s\f",
+        "SAFARI Zone building.\r",
         "Its attendant sells Gym Leaders an\n",
-        "EXOTIC PASS. It’s ¥10,000, and you\f",
+        "EXOTIC Pass. It’s ¥10,000, and you\f",
         "only need the one.\r",
         "Every region has its own zone,\n",
-        "from JOHTO to PALDEA. Battles there\f",
+        "from Johto to Paldea. Battles there\f",
         "are normal ones: use your own\f",
         "Poké Balls.\r",
         "The kiosks sell supplies, and the\n",
@@ -1123,9 +1123,9 @@
         "Every Pokémon there is can be\f",
         "yours now.\r",
         "JOHTO’s live on the routes around\n",
-        "the CONVENTION, and every region’s\f",
-        "live in the EXOTIC SAFARI in\f",
-        "FUCHSIA CITY.\r",
+        "the Convention, and every region’s\f",
+        "live in the Exotic Safari in\f",
+        "FUCHSIA City.\r",
         "Try to catch them all!"
       ]
     },
@@ -1140,7 +1140,7 @@
         "CONVENTION team. Beat them!\r",
         "When the streak ends, Prof. Oak\n",
         "comes to your Gym and offers you a\f",
-        "new type. Your BADGE changes too.\r",
+        "new type. Your Badge changes too.\r",
         "In his lab, Prof. Oak can switch\n",
         "your Gym back to any type it’s\f",
         "had, free."
@@ -1170,31 +1170,31 @@
         "Pokémon. It comes to your Gym the\f",
         "first time your Gym is that type.\r",
         "If it gets away, it hides deep in\n",
-        "CERULEAN CAVE. Keep looking!\r",
-        "And the Gym CHARM from your mentor\n",
-        "makes SHINY Pokémon of your Gym’s\f",
+        "CERULEAN Cave. Keep looking!\r",
+        "And the Gym Charm from your mentor\n",
+        "makes Shiny Pokémon of your Gym’s\f",
         "type turn up far more often."
       ]
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Penny",
       "en_US": [
-        "PENNY lives in the house by\n",
-        "VIRIDIAN CITY’s flower garden.\r",
-        "She knows how EEVEE can become a\n",
+        "Penny lives in the house by\n",
+        "VIRIDIAN City’s flower garden.\r",
+        "She knows how Eevee can become a\n",
         "Pokémon of any type.\r",
         "Now that your Gym’s official, bring\n",
-        "her another EEVEE, and she’ll give\f",
+        "her another Eevee, and she’ll give\f",
         "you the item for another type."
       ]
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Costumes",
       "en_US": [
-        "The COSTUME MAKER on the 2nd floor\n",
-        "of CELADON CONDOMINIUMS has been\f",
+        "The Costume Maker on the 2nd floor\n",
+        "of Celadon Condominiums has been\f",
         "waiting for a Gym Leader.\r",
-        "She has a PIKACHU that loves\n",
+        "She has a Pikachu that loves\n",
         "dressing up, and five costumes\f",
         "for it to earn. Pay her a visit!"
       ]
@@ -1202,9 +1202,9 @@
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_Tutors",
       "en_US": [
-        "The Leader ACADEMY’s type masters\n",
-        "are still around KANTO: one for\f",
-        "each type, and two for NORMAL.\r",
+        "The Leader Academy’s type masters\n",
+        "are still around Kanto: one for\f",
+        "each type, and two for Normal.\r",
         "Each sets a trial. Pass it, and\n",
         "they’ll teach your Pokémon any of\f",
         "their type’s moves, as often as\f",
@@ -1217,7 +1217,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_HardType",
       "en_US": [
-        "OAK: Ho! The {STRVAR_1 3, 1, 0} type?\n",
+        "Oak: Ho! The {STRVAR_1 3, 1, 0} type?\n",
         "That’s a bold choice!\r",
         "There aren’t many strong {STRVAR_1 3, 1, 0}\n",
         "Pokémon. Every battle will be\f",
@@ -1248,7 +1248,7 @@
     {
       "id": "msg_0451_T01R0301_EventMons_Text_QuizFailed",
       "en_US": [
-        "OAK: {STRVAR_1 3, 0, 0} out of five… So\n",
+        "Oak: {STRVAR_1 3, 0, 0} out of five… So\n",
         "close!\r",
         "Brush up on your type matchups\n",
         "and try again. I’ll be right\r",
@@ -1261,7 +1261,7 @@
     },
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabNo",
-      "en_US": "OAK: Whenever you’re ready!"
+      "en_US": "Oak: Whenever you’re ready!"
     },
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_WhichTypeStars",
@@ -1273,7 +1273,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_LabLegendHint",
       "en_US": [
-        "OAK: Hm… I have a feeling something\n",
+        "Oak: Hm… I have a feeling something\n",
         "is waiting for you at your Gym.\r",
         "Go and see!"
       ]
@@ -1281,7 +1281,7 @@
     {
       "id": "msg_0451_T01R0301_PokedexRating_Text_LoveSeeingYourPokedex",
       "en_US": [
-        "OAK: Ah, welcome, Leader!\r",
+        "Oak: Ah, welcome, Leader!\r",
         "How is your Pokédex coming along?\n",
         "A Leader never stops studying!\r",
         "Let’s see…"
@@ -1290,7 +1290,7 @@
     {
       "id": "msg_0451_T01R0301_PokedexRating_Text_HowIsPokedexComingAlong",
       "en_US": [
-        "OAK: Good to see you! How’s our\n",
+        "Oak: Good to see you! How’s our\n",
         "future Gym Leader?\r",
         "Let me see your Pokédex. A Leader\n",
         "should know what’s out there."
@@ -1309,7 +1309,7 @@
     {
       "id": "msg_0451_T01R0301_PokedexRating_Text_NationalDexSeenXOwnedY",
       "en_US": [
-        "And your NATIONAL Pokédex is:\r",
+        "And your National Pokédex is:\r",
         "{STRVAR_1 3, 0, 0} Pokémon seen and\n",
         "{STRVAR_1 3, 1, 0} Pokémon owned."
       ]
@@ -1317,7 +1317,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakComeSeeMeSometime",
       "en_US": [
-        "OAK: Come see me sometime.\r",
+        "Oak: Come see me sometime.\r",
         "After all, I want to know how your\n",
         "Pokédex is coming along."
       ]
@@ -1360,7 +1360,7 @@
       "id": "msg_0451_T01R0301_PokedexRating_Text_LookForwardToFilledNationalDex",
       "en_US": [
         "I’ll be looking forward to seeing\n",
-        "you fill the NATIONAL Pokédex!"
+        "you fill the National Pokédex!"
       ]
     },
     {
@@ -1406,7 +1406,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_BackToType",
       "en_US": [
-        "OAK: Back to {STRVAR_1 3, 0, 0} type!\n",
+        "Oak: Back to {STRVAR_1 3, 0, 0} type!\n",
         "Challengers, beware!"
       ]
     },
@@ -1438,7 +1438,7 @@
     {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakFollowMeToGym",
       "en_US": [
-        "OAK: Hold it, {STRVAR_1 3, 7, 0}!\r",
+        "Oak: Hold it, {STRVAR_1 3, 7, 0}!\r",
         "Before you two run off, there’s\n",
         "something you both need to see.\r",
         "Follow me!"
@@ -1447,7 +1447,7 @@
     {
       "id": "msg_0451_T01R0301_Outfits_Text_ReceivedAllGymUniforms",
       "en_US": [
-        "{STRVAR_1 3, 6, 0} received a Gym UNIFORM\n",
+        "{STRVAR_1 3, 6, 0} received a Gym Uniform\n",
         "for every type!"
       ]
     },
@@ -1458,7 +1458,7 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_OldLegendLeaves",
       "en_US": [
-        "OAK: Hm? {STRVAR_1 3, 2, 0} left your Gym…\r",
+        "Oak: Hm? {STRVAR_1 3, 2, 0} left your Gym…\r",
         "I bet it’s gone somewhere only\n",
         "the toughest Trainers go…"
       ]
@@ -1466,13 +1466,13 @@
     {
       "id": "msg_0451_T01R0301_GymSwitch_Text_NewTypeTips",
       "en_US": [
-        "OAK: Challengers will expect\n",
+        "Oak: Challengers will expect\n",
         "{STRVAR_1 3, 0, 0}-type Pokémon now, so\f",
         "you’ll need a new team!\r",
         "And remember: you can switch back\n",
         "to any type your Gym has had.\r",
         "It’s free! Just come see me at\n",
-        "my LAB."
+        "my Lab."
       ]
     },
     {

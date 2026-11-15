@@ -56,7 +56,19 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
 
 # Lines of our own, before the first given command of a label. The GBA game names the rival in Oak's intro;
 # HeartGold's intro only names the player, so he's named the first time he speaks.
+def new_game(p):
+    """The GBA game sets up its flags on a new game (EventScript_ResetAllMapFlagsFrlg: people who aren't there
+    yet, and so on). A new game here begins in Pallet Town, so its map script does the same, once."""
+    done = p.new('new_game')
+    out = ['GoToIfSet %s, %s' % (p.flag('CV_NEW_GAME_SET_UP'), done)]
+    for cmd, a in p.g.labels['EventScript_ResetAllMapFlagsFrlg']:
+        if cmd == 'setflag': out.append('SetFlag %s' % p.flag(a[0]))
+        elif cmd == 'setvar': out.append('SetVar %s, %s' % (p.var(a[0]), p.val(a[1])))
+    return out + ['SetFlag %s' % p.flag('CV_NEW_GAME_SET_UP'), done + ':']
+
+
 INSERTS = {
+    'PalletTown_OnTransition': (None, new_game),
     'PalletTown_ProfessorOaksLab_ChooseStarterScene': ('msgbox', [
         'GoToIfSet {flag[CV_RIVAL_NAMED]}, _cv_rival_named',
         'FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'NameRival VAR_SPECIAL_RESULT', 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade',
@@ -110,10 +122,23 @@ WORDS = [('POKéMON', 'Pokémon'), ('POKéDEX', 'Pokédex'), ('POKé BALL', 'Pok
          ('LEADER', 'Leader'), ('PC', 'PC')]
 
 
+# The GBA game writes names in capitals (PALLET TOWN, OAK, HOT AIR BALLOON); HeartGold doesn't (Pallet Town, Oak).
+KEEP_CAPS = {'PC', 'TM', 'HM', 'HP', 'PP', 'TV', 'KO', 'OK', 'BP', 'GBA', 'ID', 'MC', 'EXP', 'S.S', 'DS', 'NPC', 'UFO'}
+LOWER = {'YOU', 'YOUR', 'MY', 'ME', 'THE', 'OF', 'TO', 'AND', 'OR', 'IS', 'IT', 'A', 'AN', 'IN', 'ON', 'AT', 'FOR',
+         'NOT', 'NO', 'YES', "I'M", "YOU'RE", "DON'T", "CAN'T", 'THIS', 'THAT', 'WAS', 'ARE', 'BE', 'WE', 'US', 'OUT'}
+
+
+def unshout(w):
+    if w in KEEP_CAPS or w.rstrip('.') in KEEP_CAPS: return w
+    if w in LOWER: return w.lower()
+    return '.'.join(p[:1] + p[1:].lower() for p in w.split('.'))
+
+
 def text(s):
     """GBA string -> HeartGold message lines (\\n line, \\r new box, \\f scroll); returns (lines, buffers)"""
     s = s.split('$')[0]
     for a, b in WORDS: s = re.sub(re.escape(a) + r'S\b', b + 's', s).replace(a, b)     # (POKé BALLS -> Poké Balls)
+    s = re.sub(r"(?<![{\w])([A-ZÉ][A-Zé'É.]*[A-Zé])(?![\w}])", lambda m: unshout(m.group(1)), s)
     bufs = set()
 
     def code(m):
@@ -149,7 +174,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'LITTLE_GIRL': 'GSBABYGIRL1', 'GIRL_1': 'GSGIRL1', 'GIRL_2': 'GSGIRL2', 'GIRL_3': 'GSGIRL3', 'LASS': 'GSGIRL2',
     'YOUNGSTER': 'GSBOY2', 'BUG_CATCHER': 'GSBOY1', 'GENTLEMAN': 'GSGENTLEMAN', 'SCIENTIST': 'GSASSISTANTM',
     'SCIENTIST_1': 'GSASSISTANTM', 'NURSE': 'PCWOMAN1', 'CLERK': 'SHOPM1_2', 'MART_EMPLOYEE': 'SHOPM1_2',
-    'PROF_OAK': 'OOKIDO', 'MOM': 'GSMAMA', 'BLUE': 'GSRIVEL', 'DAISY': 'NANAMI', 'GIOVANNI': 'SAKAKI',
+    'PROF_OAK': 'OOKIDO', 'MOM': 'GSMAMA', 'BLUE': 'GSLEADER16', 'DAISY': 'NANAMI', 'GIOVANNI': 'SAKAKI',
     'ROCKET_M': 'ROCKETM', 'ROCKET_F': 'ROCKETW', 'POLICEMAN': 'POLICEMAN', 'SAILOR': 'SEAMAN_2', 'FISHERMAN': 'FISHING_2',
     'HIKER': 'MOUNT_2', 'SWIMMER_M': 'GSSWIMMERM', 'SWIMMER_F': 'GSSWIMMERW', 'BLACK_BELT': 'GSFIGHTER',
     'CAMPER': 'CAMPBOY_2', 'PICNICKER': 'PICNICGIRL_2', 'BEAUTY': 'GSWOMAN3', 'COOLTRAINER_M': 'GSMAN3',
@@ -157,7 +182,12 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'BREAKABLE_ROCK': 'BREAKROCK', 'CUTTABLE_TREE': 'TREE', 'WORKER_M': 'WORKMAN', 'BALDING_MAN': 'GSMIDDLEMAN1',
     'GYM_GUY': 'GSMAN1', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'CYCLEM', 'EXPERT_M': 'GSOLDMAN1',
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
+    'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
+    'CEREMONY_PODIUM': 'GTOROPHY',
 }
+# Pokemon in the overworld: hg-engine's walking sprite of that species
+for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):
+    SPRITE.setdefault(_n, 'FOLLOWER_MON_' + _n)
 
 NO_OPS = ('opendoor', 'closedoor', 'waitdooranim', 'setworldmapflag', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
           'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
@@ -181,7 +211,7 @@ BGM = {'MUS_RG_ENCOUNTER_RIVAL': 'SEQ_GS_E_RIVAL1', 'MUS_RG_RIVAL_EXIT': 'SEQ_GS
        'MUS_RG_POKE_CENTER': 'SEQ_GS_POKESEN', 'MUS_RG_ENCOUNTER_GYM_LEADER': 'SEQ_GS_GYM', 'MUS_RG_GYM': 'SEQ_GS_GYM',
        'MUS_RG_POKE_MANSION': 'SEQ_GS_D_AJITO', 'MUS_RG_ENCOUNTER_DEOXYS': 'SEQ_GS_E_ARCEUS'}
 SCRATCH = ('0x401E', '0x401F')
-MENU_PAGE, MENU_MORE = 7, 254
+MENU_PAGE, MENU_MORE = 6, 254
 OWN_TEXT = {'cv_more': ['More…']}       # free temp vars (the GBA's VAR_TEMP_0..F are 0x4000..0x400F)
 
 STEP = {'up': 'North', 'down': 'South', 'left': 'West', 'right': 'East'}
@@ -358,16 +388,17 @@ class Port:
         first = self.val(initial)
         if not re.match(r'^\d+$', first): first = '0'      # (HeartGold's menus start on a fixed item)
         if not items: self.todo.append('menu items pushed in another script (%s)' % self.cur)
-        # (HeartGold's script menus don't scroll: a long list goes in pages of 7, with "More" between them)
+        # (HeartGold's script menus don't scroll: a long list goes in pages of 6, with "More" between them)
         pages = [items[i:i + MENU_PAGE] for i in range(0, len(items), MENU_PAGE)] or [[]]
         names = [self.new('page') for _ in pages]
         self.emit('TouchscreenMenuHide')          # (or the list never shows: the touch screen keeps the input)
         for k, page in enumerate(pages):
             if len(pages) > 1: self.emit(names[k] + ':')
-            self.emit('MenuInit 1, 1, %s, %d, VAR_SPECIAL_RESULT' % (first if k == 0 else '0', 0 if b else 1))
-            for t, v in page: self.emit('MenuItemAdd %s, 255, %s' % (self.msg(t), self.val(v)))
-            if len(pages) > 1: self.emit('MenuItemAdd %s, 255, %d' % (self.msg('cv_more'), MENU_MORE))
-            self.emit('MenuExec')
+            # (the top-screen list: its window is as wide as the longest item)
+            self.emit('ScrCmd_065 1, 1, %s, %d, VAR_SPECIAL_RESULT' % (first if k == 0 else '0', 0 if b else 1))
+            for t, v in page: self.emit('ScrCmd_559 %s, %s' % (self.msg(t), self.val(v)))
+            if len(pages) > 1: self.emit('ScrCmd_559 %s, %d' % (self.msg('cv_more'), MENU_MORE))
+            self.emit('ScrCmd_067')
             if len(pages) > 1:
                 self.emit('CompareVarToValue VAR_SPECIAL_RESULT, %d' % MENU_MORE, 'GoToIfEq %s' % names[(k + 1) % len(pages)])
                 if k < len(pages) - 1: self.emit('GoTo %s' % names[-1] + '_end')
@@ -415,9 +446,12 @@ class Port:
         open_msg = False
         sw = None
         insert = INSERTS.get(label)
+        if insert and insert[0] is None:          # (at the very start)
+            self.emit(*insert[1](self)); insert = None
         for cmd, a in cmds:
             if insert and cmd == insert[0]:
-                self.emit(*[l.format(flag=_Lookup(self.flag)) for l in insert[1]]); insert = None
+                self.emit(*(insert[1](self) if callable(insert[1]) else [l.format(flag=_Lookup(self.flag)) for l in insert[1]]))
+                insert = None
             close = ['CloseMsg'] if open_msg else []
             if cmd == 'end':
                 self.emit(*close, 'End'); open_msg = False

@@ -4,15 +4,15 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_HiBrothersAtLab",
       "en_US": [
-        "DAISY: Hi, {STRVAR_1 3, 6, 0}!\r",
+        "Daisy: Hi, {STRVAR_1 3, 6, 0}!\r",
         "My brother, {STRVAR_1 3, 7, 0}, is out at\n",
-        "Grandpa’s LAB."
+        "Grandpa’s Lab."
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ItsBigMapOfKanto",
       "en_US": [
-        "It’s a big map of the KANTO region.\n",
+        "It’s a big map of the Kanto region.\n",
         "Now this would be useful!"
       ]
     },
@@ -33,7 +33,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyGrandpasCoins",
       "en_US": [
-        "Oh! Is that an AMULET COIN?\n",
+        "Oh! Is that an Amulet Coin?\n",
         "May I see? …It’s lovely.\r",
         "You know, when Grandpa was young,\n",
         "he went on expeditions all over.\r",
@@ -53,7 +53,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LikeMeToGroomMon",
       "en_US": [
-        "DAISY: Hi, {STRVAR_1 3, 6, 0}!\n",
+        "Daisy: Hi, {STRVAR_1 3, 6, 0}!\n",
         "Good timing.\r",
         "I’m about to have some tea.\n",
         "Would you like to join me?\r",
@@ -69,7 +69,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LookingNiceInNoTime",
       "en_US": [
-        "DAISY: Okay, I’ll get it looking\n",
+        "Daisy: Okay, I’ll get it looking\n",
         "nice in no time."
       ]
     },
@@ -77,9 +77,9 @@
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ThereYouGoAllDone",
       "en_US": [
         "{STRVAR_1 3, 0, 0} looks dreamily content…\r",
-        "DAISY: There you go! All done.\n",
+        "Daisy: There you go! All done.\n",
         "{STRVAR_1 3, 0, 0} looks dreamily content…\r",
-        "DAISY: There you go! All done.\n",
+        "Daisy: There you go! All done.\n",
         "See? Doesn’t it look nice?\r",
         "Giggle…\n",
         "It’s such a cute Pokémon."
@@ -88,7 +88,7 @@
     {
       "id": "msg_0449_T01R0201_GymCandidate_Text_DaisyAside",
       "en_US": [
-        "DAISY: Grandpa’s been going over\n",
+        "Daisy: Grandpa’s been going over\n",
         "to the Gym late at night lately.\r",
         "He says he’s “inspecting.”\n",
         "In his old Trainer’s cap."
@@ -97,7 +97,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_PleaseGiveMonsRest",
       "en_US": [
-        "DAISY: Just like people, Pokémon\n",
+        "Daisy: Just like people, Pokémon\n",
         "are living things.\r",
         "When they get tired, please give\n",
         "them a rest."
@@ -106,7 +106,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ExplainTownMap",
       "en_US": [
-        "You can use the TOWN MAP to find\n",
+        "You can use the Town Map to find\n",
         "out where you are, or check the\f",
         "names of places."
       ]
@@ -123,14 +123,14 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ReceivedTownMapFromDaisy",
       "en_US": [
-        "{STRVAR_1 3, 6, 0} received a TOWN MAP\n",
-        "from DAISY."
+        "{STRVAR_1 3, 6, 0} received a Town Map\n",
+        "from Daisy."
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_HeardYouBattledRival",
       "en_US": [
-        "DAISY: {STRVAR_1 3, 6, 0}, I heard you had\n",
+        "Daisy: {STRVAR_1 3, 6, 0}, I heard you had\n",
         "a battle against {STRVAR_1 3, 7, 0}.\r",
         "I wish I’d seen that!"
       ]
@@ -138,7 +138,7 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisySetCoins",
       "en_US": [
-        "For the AMULET COIN, I’ll need\n",
+        "For the Amulet Coin, I’ll need\n",
         "{STRVAR_1 3, 0, 0}.\r",
         "Shall I set it in for you?"
       ]
@@ -153,14 +153,14 @@
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyCoinLevel",
       "en_US": [
-        "There! Your AMULET COIN is Lv. {STRVAR_1 3, 0, 0}.\n",
+        "There! Your Amulet Coin is Lv. {STRVAR_1 3, 0, 0}.\n",
         "It brings {STRVAR_1 3, 1, 0}x the prize money."
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_MayISeeFirstMon",
       "en_US": [
-        "DAISY: Your Pokémon grow to love\n",
+        "Daisy: Your Pokémon grow to love\n",
         "you if you raise them with love.\r",
         "For example, {STRVAR_1 3, 6, 0}, may I see\n",
         "your first Pokémon?"
@@ -177,27 +177,27 @@
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_CantGroomAnEgg",
       "en_US": [
         "Oh, sorry. I honestly can’t\n",
-        "groom an EGG."
+        "groom an Egg."
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DontHaveSpaceForThis",
       "en_US": [
         "You don’t have space for this in\n",
-        "your BAG."
+        "your Bag."
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyCoinMaxed",
       "en_US": [
-        "Your AMULET COIN can’t hold any\n",
+        "Your Amulet Coin can’t hold any\n",
         "more. Grandpa would be amazed!"
       ]
     },
     {
       "id": "msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyNeedMoreCoins",
       "en_US": [
-        "To make the AMULET COIN luckier,\n",
+        "To make the Amulet Coin luckier,\n",
         "I’ll need {STRVAR_1 3, 0, 0}.\r",
         "Grandpa always said to look in\n",
         "the old places."

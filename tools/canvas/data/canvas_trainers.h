@@ -4,7 +4,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -21,7 +21,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -34,7 +34,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -51,7 +51,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -64,7 +64,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -81,7 +81,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -94,7 +94,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -111,7 +111,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -124,7 +124,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -141,7 +141,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -154,7 +154,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -171,7 +171,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -184,7 +184,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -201,7 +201,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -214,7 +214,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -231,7 +231,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -244,7 +244,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -261,7 +261,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -274,7 +274,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -291,7 +291,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -304,7 +304,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -321,7 +321,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -334,7 +334,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -351,7 +351,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "WHAT?\\nUnbelievable!\\fI picked the wrong Pokémon!",
+                .text = "What?\\nUnbelievable!\\fI picked the wrong Pokémon!",
             },
             {
                 .type = TRMSG_WIN,
@@ -364,7 +364,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -401,7 +401,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -438,7 +438,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -475,7 +475,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -512,7 +512,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -549,7 +549,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -586,7 +586,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -623,7 +623,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -660,7 +660,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -697,7 +697,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -734,7 +734,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -771,7 +771,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -808,7 +808,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -855,7 +855,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -902,7 +902,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -949,7 +949,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -996,7 +996,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1043,7 +1043,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1090,7 +1090,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1137,7 +1137,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1184,7 +1184,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1231,7 +1231,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1278,7 +1278,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1325,7 +1325,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1372,7 +1372,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1419,7 +1419,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1466,7 +1466,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1513,7 +1513,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1560,7 +1560,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1607,7 +1607,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1654,7 +1654,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1701,7 +1701,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1748,7 +1748,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1795,7 +1795,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1842,7 +1842,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1889,7 +1889,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1936,7 +1936,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -1990,7 +1990,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2044,7 +2044,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2098,7 +2098,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2152,7 +2152,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2206,7 +2206,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2260,7 +2260,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2314,7 +2314,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2368,7 +2368,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2422,7 +2422,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2476,7 +2476,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2530,7 +2530,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = SINGLE_BATTLE,
@@ -2584,7 +2584,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2629,7 +2629,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2638,7 +2638,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2683,7 +2683,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2692,7 +2692,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2737,7 +2737,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2746,7 +2746,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2791,7 +2791,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2800,7 +2800,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2845,7 +2845,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2854,7 +2854,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2899,7 +2899,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2908,7 +2908,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -2953,7 +2953,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -2962,7 +2962,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3007,7 +3007,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -3016,7 +3016,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3061,7 +3061,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -3070,7 +3070,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3115,7 +3115,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -3124,7 +3124,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3169,7 +3169,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -3178,7 +3178,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3223,7 +3223,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for BOSS\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
             },
         },
     },
@@ -3232,7 +3232,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3293,7 +3293,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3354,7 +3354,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3415,7 +3415,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3476,7 +3476,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3537,7 +3537,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3598,7 +3598,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3659,7 +3659,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3720,7 +3720,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3781,7 +3781,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3842,7 +3842,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3903,7 +3903,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_NOTHING,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -3964,7 +3964,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4022,7 +4022,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4031,7 +4031,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4089,7 +4089,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4098,7 +4098,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4156,7 +4156,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4165,7 +4165,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4223,7 +4223,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4232,7 +4232,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4290,7 +4290,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4299,7 +4299,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4357,7 +4357,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4366,7 +4366,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4424,7 +4424,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4433,7 +4433,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4491,7 +4491,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4500,7 +4500,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4558,7 +4558,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4567,7 +4567,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4625,7 +4625,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4634,7 +4634,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4692,7 +4692,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4701,7 +4701,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4759,7 +4759,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4768,7 +4768,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4826,7 +4826,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4835,7 +4835,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4893,7 +4893,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4902,7 +4902,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -4960,7 +4960,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -4969,7 +4969,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5027,7 +5027,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5036,7 +5036,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5094,7 +5094,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5103,7 +5103,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5161,7 +5161,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5170,7 +5170,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5228,7 +5228,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5237,7 +5237,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5295,7 +5295,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5304,7 +5304,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5362,7 +5362,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5371,7 +5371,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5429,7 +5429,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5438,7 +5438,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5496,7 +5496,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },
@@ -5505,7 +5505,7 @@
         .name = "Terry",
         .data = {
             .trainerType = TRAINER_DATA_TYPE_ITEMS,
-            .trainerClass = TRAINERCLASS_RIVAL,
+            .trainerClass = TRAINERCLASS_CANVAS_RIVAL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_PRIORITIZE_DAMAGE,
             .battleType = DOUBLE_BATTLE,
@@ -5563,7 +5563,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "NO!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe LEAGUE CHAMP?\\rMy reign is over already?\\nIt’s not fair!",
+                .text = "no!\\nThat can’t be!\\fYou beat me at my best!\\rAfter all that work to become\\nthe League Champ?\\rMy reign is over already?\\nIt’s not fair!",
             },
         },
     },

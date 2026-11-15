@@ -70,7 +70,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_FOLLOWER_MON_PIDGEY",
             "movement": 5,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

@@ -6,9 +6,9 @@
       "en_US": [
         "A big hopper with a hand crank beside\n",
         "it. A plate on its side reads:\f",
-        "BALL MAKER.\r",
+        "BALL Maker.\r",
         "Scratched under the hatch:\n",
-        "LV. 50 OR HIGHER."
+        "LV. 50 or Higher."
       ]
     },
     {
@@ -18,32 +18,32 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerConfirmEvil",
       "en_US": [
-        "Put {STRVAR_1 3, 0, 0} in the BALL MAKER?\n",
+        "Put {STRVAR_1 3, 0, 0} in the Ball Maker?\n",
         "It won’t be coming back out."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerGrinding",
-      "en_US": "GRINDING."
+      "en_US": "Grinding."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerExtracting",
-      "en_US": "EXTRACTING."
+      "en_US": "Extracting."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerEliminated",
-      "en_US": "Pokémon ELIMINATED."
+      "en_US": "Pokémon Eliminated."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerCreated",
-      "en_US": "{STRVAR_1 3, 1, 0} BALL CREATED."
+      "en_US": "{STRVAR_1 3, 1, 0} Ball Created."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_BallChanger",
       "en_US": [
         "Two pedestals, each with a dish for a\n",
         "Poké Ball. A plate on the console\f",
-        "reads: BALL CHANGER."
+        "reads: Ball Changer."
       ]
     },
     {
@@ -57,7 +57,7 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerPickBall",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is in a {STRVAR_1 3, 1, 0}.\n",
-        "Which BALL should it go into?"
+        "Which Ball should it go into?"
       ]
     },
     {
@@ -70,7 +70,7 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerDone",
       "en_US": [
-        "The two BALLS leapt across and\n",
+        "The two Balls leapt across and\n",
         "traded places!\r",
         "{STRVAR_1 3, 0, 0} is in the {STRVAR_1 3, 2, 0} now.\n",
         "{STRVAR_1 3, 6, 0} took back the {STRVAR_1 3, 1, 0}."
@@ -134,7 +134,7 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_DadStory_Text_MomBasement",
       "en_US": [
-        "MOM: This is where your father did his\n",
+        "Mom: This is where your father did his\n",
         "work.\r",
         "I don’t really know what all he got into,\n",
         "but he was down here day and night…\f",
@@ -163,7 +163,7 @@
         "A belt feeds into a falling sheet of\n",
         "glowing liquid. It churns and hisses.\r",
         "A plate on its side reads:\n",
-        "ABILITY SYNTHESIZER.\r",
+        "ABILITY Synthesizer.\r",
         "A tank on the back is labeled:\n",
         "3 {STRVAR_1 3, 2, 0}."
       ]
@@ -180,17 +180,17 @@
       "en_US": [
         "The screen flickers on.\r",
         "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
-        "SYNTHETIC ABILITY: {STRVAR_1 3, 1, 0}.\f",
+        "SYNTHETIC Ability: {STRVAR_1 3, 1, 0}.\f",
         "BEGIN?"
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthRemoving",
-      "en_US": "REMOVING ABILITIES."
+      "en_US": "Removing Abilities."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthImplanting",
-      "en_US": "IMPLANTING SYNTHETIC ABILITY."
+      "en_US": "Implanting Synthetic Ability."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneEvil",
@@ -204,7 +204,7 @@
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MachineEgg",
-      "en_US": "The machine won’t take an EGG."
+      "en_US": "The machine won’t take an Egg."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerLowLevel",
@@ -223,33 +223,33 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerBagFull",
       "en_US": [
-        "There’s no room in the BAG for\n",
+        "There’s no room in the Bag for\n",
         "what comes out."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerConfirmNice",
       "en_US": [
-        "Put {STRVAR_1 3, 0, 0} in the BALL MAKER?\n",
+        "Put {STRVAR_1 3, 0, 0} in the Ball Maker?\n",
         "It will lose 5 levels."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerScanning",
-      "en_US": "SCANNING."
+      "en_US": "Scanning."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerSampling",
       "en_US": [
-        "EXTRACTING SMALL DNA SAMPLE.\n",
-        "PAINLESS MODE ENGAGED."
+        "Extracting Small Dna Sample.\n",
+        "PAINLESS Mode Engaged."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerCreatedNice",
       "en_US": [
-        "SAMPLE COMPLETE.\n",
-        "{STRVAR_1 3, 1, 0} BALL CREATED."
+        "Sample Complete.\n",
+        "{STRVAR_1 3, 1, 0} Ball Created."
       ]
     },
     {
@@ -274,7 +274,7 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerBagFull",
       "en_US": [
-        "There’s no room in the BAG for the\n",
+        "There’s no room in the Bag for the\n",
         "{STRVAR_1 3, 1, 0}."
       ]
     },
@@ -311,7 +311,7 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_FoundRocketUniform",
       "en_US": [
         "{STRVAR_1 3, 6, 0} found a\n",
-        "TEAM ROCKET uniform!"
+        "TEAM Rocket uniform!"
       ]
     },
     {
@@ -331,23 +331,23 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthBlocked",
       "en_US": [
-        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
-        "ERROR. ABILITY CANNOT BE REMOVED."
+        "Subject: {STRVAR_1 3, 0, 0}.\n",
+        "ERROR. Ability Cannot be Removed."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthAlready",
       "en_US": [
-        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
-        "ERROR. SYNTHETIC ABILITY {STRVAR_1 3, 1, 0}\f",
-        "ALREADY IMPLANTED."
+        "Subject: {STRVAR_1 3, 0, 0}.\n",
+        "ERROR. Synthetic Ability {STRVAR_1 3, 1, 0}\f",
+        "ALREADY Implanted."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneNice",
       "en_US": [
         "{STRVAR_1 3, 0, 0} loved the taste of the\n",
-        "APPLE JUICE so much, it didn’t even\f",
+        "APPLE Juice so much, it didn’t even\f",
         "notice the implant!\r",
         "{STRVAR_1 3, 0, 0} came out with\n",
         "{STRVAR_1 3, 1, 0}!\r",
@@ -364,13 +364,13 @@
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_WhyIsThisHere",
       "en_US": [
-        "A TEAM ROCKET uniform?\n",
+        "A Team Rocket uniform?\n",
         "Why is this here?"
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_DadStory_Text_CrateIsDads",
-      "en_US": "Oh… it’s DAD’s ROCKET uniform."
+      "en_US": "Oh… it’s Dad’s Rocket uniform."
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported",

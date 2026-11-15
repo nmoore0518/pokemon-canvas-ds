@@ -648,11 +648,11 @@ Tourney_EventScript_Menu:
 	GoToIfEq Tourney_EventScript_MenuFirst
 	Call Tourney_EventScript_SayAsk
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptEnter, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptLast, 255, 1
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptEnter, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptLast, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_16
@@ -1033,10 +1033,10 @@ Gauntlet_EventScript_PilotMenu:
 	CompareVarToValue 0x501C, 0
 	GoToIfNe Gauntlet_EventScript_PilotMenuWithdraw
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSim, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptOff, 255, 1
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSim, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptOff, 1
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_22
@@ -1132,12 +1132,12 @@ Tourney_EventScript_MenuActive:
 	// TODO(gba) special Tourney_SetupNext
 	Call Tourney_EventScript_SayNext
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNext, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBoard, 255, 1
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptForfeit, 255, 2
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 255, 3
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNext, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBoard, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptForfeit, 2
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 3
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_29
@@ -1154,11 +1154,11 @@ _cv_menu_29:
 Tourney_EventScript_MenuSimBill:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillMenu
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBill, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBoard, 255, 1
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBill, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBoard, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_31
@@ -1173,10 +1173,10 @@ _cv_menu_31:
 Tourney_EventScript_MenuFirst:
 	Call Tourney_EventScript_SayAsk
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptEnter, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 255, 1
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptEnter, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNotNow, 1
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_33
@@ -1418,11 +1418,11 @@ GymSwitch_EventScript_Mastered:
 GymSwitch_EventScript_KeepGoingOrRetire:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_WhatNext
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_KeepGoing, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CallItADay, 255, 1
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_TakeABreak, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_KeepGoing, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CallItADay, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_TakeABreak, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_35
@@ -1466,11 +1466,11 @@ GymSwitch_EventScript_OakComes:
 	
 Gauntlet_EventScript_PilotMenuWithdraw:
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptWithdraw, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSim, 255, 1
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptOff, 255, 2
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptWithdraw, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSim, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptOff, 2
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_37
@@ -1637,10 +1637,10 @@ Tourney_EventScript_BreaksClause:
 Tourney_EventScript_SimFormat:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFormat
 	TouchscreenMenuHide
-	MenuInit 1, 1, 1, 0, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSingles, 255, 0
-	MenuItemAdd msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptDoubles, 255, 1
-	MenuExec
+	ScrCmd_065 1, 1, 1, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptSingles, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptDoubles, 1
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_42
@@ -2043,8 +2043,8 @@ GymSwitch_EventScript_AskNewType:
 GymSwitch_EventScript_TypeMenu:
 	// TODO(gba) special GymSwitch_PushTypes
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_59

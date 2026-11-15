@@ -21,6 +21,18 @@ index 60c93523..623b64af 100644
  update_machine_moves: $(VENV_ACTIVATE)
  	$(PYTHON) scripts/update_machine_moves.py --descriptions --sprites
  	@echo "Updated item descriptions and sprites. Double check formatting"
+diff --git a/armips/include/constants.s b/armips/include/constants.s
+index 96e87714..e58f16b9 100644
+--- a/armips/include/constants.s
++++ b/armips/include/constants.s
+@@ -278,6 +278,7 @@
+ .equ TRAINERCLASS_LEADER_CANDICE,             135
+ .equ TRAINERCLASS_LEADER_VOLKNER,             136
+ .equ TRAINERCLASS_CHAMPION_CYNTHIA,           137
++.equ TRAINERCLASS_CANVAS_RIVAL,               138
+ // pokedex data constants
+ .equ DEX_END_AREA_DATA, 0x0
+ 
 diff --git a/data/Trainers.c b/data/Trainers.c
 index 73b4afe6..95564f23 100644
 --- a/data/Trainers.c
@@ -53,6 +65,646 @@ index 645bdc10..f44e9b40 100644
 +# Pokemon Canvas: map headers past HeartGold's 540 (made by the canvas tools: tools/canvas/build_map_headers.py)
 +CANVAS_MAP_HEADERS_TARGET := $(BUILD)/a028/9_21
 +CANVAS_MAP_HEADERS_BIN := data/canvas_map_headers.bin
+diff --git a/data/graphics/trainer_gfx/138.png b/data/graphics/trainer_gfx/138.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..26375766d48eebc8b074cd9a3a8a678ad0d99b2a
+GIT binary patch
+literal 1711
+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
+FV1n81Du)07
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/trainer_gfx/138_anim.json b/data/graphics/trainer_gfx/138_anim.json
+new file mode 100644
+index 00000000..55e27178
+--- /dev/null
++++ b/data/graphics/trainer_gfx/138_anim.json
+@@ -0,0 +1,104 @@
++{
++	"labelEnabled":	true,
++	"uaatEnabled":	false,
++	"sequenceCount":	2,
++	"frameCount":	12,
++	"sequences":	[{
++			"frameCount":	1,
++			"loopStartFrame":	0,
++			"animationElement":	0,
++			"animationType":	1,
++			"playbackMode":	2,
++			"frameData":	[{
++					"frameDelay":	4,
++					"resultId":	0
++				}]
++		}, {
++			"frameCount":	11,
++			"loopStartFrame":	0,
++			"animationElement":	2,
++			"animationType":	1,
++			"playbackMode":	1,
++			"frameData":	[{
++					"frameDelay":	24,
++					"resultId":	1
++				}, {
++					"frameDelay":	24,
++					"resultId":	2
++				}, {
++					"frameDelay":	24,
++					"resultId":	1
++				}, {
++					"frameDelay":	24,
++					"resultId":	2
++				}, {
++					"frameDelay":	40,
++					"resultId":	1
++				}, {
++					"frameDelay":	4,
++					"resultId":	3
++				}, {
++					"frameDelay":	4,
++					"resultId":	4
++				}, {
++					"frameDelay":	4,
++					"resultId":	5
++				}, {
++					"frameDelay":	8,
++					"resultId":	6
++				}, {
++					"frameDelay":	8,
++					"resultId":	7
++				}, {
++					"frameDelay":	30,
++					"resultId":	8
++				}]
++		}],
++	"animationResults":	[{
++			"resultType":	0,
++			"index":	0
++		}, {
++			"resultType":	2,
++			"index":	0,
++			"positionX":	0,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	1,
++			"positionX":	0,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	0,
++			"positionX":	2,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	0,
++			"positionX":	4,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	0,
++			"positionX":	6,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	2,
++			"positionX":	2,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	2,
++			"positionX":	1,
++			"positionY":	0
++		}, {
++			"resultType":	2,
++			"index":	2,
++			"positionX":	0,
++			"positionY":	0
++		}],
++	"resultCount":	9,
++	"labels":	["\u0001", "�P"],
++	"labelCount":	2
++}
+\ No newline at end of file
+diff --git a/data/graphics/trainer_gfx/138_cell.json b/data/graphics/trainer_gfx/138_cell.json
+new file mode 100644
+index 00000000..dcfcc531
+--- /dev/null
++++ b/data/graphics/trainer_gfx/138_cell.json
+@@ -0,0 +1,425 @@
++{
++	"labelEnabled":	true,
++	"dontPadKbec":	false,
++	"extended":	true,
++	"vramTransferEnabled":	true,
++	"ucatEnabled":	false,
++	"cellCount":	3,
++	"mappingType":	1,
++	"cells":	[{
++			"cellAttrs":	{
++				"hFlip":	false,
++				"vFlip":	false,
++				"hvFlip":	false,
++				"boundingRect":	true,
++				"boundingSphereRadius":	14
++			},
++			"maxX":	39,
++			"maxY":	39,
++			"minX":	-40,
++			"minY":	-40,
++			"oamCount":	6,
++			"OAM":	[{
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	3
++					},
++					"Attr2":	{
++						"CharName":	0,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	32,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-8,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	36,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	40,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-8,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	44,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	1
++					},
++					"Attr2":	{
++						"CharName":	48,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}]
++		}, {
++			"cellAttrs":	{
++				"hFlip":	false,
++				"vFlip":	false,
++				"hvFlip":	false,
++				"boundingRect":	true,
++				"boundingSphereRadius":	14
++			},
++			"maxX":	39,
++			"maxY":	39,
++			"minX":	-40,
++			"minY":	-40,
++			"oamCount":	6,
++			"OAM":	[{
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	3
++					},
++					"Attr2":	{
++						"CharName":	0,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	32,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-8,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	36,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	40,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-8,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	44,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	1
++					},
++					"Attr2":	{
++						"CharName":	48,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}]
++		}, {
++			"cellAttrs":	{
++				"hFlip":	false,
++				"vFlip":	false,
++				"hvFlip":	false,
++				"boundingRect":	true,
++				"boundingSphereRadius":	14
++			},
++			"maxX":	39,
++			"maxY":	39,
++			"minX":	-40,
++			"minY":	-40,
++			"oamCount":	6,
++			"OAM":	[{
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	3
++					},
++					"Attr2":	{
++						"CharName":	0,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-40,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	32,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	-8,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	2
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	36,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-40,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	40,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	1
++					},
++					"Attr1":	{
++						"XCoordinate":	-8,
++						"RotationScaling":	0,
++						"Size":	2
++					},
++					"Attr2":	{
++						"CharName":	44,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}, {
++					"Attr0":	{
++						"YCoordinate":	24,
++						"Rotation":	false,
++						"SizeDisable":	false,
++						"Mode":	0,
++						"Mosaic":	false,
++						"Colours":	16,
++						"Shape":	0
++					},
++					"Attr1":	{
++						"XCoordinate":	24,
++						"RotationScaling":	0,
++						"Size":	1
++					},
++					"Attr2":	{
++						"CharName":	48,
++						"Priority":	0,
++						"Palette":	0
++					}
++				}]
++		}],
++	"labels":	["CellAnime0", "CellAnime1"],
++	"labelCount":	2,
++	"vramTransferMaxSize":	3200,
++	"transferData":	[{
++			"offset":	0,
++			"size":	3200
++		}, {
++			"offset":	3200,
++			"size":	3200
++		}, {
++			"offset":	6400,
++			"size":	3200
++		}]
++}
+\ No newline at end of file
+diff --git a/data/graphics/trainer_gfx/138_enc.png b/data/graphics/trainer_gfx/138_enc.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..23012ac2501751c09ae8495ea72b9e80629a688f
+GIT binary patch
+literal 969
+zcmV;)12+7LP)<h;3K|Lk000e1NJLTq005u>002+~0{{R3Y;$7=0000mP)t-soV3-&
+z#l?ezgS~q}gIX9;DG=3zIkZ|SN?KwmIYIx`z22mIy?bJNN?QN_{{R30<dbTB000A2
+zNkl<ZScTQsziSgw902g|(30sm&PfN6{sj&f=LYg>sUi_<BE+>x*A7k2r4^knP`Sk+
+zZz#84D_z>9srUzkQacqwqKi-w450}&XNU9qt~D2jd+&?9#Ut51`F`K~z90D>!2kPX
+z*0eeY>Lf^XYne)>n$zbpm3pOAWs8m?In}`|!g>`SMRKZxnU!k%R5Up#UAyX2O%8ru
+zyH!<bs4j*jf~2~lQ?0L-Dne>;rsE)cST3zFro#bTA}l`$p06s3O?8;M=Is4CJXo*k
+zabVVJwY{&w!TO>+HPvCYYvtYVLE%+VlY^@lkAfgL$?0-%)j}8SYjZH$>g)tTOPQJK
+zz<AOPj@loU&P<%qlfg@8qa3sb%79bu%=siq+&im%XcyE2Oq{Xl{E*3)Z@Q5(-n28E
+zO<6#AZEdM1Jnampe^-{-vTmOcB2KweOHxBH-8sv>PY9Se`6`cHckY&_4)~Xotuk+-
+z{H7k@v@_mIpzFCP<KpyWiKm>=IZlURv(faTv4DoNL2}UToTS4jY>quQ62&=n&eMmO
+zIP-0%B?%b%q3^k#2>AKj=@MMnK5V5YHaX`$AN#%-VZV2nCMPZmz4no0fCzn`hrT}m
+zzSY~^N!#HQ#~a>uPjU_rMj?Kpi1T(UJ@v%74VTN#Rmk}OzdUpsIF;j6nmE^&UL_&-
+z;U-{X`%8N2#6|LRKNZmRDNb?InH(o@VOiFlD3Ya4oID;vtn`J|@88qo;_bz8aPx}$
+zi|X)1iMnt#q&jg%eg1A=)uYiJ&L-lIpV@X!mlLvJ+e{6q4$SP(&Jr?H9YUKJkmdk}
+z2(tu8bx=f@&+2nf%-c38Ako3{kOrx4meC;9A!Jw_^%0;tSZ26k?RjkuAtMH)IRS^n
+zfFy^dVIu;hx<634dQ=xfQSF>22Ss#dUJa>k0#$7`)tL*74G56xU^a%f5>g$E7FYoY
+zkm|&C9Z(?EnM^=&8RxXPcz4AxD?b8Mr$69`#mzuo^?ycn0v2wdwAxfB7Eiz#J1>V+
+z2j+4NO@z{WgzCh0Sc(QQl%}RSQ5(@d$C+i2>JS$2l_uV?OP-`5r#kG>uDkW2&G3CV
+rJvY@QKNu}x)2oJ5cQXWy?%$r@T`!8e-!7R500000NkvXXu0mjf(ksc9
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/trainer_gfx/138_enc.png.key b/data/graphics/trainer_gfx/138_enc.png.key
+new file mode 100644
+index 00000000..4c1a3b92
+--- /dev/null
++++ b/data/graphics/trainer_gfx/138_enc.png.key
+@@ -0,0 +1 @@
++ui�<
+\ No newline at end of file
+diff --git a/data/text/730.txt b/data/text/730.txt
+index d07d3246..65f6a8e0 100644
+--- a/data/text/730.txt
++++ b/data/text/730.txt
+@@ -136,3 +136,4 @@ Rocket Boss
+ ₧₦ Trainer
+ ₧₦ Trainer
+ ₧₦ Trainer
++Rival
+diff --git a/data/text/731.txt b/data/text/731.txt
+index 301b054b..bb40ee7e 100644
+--- a/data/text/731.txt
++++ b/data/text/731.txt
+@@ -136,3 +136,4 @@ a ₧₦ Trainer
+ a ₧₦ Trainer
+ a ₧₦ Trainer
+ a ₧₦ Trainer
++a rival
 diff --git a/hooks b/hooks
 index 1b23ea97..814746a9 100644
 --- a/hooks
@@ -79,6 +731,18 @@ index 13b6cbaf..e0b46b59 100644
  
  // a015 file indexes
  #define BAG_HM_ICON 37
+diff --git a/include/constants/trainerclass.h b/include/constants/trainerclass.h
+index eb3e4e10..f919c585 100644
+--- a/include/constants/trainerclass.h
++++ b/include/constants/trainerclass.h
+@@ -140,6 +140,7 @@
+ #define TRAINERCLASS_LEADER_CANDICE      135
+ #define TRAINERCLASS_LEADER_VOLKNER      136
+ #define TRAINERCLASS_CHAMPION_CYNTHIA    137
++#define TRAINERCLASS_CANVAS_RIVAL        138 // Pokemon Canvas: the Kanto rival (Blue's look, the name the player gave him)
+ // Only used to display attributes of phone contacts
+ #define TRAINERCLASS_PHONE_MOM               200
+ #define TRAINERCLASS_PHONE_POKEMON_PROFESSOR 201
 diff --git a/include/save.h b/include/save.h
 index 8fd46ff6..ba44214d 100644
 --- a/include/save.h
@@ -217,6 +881,57 @@ index 00000000..f846b04d
 +        window[j] = sCache[i][j];
 +    return MAP_HEADER_WINDOW;
 +}
+diff --git a/src/field/enemy_party.c b/src/field/enemy_party.c
+index cf38c7e5..42a77c8c 100644
+--- a/src/field/enemy_party.c
++++ b/src/field/enemy_party.c
+@@ -9,6 +9,7 @@
+ #include "constants/item.h"
+ #include "constants/moves.h"
+ #include "constants/species.h"
++#include "constants/trainerclass.h"
+ #include "constants/weather_numbers.h"
+ 
+ #include "bag.h"
+@@ -80,6 +81,14 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
+ 
+     TT_TrainerPokeDataGet(bp->trainer_id[num], buf);
+ 
++    // Pokemon Canvas: the Kanto rival goes by the name the player gave him
++    if (bp->trainer_data[num].tr_type == TRAINERCLASS_CANVAS_RIVAL)
++    {
++        struct SAVE_MISC_DATA *misc = Sav2_Misc_get(SaveBlock2_get());
++        for (i = 0; i < 8; i++)
++            bp->trainer_data[num].name[i] = misc->rivalName[i];
++    }
++
+     if (TT_TrainerTypeSexGet(bp->trainer_data[num].tr_type) == 1) // if trainer is female
+     {
+         rnd_tmp = 120;
+diff --git a/src/music_tables.c b/src/music_tables.c
+index ac6cc962..78370f3b 100644
+--- a/src/music_tables.c
++++ b/src/music_tables.c
+@@ -81,6 +81,7 @@ u8 TrainerClassToMusicCombo[][2] = {
+     { TRAINERCLASS_ELITE_FOUR_KAREN, ANIM_MUSIC_COMBO_KAREN * 4 },
+     { TRAINERCLASS_CHAMPION, ANIM_MUSIC_COMBO_LANCE * 4 },
+     { TRAINERCLASS_RIVAL, ANIM_MUSIC_COMBO_RIVAL * 4 },
++    { TRAINERCLASS_CANVAS_RIVAL, ANIM_MUSIC_COMBO_RIVAL * 4 },
+     { TRAINERCLASS_PASSERBY, ANIM_MUSIC_COMBO_RIVAL * 4 },
+     { TRAINERCLASS_EXECUTIVE_ARCHER, ANIM_MUSIC_COMBO_ARCHER * 4 },
+     { TRAINERCLASS_EXECUTIVE_ARIANA, ANIM_MUSIC_COMBO_ARIANA * 4 },
+diff --git a/src/pokemon.c b/src/pokemon.c
+index e7e2f80c..33482c62 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -2084,6 +2084,7 @@ const u8 sTrainerGenders[] = {
+     [TRAINERCLASS_LEADER_CANDICE] = TRAINER_FEMALE,
+     [TRAINERCLASS_LEADER_VOLKNER] = TRAINER_MALE,
+     [TRAINERCLASS_CHAMPION_CYNTHIA] = TRAINER_FEMALE,
++    [TRAINERCLASS_CANVAS_RIVAL] = TRAINER_MALE,
+ };
+ #else
+ #define sTrainerGenders ((const u8 *)0x020FFB90)
 diff --git a/src/save.c b/src/save.c
 index b1df6be3..67770baa 100644
 --- a/src/save.c
@@ -311,3 +1026,14 @@ index d4b59833..f2eaf752 100644
  #ifdef EXPAND_ROAMERS
  BOOL LONG_CALL ScrCmd_CreateRoamer(SCRIPTCONTEXT *ctx)
  {
+diff --git a/src/trainermoney.c b/src/trainermoney.c
+index 74403e9d..755b340e 100644
+--- a/src/trainermoney.c
++++ b/src/trainermoney.c
+@@ -148,5 +148,6 @@ struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer
+         { .class = TRAINERCLASS_LEADER_CANDICE, .multiplier = 30 },
+         { .class = TRAINERCLASS_LEADER_VOLKNER, .multiplier = 30 },
+         { .class = TRAINERCLASS_CHAMPION_CYNTHIA, .multiplier = 50 },
++        { .class = TRAINERCLASS_CANVAS_RIVAL, .multiplier = 16 },
+     };
+ #endif // EXPAND_TRAINER_PRIZE_MONEY

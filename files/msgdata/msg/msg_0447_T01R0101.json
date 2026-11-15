@@ -8,7 +8,7 @@
     {
       "id": "msg_0447_T01R0101_DadStory_Text_MomDadsBall",
       "en_US": [
-        "MOM: Hey, {STRVAR_1 3, 6, 0}! How is the Gym\n",
+        "Mom: Hey, {STRVAR_1 3, 6, 0}! How is the Gym\n",
         "Leader journey going so far?\r",
         "I meant to give you something of your\n",
         "father’s before you left, but I couldn’t\f",
@@ -28,8 +28,8 @@
     {
       "id": "msg_0447_T01R0101_DadStory_Text_MomMoveExtractor",
       "en_US": [
-        "MOM: Wait… what is that thing in your\n",
-        "BAG? A MOVE EXTRACTOR?\r",
+        "Mom: Wait… what is that thing in your\n",
+        "BAG? A Move Extractor?\r",
         "How did you get that?\r",
         "Just… be careful, honey. Please.\r",
         "There are a lot of dangerous things…\n",
@@ -40,8 +40,8 @@
     {
       "id": "msg_0447_T01R0101_DadStory_Text_MomWhyWithHim",
       "en_US": [
-        "MOM: I was shopping in SAFFRON when I\n",
-        "saw you go into SILPH CO. I followed you\f",
+        "Mom: I was shopping in Saffron when I\n",
+        "saw you go into Silph Co. I followed you\f",
         "all the way up.\r",
         "Why were you with him…?\r",
         "Those aren’t good people, you know that,\n",
@@ -56,14 +56,14 @@
     {
       "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest",
       "en_US": [
-        "MOM: {STRVAR_1 3, 6, 0}!\n",
+        "Mom: {STRVAR_1 3, 6, 0}!\n",
         "You should take a quick rest."
       ]
     },
     {
       "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare",
       "en_US": [
-        "MOM: Oh, good! You and your\n",
+        "Mom: Oh, good! You and your\n",
         "Pokémon are looking great.\f",
         "Take care now!"
       ]
@@ -71,7 +71,7 @@
     {
       "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou",
       "en_US": [
-        "MOM: …Right.\n",
+        "Mom: …Right.\n",
         "All boys leave home someday.\f",
         "It said so on TV.\r",
         "Oh, yes. Prof. Oak, next door, was\n",
@@ -81,7 +81,7 @@
     {
       "id": "msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou",
       "en_US": [
-        "MOM: …Right.\n",
+        "Mom: …Right.\n",
         "All girls dream of traveling.\f",
         "It said so on TV.\r",
         "Oh, yes. Prof. Oak, next door, was\n",
@@ -91,7 +91,7 @@
     {
       "id": "msg_0447_T01R0101_DadStory_Text_MomAfterViridian",
       "en_US": [
-        "MOM: {STRVAR_1 3, 6, 0}! How is CHANSEY doing?\r",
+        "Mom: {STRVAR_1 3, 6, 0}! How is Chansey doing?\r",
         "She was always so gentle with you, even\n",
         "when you were a baby. Your father made\f",
         "sure of that.\r",
@@ -121,7 +121,7 @@
     {
       "id": "msg_0447_T01R0101_DadStory_Text_MomArcherNudge",
       "en_US": [
-        "MOM: Professor OAK said the new\n",
+        "Mom: Professor Oak said the new\n",
         "VIRIDIAN Leader was asking for you.\f",
         "Something of your father’s?\r",
         "Go and see him, honey. Just… be careful."

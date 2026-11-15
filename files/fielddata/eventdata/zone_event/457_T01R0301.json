@@ -86,7 +86,7 @@
         },
         {
             "id": "2",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSWOMAN1",
             "movement": 4,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -137,7 +137,7 @@
         },
         {
             "id": "LOCALID_OAKS_LAB_RIVAL",
-            "spriteId": "SPRITE_GSRIVEL",
+            "spriteId": "SPRITE_GSLEADER16",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x2024",
@@ -154,7 +154,7 @@
         },
         {
             "id": "LOCALID_POKEDEX_1",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_SCROLL",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x2025",
@@ -171,7 +171,7 @@
         },
         {
             "id": "LOCALID_POKEDEX_2",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_SCROLL",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x2025",
@@ -205,7 +205,7 @@
         },
         {
             "id": "LOCALID_OAKS_LAB_LEADER_AIDE",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSASSISTANTM",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x201D",

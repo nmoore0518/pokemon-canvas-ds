@@ -53,8 +53,8 @@ Outfits_EventScript_Wardrobe:
 	NPCMsg msg_0448_T01R0102_Outfits_Text_WhichOutfit
 	Call Outfits_EventScript_PushList
 	TouchscreenMenuHide
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
 	GoToIfLt _cv_menu_2

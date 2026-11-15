@@ -9,7 +9,7 @@ python3 $D/mv.py st/${T}_n.dst st/${T}_o.dst ${T}_1 U1 w60 A w100 A w100 A w100 
 python3 $D/mv.py st/${T}_o.dst st/${T}_lab.dst ${T}_2 A A A START w30 A w200 s A w100 A w200 A w200 A w200 A w200 A w200 A w200 A w200 s >/dev/null 2>&1
 # the type menu at the Poke Ball shelf (Grass), Bulbasaur, no nickname
 python3 $D/mv.py st/${T}_lab.dst st/${T}_m.dst ${T}_3 B w30 B w30 D1 R3 U1 A w60 A w100 w100 s >/dev/null 2>&1
-python3 $D/step.py st/${T}_m.dst st/${T}_s.dst w60 t:65:110 w120 A w100 A w100 A w100 A w150 A w150 A w200 A w200 A w200 B w300 A w150 A w150 A w150 A w200 A w200 A w200 >/dev/null 2>&1
+python3 $D/step.py st/${T}_m.dst st/${T}_s.dst w60 DOWN DOWN DOWN DOWN s:${T}_menu A w120 A w100 A w100 A w100 A w150 A w150 A w200 A w200 A w200 B w300 A w150 A w150 A w150 A w200 A w200 A w200 >/dev/null 2>&1
 # walk to the door: the rival's battle (Vine Whip until it's over), then on to the gym
 OUT=st/${T}_b.dst python3 $D/tour.py st/${T}_s.dst ${T}b mMAP_PALLET_TOWN_OAKS_LAB g6,9 >/dev/null 2>&1
 R="t:128:90 w40 t:64:105 w900"

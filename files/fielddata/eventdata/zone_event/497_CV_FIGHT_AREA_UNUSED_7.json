@@ -46,7 +46,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_RIVAL",
-            "spriteId": "SPRITE_GSRIVEL",
+            "spriteId": "SPRITE_GSLEADER16",
             "movement": 14,
             "type": 0,
             "eventFlag": "0x2033",
