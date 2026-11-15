@@ -117,3 +117,5 @@ tmp*
 
 # Pokémon Canvas DS: local emulator build
 /tools/canvas/emu/
+/st/
+/st_*.png

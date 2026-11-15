@@ -8,7 +8,7 @@ ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 dpkg --add-architecture i386
 apt-get update -qq
 apt-get install -y -qq libc6:i386 bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config python3 xz-utils nasm libpng-dev \
-  meson zlib1g-dev libpcap-dev libsoundtouch-dev libopenal-dev libglib2.0-dev libsdl2-dev python3-pil
+  meson zlib1g-dev libpcap-dev libsoundtouch-dev libopenal-dev libglib2.0-dev libsdl2-dev python3-pil faketime
 
 mkdir -p "$ROOT/subprojects/packagecache"; cd "$ROOT/subprojects/packagecache"
 [ -f yyjson-0.12.0.tar.gz ] || curl -sSLo yyjson-0.12.0.tar.gz https://github.com/mesonbuild/wrapdb/releases/download/yyjson_0.12.0-1/yyjson-0.12.0.tar.gz

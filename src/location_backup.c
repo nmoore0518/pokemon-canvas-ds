@@ -8,10 +8,10 @@
 #include "save_local_field_data.h"
 
 static const Location sLocation_PlayerRoom = {
-    .mapId = MAP_NEW_BARK_PLAYER_HOUSE_2F,
+    .mapId = MAP_PALLET,
     .warpId = 0xFFFFFFFF,
-    .x = 0x00000006,
-    .y = 0x00000006,
+    .x = 32 * 32 + 6,
+    .y = 32 * 11 + 49,
     .direction = 0x00000001,
 };
 
