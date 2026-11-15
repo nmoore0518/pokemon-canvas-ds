@@ -42,7 +42,15 @@ warp_tiles = {(w['x'], w['z']) for w in W}
 emu = DeSmuME(); emu.open(os.environ.get('ROM', R + 'build/canvas.nds')); emu.volume_set(0); emu.savestate.load_file(st)
 run = lambda n: [emu.cycle(with_joystick=False) for _ in range(n)]
 from findaddr import Tracker
-run(5); pos = Tracker(emu)
+run(5)
+class _Loc:
+    """the player's position from the field location (POSADDR, e.g. 0x227d6f0: x, z), for maps the Tracker mistakes"""
+    def __init__(self, a): self.a = a
+    def __call__(self):
+        m = emu.memory.unsigned; return tuple(struct.unpack('<ii', bytes(m[self.a:self.a + 8])))
+    def snapshot(self): return None
+    def moved_from(self, snap): pass
+pos = _Loc(int(os.environ['POSADDR'], 16)) if os.environ.get('POSADDR') else Tracker(emu)
 D = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
 def step(m, wait=40):
     k = keymask(getattr(Keys, 'KEY_' + {'R': 'RIGHT', 'L': 'LEFT', 'U': 'UP', 'D': 'DOWN'}[m]))

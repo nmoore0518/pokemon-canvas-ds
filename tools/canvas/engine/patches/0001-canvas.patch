@@ -1972,3 +1972,25 @@ index 74403e9d..755b340e 100644
 +        { .class = TRAINERCLASS_CANVAS_RIVAL, .multiplier = 16 },
      };
  #endif // EXPAND_TRAINER_PRIZE_MONEY
+diff --git a/tools/source/trainerdatagen/trainer_data_gen.c b/tools/source/trainerdatagen/trainer_data_gen.c
+index b9078979..e1168719 100644
+--- a/tools/source/trainerdatagen/trainer_data_gen.c
++++ b/tools/source/trainerdatagen/trainer_data_gen.c
+@@ -169,7 +169,7 @@ static void WriteTrainerHeaderMember(const char *dir, int index, const TrainerDa
+     int partyCount;
+     int i;
+ 
+-    snprintf(path, sizeof(path), "%s/5_%03d", dir, index);
++    snprintf(path, sizeof(path), "%s/5_%04d", dir, index);
+     file = OpenBinaryForWrite(path);
+     partyCount = GetTrainerPartyMonCount(entry);
+ 
+@@ -200,7 +200,7 @@ static void WriteTrainerPartyMember(const char *dir, int index, const TrainerDat
+     int i;
+     int j;
+ 
+-    snprintf(path, sizeof(path), "%s/6_%03d", dir, index);
++    snprintf(path, sizeof(path), "%s/6_%04d", dir, index);
+     file = OpenBinaryForWrite(path);
+     partyCount = GetTrainerPartyMonCount(entry);
+ 
