@@ -143,7 +143,7 @@ Y = lambda h: GROUND_Y + 16.0 * h
 ts_files, ts_btnf = read_narc(open(TEXSETS, 'rb').read())
 
 
-STATUE_FINISH = 'stone'    # or 'gold'
+STATUE_FINISH = 'gold'    # or 'gold'
 STATUE_RAMPS = {   # darkest to lightest; stone is the pedestal's own stone
     'stone': [(40, 44, 64), (65, 74, 106), (90, 90, 115), (123, 123, 131), (148, 164, 180), (200, 208, 216)],
     'gold': [(72, 48, 16), (128, 88, 24), (184, 136, 32), (224, 176, 48), (248, 216, 96), (255, 244, 184)],
