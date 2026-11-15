@@ -39,7 +39,7 @@ class Tracker:
                     if os.environ.get('DBG'): print('candidates', [(hex(LO + i * 4), zo, A[i], A[i + zo]) for i, zo in cands])
                     # several copies (local and global): the biggest is the global map position
                     # (the field's own copy lives in the heap at 0x22a0000+, x then z; the saved location lags)
-                    i, zo = max(cands, key=lambda c: (LO + c[0] * 4 >= 0x22a0000, A[c[0]] > 32 or A[c[0] + c[1]] < 32, A[c[0]]))
+                    i, zo = max(cands, key=lambda c: (LO + c[0] * 4 >= 0x22a0000, c[1] == 2, A[c[0]]))   # (the map object: currentX, Y, Z)
                     self.addr, self.zoff = LO + i * 4, zo * 4
                     return
         raise SystemExit('could not find the player')

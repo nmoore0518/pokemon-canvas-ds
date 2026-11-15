@@ -36,6 +36,26 @@ def land_at(gx, gz):
     return ls[cz * w + cx], hdr[cz * w + cx]
 
 
+def map_matrix(ds_map):
+    """(w, h, land ids) of a map's own matrix"""
+    key = ('mm', ds_map)
+    if key not in _cache:
+        d = open(os.path.join(slots.MATRIX_DIR, slots.matrix_file(ds_map)), 'rb').read()
+        w, h, hh, ha, nl = d[:5]
+        p = 5 + nl + (2 * w * h if hh else 0) + (w * h if ha else 0)
+        _cache[key] = (w, h, struct.unpack_from('<%dH' % (w * h), d, p))
+    return _cache[key]
+
+
+def perm_in(ds_map, x, z):
+    """perm of a square of a map with a matrix of its own (rooms, caves, forests); None off it"""
+    w, h, ls = map_matrix(ds_map)
+    cx, cz = x // 32, z // 32
+    if not (0 <= x and 0 <= z and cx < w and cz < h) or ls[cz * w + cx] == 0xFFFF: return None
+    d = lands()[ls[cz * w + cx]]
+    return struct.unpack_from('<H', d, 0x14 + ((z % 32) * 32 + x % 32) * 2)[0]
+
+
 def perm(gx, gz):
     """-> u16 (bit 15 = blocked, low byte = behaviour) or None off the map"""
     la = land_at(gx, gz)

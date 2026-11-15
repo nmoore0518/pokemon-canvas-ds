@@ -16,10 +16,12 @@ for (cx, cz), lid in {(0, 0): 676, (1, 0): 677, (2, 0): 678, (0, 1): 679, (1, 1)
     ex = struct.unpack_from('<H', d, 0x12)[0]; perm = d[0x14 + ex:0x14 + ex + 0x800]
     pass
 import world
+CUR = [None]      # None: the overworld; else the map (with a matrix of its own) we're walking in
+P = lambda k: world.perm(*k) if CUR[0] is None else world.perm_in(CUR[0], *k)
 class _B(dict):
-    def __contains__(self, k): return world.perm(*k) is not None
+    def __contains__(self, k): return P(k) is not None
     def __getitem__(self, k):
-        v = world.perm(*k); b = v & 0xFF
+        v = P(k); b = v & 0xFF
         return 1 if (v & 0x8000) or b in (0x69, 0x65, 0x62, 0x63, 0x64, 0x6C, 0x6D, 0x6E, 0x6F, 0x5E, 0x5F) else 0
 blocked = _B()
 # people stand in the way, and trainers see along their lines (avoid all four, they may turn)
@@ -62,8 +64,23 @@ def flee():
         touch(128, 178); run(200)
         for _ in range(4): press('B', after=90)
     run(300)
+def avoid_for(m):
+    """people and trainers' sight lines in a map of its own"""
+    import slots
+    full, facing = set(), set()
+    for o in json.load(open(os.path.join(slots.EVENT_DIR, slots.events_file(m)))).get('objects', []):
+        full.add((o['x'], o['z'])); facing.add((o['x'], o['z']))
+        if o.get('type') == 1:
+            for i_, (dx, dz) in enumerate(((0, -1), (0, 1), (-1, 0), (1, 0))):
+                for k in range(1, int(o.get('param0', 0)) + 1):
+                    full.add((o['x'] + dx * k, o['z'] + dz * k))
+                    if i_ == o.get('facingDirection'): facing.add((o['x'] + dx * k, o['z'] + dz * k))
+    return full, facing
+
+
 def path(a, b):
-    for av in (avoid, avoid_facing, set()):
+    sets = (avoid, avoid_facing, set()) if CUR[0] is None else avoid_for(CUR[0]) + (set(),)
+    for av in sets:
         r = path1(a, b, av)
         if r is not None: return r
 
@@ -87,16 +104,25 @@ shots = []
 def shot(label): shots.append((emu.screenshot().crop((0, 0, 256, 192)), label)); print(tag, label, pos())
 home = pos()
 for i in idx:
+    if i.startswith('m'):                 # m<MAP>: from here on we're in that map (its own coordinates)
+        CUR[0] = None if i[1:] in ('', 'WORLD') else i[1:]; continue
     if i.startswith('g'):
         tgt = tuple(map(int, i[1:].split(',')))
         p = path(pos(), tgt)
-        if os.environ.get('DBG'): print('path', pos(), tgt, ''.join(p or ['NONE']))
-        for m in (p or []):
-            if not step(m):
-                flee()
+        for attempt in range(4):      # someone in the way: go round them
+            p = path(pos(), tgt)
+            if os.environ.get('DBG'): print('path', pos(), tgt, ''.join(p or ['NONE']))
+            ok = True
+            for m in (p or []):
                 if not step(m):
-                    if os.environ.get('DBG'): print('stuck', pos(), m)
-                    break
+                    flee()
+                    if not step(m):
+                        dx, dz = D[m]; here = pos()
+                        avoid.add((here[0] + dx, here[1] + dz)); avoid_facing.add((here[0] + dx, here[1] + dz))
+                        if os.environ.get('DBG'): print('stuck', here, m)
+                        ok = False
+                        break
+            if ok: break
         run(60); shot('at%s' % i); continue
     i = int(i)
     w = W[i]; tgt = (w['x'], w['z'])
