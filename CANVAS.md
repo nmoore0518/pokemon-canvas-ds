@@ -96,6 +96,20 @@ gymmick running (HeartGold's map-load script for the gym starts it, so the gym k
 flags 0x0600 on the squares you slide over. The partitions are solid blocks (`blocks` in `gba_look`).
 Decals sit one unit above the floor: model positions are whole units, so half a unit lands in the floor.
 
+## Scripts, people and text (the port)
+
+`tools/canvas/port/port_map.py <GBA map>` brings a GBA map's people, signs, text and scripts over to its
+HeartGold map (table `MAPS`: the slot and how GBA squares map to it). It replaces HeartGold's script file,
+map-script header, event header and message bank for that map, and copies in whatever shared scripts it uses.
+Commands it can't translate yet stay as `// TODO(gba)` comments and are listed in `build/canvas_port_report.txt`;
+a person or sign whose script reaches one says "(Canvas DS: this part of the game isn't ported yet.)" instead of
+half-running, and scenes on the frame table are left out until they're complete.
+Text: `\p` -> new box (`\r`), `\l` -> scroll (`\f`), `{PLAYER}`/`{RIVAL}` -> string buffers 6/7.
+Flags and vars: the GBA game's own are numbered in `tools/canvas/data/canvas_ids.json` (keep: saves depend on the
+numbers) as flags 0x2000+ and vars 0x5000+. The engine patch hooks HeartGold's flag/var lookups so those live in
+our part of the save (`engine/src/canvas_flags.c`), and every ordinary command works with them.
+See STORY.md for where the story is going.
+
 ## Rules for every map we build (from Nick's review of Pallet)
 
 - stairs: HeartGold's striped `slope` ramp, about three steps per block of height, with a low rail down each side;

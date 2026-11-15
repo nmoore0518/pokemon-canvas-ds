@@ -1,17 +1,45 @@
 #ifndef SCR_SEQ_T01_H_
 #define SCR_SEQ_T01_H_
 
-#define _EV_scr_seq_T01_000 0
-#define _EV_scr_seq_T01_001 1
-#define _EV_scr_seq_T01_002 2
-#define _EV_scr_seq_T01_003 3
-#define _EV_scr_seq_T01_004 4
-#define _EV_scr_seq_T01_005 5
-#define _EV_scr_seq_T01_006 6
-#define _EV_scr_seq_T01_007 7
+#define _EV_PalletTown_EventScript_SignLady 0
+#define _EV_PalletTown_EventScript_FatMan 1
+#define _EV_GymFinale_EventScript_CeremonyMom 2
+#define _EV_GymFinale_EventScript_CeremonyDaisy 3
+#define _EV_GymFinale_EventScript_CeremonyMentor 4
+#define _EV_GymFinale_EventScript_CeremonyLeader 5
+#define _EV_TypeTutor_EventScript_NormalAttacks 6
+#define _EV_PalletTown_EventScript_OaksLabSign 7
+#define _EV_PalletTown_EventScript_PlayersHouseSign 8
+#define _EV_PalletTown_EventScript_RivalsHouseSign 9
+#define _EV_PalletTown_EventScript_NeighborsHouseSign 10
+#define _EV_PalletTown_EventScript_House2Sign 11
+#define _EV_PalletTown_EventScript_TownSign 12
+#define _EV_PalletTown_EventScript_TrainerTips 13
+#define _EV_PalletTown_EventScript_GymSign 14
+#define _EV_PalletTown_EventScript_TrainingHallSign 15
+#define _EV_PalletTown_EventScript_GymDoorLocked 16
+#define _EV_BerryField_EventScript_Sign 17
+#define _EV_BerryField_EventScript_Plot 18
+#define _EV_PalletTown_EventScript_ChanseyStatue 19
+#define _EV_PalletTown_OnLoad 20
+#define _EV_PalletTown_OnTransition 21
+#define _EV_GymFinale_EventScript_Ceremony 22
+#define _EV_GymFinale_EventScript_OakAtTheDoor 23
+#define _EV_PalletTown_EventScript_OakRatingScene 24
+#define _EV_DadStory_EventScript_Sendoff 25
+#define _EV_DadStory_EventScript_Memorial 26
 
-#define obj_T01_gswoman1     0
-#define obj_T01_gsbigman     1
-#define obj_T01_gsmiddleman1 2
+#define LOCALID_PALLET_SIGN_LADY 1
+#define LOCALID_PALLET_FAT_MAN 2
+#define LOCALID_PALLET_PROF_OAK 3
+#define LOCALID_PALLET_SENDOFF_MOM 4
+#define LOCALID_PALLET_CEREMONY_OFFICIAL 5
+#define LOCALID_PALLET_CEREMONY_PODIUM 6
+#define LOCALID_PALLET_CEREMONY_MOM 7
+#define LOCALID_PALLET_CEREMONY_DAISY 8
+#define LOCALID_PALLET_CEREMONY_MENTOR 9
+#define LOCALID_PALLET_CEREMONY_LEADER_1 10
+#define LOCALID_PALLET_CEREMONY_LEADER_2 11
+#define LOCALID_PALLET_TYPE_TUTOR 16
 
-#endif // SCR_SEQ_T01_H_
+#endif

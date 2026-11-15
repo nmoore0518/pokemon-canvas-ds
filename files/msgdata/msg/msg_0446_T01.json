@@ -2,41 +2,505 @@
   "key": 18219,
   "messages": [
     {
-      "id": "msg_0446_T01_00000",
+      "id": "msg_0446_T01_PalletTown_Text_HmmIsThatRight",
       "en_US": [
-        "I’m raising Pokémon, too.\n",
-        "They serve as my private guards."
+        "Hmm…\n",
+        "Is that right…"
       ]
     },
     {
-      "id": "msg_0446_T01_00001",
+      "id": "msg_0446_T01_PalletTown_Text_OhLookLook",
+      "en_US": [
+        "Oh!\n",
+        "Look, look!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_CanStoreItemsAndMonsInPC",
       "en_US": [
         "Technology is incredible!\r",
-        "You can now trade Pokémon\n",
-        "overseas like email."
+        "You can now store and recall items\n",
+        "and Pokémon as data via PC."
       ]
     },
     {
-      "id": "msg_0446_T01_00002",
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyMomAfter",
       "en_US": [
-        "Pallet Town\n",
-        "A Pure White Beginning"
+        "MOM: Go on, honey! I want to see\n",
+        "your Gym!"
       ]
     },
     {
-      "id": "msg_0446_T01_00003",
-      "en_US": "Red’s House"
-    },
-    {
-      "id": "msg_0446_T01_00004",
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyDaisyAfter",
       "en_US": [
-        "Oak Pokémon\n",
-        "Research Lab"
+        "DAISY: Grandpa wouldn’t miss this\n",
+        "for the world… Where could he be?"
       ]
     },
     {
-      "id": "msg_0446_T01_00005",
-      "en_US": "Blue’s House"
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyMentorAfter",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Go on, Leader. Your Gym’s\n",
+        "waiting!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_OakPokemonResearchLab",
+      "en_US": "OAK Pokémon RESEARCH LAB"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_PlayersHouse",
+      "en_US": "{STRVAR_1 3, 6, 0}’s house"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_RivalsHouse",
+      "en_US": "{STRVAR_1 3, 7, 0}’s house"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_NeighborsHouse",
+      "en_US": "The ASHFORD family’s house"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_House2",
+      "en_US": "The WILLOW family’s house"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_TownSign",
+      "en_US": [
+        "PALLET TOWN\n",
+        "Shades of your journey await!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_PressStartToOpenMenu",
+      "en_US": [
+        "Trainer TIPS\r",
+        "Press START to open the MENU!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_GymSign",
+      "en_US": [
+        "PALLET TOWN Pokémon Gym\n",
+        "Leader: To be decided!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_TrainingHallSign",
+      "en_US": [
+        "PALLET TRAINING HALL\n",
+        "Open to CHAMPIONS. Battle for EXP!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_GymDoorLocked",
+      "en_US": [
+        "The doors are locked tight.\r",
+        "A note is taped to the glass:\n",
+        "“Opening soon! - Prof. Oak”"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_Sign",
+      "en_US": [
+        "BERRY FIELD\n",
+        "Plant any BERRY. It grows as you walk!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_Soil",
+      "en_US": [
+        "It’s soft, freshly turned soil.\n",
+        "Plant a BERRY here?"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_Planted",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} planted a {STRVAR_1 3, 0, 0}\n",
+        "in the soil."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatue",
+      "en_US": [
+        "A statue of CHANSEY.\r",
+        "The plaque reads:\n",
+        "“May all who visit PALLET TOWN\f",
+        "leave a little happier.”"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueLegend",
+      "en_US": [
+        "There’s smaller writing under it…\r",
+        "“CHANSEY shares her luck with any\n",
+        "who share theirs.\r",
+        "Leave a clover at her feet, and\n",
+        "her egg will grow luckier.”"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyMomHere",
+      "en_US": [
+        "MOM: {STRVAR_1 3, 6, 0}! Over here, honey!\n",
+        "Everyone’s waiting for you!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyOfficial1",
+      "en_US": [
+        "LEAGUE OFFICIAL: Ahem!\n",
+        "Ladies and gentlemen!\r",
+        "On behalf of the Pokémon LEAGUE,\n",
+        "welcome to the opening of KANTO’s\f",
+        "newest Gym!\r",
+        "For the first time in its history,\n",
+        "PALLET TOWN has a Gym of its own."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyOfficial2",
+      "en_US": [
+        "And leading it is the new CHAMPION\n",
+        "of the Pokémon LEAGUE…\r",
+        "PALLET TOWN’s very own…\r",
+        "Leader {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyOfficial3",
+      "en_US": [
+        "LEAGUE OFFICIAL: Every challenger\n",
+        "who walks through those doors will\f",
+        "face Leader {STRVAR_1 3, 6, 0}.\r",
+        "Beat them, and they’ll earn the\n",
+        "LEAGUE’s newest BADGE!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyMomProud",
+      "en_US": [
+        "MOM: Oh, {STRVAR_1 3, 6, 0}… A Gym Leader!\n",
+        "I’m so proud of you, honey!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyDaisyWheresGrandpa",
+      "en_US": [
+        "DAISY: Congratulations, {STRVAR_1 3, 6, 0}!\r",
+        "…That’s strange. Has anyone seen\n",
+        "Grandpa?\r",
+        "He’s never missed anything like\n",
+        "this. Not once!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyOfficialGoIn",
+      "en_US": [
+        "LEAGUE OFFICIAL: Now then, Leader.\n",
+        "Your Gym awaits!\r",
+        "Would you do the honors?"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_OakComeToTheGym",
+      "en_US": [
+        "OAK: {STRVAR_1 3, 6, 0}! There you are!\r",
+        "Come with me to the Gym.\n",
+        "There’s something we need to\f",
+        "talk about…"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_OakLetMeSeePokedex",
+      "en_US": [
+        "OAK: Ah, {STRVAR_1 3, 6, 0}!\n",
+        "You’re back, are you?\r",
+        "How much have you filled in your\n",
+        "Pokédex?\r",
+        "May I see it?\r",
+        "Let’s see…"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_CaughtXImpressiveFollowMe",
+      "en_US": [
+        "You’ve caught… {STRVAR_1 3, 1, 0}!?\n",
+        "Now, this is impressive!\r",
+        "There’s something I wanted to ask\n",
+        "of you, {STRVAR_1 3, 6, 0}.\r",
+        "Come.\n",
+        "Follow me."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MomSendoff",
+      "en_US": [
+        "MOM: {STRVAR_1 3, 6, 0}, you’ve grown up so fast.\r",
+        "I always knew I’d see this day, but I\n",
+        "didn’t think it would come so soon.\r",
+        "You know… you’re so much like your dad.\r",
+        "He wanted to become a Gym Leader too…\n",
+        "among other things.\r",
+        "Of course, there was no Gym in PALLET\n",
+        "TOWN when he was around.\r",
+        "But it was always his ambition to become\n",
+        "the best Pokémon Trainer.\r",
+        "You have a chance to do what he didn’t.\n",
+        "Go make him proud!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialOak1",
+      "en_US": [
+        "OAK: {STRVAR_1 3, 6, 0}! Your MOTHER called me\n",
+        "from VIRIDIAN. I heard everything.\r",
+        "I knew your father, you know. He was a\n",
+        "brilliant man. One of the brightest minds\f",
+        "I’ve ever met.\r",
+        "He could build anything he set his mind\n",
+        "to. But brilliance draws attention…\r",
+        "And he fell in with the wrong crowd."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialMom1",
+      "en_US": "MOM: He did, at first. But not at the end."
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialOak2",
+      "en_US": [
+        "OAK: No. Not at the end.\r",
+        "When he turned on GIOVANNI, TEAM ROCKET\n",
+        "never truly recovered. You saw to the\f",
+        "rest today.\r",
+        "{STRVAR_1 3, 6, 0}, have you ever wondered why\n",
+        "there’s a CHANSEY statue in PALLET\f",
+        "TOWN?\r",
+        "The town put it up after your father\n",
+        "passed. For what he did to weaken TEAM\f",
+        "ROCKET…\r",
+        "…and for the CHANSEY he made to heal,\n",
+        "not to hurt.\r",
+        "“May all who visit PALLET TOWN leave a\n",
+        "little happier.” That was his idea of\f",
+        "what Pokémon are for."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialMom2",
+      "en_US": [
+        "MOM: He would have hated having a\n",
+        "statue. But he’d have loved that it’s a\f",
+        "CHANSEY."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialOak3",
+      "en_US": [
+        "OAK: Ho ho! That he would.\r",
+        "Oh, and one more thing. I spoke with the\n",
+        "LEAGUE before I came out here.\r",
+        "After what happened at VIRIDIAN,\n",
+        "they’ve agreed to count its Leader’s\f",
+        "approval as given.\r",
+        "VIRIDIAN’s Leader is gone, after all. And\n",
+        "you beat him fair and square.\r",
+        "That makes eight, {STRVAR_1 3, 6, 0}. The ELITE\n",
+        "FOUR are waiting for you.\r",
+        "But before you go… VIRIDIAN has a new\n",
+        "Leader already. He came by my lab this\f",
+        "morning asking for you.\r",
+        "He said he has something that belonged\n",
+        "to your father. I’d go and see him first."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_DadStory_Text_MemorialMom3",
+      "en_US": "MOM: Go on, honey. Make us proud."
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_RaisingMonsToo",
+      "en_US": [
+        "I’m raising Pokémon, too.\r",
+        "When they get strong, they can\n",
+        "protect me."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_SignsAreUsefulArentThey",
+      "en_US": "Signs are useful, aren’t they?"
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ReadItReadIt",
+      "en_US": "Read it, read it!"
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyLeaderAfter",
+      "en_US": [
+        "Welcome to the club, Leader\n",
+        "{STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_GymSignLeader",
+      "en_US": [
+        "PALLET TOWN Pokémon Gym\n",
+        "Leader: {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_Growing",
+      "en_US": [
+        "A {STRVAR_1 3, 0, 0} is growing here.\r",
+        "It looks like it’ll be ready in\n",
+        "about {STRVAR_1 3, 1, 0} steps."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_PullUp",
+      "en_US": "Pull it up and take the BERRY back?"
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_PulledUp",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} pulled up the plant and\n",
+        "got the {STRVAR_1 3, 0, 0} back."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_Picked",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} picked {STRVAR_1 3, 1, 0} {STRVAR_1 3, 0, 0}!\n",
+        "The soil is bare again."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueEgg",
+      "en_US": [
+        "Something is tucked under the\n",
+        "statue’s plaque…"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueLeaveClovers",
+      "en_US": [
+        "Leave {STRVAR_1 3, 0, 0}\n",
+        "at CHANSEY’s feet?"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueEggGlows",
+      "en_US": [
+        "The LUCKY EGG feels a little\n",
+        "warmer…"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueEggLevel",
+      "en_US": [
+        "The LUCKY EGG is now Lv. {STRVAR_1 3, 0, 0}!\n",
+        "It gives {STRVAR_1 3, 1, 0}x the Exp. Points."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_Text_CeremonyMentor",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Look at you up there!\r",
+        "When we met in OAK’s lab, I wasn’t\n",
+        "sure you’d make it past your first\f",
+        "Gym.\r",
+        "Welcome to the club, Leader!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_OakYouEnjoyingTraveling",
+      "en_US": [
+        "OAK: Ah, {STRVAR_1 3, 6, 0}!\n",
+        "You seem to be enjoying traveling.\r",
+        "Knowing you, {STRVAR_1 3, 6, 0}, I can easily\n",
+        "imagine you going out to even more\f",
+        "exotic locales.\r",
+        "Good for you, good for you.\n",
+        "Hohoho."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_CaughtXPuttingInHonestEffort",
+      "en_US": [
+        "You’ve caught {STRVAR_1 3, 1, 0}…\r",
+        "Hm, it looks as if you’re putting\n",
+        "in an honest effort.\r",
+        "When you manage to fill it some\n",
+        "more, come show me, please."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign",
+      "en_US": [
+        "Look, look!\r",
+        "I copied what it said on one of\n",
+        "those Trainer TIPS signs!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy",
+      "en_US": [
+        "Trainer TIPS!\r",
+        "Press START to open the MENU!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_gStringVar4",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0446_T01_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0446_T01_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0446_T01_BerryField_Text_BagFull",
+      "en_US": "The BAG has no room for them."
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueMaxed",
+      "en_US": [
+        "The LUCKY EGG can’t get any\n",
+        "luckier than this!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueShort",
+      "en_US": [
+        "To make the LUCKY EGG luckier,\n",
+        "CHANSEY wants {STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0446_T01_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

@@ -12,6 +12,8 @@ shots = []
 for m in moves:
     if m == 's': shots.append(emu.screenshot().crop((0, 0, 256, 192)))
     elif m[0] == 'w': run(int(m[1:]))
+    elif m in ('A', 'B', 'X', 'START'):
+        k = keymask(getattr(Keys, 'KEY_' + m)); emu.input.keypad_add_key(k); run(6); emu.input.keypad_rm_key(k); run(30)
     elif m[0] in 'RULD':
         k = keymask(getattr(Keys, 'KEY_' + {'R': 'RIGHT', 'U': 'UP', 'L': 'LEFT', 'D': 'DOWN'}[m[0]]))
         emu.input.keypad_add_key(k); run(16 * int(m[1:]) + 2); emu.input.keypad_rm_key(k); run(12)

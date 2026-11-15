@@ -1,0 +1,271 @@
+diff --git a/Makefile b/Makefile
+index 60c93523..33bfd7b3 100644
+--- a/Makefile
++++ b/Makefile
+@@ -598,6 +598,9 @@ endif
+ 	@echo "machine moves:"
+ 	cp $(MACHINE_MOVES_PARAMS_BIN) $(MACHINE_MOVES_PARAMS_TARGET)
+ 
++	@echo "canvas map headers:"
++	cp $(CANVAS_MAP_HEADERS_BIN) $(CANVAS_MAP_HEADERS_TARGET)
++
+ update_machine_moves: $(VENV_ACTIVATE)
+ 	$(PYTHON) scripts/update_machine_moves.py --descriptions --sprites
+ 	@echo "Updated item descriptions and sprites. Double check formatting"
+diff --git a/data/codetables.mk b/data/codetables.mk
+index 645bdc10..f44e9b40 100644
+--- a/data/codetables.mk
++++ b/data/codetables.mk
+@@ -225,3 +225,7 @@ $(MACHINE_MOVES_PARAMS_BIN): $(MACHINE_MOVES_PARAMS_DEPENDENCIES)
+ 	$(OBJCOPY) -O binary $(MACHINE_MOVES_PARAMS_OBJS) $@
+ 
+ NARC_FILES += $(MACHINE_MOVES_PARAMS_BIN)
++
++# Pokemon Canvas: map headers past HeartGold's 540 (made by the canvas tools: tools/canvas/build_map_headers.py)
++CANVAS_MAP_HEADERS_TARGET := $(BUILD)/a028/9_21
++CANVAS_MAP_HEADERS_BIN := data/canvas_map_headers.bin
+diff --git a/hooks b/hooks
+index 1b23ea97..814746a9 100644
+--- a/hooks
++++ b/hooks
+@@ -665,3 +665,9 @@ arm9 ScrCmd_CreateRoamer 02045264 1
+ 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
+ 
+ arm9 FieldSystem_RestoreMapObjectsFromSave 0203B9F4 1
++
++# Pokemon Canvas: map headers past HeartGold's 540 (src/canvas_map_headers.c); MapNumberBoundsCheck at 0203B268
++arm9 Canvas_MapNumberBoundsCheck 0203B268 1
++# Pokemon Canvas: our flags (0x2000+) and vars (0x5000+) in the misc save data (src/canvas_flags.c)
++arm9 Canvas_GetFlagAddr 0205045C 2
++arm9 Canvas_GetVarAddr 020504A4 2
+diff --git a/include/constants/file.h b/include/constants/file.h
+index 13b6cbaf..e0b46b59 100644
+--- a/include/constants/file.h
++++ b/include/constants/file.h
+@@ -64,6 +64,7 @@
+ #define CODE_ADDON_HIDDEN_ITEM_PARAMS     18
+ #define CODE_ADDON_ABILITY_FLAGS          19
+ #define CODE_ADDON_MACHINE_MOVES          20
++#define CODE_ADDON_CANVAS_MAP_HEADERS     21  // Pokemon Canvas: map headers past HeartGold's (src/canvas_map_headers.c)
+ 
+ // a015 file indexes
+ #define BAG_HM_ICON 37
+diff --git a/include/save.h b/include/save.h
+index 8fd46ff6..ba44214d 100644
+--- a/include/save.h
++++ b/include/save.h
+@@ -84,6 +84,8 @@ typedef struct BerryPot {
+ #define STORED_MONS_N_LUNARIZER    2
+ #define STORED_MONS_REINS_OF_UNITY 3
+ #define NUM_OF_STORED_MONS         4
++#define CANVAS_NUM_FLAGS           4096   // Pokemon Canvas
++#define CANVAS_NUM_VARS            512
+ 
+ #define MAX_APRICORN_TREE 128
+ #define NUM_APRICORN_TREE 31
+@@ -118,6 +120,10 @@ struct SAVE_MISC_DATA {
+     struct PartyPokemon storedMons[NUM_OF_STORED_MONS];
+     u8 isMonStored[NUM_OF_STORED_MONS];
+ 
++    // Pokemon Canvas: our own flags and vars, apart from HeartGold's (script commands in script_new_cmds.c)
++    u8 canvasFlags[CANVAS_NUM_FLAGS / 8];
++    u16 canvasVars[CANVAS_NUM_VARS];
++
+ #endif
+ };
+ 
+diff --git a/src/canvas_flags.c b/src/canvas_flags.c
+new file mode 100644
+index 00000000..603df0a7
+--- /dev/null
++++ b/src/canvas_flags.c
+@@ -0,0 +1,36 @@
++// Pokemon Canvas: our own flags and vars, routed through HeartGold's own flag/var functions so every script
++// command, object visibility flag and map-script condition works with them unchanged.
++//   flags 0x2000..0x2FFF -> SAVE_MISC_DATA.canvasFlags      (HeartGold's own: 0..2911; temp flags 0x4000+)
++//   vars  0x5000..0x51FF -> SAVE_MISC_DATA.canvasVars       (HeartGold's own: 0x4000..0x416F)
++// Hooks Save_VarsFlags_GetFlagAddr (0205045C) and Save_VarsFlags_GetVarAddr (020504A4).
++#include "../include/types.h"
++#include "../include/save.h"
++
++#define CANVAS_FLAG_BASE 0x2000
++#define CANVAS_VAR_BASE  0x5000
++#define TEMP_FLAG_BASE   0x4000
++#define VAR_BASE         0x4000
++#define TEMP_FLAGS_RAM   ((u8 *)0x021D4170)   // sTempFlags
++
++struct VarsFlagsLayout {
++    u16 vars[0x170];
++    u8 flags[2912 / 8];
++};
++
++u8 *Canvas_GetFlagAddr(struct VarsFlagsLayout *varsFlags, u16 flagId)
++{
++    if (flagId == 0)
++        return NULL;
++    if (flagId >= CANVAS_FLAG_BASE && flagId < CANVAS_FLAG_BASE + CANVAS_NUM_FLAGS)
++        return &Sav2_Misc_get(SaveBlock2_get())->canvasFlags[(flagId - CANVAS_FLAG_BASE) / 8];
++    if (flagId < TEMP_FLAG_BASE)
++        return &varsFlags->flags[flagId / 8];
++    return &TEMP_FLAGS_RAM[(flagId - TEMP_FLAG_BASE) / 8];
++}
++
++u16 *Canvas_GetVarAddr(struct VarsFlagsLayout *varsFlags, u16 varId)
++{
++    if (varId >= CANVAS_VAR_BASE && varId < CANVAS_VAR_BASE + CANVAS_NUM_VARS)
++        return &Sav2_Misc_get(SaveBlock2_get())->canvasVars[varId - CANVAS_VAR_BASE];
++    return &varsFlags->vars[varId - VAR_BASE];
++}
+diff --git a/src/canvas_map_headers.c b/src/canvas_map_headers.c
+new file mode 100644
+index 00000000..f846b04d
+--- /dev/null
++++ b/src/canvas_map_headers.c
+@@ -0,0 +1,53 @@
++// Pokemon Canvas: maps past HeartGold's 540.
++// HeartGold's map header table sits in the ARM9 and can't grow (hg-engine needs the ARM9 laid out as retail), so
++// headers for our maps live in a/0/2/8 (CODE_ADDON_CANVAS_MAP_HEADERS: u32 count, u32 first id, 24 bytes a map).
++// Every MapHeader_Get... calls MapNumberBoundsCheck(mapId) and then reads sMapHeaders[result]; this replaces it,
++// and for one of our maps copies its header into a spare entry of HeartGold's table (MAP_UNUSED) and returns that.
++#include "../include/types.h"
++#include "../include/constants/file.h"
++
++#define RETAIL_MAP_COUNT   540
++#define MAP_NOTHING        1
++#define MAP_HEADER_WINDOW  538          // MAP_UNUSED: never used by HeartGold, kept free by the canvas tools
++#define MAP_HEADER_SIZE    24
++#define MAP_HEADERS_RAM    ((u8 *)0x020F6BE0)   // sMapHeaders
++#define CACHE_SIZE         8
++
++static u16 sCacheId[CACHE_SIZE];
++static u8 sCache[CACHE_SIZE][MAP_HEADER_SIZE];
++static u8 sCacheNext;
++static u32 sTableInfo[2];   // count, first id
++static u32 sReady;          // (this overlay's memory isn't cleared at load: set up on first use)
++#define READY_MAGIC 0x43564D48
++
++u32 Canvas_MapNumberBoundsCheck(u32 mapId)
++{
++    u8 *window = MAP_HEADERS_RAM + MAP_HEADER_WINDOW * MAP_HEADER_SIZE;
++    int i, j;
++    if (mapId < RETAIL_MAP_COUNT)
++        return mapId;
++    if (sReady != READY_MAGIC)
++    {
++        for (i = 0; i < CACHE_SIZE; i++)
++            sCacheId[i] = 0xFFFF;
++        sCacheNext = 0;
++        ReadFromNarcMemberByIdPair(sTableInfo, ARC_CODE_ADDONS, CODE_ADDON_CANVAS_MAP_HEADERS, 0, 8);
++        sReady = READY_MAGIC;
++    }
++    for (i = 0; i < CACHE_SIZE; i++)
++    {
++        if (sCacheId[i] == mapId)
++            goto found;
++    }
++    if (mapId - sTableInfo[1] >= sTableInfo[0])
++        return MAP_NOTHING;
++    i = sCacheNext;
++    sCacheNext = (sCacheNext + 1) % CACHE_SIZE;
++    ReadFromNarcMemberByIdPair(sCache[i], ARC_CODE_ADDONS, CODE_ADDON_CANVAS_MAP_HEADERS,
++                               8 + (mapId - sTableInfo[1]) * MAP_HEADER_SIZE, MAP_HEADER_SIZE);
++    sCacheId[i] = mapId;
++found:
++    for (j = 0; j < MAP_HEADER_SIZE; j++)
++        window[j] = sCache[i][j];
++    return MAP_HEADER_WINDOW;
++}
+diff --git a/src/save.c b/src/save.c
+index b1df6be3..67770baa 100644
+--- a/src/save.c
++++ b/src/save.c
+@@ -28,6 +28,8 @@ void LONG_CALL InitStoredMons(struct SAVE_MISC_DATA *saveMiscData)
+ #ifdef ALLOW_SAVE_CHANGES
+ 
+     memset(&saveMiscData->storedMons[0], 0, 4 * sizeof(struct PartyPokemon) + 4); // catch isMonStored in this process
++    memset(saveMiscData->canvasFlags, 0, sizeof(saveMiscData->canvasFlags));   // Pokemon Canvas
++    memset(saveMiscData->canvasVars, 0, sizeof(saveMiscData->canvasVars));
+ 
+ #endif
+ }
+diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
+index d4b59833..f2eaf752 100644
+--- a/src/script_new_cmds.c
++++ b/src/script_new_cmds.c
+@@ -2,10 +2,19 @@
+ #include "../include/constants/file.h"
+ #include "../include/repel.h"
+ #include "../include/roamer.h"
++#include "../include/save.h"
+ #include "../include/script.h"
+ #include "../include/types.h"
+ 
+ #define SCRIPT_NEW_CMD_REPEL_USE 0
++// Pokemon Canvas (from 100, clear of hg-engine's own)
++#define CANVAS_CMD_FLAG_SET   100
++#define CANVAS_CMD_FLAG_CLEAR 101
++#define CANVAS_CMD_FLAG_CHECK 102
++#define CANVAS_CMD_VAR_SET    103
++#define CANVAS_CMD_VAR_GET    104
++#define CANVAS_CMD_VAR_ADD    105
++BOOL Canvas_RunCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 n);
+ 
+ #define SCRIPT_NEW_CMD_MAX 256
+ 
+@@ -23,6 +32,15 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+ #endif
+         break;
+ 
++    // Pokemon Canvas: our flags and vars (in the misc save data), and our specials
++    case CANVAS_CMD_FLAG_SET:
++    case CANVAS_CMD_FLAG_CLEAR:
++    case CANVAS_CMD_FLAG_CHECK:
++    case CANVAS_CMD_VAR_SET:
++    case CANVAS_CMD_VAR_GET:
++    case CANVAS_CMD_VAR_ADD:
++        return Canvas_RunCmd(ctx, sw, arg0);
++
+     default:
+         break;
+     }
+@@ -30,6 +48,40 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+     return FALSE;
+ }
+ 
++BOOL Canvas_RunCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 n)
++{
++    struct SAVE_MISC_DATA *misc = Sav2_Misc_get(SaveBlock2_get());
++    u16 value;
++    if (sw <= CANVAS_CMD_FLAG_CHECK && n >= CANVAS_NUM_FLAGS)
++        return FALSE;
++    if (sw >= CANVAS_CMD_VAR_SET && n >= CANVAS_NUM_VARS)
++        n = 0;
++    switch (sw) {
++    case CANVAS_CMD_FLAG_SET:
++        misc->canvasFlags[n / 8] |= 1 << (n % 8);
++        break;
++    case CANVAS_CMD_FLAG_CLEAR:
++        misc->canvasFlags[n / 8] &= ~(1 << (n % 8));
++        break;
++    case CANVAS_CMD_FLAG_CHECK:      // -> VAR_SPECIAL_RESULT (0x800C)
++        SetScriptVar(0x800C, (misc->canvasFlags[n / 8] >> (n % 8)) & 1);
++        break;
++    case CANVAS_CMD_VAR_SET:         // CanvasVarSet n, value (a value, or a var to read)
++        value = ScriptReadHalfword(ctx);
++        misc->canvasVars[n] = GetScriptVar(value);
++        break;
++    case CANVAS_CMD_VAR_GET:         // CanvasVarGet n, var: copies our var into a game var
++        value = ScriptReadHalfword(ctx);
++        SetScriptVar(value, misc->canvasVars[n]);
++        break;
++    case CANVAS_CMD_VAR_ADD:
++        value = ScriptReadHalfword(ctx);
++        misc->canvasVars[n] += GetScriptVar(value);
++        break;
++    }
++    return FALSE;
++}
++
+ #ifdef EXPAND_ROAMERS
+ BOOL LONG_CALL ScrCmd_CreateRoamer(SCRIPTCONTEXT *ctx)
+ {

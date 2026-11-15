@@ -1,0 +1,87 @@
+"""Read the GBA game's scripts: every label in data/maps/*/scripts.inc and data/scripts/*.inc (and the other .inc
+files they keep text and movements in), as commands, strings or movement steps.
+
+    from port import gba; g = gba.Gba(); g.labels['PalletTown_EventScript_FatMan']   -> [('msgbox', [...]), ...]
+"""
+import glob, json, os, re
+
+GBA = os.environ.get('GBA_REPO', '/home/claude/gym-trainer-hack')
+P = lambda *a: os.path.join(GBA, *a)
+
+
+def split_args(s):
+    out, depth, cur = [], 0, ''
+    for ch in s:
+        if ch == ',' and depth == 0:
+            out.append(cur.strip()); cur = ''
+            continue
+        if ch in '([': depth += 1
+        if ch in ')]': depth -= 1
+        cur += ch
+    if cur.strip(): out.append(cur.strip())
+    return out
+
+
+class Gba:
+    def __init__(self):
+        self.labels = {}       # label -> list of (cmd, args)          (scripts and movements)
+        self.texts = {}        # label -> string                        (.string lines joined)
+        self.equ = {}          # .equ / .set constants
+        self.where = {}        # label -> file
+        files = sorted(glob.glob(P('data/maps/*/scripts.inc')) + glob.glob(P('data/maps/*/movements.inc')) +
+                       glob.glob(P('data/maps/*/text.inc')) + glob.glob(P('data/scripts/*.inc')) +
+                       glob.glob(P('data/text/*.inc')) + [P('data/event_scripts.s')])
+        for f in files:
+            self._read(f)
+        self.defines = {}
+        for h in glob.glob(P('include/constants/*.h')):
+            for n, v in re.findall(r'#define\s+(\w+)\s+([^\s/]+)', open(h, errors='ignore').read()):
+                self.defines.setdefault(n, v)
+
+    def _read(self, f):
+        cur = None
+        for raw in open(f, errors='ignore'):
+            line = raw.split('@')[0].rstrip() if '"' not in raw else raw.rstrip('\n')
+            if '"' in line:
+                # keep strings intact; drop a trailing @ comment after the closing quote
+                q = line.rfind('"')
+                line = line[:q + 1] + line[q + 1:].split('@')[0]
+            s = line.strip()
+            if not s:
+                continue
+            m = re.match(r'^(\w+)::?$', s)
+            if m:
+                cur = m.group(1)
+                self.labels.setdefault(cur, [])
+                self.where[cur] = f
+                continue
+            m = re.match(r'^\.(equ|set)\s+(\w+)\s*,\s*(.+)$', s)
+            if m:
+                self.equ[m.group(2)] = m.group(3).strip(); continue
+            if s.startswith('.include') or s.startswith('.align') or s.startswith('.section'):
+                continue
+            if cur is None:
+                continue
+            m = re.match(r'^\.string\s+"(.*)"$', s)
+            if m:
+                self.texts[cur] = self.texts.get(cur, '') + m.group(1)
+                continue
+            parts = s.split(None, 1)
+            cmd = parts[0]
+            args = split_args(parts[1]) if len(parts) > 1 else []
+            self.labels[cur].append((cmd, args))
+
+    def value(self, name):
+        """resolve a constant to an int where we can (equ, defines, numbers)"""
+        seen = 0
+        while isinstance(name, str) and seen < 10:
+            name = name.strip()
+            if re.match(r'^-?(0x[0-9a-fA-F]+|\d+)$', name):
+                return int(name, 0)
+            name = self.equ.get(name, self.defines.get(name, None))
+            seen += 1
+        return None
+
+
+def map_json(name):
+    return json.load(open(P('data/maps', name, 'map.json')))

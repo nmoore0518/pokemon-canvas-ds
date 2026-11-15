@@ -5050,3 +5050,44 @@ _start:
 
 
 	.endif // ASM_SCRIPT_INC
+
+	// Pokemon Canvas: our flags and vars (hg-engine's command 208, our subcommands from 100;
+	// engine/src/script_new_cmds.c). CanvasCheckFlag leaves 0/1 in VAR_SPECIAL_RESULT.
+	.macro CanvasSetFlag n
+	.short 208
+	.byte 100
+	.short \n
+	.endm
+
+	.macro CanvasClearFlag n
+	.short 208
+	.byte 101
+	.short \n
+	.endm
+
+	.macro CanvasCheckFlag n
+	.short 208
+	.byte 102
+	.short \n
+	.endm
+
+	.macro CanvasVarSet n, value
+	.short 208
+	.byte 103
+	.short \n
+	.short \value
+	.endm
+
+	.macro CanvasVarGet n, var
+	.short 208
+	.byte 104
+	.short \n
+	.short \var
+	.endm
+
+	.macro CanvasVarAdd n, value
+	.short 208
+	.byte 105
+	.short \n
+	.short \value
+	.endm
