@@ -13,6 +13,23 @@ final dialogue; anything here marked *suggestion* is Claude's, to workshop.
 - **New: the gym challenge for a new type only opens after that type's region is cleared** (a change from the
   GBA game, where switching type let you take challengers straight away).
 
+- **Each region is missing one colour until it's cleared** (Nick, 2026-11-15): e.g. Johto green, so the grass and
+  trees are grey; clearing the region brings the colour back. The final challenge ties to **Arceus**, who holds
+  all the colours.
+- **Region tickets are the player's to use when they like**, but each region is tied to a type, and that type
+  can't be cleared (no gym challenge with it) without going there.
+- **The 8 regions**: Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Paldea. **Johto is HeartGold's own Johto.**
+- **Pokémon only the Exotic Safari gave** go to the regions they come from, as those regions are built.
+
+## How the missing colour works *(plan)*
+
+HeartGold's map textures are palette-based, so the colour can be taken out where the palettes are loaded:
+every palette colour whose hue falls in the region's band (and that isn't already grey) is replaced by a grey of
+the same brightness, while the region's clear flag is unset. One hook in the engine covers terrain, buildings
+and trees, costs no extra ROM, and the colour comes back the moment the flag is set (next map load). The same
+filter can go on battle backgrounds and, if wanted, people and Pokémon in that region. Mock-up of Johto-style
+green taken out: `color-drain-mockup.png` (shared 2026-11-15). Colours for the other regions are to be chosen.
+
 ## The arc past Kanto (Nick's outline, 2026-11-15)
 
 1. The player masters a gym type. Oak casually asks whether they want to switch types, as before.
@@ -46,14 +63,11 @@ final dialogue; anything here marked *suggestion* is Claude's, to workshop.
   departures board listing only the regions you have tickets for keeps it simple.
 - **Trophies** fit the gym decorating system: a trophy case decoration that fills in as regions are cleared,
   so challengers see your history.
-- **Final challenge**: a gauntlet where the player must win with a team from each mastered type in turn, then a
-  last battle against the source of the grey, using a mixed team for the first time.
+- **Final challenge** (now Arceus): a gauntlet where the player wins with a team from each mastered type in turn,
+  then Arceus, holder of every colour, with a mixed team for the first time.
 
 ## Open questions
 
-- Where do the Pokémon that only the Exotic Safari gave go? (spread into the new regions' wild areas, or
-  given by the NPC as rewards for each region)
-- Does the type-switch offer stay optional (player can keep a type and skip a region), or is the region trip
-  required to progress?
-- Are the 8 regions Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar and Paldea? (Hisui as an extra?)
-- What happens with the HnS Johto maps already in the GBA game: are they the Johto region of this arc?
+- Which colour belongs to which region (Johto green is the working example).
+- Does the drained colour also hit people, Pokémon and battle backgrounds in that region, or only the land?
+- Which type goes with which region, and is that fixed or chosen by the player's type?
