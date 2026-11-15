@@ -134,6 +134,7 @@ def texdims(texset):
     return dims, pals
 
 
+PC_MODEL, PC_OFFSET = 33, 0.375     # bm_room pc01, placed as in HeartGold's Pokemon Centers
 V_SCALE = 1.3     # the camera looks down on rooms, so stood-up GBA art is drawn a little taller to read the same
 
 
@@ -187,6 +188,7 @@ def build_room(spec, land_id):
     dims, pals = texdims(spec['texset'])
     own = []                      # (texture entry, palette entry) made from the GBA art for this room
     look = spec.get('gba_look')
+    extra_props = []
     if look:
         tag = look['tag']
         def add(name, im, colours=255):
@@ -306,8 +308,10 @@ def build_room(spec, land_id):
     if look:
         covered = set()
         things = list(look.get('things', []))
-        things += [(b['x'] * 16, b['y'] * 16, 16, 16, [('h', 5), ('v', 11)]) for b in gm.get('bg_events', [])
-                   if look.get('pc_script') and b.get('script') == look['pc_script']]      # the gym PC terminals
+        for b in gm.get('bg_events', []):        # the gym PCs: HeartGold's Pokemon Center PC
+            if look.get('pc_script') and b.get('script') == look['pc_script']:
+                extra_props.append((PC_MODEL, U(b['x'] + PC_OFFSET), 0, U(b['y'] + PC_OFFSET)))
+                covered.add((b['x'], b['y']))
         if things:
             t, q, wh = cards.shadow_texture('cv_shadow')
             own.append((t, q)); dims['cv_shadow'] = wh; pals.add('cv_shadow_pl')
@@ -342,7 +346,7 @@ def build_room(spec, land_id):
     else:
         M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, wh)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * ww, wh)),
                               ((U(x1), 48, U(wall_z)), ((x1 - x0) * ww, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
-    props, perm = [], [0x8000] * 1024
+    props, perm = list(extra_props), [0x8000] * 1024
     for y in range(H):
         for x in range(W):
             if not blocked(x, y):

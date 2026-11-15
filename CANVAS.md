@@ -65,8 +65,8 @@ gets its own texture set and area entry so no other room pays for its textures.
 ## The Pallet Gym
 
 Built in GBA art like the basement, with solid walls joined all the way round (the GBA wall-base tile along the
-bottom of each face, plain wall colour above and on the caps), HeartGold's gym statues, the gym PCs folded into
-solids, and doorways in the walls (open for now; the GBA game opens them at run time). Oak's rooms and the
+bottom of each face, plain wall colour above and on the caps), HeartGold's gym statues, HeartGold's Pokemon Center PC for
+the gym PCs, and doorways in the walls (open for now; the GBA game opens them at run time). Oak's rooms and the
 expansions, by kinds of POKeMON caught (Nick's design):
 
 | caught | what you get |
