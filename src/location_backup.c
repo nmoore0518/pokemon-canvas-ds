@@ -15,11 +15,11 @@ static const Location sLocation_PlayerRoom = {
     .direction = 0x00000001,
 };
 
-static const Location sLocation_OutsidePlayerHome = {
-    .mapId = MAP_NEW_BARK,
+static const Location sLocation_OutsidePlayerHome = {   // Canvas: outside our Pallet house
+    .mapId = MAP_PALLET,
     .warpId = 0xFFFFFFFF,
-    .x = 0x000002B7,
-    .y = 0x0000018D,
+    .x = 31 * 32 + 27 + 6,
+    .y = 32 * 11 + 49,
     .direction = 0x00000001,
 };
 

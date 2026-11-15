@@ -504,4 +504,5 @@ zone_event_json = files(
     '502_CV_BATTLE_TOWER_UNUSED_1.json',
     '503_CV_BATTLE_TOWER_UNUSED_2.json',
     '504_CV_BATTLE_TOWER_UNUSED_3.json',
+    '505_CV_BATTLE_TOWER_UNUSED_4.json',
 )

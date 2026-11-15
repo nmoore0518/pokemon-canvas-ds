@@ -80,8 +80,8 @@ STAIRS_DOWN = {'gTileset_BuildingFrlg': {0x05: 9}}
 BEHAVIOR = {0x65: 0x65, 0xEB: 0x5E, 0xEE: 0x5F, 0x86: 0x86, 0x83: 0x83, 0x85: 0x85}
 
 # ---------------------------------------------------------------- rooms
-HOUSE = dict(floor='red_h_yuka1', wall='red_h_kabe1', texset=43, buildset=41)
-LAB = dict(floor='o_kido_yuka1', wall='o_kido_kaeb1', texset=43, buildset=41)
+HOUSE = dict(floor='red_h_yuka1', wall='red_h_kabe1', texset=43, buildset=41, area=43)
+LAB = dict(floor='o_kido_yuka1', wall='o_kido_kaeb1', texset=43, buildset=41, area=43)
 GYM = dict(texset=55, buildset=53, area=55, template='MAP_VIRIDIAN_GYM', keep_people=False)
 ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), look, keep HeartGold's people there
     dict(gba='PalletTown_PlayersHouse_1F_Frlg', map='MAP_PALLET_TOWN_PLAYERS_HOUSE_1F', keep_people=True, **HOUSE),
@@ -109,6 +109,9 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
              (224, 128, 16, 16, [('h', 3), ('v', 13)]),               # crates
              (208, 144, 32, 16, [('h', 3), ('v', 13)]),
          ])),
+    # Viridian City: Penny's house (its door is added to HeartGold's Viridian by build_kanto.py, warp 7 there)
+    dict(gba='ViridianCity_PennysHouse_Frlg', map='MAP_VIRIDIAN_CITY_PENNYS_HOUSE', keep_people=False,
+         template='MAP_VIRIDIAN_NORTHEAST_HOUSE', exits={'MAP_VIRIDIAN_CITY': ('MAP_VIRIDIAN', 7)}, **HOUSE),
     # the Pallet Gym (the decorating system fills it at run time) and the rooms Oak builds on: every 100 kinds of
     # POKeMON caught adds a room (back, left, right), and 50, 150, 250, 350 make the hall and those rooms bigger
     dict(gba='PalletTown_Gym_Frlg', map='MAP_PALLET_TOWN_GYM', gba_look=dict(tag='gy', floor=0x281, skip=(0x2A1, 0x2AB, 0x2AC), pc_script='GymDecor_EventScript_GymPC', walls=dict(face=0x299, cap=0x291, emblems=[0x2D3]), things=[]), **GYM),
@@ -418,6 +421,10 @@ def write_events(spec, gm):
         path = os.path.join(EVENT_DIR, events_file(slot))
         ev = json.load(open(path))
     ev['warps'] = [{k: v for k, v in w.items() if not k.startswith('_')} for w in gba_warps(gm)]
+    # rooms off HeartGold's own maps: their doors go back to the warp we added there (see build_kanto.py)
+    for w, g in zip(ev['warps'], gm.get('warp_events', [])):
+        if g['dest_map'] in spec.get('exits', {}):
+            w.update(x=g['x'], z=g['y'], y=0, header=spec['exits'][g['dest_map']][0], anchor=spec['exits'][g['dest_map']][1])
     if spec['keep_people']:
         # HeartGold's own people and signs, moved to where the GBA map has its people and signs (in order)
         for obj, g in zip(ev.get('objects', []), gm.get('object_events', [])):
@@ -454,7 +461,7 @@ def main():
             evn = write_events(spec, gm)
             t = header(spec['template'])
             fields = {k: v for k, v in t.items() if k not in ('matrixId', 'eventsBank', 'scriptsBank', 'scriptHeaderBank', 'msgBank')}
-            fields.update(matrixId=mat, eventsBank=evn)
+            fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(spec['area']))   # (the look we built it in)
             set_header(slot, fields)
         else:
             mpath = os.path.join(MATRIX_DIR, matrix_file(slot))

@@ -66,6 +66,7 @@ ROOM_SLOTS = {   # GBA rooms built from their own layouts in unused slots (see b
     'MAP_PALLET_TOWN_GYM_BACK_ROOM+150': 'MAP_BATTLE_TOWER_UNUSED_1',
     'MAP_PALLET_TOWN_GYM_LEFT_ROOM+250': 'MAP_BATTLE_TOWER_UNUSED_2',
     'MAP_PALLET_TOWN_GYM_RIGHT_ROOM+350': 'MAP_BATTLE_TOWER_UNUSED_3',
+    'MAP_VIRIDIAN_CITY_PENNYS_HOUSE': 'MAP_BATTLE_TOWER_UNUSED_4',
 }
 for _gba, _tmpl, _keep, _slot in CLONES:
     SLOTS[_gba] = _slot
