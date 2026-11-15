@@ -25,7 +25,13 @@ as patches in `tools/canvas/engine/patches`) then patches in the modern battle e
 moves, abilities, items and sprites. hg-engine hooks HeartGold's code at fixed addresses, so the decomp's code must
 keep its retail layout: change data in place, put new code in the engine (`check_code_layout.py` enforces this,
 comparing decompressed sizes, since the compressed ARM9 changes size with any data change).
-New maps reuse HeartGold's unused map slots rather than growing the header table. hg-engine is free-use only
+New maps get ids of their own past HeartGold's 540 (`slots.new_map`; defines between the canvas markers in
+`include/constants/maps.h`, headers in `src/data/map_headers_canvas.h`). Their headers can't go in the ARM9, so
+`build_map_headers.py` compiles them with the decomp's compiler (checking HeartGold's own table compiles to the
+bytes in the ARM9) into `engine/data/canvas_map_headers.bin`, which goes into a/0/2/8 as member 21; our engine
+patch (`tools/canvas/engine/patches`) hooks `MapNumberBoundsCheck` so that one of our ids has its header copied
+into the spare `MAP_UNUSED` entry, through a small cache. Map ids are 16-bit, so there's room for thousands.
+(The first rooms used HeartGold's unused slots instead; those stay where they are.) hg-engine is free-use only
 (no money, no donations) and its CREDITS.md must be carried into ours.
 If `engine/build` is wiped, `touch engine/data/learnsets/learnsets.json` before rebuilding.
 

@@ -505,4 +505,5 @@ zone_event_json = files(
     '503_CV_BATTLE_TOWER_UNUSED_2.json',
     '504_CV_BATTLE_TOWER_UNUSED_3.json',
     '505_CV_BATTLE_TOWER_UNUSED_4.json',
+    '506_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.json',
 )

@@ -543,4 +543,10 @@
 #define MAP_POKEMON_LEAGUE_ENTRANCE_WIFI_ROOM             539 // MAP_T10R0801
 #define MAP_ID_MAX                                        540
 
+// Canvas: our maps start here (their headers live with hg-engine; see src/data/map_headers_canvas.h)
+#define MAP_CANVAS_FIRST                                  540
+// canvas maps: begin
+#define MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE                  540
+// canvas maps: end
+
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

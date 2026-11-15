@@ -13,7 +13,7 @@ from g3d import Mesh, build_model
 import gba_map
 import cards
 from PIL import Image
-from slots import SLOTS, ROOM_SLOTS, matrix_file, events_file, gba_warps, header, set_header, new_events_file, new_matrix_file
+from slots import SLOTS, ROOM_SLOTS, new_map, NO_SCRIPTS, matrix_file, events_file, gba_warps, header, set_header, new_events_file, new_matrix_file
 
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 F = lambda p: os.path.join(ROOT, p)
@@ -457,11 +457,15 @@ def main():
         land[lid] = data
         slot = SLOTS[spec['map']]
         if slot in ROOM_SLOTS.values():
+            if slot.startswith('MAP_CANVAS_'):
+                new_map(slot)                       # an id of our own past HeartGold's maps
             mat = new_matrix_file(slot.replace('MAP_', ''), lid)
             evn = write_events(spec, gm)
             t = header(spec['template'])
             fields = {k: v for k, v in t.items() if k not in ('matrixId', 'eventsBank', 'scriptsBank', 'scriptHeaderBank', 'msgBank')}
             fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(spec['area']))   # (the look we built it in)
+            if slot.startswith('MAP_CANVAS_'):
+                fields.update(NO_SCRIPTS)
             set_header(slot, fields)
         else:
             mpath = os.path.join(MATRIX_DIR, matrix_file(slot))

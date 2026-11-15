@@ -14,11 +14,51 @@ SLOTS = {
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 
 
+def _headers_file(ds_map):
+    return CANVAS_HEADERS if ds_map in canvas_maps() else os.path.join(ROOT, 'src/data/map_headers.h')
+
+
+def _entry_key(ds_map):
+    return '[%s - MAP_CANVAS_FIRST]' % ds_map if ds_map in canvas_maps() else '[%s]' % ds_map
+
+
 def header(ds_map):
-    """The fields of a map's entry in src/data/map_headers.h"""
-    s = open(os.path.join(ROOT, 'src/data/map_headers.h')).read()
-    m = re.search(r'\[%s\] = \{(.*?)\n\s*\},' % re.escape(ds_map), s, re.S)
+    """The fields of a map's entry in src/data/map_headers.h (or map_headers_canvas.h for our own maps)"""
+    s = open(_headers_file(ds_map)).read()
+    m = re.search(r'%s = \{(.*?)\n\s*\},' % re.escape(_entry_key(ds_map)), s, re.S)
     return dict(re.findall(r'\.(\w+) = ([^,]+),', m.group(1)))
+
+
+# ---------------------------------------------------------------- our own maps: ids past HeartGold's 540
+# (defined in include/constants/maps.h between the canvas markers; headers in src/data/map_headers_canvas.h,
+# which tools/canvas/build_map_headers.py hands to hg-engine)
+MAPS_H = os.path.join(ROOT, 'include/constants/maps.h')
+CANVAS_HEADERS = os.path.join(ROOT, 'src/data/map_headers_canvas.h')
+HEADER_FIELDS = ['wildEncounterBank', 'areaDataBank', 'moveModelBank', 'worldMapX', 'worldMapY', 'matrixId', 'scriptsBank',
+                 'scriptHeaderBank', 'msgBank', 'dayMusicId', 'nightMusicId', 'eventsBank', 'mapsec', 'areaIcon',
+                 'momCallIntroParam', 'regionNo', 'weather', 'mapType', 'cameraType', 'followMode', 'battleBg', 'bikeAllowed',
+                 'runningAllowed_Unused', 'escapeRopeAllowed', 'flyAllowed', 'outgoingCalls', 'incomingCalls', 'radioSignal']
+NO_SCRIPTS = dict(scriptsBank='scr_seq_0139_EVERYWHERE_bin', scriptHeaderBank='scr_seq_0399_EVERYWHERE_hdr_bin',
+                  msgBank='msg_0003_EVERYWHERE')
+
+
+def canvas_maps():
+    """-> {name: id} of our own maps"""
+    s = open(MAPS_H).read()
+    block = s[s.index('// canvas maps: begin'):s.index('// canvas maps: end')]
+    return {n: int(v) for n, v in re.findall(r'#define (MAP_\w+)\s+(\d+)', block)}
+
+
+def new_map(name):
+    """A map id of our own (kept if it exists); its header starts as a copy of whatever set_header is given"""
+    have = canvas_maps()
+    if name in have:
+        return name
+    nid = max(have.values(), default=539) + 1
+    s = open(MAPS_H).read()
+    s = s.replace('// canvas maps: end', '#define %-49s %d\n// canvas maps: end' % (name, nid))
+    open(MAPS_H, 'w').write(s)
+    return name
 
 
 def matrix_file(ds_map):
@@ -45,7 +85,8 @@ def gba_warps(gba_map_json, shift=(0, 0)):
 # ---------------------------------------------------------------- cloned rooms: an unused slot made a copy of a
 # HeartGold room (same land, scripts and people), with its own events so its doors lead back to our map
 FREE_SLOTS = ['MAP_FIGHT_AREA_UNUSED_%d' % i for i in range(1, 10)] + ['MAP_BATTLE_PARK_UNUSED_1', 'MAP_BATTLE_PARK_UNUSED_2'] + \
-    ['MAP_BATTLE_TOWER_UNUSED_%d' % i for i in range(1, 5)] + ['MAP_ROUTE_20_UNUSED', 'MAP_UNUSED']
+    ['MAP_BATTLE_TOWER_UNUSED_%d' % i for i in range(1, 5)] + ['MAP_ROUTE_20_UNUSED']
+# (MAP_UNUSED is not free: hg-engine uses its header entry as the window our own maps' headers are copied into)
 CLONES = [  # GBA map, HeartGold room to copy, which of its people stay (by id suffix; None = all), slot.
     # Slots are fixed here so adding a room never moves another one.
     ('MAP_PALLET_TOWN_POKEMON_CENTER_1F', 'MAP_VIRIDIAN_POKECENTER_1F', ('pcwoman1', 'pcwoman2', 'pcwoman2_2', 'pcwoman2_3'), 'MAP_FIGHT_AREA_UNUSED_2'),
@@ -66,7 +107,7 @@ ROOM_SLOTS = {   # GBA rooms built from their own layouts in unused slots (see b
     'MAP_PALLET_TOWN_GYM_BACK_ROOM+150': 'MAP_BATTLE_TOWER_UNUSED_1',
     'MAP_PALLET_TOWN_GYM_LEFT_ROOM+250': 'MAP_BATTLE_TOWER_UNUSED_2',
     'MAP_PALLET_TOWN_GYM_RIGHT_ROOM+350': 'MAP_BATTLE_TOWER_UNUSED_3',
-    'MAP_VIRIDIAN_CITY_PENNYS_HOUSE': 'MAP_BATTLE_TOWER_UNUSED_4',
+    'MAP_VIRIDIAN_CITY_PENNYS_HOUSE': 'MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE',   # (our own map id: see new_map)
 }
 for _gba, _tmpl, _keep, _slot in CLONES:
     SLOTS[_gba] = _slot
@@ -79,14 +120,30 @@ MATRIX_DIR = os.path.join(ROOT, 'files/fielddata/mapmatrix/map_matrix')
 
 
 def set_header(ds_map, fields):
-    s = open(HEADERS).read()
-    m = re.search(r'(\[%s\] = \{)(.*?)(\n\s*\},)' % re.escape(ds_map), s, re.S)
+    """Change fields of a map's header. For our own maps, a missing entry is created from `fields`, which must
+    then name them all (start from a template's: dict(header(template), **changes))"""
+    path = _headers_file(ds_map)
+    s = open(path).read()
+    key = _entry_key(ds_map)
+    if ds_map in canvas_maps() and key + ' = {' not in s:
+        missing = [k for k in HEADER_FIELDS if k not in fields]
+        assert not missing, ('a new map needs every field', missing)
+        entry = '    %s = {\n%s                        },\n' % (key, ''.join('                        .%s = %s,\n' % (k, fields[k]) for k in HEADER_FIELDS))
+        # keep the entries in id order (there must be no gaps: the table is its entries in a row)
+        ids = canvas_maps()
+        entries = re.findall(r'(    \[(MAP_\w+) - MAP_CANVAS_FIRST\] = \{.*?\n\s*\},\n)', s, re.S)
+        entries = sorted(entries + [(entry, ds_map)], key=lambda e: ids[e[1]])
+        head, tail = s.split('static const MapHeader sCanvasMapHeaders[] = {')
+        s = head + 'static const MapHeader sCanvasMapHeaders[] = {\n' + ''.join(e for e, _ in entries) + '};\n'
+        open(path, 'w').write(s)
+        return
+    m = re.search(r'(%s = \{)(.*?)(\n\s*\},)' % re.escape(key), s, re.S)
     body = m.group(2)
     for k, v in fields.items():
         body, n = re.subn(r'(\.%s = )[^,]+,' % k, lambda mm: mm.group(1) + v + ',', body)
         assert n == 1, (ds_map, k)
     s = s[:m.start(2)] + body + s[m.end(2):]
-    open(HEADERS, 'w').write(s)
+    open(path, 'w').write(s)
 
 
 def _add_to_list(meson, name):

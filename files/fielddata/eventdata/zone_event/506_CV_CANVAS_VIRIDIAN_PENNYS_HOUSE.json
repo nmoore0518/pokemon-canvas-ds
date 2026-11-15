@@ -1,0 +1,28 @@
+{
+    "header": "fielddata/script/scr_seq/event_T02R0201.h",
+    "objects": [],
+    "warps": [
+        {
+            "x": 3,
+            "z": 7,
+            "header": "MAP_VIRIDIAN",
+            "anchor": 7,
+            "y": 0
+        },
+        {
+            "x": 4,
+            "z": 7,
+            "header": "MAP_VIRIDIAN",
+            "anchor": 7,
+            "y": 0
+        },
+        {
+            "x": 5,
+            "z": 7,
+            "header": "MAP_VIRIDIAN",
+            "anchor": 7,
+            "y": 0
+        }
+    ],
+    "bgs": []
+}

@@ -6,6 +6,7 @@ ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 cd "$ROOT"
 make rom -j"$(nproc)"
 engine/.venv/bin/python tools/canvas/check_code_layout.py build/heartgold.us/pokeheartgold.us.nds
+python3 tools/canvas/build_map_headers.py   # our maps past HeartGold's 540, handed to the engine
 cp build/heartgold.us/pokeheartgold.us.nds engine/rom.nds
 make -C engine ROM_TOOL=tools/ndstool -j"$(nproc)"
 cp engine/test.nds build/canvas.nds
