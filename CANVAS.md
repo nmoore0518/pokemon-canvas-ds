@@ -72,7 +72,8 @@ gets its own texture set and area entry so no other room pays for its textures.
 - keep paths between features centred, and line exits up with the neighbouring map's path (move our map if needed)
 - don't leave two signs side by side; carry over decorations like the Chansey statue rather than dropping them
 - our own GBA art gets dimension: fold it into top surfaces and faces (with sides and a shadow), never a flat card;
-  round things (statues) are extruded from their outline with a curved front
+  Pokemon statues use HeartGold's own overworld sprite of that Pokemon (hg-engine has one for every species in
+  `a/0/8/1`), enlarged and recoloured to stone or gold (`STATUE_FINISH`), standing like HeartGold's people
 
 
 ## Plan

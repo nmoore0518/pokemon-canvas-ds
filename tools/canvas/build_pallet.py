@@ -143,10 +143,30 @@ Y = lambda h: GROUND_Y + 16.0 * h
 ts_files, ts_btnf = read_narc(open(TEXSETS, 'rb').read())
 
 
+STATUE_FINISH = 'stone'    # or 'gold'
+STATUE_RAMPS = {   # darkest to lightest; stone is the pedestal's own stone
+    'stone': [(40, 44, 64), (65, 74, 106), (90, 90, 115), (123, 123, 131), (148, 164, 180), (200, 208, 216)],
+    'gold': [(72, 48, 16), (128, 88, 24), (184, 136, 32), (224, 176, 48), (248, 216, 96), (255, 244, 184)],
+}
+
+
 def statue_texture():
-    """The GBA game's Chansey statue (32x48) as a 32x64 4bpp texture, colour 0 transparent"""
+    """32x64 4bpp texture, colour 0 transparent: rows 0..31 HeartGold's own Chansey (her front-facing overworld
+    frame, from hg-engine's a/0/8/1) recoloured as a statue; rows 34..47 the GBA game's stone pedestal"""
     from PIL import Image
     im = Image.open(os.path.join(HERE, 'data', 'chansey_statue.png')).convert('RGBA')
+    ow = Image.open(os.path.join(HERE, 'data', 'chansey_overworld.png')).convert('RGBA')
+    ramp = STATUE_RAMPS[STATUE_FINISH]
+    seen = sorted({ow.getpixel((x, y))[:3] for y in range(32) for x in range(32) if ow.getpixel((x, y))[3] >= 128},
+                  key=lambda c: 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2])
+    lum = lambda c: 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
+    lo, hi = lum(seen[0]), lum(seen[-1])
+    tone = {c: ramp[0] if c == seen[0] else ramp[1 + min(len(ramp) - 2, int((lum(c) - lo) / (hi - lo + 1e-6) * (len(ramp) - 1)))] for c in seen}
+    im = im.copy()
+    for y in range(34):
+        for x in range(32):
+            c = ow.getpixel((x, y)) if y < 32 else (0, 0, 0, 0)
+            im.putpixel((x, y), tone[c[:3]] + (255,) if c[3] >= 128 else (0, 0, 0, 0))
     cols = [(0, 0, 0)]
     idx = []
     for y in range(64):
@@ -361,51 +381,16 @@ for dx, dy, nm in DECOR:
     quad(T, [(x0, yb, z0), (x0, yb, z1), (x0, yt, z1), (x0, yt, z0)], side, (-1, 0, 0), owner)
     quad(T, [(x1, yb, z1), (x1, yb, z0), (x1, yt, z0), (x1, yt, z1)], side, (1, 0, 0), owner)
     quad(T, [(x1, yb, z0), (x0, yb, z0), (x0, yt, z0), (x1, yt, z0)], side, (0, 0, -1), owner)
-    # Chansey herself, given body: her picture extruded into a solid (front, back, and every edge of her
-    # outline as a side in that edge's colours), stood up 1.3x tall like our other GBA art
-    from PIL import Image
-    fig = Image.open(os.path.join(HERE, 'data', 'chansey_statue.png')).convert('RGBA')
-    FH = 34                                   # her rows of the picture (below is the pedestal)
-    on = lambda px, py: 0 <= px < 32 and 0 <= py < FH and fig.getpixel((px, py))[3] >= 128
-    VS = 1.3
-    zm = (z0 + z1) / 2
-    # her front curves round like a body (strips of 4 pixels bent over a half circle); her back is flat
-    zb = zm - 0.15
-    def zf(px):
-        k = px // 4 * 4
-        f = lambda q: zm + 0.15 + 0.45 * max(0.0, 1 - ((q - 16) / 16) ** 2) ** 0.5
-        return f(k) + (f(k + 4) - f(k)) * (px - k) / 4
-    X = lambda px: dx + px / 16
-    H = lambda py: yt + (FH - py) * VS
-    for k in range(0, 32, 4):
-        nz = (zf(k) - zf(k + 4)) * 16 / 4
-        quad(T, [(X(k), H(FH), zf(k)), (X(k + 4), H(FH), zf(k + 4)), (X(k + 4), H(0), zf(k + 4)), (X(k), H(0), zf(k))],
-             [(k, FH), (k + 4, FH), (k + 4, 0), (k, 0)], (nz / (1 + nz * nz) ** 0.5, 0, 1 / (1 + nz * nz) ** 0.5), owner)
-    quad(T, [(X(32), H(FH), zb), (X(0), H(FH), zb), (X(0), H(0), zb), (X(32), H(0), zb)], [(32, FH), (0, FH), (0, 0), (32, 0)], (0, 0, -1), owner)
-    for px in range(32):                      # left and right edges: runs down each pixel column
-        for side, nb in ((-1, px - 1), (1, px + 1)):
-            py = 0
-            while py < FH:
-                if not (on(px, py) and not on(nb, py)): py += 1; continue
-                e = py
-                while e < FH and on(px, e) and not on(nb, e): e += 1
-                ex = px + (1 if side > 0 else 0)
-                xx, zz = X(ex), zf(ex)
-                uv = [(px + 0.5, e), (px + 0.5, e), (px + 0.5, py), (px + 0.5, py)]
-                if side < 0:
-                    quad(T, [(xx, H(e), zb), (xx, H(e), zz), (xx, H(py), zz), (xx, H(py), zb)], uv, (-1, 0, 0), owner)
-                else:
-                    quad(T, [(xx, H(e), zz), (xx, H(e), zb), (xx, H(py), zb), (xx, H(py), zz)], uv, (1, 0, 0), owner)
-                py = e
-    for py in range(FH):                      # tops of the outline: runs along each pixel row (split at the bends)
-        px = 0
-        while px < 32:
-            if not (on(px, py) and not on(px, py - 1)): px += 1; continue
-            e = px
-            while e < 32 and on(e, py) and not on(e, py - 1) and (e == px or e % 4): e += 1
-            uv = [(px, py + 0.5), (e, py + 0.5), (e, py + 0.5), (px, py + 0.5)]
-            quad(T, [(X(px), H(py), zf(px)), (X(e), H(py), zf(e)), (X(e), H(py), zb), (X(px), H(py), zb)], uv, UP, owner)
-            px = e
+    # Chansey herself: HeartGold's own Chansey sprite in stone, enlarged, stood up facing the camera like
+    # HeartGold's people (bounding box of her front frame: x 6..25, y 13..30 of the texture)
+    SC = 1.7                                  # units per pixel (her real sprite is 1)
+    u0, u1, v0, v1 = 6, 25, 13, 30
+    w = (u1 - u0) * SC / 16
+    xc, zc = dx + 1, (z0 + z1) / 2 + 0.25
+    hgt = (v1 - v0) * SC
+    back = hgt * 0.6 / 16                     # leaning back as far as the camera looks down
+    quad(T, [(xc - w / 2, yt, zc), (xc + w / 2, yt, zc), (xc + w / 2, yt + hgt * 0.8, zc - back), (xc - w / 2, yt + hgt * 0.8, zc - back)],
+         [(u0, v1), (u1, v1), (u1, v0), (u0, v0)], (0, 0.6, 0.8), owner)
 
 # ---------------------------------------------------------------- buildings (HeartGold models), lined up on our doors
 BM_HOUSE = {'red': 313, 'blue': 340, 'green': 341, 'purple': 342}
