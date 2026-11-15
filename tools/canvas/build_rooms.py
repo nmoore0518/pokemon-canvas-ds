@@ -1,0 +1,279 @@
+"""Canvas: build the GBA game's interiors as HeartGold rooms.
+
+Each room comes from a GBA map (layout + events). Its walkable squares become a floor, the wall rows become
+HeartGold's back wall, and recognised furniture (a table per GBA tileset, FURNITURE below) becomes HeartGold's
+own room models. Rooms go into existing HeartGold map slots (ROOMS below): the slot's matrix is pointed at a new
+land, and its events are rewritten from the GBA map's.
+"""
+import json, os, re, struct, sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from nitro import read_narc, write_narc, read_dict, read_tex0, tex0_of, write_btx0, u16, u32
+from g3d import Mesh, build_model
+import gba_map
+from slots import SLOTS, ROOM_SLOTS, matrix_file, events_file, gba_warps, header, set_header, new_events_file, new_matrix_file
+
+ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
+F = lambda p: os.path.join(ROOT, p)
+LAND_NARC = F('files/a/0/6/5')
+TEXSETS = F('files/a/0/4/4')
+AREA_DATA = F('files/a/0/4/2')
+AREA_BUILD = F('files/a/0/4/3')
+AREA_BUILD_TEX = F('files/a/0/7/0')
+BM_ROOM = F('files/a/1/4/8')
+MATRIX_DIR = F('files/fielddata/mapmatrix/map_matrix')
+EVENT_DIR = F('files/fielddata/eventdata/zone_event')
+ROOM_LAND_BASE = 690            # our room lands start here (Pallet's outdoor lands are 676..681)
+
+# ---------------------------------------------------------------- furniture: GBA metatile -> HeartGold room model
+# key: the object's top-left metatile id in the GBA tileset; value: (bm_room model, width, height in squares,
+# where it stands: 'wall' = against the back wall in the first floor row, 'floor' = centred on its footprint)
+FURNITURE = {
+    # (what, bm_room model, width, height, where, height off the floor in units)
+    'gTileset_BuildingFrlg': {
+        0x31: ('kitchen', 20, 2, 2, 'wall', 0),
+        0x36: ('cupboard', 64, 2, 2, 'wall', 0),
+        0x2D: ('tv', 19, 1, 3, 'wall', 0),
+        0x2B: ('bookshelf', 66, 2, 3, 'wall', 0),
+        0x184: ('painting', 60, 1, 2, 'wallhang', 16),
+        0x96: ('poster', 60, 1, 2, 'wallhang', 16),
+        0x98: ('poster', 60, 1, 2, 'wallhang', 16),
+        0x47: ('plant', 23, 1, 2, 'floor', 0),
+        0x57: ('plant', 23, 1, 2, 'floor', 0),
+        0x4C: ('table', 94, 2, 2, 'floor', 0),
+        0x4B: ('chair', 53, 1, 1, 'floor', 0),
+        0x4E: ('chair', 53, 1, 1, 'floor', 0),
+        0x13: ('mat', 1, 1, 1, 'floor', 0),
+        0x35: ('tv', 19, 1, 1, 'floorif', 0),     # (a TV on its own; under 0x2D it is part of that one)
+        0x73: ('bookshelf', 30, 2, 1, 'shelf', 0),
+        0x75: ('monitor', 33, 1, 2, 'wall', 0),
+        0x85: ('machine', 27, 1, 2, 'wall', 0),
+    },
+    'gTileset_GenericBuilding1': {
+        0x287: ('pc', 33, 1, 3, 'wall', 0),
+        0x283: ('bed', 17, 3, 3, 'floor', 0),
+    },
+    'gTileset_Lab_Frlg': {
+        0x29D: ('pc', 34, 1, 3, 'wall', 0),
+        0x2A6: ('machine', 29, 1, 2, 'wall', 0),
+        0x295: ('bench', 24, 2, 2, 'wall', 0),
+        0x2AB: ('starter machine', 119, 2, 2, 'floor', 0),
+        0x32F: ('desk', 24, 2, 1, 'floor', 0),
+        0x293: ('plant', 23, 1, 2, 'floor', 0),
+        0x294: ('plant', 23, 1, 2, 'floor', 0),
+        0x290: ('mat', 3, 3, 1, 'floor', 0),
+    },
+}
+WINDOWS = {'gTileset_BuildingFrlg': {0x21: 2}}              # window metatile -> width
+RUGS = {'gTileset_BuildingFrlg': {0x43: 'red_h_mat1_4'}}     # big rug's top-left -> floor texture
+STAIRS_UP = {'gTileset_BuildingFrlg': {0x16: 7}}             # top-left of a staircase going up -> model
+STAIRS_DOWN = {'gTileset_BuildingFrlg': {0x05: 9}}
+
+# GBA behaviour -> HeartGold behaviour, for the squares that do something
+BEHAVIOR = {0x65: 0x65, 0xEB: 0x5E, 0xEE: 0x5F, 0x86: 0x86, 0x83: 0x83, 0x85: 0x85}
+
+# ---------------------------------------------------------------- rooms
+HOUSE = dict(floor='red_h_yuka1', wall='red_h_kabe1', texset=43, buildset=41)
+LAB = dict(floor='o_kido_yuka1', wall='o_kido_kaeb1', texset=43, buildset=41)
+ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), look, keep HeartGold's people there
+    dict(gba='PalletTown_PlayersHouse_1F_Frlg', map='MAP_PALLET_TOWN_PLAYERS_HOUSE_1F', keep_people=True, **HOUSE),
+    dict(gba='PalletTown_PlayersHouse_2F_Frlg', map='MAP_PALLET_TOWN_PLAYERS_HOUSE_2F', keep_people=True, **HOUSE),
+    dict(gba='PalletTown_RivalsHouse_Frlg', map='MAP_PALLET_TOWN_RIVALS_HOUSE', keep_people=True, **HOUSE),
+    dict(gba='PalletTown_House1_Frlg', map='MAP_PALLET_TOWN_HOUSE1', keep_people=False, **HOUSE),
+    dict(gba='PalletTown_House2_Frlg', map='MAP_PALLET_TOWN_HOUSE2', keep_people=False, template='MAP_PALLET_TOWN_BLUES_HOUSE_1F', **HOUSE),
+    dict(gba='PalletTown_ProfessorOaksLab_Frlg', map='MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB', keep_people=False, **LAB),
+]
+
+
+def texdims(texset):
+    ts, _ = read_narc(open(TEXSETS, 'rb').read())
+    d = ts[texset]
+    t = tex0_of(d)
+    dims = {}
+    for nm, e in read_dict(d, t + u16(d, t + 0xE)):
+        p = u32(e, 0)
+        dims[nm.decode()] = (8 << ((p >> 20) & 7), 8 << ((p >> 23) & 7))
+    pals = {nm.decode() for nm, _ in read_dict(d, t + u32(d, t + 0x34))}
+    return dims, pals
+
+
+def build_room(spec, land_id):
+    gm = gba_map.map_json(spec['gba'])
+    lay = gba_map.Layout(gm['layout'])
+    ts_name = gba_map.layouts()[gm['layout']]['primary_tileset']
+    W, H = lay.w, lay.h
+    dims, pals = texdims(spec['texset'])
+    pal_of = lambda t: next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
+    mid = lambda x, y: lay.metatile(x, y)
+    blocked = lambda x, y: lay.collision(x, y) != 0
+    # the first floor row: the first row with a walkable square
+    first = next(y for y in range(H) if any(not blocked(x, y) for x in range(W)))
+    wall_z = first - 0.5
+    meshes = {}
+    M = lambda t: meshes.setdefault(t, Mesh())
+    U = lambda v: v * 16 - 256          # block -> land units
+    up, fwd = (0, 1, 0), (0, 0, 1)
+    # floor: every square from the first floor row down to the last row with anything walkable
+    last = max(y for y in range(H) if any(not blocked(x, y) for x in range(W)))
+    cols = [x for x in range(W) if any(not blocked(x, y) for y in range(first, last + 1))]
+    x0, x1 = min(cols), max(cols) + 1
+    fw, fh = dims[spec['floor']]
+    holes = set()          # floor squares a staircase down goes through
+    for y in range(H):
+        for x in range(W):
+            if mid(x, y) in STAIRS_DOWN.get(ts_name, {}):
+                holes |= {(x + i, y + j) for i in (0, 1) for j in (0, 1)}
+    for y in range(first, last + 1):
+        x = x0
+        while x < x1:
+            if (x, y) in holes: x += 1; continue
+            e = x
+            while e < x1 and (e, y) not in holes: e += 1
+            z0f = wall_z if y == first else y
+            M(spec['floor']).quad([((U(x), 0, U(y + 1)), ((x - x0) * fw, (y + 1 - wall_z) * fh)), ((U(e), 0, U(y + 1)), ((e - x0) * fw, (y + 1 - wall_z) * fh)),
+                                   ((U(e), 0, U(z0f)), ((e - x0) * fw, (z0f - wall_z) * fh)), ((U(x), 0, U(z0f)), ((x - x0) * fw, (z0f - wall_z) * fh))], up)
+            x = e
+    # back wall, three blocks tall like HeartGold's
+    ww, wh = dims[spec['wall']]
+    M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, wh)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * ww, wh)),
+                          ((U(x1), 48, U(wall_z)), ((x1 - x0) * ww, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
+    props, perm = [], [0x8000] * 1024
+    for y in range(H):
+        for x in range(W):
+            if not blocked(x, y):
+                perm[y * 32 + x] = 0x0000
+            b = BEHAVIOR.get(lay.behavior(mid(x, y)))
+            if b is not None:
+                perm[y * 32 + x] = (perm[y * 32 + x] & 0x8000) | b
+    # GBA lets you leave from any warp square of a doormat by walking into the wall below it; HeartGold
+    # only from an exit-mat square, so every walkable warp square with a wall below becomes one
+    for w in gm.get('warp_events', []):
+        x, y = w['x'], w['y']
+        if x < W and y < H and not blocked(x, y) and (y + 1 >= H or blocked(x, y + 1)) and perm[y * 32 + x] & 0xFF == 0:
+            perm[y * 32 + x] = 0x65
+    sec_name = gba_map.layouts()[gm['layout']]['secondary_tileset']
+    for y in range(H):
+        for x in range(W):
+            m = mid(x, y)
+            fur = FURNITURE.get(ts_name if m < lay.n_prim else sec_name, {})
+            if m in fur:
+                name, model, w, h, where, yoff = fur[m]
+                if where == 'floorif' and y > 0 and mid(x, y - 1) == 0x2D: continue
+                cx = x + w / 2
+                if where == 'wall': cz = first + 0.4
+                elif where == 'wallhang': cz = wall_z + 0.1
+                elif where == 'shelf': cz = y + 0.5 if y >= first else first + 0.4
+                else: cz = y + h / 2
+                props.append((model, U(cx), yoff, U(cz)))
+            if m in WINDOWS.get(ts_name, {}):
+                w = WINDOWS[ts_name][m]          # HeartGold's window picture on the wall
+                a, b = U(x + 0.1), U(x + w - 0.1)
+                zz = U(wall_z) + 1
+                M('red_h_mado').quad([((a, 17, zz), (0, 16)), ((b, 17, zz), (16, 16)), ((b, 40, zz), (16, 0)), ((a, 40, zz), (0, 0))], fwd)
+            if m in STAIRS_UP.get(ts_name, {}):
+                props.append((STAIRS_UP[ts_name][m], U(x + 1), 0, U(first + 0.5)))
+            if m in STAIRS_DOWN.get(ts_name, {}):
+                props.append((STAIRS_DOWN[ts_name][m], U(x + 1), 0, U(first + 0.5)))
+            if m in RUGS.get(ts_name, {}):
+                t = RUGS[ts_name][m]
+                # the rug runs to the end of its row/column of rug metatiles
+                rw = 1                         # out to the top-right corner piece
+                while x + rw < W and mid(x + rw - 1, y) != 0x46: rw += 1
+                rh = 1                         # down to the bottom-left corner piece
+                while y + rh < H and mid(x, y + rh - 1) != 0x5B: rh += 1
+                tw, th = dims[t]
+                M(t).quad([((U(x), 1, U(y + rh)), (0, th)), ((U(x + rw), 1, U(y + rh)), (tw, th)),
+                           ((U(x + rw), 1, U(y)), (tw, 0)), ((U(x), 1, U(y)), (0, 0))], up)
+    groups = []
+    for t, mesh in meshes.items():
+        rep = 0 if t.startswith('red_h_mat') else 3
+        groups.append((t, t, pal_of(t), mesh, {'repeat': rep, 'size': dims[t]}))
+    model = build_model('canvas_room_%d' % land_id, groups)
+    model += b'\0' * (-len(model) % 4)
+    bld = b''.join(struct.pack('<I3i3i3i8x', m, int(x * 4096), int(y * 4096), int(z * 4096), 0, 0, 0, 4096, 4096, 4096) for m, x, y, z in props)
+    bdhc = struct.pack('<4s6H', b'BDHC', 2, 1, 1, 1, 1, 1) + struct.pack('<2i2i', -256 * 4096, -256 * 4096, 256 * 4096, 256 * 4096) + \
+        struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
+    p = struct.pack('<1024H', *perm)
+    land = struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc
+    return land, props, gm
+
+
+def write_events(spec, gm):
+    slot = SLOTS[spec['map']]
+    if slot in ROOM_SLOTS.values():        # a slot of our own: start from its template's events
+        path = None
+        ev = json.load(open(os.path.join(EVENT_DIR, events_file(spec['template']))))
+    else:
+        path = os.path.join(EVENT_DIR, events_file(slot))
+        ev = json.load(open(path))
+    ev['warps'] = [{k: v for k, v in w.items() if not k.startswith('_')} for w in gba_warps(gm)]
+    if spec['keep_people']:
+        # HeartGold's own people and signs, moved to where the GBA map has its people and signs (in order)
+        for obj, g in zip(ev.get('objects', []), gm.get('object_events', [])):
+            obj['x'], obj['z'] = g['x'], g['y']
+        ev['bgs'] = ev.get('bgs', [])[:len(gm.get('bg_events', []))]
+        for bg, g in zip(ev['bgs'], gm.get('bg_events', [])):
+            bg['x'], bg['z'] = g['x'], g['y']
+    else:
+        ev['objects'], ev['bgs'] = [], []           # (the GBA game's people come over with its scripts)
+    if path is None:
+        return new_events_file(slot.replace('MAP_', ''), ev)
+    json.dump(ev, open(path, 'w'), indent=4)
+    open(path, 'a').write('\n')
+
+
+def main():
+    land, land_btnf = read_narc(open(LAND_NARC, 'rb').read())
+    land += [b''] * max(0, ROOM_LAND_BASE + len(ROOMS) - len(land))
+    all_props = []
+    for i, spec in enumerate(ROOMS):
+        lid = ROOM_LAND_BASE + i
+        data, props, gm = build_room(spec, lid)
+        all_props.append(props)
+        land[lid] = data
+        slot = SLOTS[spec['map']]
+        if slot in ROOM_SLOTS.values():
+            mat = new_matrix_file(slot.replace('MAP_', ''), lid)
+            evn = write_events(spec, gm)
+            t = header(spec['template'])
+            fields = {k: v for k, v in t.items() if k not in ('matrixId', 'eventsBank', 'scriptsBank', 'scriptHeaderBank', 'msgBank')}
+            fields.update(matrixId=mat, eventsBank=evn)
+            set_header(slot, fields)
+        else:
+            mpath = os.path.join(MATRIX_DIR, matrix_file(slot))
+            m = bytearray(open(mpath, 'rb').read())
+            w, h, hh, ha, nl = m[:5]
+            p = 5 + nl + (2 * w * h if hh else 0) + (w * h if ha else 0)
+            struct.pack_into('<H', m, p, lid)
+            open(mpath, 'wb').write(bytes(m))
+            write_events(spec, gm)
+        print(spec['gba'], '-> land', lid, len(props), 'props')
+    # each room's building set must list its furniture, and the set's texture file must hold their textures
+    used = {}
+    for i, spec in enumerate(ROOMS):
+        used.setdefault(spec['buildset'], set()).update(m for m, *_ in all_props[i])
+    sets, sets_btnf = read_narc(open(AREA_BUILD, 'rb').read())
+    atex, atex_btnf = read_narc(open(AREA_BUILD_TEX, 'rb').read())
+    bm, _ = read_narc(open(BM_ROOM, 'rb').read())
+    for bs, models in used.items():
+        ids = list(struct.unpack_from('<%dH' % u16(sets[bs], 0), sets[bs], 2))
+        ids += sorted(m for m in models if m not in ids)
+        sets[bs] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
+        texs, pals = read_tex0(atex[bs], tex0_of(atex[bs]))
+        have_t, have_p = {t[0] for t in texs}, {q[0] for q in pals}
+        for mid in ids:
+            t0 = tex0_of(bm[mid])
+            if t0 is None: continue
+            mt, mp = read_tex0(bm[mid], t0)
+            texs += [t for t in mt if t[0] not in have_t]; have_t |= {t[0] for t in mt}
+            pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
+        atex[bs] = write_btx0(texs, pals)
+    open(AREA_BUILD, 'wb').write(write_narc(sets, sets_btnf))
+    open(AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
+    # fill any gap between the retail lands and ours with a copy of an empty one
+    land = [d if d else land[209] for d in land]
+    open(LAND_NARC, 'wb').write(write_narc(land, land_btnf))
+
+
+if __name__ == '__main__':
+    main()

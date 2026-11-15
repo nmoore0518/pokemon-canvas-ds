@@ -585,11 +585,11 @@ def main():
     open(AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
     # lands
     land, land_btnf = read_narc(open(LAND_NARC, 'rb').read())
-    land = land[:ORIG_LAND_COUNT]
     ids = {}
-    for key in sorted(lands, key=lambda k: (k[1], k[0])):
-        ids[key] = len(land)
-        land.append(land_file(lands[key]))
+    for i, key in enumerate(sorted(lands, key=lambda k: (k[1], k[0]))):
+        ids[key] = ORIG_LAND_COUNT + i
+        while len(land) <= ids[key]: land.append(land[209])
+        land[ids[key]] = land_file(lands[key])        # (other tools' lands after ours are left alone)
     open(LAND_NARC, 'wb').write(write_narc(land, land_btnf))
     open(TEXSETS, 'wb').write(write_narc(ts_files, ts_btnf))
     # matrix
@@ -612,10 +612,14 @@ def write_events():
     ev = json.load(open(EVENTS))
     gx = lambda x: 32 * CELL_X + x
     gz = lambda y: 32 * CELL_Y + y
-    D = DOORS
-    # warps 0..2 keep their interiors (their exits come back to these indices)
-    for i, nm in enumerate(('PLAYER_DOOR', 'RIVAL_DOOR', 'LAB_DOOR')):
-        ev['warps'][i]['x'], ev['warps'][i]['z'] = gx(D[nm][0]), gz(D[nm][1])
+    # warps: the GBA town's, in its order (so the rooms' dest_warp_ids land on the right door)
+    sys.path.insert(0, HERE)
+    from slots import gba_warps
+    import gba_map
+    ev['warps'] = []
+    for w in gba_warps(gba_map.map_json('PalletTown_Frlg'), shift=(OX, 0)):
+        if '_dead' not in w: w['x'], w['z'] = gx(w['x']), gz(w['z'])
+        ev['warps'].append({k: v for k, v in w.items() if not k.startswith('_')})
     for bg, (sx, sy) in zip(ev['bgs'], SIGNS):
         bg['x'], bg['z'] = gx(sx), gz(sy)
     spots = [(OX + 31, 14), (OX + 40, 31), (OX + 12, 31)]

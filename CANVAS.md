@@ -9,6 +9,8 @@ HeartGold decompilation. This fork tracks `pret/pokeheartgold`.
 sudo tools/canvas/setup_env.sh       # once: 32-bit libc for the DS compiler, build deps, headless DeSmuME
 sudo tools/canvas/setup_engine.sh    # once: hg-engine (battle engine, Gen 5-9 Pokemon) into engine/
 python3 tools/canvas/build_pallet.py # regenerate our Pallet Town into the game's data files (idempotent)
+python3 tools/canvas/build_rooms.py  # then the rooms we model from the GBA layouts (houses, lab)
+python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold room (Pokemon Center, Mart, Training Hall)
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
 python3 tools/canvas/test/walk.py st/t1_field.dst - tour R5 U6 s   # walk by tiles, screenshots -> st_tour.png
@@ -21,7 +23,8 @@ python3 tools/canvas/test/walk.py st/t1_field.dst - tour R5 U6 s   # walk by til
 The decomp builds HeartGold with our maps and data; `engine/` (BluRosie/hg-engine at a pinned commit, our changes
 as patches in `tools/canvas/engine/patches`) then patches in the modern battle engine, Pokemon through Gen 9,
 moves, abilities, items and sprites. hg-engine hooks HeartGold's code at fixed addresses, so the decomp's code must
-keep its retail layout: change data in place, put new code in the engine (`check_code_layout.py` enforces this).
+keep its retail layout: change data in place, put new code in the engine (`check_code_layout.py` enforces this,
+comparing decompressed sizes, since the compressed ARM9 changes size with any data change).
 New maps reuse HeartGold's unused map slots rather than growing the header table. hg-engine is free-use only
 (no money, no donations) and its CREDITS.md must be carried into ours.
 If `engine/build` is wiped, `touch engine/data/learnsets/learnsets.json` before rebuilding.
@@ -42,6 +45,17 @@ the set's shared texture file (`a/0/7/0`). Things learned the hard way:
 - the DS file system's tables are read at boot, so a savestate from before a data change is no good after it
 - map texture animations are bound to materials by index, not name: Pallet's area animation scrolls materials
   0..7, so those slots are placeholders (only slot 4, sea_un, is used) or the ground scrolls
+
+## Interiors
+
+`tools/canvas/slots.py` says which HeartGold map slot each GBA map lives in. Rooms with a matching HeartGold slot
+(Red's house, Blue's house, Oak's lab) take it over; others get an unused slot (`MAP_FIGHT_AREA_UNUSED_*`) with a
+header copied from a template room and an events/matrix file of our own appended to the archives.
+`build_rooms.py` models a room from its GBA layout: HeartGold floor/wall textures, furniture from HeartGold's room
+models (tables in the script, by GBA metatile id), GBA warps, collision and behaviours (stairs, PC, TV, exit mats).
+`build_clones.py` gives rooms that look the same in both games (Pokemon Center, Mart, Training Hall) a copy of a
+HeartGold room, wired to our doors. GBA lets you leave from any square of a doormat; HeartGold only from an exit-mat
+square, so all of them are made exit mats.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 

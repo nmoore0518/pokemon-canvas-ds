@@ -92,7 +92,7 @@
             "x": 1025,
             "z": 400,
             "header": "MAP_PALLET_TOWN_REDS_HOUSE_1F",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         },
         {
@@ -106,6 +106,48 @@
             "x": 1057,
             "z": 379,
             "header": "MAP_PALLET_TOWN_OAKS_LAB",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1029,
+            "z": 360,
+            "header": "MAP_PALLET_TOWN_BLUES_HOUSE_2F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1026,
+            "z": 373,
+            "header": "MAP_FIGHT_AREA_UNUSED_1",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1071,
+            "z": 362,
+            "header": "MAP_FIGHT_AREA_UNUSED_2",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1072,
+            "z": 370,
+            "header": "MAP_FIGHT_AREA_UNUSED_3",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1069,
+            "z": 378,
+            "header": "MAP_FIGHT_AREA_UNUSED_4",
             "anchor": 0,
             "y": 0
         }

@@ -490,4 +490,8 @@ zone_event_json = files(
     '488_T25SP0101.json',
     '489_T07SP0101.json',
     '490_T10R0801.json',
+    '491_CV_FIGHT_AREA_UNUSED_2.json',
+    '492_CV_FIGHT_AREA_UNUSED_3.json',
+    '493_CV_FIGHT_AREA_UNUSED_4.json',
+    '494_CV_FIGHT_AREA_UNUSED_1.json',
 )

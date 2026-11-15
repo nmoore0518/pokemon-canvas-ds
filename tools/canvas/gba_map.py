@@ -150,3 +150,17 @@ def metatile_sheet(layout_id, out, first=0, count=None, cols=16, scale=2):
         S.paste(lay.render_metatile(i).resize((16 * scale, 16 * scale), Image.NEAREST), (x + 4, y))
         d.text((x + 4, y + 16 * scale), '%X' % i, fill=(255, 255, 0))
     S.save(out)
+
+
+def render_labeled(map_dir, out, scale=3):
+    """A map at `scale`, with each square's metatile id, for writing conversion tables"""
+    from PIL import ImageDraw
+    lay = Layout(map_json(map_dir)['layout'])
+    im = lay.render().resize((lay.w * 16 * scale, lay.h * 16 * scale), Image.NEAREST).convert('RGB')
+    d = ImageDraw.Draw(im)
+    for y in range(lay.h):
+        for x in range(lay.w):
+            s = '%X' % lay.metatile(x, y)
+            d.text((x * 16 * scale + 2, y * 16 * scale + 2), s, fill=(0, 0, 0))
+            d.text((x * 16 * scale + 1, y * 16 * scale + 1), s, fill=(255, 255, 0) if not lay.collision(x, y) else (255, 80, 80))
+    im.save(out)
