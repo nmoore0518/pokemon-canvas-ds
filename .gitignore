@@ -114,3 +114,6 @@ tmp*
 /main.lsf
 /src/meson.build
 /asm/meson.build
+
+# Pokémon Canvas DS: local emulator build
+/tools/canvas/emu/
