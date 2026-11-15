@@ -58,6 +58,22 @@ Sinnoh, Alola and Paldea open (no legendary with Electric/Flying, Fire/Fighting 
 Sinnoh **Shaymin** (Sky Forme, Grass/Flying), Alola **Marshadow** (Fighting/Ghost; or Blacephalon, Fire/Ghost),
 Paldea **Ting-Lu** (Dark/Ground).
 
+
+**Proposal under the primary-type rule** *(Claude, 2026-11-15, for Nick to review)*: each region's legendary
+comes from that region and has one of the region's two types as its *first* type; all 18 types once.
+
+| Region | Types | Legendary (first type) | Colour |
+|---|---|---|---|
+| Kanto | Psychic / Poison | Mewtwo (Psychic) | Purple |
+| Johto | Fire / Bug | Ho-Oh (Fire/Flying) | Red |
+| Hoenn | Water / Ground | Kyogre (Water) | Blue |
+| Sinnoh | Steel / Ice | Dialga (Steel/Dragon) | Silver (rust effect) |
+| Unova | Dragon / Electric | Zekrom (Dragon/Electric) | Yellow |
+| Kalos | Dark / Flying | Yveltal (Dark/Flying) | Black (missing-blacks effect) |
+| Alola | Grass / Fighting | Tapu Bulu (Grass/Fairy) | Green |
+| Galar | Fairy / Ghost | Zacian (Fairy) | Pink |
+| Paldea | Rock / Normal | Terapagos (Normal) | Brown |
+
 **Mastery changes** (after the first type): no more win streaks; a type is mastered by beating that region's
 Elite Four with it. The first time is through the region's story; the second is with the region's other type.
 
