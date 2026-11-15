@@ -2,103 +2,286 @@
   "key": 18215,
   "messages": [
     {
-      "id": "msg_0452_T02_00000",
+      "id": "msg_0452_T02_ViridianCity_Text_GymClosedWonderWhoLeaderIs",
       "en_US": [
-        "Hey, kid! I just had a double shot\n",
-        "of espresso, and I am wired!\r",
-        "I need to talk to someone, so you’ll\n",
-        "have to do!\r",
-        "I might not look like much now, but\n",
-        "I was an expert at catching Pokémon.\r",
-        "Do you believe me? {YESNO 0}"
+        "This Pokémon Gym is always closed.\r",
+        "I wonder who the Leader is?"
       ]
     },
     {
-      "id": "msg_0452_T02_00001",
+      "id": "msg_0452_T02_ViridianCity_Text_GoShoppingInPewterOccasionally",
       "en_US": [
-        "Good, good. Yes, I was something out\n",
-        "of the ordinary, let me tell you!"
+        "I go shopping in Pewter City\n",
+        "occasionally.\r",
+        "I have to take the winding trail in\n",
+        "VIRIDIAN Forest when I go."
       ]
     },
     {
-      "id": "msg_0452_T02_00002",
+      "id": "msg_0452_T02_ViridianCity_Text_WantToKnowAboutCaterpillarMons",
       "en_US": [
-        "What? You little whelp!\r",
-        "If I were just a bit younger, I’d\n",
-        "show you a thing or two. Humph!"
+        "You want to know about the two\n",
+        "kinds of caterpillar Pokémon?"
       ]
     },
     {
-      "id": "msg_0452_T02_00003",
+      "id": "msg_0452_T02_ViridianCity_Text_CanCarryMonsAnywhere",
       "en_US": [
-        "This Gym didn’t have a Leader...\r",
-        "A young man from Pallet Town became the\n",
-        "Leader, but he’s often away."
+        "Those Poké Balls at your waist!\n",
+        "You have Pokémon, don’t you?\r",
+        "It’s great that you can carry and\n",
+        "use Pokémon anytime, anywhere."
       ]
     },
     {
-      "id": "msg_0452_T02_00004",
+      "id": "msg_0452_T02_ViridianCity_Text_CatchMonsForEasierBattles",
       "en_US": [
-        "How was it?\n",
-        "Were you able to battle the Leader?"
+        "Trainer Tips\r",
+        "Catch Pokémon and expand your\n",
+        "collection.\r",
+        "The more you have, the easier it\n",
+        "is to battle."
       ]
     },
     {
-      "id": "msg_0452_T02_00005",
+      "id": "msg_0452_T02_ViridianCity_Text_GymSign",
+      "en_US": "Viridian City Pokémon Gym"
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_MovesLimitedByPP",
       "en_US": [
-        "Yawn!\n",
-        "I must have dozed off in the sun.\r",
-        "...I had this dream about a DROWZEE\n",
-        "eating my dream.\r",
-        "Weird, huh?\f",
-        "Huh?\f",
-        "What’s this?\r",
-        "Where did this TM come from?\n",
-        "This is spooky!\f",
-        "Here, you can have this TM.\r"
+        "Trainer Tips\r",
+        "The battle moves of Pokémon are\n",
+        "limited by their Power Points, PP.\r",
+        "To replenish PP, rest your tired\n",
+        "Pokémon at a Pokémon Center."
       ]
     },
     {
-      "id": "msg_0452_T02_00006",
+      "id": "msg_0452_T02_ViridianCity_Text_CitySign",
       "en_US": [
-        "TM85 contains Dream Eater...\n",
-        "...Zzzzz..."
+        "Viridian City \n",
+        "The Eternally Green Paradise"
       ]
     },
     {
-      "id": "msg_0452_T02_00007",
+      "id": "msg_0452_T02_ViridianCity_Text_GymDoorsAreLocked",
+      "en_US": "Viridian Gym’s doors are locked…"
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ThisIsPrivateProperty",
       "en_US": [
-        "I heard that there are many items on\n",
-        "the ground in Viridian Forest."
+        "I absolutely forbid you from\n",
+        "going through here!\r",
+        "This is private property!"
       ]
     },
     {
-      "id": "msg_0452_T02_00008",
+      "id": "msg_0452_T02_Text_DreamEaterTutor_Retired",
       "en_US": [
-        "Viridian City\n",
-        "The City of Evergreen"
+        "I used to teach Dream Eater.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "PSYCHIC master in Saffron\r",
+        "CITY."
       ]
     },
     {
-      "id": "msg_0452_T02_00009",
+      "id": "msg_0452_T02_ViridianCity_Text_ViridiansGymLeaderReturned",
+      "en_US": "Viridian Gym’s Leader returned!"
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_HowsTeachyTVHelping",
       "en_US": [
-        "Viridian City Pokémon Gym\n",
-        "Leader: ...\f",
-        "The rest of the text is illegible..."
+        "Well, now, I’ve had my coffee, and\n",
+        "that’s what I need to get going!\r",
+        "But I made it too strong.\n",
+        "It gave me a headache…\r",
+        "Incidentally, is my old Teachy TV\n",
+        "helping you?"
       ]
     },
     {
-      "id": "msg_0452_T02_00010",
+      "id": "msg_0452_T02_ViridianCity_Text_MyGrandsonOnTheShow",
       "en_US": [
-        "Welcome to Viridian City,\n",
-        "the Gateway to Indigo Plateau!"
+        "Wahaha!\n",
+        "It’s my grandson on the show!\r",
+        "Since he’s the one doing the\n",
+        "teaching, you’re bound to learn."
       ]
     },
     {
-      "id": "msg_0452_T02_00011",
+      "id": "msg_0452_T02_ViridianCity_Text_WeakenMonsFirstToCatch",
       "en_US": [
-        "Trainer House\n",
-        "The Club for Top Trainer Battles"
+        "Well, now, I’ve had my coffee, and\n",
+        "that’s what I need to get going!\r",
+        "But I made it too strong.\n",
+        "It gave me a headache…\r",
+        "Incidentally, are you filling your\n",
+        "Pokédex?\r",
+        "At first, focus on weakening the\n",
+        "Pokémon before trying to catch it."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_GrandpaHasntHadCoffeeYet",
+      "en_US": [
+        "Oh, Grandpa!\n",
+        "Don’t be so mean!\r",
+        "I’m so sorry.\n",
+        "He hasn’t had his coffee yet."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ExplainCaterpieWeedle",
+      "en_US": [
+        "Caterpie has no poison,\n",
+        "but Weedle does.\r",
+        "Watch that your Pokémon aren’t\n",
+        "stabbed by Weedle’s Poison Sting."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_OhOkayThen",
+      "en_US": "Oh, okay then!"
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ShowYouHowToCatchMons",
+      "en_US": [
+        "Well, now, I’ve had my coffee, and\n",
+        "that’s what I need to get going!\r",
+        "Hm?\n",
+        "What is that red box you have?\r",
+        "Ah, so you’re working on your\n",
+        "Pokédex.\r",
+        "Then let me give you a word of\n",
+        "advice.\r",
+        "Whenever you catch a Pokémon,\n",
+        "the Pokédex automatically updates\f",
+        "its data.\r",
+        "…You don’t know how to catch\n",
+        "a Pokémon?\r",
+        "I suppose I had better show you\n",
+        "then!"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ThatWasEducationalTakeThis",
+      "en_US": [
+        "There! Now tell me, that was\n",
+        "educational, was it not?\r",
+        "And here, take this, too."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_WatchThatToLearnBasics",
+      "en_US": [
+        "If there’s something you don’t\n",
+        "understand, watch that.\r",
+        "It will teach you about the basics\n",
+        "of being a Pokémon Trainer."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_TooBusyForTeachyTV",
+      "en_US": [
+        "Hm… You’re too busy to not even\n",
+        "have the time for Teachy TV…\r",
+        "Time is money, and neither should\n",
+        "be ill spent…"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ShowYouAgain",
+      "en_US": [
+        "Shall I show you how to catch\n",
+        "a Pokémon again?"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_ViridianCity_Text_ThereThatsHowItsDone",
+      "en_US": "There! That’s how it’s done."
+    },
+    {
+      "id": "msg_0452_T02_gStringVar4",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0452_T02_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0452_T02_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0452_T02_MoveExtractor_Text_SecondVisit",
+      "en_US": [
+        "Psst! Kid! It’s me, from Nugget\n",
+        "BRIDGE!\r",
+        "You… you beat the Boss at Silph\n",
+        "CO.?! And I recommended you!\r",
+        "I’m in so much trouble…\r",
+        "…But you know what? I heard the\n",
+        "BOSS say “That child has talent.”\r",
+        "So he’s not mad. I think.\n",
+        "Here. Keep stealing moves!"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_MoveExtractor_Text_SecondVisitAfter",
+      "en_US": [
+        "Lay low for a while, OK?\n",
+        "I’ll find you again."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_MoveExtractor_Text_ThirdVisit",
+      "en_US": [
+        "Kid… it’s over.\n",
+        "The Boss is gone.\r",
+        "No higher-ups. No recommendation.\n",
+        "Sorry, kid.\r",
+        "…Funny thing is, I don’t even mind.\r",
+        "You’re going to be a Gym Leader,\n",
+        "right? Take the last one.\r",
+        "Make your Gym the toughest in\n",
+        "KANTO with it."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_MoveExtractor_Text_ThirdVisitAfter",
+      "en_US": [
+        "Maybe I’ll go straight.\n",
+        "See you around, Leader."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

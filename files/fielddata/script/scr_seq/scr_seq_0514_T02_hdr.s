@@ -3,14 +3,12 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T02_008 + 1
-	InitScriptEntry_OnFrameTable scr_seq_T02_map_scripts_2
+	InitScriptEntry_OnFrameTable _cv_T02_frame
+	InitScriptEntry_OnTransition _EV_ViridianCity_OnTransition + 1
 	InitScriptEntryEnd
 
-scr_seq_T02_map_scripts_2:
-	InitScriptGoToIfEqual VAR_UNK_4096, 1, _EV_scr_seq_T02_011 + 1
+_cv_T02_frame:
+	// (not yet: MoveExtractor_EventScript_ViridianVisit)
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

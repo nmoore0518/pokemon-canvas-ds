@@ -1,0 +1,159 @@
+{
+  "key": 19847,
+  "messages": [
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Intro",
+      "en_US": [
+        "Oh! Um… hi. Sorry. I don’t really\n",
+        "get visitors.\r",
+        "…Wait. You’re one of Professor\n",
+        "OAK’s gym candidates, right?\r",
+        "I read about the new gym. A whole\n",
+        "gym built around one type…\r",
+        "That’s… actually really cool.\n",
+        "Like a perfectly optimized build.\r",
+        "You know what’d be perfect for a\n",
+        "gym trainer? Eevee.\r",
+        "It can evolve into a Pokémon of\n",
+        "any type. Every type. It’s like\f",
+        "the ultimate wildcard.\r",
+        "You can find them on Route 1, just\n",
+        "south of here. They’re rare, though.\r",
+        "If you bring me one, I’ll tell you\n",
+        "how it evolves into your gym’s type.\r",
+        "…Promise."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_PlushNew",
+      "en_US": [
+        "It’s a Valyreon plush.\r",
+        "…Valyreon? It looks like an Eevee\n",
+        "evolution you’ve never seen before!"
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Plush",
+      "en_US": [
+        "It’s an Eevee-family plush.\n",
+        "It’s super soft."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_AnotherEevee",
+      "en_US": [
+        "Oh, another Eevee!\r",
+        "Do you want to know how Eevee\n",
+        "evolves into another type?"
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_WhichType",
+      "en_US": "Which type?"
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_YouFoundOne",
+      "en_US": [
+        "Is that… an Eevee? You found one!\r",
+        "Can I… um, can I see it for a sec?\r",
+        "…So fluffy. Okay. Okay, focus.\n",
+        "A deal’s a deal."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_ComeBackLater",
+      "en_US": [
+        "Once you’ve got a gym of your own,\n",
+        "bring me another Eevee.\r",
+        "I’ll help you with the other types\n",
+        "too. …If you want."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_NotYet",
+      "en_US": [
+        "How’s your Eevee doing?\r",
+        "When the gym’s yours, come back\n",
+        "with another one. I’ll be here.\f",
+        "I’m always here."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_BringAnother",
+      "en_US": [
+        "A real Gym Leader… that’s so cool.\r",
+        "Bring me another Eevee, and I’ll\n",
+        "tell you how it evolves into any\f",
+        "type you want."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Maybe",
+      "en_US": "Okay. Maybe later, then."
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Already",
+      "en_US": [
+        "I already gave you that one. Have\n",
+        "EEVEE use or hold the {STRVAR_1 3, 1, 0}.\r",
+        "It’ll become {STRVAR_1 3, 2, 0}."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_ForThisType",
+      "en_US": [
+        "For a {STRVAR_1 3, 0, 0}-type gym, you want\n",
+        "{STRVAR_1 3, 2, 0}. Here, take this."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_HowHold",
+      "en_US": [
+        "Have your Eevee hold the\n",
+        "{STRVAR_1 3, 1, 0} and level it up.\r",
+        "That’s it. It’ll evolve into\n",
+        "{STRVAR_1 3, 2, 0}. Easy."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_StillLooking",
+      "en_US": [
+        "Still looking for an Eevee?\r",
+        "ROUTE 1, in the tall grass. They’re\n",
+        "rare, so… don’t give up, okay?"
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_HowFairy",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} doesn’t need an item.\r",
+        "Your Eevee has to really trust you,\n",
+        "and know a {STRVAR_1 3, 0, 0}-type move.\r",
+        "Then just level it up. That’s the\n",
+        "whole trick."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_BagFull",
+      "en_US": [
+        "Oh… your Bag’s full. Come back when\n",
+        "you’ve made some room, okay?"
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_HowUse",
+      "en_US": [
+        "Use the {STRVAR_1 3, 1, 0} on your\n",
+        "EEVEE, and it’ll evolve into\f",
+        "{STRVAR_1 3, 2, 0} right away."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -188,7 +188,7 @@
         },
         {
             "id": "LOCALID_OAKS_LAB_MENTOR",
-            "spriteId": "SPRITE_VAR_0",
+            "spriteId": "101",
             "movement": 14,
             "type": 0,
             "eventFlag": "0x2017",

@@ -6,13 +6,13 @@
 // Pokemon Canvas: ported from the GBA game's PalletTown_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
-	ScrDef _cv_unported_0
+	ScrDef PalletTown_EventScript_SignLady
 	ScrDef PalletTown_EventScript_FatMan
 	ScrDef GymFinale_EventScript_CeremonyMom
 	ScrDef GymFinale_EventScript_CeremonyDaisy
-	ScrDef _cv_unported_4
+	ScrDef GymFinale_EventScript_CeremonyMentor
 	ScrDef GymFinale_EventScript_CeremonyLeader
-	ScrDef _cv_unported_6
+	ScrDef TypeTutor_EventScript_NormalAttacks
 	ScrDef PalletTown_EventScript_OaksLabSign
 	ScrDef PalletTown_EventScript_PlayersHouseSign
 	ScrDef PalletTown_EventScript_RivalsHouseSign
@@ -20,12 +20,12 @@
 	ScrDef PalletTown_EventScript_House2Sign
 	ScrDef PalletTown_EventScript_TownSign
 	ScrDef PalletTown_EventScript_TrainerTips
-	ScrDef _cv_unported_14
+	ScrDef PalletTown_EventScript_GymSign
 	ScrDef PalletTown_EventScript_TrainingHallSign
 	ScrDef PalletTown_EventScript_GymDoorLocked
 	ScrDef BerryField_EventScript_Sign
-	ScrDef _cv_unported_18
-	ScrDef _cv_unported_19
+	ScrDef BerryField_EventScript_Plot
+	ScrDef PalletTown_EventScript_ChanseyStatue
 	ScrDef PalletTown_EventScript_OakTriggerLeft
 	ScrDef PalletTown_EventScript_OakTriggerRight
 	ScrDef _cv_unported_22
@@ -103,6 +103,7 @@ GymFinale_EventScript_CeremonyMentor:
 	LockAll
 	FacePlayer
 	// TODO(gba) special GymCandidate_SetupCeremony
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymFinale_EventScript_CeremonyLeaderTalk
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyMentorAfter
@@ -188,6 +189,7 @@ PalletTown_EventScript_TrainerTips:
 	
 PalletTown_EventScript_GymSign:
 	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GymChallenge_IsOpen
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_EventScript_GymSignLeader
 	PlaySE SEQ_SE_DP_SELECT
@@ -229,6 +231,7 @@ BerryField_EventScript_Sign:
 BerryField_EventScript_Plot:
 	LockAll
 	// TODO(gba) special BerryField_GetFacingPlot
+	GoTo _cv_stop
 	CompareVarToValue 0x8004, 24
 	GoToIfGe BerryField_EventScript_End
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -248,9 +251,11 @@ _cv_yn_2:
 	GoToIfEq BerryField_EventScript_End
 	CloseMsg
 	// TODO(gba) special Bag_ChooseBerry
+	GoTo _cv_stop
 	CompareVarToValue 0x5003, ITEM_NONE
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_Plant
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_BerryField_Text_Planted
@@ -266,6 +271,7 @@ PalletTown_EventScript_ChanseyStatue:
 	WaitButton
 	SetVar 0x8004, ITEM_LUCKY_EGG
 	// TODO(gba) special ItemUpgrade_HasItem
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	GoToIfSet 0x2002, PalletTown_EventScript_ChanseyStatueWish
@@ -354,6 +360,7 @@ PalletTown_OnTransition:
 	SetVar 0x500E, 500
 	SetFlag 0x2059
 _cv_new_game_3:
+	SetFlag FLAG_SYS_FLYPOINT_PALLET
 	Call DadStory_EventScript_PalletTransition
 	Call Johto_EventScript_TryInviteWaiting
 	Call GymFinale_EventScript_CeremonyTransition
@@ -401,6 +408,7 @@ GymFinale_EventScript_Ceremony:
 	PlayFanfare SEQ_ME_BADGE
 	WaitFanfare
 	// TODO(gba) special GymCandidate_SetupCeremony
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymFinale_EventScript_CeremonyMentorSpeaks
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterLeft
@@ -632,6 +640,7 @@ GymFinale_EventScript_CeremonyLeaderTalk:
 TypeTutor_EventScript_Talk:
 	CopyVar 0x8008, 0x8004
 	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TypeTutor_EventScript_Intro
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -673,6 +682,7 @@ _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_PullUp
+	GoTo _cv_stop
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_BerryField_Text_PulledUp
 	WaitButton
@@ -682,6 +692,7 @@ _cv_yn_6:
 	
 BerryField_EventScript_Ripe:
 	// TODO(gba) special BerryField_Harvest
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_BagFull
 	PlayFanfare SEQ_ME_ITEM
@@ -711,6 +722,7 @@ PalletTown_EventScript_ChanseyStatueEnd:
 	
 PalletTown_EventScript_ChanseyStatueWish:
 	// TODO(gba) special ItemUpgrade_CheckCost
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueMaxed
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -727,12 +739,14 @@ _cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	// TODO(gba) special ItemUpgrade_PayAndUpgrade
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	PlayFanfare SEQ_ME_LVUP
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueEggGlows
 	WaitFanfare
 	// TODO(gba) special ItemUpgrade_BufferLevel
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueEggLevel
 	WaitButton
 	GoTo PalletTown_EventScript_ChanseyStatueEnd
@@ -791,7 +805,9 @@ PalletTown_EventScript_SignLadyShowSign:
 	SetVar 0x5000, 1
 	SetVar 0x4002, 0
 	// TODO(gba) special SetWalkingIntoSignVars
+	GoTo _cv_stop
 	// TODO(gba) special DisableMsgBoxWalkaway
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy
 	WaitButton
 	Return
@@ -879,14 +895,18 @@ DadStory_EventScript_MemorialGoThere:
 	
 TypeTutor_EventScript_Intro:
 	// TODO(gba) special TypeTutor_BufferIntro
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_gStringVar4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetMet
+	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
 	End
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_gStringVar4
 	WaitButton
 	CloseMsg
@@ -895,15 +915,18 @@ TypeTutor_EventScript_Trial:
 	
 TypeTutor_EventScript_JustDone:
 	// TODO(gba) special TypeTutor_BufferDone
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_gStringVar4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
+	GoTo _cv_stop
 	End
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
 	NPCMsg msg_0446_T01_TypeTutor_Text_WhichMove
 	// TODO(gba) special TypeTutor_PushMoves
+	GoTo _cv_stop
 	TouchscreenMenuHide
 	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
 	ScrCmd_067
@@ -916,6 +939,7 @@ _cv_menu_10:
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
 	// TODO(gba) special TypeTutor_SelectMove
+	GoTo _cv_stop
 	NPCMsg msg_0446_T01_TypeTutor_Text_WhichMon
 	WaitButton
 	Call EventScript_ChooseMoveTutorMon
@@ -1013,63 +1037,10 @@ TypeTutor_EventScript_Bye:
 	
 EventScript_ChooseMoveTutorMon:
 	// TODO(gba) special ChooseMonForMoveTutor
+	GoTo _cv_stop
 	LockAll
 	FacePlayer
 	Return
-
-_cv_unported_0:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_6:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_14:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_18:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_19:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_unported_22:
 	PlaySE SEQ_SE_DP_SELECT
@@ -1083,6 +1054,13 @@ _cv_unported_22:
 _cv_unported_25:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
+	NPCMsg msg_0446_T01_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+
+_cv_stop:
 	NPCMsg msg_0446_T01_cv_unported
 	WaitButton
 	CloseMsg

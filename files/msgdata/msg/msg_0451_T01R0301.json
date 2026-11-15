@@ -366,6 +366,50 @@
       "en_US": "{STRVAR_1 3, 6, 0} delivered Oak’s Parcel."
     },
     {
+      "id": "msg_0451_T01R0301_cv_name_Brock",
+      "en_US": "Brock"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Misty",
+      "en_US": "Misty"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_LtSurge",
+      "en_US": "Lt. Surge"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Erika",
+      "en_US": "Erika"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Koga",
+      "en_US": "Koga"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Sabrina",
+      "en_US": "Sabrina"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Blaine",
+      "en_US": "Blaine"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Bruno",
+      "en_US": "Bruno"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Agatha",
+      "en_US": "Agatha"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Lorelei",
+      "en_US": "Lorelei"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_name_Lance",
+      "en_US": "Lance"
+    },
+    {
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakCustomBallIOrdered",
       "en_US": [
         "Ah! \n",

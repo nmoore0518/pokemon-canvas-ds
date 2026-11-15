@@ -52,4 +52,11 @@ PalletTown_House2_EventScript_Sign:
 	CloseMsg
 	ReleaseAll
 	End
+
+_cv_stop:
+	NPCMsg msg_0855_CV_FIGHT_AREA_UNUSED_1_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 	.balign 4, 0

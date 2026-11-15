@@ -80,7 +80,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_CHALLENGER",
-            "spriteId": "SPRITE_VAR_0",
+            "spriteId": "101",
             "movement": 14,
             "type": 0,
             "eventFlag": "0x2017",
@@ -97,7 +97,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_0",
-            "spriteId": "SPRITE_VAR_1",
+            "spriteId": "102",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x2046",
@@ -114,7 +114,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_1",
-            "spriteId": "SPRITE_VAR_2",
+            "spriteId": "103",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x2047",
@@ -131,7 +131,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_2",
-            "spriteId": "SPRITE_VAR_3",
+            "spriteId": "104",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x2048",
@@ -148,7 +148,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_3",
-            "spriteId": "SPRITE_VAR_4",
+            "spriteId": "105",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x2049",
@@ -165,7 +165,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_4",
-            "spriteId": "SPRITE_VAR_5",
+            "spriteId": "106",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204A",
@@ -182,7 +182,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_5",
-            "spriteId": "SPRITE_VAR_6",
+            "spriteId": "107",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204B",
@@ -199,7 +199,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_6",
-            "spriteId": "SPRITE_VAR_7",
+            "spriteId": "108",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204C",
@@ -216,7 +216,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_7",
-            "spriteId": "SPRITE_VAR_8",
+            "spriteId": "109",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204D",
@@ -233,7 +233,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_8",
-            "spriteId": "SPRITE_VAR_9",
+            "spriteId": "110",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204E",
@@ -250,7 +250,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_9",
-            "spriteId": "SPRITE_VAR_10",
+            "spriteId": "111",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x204F",
@@ -267,7 +267,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_TRAINER_10",
-            "spriteId": "SPRITE_VAR_11",
+            "spriteId": "112",
             "movement": 2,
             "type": 0,
             "eventFlag": "0x2050",
@@ -284,7 +284,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_LEGEND",
-            "spriteId": "SPRITE_VAR_12",
+            "spriteId": "113",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x203A",
@@ -301,7 +301,7 @@
         },
         {
             "id": "LOCALID_PALLET_GYM_FIGURE",
-            "spriteId": "SPRITE_VAR_13",
+            "spriteId": "114",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x2035",

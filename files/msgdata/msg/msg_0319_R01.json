@@ -2,10 +2,95 @@
   "key": 18203,
   "messages": [
     {
-      "id": "msg_0319_R01_00000",
+      "id": "msg_0319_R01_Route1_Text_WorkAtPokeMartTakeSample",
       "en_US": [
-        "Rt. 1\n",
-        "South to Pallet Town"
+        "Hi!\n",
+        "I work at a Pokémon Mart.\r",
+        "It’s part of a convenient chain\n",
+        "selling all sorts of items.\r",
+        "Please, visit us in Viridian City.\r",
+        "I know, I’ll give you a sample.\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0319_R01_gText_ObtainedTheItem",
+      "en_US": "Obtained the {STRVAR_1 3, 1, 0}!"
+    },
+    {
+      "id": "msg_0319_R01_Route1_Text_PutPotionAway",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put the Potion away in\n",
+        "the Bag’s Items Pocket."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_Route1_Text_CanJumpFromLedges",
+      "en_US": [
+        "See those ledges along the road?\r",
+        "It’s a bit scary, but you can jump\n",
+        "from them.\r",
+        "You can get back to Pallet Town\n",
+        "quicker that way."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_Route1_Text_RouteSign",
+      "en_US": [
+        "Route 1\n",
+        "PALLET Town - Viridian City"
+      ]
+    },
+    {
+      "id": "msg_0319_R01_Route1_Text_ComeSeeUsIfYouNeedPokeBalls",
+      "en_US": [
+        "Please come see us if you need\n",
+        "Poké Balls for catching Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_gText_TooBadBagIsFull",
+      "en_US": [
+        "Too bad!\n",
+        "The Bag is full…"
+      ]
+    },
+    {
+      "id": "msg_0319_R01_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0319_R01_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

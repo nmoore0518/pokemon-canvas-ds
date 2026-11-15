@@ -6,7 +6,7 @@
 // Pokemon Canvas: ported from the GBA game's PalletTown_RivalsHouse_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
-	ScrDef _cv_unported_0
+	ScrDef PalletTown_RivalsHouse_EventScript_Daisy
 	ScrDef PalletTown_RivalsHouse_EventScript_TownMap
 	ScrDef PalletTown_RivalsHouse_EventScript_Bookshelf
 	ScrDef PalletTown_RivalsHouse_EventScript_Picture
@@ -17,7 +17,7 @@ PalletTown_RivalsHouse_EventScript_Daisy:
 	LockAll
 	FacePlayer
 	Call PalletTown_RivalsHouse_EventScript_DaisyCoins
-	GoToIfSet 0x2011, PalletTown_RivalsHouse_EventScript_GroomMon
+	GoToIfSet FLAG_GAME_CLEAR, PalletTown_RivalsHouse_EventScript_GroomMon
 	Call GymCandidate_EventScript_DaisyAside
 	CompareVarToValue 0x4001, 1
 	GoToIfEq PalletTown_RivalsHouse_EventScript_PleaseGiveMonsRest
@@ -75,6 +75,7 @@ PalletTown_RivalsHouse_OnTransition:
 PalletTown_RivalsHouse_EventScript_DaisyCoins:
 	SetVar 0x8004, ITEM_AMULET_COIN
 	// TODO(gba) special ItemUpgrade_HasItem
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsReturn
 	GoToIfSet 0x2012, PalletTown_RivalsHouse_EventScript_DaisyCoinsCheckBag
@@ -101,11 +102,13 @@ _cv_yn_2:
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_GroomWhichOne
 	WaitButton
 	// TODO(gba) special ChoosePartyMon
+	GoTo _cv_stop
 	LockAll
 	FacePlayer
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PalletTown_RivalsHouse_EventScript_DeclineGrooming
 	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ScriptGetPartyMonSpecies
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, SPECIES_EGG
 	GoToIfEq PalletTown_RivalsHouse_EventScript_CantGroomEgg
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LookingNiceInNoTime
@@ -116,9 +119,11 @@ _cv_yn_2:
 	PlayFanfare SEQ_ME_ASA
 	WaitFanfare
 	// TODO(gba) special DaisyMassageServices
+	GoTo _cv_stop
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	// TODO(gba) special BufferMonNickname
+	GoTo _cv_stop
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ThereYouGoAllDone
 	WaitButton
 	CloseMsg
@@ -126,8 +131,33 @@ _cv_yn_2:
 	End
 	
 GymCandidate_EventScript_DaisyAside:
-	GoToIfSet 0x2011, GymCandidate_EventScript_Return
-	// TODO(gba) special GymCandidate_BufferApprovals
+	GoToIfSet FLAG_GAME_CLEAR, GymCandidate_EventScript_Return
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x2093, _cv_appr_3
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_3:
+	GoToIfUnset 0x2094, _cv_appr_4
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_4:
+	GoToIfUnset 0x2095, _cv_appr_5
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_5:
+	GoToIfUnset 0x2096, _cv_appr_6
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_6:
+	GoToIfUnset 0x2097, _cv_appr_7
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_7:
+	GoToIfUnset 0x2098, _cv_appr_8
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_8:
+	GoToIfUnset 0x2099, _cv_appr_9
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_9:
+	GoToIfUnset 0x2007, _cv_appr_10
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_10:
+	BufferInt 0, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfLt GymCandidate_EventScript_Return
 	NPCMsg msg_0449_T01R0201_GymCandidate_Text_DaisyAside
@@ -198,21 +228,21 @@ PalletTown_RivalsHouse_EventScript_DaisyCoinsReturn:
 	
 PalletTown_RivalsHouse_EventScript_DaisyCoinsCheckBag:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2028, _cv_has_3
+	GoToIfUnset 0x2028, _cv_has_11
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_3:
+_cv_has_11:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2029, _cv_has_4
+	GoToIfUnset 0x2029, _cv_has_12
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_4:
+_cv_has_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x202A, _cv_has_5
+	GoToIfUnset 0x202A, _cv_has_13
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_5:
+_cv_has_13:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer
 	End
@@ -220,6 +250,7 @@ _cv_has_5:
 PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer:
 	SetVar 0x8004, ITEM_AMULET_COIN
 	// TODO(gba) special ItemUpgrade_CheckCost
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsMaxed
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -227,15 +258,16 @@ PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer:
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisySetCoins
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_6
+	GoToIfEq _cv_yes_14
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_7
-_cv_yes_6:
+	GoTo _cv_yn_15
+_cv_yes_14:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_7:
+_cv_yn_15:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsDecline
 	// TODO(gba) special ItemUpgrade_PayAndUpgrade
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyLetMeSee
@@ -248,6 +280,7 @@ _cv_yn_7:
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	// TODO(gba) special ItemUpgrade_BufferLevel
+	GoTo _cv_stop
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyCoinLevel
 	WaitButton
 	GoTo PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd
@@ -257,6 +290,7 @@ PalletTown_RivalsHouse_EventScript_RateMonFriendship:
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_MayISeeFirstMon
 	WaitButton
 	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetLeadMonFriendship
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_MonFriendshipLowest
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -368,9 +402,7 @@ PalletTown_RivalsHouse_EventScript_MonFriendshipHighest:
 	ReleaseAll
 	End
 
-_cv_unported_0:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
+_cv_stop:
 	NPCMsg msg_0449_T01R0201_cv_unported
 	WaitButton
 	CloseMsg

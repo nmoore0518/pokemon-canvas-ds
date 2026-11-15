@@ -5091,3 +5091,18 @@ _start:
 	.short \n
 	.short \value
 	.endm
+
+	// CanvasMart n, then the n items as .short: a shop selling exactly those (engine/src/script_new_cmds.c)
+	.macro CanvasMart n
+	.short 208
+	.byte 106
+	.short \n
+	.endm
+
+	// CanvasBufferMsg slot, msg: puts one of this script's messages into a string slot ({STRVAR_1 3, slot, 0})
+	.macro CanvasBufferMsg slot, msg
+	.short 208
+	.byte 107
+	.short \slot
+	.short \msg
+	.endm

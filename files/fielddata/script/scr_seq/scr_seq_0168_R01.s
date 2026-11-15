@@ -3,155 +3,134 @@
 #include "msgdata/msg/msg_0319_R01.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route1_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_R01_000
-	ScrDef scr_seq_R01_001
-	ScrDef scr_seq_R01_002
+	ScrDef Route1_EventScript_MartClerk
+	ScrDef Route1_EventScript_Boy
+	ScrDef BerryField_EventScript_FindNormal
+	ScrDef PaintWorld_EventScript_Figure
+	ScrDef Route1_EventScript_RouteSign
 	ScrDefEnd
-
-scr_seq_R01_001:
-	GoToIfUnset FLAG_UNK_189, _001F
-	ClearFlag FLAG_UNK_189
+	
+Route1_EventScript_MartClerk:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x209F, Route1_EventScript_AlreadyGotPotion
+	NPCMsg msg_0319_R01_Route1_Text_WorkAtPokeMartTakeSample
+	WaitButton
+	HasSpaceForItem ITEM_POTION, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq EventScript_BagIsFull
+	BufferItemName 1, ITEM_POTION
+	PlayFanfare SEQ_ME_LVUP
+	NPCMsg msg_0319_R01_gText_ObtainedTheItem
+	WaitFanfare
+	GiveItem ITEM_POTION, 1, VAR_SPECIAL_RESULT
+	BufferPlayersName 6
+	NPCMsg msg_0319_R01_Route1_Text_PutPotionAway
+	WaitButton
+	Call EventScript_RestorePrevTextColor
+	SetFlag 0x209F
+	CloseMsg
+	ReleaseAll
 	End
-
-_001F:
-	GetWeekday VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 1
-	GoToIfEq _0050
-	Compare VAR_TEMP_x4000, 2
-	GoToIfEq _0050
-	Compare VAR_TEMP_x4000, 6
-	GoToIfEq _0050
-	SetFlag FLAG_HIDE_CAMERON
-	End
-
-_0050:
-	ClearFlag FLAG_HIDE_CAMERON
-	End
-
-scr_seq_R01_000:
+	
+Route1_EventScript_Boy:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 0
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _015B
-	PhotoAlbumIsFull VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _016F
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 1
+	NPCMsg msg_0319_R01_Route1_Text_CanJumpFromLedges
+	WaitButton
 	CloseMsg
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	GetPlayerFacing VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 3
-	GoToIfNe _00CF
-	ApplyMovement obj_player, _01BC
-	ApplyMovement obj_R01_gsmiddleman1, _01D0
-	GoTo _00FA
-
-_00CF:
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _00EA
-	ApplyMovement obj_player, _019C
-	GoTo _00FA
-
-_00EA:
-	ApplyMovement obj_player, _01A8
-	ApplyMovement obj_R01_gsmiddleman1, _01D0
-_00FA:
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	ScrCmd_729 VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _0121
-	ApplyMovement obj_partner_poke, _01DC
-	WaitMovement
-_0121:
-	SetFlag FLAG_UNK_189
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	CameronPhoto 72
+	ReleaseAll
+	End
+	
+BerryField_EventScript_FindNormal:
+	SetVar 0x8004, ITEM_CHILAN_BERRY
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+PaintWorld_EventScript_Figure:
 	LockAll
-	FadeScreen 6, 1, 1, RGB_BLACK
+	FacePlayer
+	CompareVarToValue 0x5020, 2
+	GoToIfEq PaintWorld_EventScript_FigureSketch
+	CompareVarToValue 0x5020, 3
+	GoToIfEq PaintWorld_EventScript_FigureMega
+	NPCMsg msg_0319_R01_PaintWorld_Text_FigureFirst
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
+Route1_EventScript_RouteSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0319_R01_Route1_Text_RouteSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route1_EventScript_AlreadyGotPotion:
+	NPCMsg msg_0319_R01_Route1_Text_ComeSeeUsIfYouNeedPokeBalls
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_BagIsFull:
+	NPCMsg msg_0319_R01_gText_TooBadBagIsFull
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_RestorePrevTextColor:
+	CopyVar 0x5015, 0x5016
+	Return
+	
+PaintWorld_EventScript_FigureSketch:
+	NPCMsg msg_0319_R01_PaintWorld_Text_FigureSketch
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
+PaintWorld_EventScript_FigureMega:
+	NPCMsg msg_0319_R01_PaintWorld_Text_FigureMega
+	WaitButton
+	End
+	
+PaintWorld_EventScript_FigureBattle:
+	CloseMsg
+	// TODO(gba) special Painter_SetupFigure
+	GoTo _cv_stop
+	ClearFlag 0x2052
+	SetFlag 0x2036
+	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, PaintWorld_Text_FigureDefeat
+	GoTo _cv_stop
+	ClearFlag 0x2036
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_1
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_1:
+	// TODO(gba) special Painter_RecordBattle
+	GoTo _cv_stop
+	NPCMsg msg_0319_R01_PaintWorld_Text_Dissolve
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
-	ClearFlag FLAG_UNK_189
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 2
-	WaitButton
-	CloseMsg
+	// TODO(gba) warpsilent MAP_PEWTER_CITY_PAINTER_LOFT, 8, 4
+	GoTo _cv_stop
 	ReleaseAll
 	End
 
-_015B:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 5
+_cv_stop:
+	NPCMsg msg_0319_R01_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-
-_016F:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 3
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-	.balign 4, 0
-_0184:
-	WalkNormalEast
-	WalkNormalNorth 2
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_019C:
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_01A8:
-	WalkNormalNorth
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_01BC:
-	WalkNormalNorth
-	WalkNormalEast
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_01D0:
-	Delay8
-	WalkOnSpotNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_01DC:
-	WalkNormalEast
-	WalkNormalNorth
-	FaceSouth
-	EndMovement
-
-scr_seq_R01_002:
-	DirectionSignpostEx 1, 4, msg_0319_R01_00000
 	End
 	.balign 4, 0

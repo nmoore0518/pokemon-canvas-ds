@@ -54,6 +54,7 @@ DadStory_EventScript_MomDadsBall:
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomDadsBall
 	WaitButton
 	// TODO(gba) special DadStory_GetGymTypeBall
+	GoTo _cv_stop
 	GiveItem VAR_SPECIAL_RESULT, 1, VAR_SPECIAL_RESULT
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomMoveExtractor
 	WaitButton
@@ -82,6 +83,7 @@ DadStory_EventScript_MomWhyWithHim:
 	SetVar 0x8007, 3
 	PlaySE SEQ_SE_DP_SELECT
 	// TODO(gba) special ShakeCamera
+	GoTo _cv_stop
 	Call DadStory_EventScript_RevealStairs
 	SetFlag 0x200C
 	Wait 40, VAR_SPECIAL_RESULT
@@ -151,15 +153,25 @@ DadStory_EventScript_OldSaveStairs:
 	
 DadStory_EventScript_RevealStairs:
 	// TODO(gba) setmetatile 7, 0, 0x021, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 8, 0, 0x022, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 7, 1, 0x029, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 8, 1, 0x02A, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 7, 2, 0x005, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 8, 2, 0x006, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 9, 2, 0x007, FALSE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 7, 3, 0x00D, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 8, 3, 0x00E, TRUE
+	GoTo _cv_stop
 	// TODO(gba) setmetatile 9, 3, 0x00F, FALSE
+	GoTo _cv_stop
 	Return
 	
 DadStory_EventScript_MomAtHome:
@@ -207,6 +219,13 @@ _cv_unported_3:
 _cv_unported_4:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
+	NPCMsg msg_0447_T01R0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+
+_cv_stop:
 	NPCMsg msg_0447_T01R0101_cv_unported
 	WaitButton
 	CloseMsg

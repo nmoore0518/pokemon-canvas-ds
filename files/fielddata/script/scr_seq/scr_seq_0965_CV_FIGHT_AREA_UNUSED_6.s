@@ -6,21 +6,21 @@
 // Pokemon Canvas: ported from the GBA game's PalletTown_PlayersHouse_B1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
-	ScrDef _cv_unported_0
-	ScrDef _cv_unported_1
-	ScrDef _cv_unported_2
+	ScrDef PlayersHouse_B1F_EventScript_Synthesizer
+	ScrDef PlayersHouse_B1F_EventScript_BallMaker
+	ScrDef PlayersHouse_B1F_EventScript_BallChanger
 	ScrDef PlayersHouse_B1F_EventScript_Switch
-	ScrDef _cv_unported_4
-	ScrDef _cv_unported_5
-	ScrDef _cv_unported_6
-	ScrDef _cv_unported_7
+	ScrDef PlayersHouse_B1F_EventScript_Paper1
+	ScrDef PlayersHouse_B1F_EventScript_Paper2
+	ScrDef PlayersHouse_B1F_EventScript_Paper3
+	ScrDef PlayersHouse_B1F_EventScript_Paper4
 	ScrDef PlayersHouse_B1F_EventScript_Chalkboard
 	ScrDef PlayersHouse_B1F_EventScript_Bookshelf
 	ScrDef PlayersHouse_B1F_EventScript_Workbench
 	ScrDef PlayersHouse_B1F_EventScript_LabTable
 	ScrDef PlayersHouse_B1F_EventScript_Desk
 	ScrDef PlayersHouse_B1F_EventScript_TrashCan
-	ScrDef _cv_unported_14
+	ScrDef PlayersHouse_B1F_EventScript_Crates
 	ScrDef PlayersHouse_B1F_OnLoad
 	ScrDef PlayersHouse_B1F_OnTransition
 	ScrDef DadStory_EventScript_Basement
@@ -49,9 +49,11 @@ _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special ChoosePartyMon
+	GoTo _cv_stop
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special BallMaker_CheckMon
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEgg
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -77,6 +79,7 @@ _cv_yn_4:
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerExtracting
 	Call PlayersHouse_B1F_EventScript_CrankTurn
 	// TODO(gba) special BallMaker_Apply
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerEliminated
 	Wait 30, VAR_SPECIAL_RESULT
@@ -104,17 +107,21 @@ _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special ChoosePartyMon
+	GoTo _cv_stop
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special BallChanger_CheckMon
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEgg
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerPickBall
 	WaitButton
 	// TODO(gba) special Bag_ChooseBall
+	GoTo _cv_stop
 	CompareVarToValue 0x5003, ITEM_NONE
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special BallChanger_CheckBall
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 7
 	GoToIfEq PlayersHouse_B1F_EventScript_ChangerSame
 	CompareVarToValue VAR_SPECIAL_RESULT, 8
@@ -132,20 +139,24 @@ _cv_yn_8:
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
 	CloseMsg
 	// TODO(gba) special BallChanger_ShowBalls
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
 	Wait 24, VAR_SPECIAL_RESULT
 	// TODO(gba) special BallChanger_Apply
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
 	Call PlayersHouse_B1F_EventScript_Frame_changer1
 	Wait 20, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	// TODO(gba) special BallChanger_SwapBalls
+	GoTo _cv_stop
 	Wait 20, VAR_SPECIAL_RESULT
 	Call PlayersHouse_B1F_EventScript_Frame_changer0
 	BufferPlayersName 6
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerDone
 	WaitButton
 	// TODO(gba) special BallChanger_HideBalls
+	GoTo _cv_stop
 	CloseMsg
 	ReleaseAll
 	End
@@ -179,6 +190,7 @@ PlayersHouse_B1F_EventScript_Paper1:
 	LockAll
 	SetVar 0x8004, 0
 	// TODO(gba) special ShowNotePage
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	
@@ -186,6 +198,7 @@ PlayersHouse_B1F_EventScript_Paper2:
 	LockAll
 	SetVar 0x8004, 1
 	// TODO(gba) special ShowNotePage
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	
@@ -193,6 +206,7 @@ PlayersHouse_B1F_EventScript_Paper3:
 	LockAll
 	SetVar 0x8004, 2
 	// TODO(gba) special ShowNotePage
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	
@@ -200,6 +214,7 @@ PlayersHouse_B1F_EventScript_Paper4:
 	LockAll
 	SetVar 0x8004, 3
 	// TODO(gba) special ShowNotePage
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	
@@ -303,9 +318,11 @@ _cv_yn_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special ChoosePartyMon
+	GoTo _cv_stop
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special Synthesizer_CheckMon
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEgg
 	CompareVarToValue VAR_SPECIAL_RESULT, 3
@@ -334,6 +351,7 @@ _cv_yn_14:
 	Call PlayersHouse_B1F_EventScript_SynthCycle
 	Call PlayersHouse_B1F_EventScript_Frame_synth0
 	// TODO(gba) special Synthesizer_Apply
+	GoTo _cv_stop
 	GoToIfSet 0x200D, PlayersHouse_B1F_EventScript_SynthDoneNice
 	PlaySE SEQ_SE_DP_SELECT
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneEvil
@@ -391,6 +409,7 @@ _cv_yn_16:
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerSampling
 	Call PlayersHouse_B1F_EventScript_CrankTurn
 	// TODO(gba) special BallMaker_Apply
+	GoTo _cv_stop
 	Call PlayersHouse_B1F_EventScript_MakerBallOut
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerCreatedNice
 	WaitButton
@@ -484,6 +503,7 @@ Outfits_EventScript_BasementCrates:
 	WaitButton
 	SetVar 0x8004, 1
 	// TODO(gba) special Outfit_UnlockSpecial
+	GoTo _cv_stop
 	PlayFanfare SEQ_ME_ITEM
 	BufferPlayersName 6
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_FoundRocketUniform
@@ -572,72 +592,7 @@ Outfits_EventScript_ItsDads:
 Common_EventScript_NopReturn:
 	Return
 
-_cv_unported_0:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_2:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_5:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_6:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_7:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_14:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
+_cv_stop:
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_cv_unported
 	WaitButton
 	CloseMsg

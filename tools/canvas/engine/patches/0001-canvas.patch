@@ -946,15 +946,16 @@ index b1df6be3..67770baa 100644
  #endif
  }
 diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
-index d4b59833..f2eaf752 100644
+index d4b59833..9c9da93b 100644
 --- a/src/script_new_cmds.c
 +++ b/src/script_new_cmds.c
-@@ -2,10 +2,19 @@
+@@ -2,10 +2,24 @@
  #include "../include/constants/file.h"
  #include "../include/repel.h"
  #include "../include/roamer.h"
 +#include "../include/save.h"
  #include "../include/script.h"
++#include "../include/message.h"
  #include "../include/types.h"
  
  #define SCRIPT_NEW_CMD_REPEL_USE 0
@@ -965,11 +966,15 @@ index d4b59833..f2eaf752 100644
 +#define CANVAS_CMD_VAR_SET    103
 +#define CANVAS_CMD_VAR_GET    104
 +#define CANVAS_CMD_VAR_ADD    105
++#define CANVAS_CMD_BUFFER_MSG 107   // CanvasBufferMsg slot, msg: a message of this script's bank into a string slot
++#define CANVAS_CMD_MART       106   // CanvasMart n, then n items (.short): a shop with exactly those items
++struct MartItem;
++void LONG_CALL InitMartUI(void *taskManager, FieldSystem *fieldSystem, const u16 *items, int kind, int buySell, int decoWhich, const struct MartItem *priceOverrides);
 +BOOL Canvas_RunCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 n);
  
  #define SCRIPT_NEW_CMD_MAX 256
  
-@@ -23,6 +32,15 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -23,6 +37,35 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
  #endif
          break;
  
@@ -982,10 +987,30 @@ index d4b59833..f2eaf752 100644
 +    case CANVAS_CMD_VAR_ADD:
 +        return Canvas_RunCmd(ctx, sw, arg0);
 +
++    case CANVAS_CMD_BUFFER_MSG: {
++        MessageFormat **fmt = FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_MSGFMT);
++        String *str = NewString_ReadMsgData(ctx->msg_data, GetScriptVar(ScriptReadHalfword(ctx)));
++        SetStringAsPlaceholder(*fmt, arg0, str, NULL);
++        String_Delete(str);
++        return FALSE;
++    }
++
++    case CANVAS_CMD_MART: {
++        u16 items[65];
++        u32 i, n = arg0 > 64 ? 64 : arg0;
++        for (i = 0; i < arg0; i++) {
++            u16 item = ScriptReadHalfword(ctx);
++            if (i < n) items[i] = item;
++        }
++        items[n] = 0xFFFF;
++        InitMartUI(ctx->taskman, ctx->fsys, items, 0, 0, 0, 0);
++        return TRUE;
++    }
++
      default:
          break;
      }
-@@ -30,6 +48,40 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -30,6 +73,40 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
      return FALSE;
  }
  

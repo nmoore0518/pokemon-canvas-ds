@@ -2,15 +2,67 @@
   "key": 53008,
   "messages": [
     {
-      "id": "msg_0453_T02FS0101_00000",
-      "en_US": "The Gym Leader here is totally cool."
+      "id": "msg_0453_T02FS0101_gText_HowMayIServeYou",
+      "en_US": [
+        "Welcome!\r",
+        "How may I serve you?"
+      ]
     },
     {
-      "id": "msg_0453_T02FS0101_00001",
+      "id": "msg_0453_T02FS0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_GotToBuySomePotions",
       "en_US": [
-        "Have you been to Cinnabar?\r",
-        "It’s an island way south\n",
-        "of here."
+        "I’ve got to buy some Potions.\r",
+        "You never know when your Pokémon\n",
+        "will need quick healing."
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes",
+      "en_US": [
+        "This shop does good business in\n",
+        "ANTIDOTES, I’ve heard."
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_YouCameFromPallet",
+      "en_US": [
+        "Hey!\n",
+        "You came from Pallet Town?"
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_TakeThisToProfOak",
+      "en_US": [
+        "You know Prof. Oak, right?\r",
+        "His order came in. And somebody\n",
+        "important left a letter for him.\r",
+        "Can I get you to take them\n",
+        "to him?"
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received Oak’s Parcel\n",
+        "from the Pokémon Mart clerk."
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_ViridianCity_Mart_Text_SayHiToOakForMe",
+      "en_US": [
+        "Okay, thanks! Please say hi to\n",
+        "Prof. Oak for me, too."
+      ]
+    },
+    {
+      "id": "msg_0453_T02FS0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

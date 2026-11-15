@@ -7,7 +7,7 @@
 // or the porter, not this file.
 
 	ScrDef PalletTown_House1_EventScript_OldMan
-	ScrDef _cv_unported_1
+	ScrDef EventMons_EventScript_CapBoy
 	ScrDef PalletTown_House1_EventScript_Pidgey
 	ScrDef PalletTown_House1_EventScript_Sign
 	ScrDefEnd
@@ -62,6 +62,7 @@ PalletTown_House1_EventScript_Sign:
 	
 EventMons_EventScript_CapBoyRewards:
 	// TODO(gba) special EventMons_CapReward
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, SPECIES_NONE
 	GoToIfEq EventMons_EventScript_CapBoyHint
 	CopyVar 0x8009, 0x8005
@@ -74,6 +75,7 @@ EventMons_EventScript_CapBoyRewards:
 	
 EventMons_EventScript_CapBoyHint:
 	// TODO(gba) special EventMons_CapHint
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventMons_EventScript_CapBoyDone
 	BufferInt 2, VAR_SPECIAL_RESULT
@@ -97,6 +99,7 @@ EventMons_EventScript_CapBoyGive:
 	GoToIfEq EventMons_EventScript_ReleaseEnd
 	CopyVar 0x8005, 0x8009
 	// TODO(gba) special EventMons_CapRewardGiven
+	GoTo _cv_stop
 	GoTo EventMons_EventScript_CapBoyRewards
 	
 EventMons_EventScript_CapBoyDone:
@@ -108,6 +111,7 @@ EventMons_EventScript_CapBoyDone:
 	
 EventMons_EventScript_Gift:
 	// TODO(gba) special EventMons_GiveMon
+	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	GoToIfEq EventMons_EventScript_GiftFull
 	PlayFanfare SEQ_ME_LVUP
@@ -127,9 +131,7 @@ EventMons_EventScript_GiftFull:
 	SetVar VAR_SPECIAL_RESULT, 0
 	Return
 
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
+_cv_stop:
 	NPCMsg msg_0450_T01R0202_cv_unported
 	WaitButton
 	CloseMsg

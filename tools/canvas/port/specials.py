@@ -85,7 +85,67 @@ def battle_outcome(port, ret):
     return ['CheckBattleWon %s' % ret, 'CompareVarToValue %s, 1' % ret, 'GoToIfEq %s' % l, 'SetVar %s, 2' % ret, l + ':']
 
 
+def mastered_flag(port, t):
+    """the flag for a mastered gym type (the GBA game counts FLAG_GYM_TYPE_MASTERED + its own type number)"""
+    return port.flag('FLAG_GYM_TYPE_MASTERED_' + t)
+
+
+def gym_rooms_oak_reward(port, ret):
+    # VAR_RESULT = the gym room the player has earned and doesn't have yet (1 back, 2 left, 3 right), STR_VAR_1 how many
+    # kinds it took; 0 if none (every 100 caught)
+    done, n = port.new('rooms'), '0x401E'
+    out = ['SetVar VAR_SPECIAL_RESULT, 0', 'GoToIfUnset %s, %s' % (port.flag('FLAG_PALLET_GYM_OPEN'), done),
+           'CountNationalDexOwned %s' % n]
+    for i, f in enumerate(('FLAG_GYM_ROOM_BACK', 'FLAG_GYM_ROOM_LEFT', 'FLAG_GYM_ROOM_RIGHT')):
+        nxt = port.new('room')
+        out += ['GoToIfSet %s, %s' % (port.flag(f), nxt), 'CompareVarToValue %s, %d' % (n, (i + 1) * 100),
+                'GoToIfLt %s' % done, 'SetVar VAR_SPECIAL_RESULT, %d' % (i + 1), 'BufferInt 0, %d' % ((i + 1) * 100),
+                'GoTo %s' % done, nxt + ':']
+    return out + [done + ':']
+
+
+def event_mons_partner_ready(port, ret):
+    # 1: Electric mastered and no Pikachu yet; 2: Normal mastered and no Eevee yet
+    done, b = port.new('partner'), port.new('partner')
+    return ['SetVar VAR_SPECIAL_RESULT, 0',
+            'GoToIfUnset %s, %s' % (mastered_flag(port, 'ELECTRIC'), b), 'GoToIfSet %s, %s' % (port.flag('FLAG_EVENT_PARTNER_PIKACHU'), b),
+            'SetVar VAR_SPECIAL_RESULT, 1', 'GoTo %s' % done, b + ':',
+            'GoToIfUnset %s, %s' % (mastered_flag(port, 'NORMAL'), done), 'GoToIfSet %s, %s' % (port.flag('FLAG_EVENT_PARTNER_EEVEE'), done),
+            'SetVar VAR_SPECIAL_RESULT, 2', done + ':']
+
+
+LEADERS = ['BROCK', 'MISTY', 'SURGE', 'ERIKA', 'KOGA', 'SABRINA', 'BLAINE', 'GIOVANNI']
+
+
+def candidate_approvals(port, ret):
+    out = ['SetVar VAR_SPECIAL_RESULT, 0']
+    for who in LEADERS:
+        l = port.new('appr')
+        out += ['GoToIfUnset %s, %s' % (port.flag('FLAG_GYM_APPROVAL_' + who), l), 'AddVar VAR_SPECIAL_RESULT, 1', l + ':']
+    return out + ['BufferInt 0, VAR_SPECIAL_RESULT']
+
+
+MENTORS = {   # the player's type -> the leader or Elite Four member who mentors it (src/gym_candidate.c, sMentors)
+    'ROCK': 'Brock', 'NORMAL': 'Brock', 'WATER': 'Misty', 'ELECTRIC': 'Lt. Surge', 'STEEL': 'Lt. Surge', 'GRASS': 'Erika',
+    'POISON': 'Koga', 'BUG': 'Koga', 'PSYCHIC': 'Sabrina', 'FAIRY': 'Sabrina', 'FIRE': 'Blaine', 'GROUND': 'Bruno',
+    'DARK': 'Agatha', 'ICE': 'Lorelei', 'FIGHTING': 'Bruno', 'GHOST': 'Agatha', 'DRAGON': 'Lance', 'FLYING': 'Lance'}
+
+
+def candidate_mentor_name(port, ret):
+    pt = port.var('VAR_PLAYER_TYPE')
+    cases = [(_type(port, t), ['CanvasBufferMsg 0, %s' % port.own_msg('cv_name_' + re.sub(r'\W', '', who), who),
+                               'SetVar VAR_SPECIAL_RESULT, 1']) for t, who in MENTORS.items()]
+    return ['SetVar VAR_SPECIAL_RESULT, 0'] + chain(port, pt, cases)
+
+
 SPECIALS = {
+    'SetUnlockedPokedexFlags': lambda p, r: [],      # (the Pokedex is given with FLAG_SYS_POKEDEX_GET)
+    'GymRooms_OakReward': gym_rooms_oak_reward,
+    'GymRooms_GiveReward': lambda p, r: chain(p, '0x8004', [(i + 1, ['SetFlag %s' % p.flag(f)]) for i, f in
+                                                     enumerate(('FLAG_GYM_ROOM_BACK', 'FLAG_GYM_ROOM_LEFT', 'FLAG_GYM_ROOM_RIGHT'))]),
+    'EventMons_PartnerReady': event_mons_partner_ready,
+    'GymCandidate_BufferApprovals': candidate_approvals,
+    'GymCandidate_BufferMentorName': candidate_mentor_name,
     'GetBattleOutcome': battle_outcome,
     # The gym's decorations (and the practice trainers that come with them) aren't in yet: keep its people
     # who depend on them out of sight, and draw nothing extra.

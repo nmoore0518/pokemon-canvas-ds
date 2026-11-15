@@ -541,6 +541,7 @@ scr_seq_event_headers = files(
     'event_CV_FIGHT_AREA_UNUSED_8.h',
     'event_CV_FIGHT_AREA_UNUSED_9.h',
     'event_CV_BATTLE_PARK_UNUSED_1.h',
+    'event_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.h',
 )
 
 scr_seq_asm = files(
@@ -1521,4 +1522,6 @@ scr_seq_asm = files(
     'scr_seq_0974_CV_FIGHT_AREA_UNUSED_9_hdr.s',
     'scr_seq_0975_CV_BATTLE_PARK_UNUSED_1.s',
     'scr_seq_0976_CV_BATTLE_PARK_UNUSED_1_hdr.s',
+    'scr_seq_0977_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.s',
+    'scr_seq_0978_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_hdr.s',
 )

@@ -1,26 +1,31 @@
 #ifndef SCR_SEQ_T02_H_
 #define SCR_SEQ_T02_H_
 
-#define _EV_scr_seq_T02_000 0
-#define _EV_scr_seq_T02_001 1
-#define _EV_scr_seq_T02_002 2
-#define _EV_scr_seq_T02_003 3
-#define _EV_scr_seq_T02_004 4
-#define _EV_scr_seq_T02_005 5
-#define _EV_scr_seq_T02_006 6
-#define _EV_scr_seq_T02_007 7
-#define _EV_scr_seq_T02_008 8
-#define _EV_scr_seq_T02_009 9
-#define _EV_scr_seq_T02_010 10
-#define _EV_scr_seq_T02_011 11
+#define _EV_ViridianCity_EventScript_DreamEaterTutor 0
+#define _EV_ViridianCity_EventScript_OldMan 1
+#define _EV_ViridianCity_EventScript_TutorialOldMan 2
+#define _EV_ViridianCity_EventScript_Woman 3
+#define _EV_ViridianCity_EventScript_Youngster 4
+#define _EV_ViridianCity_EventScript_Boy 5
+#define _EV_ViridianCity_EventScript_ItemPotion 6
+#define _EV_TypeTutor_EventScript_Ground 7
+#define _EV_TypeTutor_EventScript_Bug 8
+#define _EV_ViridianCity_EventScript_TrainerTips1 9
+#define _EV_ViridianCity_EventScript_GymSign 10
+#define _EV_ViridianCity_EventScript_TrainerTips2 11
+#define _EV_ViridianCity_EventScript_CitySign 12
+#define _EV_ViridianCity_EventScript_GymDoor 13
+#define _EV_ViridianCity_EventScript_RoadBlocked 14
+#define _EV_ViridianCity_EventScript_GymDoorLocked 15
+#define _EV_ViridianCity_EventScript_TutorialTriggerLeft 16
+#define _EV_ViridianCity_EventScript_TutorialTriggerRight 17
+#define _EV_ViridianCity_OnTransition 18
+#define _EV_MoveExtractor_EventScript_ViridianVisit 19
 
-#define obj_T02_gsoldman1    0
-#define obj_T02_gsoldman1_2  1
-#define obj_T02_gsbigman     2
-#define obj_T02_gsboy1       3
-#define obj_T02_tree         4
-#define obj_T02_tree_2       5
-#define obj_T02_gsmiddleman1 6
-#define obj_T02_gsoldman1_3  7
+#define LOCALID_VIRIDIAN_OLD_MAN 3
+#define LOCALID_TUTORIAL_MAN 4
+#define LOCALID_VIRIDIAN_WOMAN 5
+#define LOCALID_VIRIDIAN_BORDER_TREE 8
+#define LOCALID_VIRIDIAN_EXTRACTOR_GRUNT 10
 
-#endif // SCR_SEQ_T02_H_
+#endif

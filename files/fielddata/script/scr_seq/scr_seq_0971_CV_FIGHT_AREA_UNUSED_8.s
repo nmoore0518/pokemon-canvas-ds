@@ -20,4 +20,11 @@ GymDecor_EventScript_GymPC:
 	
 GymRooms_EventScript_OnLoad:
 	End
+
+_cv_stop:
+	NPCMsg msg_0857_CV_FIGHT_AREA_UNUSED_8_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 	.balign 4, 0

@@ -7,9 +7,9 @@
 // or the porter, not this file.
 
 	ScrDef PalletTown_PlayersHouse_2F_EventScript_NES
-	ScrDef _cv_unported_1
+	ScrDef EventScript_PalletTown_PlayersHouse_2F_TurnOnPC
 	ScrDef PalletTown_PlayersHouse_2F_EventScript_Sign
-	ScrDef _cv_unported_3
+	ScrDef Outfits_EventScript_Wardrobe
 	ScrDef PalletTown_PlayersHouse_2F_OnTransition
 	ScrDefEnd
 	
@@ -27,11 +27,13 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC:
 	LockAll
 	SetVar 0x8004, 3
 	// TODO(gba) special DoPCTurnOnEffect
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
 	BufferPlayersName 6
 	NPCMsg msg_0448_T01R0102_gText_PlayerHouseBootPC
 	WaitButton
 	// TODO(gba) special BedroomPC
+	GoTo _cv_stop
 	CloseMsg
 	ReleaseAll
 	End
@@ -69,6 +71,7 @@ _cv_menu_2:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special Outfit_Wear
+	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_KAIDAN2
 	Wait 20, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 1, RGB_BLACK
@@ -243,18 +246,7 @@ Outfits_EventScript_Skip_DARK:
 Outfits_EventScript_Skip_FAIRY:
 	Return
 
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0448_T01R0102_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_3:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
+_cv_stop:
 	NPCMsg msg_0448_T01R0102_cv_unported
 	WaitButton
 	CloseMsg
