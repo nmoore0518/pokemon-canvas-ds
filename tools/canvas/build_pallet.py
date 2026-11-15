@@ -361,9 +361,51 @@ for dx, dy, nm in DECOR:
     quad(T, [(x0, yb, z0), (x0, yb, z1), (x0, yt, z1), (x0, yt, z0)], side, (-1, 0, 0), owner)
     quad(T, [(x1, yb, z1), (x1, yb, z0), (x1, yt, z0), (x1, yt, z1)], side, (1, 0, 0), owner)
     quad(T, [(x1, yb, z0), (x0, yb, z0), (x0, yt, z0), (x1, yt, z0)], side, (0, 0, -1), owner)
-    zc = (z0 + z1) / 2 + 0.2
-    quad(T, [(dx, yt, zc), (dx + 2, yt, zc), (dx + 2, yt + 26.2, zc - 1.36), (dx, yt + 26.2, zc - 1.36)],
-         [(0, 34), (32, 34), (32, 0), (0, 0)], (0, 0.6, 0.8), owner)
+    # Chansey herself, given body: her picture extruded into a solid (front, back, and every edge of her
+    # outline as a side in that edge's colours), stood up 1.3x tall like our other GBA art
+    from PIL import Image
+    fig = Image.open(os.path.join(HERE, 'data', 'chansey_statue.png')).convert('RGBA')
+    FH = 34                                   # her rows of the picture (below is the pedestal)
+    on = lambda px, py: 0 <= px < 32 and 0 <= py < FH and fig.getpixel((px, py))[3] >= 128
+    VS = 1.3
+    zm = (z0 + z1) / 2
+    # her front curves round like a body (strips of 4 pixels bent over a half circle); her back is flat
+    zb = zm - 0.15
+    def zf(px):
+        k = px // 4 * 4
+        f = lambda q: zm + 0.15 + 0.45 * max(0.0, 1 - ((q - 16) / 16) ** 2) ** 0.5
+        return f(k) + (f(k + 4) - f(k)) * (px - k) / 4
+    X = lambda px: dx + px / 16
+    H = lambda py: yt + (FH - py) * VS
+    for k in range(0, 32, 4):
+        nz = (zf(k) - zf(k + 4)) * 16 / 4
+        quad(T, [(X(k), H(FH), zf(k)), (X(k + 4), H(FH), zf(k + 4)), (X(k + 4), H(0), zf(k + 4)), (X(k), H(0), zf(k))],
+             [(k, FH), (k + 4, FH), (k + 4, 0), (k, 0)], (nz / (1 + nz * nz) ** 0.5, 0, 1 / (1 + nz * nz) ** 0.5), owner)
+    quad(T, [(X(32), H(FH), zb), (X(0), H(FH), zb), (X(0), H(0), zb), (X(32), H(0), zb)], [(32, FH), (0, FH), (0, 0), (32, 0)], (0, 0, -1), owner)
+    for px in range(32):                      # left and right edges: runs down each pixel column
+        for side, nb in ((-1, px - 1), (1, px + 1)):
+            py = 0
+            while py < FH:
+                if not (on(px, py) and not on(nb, py)): py += 1; continue
+                e = py
+                while e < FH and on(px, e) and not on(nb, e): e += 1
+                ex = px + (1 if side > 0 else 0)
+                xx, zz = X(ex), zf(ex)
+                uv = [(px + 0.5, e), (px + 0.5, e), (px + 0.5, py), (px + 0.5, py)]
+                if side < 0:
+                    quad(T, [(xx, H(e), zb), (xx, H(e), zz), (xx, H(py), zz), (xx, H(py), zb)], uv, (-1, 0, 0), owner)
+                else:
+                    quad(T, [(xx, H(e), zz), (xx, H(e), zb), (xx, H(py), zb), (xx, H(py), zz)], uv, (1, 0, 0), owner)
+                py = e
+    for py in range(FH):                      # tops of the outline: runs along each pixel row (split at the bends)
+        px = 0
+        while px < 32:
+            if not (on(px, py) and not on(px, py - 1)): px += 1; continue
+            e = px
+            while e < 32 and on(e, py) and not on(e, py - 1) and (e == px or e % 4): e += 1
+            uv = [(px, py + 0.5), (e, py + 0.5), (e, py + 0.5), (px, py + 0.5)]
+            quad(T, [(X(px), H(py), zf(px)), (X(e), H(py), zf(e)), (X(e), H(py), zb), (X(px), H(py), zb)], uv, UP, owner)
+            px = e
 
 # ---------------------------------------------------------------- buildings (HeartGold models), lined up on our doors
 BM_HOUSE = {'red': 313, 'blue': 340, 'green': 341, 'purple': 342}

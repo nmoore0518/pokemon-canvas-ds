@@ -71,7 +71,8 @@ gets its own texture set and area entry so no other room pays for its textures.
   wherever the GBA map has people walking right up to it (fields, paths along the edge)
 - keep paths between features centred, and line exits up with the neighbouring map's path (move our map if needed)
 - don't leave two signs side by side; carry over decorations like the Chansey statue rather than dropping them
-- our own GBA art gets dimension: fold it into top surfaces and faces (with sides and a shadow), never a flat card
+- our own GBA art gets dimension: fold it into top surfaces and faces (with sides and a shadow), never a flat card;
+  round things (statues) are extruded from their outline with a curved front
 
 
 ## Plan

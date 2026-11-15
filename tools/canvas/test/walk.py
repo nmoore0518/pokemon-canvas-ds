@@ -9,7 +9,9 @@ st, out, tag, *moves = sys.argv[1:]
 emu = DeSmuME(); emu.open(os.environ.get('ROM', 'build/canvas.nds')); emu.volume_set(0)
 emu.savestate.load_file(st)
 run = lambda n: [emu.cycle(with_joystick=False) for _ in range(n)]
-POS = int(os.environ.get('POSADDR', '0x022ae08c'), 16)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from findaddr import find_pos_addr
+run(5); POS = find_pos_addr(emu)   # (it moves with the heap)
 pos = lambda: (struct.unpack('<i', bytes(emu.memory.unsigned[POS:POS + 4]))[0], struct.unpack('<i', bytes(emu.memory.unsigned[POS + 8:POS + 12]))[0])
 shots = []
 for m in moves:
