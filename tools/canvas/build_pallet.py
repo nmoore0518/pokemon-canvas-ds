@@ -30,32 +30,78 @@ EVENTS = F('files/fielddata/eventdata/zone_event/046_T01.json')
 
 ORIG_LAND_COUNT = 676          # land data in the retail game; ours go after
 ORIG_BM_COUNT = 340
-CELL_X, CELL_Y = 32, 11        # Pallet's matrix cell; we take a 2x2 from here
+CELL_X, CELL_Y = 31, 11        # our region: matrix cells (31..33, 11..12), Pallet's cell (32, 11) among them
 MAP_PALLET = 49
 AREA_SET = 17
 TEXSET = 18
-RW, RH = 64, 64                # our region in blocks (2x2 lands)
+RW, RH = 96, 64                # the region in blocks (3x2 lands)
+OX = 27                        # where the GBA map's column 0 sits, so its centre road (19..22) meets Route 1
+BW, BH = RW // 32, RH // 32
+WATERFALL_MODEL = 319          # HeartGold's "dsm_fal1", scaled to fit
+STATUE_TEX = 'cv_chansey'
 
-# ---------------------------------------------------------------- the layout, extended to 64x64
+# ---------------------------------------------------------------- the GBA layout, with the changes made for the DS
 L = json.load(open(os.path.join(HERE, 'data', 'pallet_layout.json')))
 W0, H0 = L['W'], L['H']
-cells = [list(r.ljust(RW, 'X')) for r in L['cells']] + [['X'] * RW for _ in range(RH - H0)]
-coll = [list(r.ljust(RW, '1')) for r in L['coll']] + [['1'] * RW for _ in range(RH - H0)]
-trees = [tuple(t) for t in L['trees']]
-# the north road meets Route 1 at blocks 14..17, not our GBA 20..21
+c0 = [list(r) for r in L['cells']]
+k0 = [list(r) for r in L['coll']]
+trees0 = [tuple(t) for t in L['trees']]
+# the road north runs straight up the middle between the two house plateaus (18..22) to Route 1
 for y in (0, 1):
+    for x in range(W0):
+        c0[y][x], k0[y][x] = ('P', '0') if 19 <= x <= 22 else ('X', '1')
+trees0 = [t for t in trees0 if not (t[1] == 0 and 17 <= t[0] <= 22)]
+# one of the two signs below the gym moves to the other side of its stairs
+signs0 = [tuple(s) for s in L['signs']]
+signs0[signs0.index((16, 28))] = (25, 27)
+c0[28][16], k0[28][16] = 'G', '0'
+k0[27][25] = '1'
+# more rows of grass below the berry field, so there's room to walk round it before the trees
+# (HeartGold's trees lean back over about a block behind them, so this takes three)
+EXTRA_ROWS = 3
+for y in range(H0, H0 + EXTRA_ROWS):
+    c0.append(['X'] * 2 + ['G'] * (W0 - 4) + ['X'] * 2)
+    k0.append(['1'] * 2 + ['0'] * (W0 - 4) + ['1'] * 2)
+    for x in range(30, 34):
+        c0[-1][x] = 'W'
+H1 = H0 + EXTRA_ROWS
+
+
+def shift_rec(r):
+    r = list(r)
+    t = r[0]
+    if t == 'raised': r[1] += OX; r[3] += OX; r[7] = [v + OX for v in r[7]]
+    elif t == 'cliff_band': r[1] += OX; r[2] += OX; r[5] = [v + OX for v in r[5]]; r[6] = [v + OX for v in r[6]]
+    elif t in ('flowers',): r[1] += OX; r[3] += OX
+    elif t == 'pond': r[1] += OX; r[3] += OX; r[6] = [v + OX for v in r[6]]
+    elif t == 'fence': r[1] += OX; r[2] += OX
+    else: r[1] += OX
+    return r
+
+
+REC = [shift_rec(r) for r in L['rec']]
+DOORS = {k: (v[0] + OX, v[1]) for k, v in L['doors'].items()}
+SIGNS = [(x + OX, y) for x, y in signs0]
+DECOR = [(x + OX, y, nm) for x, y, nm, _ in L['decor']]
+
+# ---------------------------------------------------------------- the region: the layout pasted in, trees and water round it
+cells = [['X'] * RW for _ in range(RH)]
+coll = [['1'] * RW for _ in range(RH)]
+for y in range(H1):
+    for x in range(W0):
+        cells[y][x + OX], coll[y][x + OX] = c0[y][x], k0[y][x]
+trees = [(x + OX, y) for x, y in trees0]
+for y in range(H1, RH):           # the channel runs on south into Route 21's sea
     for x in range(RW):
-        cells[y][x], coll[y][x] = ('P', '0') if 14 <= x <= 17 else ('X', '1')
-trees = [t for t in trees if not (t[1] == 0 and t[0] in (14, 16))] + [(20, 0)]
-# below and right of the GBA map: trees, and the channel running on to Route 21's sea
-for y in range(H0, RH):
-    for x in range(RW):
-        if (30 <= x <= 33) or (y >= 58 and 2 <= x <= 33):
+        if (OX + 30 <= x <= OX + 33) or (y >= 58 and 34 <= x <= OX + 33):
             cells[y][x], coll[y][x] = 'W', '0'
+inside = lambda x, y: OX <= x < OX + W0 and y < H1
 for y in range(0, RH, 2):
-    for x in range(0, RW, 2):
-        if (x >= W0 or y >= H0) and all(cells[yy][xx] == 'X' for yy in (y, y + 1) for xx in (x, x + 1) if yy < RH and xx < RW):
+    for x in range(0, RW - 1, 2):
+        if not inside(x, y) and not inside(x + 1, y) and all(cells[yy][xx] == 'X' for yy in (y, y + 1) for xx in (x, x + 1) if yy < RH):
             trees.append((x, y))
+# the GBA map's own border trees stop where its rows did: carry the outer columns down the two new rows
+trees += [(OX, y) for y in range(H0, H1, 2)] + [(OX + W0 - 2, y) for y in range(H0, H1, 2)]
 kind = lambda x, y: cells[y][x] if 0 <= x < RW and 0 <= y < RH else None
 
 # ---------------------------------------------------------------- heights (blocks), as in the 3D mock-up
@@ -63,7 +109,7 @@ LOW, RAISE, WATER_DROP = -2.0, 1.0, 0.25
 topH = [[LOW if y >= 43 else 0.0 for x in range(RW)] for y in range(RH)]
 ramp = [[None] * RW for _ in range(RH)]
 rocky = [[False] * RW for _ in range(RH)]
-for r in L['rec']:
+for r in REC:
     if r[0] == 'cliff_band':
         _, x0, x1, y0, y1, stairs, falls = r
         for y in range(y0, y1 + 1):
@@ -72,7 +118,7 @@ for r in L['rec']:
                 if x in stairs: ramp[y][x] = (hb, hf, 'stairs')
                 elif x in falls: ramp[y][x] = (hb - WATER_DROP, hf - WATER_DROP, 'water')
                 else: topH[y][x] = hf; rocky[y][x] = True
-for r in L['rec']:
+for r in REC:
     if r[0] == 'raised':
         _, x0, y0, x1, y1, interior, _, stairs, _ = r
         for y in range(y0, y1 + 1):
@@ -94,7 +140,33 @@ GROUND_Y = 16.0                 # HeartGold's ground sits one block up
 Y = lambda h: GROUND_Y + 16.0 * h
 
 # ---------------------------------------------------------------- textures (set 18), materials
-ts_files, _ = read_narc(open(TEXSETS, 'rb').read())
+ts_files, ts_btnf = read_narc(open(TEXSETS, 'rb').read())
+
+
+def statue_texture():
+    """The GBA game's Chansey statue (32x48) as a 32x64 4bpp texture, colour 0 transparent"""
+    from PIL import Image
+    im = Image.open(os.path.join(HERE, 'data', 'chansey_statue.png')).convert('RGBA')
+    cols = [(0, 0, 0)]
+    idx = []
+    for y in range(64):
+        for x in range(32):
+            r, g, b, a = im.getpixel((x, y)) if y < im.height else (0, 0, 0, 0)
+            if a < 128: idx.append(0); continue
+            if (r, g, b) not in cols: cols.append((r, g, b))
+            idx.append(cols.index((r, g, b)))
+    assert len(cols) <= 16
+    data = bytes(idx[i] | (idx[i + 1] << 4) for i in range(0, len(idx), 2))
+    pal = b''.join(struct.pack('<H', (r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10)) for r, g, b in cols + [(0, 0, 0)] * (16 - len(cols)))
+    prm = (2 << 20) | (3 << 23) | (3 << 26) | (1 << 29)
+    return (STATUE_TEX.encode(), prm, 32 | (64 << 11) | 0x80000000, data, b''), ((STATUE_TEX + '_pl').encode(), 0, pal)
+
+
+_t, _p = read_tex0(ts_files[TEXSET], tex0_of(ts_files[TEXSET]))
+_st, _sp = statue_texture()
+_t = [t for t in _t if t[0] != _st[0]] + [_st]
+_p = [p for p in _p if p[0] != _sp[0]] + [_sp]
+ts_files[TEXSET] = write_btx0(_t, _p)
 btx = ts_files[TEXSET]
 t0 = u32(btx, 0x10)
 TEXDIMS = {}
@@ -103,8 +175,12 @@ for nm, e in read_dict(btx, t0 + u16(btx, t0 + 0xE)):
     TEXDIMS[nm.decode()] = (8 << ((prm >> 20) & 7), 8 << ((prm >> 23) & 7))
 PALS = {nm.decode() for nm, _ in read_dict(btx, t0 + u32(btx, t0 + 0x34))}
 pal_of = lambda t: next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in PALS)
-MATS = ['road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'slope', 'sea_un', 'pond_line',
-        'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs']
+# HeartGold animates Pallet's map materials by index (area animation 0: pond_on, swave_p, pond_edge, sea_line02,
+# sea_un, sea_on, river, river_r), so those eight slots come first and only sea_un's is used; anything else put
+# there would scroll.
+ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']
+MATS = ['sea_un', 'road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'slope', 'pond_line',
+        'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
 
 # ---------------------------------------------------------------- per-land geometry
 class Land:
@@ -117,8 +193,8 @@ class Land:
         return (gx - 32 * self.bx) * 16 - 256, (gz - 32 * self.by) * 16 - 256
 
 
-lands = {(bx, by): Land(bx, by) for by in range(2) for bx in range(2)}
-land_at = lambda gx, gy: lands[(min(1, max(0, int(gx) // 32)), min(1, max(0, int(gy) // 32)))]
+lands = {(bx, by): Land(bx, by) for by in range(BH) for bx in range(BW)}
+land_at = lambda gx, gy: lands[(min(BW - 1, max(0, int(gx) // 32)), min(BH - 1, max(0, int(gy) // 32)))]
 UP = (0, 1, 0)
 
 
@@ -171,11 +247,13 @@ def ground_tex(x, y):
 for y in range(RH):
     for x in range(RW):
         r = ramp[y][x]
-        if r and r[2] == 'water': top_quad('sea_un', x, y, r[0], r[1]); continue
+        if r and r[2] == 'water':                   # the waterfall model is the surface; this is the pool behind it
+            top_quad('sea_un', x, y, r[0] - 1.0, r[1] - 1.0); continue
         if r:
             owner = lands[(x // 32, y // 32)]
+            v = 24 * (r[0] - r[1])            # three steps to a block of height, as HeartGold's stairs have
             quad('slope', [(x, Y(r[1]), y + 1), (x + 1, Y(r[1]), y + 1), (x + 1, Y(r[0]), y), (x, Y(r[0]), y)],
-                 [(0, 24), (32, 24), (32, 0), (0, 0)], (0, 0.7, 0.7), owner)
+                 [(0, v), (32, v), (32, 0), (0, 0)], (0, 0.7, 0.7), owner)
             continue
         if is_water(x, y): top_quad('sea_un', x, y, topH[y][x] - WATER_DROP, topH[y][x] - WATER_DROP); continue
         top_quad(ground_tex(x, y), x, y, topH[y][x], topH[y][x])
@@ -215,7 +293,8 @@ for y in range(RH):
             hi, lo = ((x, y), (x + 1, y)) if a > right else ((x + 1, y), (x, y))
             t, vs = face(hi, lo)
             wall_x(t, x + 1, y, min(a, right), max(a, right), vs, (1 if a > right else -1, 0, 0))
-        if down is not None and abs(a - down) > 0.01:
+        falls = lambda xx, yy: 0 <= yy < RH and ramp[yy][xx] and ramp[yy][xx][2] == 'water'
+        if down is not None and abs(a - down) > 0.01 and not (falls(x, y) and falls(x, y + 1)):
             hi, lo = ((x, y), (x, y + 1)) if a > down else ((x, y + 1), (x, y))
             t, vs = face(hi, lo)
             wall_z(t, x, y + 1, min(a, down), max(a, down), vs, (0, 0, 1 if a > down else -1))
@@ -239,7 +318,7 @@ for (x, y) in sorted(trees, key=lambda t: (t[1], t[0])):
     quad('tree01gs', [(cx - 2, Y(base), z), (cx + 2, Y(base), z), (cx + 2, Y(base) + 49.3, z - 2.548), (cx - 2, Y(base) + 49.3, z - 2.548)],
          [(0, 64), (64, 64), (64, 0), (0, 0)], (0, 0.6, 0.8), owner)
 
-for r in L['rec']:
+for r in REC:
     if r[0] == 'fence':
         _, x0, x1, yy = r[:4]
         for fx in range(x0, x1 + 1):
@@ -247,6 +326,44 @@ for r in L['rec']:
             z = yy + 0.85
             quad('fence_a', [(fx, h, z), (fx + 1, h, z), (fx + 1, h + 11.3, z - 0.708), (fx, h + 11.3, z - 0.708)],
                  [(fx * 16, 16), ((fx + 1) * 16, 16), ((fx + 1) * 16, 0), (fx * 16, 0)], (0, 0.7, 0.7), lands[(fx // 32, yy // 32)])
+
+# stair rails: a low wall down each side of every flight, from the brown end of the slope texture
+RAIL_UV = [(2, 30), (10, 30), (10, 26), (2, 26)]
+for y in range(RH):
+    x = 0
+    while x < RW:
+        r = ramp[y][x]
+        if not (r and r[2] == 'stairs'): x += 1; continue
+        x1 = x
+        while x1 + 1 < RW and ramp[y][x1 + 1] == r: x1 += 1
+        owner = lands[(x // 32, y // 32)]
+        for ex in (x - 0.15, x1 + 1 - 0.1):
+            a, b = ex, ex + 0.25
+            yb, yf = Y(r[0]) + 6, Y(r[1]) + 6
+            lb, lf = Y(r[0]) - 2, Y(r[1]) - 2
+            quad('slope', [(a, yf, y + 1), (b, yf, y + 1), (b, yb, y), (a, yb, y)], RAIL_UV, (0, 0.7, 0.7), owner)   # top
+            quad('slope', [(a, lf, y + 1), (a, yf, y + 1), (a, yb, y), (a, lb, y)], RAIL_UV, (-1, 0, 0), owner)      # sides
+            quad('slope', [(b, lb, y), (b, yb, y), (b, yf, y + 1), (b, lf, y + 1)], RAIL_UV, (1, 0, 0), owner)
+            if not (y + 1 < RH and ramp[y + 1][x] and ramp[y + 1][x][2] == 'stairs'):                          # end post
+                quad('slope', [(a, lf, y + 1), (b, lf, y + 1), (b, yf, y + 1), (a, yf, y + 1)], RAIL_UV, (0, 0, 1), owner)
+        x = x1 + 1
+
+# the Chansey statue: a stone pedestal and the GBA game's Chansey, standing up like HeartGold's trees
+for dx, dy, nm in DECOR:
+    if nm != 'chansey': continue
+    owner = lands[(dx // 32, dy // 32)]
+    x0, x1, z0, z1 = dx + 0.1, dx + 1.9, dy + 1.15, dy + 2.85
+    yb = Y(solid(dx, dy + 1)); yt = yb + 12
+    T = STATUE_TEX
+    quad(T, [(x0, yb, z1), (x1, yb, z1), (x1, yt, z1), (x0, yt, z1)], [(3, 47), (29, 47), (29, 34), (3, 34)], (0, 0, 1), owner)
+    quad(T, [(x0, yt, z1), (x1, yt, z1), (x1, yt, z0), (x0, yt, z0)], [(5, 37), (26, 37), (26, 35), (5, 35)], UP, owner)
+    side = [(7, 43), (12, 43), (12, 38), (7, 38)]
+    quad(T, [(x0, yb, z0), (x0, yb, z1), (x0, yt, z1), (x0, yt, z0)], side, (-1, 0, 0), owner)
+    quad(T, [(x1, yb, z1), (x1, yb, z0), (x1, yt, z0), (x1, yt, z1)], side, (1, 0, 0), owner)
+    quad(T, [(x1, yb, z0), (x0, yb, z0), (x0, yt, z0), (x1, yt, z0)], side, (0, 0, -1), owner)
+    zc = (z0 + z1) / 2 + 0.2
+    quad(T, [(dx, yt, zc), (dx + 2, yt, zc), (dx + 2, yt + 26.2, zc - 1.36), (dx, yt + 26.2, zc - 1.36)],
+         [(0, 34), (32, 34), (32, 0), (0, 0)], (0, 0.6, 0.8), owner)
 
 # ---------------------------------------------------------------- buildings (HeartGold models), lined up on our doors
 BM_HOUSE = {'red': 313, 'blue': 340, 'green': 341, 'purple': 342}
@@ -261,17 +378,17 @@ DOOR_OF = {'lab': 'LAB_DOOR', 'pokemon_center': 'PC_DOOR', 'mart': 'MART_DOOR', 
 door_tiles = set()
 
 
-def prop(model, gx, y, gz):
+def prop(model, gx, y, gz, scale=(1, 1, 1)):
     ld = land_at(gx, gz)
     lx, lz = ld.local(gx, gz)
-    ld.props.append((model, lx, y, lz))
+    ld.props.append((model, lx, y, lz, scale))
 
 
-for r in L['rec']:
+for r in REC:
     t, x, y = r[0], r[1], r[2]
     if t in BUILDINGS:
         model, door, off, cx = BUILDINGS[t]
-        dx, dy = (x + 1, y + 4) if t == 'house' else L['doors'][DOOR_OF[t]]
+        dx, dy = (x + 1, y + 4) if t == 'house' else DOORS[DOOR_OF[t]]
         door_tiles.add((dx, dy))
         base = Y(topH[dy][dx])
         ox, oz = (dx + 0.5) * 16 - off[0] - cx, (dy + 1) * 16 - off[2]
@@ -279,19 +396,25 @@ for r in L['rec']:
         prop(door, (ox + off[0]) / 16, base + off[1], (oz + off[2]) / 16)
     elif t == 'mailbox':
         prop(30, x + 0.5, Y(solid(x, y + 1)), y + 1.35)
-for sx, sy in L['signs']:
+for sx, sy in SIGNS:
     prop(29, sx + 0.5, Y(solid(sx, sy)), sy + 0.35)
-for dx, dy, nm, _ in L['decor']:
+# the waterfall: HeartGold's model (10 wide, 4.15 high, 4.17 deep, top at the back) stretched over our falls
+for r in REC:
+    if r[0] == 'cliff_band' and r[6]:
+        _, bx0, bx1, y0, y1, stairs, falls = r
+        top, bottom = Y(0.0), Y(LOW - WATER_DROP)
+        sx, sy, sz = len(falls) / 10.0, (top - bottom) / 16 / 4.15, (y1 + 1 - y0) / 4.17
+        prop(WATERFALL_MODEL, min(falls) + len(falls) / 2, top - 3.65 * 16 * sy, y0 + 0.4 * sz, (sx, sy, sz))
+for dx, dy, nm in DECOR:
     if nm == 'lamp': prop(95, dx + 0.4, Y(solid(dx, dy + 1)), dy + 1.4)
     elif nm == 'bench': prop(178, dx + 0.9, Y(solid(dx, dy)), dy + 0.4)
-    elif nm == 'chansey': prop(180, dx + 1, Y(solid(dx, dy + 1)), dy + 1.4)
 
 
 def building_entries(ld):
     out = b''
-    for model, x, y, z in ld.props:
+    for model, x, y, z, sc in ld.props:
         f = lambda v: int(round(v * 4096))
-        out += struct.pack('<I3i3i3i8x', model, f(x), f(y), f(z), 0, 0, 0, 4096, 4096, 4096)
+        out += struct.pack('<I3i3i3i8x', model, f(x), f(y), f(z), 0, 0, 0, *[f(v) for v in sc])
     assert len(ld.props) <= 32, ('too many props in a land', len(ld.props))
     return out
 
@@ -361,9 +484,12 @@ def bdhc(ld):
 
 def land_file(ld):
     groups = []
-    for m in MATS:
+    for i, slot in enumerate(ANIM_SLOTS):
+        mesh = ld.mesh['sea_un'] if slot == 'sea_un' else Mesh()
+        groups.append((slot, 'sea_un', pal_of('sea_un'), mesh, {'repeat': 3, 'flip': 0, 'size': TEXDIMS['sea_un']}))
+    for m in MATS[1:]:
         opts = {'repeat': 3, 'flip': 0, 'size': TEXDIMS[m]}
-        if m in ('tree01gs', 'tree01_un', 'flower01', 'flower02'): opts['repeat'] = 0
+        if m in ('tree01gs', 'tree01_un', 'flower01', 'flower02', STATUE_TEX): opts['repeat'] = 0
         groups.append((m, m, pal_of(m), ld.mesh[m], opts))
     model = build_model('canvas_pallet_%d%d' % (ld.bx, ld.by), groups)
     model += b'\0' * (-len(model) % 4)
@@ -439,7 +565,7 @@ def main():
                                 b''.join(ents) + ms[4 + 4 * n0 + 4 * tot:])
     # area building set
     sets, sets_btnf = read_narc(open(AREA_BUILD, 'rb').read())
-    used = sorted({m for ld in lands.values() for m, *_ in ld.props})
+    used = sorted({p[0] for ld in lands.values() for p in ld.props})
     base = list(struct.unpack_from('<%dH' % u16(sets[AREA_SET], 0), sets[AREA_SET], 2))
     ids = base[:16] + [m for m in used if m not in base[:16]]
     sets[AREA_SET] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
@@ -461,10 +587,11 @@ def main():
     land, land_btnf = read_narc(open(LAND_NARC, 'rb').read())
     land = land[:ORIG_LAND_COUNT]
     ids = {}
-    for key in ((0, 0), (1, 0), (0, 1), (1, 1)):
+    for key in sorted(lands, key=lambda k: (k[1], k[0])):
         ids[key] = len(land)
         land.append(land_file(lands[key]))
     open(LAND_NARC, 'wb').write(write_narc(land, land_btnf))
+    open(TEXSETS, 'wb').write(write_narc(ts_files, ts_btnf))
     # matrix
     m = bytearray(open(MATRIX, 'rb').read())
     w, h, has_hdr, has_alt, nl = m[0], m[1], m[2], m[3], m[4]
@@ -474,7 +601,7 @@ def main():
     for (bx, by), lid in ids.items():
         c = (CELL_Y + by) * w + CELL_X + bx
         struct.pack_into('<H', m, p_hdr + 2 * c, MAP_PALLET)
-        m[p_alt + c] = m[p_alt + CELL_Y * w + CELL_X]
+        m[p_alt + c] = m[p_alt + 11 * w + 32]          # (Pallet's own cell)
         struct.pack_into('<H', m, p_land + 2 * c, lid)
     open(MATRIX, 'wb').write(bytes(m))
     write_events()
@@ -485,13 +612,13 @@ def write_events():
     ev = json.load(open(EVENTS))
     gx = lambda x: 32 * CELL_X + x
     gz = lambda y: 32 * CELL_Y + y
-    D = L['doors']
+    D = DOORS
     # warps 0..2 keep their interiors (their exits come back to these indices)
     for i, nm in enumerate(('PLAYER_DOOR', 'RIVAL_DOOR', 'LAB_DOOR')):
         ev['warps'][i]['x'], ev['warps'][i]['z'] = gx(D[nm][0]), gz(D[nm][1])
-    for bg, (sx, sy) in zip(ev['bgs'], L['signs']):
+    for bg, (sx, sy) in zip(ev['bgs'], SIGNS):
         bg['x'], bg['z'] = gx(sx), gz(sy)
-    spots = [(24, 14), (40, 31), (12, 31)]
+    spots = [(OX + 31, 14), (OX + 40, 31), (OX + 12, 31)]
     for obj, (ox, oy) in zip(ev['objects'], spots):
         obj['x'], obj['z'] = gx(ox), gz(oy)
     json.dump(ev, open(EVENTS, 'w'), indent=4)

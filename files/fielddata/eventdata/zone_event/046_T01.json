@@ -4,7 +4,7 @@
         {
             "scriptId": "_EV_scr_seq_T01_005 + 1",
             "type": 1,
-            "x": 1047,
+            "x": 1042,
             "z": 365,
             "y": 0,
             "dir": 4
@@ -12,7 +12,7 @@
         {
             "scriptId": "_EV_scr_seq_T01_003 + 1",
             "type": 1,
-            "x": 1041,
+            "x": 1036,
             "z": 379,
             "y": 0,
             "dir": 4
@@ -20,7 +20,7 @@
         {
             "scriptId": "_EV_scr_seq_T01_004 + 1",
             "type": 1,
-            "x": 1058,
+            "x": 1053,
             "z": 380,
             "y": 0,
             "dir": 4
@@ -28,8 +28,8 @@
         {
             "scriptId": "_EV_scr_seq_T01_002 + 1",
             "type": 1,
-            "x": 1040,
-            "z": 380,
+            "x": 1044,
+            "z": 379,
             "y": 0,
             "dir": 4
         }
@@ -48,7 +48,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 0,
-            "x": 1048,
+            "x": 1050,
             "z": 366,
             "y": 0
         },
@@ -65,7 +65,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1064,
+            "x": 1059,
             "z": 383,
             "y": 0
         },
@@ -82,28 +82,28 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1036,
+            "x": 1031,
             "z": 383,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1030,
+            "x": 1025,
             "z": 400,
             "header": "MAP_PALLET_TOWN_REDS_HOUSE_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1055,
+            "x": 1050,
             "z": 360,
             "header": "MAP_PALLET_TOWN_BLUES_HOUSE_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1062,
+            "x": 1057,
             "z": 379,
             "header": "MAP_PALLET_TOWN_OAKS_LAB",
             "anchor": 0,

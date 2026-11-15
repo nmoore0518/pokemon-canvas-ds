@@ -74,13 +74,16 @@ def material_data(repeat=3, flip=0, alpha=31, both_faces=True, size=(0, 0)):
 
 
 def build_model(name, groups):
-    """groups: [(material name, texture name, palette name, Mesh, opts dict)] -> BMD0 bytes"""
-    groups = [g for g in groups if g[3].quads or g[3].tris]
+    """groups: [(material name, texture name, palette name, Mesh, opts dict)] -> BMD0 bytes.
+    Every group becomes a material, in order (HeartGold animates map materials by index, so an empty
+    group can hold a place); only groups with geometry get a shape."""
     nmat = len(groups)
+    drawn = [i for i, g in enumerate(groups) if g[3].quads or g[3].tris]
+    nshp = len(drawn)
     # ---- render commands
     sbc = bytearray(b'\x26\x00\x00\x00\x00' + b'\x02\x00\x01' + b'\x0b')
-    for i in range(nmat):
-        sbc += bytes([0x04, i, 0x05, i])
+    for k, i in enumerate(drawn):
+        sbc += bytes([0x04, i, 0x05, k])
     sbc += b'\x2b\x01'
     sbc = pad4(bytes(sbc))
     # ---- nodes
@@ -124,11 +127,11 @@ def build_model(name, groups):
         build_dict(tex_ent, 4) + build_dict(pal_ent, 4) + lists + mdata
     mats = pad4(mats)
     # ---- shapes
-    dls = [display_list(g[3]) for g in groups]
-    sdict_len = len(build_dict([(b'p%d' % i, b'\0' * 4) for i in range(nmat)], 4))
+    dls = [display_list(groups[i][3]) for i in drawn]
+    sdict_len = len(build_dict([(b'p%d' % i, b'\0' * 4) for i in range(nshp)], 4))
     hdr_start = sdict_len
     shp_ent, heads = [], b''
-    dl_start = hdr_start + 16 * nmat
+    dl_start = hdr_start + 16 * nshp
     dl_off = 0
     for i, dl in enumerate(dls):
         h = hdr_start + 16 * i
@@ -143,7 +146,7 @@ def build_model(name, groups):
     mn = [min(v[k] for v in allv) for k in range(3)]
     mx = [max(v[k] for v in allv) for k in range(3)]
     box = [fx16(mn[k] / BOX_SCALE) for k in range(3)] + [fx16((mx[k] - mn[k]) / BOX_SCALE) for k in range(3)]
-    info = struct.pack('<8B2i4H6h2i', 0, 0, 0, 1, nmat, nmat, 1, 0, POS_SCALE * FX, FX // POS_SCALE,
+    info = struct.pack('<8B2i4H6h2i', 0, 0, 0, 1, nmat, nshp, 1, 0, POS_SCALE * FX, FX // POS_SCALE,
                        min(65535, 4 * nq + 3 * nt), nq + nt, nt, nq, *box, BOX_SCALE * FX, FX // BOX_SCALE)
     off_sbc = 0x40 + len(nodes)
     off_mat = off_sbc + len(sbc)

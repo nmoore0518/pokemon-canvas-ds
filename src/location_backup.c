@@ -10,7 +10,7 @@
 static const Location sLocation_PlayerRoom = {
     .mapId = MAP_PALLET,
     .warpId = 0xFFFFFFFF,
-    .x = 32 * 32 + 6,
+    .x = 31 * 32 + 27 + 6,
     .y = 32 * 11 + 49,
     .direction = 0x00000001,
 };
