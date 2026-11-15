@@ -57,6 +57,15 @@ CLONES = [  # GBA map, HeartGold room to copy, which of its people stay (by id s
 ROOM_SLOTS = {   # GBA rooms built from their own layouts in unused slots (see build_rooms.py)
     'MAP_PALLET_TOWN_HOUSE2': 'MAP_FIGHT_AREA_UNUSED_1',
     'MAP_PALLET_TOWN_PLAYERS_HOUSE_B1F': 'MAP_FIGHT_AREA_UNUSED_6',
+    'MAP_PALLET_TOWN_GYM': 'MAP_FIGHT_AREA_UNUSED_7',
+    'MAP_PALLET_TOWN_GYM_BACK_ROOM': 'MAP_FIGHT_AREA_UNUSED_8',
+    'MAP_PALLET_TOWN_GYM_LEFT_ROOM': 'MAP_FIGHT_AREA_UNUSED_9',
+    'MAP_PALLET_TOWN_GYM_RIGHT_ROOM': 'MAP_BATTLE_PARK_UNUSED_1',
+    # the bigger versions (by POKeMON caught; the game picks the one you've earned)
+    'MAP_PALLET_TOWN_GYM+50': 'MAP_BATTLE_PARK_UNUSED_2',
+    'MAP_PALLET_TOWN_GYM_BACK_ROOM+150': 'MAP_BATTLE_TOWER_UNUSED_1',
+    'MAP_PALLET_TOWN_GYM_LEFT_ROOM+250': 'MAP_BATTLE_TOWER_UNUSED_2',
+    'MAP_PALLET_TOWN_GYM_RIGHT_ROOM+350': 'MAP_BATTLE_TOWER_UNUSED_3',
 }
 for _gba, _tmpl, _keep, _slot in CLONES:
     SLOTS[_gba] = _slot

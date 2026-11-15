@@ -62,6 +62,26 @@ solid from its picture: a profile says which rows are top surface (laid flat) an
 tall since the camera looks down), with sides in the face's edge colours and a soft shadow underneath. The room
 gets its own texture set and area entry so no other room pays for its textures.
 
+## The Pallet Gym
+
+Built in GBA art like the basement, with solid walls joined all the way round (the GBA wall-base tile along the
+bottom of each face, plain wall colour above and on the caps), HeartGold's gym statues, the gym PCs folded into
+solids, and doorways in the walls (open for now; the GBA game opens them at run time). Oak's rooms and the
+expansions, by kinds of POKeMON caught (Nick's design):
+
+| caught | what you get |
+|---|---|
+| 50 | the main hall gets bigger (25 -> 31 wide) |
+| 100 | the back room (as on the GBA) |
+| 150 | the back room gets bigger (17x15 -> 21x17) |
+| 200 | the left room |
+| 250 | the left room gets bigger |
+| 300 | the right room |
+| 350 | the right room gets bigger |
+
+Each size is its own map (`widen` in `build_rooms.py` repeats columns/rows and moves the events with them;
+slots in `slots.py`); the door scripts, when the GBA scripts come over, send you to the size you've earned.
+
 ## Rules for every map we build (from Nick's review of Pallet)
 
 - stairs: HeartGold's striped `slope` ramp, about three steps per block of height, with a low rail down each side;

@@ -289,4 +289,12 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0287_D51R0301.bin',
     'map_matrix_0288_CV_FIGHT_AREA_UNUSED_1.bin',
     'map_matrix_0289_CV_FIGHT_AREA_UNUSED_6.bin',
+    'map_matrix_0290_CV_FIGHT_AREA_UNUSED_7.bin',
+    'map_matrix_0291_CV_FIGHT_AREA_UNUSED_8.bin',
+    'map_matrix_0292_CV_FIGHT_AREA_UNUSED_9.bin',
+    'map_matrix_0293_CV_BATTLE_PARK_UNUSED_1.bin',
+    'map_matrix_0294_CV_BATTLE_PARK_UNUSED_2.bin',
+    'map_matrix_0295_CV_BATTLE_TOWER_UNUSED_1.bin',
+    'map_matrix_0296_CV_BATTLE_TOWER_UNUSED_2.bin',
+    'map_matrix_0297_CV_BATTLE_TOWER_UNUSED_3.bin',
 ))
