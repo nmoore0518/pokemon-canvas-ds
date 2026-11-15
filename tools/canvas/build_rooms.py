@@ -11,6 +11,7 @@ sys.path.insert(0, HERE)
 from nitro import read_narc, write_narc, read_dict, read_tex0, tex0_of, write_btx0, u16, u32
 from g3d import Mesh, build_model
 import gba_map
+import cards
 from slots import SLOTS, ROOM_SLOTS, matrix_file, events_file, gba_warps, header, set_header, new_events_file, new_matrix_file
 
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
@@ -24,6 +25,7 @@ BM_ROOM = F('files/a/1/4/8')
 MATRIX_DIR = F('files/fielddata/mapmatrix/map_matrix')
 EVENT_DIR = F('files/fielddata/eventdata/zone_event')
 ROOM_LAND_BASE = 690            # our room lands start here (Pallet's outdoor lands are 676..681)
+OUR_SETS_BASE = 106             # rooms drawn in GBA art get a texture set + area entry of their own from here on
 
 # ---------------------------------------------------------------- furniture: GBA metatile -> HeartGold room model
 # key: the object's top-left metatile id in the GBA tileset; value: (bm_room model, width, height in squares,
@@ -66,7 +68,7 @@ FURNITURE = {
 }
 WINDOWS = {'gTileset_BuildingFrlg': {0x21: 2}}              # window metatile -> width
 RUGS = {'gTileset_BuildingFrlg': {0x43: 'red_h_mat1_4'}}     # big rug's top-left -> floor texture
-STAIRS_UP = {'gTileset_BuildingFrlg': {0x16: 7}}             # top-left of a staircase going up -> model
+STAIRS_UP = {'gTileset_BuildingFrlg': {0x16: 7}, 'gTileset_PlayersBasement': {0x2A8: 7}}   # top-left of a staircase going up -> model
 STAIRS_DOWN = {'gTileset_BuildingFrlg': {0x05: 9}}
 
 # GBA behaviour -> HeartGold behaviour, for the squares that do something
@@ -82,6 +84,12 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
     dict(gba='PalletTown_House1_Frlg', map='MAP_PALLET_TOWN_HOUSE1', keep_people=False, **HOUSE),
     dict(gba='PalletTown_House2_Frlg', map='MAP_PALLET_TOWN_HOUSE2', keep_people=False, template='MAP_PALLET_TOWN_BLUES_HOUSE_1F', **HOUSE),
     dict(gba='PalletTown_ProfessorOaksLab_Frlg', map='MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB', keep_people=False, **LAB),
+    # our own rooms, drawn with the GBA art: floor = the plain floor metatile; cards = (x, y, w, h) squares of things
+    # HeartGold has no model for, stood up leaning back like HeartGold's billboards; other floor marks become decals
+    dict(gba='PalletTown_PlayersHouse_B1F_Frlg', map='MAP_PALLET_TOWN_PLAYERS_HOUSE_B1F', keep_people=False,
+         template='MAP_PALLET_TOWN_REDS_HOUSE_1F', texset=43, buildset=41, area=43,
+         gba_look=dict(tag='b1', floor=0x2AA, cards=[(1, 1, 4, 3), (6, 1, 3, 3), (0, 5, 2, 2), (5, 6, 4, 2), (11, 6, 2, 2),
+                                                     (13, 5, 2, 2), (0, 9, 1, 1), (13, 8, 2, 2)])),
 ]
 
 
@@ -101,8 +109,22 @@ def build_room(spec, land_id):
     gm = gba_map.map_json(spec['gba'])
     lay = gba_map.Layout(gm['layout'])
     ts_name = gba_map.layouts()[gm['layout']]['primary_tileset']
+    sec_name = gba_map.layouts()[gm['layout']]['secondary_tileset']
+    tsn = lambda m: ts_name if m < lay.n_prim else sec_name
     W, H = lay.w, lay.h
     dims, pals = texdims(spec['texset'])
+    own = []                      # (texture entry, palette entry) made from the GBA art for this room
+    look = spec.get('gba_look')
+    if look:
+        tag = look['tag']
+        def add(name, im, colours=255):
+            t, p_, wh = cards.texture(name, im, colours)
+            own.append((t, p_)); dims[name] = wh; pals.add(name + '_pl')
+            return wh
+        floor_im = lay.render_metatile(look['floor'])
+        spec = dict(spec, floor='cv_%s_floor' % tag, wall='cv_%s_wall' % tag)
+        add(spec['floor'], floor_im, 15)
+        dims[spec['floor']] = (16, 16)
     pal_of = lambda t: next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
     mid = lambda x, y: lay.metatile(x, y)
     blocked = lambda x, y: lay.collision(x, y) != 0
@@ -121,7 +143,7 @@ def build_room(spec, land_id):
     holes = set()          # floor squares a staircase down goes through
     for y in range(H):
         for x in range(W):
-            if mid(x, y) in STAIRS_DOWN.get(ts_name, {}):
+            if mid(x, y) in STAIRS_DOWN.get(tsn(mid(x, y)), {}):
                 holes |= {(x + i, y + j) for i in (0, 1) for j in (0, 1)}
     for y in range(first, last + 1):
         x = x0
@@ -134,9 +156,45 @@ def build_room(spec, land_id):
                                    ((U(e), 0, U(z0f)), ((e - x0) * fw, (z0f - wall_z) * fh)), ((U(x), 0, U(z0f)), ((x - x0) * fw, (z0f - wall_z) * fh))], up)
             x = e
     # back wall, three blocks tall like HeartGold's
-    ww, wh = dims[spec['wall']]
-    M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, wh)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * ww, wh)),
-                          ((U(x1), 48, U(wall_z)), ((x1 - x0) * ww, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
+    ww, wh = dims[spec['wall']] if not look else (0, 0)
+    if look:     # the GBA wall rows, stretched to HeartGold's wall height
+        full = lay.render()
+        strip = full.crop((x0 * 16, 0, x1 * 16, first * 16))
+        add(spec['wall'], strip)
+        M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, first * 16)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * 16, first * 16)),
+                              ((U(x1), 48, U(wall_z)), ((x1 - x0) * 16, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
+        covered = set()
+        for i, (cx, cy, cw, ch) in enumerate(look['cards']):
+            im = cards.cut_out(full.crop((cx * 16, cy * 16, (cx + cw) * 16, (cy + ch) * 16)), floor_im)
+            name = 'cv_%s_c%d' % (tag, i)
+            add(name, im)
+            covered |= {(cx + i_, cy + j) for i_ in range(cw) for j in range(ch)}
+            # stood on the front edge of its squares, leaning back 45 degrees (but never through the wall)
+            hgt = ch * 16
+            zf = U(cy + ch)
+            lean = min(hgt * 0.707, zf - U(wall_z) - 2)
+            yt = (hgt * hgt - lean * lean) ** 0.5
+            a, b = U(cx), U(cx + cw)
+            M(name).quad([((a, 0, zf), (0, hgt)), ((b, 0, zf), (cw * 16, hgt)), ((b, yt, zf - lean), (cw * 16, 0)), ((a, yt, zf - lean), (0, 0))],
+                         (0, 0.707, 0.707))
+        for y in range(first, H):
+            for x in range(W):
+                m = mid(x, y)
+                if (x, y) in covered or m == look['floor'] or m in STAIRS_UP.get(tsn(m), {}): continue
+                if blocked(x, y):
+                    near_stairs = any(mid(x - i_, y - j) in STAIRS_UP.get(tsn(mid(x - i_, y - j)), {})
+                                      for i_ in (0, 1) for j in (0, 1) if x - i_ >= 0 and y - j >= 0)
+                    if not near_stairs:
+                        print('  (nothing drawn for blocked square', x, y, hex(m), ')')
+                    continue
+                name = 'cv_%s_m%x' % (tag, m)
+                if name not in dims:
+                    add(name, cards.cut_out(lay.render_metatile(m), floor_im), 15)
+                M(name).quad([((U(x), 0.5, U(y + 1)), (0, 16)), ((U(x + 1), 0.5, U(y + 1)), (16, 16)),
+                              ((U(x + 1), 0.5, U(y)), (16, 0)), ((U(x), 0.5, U(y)), (0, 0))], up)
+    else:
+        M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, wh)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * ww, wh)),
+                              ((U(x1), 48, U(wall_z)), ((x1 - x0) * ww, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
     props, perm = [], [0x8000] * 1024
     for y in range(H):
         for x in range(W):
@@ -151,11 +209,10 @@ def build_room(spec, land_id):
         x, y = w['x'], w['y']
         if x < W and y < H and not blocked(x, y) and (y + 1 >= H or blocked(x, y + 1)) and perm[y * 32 + x] & 0xFF == 0:
             perm[y * 32 + x] = 0x65
-    sec_name = gba_map.layouts()[gm['layout']]['secondary_tileset']
     for y in range(H):
         for x in range(W):
             m = mid(x, y)
-            fur = FURNITURE.get(ts_name if m < lay.n_prim else sec_name, {})
+            fur = FURNITURE.get(tsn(m), {})
             if m in fur:
                 name, model, w, h, where, yoff = fur[m]
                 if where == 'floorif' and y > 0 and mid(x, y - 1) == 0x2D: continue
@@ -165,17 +222,17 @@ def build_room(spec, land_id):
                 elif where == 'shelf': cz = y + 0.5 if y >= first else first + 0.4
                 else: cz = y + h / 2
                 props.append((model, U(cx), yoff, U(cz)))
-            if m in WINDOWS.get(ts_name, {}):
-                w = WINDOWS[ts_name][m]          # HeartGold's window picture on the wall
+            if m in WINDOWS.get(tsn(m), {}):
+                w = WINDOWS[tsn(m)][m]          # HeartGold's window picture on the wall
                 a, b = U(x + 0.1), U(x + w - 0.1)
                 zz = U(wall_z) + 1
                 M('red_h_mado').quad([((a, 17, zz), (0, 16)), ((b, 17, zz), (16, 16)), ((b, 40, zz), (16, 0)), ((a, 40, zz), (0, 0))], fwd)
-            if m in STAIRS_UP.get(ts_name, {}):
-                props.append((STAIRS_UP[ts_name][m], U(x + 1), 0, U(first + 0.5)))
-            if m in STAIRS_DOWN.get(ts_name, {}):
-                props.append((STAIRS_DOWN[ts_name][m], U(x + 1), 0, U(first + 0.5)))
-            if m in RUGS.get(ts_name, {}):
-                t = RUGS[ts_name][m]
+            if m in STAIRS_UP.get(tsn(m), {}):
+                props.append((STAIRS_UP[tsn(m)][m], U(x + 1), 0, U(first + 0.5)))
+            if m in STAIRS_DOWN.get(tsn(m), {}):
+                props.append((STAIRS_DOWN[tsn(m)][m], U(x + 1), 0, U(first + 0.5)))
+            if m in RUGS.get(tsn(m), {}):
+                t = RUGS[tsn(m)][m]
                 # the rug runs to the end of its row/column of rug metatiles
                 rw = 1                         # out to the top-right corner piece
                 while x + rw < W and mid(x + rw - 1, y) != 0x46: rw += 1
@@ -186,7 +243,7 @@ def build_room(spec, land_id):
                            ((U(x + rw), 1, U(y)), (tw, 0)), ((U(x), 1, U(y)), (0, 0))], up)
     groups = []
     for t, mesh in meshes.items():
-        rep = 0 if t.startswith('red_h_mat') else 3
+        rep = 0 if t.startswith('red_h_mat') or (t.startswith('cv_') and t != spec['floor']) else 3
         groups.append((t, t, pal_of(t), mesh, {'repeat': rep, 'size': dims[t]}))
     model = build_model('canvas_room_%d' % land_id, groups)
     model += b'\0' * (-len(model) % 4)
@@ -195,7 +252,7 @@ def build_room(spec, land_id):
         struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
     p = struct.pack('<1024H', *perm)
     land = struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc
-    return land, props, gm
+    return land, props, gm, own
 
 
 def write_events(spec, gm):
@@ -226,9 +283,12 @@ def main():
     land, land_btnf = read_narc(open(LAND_NARC, 'rb').read())
     land += [b''] * max(0, ROOM_LAND_BASE + len(ROOMS) - len(land))
     all_props = []
+    texsets, texsets_btnf = read_narc(open(TEXSETS, 'rb').read())
+    areas, areas_btnf = read_narc(open(AREA_DATA, 'rb').read())
+    n_own = 0
     for i, spec in enumerate(ROOMS):
         lid = ROOM_LAND_BASE + i
-        data, props, gm = build_room(spec, lid)
+        data, props, gm, own = build_room(spec, lid)
         all_props.append(props)
         land[lid] = data
         slot = SLOTS[spec['map']]
@@ -247,7 +307,15 @@ def main():
             struct.pack_into('<H', m, p, lid)
             open(mpath, 'wb').write(bytes(m))
             write_events(spec, gm)
-        print(spec['gba'], '-> land', lid, len(props), 'props')
+        if own:     # a texture set of its own: the base set plus this room's GBA art, and an area entry using it
+            k = OUR_SETS_BASE + n_own; n_own += 1
+            texsets += [texsets[spec['texset']]] * max(0, k + 1 - len(texsets))
+            areas += [areas[spec['area']]] * max(0, k + 1 - len(areas))
+            bt, bp = read_tex0(texsets[spec['texset']], tex0_of(texsets[spec['texset']]))
+            texsets[k] = write_btx0(bt + [t for t, _ in own], bp + [q for _, q in own])
+            a = bytearray(areas[spec['area']]); struct.pack_into('<H', a, 2, k); areas[k] = bytes(a)
+            set_header(slot, {'areaDataBank': str(k)})
+        print(spec['gba'], '-> land', lid, len(props), 'props', '(%d textures of its own)' % len(own) if own else '')
     # each room's building set must list its furniture, and the set's texture file must hold their textures
     used = {}
     for i, spec in enumerate(ROOMS):
@@ -269,6 +337,8 @@ def main():
             pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
         atex[bs] = write_btx0(texs, pals)
     open(AREA_BUILD, 'wb').write(write_narc(sets, sets_btnf))
+    open(TEXSETS, 'wb').write(write_narc(texsets, texsets_btnf))
+    open(AREA_DATA, 'wb').write(write_narc(areas, areas_btnf))
     open(AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
     # fill any gap between the retail lands and ours with a copy of an empty one
     land = [d if d else land[209] for d in land]

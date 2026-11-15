@@ -87,6 +87,13 @@
             "header": "MAP_PALLET",
             "anchor": 5,
             "y": 0
+        },
+        {
+            "x": 14,
+            "z": 17,
+            "header": "MAP_FIGHT_AREA_UNUSED_5",
+            "anchor": 0,
+            "y": 0
         }
     ]
 }

@@ -37,7 +37,7 @@ def gba_warps(gba_map_json, shift=(0, 0)):
         if dest is None:
             out.append({'x': 0, 'z': 0, 'header': 'MAP_PALLET', 'anchor': 0, 'y': 0, '_dead': w['dest_map']})
         else:
-            anchor = 0 if any(c[0] == w['dest_map'] for c in CLONES) else int(w['dest_warp_id'])   # (copies have one door)
+            anchor = 0 if any(c[0] == w['dest_map'] for c in CLONES) else int(w['dest_warp_id'])   # (a copy's door is its first warp)
             out.append({'x': w['x'] + shift[0], 'z': w['y'] + shift[1], 'header': dest, 'anchor': anchor, 'y': 0})
     return out
 
@@ -46,17 +46,22 @@ def gba_warps(gba_map_json, shift=(0, 0)):
 # HeartGold room (same land, scripts and people), with its own events so its doors lead back to our map
 FREE_SLOTS = ['MAP_FIGHT_AREA_UNUSED_%d' % i for i in range(1, 10)] + ['MAP_BATTLE_PARK_UNUSED_1', 'MAP_BATTLE_PARK_UNUSED_2'] + \
     ['MAP_BATTLE_TOWER_UNUSED_%d' % i for i in range(1, 5)] + ['MAP_ROUTE_20_UNUSED', 'MAP_UNUSED']
-CLONES = [  # GBA map, HeartGold room to copy, which of its people stay (by id suffix; None = all)
-    ('MAP_PALLET_TOWN_POKEMON_CENTER_1F', 'MAP_VIRIDIAN_POKECENTER_1F', ('pcwoman1', 'pcwoman2', 'pcwoman2_2', 'pcwoman2_3')),
-    ('MAP_PALLET_TOWN_MART', 'MAP_VIRIDIAN_POKEMART', ('shopm1_2', 'shopm1_2_2')),
-    ('MAP_PALLET_TOWN_TRAINING_HALL', 'MAP_SAFFRON_FIGHTING_DOJO', ()),
+CLONES = [  # GBA map, HeartGold room to copy, which of its people stay (by id suffix; None = all), slot.
+    # Slots are fixed here so adding a room never moves another one.
+    ('MAP_PALLET_TOWN_POKEMON_CENTER_1F', 'MAP_VIRIDIAN_POKECENTER_1F', ('pcwoman1', 'pcwoman2', 'pcwoman2_2', 'pcwoman2_3'), 'MAP_FIGHT_AREA_UNUSED_2'),
+    ('MAP_PALLET_TOWN_MART', 'MAP_VIRIDIAN_POKEMART', ('shopm1_2', 'shopm1_2_2'), 'MAP_FIGHT_AREA_UNUSED_3'),
+    ('MAP_PALLET_TOWN_TRAINING_HALL', 'MAP_SAFFRON_FIGHTING_DOJO', (), 'MAP_FIGHT_AREA_UNUSED_4'),
+    # (the GBA Center's upstairs is its link room; HeartGold's is downstairs)
+    ('MAP_PALLET_TOWN_POKEMON_CENTER_2F', 'MAP_VIRIDIAN_POKECENTER_B1F', None, 'MAP_FIGHT_AREA_UNUSED_5'),
 ]
 ROOM_SLOTS = {   # GBA rooms built from their own layouts in unused slots (see build_rooms.py)
     'MAP_PALLET_TOWN_HOUSE2': 'MAP_FIGHT_AREA_UNUSED_1',
+    'MAP_PALLET_TOWN_PLAYERS_HOUSE_B1F': 'MAP_FIGHT_AREA_UNUSED_6',
 }
-for _i, (_gba, _tmpl, _keep) in enumerate(CLONES):
-    SLOTS[_gba] = FREE_SLOTS[len(ROOM_SLOTS) + _i]
+for _gba, _tmpl, _keep, _slot in CLONES:
+    SLOTS[_gba] = _slot
 SLOTS.update(ROOM_SLOTS)
+CLONE_OF = {c[1]: c[3] for c in CLONES}     # HeartGold room -> the slot holding our copy of it
 
 HEADERS = os.path.join(ROOT, 'src/data/map_headers.h')
 EVENT_DIR = os.path.join(ROOT, 'files/fielddata/eventdata/zone_event')

@@ -288,4 +288,5 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0286_T25SP0101.bin',
     'map_matrix_0287_D51R0301.bin',
     'map_matrix_0288_CV_FIGHT_AREA_UNUSED_1.bin',
+    'map_matrix_0289_CV_FIGHT_AREA_UNUSED_6.bin',
 ))

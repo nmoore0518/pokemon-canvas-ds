@@ -59,9 +59,9 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 9,
+            "z": 2,
+            "header": "MAP_FIGHT_AREA_UNUSED_6",
             "anchor": 0,
             "y": 0
         }

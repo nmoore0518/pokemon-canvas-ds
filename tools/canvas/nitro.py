@@ -151,7 +151,7 @@ def write_btx0(texs, pals):
     pal_blk, pal_ent = bytearray(), []
     for nm, fl, data in pals:
         pal_ent.append((nm, struct.pack('<HH', len(pal_blk) >> 3, fl)))
-        pal_blk += data; pal_blk += b'\0' * (-len(pal_blk) % 8)
+        pal_blk += data; pal_blk += b"\0" * (-len(pal_blk) % 16)   # (16- and 256-colour palettes sit on 16 bytes)
     tdict = build_dict(tex_ent, 8)
     pdict = build_dict(pal_ent, 4)
     o_tdict = 0x3C
