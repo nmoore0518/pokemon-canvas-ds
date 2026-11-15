@@ -139,6 +139,7 @@ def candidate_mentor_name(port, ret):
 
 
 SPECIALS = {
+    'ShouldTryRematchBattle': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],     # (rematches come later)
     # the old man's catching demo: HeartGold's own catching tutorial (a Weedle in the GBA game)
     'StartOldManTutorialBattle': lambda p, r: ['CatchingTutorial'],
     # (MissingNo.'s glitch encounter, armed by watching the demo: a flag until Cinnabar's coast is ported)

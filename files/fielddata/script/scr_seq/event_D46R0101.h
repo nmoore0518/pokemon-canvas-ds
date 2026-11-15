@@ -1,20 +1,23 @@
 #ifndef SCR_SEQ_D46R0101_H_
 #define SCR_SEQ_D46R0101_H_
 
-#define _EV_scr_seq_D46R0101_000 0
-#define _EV_scr_seq_D46R0101_001 1
+#define _EV_ViridianForest_EventScript_Youngster 0
+#define _EV_ViridianForest_EventScript_Boy 1
+#define _EV_ViridianForest_EventScript_Rick 2
+#define _EV_ViridianForest_EventScript_ItemPokeBall 3
+#define _EV_ViridianForest_EventScript_ItemAntidote 4
+#define _EV_ViridianForest_EventScript_ItemPotion 5
+#define _EV_ViridianForest_EventScript_ItemPotion2 6
+#define _EV_ViridianForest_EventScript_ItemShockDrive 7
+#define _EV_BerryField_EventScript_FindBug 8
+#define _EV_ViridianForest_EventScript_TrainerTips1 9
+#define _EV_ViridianForest_EventScript_TrainerTips3 10
+#define _EV_ViridianForest_EventScript_TrainerTips4 11
+#define _EV_ViridianForest_EventScript_ExitSign 12
+#define _EV_ViridianForest_EventScript_TrainerTips2 13
+#define _EV_ViridianForest_EventScript_TrainerTips5 14
+#define _EV_EventMons_EventScript_Cap0 15
+#define _EV_ViridianForest_OnTransition 16
 
-#define obj_D46R0101_gsleader2     0
-#define obj_D46R0101_monstarball   1
-#define obj_D46R0101_monstarball_2 2
-#define obj_D46R0101_monstarball_3 3
-#define obj_D46R0101_monstarball_4 4
-#define obj_D46R0101_tree          5
-#define obj_D46R0101_tree_2        6
-#define obj_D46R0101_gsboy3        7
-#define obj_D46R0101_gsboy3_2      8
-#define obj_D46R0101_gsboy3_3      9
-#define obj_D46R0101_gsboy3_4      10
-#define obj_D46R0101_gsboy3_5      11
 
-#endif // SCR_SEQ_D46R0101_H_
+#endif

@@ -3,9 +3,7 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_D46R0101_001 + 1
+	InitScriptEntry_OnTransition _EV_ViridianForest_OnTransition + 1
 	InitScriptEntryEnd
 
 	InitScriptEnd

@@ -1007,16 +1007,27 @@ _cv_yn_102:
 	HealParty
 	// TODO(gba) special GymChallenge_GenerateOakFinale
 	GoTo _cv_stop
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, gGymChallengeDefeatText
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_103
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_104
+	WhiteOut
+	End
+_cv_won_104:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_103:
 	ClearFlag 0x2036
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_103
+	GoToIfEq _cv_won_105
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_103:
+_cv_won_105:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymFinale_EventScript_BeatOak
 	GoTo GymFinale_EventScript_LostToOak
@@ -1024,30 +1035,30 @@ _cv_won_103:
 	
 GymChallenge_EventScript_AideNotYet:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2093, _cv_appr_104
-	AddVar VAR_SPECIAL_RESULT, 1
-_cv_appr_104:
-	GoToIfUnset 0x2094, _cv_appr_105
-	AddVar VAR_SPECIAL_RESULT, 1
-_cv_appr_105:
-	GoToIfUnset 0x2095, _cv_appr_106
+	GoToIfUnset 0x2093, _cv_appr_106
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_106:
-	GoToIfUnset 0x2096, _cv_appr_107
+	GoToIfUnset 0x2094, _cv_appr_107
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_107:
-	GoToIfUnset 0x2097, _cv_appr_108
+	GoToIfUnset 0x2095, _cv_appr_108
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_108:
-	GoToIfUnset 0x2098, _cv_appr_109
+	GoToIfUnset 0x2096, _cv_appr_109
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_109:
-	GoToIfUnset 0x2099, _cv_appr_110
+	GoToIfUnset 0x2097, _cv_appr_110
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_110:
-	GoToIfUnset 0x2007, _cv_appr_111
+	GoToIfUnset 0x2098, _cv_appr_111
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_111:
+	GoToIfUnset 0x2099, _cv_appr_112
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_112:
+	GoToIfUnset 0x2007, _cv_appr_113
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_113:
 	BufferInt 0, VAR_SPECIAL_RESULT
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_AideNotYet
 	WaitButton
@@ -1106,14 +1117,14 @@ GymChallenge_EventScript_NextChallenger:
 	CallIfEq GymSwitch_EventScript_AnnounceMentor
 	CloseMsg
 	ClearFlag 0x2017
-	GoToIfUnset 0x2017, _cv_show_112
+	GoToIfUnset 0x2017, _cv_show_114
 	ClearFlag 0x2017
 	ShowPerson 4
 	SetFlag 0x2017
-	GoTo _cv_shown_113
-_cv_show_112:
+	GoTo _cv_shown_115
+_cv_show_114:
 	ShowPerson 4
-_cv_shown_113:
+_cv_shown_115:
 	SetVar 0x8004, 0
 	// TODO(gba) special GymChallenge_PlanChallengerWalk
 	GoTo _cv_stop
@@ -1124,16 +1135,27 @@ _cv_shown_113:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
 	WaitButton
 	CloseMsg
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, gGymChallengeDefeatText
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_116
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_117
+	WhiteOut
+	End
+_cv_won_117:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_116:
 	ClearFlag 0x2036
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_114
+	GoToIfEq _cv_won_118
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_114:
+_cv_won_118:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymChallenge_EventScript_Won
 	GoTo GymChallenge_EventScript_Lost
@@ -1147,12 +1169,12 @@ GymPractice_EventScript_Trainer:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymPractice_Text_Offer
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_115
+	GoToIfEq _cv_yes_119
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_116
-_cv_yes_115:
+	GoTo _cv_yn_120
+_cv_yes_119:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_116:
+_cv_yn_120:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymPractice_EventScript_NotNow
 	// TODO(gba) special GymChallenge_GeneratePractice
@@ -1160,19 +1182,30 @@ _cv_yn_116:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymPractice_Text_Go
 	WaitButton
 	CloseMsg
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, gGymChallengeDefeatText
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_121
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_122
+	WhiteOut
+	End
+_cv_won_122:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_121:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
 	HealParty
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_117
+	GoToIfEq _cv_won_123
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_117:
+_cv_won_123:
 	// TODO(gba) special GymChallenge_BufferPracticeTrainer
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1197,12 +1230,12 @@ Gauntlet_EventScript_PalmPilot:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_118
+	GoToIfEq _cv_yes_124
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_119
-_cv_yes_118:
+	GoTo _cv_yn_125
+_cv_yes_124:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_119:
+_cv_yn_125:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	End
@@ -1212,12 +1245,12 @@ Gauntlet_EventScript_AllBeaten:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ReadyToMeet
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_120
+	GoToIfEq _cv_yes_126
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_121
-_cv_yes_120:
+	GoTo _cv_yn_127
+_cv_yes_126:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_121:
+_cv_yn_127:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_NotYet
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal1
@@ -1230,14 +1263,14 @@ _cv_yn_121:
 	GoTo _cv_stop
 	HidePerson 17
 	SetFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_122
+	GoToIfUnset 0x2035, _cv_show_128
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_123
-_cv_show_122:
+	GoTo _cv_shown_129
+_cv_show_128:
 	ShowPerson 17
-_cv_shown_123:
+_cv_shown_129:
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 1, RGB_WHITE
 	WaitFade
@@ -1273,9 +1306,9 @@ Tourney_EventScript_Menu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_125
+	GoToIfLt _cv_menu_131
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_125:
+_cv_menu_131:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Enter
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1326,18 +1359,18 @@ PalletTown_Gym_EventScript_ShowOak:
 	
 EventScript_TryReadyNationalDexScene:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_126
+	GoToIfUnset 0x2026, _cv_dex_132
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_126:
+_cv_dex_132:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	CallIfEq EventScript_SetReadyTryGiveNationalDexScene
 	Return
 	
 EventScript_GiveHotAirBalloon:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x202C, _cv_has_127
+	GoToIfUnset 0x202C, _cv_has_133
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_127:
+_cv_has_133:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_PalmPilotReturn
 	SetFlag 0x202C
@@ -1377,14 +1410,14 @@ GymLegend_EventScript_RivalWalksIn:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_128
+	GoToIfUnset 0x2033, _cv_show_134
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_129
-_cv_show_128:
+	GoTo _cv_shown_135
+_cv_show_134:
 	ShowPerson 2
-_cv_shown_129:
+_cv_shown_135:
 	ApplyMovement 2, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
@@ -1429,14 +1462,14 @@ GymLegend_EventScript_Appears:
 	WaitButton
 	CloseMsg
 	ClearFlag 0x203A
-	GoToIfUnset 0x203A, _cv_show_130
+	GoToIfUnset 0x203A, _cv_show_136
 	ClearFlag 0x203A
 	ShowPerson 16
 	SetFlag 0x203A
-	GoTo _cv_shown_131
-_cv_show_130:
+	GoTo _cv_shown_137
+_cv_show_136:
 	ShowPerson 16
-_cv_shown_131:
+_cv_shown_137:
 	Wait 40, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 1, RGB_WHITE
@@ -1631,12 +1664,12 @@ GymChallenge_EventScript_Won:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_KeepGoing
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_132
+	GoToIfEq _cv_yes_138
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_133
-_cv_yes_132:
+	GoTo _cv_yn_139
+_cv_yes_138:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_133:
+_cv_yn_139:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	// TODO(gba) special GymChallenge_BufferRecord
@@ -1699,9 +1732,9 @@ Gauntlet_EventScript_PilotMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_135
+	GoToIfLt _cv_menu_141
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_135:
+_cv_menu_141:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Menu
 	GoTo Gauntlet_EventScript_PilotOff
@@ -1717,12 +1750,12 @@ Gauntlet_EventScript_Withdraw:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawConfirm
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_136
+	GoToIfEq _cv_yes_142
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_137
-_cv_yes_136:
+	GoTo _cv_yn_143
+_cv_yes_142:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_137:
+_cv_yn_143:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	GiveMon 0x8005, 70, 0, 0, 0, VAR_SPECIAL_RESULT
@@ -1744,12 +1777,12 @@ Gauntlet_EventScript_BillAgain:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillAgain
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_138
+	GoToIfEq _cv_yes_144
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_139
-_cv_yes_138:
+	GoTo _cv_yn_145
+_cv_yes_144:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_139:
+_cv_yn_145:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_BillWait
 	End
@@ -1772,16 +1805,27 @@ Gauntlet_EventScript_BillBattle:
 	WaitFade
 	// TODO(gba) special Gauntlet_ShowBillCard
 	GoTo _cv_stop
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, gGymChallengeDefeatText
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_146
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_147
+	WhiteOut
+	End
+_cv_won_147:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_146:
 	ClearFlag 0x2036
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_140
+	GoToIfEq _cv_won_148
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_140:
+_cv_won_148:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_BillWon
 	HealParty
@@ -1806,9 +1850,9 @@ Tourney_EventScript_MenuActive:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_142
+	GoToIfLt _cv_menu_150
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_142:
+_cv_menu_150:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Match
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1827,9 +1871,9 @@ Tourney_EventScript_MenuSimBill:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_144
+	GoToIfLt _cv_menu_152
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_144:
+_cv_menu_152:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_SimBill
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1845,9 +1889,9 @@ Tourney_EventScript_MenuFirst:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_146
+	GoToIfLt _cv_menu_154
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_146:
+_cv_menu_154:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Enter
 	GoTo Tourney_EventScript_NotNow
@@ -1934,14 +1978,14 @@ GymLegend_EventScript_RivalAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_147
+	GoToIfUnset 0x2033, _cv_show_155
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_148
-_cv_show_147:
+	GoTo _cv_shown_156
+_cv_show_155:
 	ShowPerson 2
-_cv_shown_148:
+_cv_shown_156:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
 	End
@@ -2118,9 +2162,9 @@ GymSwitch_EventScript_KeepGoingOrRetire:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_150
+	GoToIfLt _cv_menu_158
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_150:
+_cv_menu_158:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -2153,14 +2197,14 @@ GymSwitch_EventScript_OakComes:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_151
+	GoToIfUnset 0x2034, _cv_show_159
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_152
-_cv_show_151:
+	GoTo _cv_shown_160
+_cv_show_159:
 	ShowPerson 1
-_cv_shown_152:
+_cv_shown_160:
 	ApplyMovement 1, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
@@ -2176,9 +2220,9 @@ Gauntlet_EventScript_PilotMenuWithdraw:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_154
+	GoToIfLt _cv_menu_162
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_154:
+_cv_menu_162:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -2231,14 +2275,14 @@ Gauntlet_EventScript_BillWon:
 	GoTo _cv_stop
 	HidePerson 17
 	SetFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_155
+	GoToIfUnset 0x2035, _cv_show_163
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_156
-_cv_show_155:
+	GoTo _cv_shown_164
+_cv_show_163:
 	ShowPerson 17
-_cv_shown_156:
+_cv_shown_164:
 	Wait 60, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
@@ -2310,16 +2354,27 @@ Tourney_EventScript_SimBill:
 	WaitFade
 	// TODO(gba) special Gauntlet_ShowBillCard
 	GoTo _cv_stop
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, gGymChallengeDefeatText
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_165
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_166
+	WhiteOut
+	End
+_cv_won_166:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_165:
 	ClearFlag 0x2036
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_157
+	GoToIfEq _cv_won_167
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_157:
+_cv_won_167:
 	HealParty
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Tourney_EventScript_SimBillWon
@@ -2339,12 +2394,12 @@ Tourney_EventScript_SayRules:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Rules
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_158
+	GoToIfEq _cv_yes_168
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_159
-_cv_yes_158:
+	GoTo _cv_yn_169
+_cv_yes_168:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_159:
+_cv_yn_169:
 	Return
 	
 Tourney_EventScript_BreaksClause:
@@ -2364,9 +2419,9 @@ Tourney_EventScript_SimFormat:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_161
+	GoToIfLt _cv_menu_171
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_161:
+_cv_menu_171:
 	// TODO(gba) special Tourney_SetSimFormat
 	GoTo _cv_stop
 	CloseMsg
@@ -2385,12 +2440,12 @@ Tourney_EventScript_SayFirst:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_First
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_162
+	GoToIfEq _cv_yes_172
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_163
-_cv_yes_162:
+	GoTo _cv_yn_173
+_cv_yes_172:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_163:
+_cv_yn_173:
 	Return
 	
 Tourney_EventScript_SayChampion:
@@ -2485,14 +2540,14 @@ GymSwitch_EventScript_OakAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_164
+	GoToIfUnset 0x2034, _cv_show_174
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_165
-_cv_show_164:
+	GoTo _cv_shown_175
+_cv_show_174:
 	ShowPerson 1
-_cv_shown_165:
+_cv_shown_175:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
 	End
@@ -2523,12 +2578,12 @@ Tourney_EventScript_SayForfeitAsk:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ForfeitAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_166
+	GoToIfEq _cv_yes_176
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_167
-_cv_yes_166:
+	GoTo _cv_yn_177
+_cv_yes_176:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_167:
+_cv_yn_177:
 	Return
 	
 Tourney_EventScript_SimForfeited:
@@ -2547,12 +2602,12 @@ Tourney_EventScript_SimBillWon:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_168
+	GoToIfEq _cv_yes_178
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_169
-_cv_yes_168:
+	GoTo _cv_yn_179
+_cv_yes_178:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_169:
+_cv_yn_179:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CloseMsg
@@ -2563,12 +2618,12 @@ Tourney_EventScript_SayRulesSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimStart
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_170
+	GoToIfEq _cv_yes_180
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_171
-_cv_yes_170:
+	GoTo _cv_yn_181
+_cv_yes_180:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_171:
+_cv_yn_181:
 	Return
 	
 Tourney_EventScript_SpeciesClause:
@@ -2594,12 +2649,12 @@ Tourney_EventScript_SayFirstSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFirst
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_172
+	GoToIfEq _cv_yes_182
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_173
-_cv_yes_172:
+	GoTo _cv_yn_183
+_cv_yes_182:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_173:
+_cv_yn_183:
 	Return
 	
 Tourney_EventScript_SayChampionSim:
@@ -2661,12 +2716,12 @@ Tourney_EventScript_SayForfeitAskSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_174
+	GoToIfEq _cv_yes_184
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_175
-_cv_yes_174:
+	GoTo _cv_yn_185
+_cv_yes_184:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_175:
+_cv_yn_185:
 	Return
 	
 Tourney_EventScript_SimSpeciesClause:
@@ -2686,9 +2741,9 @@ GymSwitch_EventScript_OakHere:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered
 	WaitButton
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2045, _cv_has_176
+	GoToIfUnset 0x2045, _cv_has_186
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_176:
+_cv_has_186:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymSwitch_EventScript_OakTeraTip
 	// TODO(gba) special GymSwitch_CanTakeNewType
@@ -2698,12 +2753,12 @@ _cv_has_176:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_177
+	GoToIfEq _cv_yes_187
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_178
-_cv_yes_177:
+	GoTo _cv_yn_188
+_cv_yes_187:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_178:
+_cv_yn_188:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakDeclined
 	SetVar 0x8004, 1
@@ -2791,9 +2846,9 @@ GymSwitch_EventScript_TypeMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_180
+	GoToIfLt _cv_menu_190
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_180:
+_cv_menu_190:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymSwitch_EventScript_ChoiceCancelled
 	// TODO(gba) special GymSwitch_BufferChoice
@@ -2804,12 +2859,12 @@ _cv_menu_180:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmOld
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_181
+	GoToIfEq _cv_yes_191
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_182
-_cv_yes_181:
+	GoTo _cv_yn_192
+_cv_yes_191:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_182:
+_cv_yn_192:
 	GoTo GymSwitch_EventScript_Confirmed
 	CloseMsg
 	End
@@ -2832,12 +2887,12 @@ GymSwitch_EventScript_ConfirmNew:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmNew
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_183
+	GoToIfEq _cv_yes_193
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_184
-_cv_yes_183:
+	GoTo _cv_yn_194
+_cv_yes_193:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_184:
+_cv_yn_194:
 	End
 	
 GymSwitch_EventScript_Confirmed:

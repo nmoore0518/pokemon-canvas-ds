@@ -20,6 +20,7 @@ import gba as G
 import specials as SP
 import trainers as TR
 RIVAL_STAGES, RIVAL_TEAMS = TR.rival_stages(), TR.rival_team_ids()
+TRAINER_IDS, SIMPLE_TRAINERS = TR.trainer_ids(), TR.simple_trainers()
 import slots
 
 ROOT = slots.ROOT
@@ -45,10 +46,13 @@ class Anchored:
     landmarks (doors, exits) seen in both games, weighted by distance; then people and trigger squares move to the
     nearest open square, and signs to the nearest of HeartGold's own signs."""
 
-    def __init__(self, slot, pairs):
+    def __init__(self, slot, pairs, fixed=None, extra=None):
         self.slot, self.pairs, self.used = slot, pairs, set()
+        self.fixed = fixed or {}           # GBA square -> HeartGold square, by hand (trigger lines across a road...)
+        self.extra = extra or []           # (GBA trigger square, another HeartGold square for it): wider roads
         self.indoor = 'EVERYWHERE' not in slots.header(slot)['matrixId']
-        self.hg_signs = self.hg_trees = None
+        self.hg_signs = self.hg_trees = self.hg_trainers = self.hg_items = None
+        self.last_spot = None
 
     def offset(self, x, y):
         tw = tx = ty = 0.0
@@ -68,12 +72,17 @@ class Anchored:
         return v is not None and not v & 0x8000 and (v & 0xFF) not in (0x10, 0x11, 0x13, 0x15, 0x62, 0x63, 0x64, 0x65, 0x69, 0x6E)
 
     def __call__(self, x, y, kind='pos'):
+        if (x, y) in self.fixed: return self.fixed[(x, y)]
         dx, dy = self.offset(x, y)
         X, Z = x + dx, y + dy
-        if kind == 'tree' and self.hg_trees:     # (a cuttable tree goes where HeartGold has one: they block paths)
-            X, Z = min(self.hg_trees, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
-            self.hg_trees.remove((X, Z)); self.used.add((X, Z))
-            return X, Z
+        # (a cuttable tree, a trainer or an item ball goes where HeartGold has one: trees block paths, trainers'
+        # sight lines and items' spots are laid out for HeartGold's map; spots left over stay empty)
+        spots = {'tree': self.hg_trees, 'trainer': self.hg_trainers, 'item': self.hg_items}.get(kind)
+        if spots:
+            best = min(spots, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
+            spots.remove(best); self.used.add(best[:2]); self.last_spot = best
+            return best[0], best[1]
+        if kind in ('trainer', 'item'): kind = 'object'
         if kind == 'sign':
             if self.hg_signs:
                 X, Z = min(self.hg_signs, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
@@ -96,6 +105,14 @@ VIRIDIAN = Anchored('MAP_VIRIDIAN', [((36, 10), (1045, 239)), ((25, 11), (1034, 
 # HeartGold's Route 1 is longer than the GBA's (64 squares to 40): its corners and middle anchor the stretch
 ROUTE1 = Anchored('MAP_ROUTE_1', [((12, 0), (1036, 289)), ((12, 39), (1039, 351)), ((1, 1), (1028, 291)), ((22, 1), (1050, 291)),
                                   ((1, 20), (1027, 320)), ((22, 20), (1050, 320)), ((1, 38), (1027, 349)), ((22, 38), (1050, 349))])
+ROUTE2_SOUTH = Anchored('MAP_ROUTE_2', [((5, 51), (1034, 192)), ((6, 51), (1035, 192)), ((18, 46), (1050, 192)),
+                                        ((9, 79), (1030, 215)), ((18, 41), (1050, 178))])
+ROUTE2_NORTH = Anchored('MAP_ROUTE_2_EAST', [((5, 13), (1028, 138)), ((17, 11), (1048, 137)), ((17, 22), (1047, 155)),
+                                            ((18, 41), (1050, 178))])
+VIRIDIAN_FOREST = Anchored('MAP_VIRIDIAN_FOREST', [((29, 62), (32, 77)), ((5, 9), (12, 15))])
+# (the rival waits where the road from Viridian narrows: HeartGold's is four squares wide there, the GBA's three)
+ROUTE22 = Anchored('MAP_ROUTE_22', [((8, 5), (936, 266)), ((9, 5), (936, 267)), ((47, 7), (995, 258)), ((47, 12), (995, 263))],
+                   fixed={(33, 4): (974, 265), (33, 5): (974, 266), (33, 6): (974, 267)}, extra=[((33, 6), (974, 268))])
 VIRIDIAN_MART = Anchored('MAP_VIRIDIAN_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))])
 
 MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
@@ -113,6 +130,10 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PalletTown_Gym_RightRoom': ('MAP_BATTLE_PARK_UNUSED_1', same),
     'ViridianCity_Frlg': ('MAP_VIRIDIAN', VIRIDIAN),
     'Route1_Frlg': ('MAP_ROUTE_1', ROUTE1),
+    'Route2_Frlg': ('MAP_ROUTE_2', ROUTE2_SOUTH, lambda x, y: y >= 40),         # (HeartGold splits Route 2 in two)
+    'Route2_Frlg#north': ('MAP_ROUTE_2_EAST', ROUTE2_NORTH, lambda x, y: y < 40),
+    'ViridianForest_Frlg': ('MAP_VIRIDIAN_FOREST', VIRIDIAN_FOREST),
+    'Route22_Frlg': ('MAP_ROUTE_22', ROUTE22),
     'ViridianCity_Mart_Frlg': ('MAP_VIRIDIAN_POKEMART', VIRIDIAN_MART),
     'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', same),
 }
@@ -242,7 +263,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'FAT_MAN': 'GSBIGMAN', 'OLD_MAN': 'GSOLDMAN1', 'OLD_MAN_1': 'GSOLDMAN1', 'OLD_WOMAN': 'GSOLDWOMAN1',
     'BOY': 'GSBOY1', 'BOY_1': 'GSBOY1', 'BOY_2': 'GSBOY2', 'BOY_3': 'GSBOY3', 'LITTLE_BOY': 'GSBABYBOY1',
     'LITTLE_GIRL': 'GSBABYGIRL1', 'GIRL_1': 'GSGIRL1', 'GIRL_2': 'GSGIRL2', 'GIRL_3': 'GSGIRL3', 'LASS': 'GSGIRL2',
-    'YOUNGSTER': 'GSBOY2', 'BUG_CATCHER': 'GSBOY1', 'GENTLEMAN': 'GSGENTLEMAN', 'SCIENTIST': 'GSASSISTANTM',
+    'YOUNGSTER': 'GSBOY2', 'BUG_CATCHER': 'GSBOY3', 'GENTLEMAN': 'GSGENTLEMAN', 'SCIENTIST': 'GSASSISTANTM',
     'SCIENTIST_1': 'GSASSISTANTM', 'NURSE': 'PCWOMAN1', 'CLERK': 'SHOPM1_2', 'MART_EMPLOYEE': 'SHOPM1_2',
     'PROF_OAK': 'OOKIDO', 'MOM': 'GSMAMA', 'BLUE': 'GSLEADER16', 'DAISY': 'NANAMI', 'GIOVANNI': 'SAKAKI',
     'ROCKET_M': 'ROCKETM', 'ROCKET_F': 'ROCKETW', 'POLICEMAN': 'POLICEMAN', 'SAILOR': 'SEAMAN_2', 'FISHERMAN': 'FISHING_2',
@@ -331,7 +352,7 @@ class Port:
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
         self.flag_of = {}             # a person's local id -> their flag
-        for o in G.map_json(gba_map).get('object_events', []):
+        for o in G.map_json(gba_map.split('#')[0]).get('object_events', []):
             if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
                 self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
                 self.flag_of[self.localid(o['local_id'])] = o['flag']
@@ -454,7 +475,7 @@ class Port:
 
     def warp(self, a):
         dest = G.map_dir(a[0])
-        if dest in MAPS: slot, xy = MAPS[dest]
+        if dest in MAPS: slot, xy = MAPS[dest][:2]
         elif a[0] in slots.ROOM_SLOTS: slot, xy = slots.ROOM_SLOTS[a[0]], same    # (rooms built from the GBA layouts)
         else: return None
         if len(a) >= 3:
@@ -505,6 +526,24 @@ class Port:
         self.emit('TouchscreenMenuShow')
         l = self.new('menu')
         self.emit('CompareVarToValue VAR_SPECIAL_RESULT, 65000', 'GoToIfLt %s' % l, 'SetVar VAR_SPECIAL_RESULT, 127', l + ':')
+
+    def trainer_battle(self, cmd, a, label):
+        """a GBA trainer battle in a script of its own: if not beaten yet, the intro, the battle (lose and you black
+        out), then the script ends there (or goes on to the GBA's continue-script)"""
+        n = TRAINER_IDS[a[0]]
+        intro = a[1] if cmd in ('trainerbattle_single', 'trainerbattle_double') else None
+        cont = None
+        if cmd == 'trainerbattle_single' and len(a) > 3: cont = a[3]
+        if cmd == 'trainerbattle_double' and len(a) > 4: cont = a[4]
+        if cmd == 'trainerbattle_no_intro' and len(a) > 2 and a[2] in self.g.labels: cont = a[2]
+        beaten, won = self.new('beaten'), self.new('won')
+        self.emit('CheckTrainerFlag %d' % n, 'GoToIf TRUE, %s' % beaten)
+        if intro and intro in self.g.texts: self.say(intro); self.emit('CloseMsg')
+        self.emit('TrainerBattle %d, 0, 0, 0' % n, 'CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
+                  'GoToIfNe %s' % won, 'WhiteOut', 'End', won + ':', 'SetTrainerFlag %d' % n)
+        if cont: self.emit('GoTo %s' % self.label(cont))
+        else: self.emit('ReleaseAll', 'End')
+        self.emit(beaten + ':')
 
     def rival_battle(self, trainer, lose_ok):
         """the rival's team is the one for this stage and the type he took (VAR_RIVAL_TYPE)"""
@@ -706,11 +745,11 @@ class Port:
             elif cmd == 'dynmultichoice':
                 if a[5] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[5], label))
                 self.menu([(t, str(i)) for i, t in enumerate(a[6:])], a[2], a[4])
-            elif cmd == 'goto_if_defeated':
+            elif cmd == 'goto_if_defeated' and a[0] not in TRAINER_IDS:     # (the rival's battles)
                 self.emit('GoToIfSet %s, %s' % (self.flag('CV_DEFEATED_' + a[0]), self.label(a[1])))
             elif cmd in ('trainerbattle_earlyrival', 'trainerbattle_no_intro', 'trainerbattle_single') and a[0] in RIVAL_STAGES:
                 self.rival_battle(a[0], lose_ok=(cmd == 'trainerbattle_earlyrival'))
-            elif cmd in ('cleartrainerflag', 'settrainerflag'):
+            elif cmd in ('cleartrainerflag', 'settrainerflag') and a[0] not in TRAINER_IDS:     # (the rival's battles)
                 self.emit('%s %s' % ('ClearFlag' if cmd.startswith('clear') else 'SetFlag', self.flag('CV_DEFEATED_' + a[0])))
             elif cmd == 'finditem':
                 it = self.val(a[0])
@@ -726,6 +765,19 @@ class Port:
                     v = self.val(a2[0])
                     if v != '0': items.append(v)
                 self.emit('CanvasMart %d' % len(items), *['.short %s' % v for v in items])
+            elif cmd.startswith('trainerbattle') and a and a[0] in TRAINER_IDS and not cmd.startswith('trainerbattle_rematch'):
+                self.trainer_battle(cmd, a, label)
+            elif cmd.startswith('trainerbattle_rematch'):
+                self.emit('// (rematches come later)', 'ReleaseAll', 'End')
+            elif cmd in ('checktrainerflag', 'goto_if_defeated', 'goto_if_not_defeated') and a[0] in TRAINER_IDS:
+                n = TRAINER_IDS[a[0]]
+                if cmd == 'checktrainerflag':
+                    l = self.new('tr')
+                    self.emit('SetVar VAR_SPECIAL_RESULT, 0', 'CheckTrainerFlag %d' % n, 'GoToIf FALSE, %s' % l, 'SetVar VAR_SPECIAL_RESULT, 1', l + ':')
+                else:
+                    self.emit('CheckTrainerFlag %d' % n, 'GoToIf %s, %s' % ('TRUE' if cmd == 'goto_if_defeated' else 'FALSE', self.label(a[1])))
+            elif cmd in ('settrainerflag', 'cleartrainerflag') and a[0] in TRAINER_IDS:
+                self.emit('%s %d' % ('SetTrainerFlag' if cmd.startswith('set') else 'ClearTrainerFlag', TRAINER_IDS[a[0]]))
             elif cmd == 'givemon':
                 pos = [x for x in a if '=' not in x]
                 kw = dict(x.split('=', 1) for x in a if '=' in x)
@@ -814,7 +866,8 @@ def own_banks(slot):
 
 
 def port(gba_map, g, ids, report):
-    slot, xy = MAPS[gba_map]
+    slot, xy = MAPS[gba_map][:2]
+    part = MAPS[gba_map][2] if len(MAPS[gba_map]) > 2 else (lambda x, y: True)   # (a GBA map split over two of HeartGold's)
     if 'EVERYWHERE' in slots.header(slot)['scriptsBank']:
         own_banks(slot)
     h = slots.header(slot)
@@ -832,23 +885,34 @@ def port(gba_map, g, ids, report):
             json.dump(ev, open(snap, 'w'), indent=1)
         xy.hg_signs = [(b['x'], b['z']) for b in json.load(open(snap)).get('bgs', []) if not str(b.get('scriptId', '')).startswith('std_hidden')]
         xy.used = set()
-        xy.hg_trees = [(o['x'], o['z']) for o in json.load(open(snap)).get('objects', []) if o['spriteId'] == 'SPRITE_TREE']
-    mj = G.map_json(gba_map)
+        hg = json.load(open(snap)).get('objects', [])
+        xy.hg_trees = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_TREE']
+        xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
+        xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
+    mj = G.map_json(gba_map.split('#')[0])
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
     entries = []
     people = [o for o in mj.get('object_events', []) if o.get('type', 'object') == 'object'
-              and 'TYPE_TUTOR_DECOR' not in o['graphics_id']]       # (the tutors' decorations come with the tutors' own sprites)
-    signs = [b for b in mj.get('bg_events', []) if b.get('type') == 'sign']
+              and 'TYPE_TUTOR_DECOR' not in o['graphics_id'] and part(o['x'], o['y'])]       # (the tutors' decorations come with the tutors' own sprites)
+    signs = [b for b in mj.get('bg_events', []) if b.get('type') == 'sign' and part(b['x'], b['y'])]
+    def trainer_of(o):
+        """a trainer whose script is just their battle and a line after: HeartGold's own trainer script runs it"""
+        c = g.labels.get(o['script'], [])
+        if c and c[0][0] in ('trainerbattle_single', 'trainerbattle_double') and c[0][1][0] in SIMPLE_TRAINERS \
+                and c[0][1][0] in TRAINER_IDS and o.get('trainer_type', 'TRAINER_TYPE_NONE') != 'TRAINER_TYPE_NONE':
+            return TRAINER_IDS[c[0][1][0]]
     for o in people:
-        if o['script'] not in ('0x0', '0') and o['script'] not in STD_OBJECT_SCRIPTS and o['script'] not in entries:
+        if o['script'] not in ('0x0', '0') and o['script'] not in STD_OBJECT_SCRIPTS and o['script'] not in entries and not trainer_of(o):
             entries.append(o['script'])
     for b in signs:
         if b['script'] not in entries: entries.append(b['script'])
-    triggers = [c for c in mj.get('coord_events', []) if c.get('type') == 'trigger' and c.get('script') not in ('0x0', '0', None)]
+    triggers = [c for c in mj.get('coord_events', []) if c.get('type') == 'trigger' and c.get('script') not in ('0x0', '0', None)
+                and part(c['x'], c['y'])]
     for c in triggers:
         if c['script'] not in entries: entries.append(c['script'])
-    mapscripts = [(c, a) for c, a in g.labels.get(gba_map.replace('_Frlg', '') + '_Frlg_MapScripts', g.labels.get(gba_map + '_MapScripts', []))]
+    gdir = gba_map.split('#')[0]
+    mapscripts = [(c, a) for c, a in g.labels.get(gdir.replace('_Frlg', '') + '_Frlg_MapScripts', g.labels.get(gdir + '_MapScripts', []))]
     on = {}
     for c, a in mapscripts:
         if c == 'map_script' and a[0] in ('MAP_SCRIPT_ON_TRANSITION', 'MAP_SCRIPT_ON_LOAD', 'MAP_SCRIPT_ON_RESUME'):
@@ -930,13 +994,18 @@ def port(gba_map, g, ids, report):
         sm = re.match(r'SPECIES\((\w+)\)$', gfx)            # (a Pokemon: its walking sprite, or Eevee's for ones HeartGold lacks)
         if sm: gfx = sm.group(1) if sm.group(1) in SPRITE else 'EEVEE'
         mv = MOVETYPE.get(o['movement_type'], 15)
-        x, z = xy(o['x'], o['y'], 'tree' if 'CUTTABLE_TREE' in o['graphics_id'] else 'object')
+        kind = 'tree' if 'CUTTABLE_TREE' in o['graphics_id'] else 'trainer' if trainer_of(o) else \
+            'item' if o['graphics_id'] == 'OBJ_EVENT_GFX_ITEM_BALL' else 'object'
+        if isinstance(xy, Anchored): xy.last_spot = None
+        x, z = xy(o['x'], o['y'], kind)
+        spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
         objs.append({'id': o.get('local_id') or str(lid), 'spriteId': (str(101 + int(m.group(1), 16)) if m else 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')),
-                     'movement': mv, 'type': 0, 'eventFlag': p.flag(o['flag']) if o['flag'] not in ('0', '0x0') else 'FLAG_NOTHING',
-                     'scriptId': STD_OBJECT_SCRIPTS.get(o['script']) or (('_EV_%s + 1' % o['script']) if o['script'] not in ('0x0', '0') else '0'),
-                     'facingDirection': FACING.get(mv, 1), 'param0': 0, 'param1': 0, 'param2': 0,
+                     'movement': spot[3] if spot else mv, 'type': 1 if trainer_of(o) else 0, 'eventFlag': p.flag(o['flag']) if o['flag'] not in ('0', '0x0') else 'FLAG_NOTHING',
+                     'scriptId': ('std_trainer(%d)' % trainer_of(o)) if trainer_of(o) else STD_OBJECT_SCRIPTS.get(o['script']) or (('_EV_%s + 1' % o['script']) if o['script'] not in ('0x0', '0') else '0'),
+                     'facingDirection': spot[2] if spot else FACING.get(mv, 1), 'param0': (spot[4] if spot else int(o.get('trainer_sight_or_berry_tree_id', 0) or 0)) if trainer_of(o) else 0,
+                     'param1': 0, 'param2': 0,
                      'xRange': int(o.get('movement_range_x', 0)), 'yRange': int(o.get('movement_range_y', 0)), 'x': x, 'z': z, 'y': 0})
         if gfx not in SPRITE and not m: report.append('sprite %s -> GSMAN1 (no match yet)' % gfx)
     bgs = []
@@ -948,8 +1017,10 @@ def port(gba_map, g, ids, report):
         x, z = xy(c['x'], c['y'], 'trigger')
         if c['script'] in unfinished:
             continue                                  # (a half-ported scene could leave you stuck)
-        coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': 1, 'h': 1, 'y': 0,
-                       'val': int(p.val(c['var_value']), 0), 'var': p.var(c['var'])})
+        where = [(x, z)] + [hz for gs, hz in getattr(xy, 'extra', []) if gs == (c['x'], c['y'])]
+        for x, z in where:
+            coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': 1, 'h': 1, 'y': 0,
+                           'val': int(p.val(c['var_value']), 0), 'var': p.var(c['var'])})
     if isinstance(xy, Anchored):     # (HeartGold's hidden items stay where they are, for now)
         snap = os.path.join(os.path.dirname(HERE), 'data', 'hg_events', os.path.basename(ev_path))
         bgs += [b for b in json.load(open(snap)).get('bgs', []) if str(b.get('scriptId', '')).startswith('std_hidden')]

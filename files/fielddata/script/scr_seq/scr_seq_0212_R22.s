@@ -3,487 +3,640 @@
 #include "msgdata/msg/msg_0360_R22.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route22_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_R22_000
-	ScrDef scr_seq_R22_001
-	ScrDef scr_seq_R22_002
-	ScrDef scr_seq_R22_003
-	ScrDef scr_seq_R22_004
+	ScrDef Route22_EventScript_LeagueGateSign
+	ScrDef Route22_EventScript_EarlyRivalTriggerTop
+	ScrDef Route22_EventScript_EarlyRivalTriggerMid
+	ScrDef Route22_EventScript_EarlyRivalTriggerBottom
+	ScrDef Route22_EventScript_LateRivalTriggerTop
+	ScrDef Route22_EventScript_LateRivalTriggerMid
+	ScrDef Route22_EventScript_LateRivalTriggerBottom
 	ScrDefEnd
-
-scr_seq_R22_001:
-	GoToIfUnset FLAG_UNK_189, _0027
-	ClearFlag FLAG_UNK_189
-	End
-
-_0027:
-	Compare VAR_UNK_40FE, 1
-	GoToIfEq _005E
-	GetWeekday VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 4
-	GoToIfEq _0058
-	Compare VAR_TEMP_x4000, 0
-	GoToIfEq _0058
-	SetFlag FLAG_HIDE_CAMERON
-	End
-
-_0058:
-	ClearFlag FLAG_HIDE_CAMERON
-	End
-
-_005E:
-	SetFlag FLAG_HIDE_CAMERON
-	End
-
-scr_seq_R22_004:
-	Compare VAR_UNK_40FE, 1
-	GoToIfEq _0073
-	End
-
-_0073:
-	MovePersonFacing obj_R22_sakaki, 947, 1, 266, DIR_WEST
-	MovePersonFacing obj_R22_gsrivel, 950, 1, 266, DIR_WEST
-	MovePersonFacing obj_R22_var_1, 952, 1, 280, DIR_EAST
-	End
-
-scr_seq_R22_003:
-	ScrCmd_609
-	LockAll
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	ApplyMovement obj_player, _037C
-	WaitMovement
-	ApplyMovement obj_R22_var_1, _02CC
-	WaitMovement
-	GenderMsgBox msg_0360_R22_00012, msg_0360_R22_00011
-	CloseMsg
-	ApplyMovement obj_R22_var_1, _02E0
-	WaitMovement
-	BufferPlayersName 0
-	GenderMsgBox msg_0360_R22_00014, msg_0360_R22_00013
-	CloseMsg
-	ApplyMovement obj_R22_var_1, _02FC
-	WaitMovement
-	GenderMsgBox msg_0360_R22_00016, msg_0360_R22_00015
-	CloseMsg
-	ApplyMovement obj_R22_var_1, _0304
-	ApplyMovement obj_player, _03D0
-	WaitMovement
-	GenderMsgBox msg_0360_R22_00018, msg_0360_R22_00017
-	CloseMsg
-	ApplyMovement obj_R22_var_1, _0338
-	WaitMovement
-	BufferPlayersName 0
-	GenderMsgBox msg_0360_R22_00020, msg_0360_R22_00019
-	CloseMsg
-	ApplyMovement obj_player, _03A0
-	ApplyMovement obj_R22_var_1, _0310
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	GetPlayerCoords VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
-	ScrCmd_102 VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
-	ApplyMovement 241, _03DC
-	WaitMovement
-	FadeOutBGM 0, 30
-	ApplyMovement obj_R22_gsrivel, _03F4
-	WaitMovement
-	BufferRivalsName 0
-	NPCMsg msg_0360_R22_00002
-	CloseMsg
-	ApplyMovement obj_R22_sakaki, _0438
-	WaitMovement
-	NPCMsg msg_0360_R22_00008
-	CloseMsg
-	ApplyMovement obj_R22_gsrivel, _03FC
-	WaitMovement
-	BufferRivalsName 0
-	NPCMsg msg_0360_R22_00003
-	CloseMsg
-	ApplyMovement obj_R22_sakaki, _0444
-	WaitMovement
-	NPCMsg msg_0360_R22_00009
-	CloseMsg
-	ApplyMovement obj_R22_gsrivel, _03F4
-	WaitMovement
-	BufferRivalsName 0
-	NPCMsg msg_0360_R22_00004
-	CloseMsg
-	ApplyMovement obj_R22_sakaki, _044C
-	WaitMovement
-	NPCMsg msg_0360_R22_00010
-	CloseMsg
-	ApplyMovement obj_R22_sakaki, _0454
-	WaitMovement
-	ApplyMovement obj_R22_gsrivel, _03F4
-	WaitMovement
-	BufferRivalsName 0
-	NPCMsg msg_0360_R22_00005
-	CloseMsg
-	ApplyMovement obj_R22_gsrivel, _03F4
-	WaitMovement
-	NPCMsg msg_0360_R22_00006
-	CloseMsg
-	CallStd std_play_rival_intro_music
-	ApplyMovement 241, _03E8
-	ApplyMovement obj_R22_gsrivel, _0404
-	WaitMovement
-	ScrCmd_103
-	BufferRivalsName 0
-	NPCMsg msg_0360_R22_00007
-	CloseMsg
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 56
-	ApplyMovement obj_R22_gsrivel, _0420
-	PlaySE SEQ_SE_DP_WALL_HIT2
-	ApplyMovement obj_player, _03B0
-	ApplyMovement obj_R22_var_1, _03D0
-	WaitMovement
-	ApplyMovement obj_R22_gsrivel, _042C
-	ApplyMovement obj_player, _03D0
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	HidePerson obj_R22_sakaki
-	HidePerson obj_R22_gsrivel
-	SetFlag FLAG_HIDE_ROUTE_22_GIOVANNI_RIVAL
-	CallStd std_fade_end_rival_intro_music
-	GenderMsgBox msg_0360_R22_00022, msg_0360_R22_00021
-	CloseMsg
-	FadeOutBGM 20, 30
-	ApplyMovement obj_partner_poke, _0350
-	WaitMovement
-	PlaySE SEQ_SE_GS_SUZUSYUTUGEN_HO
-	FadeScreen 6, 6, 0, RGB_WHITE
-	WaitFade
-	Wait 15, VAR_SPECIAL_RESULT
-	FadeScreen 6, 6, 1, RGB_WHITE
-	WaitFade
-	ApplyMovement obj_player, _03C4
-	ApplyMovement obj_R22_var_1, _0320
-	WaitMovement
-	GenderMsgBox msg_0360_R22_00024, msg_0360_R22_00023
-	CloseMsg
-	PlaySE SEQ_SE_GS_TIMESLIP
-	ScrCmd_810
-	SetVar VAR_UNK_40FE, 2
-	ClearFlag FLAG_HIDE_TOHJO_FALLS_GIOVANNI
-	ClearFlag FLAG_HIDE_TOHJO_FALLS_FRIEND
-	Warp MAP_TOHJO_FALLS_HIDDEN_ROOM, 0, 6, 8, DIR_SOUTH
-	FadeScreen 6, 15, 1, RGB_WHITE
-	WaitFade
-	ReleaseAll
-	End
-
-	.balign 4, 0
-_02CC:
-	EmoteExclamationMark
-	Delay8
-	WalkOnSpotNormalEast
-	Delay16
-	EndMovement
-
-	.balign 4, 0
-_02E0:
-	WalkFastNorth 2
-	Delay8
-	WalkOnSpotNormalWest
-	Delay16
-	WalkOnSpotNormalEast
-	Delay16
-	EndMovement
-
-	.balign 4, 0
-_02FC:
-	WalkNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0304:
-	WalkNormalSouth
-	WalkOnSpotNormalEast
-	EndMovement
-
-	.balign 4, 0
-_0310:
-	WalkNormalNorth 2
-	WalkNormalWest 2
-	WalkNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_0320:
-	WalkOnSpotNormalWest
-	Delay16
-	WalkOnSpotNormalEast
-	Delay16
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0338:
-	EmoteExclamationMark
-	Delay8
-	WalkNormalNorth 2
-	WalkNormalEast
-	WalkNormalNorth 2
-	EndMovement
-
-	.balign 4, 0
-_0350:
-	FaceSouth
-	JumpFarSouth
-	LockDir
-	JumpNearFastNorth
-	LockDir
-	EndMovement
-
-	.balign 4, 0
-_0368:
-	LockDir
-	WalkFastEast 2
-	UnlockDir
-	FaceWest
-	EndMovement
-
-	.balign 4, 0
-_037C:
-	WalkOnSpotNormalNorth
-	WalkNormalNorth
-	Delay8
-	WalkOnSpotNormalWest
-	Delay16
-	WalkOnSpotNormalEast
-	Delay16
-	WalkOnSpotNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_03A0:
-	WalkNormalNorth 5
-	WalkNormalWest 2
-	WalkNormalNorth 2
-	EndMovement
-
-	.balign 4, 0
-_03B0:
-	Delay4
-	LockDir
-	JumpNearFastSouth
-	UnlockDir
-	EndMovement
-
-	.balign 4, 0
-_03C4:
-	EmoteExclamationMark
-	Delay8
-	EndMovement
-
-	.balign 4, 0
-_03D0:
-	Delay16
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_03DC:
-	WalkNormalNorth 5
-	WalkNormalWest 2
-	EndMovement
-
-	.balign 4, 0
-_03E8:
-	WalkFastEast 2
-	WalkFastSouth 4
-	EndMovement
-
-	.balign 4, 0
-_03F4:
-	WalkNormalWest
-	EndMovement
-
-	.balign 4, 0
-_03FC:
-	WalkOnSpotNormalWest
-	EndMovement
-
-	.balign 4, 0
-_0404:
-	Delay32
-	WalkFastEast 6
-	WalkFastSouth 4
-	Delay8
-	EmoteExclamationMark
-	Delay8
-	EndMovement
-
-	.balign 4, 0
-_0420:
-	WalkFastSouth 2
-	Delay16
-	EndMovement
-
-	.balign 4, 0
-_042C:
-	WalkFastEast
-	WalkFastSouth 8
-	EndMovement
-
-	.balign 4, 0
-_0438:
-	WalkOnSpotNormalEast
-	Delay8
-	EndMovement
-
-	.balign 4, 0
-_0444:
-	WalkOnSpotNormalEast
-	EndMovement
-
-	.balign 4, 0
-_044C:
-	WalkOnSpotNormalWest
-	EndMovement
-
-	.balign 4, 0
-_0454:
-	WalkNormalWest 6
-	EndMovement
-
-scr_seq_R22_000:
+	
+Route22_EventScript_LeagueGateSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	FacePlayer
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 0
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0584
-	PhotoAlbumIsFull VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0598
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 1
+	NPCMsg msg_0360_R22_Route22_Text_LeagueGateSign
+	WaitButton
 	CloseMsg
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	GetPlayerFacing VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _04D5
-	ApplyMovement obj_player, _05AC
-	ApplyMovement obj_R22_gsmiddleman1, _05F8
-	GoTo _0523
-
-_04D5:
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _04F0
-	ApplyMovement obj_player, _05C4
-	GoTo _0523
-
-_04F0:
-	Compare VAR_SPECIAL_RESULT, 3
-	GoToIfNe _0513
-	ApplyMovement obj_player, _05E4
-	ApplyMovement obj_R22_gsmiddleman1, _05F8
-	GoTo _0523
-
-_0513:
-	ApplyMovement obj_player, _05D0
-	ApplyMovement obj_R22_gsmiddleman1, _05F8
-_0523:
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	ScrCmd_729 VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _054A
-	ApplyMovement obj_partner_poke, _0604
-	WaitMovement
-_054A:
-	SetFlag FLAG_UNK_189
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	CameronPhoto 71
+	ReleaseAll
+	End
+	
+Route22_EventScript_EarlyRivalTriggerTop:
 	LockAll
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ClearFlag FLAG_UNK_189
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 2
+	SetVar 0x4001, 0
+	GoTo Route22_EventScript_EarlyRival
+	End
+	
+Route22_EventScript_EarlyRivalTriggerMid:
+	LockAll
+	SetVar 0x4001, 1
+	MovePerson 1, 960, 263
+	GoTo Route22_EventScript_EarlyRival
+	End
+	
+Route22_EventScript_EarlyRivalTriggerBottom:
+	LockAll
+	SetVar 0x4001, 2
+	MovePerson 1, 960, 263
+	GoTo Route22_EventScript_EarlyRival
+	End
+	
+Route22_EventScript_LateRivalTriggerTop:
+	LockAll
+	SetVar 0x4001, 0
+	GoTo Route22_EventScript_LateRival
+	End
+	
+Route22_EventScript_LateRivalTriggerMid:
+	LockAll
+	SetVar 0x4001, 1
+	MovePerson 1, 960, 263
+	GoTo Route22_EventScript_LateRival
+	End
+	
+Route22_EventScript_LateRivalTriggerBottom:
+	LockAll
+	SetVar 0x4001, 2
+	MovePerson 1, 960, 263
+	GoTo Route22_EventScript_LateRival
+	End
+	
+Route22_EventScript_EarlyRival:
+	PlayBGM SEQ_GS_E_RIVAL1
+	GoToIfUnset 0x2063, _cv_show_1
+	ClearFlag 0x2063
+	ShowPerson 1
+	SetFlag 0x2063
+	GoTo _cv_shown_2
+_cv_show_1:
+	ShowPerson 1
+_cv_shown_2:
+	CompareVarToValue 0x4001, 0
+	CallIfEq Route22_EventScript_EarlyRivalApproach
+	CompareVarToValue 0x4001, 1
+	CallIfEq Route22_EventScript_EarlyRivalApproach
+	CompareVarToValue 0x4001, 2
+	CallIfEq Route22_EventScript_EarlyRivalApproachBottom
+	Wait 6, VAR_SPECIAL_RESULT
+	BufferPlayersName 6
+	BufferRivalsName 7
+	NPCMsg msg_0360_R22_Route22_Text_EarlyRivalIntro
+	WaitButton
+	CompareVarToValue 0x5018, 2
+	CallIfEq Route22_EventScript_EarlyRivalSquirtle
+	CompareVarToValue 0x5018, 1
+	CallIfEq Route22_EventScript_EarlyRivalBulbasaur
+	CompareVarToValue 0x5018, 0
+	CallIfEq Route22_EventScript_EarlyRivalCharmander
+	NPCMsg msg_0360_R22_Route22_Text_EarlyRivalPostBattle
+	WaitButton
+	CloseMsg
+	Wait 10, VAR_SPECIAL_RESULT
+	PlayBGM SEQ_GS_E_RIVAL2
+	CompareVarToValue 0x4001, 0
+	CallIfEq Route22_EventScript_EarlyRivalExit
+	CompareVarToValue 0x4001, 1
+	CallIfEq Route22_EventScript_EarlyRivalExit
+	CompareVarToValue 0x4001, 2
+	CallIfEq Route22_EventScript_EarlyRivalExitBottom
+	ResetBGM
+	HidePerson 1
+	SetFlag 0x2063
+	SetVar 0x5013, 2
+	ReleaseAll
+	End
+	
+Route22_EventScript_LateRival:
+	PlayBGM SEQ_GS_E_RIVAL1
+	GoToIfUnset 0x2063, _cv_show_3
+	ClearFlag 0x2063
+	ShowPerson 1
+	SetFlag 0x2063
+	GoTo _cv_shown_4
+_cv_show_3:
+	ShowPerson 1
+_cv_shown_4:
+	CompareVarToValue 0x4001, 0
+	CallIfEq Route22_EventScript_LateRivalApproach
+	CompareVarToValue 0x4001, 1
+	CallIfEq Route22_EventScript_LateRivalApproach
+	CompareVarToValue 0x4001, 2
+	CallIfEq Route22_EventScript_LateRivalApproachBottom
+	BufferPlayersName 6
+	BufferRivalsName 7
+	NPCMsg msg_0360_R22_Route22_Text_LateRivalIntro
+	WaitButton
+	SetVar VAR_SPECIAL_LAST_TALKED, 1
+	CompareVarToValue 0x5018, 2
+	CallIfEq Route22_EventScript_LateRivalSquirtle
+	CompareVarToValue 0x5018, 1
+	CallIfEq Route22_EventScript_LateRivalBulbasaur
+	CompareVarToValue 0x5018, 0
+	CallIfEq Route22_EventScript_LateRivalCharmander
+	BufferPlayersName 6
+	NPCMsg msg_0360_R22_Route22_Text_LateRivalPostBattle
+	WaitButton
+	CloseMsg
+	Wait 10, VAR_SPECIAL_RESULT
+	PlayBGM SEQ_GS_E_RIVAL2
+	ApplyMovement 1, Route22_Movement_LateRivalExit
+	WaitMovement
+	ResetBGM
+	HidePerson 1
+	SetFlag 0x2063
+	SetVar 0x5013, 4
+	ReleaseAll
+	End
+	
+Route22_EventScript_EarlyRivalApproach:
+	ApplyMovement 1, Route22_Movement_RivalApproach
+	WaitMovement
+	Return
+	
+Route22_EventScript_EarlyRivalApproachBottom:
+	ApplyMovement 1, Route22_Movement_RivalApproachBottom
+	ApplyMovement obj_player, Route22_Movement_PlayerFaceRival
+	WaitMovement
+	Return
+	
+Route22_EventScript_EarlyRivalSquirtle:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_6
+	TrainerBattle 754, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_6:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_7
+	TrainerBattle 758, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_7:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_8
+	TrainerBattle 752, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_8:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_9
+	TrainerBattle 750, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_9:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_10
+	TrainerBattle 760, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_10:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_11
+	TrainerBattle 755, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_11:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_12
+	TrainerBattle 757, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_12:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_13
+	TrainerBattle 759, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_13:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_14
+	TrainerBattle 753, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_14:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_15
+	TrainerBattle 761, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_15:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_16
+	TrainerBattle 756, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_16:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_17
+	TrainerBattle 751, 0, 1, 0
+	GoTo _cv_battle_5
+_cv_next_17:
+	TrainerBattle 750, 0, 1, 0
+_cv_battle_5:
+	SetFlag 0x20AD
+	Return
+	
+Route22_EventScript_EarlyRivalBulbasaur:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_19
+	TrainerBattle 754, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_19:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_20
+	TrainerBattle 758, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_20:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_21
+	TrainerBattle 752, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_21:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_22
+	TrainerBattle 750, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_22:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_23
+	TrainerBattle 760, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_23:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_24
+	TrainerBattle 755, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_24:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_25
+	TrainerBattle 757, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_25:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_26
+	TrainerBattle 759, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_26:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_27
+	TrainerBattle 753, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_27:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_28
+	TrainerBattle 761, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_28:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_29
+	TrainerBattle 756, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_29:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_30
+	TrainerBattle 751, 0, 1, 0
+	GoTo _cv_battle_18
+_cv_next_30:
+	TrainerBattle 750, 0, 1, 0
+_cv_battle_18:
+	SetFlag 0x20AE
+	Return
+	
+Route22_EventScript_EarlyRivalCharmander:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_32
+	TrainerBattle 754, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_32:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_33
+	TrainerBattle 758, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_33:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_34
+	TrainerBattle 752, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_34:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_35
+	TrainerBattle 750, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_35:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_36
+	TrainerBattle 760, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_36:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_37
+	TrainerBattle 755, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_37:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_38
+	TrainerBattle 757, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_38:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_39
+	TrainerBattle 759, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_39:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_40
+	TrainerBattle 753, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_40:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_41
+	TrainerBattle 761, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_41:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_42
+	TrainerBattle 756, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_42:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_43
+	TrainerBattle 751, 0, 1, 0
+	GoTo _cv_battle_31
+_cv_next_43:
+	TrainerBattle 750, 0, 1, 0
+_cv_battle_31:
+	SetFlag 0x20AF
+	Return
+	
+Route22_EventScript_EarlyRivalExit:
+	ApplyMovement 1, Route22_Movement_EarlyRivalExit
+	WaitMovement
+	Return
+	
+Route22_EventScript_EarlyRivalExitBottom:
+	ApplyMovement 1, Route22_Movement_EarlyRivalExitBottom
+	WaitMovement
+	Return
+	
+Route22_EventScript_LateRivalApproach:
+	ApplyMovement 1, Route22_Movement_RivalApproach
+	WaitMovement
+	Return
+	
+Route22_EventScript_LateRivalApproachBottom:
+	ApplyMovement 1, Route22_Movement_RivalApproachBottom
+	ApplyMovement obj_player, Route22_Movement_PlayerFaceRival
+	WaitMovement
+	Return
+	
+Route22_EventScript_LateRivalSquirtle:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_45
+	TrainerBattle 814, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_45:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_46
+	TrainerBattle 818, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_46:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_47
+	TrainerBattle 812, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_47:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_48
+	TrainerBattle 810, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_48:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_49
+	TrainerBattle 820, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_49:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_50
+	TrainerBattle 815, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_50:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_51
+	TrainerBattle 817, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_51:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_52
+	TrainerBattle 819, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_52:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_53
+	TrainerBattle 813, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_53:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_54
+	TrainerBattle 821, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_54:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_55
+	TrainerBattle 816, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_55:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_56
+	TrainerBattle 811, 0, 0, 0
+	GoTo _cv_battle_44
+_cv_next_56:
+	TrainerBattle 810, 0, 0, 0
+_cv_battle_44:
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_57
+	WhiteOut
+	End
+_cv_won_57:
+	SetFlag 0x20B0
+	Return
+	
+Route22_EventScript_LateRivalBulbasaur:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_59
+	TrainerBattle 814, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_59:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_60
+	TrainerBattle 818, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_60:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_61
+	TrainerBattle 812, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_61:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_62
+	TrainerBattle 810, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_62:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_63
+	TrainerBattle 820, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_63:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_64
+	TrainerBattle 815, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_64:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_65
+	TrainerBattle 817, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_65:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_66
+	TrainerBattle 819, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_66:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_67
+	TrainerBattle 813, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_67:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_68
+	TrainerBattle 821, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_68:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_69
+	TrainerBattle 816, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_69:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_70
+	TrainerBattle 811, 0, 0, 0
+	GoTo _cv_battle_58
+_cv_next_70:
+	TrainerBattle 810, 0, 0, 0
+_cv_battle_58:
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_71
+	WhiteOut
+	End
+_cv_won_71:
+	SetFlag 0x20B1
+	Return
+	
+Route22_EventScript_LateRivalCharmander:
+	CompareVarToValue 0x501A, 17
+	GoToIfNe _cv_next_73
+	TrainerBattle 814, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_73:
+	CompareVarToValue 0x501A, 13
+	GoToIfNe _cv_next_74
+	TrainerBattle 818, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_74:
+	CompareVarToValue 0x501A, 1
+	GoToIfNe _cv_next_75
+	TrainerBattle 812, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_75:
+	CompareVarToValue 0x501A, 10
+	GoToIfNe _cv_next_76
+	TrainerBattle 810, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_76:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_77
+	TrainerBattle 820, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_77:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_78
+	TrainerBattle 815, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_78:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_79
+	TrainerBattle 817, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_79:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_80
+	TrainerBattle 819, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_80:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_81
+	TrainerBattle 813, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_81:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_82
+	TrainerBattle 821, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_82:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_83
+	TrainerBattle 816, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_83:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_84
+	TrainerBattle 811, 0, 0, 0
+	GoTo _cv_battle_72
+_cv_next_84:
+	TrainerBattle 810, 0, 0, 0
+_cv_battle_72:
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_85
+	WhiteOut
+	End
+_cv_won_85:
+	SetFlag 0x20B2
+	Return
+
+_cv_stop:
+	NPCMsg msg_0360_R22_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-_0584:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 5
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0598:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 3
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
 	.balign 4, 0
-_05AC:
-	WalkNormalEast
-	WalkNormalNorth 2
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
+Route22_Movement_LateRivalExit:
+	WalkNormalWest 7
 	EndMovement
 
 	.balign 4, 0
-_05C4:
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
+Route22_Movement_RivalApproach:
+	WalkNormalEast 7
 	EndMovement
 
 	.balign 4, 0
-_05D0:
-	WalkNormalNorth
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
+Route22_Movement_RivalApproachBottom:
+	WalkNormalEast 8
+	WalkOnSpotFasterSouth
 	EndMovement
 
 	.balign 4, 0
-_05E4:
-	WalkNormalNorth
-	WalkNormalEast
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_05F8:
+Route22_Movement_PlayerFaceRival:
+	Delay16 7
 	Delay8
-	WalkOnSpotNormalNorth
+	WalkOnSpotFasterNorth
 	EndMovement
 
 	.balign 4, 0
-_0604:
-	WalkNormalEast
-	WalkNormalNorth
-	FaceSouth
+Route22_Movement_EarlyRivalExit:
+	WalkNormalSouth
+	WalkNormalEast 5
+	WalkNormalSouth 6
 	EndMovement
 
-scr_seq_R22_002:
-	TrainerTipsEx 2, msg_0360_R22_00000
-	End
+	.balign 4, 0
+Route22_Movement_EarlyRivalExitBottom:
+	WalkNormalEast 4
+	WalkNormalSouth 7
+	EndMovement
 	.balign 4, 0

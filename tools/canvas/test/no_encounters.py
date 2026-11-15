@@ -3,6 +3,7 @@
 import sys, os
 import ndspy.rom, ndspy.narc
 src, dst = sys.argv[1:3]
+keep_trainers = '--keep-trainers' in sys.argv     # (for testing trainers: only the wild encounters go)
 rom = ndspy.rom.NintendoDSRom.fromFile(src)
 names = [n for n in ('fielddata/encountdata/gs_enc_data.narc', 'a/0/3/7') if rom.filenames.idOf(n) is not None]
 for n in names:
@@ -13,6 +14,7 @@ for n in names:
 # and no trainers spotting us: every trainer's sight range set to 0 (zone events, a/0/3/2)
 import struct
 ev = ndspy.narc.NARC(rom.getFileByName('a/0/3/2'))
+if keep_trainers: rom.saveToFile(dst); sys.exit(0)
 out = []
 for f in ev.files:
     f = bytearray(f)

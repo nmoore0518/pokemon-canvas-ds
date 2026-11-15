@@ -42,7 +42,8 @@ DadStory_EventScript_HouseOnLoad:
 	GoToIfSet 0x200C, DadStory_EventScript_End
 	CompareVarToValue 0x5008, 5
 	GoToIfEq DadStory_EventScript_HideStairs
-	GoToIfSet 0x2027, DadStory_EventScript_OldSaveStairs
+	CheckTrainerFlag 1085
+	GoToIf TRUE, DadStory_EventScript_OldSaveStairs
 	End
 	
 DadStory_EventScript_MomDadsBall:

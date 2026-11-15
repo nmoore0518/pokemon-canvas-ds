@@ -116,7 +116,17 @@ What else it does:
   small (the starter table, the rival's choice, Pokedex counts...). Ones that need the engine come later.
 - **Trainers**: `port/trainers.py` turns the GBA party files into hg-engine trainer entries from id 738 on
   (`tools/canvas/data/canvas_trainers.h`, copied into `engine/data` by build_rom.sh; ids kept in
-  `canvas_trainers.json`). So far the rival: every rival battle picks his team for that stage by `VAR_RIVAL_TYPE`.
+  `canvas_trainers.json`): the rival's 108 teams (every rival battle picks his team for that stage by
+  `VAR_RIVAL_TYPE`), then the 624 others. Classes map to HeartGold's (by gender where it has both; leaders and the
+  Elite Four by name: HeartGold has no Lorelei or Agatha picture, stand-ins for now); Pokemon without moves listed
+  get the last four they'd have learned; the GBA's own Eeveelutions are Eevee until we add them as species. A
+  trainer whose script is just the battle and a line after uses HeartGold's own trainer script (`std_trainer`),
+  with sight; their intro/defeat/after lines go in the trainer data. Others battle from their own script.
+  Our trainers' defeated flags live in our flags from 3072 on (`engine/src/canvas_flags.c` hooks
+  TrainerFlagCheck/Set/Clear); hg-engine's trainer script table (`data/scr_seq/scr_seq_00953_trainerscript.s`)
+  runs to 1599. (Trainer 740 can't have sight: 739 is HeartGold's approach script. It's a rival team.)
+  In maps with HeartGold's layout, trainers, item balls and cuttable trees take HeartGold's own spots
+  (trainers with its facing and sight).
 - **Menus**: the GBA's scrolling multichoice becomes HeartGold's top-screen list (as wide as its longest item),
   in pages of 6 with "More…".
 - **The rival** is our own hg-engine trainer class (`TRAINERCLASS_CANVAS_RIVAL`, 138): Blue's battle picture, the
@@ -140,6 +150,8 @@ What else it does:
   so the porter shows them again itself.
 - **The rival is named** the first time he speaks (HeartGold's intro only names the player).
 - **Message banks 829-853 belong to hg-engine** (it lays its own text over them): our own banks start at 854.
+- **Split maps**: a GBA map HeartGold splits in two (Route 2) gets two `MAPS` entries, `Map#part`, each with a
+  test for which squares it takes.
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
   table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
   screen through Oak, the lab, the type choice and the rival battle.

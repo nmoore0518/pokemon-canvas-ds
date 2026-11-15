@@ -105,16 +105,27 @@ PaintWorld_EventScript_FigureBattle:
 	CloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
-	ClearFlag 0x2052
+	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	// TODO(gba) trainerbattle_no_intro TRAINER_GYM_CHALLENGER, PaintWorld_Text_FigureDefeat
-	GoTo _cv_stop
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_1
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_2
+	WhiteOut
+	End
+_cv_won_2:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_1:
 	ClearFlag 0x2036
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_1
+	GoToIfEq _cv_won_3
 	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_1:
+_cv_won_3:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0319_R01_PaintWorld_Text_Dissolve
