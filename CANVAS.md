@@ -7,13 +7,24 @@ HeartGold decompilation. This fork tracks `pret/pokeheartgold`.
 
 ```
 sudo tools/canvas/setup_env.sh       # once: 32-bit libc for the DS compiler, build deps, headless DeSmuME
+sudo tools/canvas/setup_engine.sh    # once: hg-engine (battle engine, Gen 5-9 Pokemon) into engine/
 python3 tools/canvas/build_pallet.py # regenerate our Pallet Town into the game's data files (idempotent)
-make rom -j16                        # -> build/heartgold.us/pokeheartgold.us.nds
+tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
 python3 tools/canvas/test/walk.py st/t1_field.dst - tour R5 U6 s   # walk by tiles, screenshots -> st_tour.png
 ```
 
 `make` (rather than `make rom`) also compares against the retail checksums, which Canvas changes are expected to fail.
+
+## Two stages: decomp + hg-engine
+
+The decomp builds HeartGold with our maps and data; `engine/` (BluRosie/hg-engine at a pinned commit, our changes
+as patches in `tools/canvas/engine/patches`) then patches in the modern battle engine, Pokemon through Gen 9,
+moves, abilities, items and sprites. hg-engine hooks HeartGold's code at fixed addresses, so the decomp's code must
+keep its retail layout: change data in place, put new code in the engine (`check_code_layout.py` enforces this).
+New maps reuse HeartGold's unused map slots rather than growing the header table. hg-engine is free-use only
+(no money, no donations) and its CREDITS.md must be carried into ours.
+If `engine/build` is wiped, `touch engine/data/learnsets/learnsets.json` before rebuilding.
 
 ## Our Pallet Town
 
@@ -47,7 +58,7 @@ the set's shared texture file (`a/0/7/0`). Things learned the hard way:
 
 1. Toolchain + headless emulator (done)
 2. First playable slice: our Pallet Town layout, new game starts there (done)
-3. Foundation: Gen 1-9 species, Fairy, newer moves/abilities/mechanics, Terastal, sprites
+3. Foundation: Gen 1-9 species, Fairy, newer moves/abilities/mechanics, Terastal, sprites (hg-engine; in)
 4. Canvas systems one at a time (gym leader mode, type tutors, Academy + market, TCG, Pit, ...);
    Safari Zones and the gym leader convention are left out for now
 5. Kanto story maps, then the region-unlock framework

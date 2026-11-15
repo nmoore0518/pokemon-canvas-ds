@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 os.environ['SDL_AUDIODRIVER'] = 'dummy'
 from desmume.emulator import DeSmuME
 from desmume.controls import Keys, keymask
-emu = DeSmuME(); emu.open(os.environ.get('ROM', 'build/heartgold.us/pokeheartgold.us.nds')); emu.volume_set(0)
+emu = DeSmuME(); emu.open(os.environ.get('ROM', 'build/canvas.nds')); emu.volume_set(0)
 run = lambda n: [emu.cycle(with_joystick=False) for _ in range(n)]
 src, dst, *acts = sys.argv[1:]
 if src != '-': emu.savestate.load_file(src)
