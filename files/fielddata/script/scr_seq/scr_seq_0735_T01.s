@@ -430,7 +430,9 @@ GymFinale_EventScript_Ceremony:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 6
+	SetFlag 0x2009
 	HidePerson 5
+	SetFlag 0x2009
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	SetVar 0x5004, 5
@@ -444,7 +446,14 @@ GymFinale_EventScript_OakAtTheDoor:
 	MovePerson 3, 1032, 395
 	SetObjectMovementType 3, 16
 	SetObjectFacing 3, 2
+	GoToIfUnset 0x2004, _cv_show_4
+	ClearFlag 0x2004
 	ShowPerson 3
+	SetFlag 0x2004
+	GoTo _cv_shown_5
+_cv_show_4:
+	ShowPerson 3
+_cv_shown_5:
 	PlayBGM SEQ_GS_OHKIDO
 	ApplyMovement 3, PalletTown_Movement_OakWalkToPlayersDoor
 	WaitMovement
@@ -455,6 +464,7 @@ GymFinale_EventScript_OakAtTheDoor:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 3
+	SetFlag 0x2004
 	SetFlag 0x2004
 	SetVar 0x5005, 3
 	Warp MAP_FIGHT_AREA_UNUSED_7, 0, 12, 25, DIR_SOUTH
@@ -468,7 +478,14 @@ PalletTown_EventScript_OakRatingScene:
 	MovePerson 3, 1032, 395
 	SetObjectMovementType 3, 16
 	SetObjectFacing 3, 2
+	GoToIfUnset 0x2004, _cv_show_6
+	ClearFlag 0x2004
 	ShowPerson 3
+	SetFlag 0x2004
+	GoTo _cv_shown_7
+_cv_show_6:
+	ShowPerson 3
+_cv_shown_7:
 	ApplyMovement 3, PalletTown_Movement_OakWalkToPlayersDoor
 	WaitMovement
 	GoToIfUnset 0x2005, PalletTown_EventScript_NotBeenToOneIslandYet
@@ -479,9 +496,9 @@ PalletTown_EventScript_OakRatingScene:
 	CountNationalDexSeen 0x8005
 	CountNationalDexOwned 0x8006
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_4
+	GoToIfUnset 0x2026, _cv_dex_8
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_4:
+_cv_dex_8:
 	CopyVar 0x8008, 0x8005
 	CopyVar 0x8009, 0x8006
 	BufferInt 0, 0x8008
@@ -525,6 +542,7 @@ DadStory_EventScript_Sendoff:
 	ApplyMovement 4, PalletTown_Movement_MomSendoffGoHome
 	WaitMovement
 	HidePerson 4
+	SetFlag 0x2006
 	SetFlag 0x2006
 	SetVar 0x5008, 2
 	ReleaseAll
@@ -571,7 +589,9 @@ DadStory_EventScript_Memorial:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 4
+	SetFlag 0x2006
 	HidePerson 3
+	SetFlag 0x2004
 	SetFlag 0x2006
 	SetFlag 0x2004
 	MovePerson 4, 1057, 382
@@ -673,12 +693,12 @@ BerryField_EventScript_Growing:
 	NPCMsg msg_0446_T01_BerryField_Text_PullUp
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_5
+	GoToIfEq _cv_yes_9
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_6
-_cv_yes_5:
+	GoTo _cv_yn_10
+_cv_yes_9:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_6:
+_cv_yn_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_End
 	// TODO(gba) special BerryField_PullUp
@@ -730,12 +750,12 @@ PalletTown_EventScript_ChanseyStatueWish:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueLeaveClovers
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_7
+	GoToIfEq _cv_yes_11
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_8
-_cv_yes_7:
+	GoTo _cv_yn_12
+_cv_yes_11:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_8:
+_cv_yn_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEnd
 	// TODO(gba) special ItemUpgrade_PayAndUpgrade
@@ -763,7 +783,14 @@ PalletTown_EventScript_OakTrigger:
 	ApplyMovement obj_player, Common_Movement_ExclamationMark
 	WaitMovement
 	Wait 30, VAR_SPECIAL_RESULT
+	GoToIfUnset 0x2004, _cv_show_13
+	ClearFlag 0x2004
 	ShowPerson 3
+	SetFlag 0x2004
+	GoTo _cv_shown_14
+_cv_show_13:
+	ShowPerson 3
+_cv_shown_14:
 	CompareVarToValue 0x4001, 0
 	CallIfEq PalletTown_EventScript_OakEnterLeft
 	CompareVarToValue 0x4001, 1
@@ -932,9 +959,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_10
+	GoToIfLt _cv_menu_16
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_10:
+_cv_menu_16:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
@@ -1024,6 +1051,7 @@ PalletTown_EventScript_EndOakRatingScene:
 	ApplyMovement 3, PalletTown_Movement_OakExit
 	WaitMovement
 	HidePerson 3
+	SetFlag 0x2004
 	SetVar 0x5007, 3
 	ReleaseAll
 	End

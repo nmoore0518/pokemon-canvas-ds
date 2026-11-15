@@ -139,6 +139,10 @@ def candidate_mentor_name(port, ret):
 
 
 SPECIALS = {
+    # the old man's catching demo: HeartGold's own catching tutorial (a Weedle in the GBA game)
+    'StartOldManTutorialBattle': lambda p, r: ['CatchingTutorial'],
+    # (MissingNo.'s glitch encounter, armed by watching the demo: a flag until Cinnabar's coast is ported)
+    'MissingNo_ArmEncounter': lambda p, r: ['SetFlag %s' % p.flag('CV_MISSINGNO_ARMED')],
     'SetUnlockedPokedexFlags': lambda p, r: [],      # (the Pokedex is given with FLAG_SYS_POKEDEX_GET)
     'GymRooms_OakReward': gym_rooms_oak_reward,
     'GymRooms_GiveReward': lambda p, r: chain(p, '0x8004', [(i + 1, ['SetFlag %s' % p.flag(f)]) for i, f in

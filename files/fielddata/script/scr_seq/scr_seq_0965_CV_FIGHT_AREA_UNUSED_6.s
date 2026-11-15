@@ -295,6 +295,7 @@ DadStory_EventScript_Basement:
 	WaitMovement
 	HidePerson 1
 	SetFlag 0x200F
+	SetFlag 0x200F
 	SetVar 0x5008, 6
 	ReleaseAll
 	End

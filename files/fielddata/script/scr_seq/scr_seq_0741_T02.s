@@ -22,8 +22,8 @@
 	ScrDef ViridianCity_EventScript_GymDoor
 	ScrDef ViridianCity_EventScript_RoadBlocked
 	ScrDef ViridianCity_EventScript_GymDoorLocked
-	ScrDef _cv_unported_16
-	ScrDef _cv_unported_17
+	ScrDef ViridianCity_EventScript_TutorialTriggerLeft
+	ScrDef ViridianCity_EventScript_TutorialTriggerRight
 	ScrDef ViridianCity_OnTransition
 	ScrDef _cv_unported_19
 	ScrDefEnd
@@ -315,10 +315,8 @@ ViridianCity_EventScript_DoTutorialBattle:
 	NPCMsg msg_0452_T02_ViridianCity_Text_ShowYouHowToCatchMons
 	WaitButton
 	CloseMsg
-	// TODO(gba) special StartOldManTutorialBattle
-	GoTo _cv_stop
-	// TODO(gba) special MissingNo_ArmEncounter
-	GoTo _cv_stop
+	CatchingTutorial
+	SetFlag 0x20A3
 	LockAll
 	FacePlayer
 	NPCMsg msg_0452_T02_ViridianCity_Text_ThatWasEducationalTakeThis
@@ -331,7 +329,7 @@ ViridianCity_EventScript_DoTutorialBattle:
 	Return
 	
 ViridianCity_EventScript_SetOldManBlockingRoad:
-	SetVar 0x4020, SPRITE_GSMAN1
+	SetVar 0x4020, SPRITE_GSOLDMAN1
 	MovePerson 4, 1030, 243
 	SetObjectMovementType 4, 15
 	SetObjectFacing 4, 1
@@ -407,10 +405,8 @@ _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq ViridianCity_EventScript_ShowAgainNo
 	CloseMsg
-	// TODO(gba) special StartOldManTutorialBattle
-	GoTo _cv_stop
-	// TODO(gba) special MissingNo_ArmEncounter
-	GoTo _cv_stop
+	CatchingTutorial
+	SetFlag 0x20A3
 	LockAll
 	FacePlayer
 	NPCMsg msg_0452_T02_ViridianCity_Text_ThereThatsHowItsDone
@@ -533,24 +529,6 @@ GymHack_EventScript_GiveStatItem:
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-
-_cv_unported_16:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0452_T02_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_17:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0452_T02_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_unported_19:
 	PlaySE SEQ_SE_DP_SELECT

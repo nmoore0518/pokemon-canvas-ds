@@ -64,7 +64,7 @@
         },
         {
             "id": "4",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSMAN2",
             "movement": 2,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

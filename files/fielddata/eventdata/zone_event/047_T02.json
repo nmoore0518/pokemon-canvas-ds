@@ -334,6 +334,26 @@
             "y": 0,
             "val": 0,
             "var": "0x501E"
+        },
+        {
+            "scriptId": "_EV_ViridianCity_EventScript_TutorialTriggerLeft + 1",
+            "x": 1029,
+            "z": 238,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5012"
+        },
+        {
+            "scriptId": "_EV_ViridianCity_EventScript_TutorialTriggerRight + 1",
+            "x": 1031,
+            "z": 239,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5012"
         }
     ]
 }

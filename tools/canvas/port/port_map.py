@@ -253,7 +253,8 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'GYM_GUY': 'GSMAN1', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'CYCLEM', 'EXPERT_M': 'GSOLDMAN1',
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
-    'CEREMONY_PODIUM': 'GTOROPHY',
+    'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
+    'PAINT_FIGURE': 'GSMAN2',
 }
 # Pokemon in the overworld: hg-engine's walking sprite of that species
 for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):
@@ -329,9 +330,11 @@ class Port:
         self.mapscript_labels = set()
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
+        self.flag_of = {}             # a person's local id -> their flag
         for o in G.map_json(gba_map).get('object_events', []):
             if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
                 self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
+                self.flag_of[self.localid(o['local_id'])] = o['flag']
 
     def msg(self, label):
         if label not in self.msgs and label in OWN_TEXT:
@@ -612,8 +615,20 @@ class Port:
                 self.emit('ApplyMovement %s, %s' % (self.localid(a[0]), self.label(a[1])))
             elif cmd == 'waitmovement': self.emit('WaitMovement')
             elif cmd == 'removeobject':
-                self.emit('HidePerson %s' % self.localid(a[0])); removed.add(self.localid(a[0]))
-            elif cmd == 'addobject': self.emit('ShowPerson %s' % self.localid(a[0]))
+                # (the GBA sets the person's flag as it removes them; HeartGold only deletes the object)
+                lid = self.localid(a[0])
+                self.emit('HidePerson %s' % lid); removed.add(lid)
+                if lid in self.flag_of: self.emit('SetFlag %s' % self.flag(self.flag_of[lid]))
+            elif cmd == 'addobject':
+                # (the GBA shows a person whatever their flag says, and leaves the flag alone; HeartGold won't show one
+                # whose flag is set)
+                lid = self.localid(a[0])
+                if lid in self.flag_of:
+                    f, plain, done = self.flag(self.flag_of[lid]), self.new('show'), self.new('shown')
+                    self.emit('GoToIfUnset %s, %s' % (f, plain), 'ClearFlag %s' % f, 'ShowPerson %s' % lid, 'SetFlag %s' % f,
+                              'GoTo %s' % done, plain + ':', 'ShowPerson %s' % lid, done + ':')
+                else:
+                    self.emit('ShowPerson %s' % lid)
             elif cmd == 'delay': self.emit('Wait %s, VAR_SPECIAL_RESULT' % self.val(a[0]))
             elif cmd == 'playse': self.emit('PlaySE %s' % SE.get(a[0], 'SEQ_SE_DP_SELECT'))
             elif cmd == 'waitse': self.emit('WaitSE SEQ_SE_DP_SELECT')
@@ -912,6 +927,8 @@ def port(gba_map, g, ids, report):
     objs = []
     for i, o in enumerate(people):
         gfx = o['graphics_id'].replace('OBJ_EVENT_GFX_', '').replace('_FRLG', '')
+        sm = re.match(r'SPECIES\((\w+)\)$', gfx)            # (a Pokemon: its walking sprite, or Eevee's for ones HeartGold lacks)
+        if sm: gfx = sm.group(1) if sm.group(1) in SPRITE else 'EEVEE'
         mv = MOVETYPE.get(o['movement_type'], 15)
         x, z = xy(o['x'], o['y'], 'tree' if 'CUTTABLE_TREE' in o['graphics_id'] else 'object')
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1

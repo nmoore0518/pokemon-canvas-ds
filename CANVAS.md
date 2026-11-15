@@ -124,6 +124,17 @@ What else it does:
 - **Capitals**: names the GBA text writes in capitals (PALLET TOWN, HOT AIR BALLOON) come out as HeartGold writes
   them (Pallet Town, Hot Air Balloon); a few acronyms (PC, TM, HP...) stay.
 - **New game**: the GBA's new-game flags (EventScript_ResetAllMapFlagsFrlg) are set the first time Pallet loads.
+- **Maps with HeartGold's own layout** (Viridian, Route 1, the Viridian Mart...): `Anchored` in port_map.py places the GBA's
+  people by landmarks seen in both games (doors, exits), weighted by distance, then on the nearest open square;
+  signs and cuttable trees go where HeartGold has its own. HeartGold's original events for such a map are kept in
+  `tools/canvas/data/hg_events` (its hidden items stay).
+- **Unported parts**: a person or sign runs until it reaches something not ported yet, then says so (`_cv_stop`);
+  scenes on the frame table and trigger squares are held back whole (they'd only start over and over).
+- **HeartGold rules the porter follows**: map scripts (on load/transition) can't touch the special vars 0x8000-0x800D
+  (it asserts), so they use temp vars 0x4010-0x401D; people whose look is a var use sprites 101-116 (VAR_OBJ_0-15:
+  the decomp's SPRITE_VAR_n names are off by one).
+- **Engine commands** (208, ours from 100): flags/vars 100-105, `CanvasMart` 106 (a shop with a given list),
+  `CanvasBufferMsg` 107 (a message into a string slot).
 - **Items HeartGold doesn't have** (Oak's Parcel, the balloon...) are carried as flags until we add the items.
 - **Trigger squares** (coord events) come over; HeartGold doesn't respawn a removed person when their flag clears,
   so the porter shows them again itself.

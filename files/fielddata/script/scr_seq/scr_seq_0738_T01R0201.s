@@ -188,6 +188,7 @@ PalletTown_RivalsHouse_EventScript_GiveTownMap:
 	ApplyMovement 1, Common_Movement_WalkInPlaceFasterRight
 	WaitMovement
 	HidePerson 2
+	SetFlag 0x2013
 	SetVar 0x500D, 2
 	Wait 15, VAR_SPECIAL_RESULT
 	FacePlayer
