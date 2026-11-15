@@ -88,6 +88,14 @@ expansions, by kinds of POKeMON caught (Nick's design):
 Each size is its own map (`widen` in `build_rooms.py` repeats columns/rows and moves the events with them;
 slots in `slots.py`); the door scripts, when the GBA scripts come over, send you to the size you've earned.
 
+## Viridian Gym
+
+Our spin-tile maze from the GBA, in HeartGold's Viridian Gym slot. GBA spin/stop tiles become HeartGold's own
+slide tiles (behaviours 0x40-0x43, stop 0x4D), which HeartGold uses in its Viridian Gym: they need the Viridian
+gymmick running (HeartGold's map-load script for the gym starts it, so the gym keeps its scripts) and the floor
+flags 0x0600 on the squares you slide over. The partitions are solid blocks (`blocks` in `gba_look`).
+Decals sit one unit above the floor: model positions are whole units, so half a unit lands in the floor.
+
 ## Rules for every map we build (from Nick's review of Pallet)
 
 - stairs: HeartGold's striped `slope` ramp, about three steps per block of height, with a low rail down each side;

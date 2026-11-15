@@ -22,7 +22,18 @@ NEW_HOUSES = [   # town, door square (global), house, the room's slot (via slots
 ]
 
 
+# HeartGold people who belong to HeartGold's story and stand in ours' way (Canvas's people come with its scripts)
+REMOVE_PEOPLE = {
+    'MAP_VIRIDIAN': ['obj_T02_gsoldman1'],    # blocks the Gym door until Blue is back
+}
+
+
 def main():
+    for m, ids in REMOVE_PEOPLE.items():
+        path = os.path.join(slots.EVENT_DIR, slots.events_file(m))
+        ev = json.load(open(path))
+        ev['objects'] = [o for o in ev['objects'] if o['id'] not in ids]
+        json.dump(ev, open(path, 'w'), indent=4); open(path, 'a').write('\n')
     lands, btnf = read_narc(open(LAND_NARC, 'rb').read())
     for h in NEW_HOUSES:
         hm = HOUSE_MODELS[h['house']]

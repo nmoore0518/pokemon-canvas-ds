@@ -56,6 +56,10 @@ FURNITURE = {
         0x287: ('pc', 33, 1, 3, 'wall', 0),
         0x283: ('bed', 17, 3, 3, 'floor', 0),
     },
+    'gTileset_ViridianGym': {
+        0x2A9: ('gym statue', 78, 1, 1, 'floor', 0),
+        0x2AA: ('mat', 3, 3, 1, 'floor', 0),
+    },
     'gTileset_PalletGym': {
         0x2A9: ('gym statue', 78, 1, 1, 'floor', 0),
         0x2AA: ('mat', 3, 3, 1, 'floor', 0),
@@ -77,7 +81,8 @@ STAIRS_UP = {'gTileset_BuildingFrlg': {0x16: 7}, 'gTileset_PlayersBasement': {0x
 STAIRS_DOWN = {'gTileset_BuildingFrlg': {0x05: 9}}
 
 # GBA behaviour -> HeartGold behaviour, for the squares that do something
-BEHAVIOR = {0x65: 0x65, 0xEB: 0x5E, 0xEE: 0x5F, 0x86: 0x86, 0x83: 0x83, 0x85: 0x85}
+BEHAVIOR = {0x65: 0x65, 0xEB: 0x5E, 0xEE: 0x5F, 0x86: 0x86, 0x83: 0x83, 0x85: 0x85,
+            0x54: 0x40, 0x55: 0x41, 0x56: 0x42, 0x57: 0x43, 0x58: 0x4D}   # spin tiles -> HeartGold's slide tiles
 
 # ---------------------------------------------------------------- rooms
 HOUSE = dict(floor='red_h_yuka1', wall='red_h_kabe1', texset=43, buildset=41, area=43)
@@ -109,6 +114,13 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
              (224, 128, 16, 16, [('h', 3), ('v', 13)]),               # crates
              (208, 144, 32, 16, [('h', 3), ('v', 13)]),
          ])),
+    # Viridian City: the Gym, our spin-tile maze (GBA spin tiles = HeartGold's slide tiles) in HeartGold's slot.
+    # HeartGold's own scripts stay: their map-load script starts the Viridian gymmick, which the slide tiles need
+    dict(gba='ViridianCity_Gym_Frlg', map='MAP_VIRIDIAN_CITY_GYM', keep_people=False, pad=0x291, floor_flags=0x0600,
+         exits={'MAP_VIRIDIAN_CITY': ('MAP_VIRIDIAN', 0)},
+         gba_look=dict(tag='vg', floor=0x281, skip=(0x2A1, 0x2AB, 0x2AC), walls=dict(face=0x299, cap=0x291, emblems=[0x2D3]),
+                       blocks=dict(top=(180, 180, 164), face=0x2A3, height=24), things=[]),
+         texset=55, buildset=53, area=55),
     # Viridian City: Penny's house (its door is added to HeartGold's Viridian by build_kanto.py, warp 7 there)
     dict(gba='ViridianCity_PennysHouse_Frlg', map='MAP_VIRIDIAN_CITY_PENNYS_HOUSE', keep_people=False,
          template='MAP_VIRIDIAN_NORTHEAST_HOUSE', exits={'MAP_VIRIDIAN_CITY': ('MAP_VIRIDIAN', 7)}, **HOUSE),
@@ -179,11 +191,27 @@ def widen(gm, lay, cols=(), rows=()):
     return gm
 
 
+def pad(gm, lay, metatile):
+    """A blocked column of `metatile` either side (for rooms whose floor runs to the GBA map's edges: the walls
+    need squares to stand on); events move one square right"""
+    import copy
+    gm = copy.deepcopy(gm)
+    wall = metatile | (1 << 10)
+    lay.blocks = [[wall] + row + [wall] for row in lay.blocks]
+    lay.w += 2
+    for k in ('warp_events', 'bg_events', 'object_events'):
+        for e in gm.get(k, []):
+            e['x'] += 1
+    return gm
+
+
 def build_room(spec, land_id):
     gm = gba_map.map_json(spec['gba'])
     lay = gba_map.Layout(gm['layout'])
     if spec.get('widen'):
         gm = widen(gm, lay, **spec['widen'])
+    if spec.get('pad'):
+        gm = pad(gm, lay, spec['pad'])
     ts_name = gba_map.layouts()[gm['layout']]['primary_tileset']
     sec_name = gba_map.layouts()[gm['layout']]['secondary_tileset']
     tsn = lambda m: ts_name if m < lay.n_prim else sec_name
@@ -328,7 +356,28 @@ def build_room(spec, land_id):
             depth = sum(n for k, n in profile if k == 'h') or 4
             a_, b_, zf = U(px / 16) - 3, U((px + pw) / 16) + 3, U((py + ph) / 16) + 3
             zb = zf - depth - 8
-            M('cv_shadow').quad([((a_, 0.25, zf), (0, 16)), ((b_, 0.25, zf), (32, 16)), ((b_, 0.25, zb), (32, 0)), ((a_, 0.25, zb), (0, 0))], up)
+            M('cv_shadow').quad([((a_, 1, zf), (0, 16)), ((b_, 1, zf), (32, 16)), ((b_, 1, zb), (32, 0)), ((a_, 1, zb), (0, 0))], up)
+        bl = look.get('blocks')
+        if bl:
+            # the room's low inner walls (the GBA gym partitions): every blocked square inside the room that
+            # isn't furniture becomes a solid block, a plain top and the GBA partition face on its open sides
+            btop, bface = 'cv_%s_btop' % tag, 'cv_%s_bface' % tag
+            add(btop, Image.new('RGBA', (8, 8), tuple(bl['top']) + (255,)), 15)
+            add(bface, lay.render_metatile(bl['face']), 15)
+            hgt = bl.get('height', 24)
+            inner = {(x, y) for y in range(first, last + 1) for x in range(x0, x1)
+                     if blocked(x, y) and (x, y) not in covered and (x, y) not in doors
+                     and mid(x, y) not in FURNITURE.get(tsn(mid(x, y)), {})}
+            covered |= inner
+            for (x, y) in inner:
+                a_, b_, z0_, z1_ = U(x), U(x + 1), U(y), U(y + 1)
+                M(btop).quad([((a_, hgt, z1_), (0, 8)), ((b_, hgt, z1_), (8, 8)), ((b_, hgt, z0_), (8, 0)), ((a_, hgt, z0_), (0, 0))], up)
+                v = 16 * hgt / 24.0
+                for (nx, nz), pts in (((0, 1), [(a_, z1_), (b_, z1_)]), ((0, -1), [(b_, z0_), (a_, z0_)]),
+                                      ((1, 0), [(b_, z1_), (b_, z0_)]), ((-1, 0), [(a_, z0_), (a_, z1_)])):
+                    if (x + nx, y + nz) in inner or not (x0 <= x + nx < x1) or (y + nz < first): continue
+                    (pa, qa), (pb, qb) = pts
+                    M(bface).quad([((pa, 0, qa), (0, 16)), ((pb, 0, qb), (16, 16)), ((pb, hgt, qb), (16, 16 - v)), ((pa, hgt, qa), (0, 16 - v))], (nx, 0, nz))
         for y in range(first, H):
             for x in range(W):
                 m = mid(x, y)
@@ -344,8 +393,9 @@ def build_room(spec, land_id):
                 name = 'cv_%s_m%x' % (tag, m)
                 if name not in dims:
                     add(name, cards.cut_out(lay.render_metatile(m), floor_im), 15)
-                M(name).quad([((U(x), 0.5, U(y + 1)), (0, 16)), ((U(x + 1), 0.5, U(y + 1)), (16, 16)),
-                              ((U(x + 1), 0.5, U(y)), (16, 0)), ((U(x), 0.5, U(y)), (0, 0))], up)
+                # (1 unit up: the model's positions are whole units, so half a unit would sit in the floor)
+                M(name).quad([((U(x), 1, U(y + 1)), (0, 16)), ((U(x + 1), 1, U(y + 1)), (16, 16)),
+                              ((U(x + 1), 1, U(y)), (16, 0)), ((U(x), 1, U(y)), (0, 0))], up)
     else:
         M(spec['wall']).quad([((U(x0), 0, U(wall_z)), (0, wh)), ((U(x1), 0, U(wall_z)), ((x1 - x0) * ww, wh)),
                               ((U(x1), 48, U(wall_z)), ((x1 - x0) * ww, 0)), ((U(x0), 48, U(wall_z)), (0, 0))], fwd)
@@ -365,6 +415,8 @@ def build_room(spec, land_id):
             perm[y * 32 + x] = 0x65
     for (x, y), b in doors.items():
         perm[y * 32 + x] = b
+    if spec.get('floor_flags'):    # (HeartGold's slide tiles only carry you over squares with these flags set)
+        perm = [v if v & 0x8000 else v | spec['floor_flags'] for v in perm]
     for y in range(H):
         for x in range(W):
             m = mid(x, y)
@@ -468,11 +520,13 @@ def main():
                 fields.update(NO_SCRIPTS)
             set_header(slot, fields)
         else:
+            if spec.get('no_scripts'):           # (HeartGold's scripts there are for HeartGold's people)
+                set_header(slot, dict(NO_SCRIPTS))
             mpath = os.path.join(MATRIX_DIR, matrix_file(slot))
             m = bytearray(open(mpath, 'rb').read())
-            w, h, hh, ha, nl = m[:5]
-            p = 5 + nl + (2 * w * h if hh else 0) + (w * h if ha else 0)
-            struct.pack_into('<H', m, p, lid)
+            nl = m[4]
+            # our room is one land: the slot's matrix becomes 1x1 (some HeartGold rooms span two)
+            m = bytearray(bytes([1, 1, 0, 0, nl]) + bytes(m[5:5 + nl]) + struct.pack('<H', lid))
             open(mpath, 'wb').write(bytes(m))
             write_events(spec, gm)
         if own:     # a texture set of its own: the base set plus this room's GBA art, and an area entry using it

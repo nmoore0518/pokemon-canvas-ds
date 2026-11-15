@@ -7815,7 +7815,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_FIGHT_AREA_UNUSED_7] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 107,
+                        .areaDataBank = 108,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -7845,7 +7845,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_FIGHT_AREA_UNUSED_8] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 108,
+                        .areaDataBank = 109,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -7875,7 +7875,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_FIGHT_AREA_UNUSED_9] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 109,
+                        .areaDataBank = 110,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -7905,7 +7905,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_BATTLE_PARK_UNUSED_1] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 110,
+                        .areaDataBank = 111,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -7935,7 +7935,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_BATTLE_PARK_UNUSED_2] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 111,
+                        .areaDataBank = 112,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -8025,7 +8025,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_BATTLE_TOWER_UNUSED_1] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 112,
+                        .areaDataBank = 113,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -8055,7 +8055,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_BATTLE_TOWER_UNUSED_2] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 113,
+                        .areaDataBank = 114,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -8085,7 +8085,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_BATTLE_TOWER_UNUSED_3] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 114,
+                        .areaDataBank = 115,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -14895,7 +14895,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_VIRIDIAN_GYM] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 55,
+                        .areaDataBank = 107,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,

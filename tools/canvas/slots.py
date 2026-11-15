@@ -9,6 +9,7 @@ SLOTS = {
     'MAP_PALLET_TOWN_RIVALS_HOUSE': 'MAP_PALLET_TOWN_BLUES_HOUSE_1F',
     'MAP_PALLET_TOWN_HOUSE1': 'MAP_PALLET_TOWN_BLUES_HOUSE_2F',
     'MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB': 'MAP_PALLET_TOWN_OAKS_LAB',
+    'MAP_VIRIDIAN_CITY_GYM': 'MAP_VIRIDIAN_GYM',
 }
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
