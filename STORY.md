@@ -21,6 +21,26 @@ final dialogue; anything here marked *suggestion* is Claude's, to workshop.
 - **The 8 regions**: Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Paldea. **Johto is HeartGold's own Johto.**
 - **Pokémon only the Exotic Safari gave** go to the regions they come from, as those regions are built.
 
+## Regions, types and colours (Nick, 2026-11-15)
+
+Two types per region (so any starter can see a region through), one colour per region; together they cover
+all 18 types once.
+
+| Region | Types | Missing colour until cleared |
+|---|---|---|
+| Kanto | Psychic / Poison | Purple; the finale turns Kanto fully greyscale until Arceus is beaten |
+| Johto | Bug / Grass | Green |
+| Hoenn | Water / Ice | Blue |
+| Sinnoh | Electric / Flying | Yellow |
+| Unova | Steel / Normal | Grey (needs a different effect: can't grey out grey) |
+| Kalos | Ghost / Dark | Black (same problem) |
+| Alola | Fire / Fighting | Red |
+| Galar | Fairy / Dragon | Pink |
+| Paldea | Rock / Ground | Brown |
+
+**Mastery changes** (after the first type): no more win streaks; a type is mastered by beating that region's
+Elite Four with it. The first time is through the region's story; the second is with the region's other type.
+
 ## How the missing colour works *(plan)*
 
 HeartGold's map textures are palette-based, so the colour can be taken out where the palettes are loaded:
