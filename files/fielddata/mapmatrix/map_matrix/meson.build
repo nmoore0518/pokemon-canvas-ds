@@ -361,4 +361,8 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0359_CV_SSANNE_B1F_R3.bin',
     'map_matrix_0360_CV_SSANNE_B1F_R4.bin',
     'map_matrix_0361_CV_SSANNE_B1F_R5.bin',
+    'map_matrix_0362_CV_ROCKET_HIDEOUT_B1F.bin',
+    'map_matrix_0363_CV_ROCKET_HIDEOUT_B2F.bin',
+    'map_matrix_0364_CV_ROCKET_HIDEOUT_B3F.bin',
+    'map_matrix_0365_CV_ROCKET_HIDEOUT_B4F.bin',
 ))

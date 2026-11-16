@@ -609,6 +609,10 @@
 #define MAP_CANVAS_SSANNE_B1F_R3                          600
 #define MAP_CANVAS_SSANNE_B1F_R4                          601
 #define MAP_CANVAS_SSANNE_B1F_R5                          602
+#define MAP_CANVAS_ROCKET_HIDEOUT_B1F                     603
+#define MAP_CANVAS_ROCKET_HIDEOUT_B2F                     604
+#define MAP_CANVAS_ROCKET_HIDEOUT_B3F                     605
+#define MAP_CANVAS_ROCKET_HIDEOUT_B4F                     606
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

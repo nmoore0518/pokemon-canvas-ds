@@ -568,4 +568,8 @@ zone_event_json = files(
     '566_CV_SSANNE_B1F_R3.json',
     '567_CV_SSANNE_B1F_R4.json',
     '568_CV_SSANNE_B1F_R5.json',
+    '569_CV_ROCKET_HIDEOUT_B1F.json',
+    '570_CV_ROCKET_HIDEOUT_B2F.json',
+    '571_CV_ROCKET_HIDEOUT_B3F.json',
+    '572_CV_ROCKET_HIDEOUT_B4F.json',
 )

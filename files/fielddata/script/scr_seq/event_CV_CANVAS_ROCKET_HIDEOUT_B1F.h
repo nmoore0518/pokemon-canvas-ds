@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B1F_H_
+#define SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B1F_H_
+
+#define _EV_RocketHideout_B1F_EventScript_Grunt5 0
+#define _EV_RocketHideout_B1F_EventScript_ItemEscapeRope 1
+#define _EV_RocketHideout_B1F_EventScript_ItemHyperPotion 2
+#define _EV_BerryField_EventScript_FindDark 3
+#define _EV_RocketHideout_B1F_OnLoad 4
+#define _EV_RocketHideout_B1F_OnTransition 5
+
+
+#endif

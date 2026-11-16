@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B3F_H_
+#define SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B3F_H_
+
+#define _EV_RocketHideout_B3F_EventScript_ItemRareCandy 0
+#define _EV_RocketHideout_B3F_EventScript_ItemTM21 1
+#define _EV_RocketHideout_B3F_EventScript_ItemBlackGlasses 2
+
+
+#endif

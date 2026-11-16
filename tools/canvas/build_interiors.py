@@ -65,8 +65,15 @@ INTERIORS = (
      dict(gba='SSAnne_Kitchen_Frlg', map='MAP_CANVAS_SSANNE_KITCHEN', look='ship', template=SS, depth=-1),
      dict(gba='SSAnne_CaptainsOffice_Frlg', map='MAP_CANVAS_SSANNE_CAPTAIN', look='ship', template=SS, depth=-2)] +
     [dict(gba='SSAnne_%s_Room%d_Frlg' % (f, i), map='MAP_CANVAS_SSANNE_%s_R%d' % (f, i), look='ship', template=SS,
-          depth={'1F': -1, '2F': -2, 'B1F': 0}[f]) for f, n in (('1F', 7), ('2F', 6), ('B1F', 5)) for i in range(1, n + 1)]
+          depth={'1F': -1, '2F': -2, 'B1F': 0}[f]) for f, n in (('1F', 7), ('2F', 6), ('B1F', 5)) for i in range(1, n + 1)] +
+    # the Rocket Hideout, under the Game Corner (stairs added there: ADD_WARPS). Its spin-tile mazes are plain floor
+    # for now (HeartGold's slide tiles need a gym's code running), and its elevator (a GBA dynamic warp) isn't built
+    [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
+          depth=i, exits={'MAP_CELADON_CITY_GAME_CORNER': ('MAP_CELADON_GAME_CORNER', 1)}) for i in range(1, 5)]
 )
+# warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
+# the room's warp list, so no other warp's number moves.
+ADD_WARPS = [('MAP_CELADON_GAME_CORNER', (12, 3), 0x3E, 'MAP_CANVAS_ROCKET_HIDEOUT_B1F', 0)]   # (the GBA's hidden stairs)
 # HeartGold's doors that stood for these places -> ours: (map, its warp index) -> (our map, GBA warp index there)
 DOORS = {('MAP_LAVENDER', 6): ('MAP_CANVAS_POKEMON_TOWER_1F', 1),
          ('MAP_SAFFRON_SILPH_CO_HQ', 1): ('MAP_CANVAS_SILPH_CO_2F', 3),
@@ -223,6 +230,19 @@ def main():
         set_header(spec['map'], fields)
         print(spec['gba'], '->', spec['map'], '%dx%d lands' % (nx, nz), lids)
     land = [d if d else land[209] for d in land]
+    open(LAND_NARC, 'wb').write(write_narc(land, btnf))
+    import world
+    for m, (x, z), beh, to, anchor in ADD_WARPS:
+        w_, h_, ls = world.map_matrix(m)
+        lid = ls[(z // 32) * w_ + x // 32]
+        d = bytearray(land[lid])
+        struct.pack_into('<H', d, 0x14 + ((z % 32) * 32 + x % 32) * 2, beh)
+        land[lid] = bytes(d)
+        path = os.path.join(slots.EVENT_DIR, events_file(m))
+        ev = json.load(open(path))
+        ev['warps'] = [w for w in ev['warps'] if not (w['x'] == x and w['z'] == z)]
+        ev['warps'].append({'x': x, 'z': z, 'header': to, 'anchor': anchor, 'y': 0})
+        json.dump(ev, open(path, 'w'), indent=4); open(path, 'a').write('\n')
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     for (m, i), (to, anchor) in DOORS.items():
         path = os.path.join(slots.EVENT_DIR, events_file(m))

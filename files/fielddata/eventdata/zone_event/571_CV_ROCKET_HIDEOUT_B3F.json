@@ -1,0 +1,108 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_ROCKET_HIDEOUT_B3F.h",
+    "bgs": [],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 14,
+            "type": 1,
+            "eventFlag": "0x20CA",
+            "scriptId": "std_trainer(1101)",
+            "facingDirection": 0,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 19,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "0x20CA",
+            "scriptId": "std_trainer(1100)",
+            "facingDirection": 3,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 20,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21E6",
+            "scriptId": "_EV_RocketHideout_B3F_EventScript_ItemRareCandy + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 12,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21E7",
+            "scriptId": "_EV_RocketHideout_B3F_EventScript_ItemTM21 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 19,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21E8",
+            "scriptId": "_EV_RocketHideout_B3F_EventScript_ItemBlackGlasses + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 14,
+            "z": 24,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 18,
+            "z": 2,
+            "header": "MAP_CANVAS_ROCKET_HIDEOUT_B2F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 15,
+            "z": 18,
+            "header": "MAP_CANVAS_ROCKET_HIDEOUT_B4F",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

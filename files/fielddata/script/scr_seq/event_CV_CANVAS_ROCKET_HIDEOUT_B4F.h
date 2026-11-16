@@ -1,0 +1,20 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B4F_H_
+#define SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B4F_H_
+
+#define _EV_RocketHideout_B4F_EventScript_Giovanni 0
+#define _EV_RocketHideout_B4F_EventScript_SilphScope 1
+#define _EV_RocketHideout_B4F_EventScript_Grunt1 2
+#define _EV_RocketHideout_B4F_EventScript_LiftKey 3
+#define _EV_RocketHideout_B4F_EventScript_Grunt3 4
+#define _EV_RocketHideout_B4F_EventScript_Grunt2 5
+#define _EV_RocketHideout_B4F_EventScript_ItemTM49 6
+#define _EV_RocketHideout_B4F_EventScript_ItemMaxEther 7
+#define _EV_RocketHideout_B4F_EventScript_ItemCalcium 8
+#define _EV_RocketHideout_B4F_EventScript_ItemTM36 9
+#define _EV_RocketHideout_B4F_OnLoad 10
+
+#define LOCALID_HIDEOUT_GIOVANNI 1
+#define LOCALID_SILPH_SCOPE 2
+#define LOCALID_LIFT_KEY 4
+
+#endif

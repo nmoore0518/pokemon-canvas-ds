@@ -1,0 +1,26 @@
+{
+  "key": 19915,
+  "messages": [
+    {
+      "id": "msg_0928_CV_CANVAS_ROCKET_HIDEOUT_B1F_RocketHideout_B1F_Text_Grunt5Intro",
+      "en_US": [
+        "Are you using synthetic\n",
+        "abilities?"
+      ]
+    },
+    {
+      "id": "msg_0928_CV_CANVAS_ROCKET_HIDEOUT_B1F_RocketHideout_B1F_Text_Grunt5PostBattle",
+      "en_US": [
+        "Uh-oh, that ruckus somehow opened\n",
+        "the door!"
+      ]
+    },
+    {
+      "id": "msg_0928_CV_CANVAS_ROCKET_HIDEOUT_B1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

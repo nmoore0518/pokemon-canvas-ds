@@ -1,0 +1,95 @@
+{
+  "key": 19918,
+  "messages": [
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_GiovanniIntro",
+      "en_US": [
+        "So! I must say, I am impressed you\n",
+        "got here.\r",
+        "You remind me of your father.\r",
+        "Oh? You didn’t know I knew your\n",
+        "father?\r",
+        "I wonder why your Mom never told\n",
+        "you…\r",
+        "Team Rocket captures Pokémon from\n",
+        "around the world.\r",
+        "They’re important tools for keeping\n",
+        "our criminal enterprise going.\r",
+        "I am the leader, Giovanni!\r",
+        "For your insolence, you will feel a\n",
+        "world of pain!"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_GiovanniPostBattle",
+      "en_US": [
+        "I see that you raise Pokémon with\n",
+        "utmost care.\r",
+        "Not an evil bone in your body…\n",
+        "yet.\r",
+        "One day you might understand what\n",
+        "I hope to achieve, if you’re\f",
+        "anything like…\r",
+        "I shall step aside this time!\r",
+        "I hope we meet again…"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt1Intro",
+      "en_US": [
+        "The elevator doesn’t work?\n",
+        "Who has the Lift Key?"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt1PostBattle",
+      "en_US": [
+        "Oh, no!\n",
+        "I dropped the Lift Key!"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt3Intro",
+      "en_US": [
+        "How can you not see the beauty of\n",
+        "our evil?"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt3PostBattle",
+      "en_US": [
+        "Boss!\n",
+        "I’m sorry I failed you!"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt2Intro",
+      "en_US": [
+        "I know you! You look like…\r",
+        "Oh, wait!\n",
+        "You ruined our plans at Mt. Moon!"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt2PostBattle",
+      "en_US": [
+        "Do you have something against Team\n",
+        "Rocket?"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_gText_TooBadBagIsFull",
+      "en_US": [
+        "Too bad!\n",
+        "The Bag is full…"
+      ]
+    },
+    {
+      "id": "msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

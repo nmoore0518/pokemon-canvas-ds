@@ -609,6 +609,10 @@ scr_seq_event_headers = files(
     'event_CV_CANVAS_SSANNE_B1F_R3.h',
     'event_CV_CANVAS_SSANNE_B1F_R4.h',
     'event_CV_CANVAS_SSANNE_B1F_R5.h',
+    'event_CV_CANVAS_ROCKET_HIDEOUT_B1F.h',
+    'event_CV_CANVAS_ROCKET_HIDEOUT_B2F.h',
+    'event_CV_CANVAS_ROCKET_HIDEOUT_B3F.h',
+    'event_CV_CANVAS_ROCKET_HIDEOUT_B4F.h',
 )
 
 scr_seq_asm = files(
@@ -1725,4 +1729,12 @@ scr_seq_asm = files(
     'scr_seq_1110_CV_CANVAS_SSANNE_B1F_R4_hdr.s',
     'scr_seq_1111_CV_CANVAS_SSANNE_B1F_R5.s',
     'scr_seq_1112_CV_CANVAS_SSANNE_B1F_R5_hdr.s',
+    'scr_seq_1113_CV_CANVAS_ROCKET_HIDEOUT_B1F.s',
+    'scr_seq_1114_CV_CANVAS_ROCKET_HIDEOUT_B1F_hdr.s',
+    'scr_seq_1115_CV_CANVAS_ROCKET_HIDEOUT_B2F.s',
+    'scr_seq_1116_CV_CANVAS_ROCKET_HIDEOUT_B2F_hdr.s',
+    'scr_seq_1117_CV_CANVAS_ROCKET_HIDEOUT_B3F.s',
+    'scr_seq_1118_CV_CANVAS_ROCKET_HIDEOUT_B3F_hdr.s',
+    'scr_seq_1119_CV_CANVAS_ROCKET_HIDEOUT_B4F.s',
+    'scr_seq_1120_CV_CANVAS_ROCKET_HIDEOUT_B4F_hdr.s',
 )

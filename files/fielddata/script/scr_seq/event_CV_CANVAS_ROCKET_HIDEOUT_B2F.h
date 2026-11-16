@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B2F_H_
+#define SCR_SEQ_CV_CANVAS_ROCKET_HIDEOUT_B2F_H_
+
+#define _EV_RocketHideout_B2F_EventScript_ItemXSpeed 0
+#define _EV_RocketHideout_B2F_EventScript_ItemMoonStone 1
+#define _EV_RocketHideout_B2F_EventScript_ItemTM12 2
+#define _EV_RocketHideout_B2F_EventScript_ItemSuperPotion 3
+
+
+#endif
