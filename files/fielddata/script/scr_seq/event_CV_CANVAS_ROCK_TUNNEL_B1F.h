@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCK_TUNNEL_B1F_H_
+#define SCR_SEQ_CV_CANVAS_ROCK_TUNNEL_B1F_H_
+
+#define _EV_RockTunnel_B1F_EventScript_RockSlideTutor 0
+#define _EV_RockTunnel_B1F_EventScript_ItemRevive 1
+#define _EV_RockTunnel_B1F_EventScript_ItemMaxEther 2
+
+
+#endif

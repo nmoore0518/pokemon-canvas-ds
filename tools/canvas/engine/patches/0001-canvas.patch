@@ -2070,6 +2070,43 @@ index 74403e9d..755b340e 100644
 +        { .class = TRAINERCLASS_CANVAS_RIVAL, .multiplier = 16 },
      };
  #endif // EXPAND_TRAINER_PRIZE_MONEY
+diff --git a/tools/narcpy.py b/tools/narcpy.py
+index 3ea72b91..2d14f643 100644
+--- a/tools/narcpy.py
++++ b/tools/narcpy.py
+@@ -22,15 +22,24 @@ if args[0] == 'extract':
+             with open(name, 'wb') as out:
+                 out.write(data)
+ elif args[0] == 'create':
++    # Pokemon Canvas: members go by the number after the last '_', not by name: a NARC of 1000 members or more
++    # extracts as 2_0003 where the rules copy 2_003 in (and a directory can keep an older extraction's names).
++    # Of two files for one member, the newer wins (the one copied in after the extraction).
++    import re
++    best, other = {}, []
++    for entry in os.listdir(args[2]):
++        m = re.match(r'(\d+)', entry.rsplit('_', 1)[-1])
++        path = os.path.join(args[2], entry)
++        if not m:
++            other.append(path)
++            continue
++        idx = int(m.group(1))
++        if idx not in best or os.path.getmtime(path) >= os.path.getmtime(best[idx]):
++            best[idx] = path
+     files = []
+-    for v in range(len(os.listdir(args[2]))):
+-        files.append(None)
+-
+-    idx = 0
+-    for entry in sorted(os.listdir(args[2])):
+-        with open(os.path.join(args[2], entry), 'rb') as f:
+-            files[idx] = f.read()
+-        idx += 1
++    for path in [best[i] for i in sorted(best)] + sorted(other):
++        with open(path, 'rb') as f:
++            files.append(f.read())
+ 
+     narc = ndspy.narc.NARC.fromFilesAndNames(files=files)
+     narc.endiannessOfBeginning = '>'
 diff --git a/tools/source/trainerdatagen/trainer_data_gen.c b/tools/source/trainerdatagen/trainer_data_gen.c
 index b9078979..e1168719 100644
 --- a/tools/source/trainerdatagen/trainer_data_gen.c

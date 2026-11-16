@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_1F_H_
+#define SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_1F_H_
+
+#define _EV_CeruleanCave_1F_EventScript_ItemNugget 0
+#define _EV_CeruleanCave_1F_EventScript_ItemFullRestore 1
+#define _EV_CeruleanCave_1F_EventScript_ItemMaxElixir 2
+#define _EV_PaintWorld_EventScript_Figure 3
+#define _EV_CeruleanCave_1F_OnTransition 4
+
+
+#endif

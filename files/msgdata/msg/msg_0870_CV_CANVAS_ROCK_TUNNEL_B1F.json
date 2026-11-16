@@ -1,0 +1,21 @@
+{
+  "key": 19857,
+  "messages": [
+    {
+      "id": "msg_0870_CV_CANVAS_ROCK_TUNNEL_B1F_RockTunnel_B1F_Text_RockSlideTutor_Retired",
+      "en_US": [
+        "I used to teach Rock Slide.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Rock master in Pewter City."
+      ]
+    },
+    {
+      "id": "msg_0870_CV_CANVAS_ROCK_TUNNEL_B1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

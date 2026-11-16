@@ -1,0 +1,20 @@
+{
+  "key": 19866,
+  "messages": [
+    {
+      "id": "msg_0879_CV_CANVAS_CERULEAN_CAVE_B1F_CeruleanCave_B1F_Text_Mew",
+      "en_US": "Mew!"
+    },
+    {
+      "id": "msg_0879_CV_CANVAS_CERULEAN_CAVE_B1F_Text_MonFlewAway",
+      "en_US": "The {STRVAR_1 3, 0, 0} flew away!"
+    },
+    {
+      "id": "msg_0879_CV_CANVAS_CERULEAN_CAVE_B1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

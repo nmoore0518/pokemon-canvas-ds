@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_VICTORY_ROAD_1F_H_
+#define SCR_SEQ_CV_CANVAS_VICTORY_ROAD_1F_H_
+
+#define _EV_VictoryRoad_1F_EventScript_ItemRareCandy 0
+#define _EV_VictoryRoad_1F_EventScript_ItemTM02 1
+#define _EV_VictoryRoad_1F_EventScript_FloorSwitch 2
+#define _EV_VictoryRoad_1F_Frlg_OnLoad 3
+#define _EV_VictoryRoad_1F_Frlg_OnTransition 4
+
+#define LOCALID_VICTORY_ROAD_1F_BOULDER 5
+
+#endif

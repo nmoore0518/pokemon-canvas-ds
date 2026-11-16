@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROCK_TUNNEL_1F_H_
+#define SCR_SEQ_CV_CANVAS_ROCK_TUNNEL_1F_H_
+
+#define _EV_RockTunnel_1F_EventScript_ItemRepel 0
+#define _EV_RockTunnel_1F_EventScript_ItemPearl 1
+#define _EV_RockTunnel_1F_EventScript_ItemEscapeRope 2
+#define _EV_RockTunnel_1F_EventScript_RouteSign 3
+#define _EV_RockTunnel_1F_OnTransition 4
+
+
+#endif

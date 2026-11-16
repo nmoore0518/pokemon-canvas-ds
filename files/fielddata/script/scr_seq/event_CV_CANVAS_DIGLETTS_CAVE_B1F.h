@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_B1F_H_
+#define SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_B1F_H_
+
+#define _EV_BerryField_EventScript_FindGround 0
+#define _EV_DiglettsCave_B1F_OnTransition 1
+
+
+#endif

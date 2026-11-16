@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_SEAFOAM_B2F_H_
+#define SCR_SEQ_CV_CANVAS_SEAFOAM_B2F_H_
+
+#define _EV_SeafoamIslands_B2F_EventScript_ItemBigPearl 0
+
+
+#endif

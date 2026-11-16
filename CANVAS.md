@@ -188,6 +188,17 @@ Floors bigger than a land span a matrix of lands. They are maps of our own (`MAP
 of HeartGold's Mt. Moon (its wild Pokemon for now); the doors on Route 3 and Route 4 into HeartGold's Mt. Moon lead
 into ours, and HeartGold's own (with Mt. Moon Square) is left alone.
 
+The rest of Kanto's caves are built the same way (`CAVES` in `build_caves.py`): Rock Tunnel, Diglett's Cave (its
+two entrance rooms too), Victory Road, Cerulean Cave and the Seafoam Islands, each with the header of HeartGold's
+cave of that name (wild Pokemon, music) but Mt. Moon's look (area 70). Water you surf is HeartGold's cave water
+(behaviour 0x15, `driver`); a floor is dark until Flash only where the GBA's is (Rock Tunnel). HeartGold has no
+Route 23: its League reception gate leads into our Victory Road 1F, and Victory Road 2F's way out is the Plateau.
+Not yet: Victory Road's and Seafoam's boulder switches and currents, ledges inside a floor.
+
+**Big NARCs**: once a NARC has 1000 members, hg-engine's unpacker names them `2_0003` while its rules copy `2_003` in;
+our `engine/tools/narcpy.py` packs members by number (the newer of two wins), or the scripts come out shuffled and
+the game stops at the first map it loads.
+
 **Cliffs outside** (Pallet's plateaus and terraces, `build_pallet.py`) use the same HeartGold profile: the face
 slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to the shore are two such tiers.
 
@@ -208,6 +219,20 @@ slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to 
   Pokemon statues use HeartGold's own overworld sprite of that Pokemon (hg-engine has one for every species in
   `a/0/8/1`), enlarged and recoloured to stone or gold (`STATUE_FINISH`), standing like HeartGold's people
 
+
+## The rest of Kanto (towns, routes, the rooms HeartGold has)
+
+Maps that keep HeartGold's layout get the GBA game's people by landmarks worked out in `port/auto_anchor.py`: a
+GBA warp to a room pairs with HeartGold's warp to that room's HeartGold map (`DEST` in `port_map.py`), and each GBA
+connection pairs the middle of the open GBA edge with the middle of HeartGold's open border to that map. `Auto`
+maps keep their people on their own part of the world; a GBA route HeartGold splits in two (Route 10, Route 16)
+ports into both halves (`on_map`). Pokemon Centers and Marts share one set of landmarks (`center`, `mart`). Cut
+trees go where HeartGold has its own; one HeartGold has no place for is left out (it could close a road).
+Places HeartGold has no building for (the GBA's Pokemon Tower, Silph Co.'s upper floors, the S.S. Anne, the Rocket
+Hideout, Cinnabar's Gym, Lab and Mansion, the Hotel, the hack's own halls...) aren't reachable yet; their doors
+pair with the nearest HeartGold building for placing people.
+`test/shots.py LIST DIR` takes a screenshot per place from one ROM (it points the new-game location in RAM);
+`test/places.py` writes the list.
 
 ## Plan
 

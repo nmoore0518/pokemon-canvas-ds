@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_S_H_
+#define SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_S_H_
+
+#define _EV_DiglettsCave_SouthEntrance_EventScript_OldMan 0
+
+
+#endif

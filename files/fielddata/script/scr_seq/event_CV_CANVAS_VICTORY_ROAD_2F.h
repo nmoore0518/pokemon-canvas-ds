@@ -1,0 +1,22 @@
+#ifndef SCR_SEQ_CV_CANVAS_VICTORY_ROAD_2F_H_
+#define SCR_SEQ_CV_CANVAS_VICTORY_ROAD_2F_H_
+
+#define _EV_VictoryRoad_2F_EventScript_Nelson 0
+#define _EV_VictoryRoad_2F_EventScript_ItemGuardSpec 1
+#define _EV_VictoryRoad_2F_EventScript_ItemTM07 2
+#define _EV_VictoryRoad_2F_EventScript_ItemFullHeal 3
+#define _EV_VictoryRoad_2F_EventScript_ItemTM37 4
+#define _EV_VictoryRoad_2F_EventScript_DoubleEdgeTutor 5
+#define _EV_VictoryRoad_2F_EventScript_Moltres 6
+#define _EV_BerryField_EventScript_FindDragon 7
+#define _EV_VictoryRoad_2F_EventScript_FloorSwitch1 8
+#define _EV_VictoryRoad_2F_EventScript_FloorSwitch2 9
+#define _EV_VictoryRoad_2F_OnLoad 10
+#define _EV_VictoryRoad_2F_OnTransition 11
+#define _EV_VictoryRoad_2F_OnResume 12
+
+#define LOCALID_VICTORY_ROAD_2F_BOULDER1 11
+#define LOCALID_VICTORY_ROAD_2F_BOULDER2 12
+#define LOCALID_VICTORY_ROAD_2F_MOLTRES 14
+
+#endif

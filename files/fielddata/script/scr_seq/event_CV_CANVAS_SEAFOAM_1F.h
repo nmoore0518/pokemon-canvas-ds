@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_CANVAS_SEAFOAM_1F_H_
+#define SCR_SEQ_CV_CANVAS_SEAFOAM_1F_H_
+
+#define _EV_SeafoamIslands_1F_EventScript_ItemIceHeal 0
+#define _EV_BerryField_EventScript_FindIce 1
+#define _EV_PaintWorld_EventScript_Figure 2
+#define _EV_SeafoamIslands_1F_OnTransition 3
+
+
+#endif

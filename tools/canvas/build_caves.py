@@ -40,15 +40,48 @@ PROFILE = [[(0, 0, 15.75), (0.21, 1.6, 13), (0.67, 16, 4), (1.0, 16, 0.25)],
            [(1.0, 16, 15.75), (1.21, 17.6, 13), (1.67, 32, 4), (2.0, 32, 0.25)]]
 WALL_TEX = {(0, -1): 'dwall_n', (0, 1): 'dwall_s', (1, 0): 'dwall_e', (-1, 0): 'dwall_w'}   # by where the rock is
 
-CAVES = [   # GBA map, our map, how deep (ladders go up or down by it), the GBA's ways out -> (HeartGold map, warp)
+CAVES = [   # GBA map, our map, how deep (ladders go up or down by it), the GBA's ways out -> (HeartGold map, warp),
+    # the HeartGold cave whose header (wild Pokemon, music, camera) it takes. A way out is keyed by the GBA's
+    # destination map, or (map, warp id) where two ways out go to one map.
     dict(gba='MtMoon_1F_Frlg', map='MAP_CANVAS_MT_MOON_1F', depth=0, exits={'MAP_ROUTE4': ('MAP_ROUTE_3', 0)}),
     dict(gba='MtMoon_B1F_Frlg', map='MAP_CANVAS_MT_MOON_B1F', depth=1, exits={'MAP_ROUTE4': ('MAP_ROUTE_4', 0)}),
     dict(gba='MtMoon_B2F_Frlg', map='MAP_CANVAS_MT_MOON_B2F', depth=2, exits={}),
+    dict(gba='RockTunnel_1F_Frlg', map='MAP_CANVAS_ROCK_TUNNEL_1F', depth=0, template='MAP_ROCK_TUNNEL_1F',
+         exits={('MAP_ROUTE10', '0'): ('MAP_ROUTE_10', 0), ('MAP_ROUTE10', '1'): ('MAP_ROUTE_10_SOUTH', 0)}),
+    dict(gba='RockTunnel_B1F_Frlg', map='MAP_CANVAS_ROCK_TUNNEL_B1F', depth=1, template='MAP_ROCK_TUNNEL_B1F', exits={}),
+    dict(gba='DiglettsCave_NorthEntrance_Frlg', map='MAP_CANVAS_DIGLETTS_CAVE_N', depth=0, template='MAP_DIGLETT_CAVE',
+         exits={'MAP_ROUTE2': ('MAP_ROUTE_2_EAST', 4)}),
+    dict(gba='DiglettsCave_B1F_Frlg', map='MAP_CANVAS_DIGLETTS_CAVE_B1F', depth=1, template='MAP_DIGLETT_CAVE', exits={}),
+    dict(gba='DiglettsCave_SouthEntrance_Frlg', map='MAP_CANVAS_DIGLETTS_CAVE_S', depth=0, template='MAP_DIGLETT_CAVE',
+         exits={'MAP_ROUTE11': ('MAP_ROUTE_11', 2)}),
+    # (HeartGold has no Route 23: Victory Road runs from the League's reception gate to the Plateau)
+    dict(gba='VictoryRoad_1F_Frlg', map='MAP_CANVAS_VICTORY_ROAD_1F', depth=0, template='MAP_VICTORY_ROAD_1F',
+         exits={'MAP_ROUTE23': ('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE', 1)}),
+    dict(gba='VictoryRoad_2F_Frlg', map='MAP_CANVAS_VICTORY_ROAD_2F', depth=-1, template='MAP_VICTORY_ROAD_2F',
+         exits={'MAP_ROUTE23': ('MAP_INDIGO_PLATEAU', 0)}),
+    dict(gba='VictoryRoad_3F_Frlg', map='MAP_CANVAS_VICTORY_ROAD_3F', depth=-2, template='MAP_VICTORY_ROAD_3F', exits={}),
+    dict(gba='CeruleanCave_1F_Frlg', map='MAP_CANVAS_CERULEAN_CAVE_1F', depth=0, template='MAP_CERULEAN_CAVE_1F',
+         exits={'MAP_CERULEAN_CITY': ('MAP_CERULEAN', 7)}),
+    dict(gba='CeruleanCave_2F_Frlg', map='MAP_CANVAS_CERULEAN_CAVE_2F', depth=-1, template='MAP_CERULEAN_CAVE_2F', exits={}),
+    dict(gba='CeruleanCave_B1F_Frlg', map='MAP_CANVAS_CERULEAN_CAVE_B1F', depth=1, template='MAP_CERULEAN_CAVE_B1F', exits={}),
+    dict(gba='SeafoamIslands_1F_Frlg', map='MAP_CANVAS_SEAFOAM_1F', depth=0, template='MAP_SEAFOAM_ISLANDS_1F',
+         exits={('MAP_ROUTE20', '0'): ('MAP_ROUTE_20', 1), ('MAP_ROUTE20', '1'): ('MAP_ROUTE_20', 0)}),
+    dict(gba='SeafoamIslands_B1F_Frlg', map='MAP_CANVAS_SEAFOAM_B1F', depth=1, template='MAP_SEAFOAM_ISLANDS_B1F', exits={}),
+    dict(gba='SeafoamIslands_B2F_Frlg', map='MAP_CANVAS_SEAFOAM_B2F', depth=2, template='MAP_SEAFOAM_ISLANDS_B2F', exits={}),
+    dict(gba='SeafoamIslands_B3F_Frlg', map='MAP_CANVAS_SEAFOAM_B3F', depth=3, template='MAP_SEAFOAM_ISLANDS_B3F', exits={}),
+    dict(gba='SeafoamIslands_B4F_Frlg', map='MAP_CANVAS_SEAFOAM_B4F', depth=4, template='MAP_SEAFOAM_ISLANDS_B4F', exits={}),
 ]
 TEMPLATE = 'MAP_MOUNT_MOON'
-GBA_IDS = {'MtMoon_1F_Frlg': 'MAP_MT_MOON_1F', 'MtMoon_B1F_Frlg': 'MAP_MT_MOON_B1F', 'MtMoon_B2F_Frlg': 'MAP_MT_MOON_B2F'}
-# HeartGold's doors into its Mt. Moon -> ours: (map, its warp index) -> (our map, GBA warp index there)
-DOORS = {('MAP_ROUTE_3', 0): ('MAP_CANVAS_MT_MOON_1F', 3), ('MAP_ROUTE_4', 0): ('MAP_CANVAS_MT_MOON_B1F', 7)}
+WATER_MB = {16, 17, 18, 19, 20, 21, 24, 26, 44, 45, 80, 81, 82, 83}   # GBA behaviours of water you surf (currents too)
+GBA_IDS = {c['gba']: gba_map.map_json(c['gba'])['id'] for c in CAVES}
+# HeartGold's doors into its caves -> ours: (map, its warp index) -> (our map, GBA warp index there)
+DOORS = {('MAP_ROUTE_3', 0): ('MAP_CANVAS_MT_MOON_1F', 3), ('MAP_ROUTE_4', 0): ('MAP_CANVAS_MT_MOON_B1F', 7),
+         ('MAP_ROUTE_10', 0): ('MAP_CANVAS_ROCK_TUNNEL_1F', 0), ('MAP_ROUTE_10_SOUTH', 0): ('MAP_CANVAS_ROCK_TUNNEL_1F', 5),
+         ('MAP_ROUTE_2_EAST', 4): ('MAP_CANVAS_DIGLETTS_CAVE_N', 1), ('MAP_ROUTE_11', 2): ('MAP_CANVAS_DIGLETTS_CAVE_S', 0),
+         ('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE', 1): ('MAP_CANVAS_VICTORY_ROAD_1F', 1),
+         ('MAP_INDIGO_PLATEAU', 0): ('MAP_CANVAS_VICTORY_ROAD_2F', 5),
+         ('MAP_CERULEAN', 7): ('MAP_CANVAS_CERULEAN_CAVE_1F', 0),
+         ('MAP_ROUTE_20', 0): ('MAP_CANVAS_SEAFOAM_1F', 4), ('MAP_ROUTE_20', 1): ('MAP_CANVAS_SEAFOAM_1F', 3)}
 
 
 def floor_plan(gm, lay):
@@ -112,6 +145,8 @@ def build_floor(spec, depth_of):
     W, H = lay.w, lay.h
     blocked, boulders, level, D = floor_plan(gm, lay)
     LV = lambda x, y: level.get((x, y), 2)
+    # water (to surf: HeartGold's cave water, behaviour 0x15, drawn a little below the floor in its river texture)
+    water = {(x, y) for y in range(H) for x in range(W) if not blocked[y][x] and lay.behavior(lay.metatile(x, y)) in WATER_MB}
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
     dims, pals = texdims(TEXSET)
     pal_of = lambda t: next(p for p in (t + '_pl', t) if p in pals)
@@ -204,7 +239,7 @@ def build_floor(spec, depth_of):
                     inside = x < W and y < H
                     x0, x1, z0, z1 = U(x, ox), U(x + 1, ox), U(y, oz), U(y + 1, oz)
                     if inside and not blocked[y][x]:
-                        perm[i] = FLOOR
+                        perm[i] = 0x0015 if (x, y) in water else FLOOR
                     lv = LV(x, y)
                     # flat pieces are gathered here and drawn in runs below (the DS draws 2048 polygons a frame,
                     # people included: a cave drawn square by square leaves none for them)
@@ -293,7 +328,8 @@ def build_floor(spec, depth_of):
             for y in range(oz, oz + 32):
                 x = ox
                 while x < ox + 32:
-                    fl = lambda x: x < W and y < H and LV(x, y) == 0 and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN)
+                    fl = lambda x: x < W and y < H and LV(x, y) == 0 and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN) \
+                        and (x, y) not in water
                     if not fl(x): x += 1; continue
                     e = x + 1
                     while e < ox + 32 and fl(e): e += 1
@@ -301,6 +337,17 @@ def build_floor(spec, depth_of):
                     M('droad01').quad([((x0, 0, z1), (x * 16, (y + 1) * 16)), ((x1, 0, z1), (e * 16, (y + 1) * 16)),
                                        ((x1, 0, z0), (e * 16, y * 16)), ((x0, 0, z0), (x * 16, y * 16))], up)
                     x = e
+                x = ox
+                while x < ox + 32:            # water, in runs too
+                    if (x, y) not in water: x += 1; continue
+                    e = x + 1
+                    while e < ox + 32 and (e, y) in water: e += 1
+                    x0, x1, z0, z1 = U(x, ox), U(e, ox), U(y, oz), U(y + 1, oz)
+                    M('driver').quad([((x0, -3, z1), (x * 16, (y + 1) * 16)), ((x1, -3, z1), (e * 16, (y + 1) * 16)),
+                                      ((x1, -3, z0), (e * 16, y * 16)), ((x0, -3, z0), (x * 16, y * 16))], up)
+                    x = e
+            if not meshes:      # (a land all rock, past the cave's edge: the dark, as in HeartGold)
+                M('d_ro').quad([((-256, 32, 256), (0, 8)), ((256, 32, 256), (8, 8)), ((256, 32, -256), (8, 0)), ((-256, 32, -256), (0, 0))], up)
             groups = [(t, t, pal_of(t), mesh, {'repeat': 3, 'size': dims[t]}) for t, mesh in meshes.items()]
             model = build_model('cv_cave_%d' % (spec['depth'] * 10 + len(lands)), groups)     # (names: 16 at most)
             model += b'\0' * (-len(model) % 4)
@@ -331,8 +378,8 @@ def main():
     depth_of = {GBA_IDS[c['gba']]: c['depth'] for c in CAVES}
     land, btnf = read_narc(open(LAND_NARC, 'rb').read())
     lid = CAVE_LAND_BASE
-    tmpl = header(TEMPLATE)
     for spec in CAVES:
+        tmpl = header(spec.get('template', TEMPLATE))
         gm, (nx, nz), lands = build_floor(spec, depth_of)
         ids = list(range(lid, lid + len(lands)))
         land += [b''] * max(0, ids[-1] + 1 - len(land))
@@ -344,12 +391,14 @@ def main():
         ev = json.load(open(os.path.join(slots.EVENT_DIR, events_file(TEMPLATE))))
         ev['warps'] = [{k: v for k, v in w.items() if not k.startswith('_')} for w in gba_warps(gm)]
         for w, gw in zip(ev['warps'], gm['warp_events']):
-            if gw['dest_map'] in spec['exits']:
-                w.update(x=gw['x'], z=gw['y'], y=0, header=spec['exits'][gw['dest_map']][0], anchor=spec['exits'][gw['dest_map']][1])
+            ex = spec['exits'].get((gw['dest_map'], str(gw['dest_warp_id'])), spec['exits'].get(gw['dest_map']))
+            if ex:
+                w.update(x=gw['x'], z=gw['y'], y=0, header=ex[0], anchor=ex[1])
         ev['objects'], ev['bgs'], ev['coords'] = [], [], []
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
-        fields.update(matrixId=mat, eventsBank=evn, **NO_SCRIPTS)
+        fields.update(matrixId=mat, eventsBank=evn, areaDataBank='70', **NO_SCRIPTS)     # (HeartGold's cave look, Mt. Moon's set)
+        fields['weather'] = '11' if gm.get('requires_flash') else '0'      # (dark until Flash only where the GBA's is)
         set_header(spec['map'], fields)
         set_header(spec['map'], {'matrixId': mat, 'eventsBank': evn})
         print(spec['gba'], '->', spec['map'], '%dx%d lands' % (nx, nz), ids)

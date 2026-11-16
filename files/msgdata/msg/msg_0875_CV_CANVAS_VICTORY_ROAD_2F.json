@@ -1,0 +1,59 @@
+{
+  "key": 19862,
+  "messages": [
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_VictoryRoad_2F_Text_NelsonIntro",
+      "en_US": [
+        "Ah, so you wish to challenge the\n",
+        "Elite Four?"
+      ]
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_VictoryRoad_2F_Text_NelsonPostBattle",
+      "en_US": "{STRVAR_1 3, 7, 0} also came through here."
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_VictoryRoad_2F_Text_DoubleEdgeTutor_Retired",
+      "en_US": [
+        "I used to teach Double-Edge.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Normal master in Pallet\r",
+        "Town."
+      ]
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_Text_Gyaoo",
+      "en_US": "Gyaoo!"
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_Text_MonFlewAway",
+      "en_US": "The {STRVAR_1 3, 0, 0} flew away!"
+    },
+    {
+      "id": "msg_0875_CV_CANVAS_VICTORY_ROAD_2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

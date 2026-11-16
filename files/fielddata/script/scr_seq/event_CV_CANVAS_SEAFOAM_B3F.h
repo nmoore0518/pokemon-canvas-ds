@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_SEAFOAM_B3F_H_
+#define SCR_SEQ_CV_CANVAS_SEAFOAM_B3F_H_
+
+#define _EV_SeafoamIslands_B3F_OnTransition 0
+#define _EV_SeafoamIslands_B3F_EventScript_EnterByFalling 1
+
+
+#endif

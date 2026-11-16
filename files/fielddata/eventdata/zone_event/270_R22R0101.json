@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 12,
-            "z": 3,
+            "x": 20,
+            "z": 7,
             "y": 0
         }
     ],
@@ -30,8 +30,8 @@
         {
             "x": 11,
             "z": 2,
-            "header": "MAP_VICTORY_ROAD_1F",
-            "anchor": 0,
+            "header": "MAP_CANVAS_VICTORY_ROAD_1F",
+            "anchor": 1,
             "y": 0
         },
         {

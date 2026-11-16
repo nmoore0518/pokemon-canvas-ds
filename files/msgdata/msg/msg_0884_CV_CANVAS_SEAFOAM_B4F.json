@@ -1,0 +1,34 @@
+{
+  "key": 19871,
+  "messages": [
+    {
+      "id": "msg_0884_CV_CANVAS_SEAFOAM_B4F_Text_Gyaoo",
+      "en_US": "Gyaoo!"
+    },
+    {
+      "id": "msg_0884_CV_CANVAS_SEAFOAM_B4F_SeafoamIslands_B4F_Text_DangerFastCurrent",
+      "en_US": [
+        "Danger\n",
+        "Fast current!"
+      ]
+    },
+    {
+      "id": "msg_0884_CV_CANVAS_SEAFOAM_B4F_SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow",
+      "en_US": [
+        "Hint: Boulders might change the\n",
+        "flow of water."
+      ]
+    },
+    {
+      "id": "msg_0884_CV_CANVAS_SEAFOAM_B4F_Text_MonFlewAway",
+      "en_US": "The {STRVAR_1 3, 0, 0} flew away!"
+    },
+    {
+      "id": "msg_0884_CV_CANVAS_SEAFOAM_B4F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

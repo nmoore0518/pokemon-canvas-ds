@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_N_H_
+#define SCR_SEQ_CV_CANVAS_DIGLETTS_CAVE_N_H_
+
+#define _EV_DiglettsCave_NorthEntrance_EventScript_Hiker 0
+#define _EV_PaintWorld_EventScript_Figure 1
+
+
+#endif

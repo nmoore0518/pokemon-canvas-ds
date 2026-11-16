@@ -1,0 +1,19 @@
+{
+  "key": 19856,
+  "messages": [
+    {
+      "id": "msg_0869_CV_CANVAS_ROCK_TUNNEL_1F_RockTunnel_1F_Text_RouteSign",
+      "en_US": [
+        "Rock Tunnel\n",
+        "Cerulean City - Lavender Town"
+      ]
+    },
+    {
+      "id": "msg_0869_CV_CANVAS_ROCK_TUNNEL_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

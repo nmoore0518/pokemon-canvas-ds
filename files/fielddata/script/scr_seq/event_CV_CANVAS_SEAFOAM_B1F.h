@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_SEAFOAM_B1F_H_
+#define SCR_SEQ_CV_CANVAS_SEAFOAM_B1F_H_
+
+#define _EV_SeafoamIslands_B1F_EventScript_ItemWaterStone 0
+#define _EV_SeafoamIslands_B1F_EventScript_ItemRevive 1
+
+
+#endif

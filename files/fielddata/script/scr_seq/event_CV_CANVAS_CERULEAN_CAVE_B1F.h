@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_B1F_H_
+#define SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_B1F_H_
+
+#define _EV_CeruleanCave_B1F_EventScript_ItemUltraBall 0
+#define _EV_CeruleanCave_B1F_EventScript_ItemMaxRevive 1
+#define _EV_CeruleanCave_B1F_EventScript_Mewtwo 2
+#define _EV_CeruleanCave_B1F_OnResume 3
+#define _EV_CeruleanCave_B1F_OnTransition 4
+
+
+#endif

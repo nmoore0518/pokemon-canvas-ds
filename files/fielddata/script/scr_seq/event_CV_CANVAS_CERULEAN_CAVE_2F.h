@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_2F_H_
+#define SCR_SEQ_CV_CANVAS_CERULEAN_CAVE_2F_H_
+
+#define _EV_CeruleanCave_2F_EventScript_ItemPPUp 0
+#define _EV_CeruleanCave_2F_EventScript_ItemUltraBall 1
+#define _EV_CeruleanCave_2F_EventScript_ItemFullRestore 2
+
+
+#endif

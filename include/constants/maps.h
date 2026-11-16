@@ -550,6 +550,22 @@
 #define MAP_CANVAS_MT_MOON_1F                             541
 #define MAP_CANVAS_MT_MOON_B1F                            542
 #define MAP_CANVAS_MT_MOON_B2F                            543
+#define MAP_CANVAS_ROCK_TUNNEL_1F                         544
+#define MAP_CANVAS_ROCK_TUNNEL_B1F                        545
+#define MAP_CANVAS_DIGLETTS_CAVE_N                        546
+#define MAP_CANVAS_DIGLETTS_CAVE_B1F                      547
+#define MAP_CANVAS_DIGLETTS_CAVE_S                        548
+#define MAP_CANVAS_VICTORY_ROAD_1F                        549
+#define MAP_CANVAS_VICTORY_ROAD_2F                        550
+#define MAP_CANVAS_VICTORY_ROAD_3F                        551
+#define MAP_CANVAS_CERULEAN_CAVE_1F                       552
+#define MAP_CANVAS_CERULEAN_CAVE_2F                       553
+#define MAP_CANVAS_CERULEAN_CAVE_B1F                      554
+#define MAP_CANVAS_SEAFOAM_1F                             555
+#define MAP_CANVAS_SEAFOAM_B1F                            556
+#define MAP_CANVAS_SEAFOAM_B2F                            557
+#define MAP_CANVAS_SEAFOAM_B3F                            558
+#define MAP_CANVAS_SEAFOAM_B4F                            559
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

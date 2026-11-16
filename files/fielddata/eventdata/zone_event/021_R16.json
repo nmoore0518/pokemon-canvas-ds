@@ -128,23 +128,6 @@
             "x": 1136,
             "z": 282,
             "y": 0
-        },
-        {
-            "id": "LOCALID_ROUTE16_CUT_TREE",
-            "spriteId": "SPRITE_TREE",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "18",
-            "scriptId": "std_field_cut",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1149,
-            "z": 275,
-            "y": 0
         }
     ],
     "coords": []

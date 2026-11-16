@@ -1,0 +1,21 @@
+{
+  "key": 19860,
+  "messages": [
+    {
+      "id": "msg_0873_CV_CANVAS_DIGLETTS_CAVE_S_DiglettsCave_SouthEntrance_Text_DiglettDugThisTunnel",
+      "en_US": [
+        "Well, isn’t this a surprise!\n",
+        "Diglett dug this long tunnel!\r",
+        "It goes right to Viridian City,\n",
+        "they tell me."
+      ]
+    },
+    {
+      "id": "msg_0873_CV_CANVAS_DIGLETTS_CAVE_S_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

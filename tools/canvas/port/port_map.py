@@ -107,6 +107,7 @@ class Anchored:
             best = min(spots, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
             spots.remove(best); self.used.add(best[:2]); self.last_spot = best
             return best[0], best[1]
+        if kind == 'tree' and spots is not None: return None       # (no tree of HeartGold's left: a tree elsewhere could close a road)
         if kind in ('trainer', 'item', 'tree'): kind = 'object'
         if kind == 'sign':
             if self.hg_signs:
@@ -285,6 +286,22 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'MtMoon_1F_Frlg': ('MAP_CANVAS_MT_MOON_1F', same),
     'MtMoon_B1F_Frlg': ('MAP_CANVAS_MT_MOON_B1F', same),
     'MtMoon_B2F_Frlg': ('MAP_CANVAS_MT_MOON_B2F', same),
+    'RockTunnel_1F_Frlg': ('MAP_CANVAS_ROCK_TUNNEL_1F', same),
+    'RockTunnel_B1F_Frlg': ('MAP_CANVAS_ROCK_TUNNEL_B1F', same),
+    'DiglettsCave_NorthEntrance_Frlg': ('MAP_CANVAS_DIGLETTS_CAVE_N', same),
+    'DiglettsCave_B1F_Frlg': ('MAP_CANVAS_DIGLETTS_CAVE_B1F', same),
+    'DiglettsCave_SouthEntrance_Frlg': ('MAP_CANVAS_DIGLETTS_CAVE_S', same),
+    'VictoryRoad_1F_Frlg': ('MAP_CANVAS_VICTORY_ROAD_1F', same),
+    'VictoryRoad_2F_Frlg': ('MAP_CANVAS_VICTORY_ROAD_2F', same),
+    'VictoryRoad_3F_Frlg': ('MAP_CANVAS_VICTORY_ROAD_3F', same),
+    'CeruleanCave_1F_Frlg': ('MAP_CANVAS_CERULEAN_CAVE_1F', same),
+    'CeruleanCave_2F_Frlg': ('MAP_CANVAS_CERULEAN_CAVE_2F', same),
+    'CeruleanCave_B1F_Frlg': ('MAP_CANVAS_CERULEAN_CAVE_B1F', same),
+    'SeafoamIslands_1F_Frlg': ('MAP_CANVAS_SEAFOAM_1F', same),
+    'SeafoamIslands_B1F_Frlg': ('MAP_CANVAS_SEAFOAM_B1F', same),
+    'SeafoamIslands_B2F_Frlg': ('MAP_CANVAS_SEAFOAM_B2F', same),
+    'SeafoamIslands_B3F_Frlg': ('MAP_CANVAS_SEAFOAM_B3F', same),
+    'SeafoamIslands_B4F_Frlg': ('MAP_CANVAS_SEAFOAM_B4F', same),
     'Route4_Frlg': ('MAP_ROUTE_4', ROUTE4, lambda x, y: x >= 30),
     'Route4_PokemonCenter_1F_Frlg': ('MAP_ROUTE_3_POKECENTER_1F', ROUTE3_CENTER),
     'PewterCity_Mart_Frlg': ('MAP_PEWTER_POKEMART', PEWTER_MART),
@@ -1500,7 +1517,9 @@ def port(gba_map, g, ids, report):
         kind = 'tree' if 'CUTTABLE_TREE' in o['graphics_id'] else 'trainer' if trainer_of(o) else \
             'item' if o['graphics_id'] == 'OBJ_EVENT_GFX_ITEM_BALL' else 'object'
         if isinstance(xy, Anchored): xy.last_spot = None
-        x, z = xy(o['x'], o['y'], kind)
+        at = xy(o['x'], o['y'], kind)
+        if at is None: continue
+        x, z = at
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
