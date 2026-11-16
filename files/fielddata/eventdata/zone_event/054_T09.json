@@ -4,56 +4,32 @@
         {
             "scriptId": "_EV_CinnabarIsland_EventScript_IslandSign + 1",
             "type": 0,
-            "x": 1033,
-            "z": 496,
+            "x": 1044,
+            "z": 483,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CinnabarIsland_EventScript_PokemonLabSign + 1",
             "type": 0,
-            "x": 1036,
-            "z": 502,
+            "x": 1041,
+            "z": 489,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CinnabarIsland_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1047,
-            "z": 494,
+            "x": 1054,
+            "z": 485,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CinnabarIsland_EventScript_PokemonLabSign + 1",
             "type": 0,
-            "x": 1034,
-            "z": 498,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_t09_w21_rare_candy",
-            "type": 2,
-            "x": 1030,
-            "z": 481,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_t09_iron",
-            "type": 2,
-            "x": 1044,
-            "z": 506,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_t09_star_piece",
-            "type": 2,
-            "x": 1041,
-            "z": 493,
+            "x": 1042,
+            "z": 489,
             "y": 0,
             "dir": 4
         }
@@ -72,8 +48,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1034,
-            "z": 493,
+            "x": 1046,
+            "z": 486,
             "y": 0
         },
         {
@@ -89,8 +65,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1036,
-            "z": 502,
+            "x": 1043,
+            "z": 491,
             "y": 0
         },
         {
@@ -106,8 +82,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1046,
-            "z": 497,
+            "x": 1052,
+            "z": 487,
             "y": 0
         },
         {
@@ -123,8 +99,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1051,
-            "z": 498,
+            "x": 1055,
+            "z": 487,
             "y": 0
         },
         {
@@ -140,25 +116,53 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1028,
-            "z": 491,
+            "x": 1042,
+            "z": 485,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1039,
-            "z": 502,
+            "x": 1040,
+            "z": 483,
+            "header": "MAP_CANVAS_POKEMON_MANSION_1F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1052,
+            "z": 484,
+            "header": "MAP_CANVAS_CINNABAR_GYM",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1040,
+            "z": 489,
+            "header": "MAP_CANVAS_CINNABAR_LAB",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1046,
+            "z": 491,
             "header": "MAP_CINNABAR_ISLAND_POKECENTER_1F",
             "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1051,
+            "z": 491,
+            "header": "MAP_CANVAS_CINNABAR_MART",
+            "anchor": 1,
             "y": 0
         }
     ],
     "coords": [
         {
             "scriptId": "_EV_CinnabarIsland_EventScript_GymDoorLocked + 1",
-            "x": 1045,
-            "z": 493,
+            "x": 1052,
+            "z": 485,
             "w": 1,
             "h": 1,
             "y": 0,

@@ -194,21 +194,21 @@
             "x": 24,
             "z": 23,
             "header": "MAP_CINNABAR_ISLAND",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         },
         {
             "x": 25,
             "z": 23,
             "header": "MAP_CINNABAR_ISLAND",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         },
         {
             "x": 26,
             "z": 23,
             "header": "MAP_CINNABAR_ISLAND",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         }
     ],

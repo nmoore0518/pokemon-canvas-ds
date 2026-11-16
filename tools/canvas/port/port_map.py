@@ -323,7 +323,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'CeladonCity_Frlg': ('MAP_CELADON', Auto('MAP_CELADON')),
     'SaffronCity_Frlg': ('MAP_SAFFRON', Auto('MAP_SAFFRON')),
     'FuchsiaCity_Frlg': ('MAP_FUCHSIA', Auto('MAP_FUCHSIA')),
-    'CinnabarIsland_Frlg': ('MAP_CINNABAR_ISLAND', Auto('MAP_CINNABAR_ISLAND')),
+    'CinnabarIsland_Frlg': ('MAP_CINNABAR_ISLAND', lambda x, y, kind='pos': (1032 + x, 480 + y)),   # (our town: build_cinnabar.py)
     'IndigoPlateau_Exterior_Frlg': ('MAP_INDIGO_PLATEAU', Auto('MAP_INDIGO_PLATEAU')),
     'Route5_Frlg': ('MAP_ROUTE_5', Auto('MAP_ROUTE_5')),
     'Route6_Frlg': ('MAP_ROUTE_6', Auto('MAP_ROUTE_6')),

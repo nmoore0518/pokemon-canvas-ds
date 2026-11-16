@@ -177,29 +177,29 @@ CinnabarIsland_EventScript_NoSeviiTrip:
 	
 CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland:
 	GetPlayerCoords 0x4014, 0x4015
-	SubVar 0x4014, 1019
-	SubVar 0x4015, 486
+	SubVar 0x4014, 1032
+	SubVar 0x4015, 480
 	CompareVarToValue 0x4014, 18
 	GoToIfGe CinnabarIsland_EventScript_MoveSeagallopDown
 	SetFlag 2
-	MovePerson 3, 1045, 503
+	MovePerson 3, 1050, 492
 	SetObjectMovementType 3, 14
 	SetObjectFacing 3, 0
-	MovePerson 4, 1059, 503
+	MovePerson 4, 1062, 492
 	Return
 	
 CinnabarIsland_EventScript_ReadyObjectsReturnFromSeviiIslands:
-	MovePerson 3, 1049, 499
+	MovePerson 3, 1053, 488
 	SetObjectMovementType 3, 14
 	SetObjectFacing 3, 0
 	Return
 	
 CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter:
 	SetFlag 2
-	MovePerson 3, 1040, 503
+	MovePerson 3, 1047, 492
 	SetObjectMovementType 3, 16
 	SetObjectFacing 3, 2
-	MovePerson 4, 1059, 503
+	MovePerson 4, 1062, 492
 	Return
 	
 CinnabarIsland_EventScript_SailToOneIsland:
@@ -334,7 +334,7 @@ CinnabarIsland_EventScript_UnlockGym:
 	Return
 	
 CinnabarIsland_EventScript_MoveSeagallopDown:
-	MovePerson 4, 1058, 499
+	MovePerson 4, 1062, 488
 	Return
 	
 CinnabarIsland_EventScript_ApproachShore:

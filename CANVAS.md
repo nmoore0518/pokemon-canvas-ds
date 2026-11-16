@@ -13,6 +13,7 @@ python3 tools/canvas/build_rooms.py  # then the rooms we model from the GBA layo
 python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold room (Pokemon Center, Mart, Training Hall)
 python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon, Rock Tunnel, ...)
 python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Pokemon Tower, Silph Co., S.S. Anne, ...)
+python3 tools/canvas/build_cinnabar.py   # then our Cinnabar Island (the GBA town in place of HeartGold's ruin)
 python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
@@ -235,9 +236,11 @@ The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden
 spin-tile mazes are plain floor for now. The Safari Zone's four areas are built the same way outdoors (`safari`
 look, Fuchsia's set: the GBA's trees a hedge of HeartGold's, tall grass `egrass` with HeartGold's grass behaviour,
 ponds), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the Secret House
-(Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are built and ported but have no
-door yet: HeartGold's Cinnabar is the ruin after the eruption (rebuilding the town from the GBA layout, as Pallet
-was, is the next step there).
+(Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are rooms the same way.
+**Cinnabar Island** (`build_cinnabar.py`): HeartGold's is the ruin after the eruption, so its land (205) is redrawn
+from the GBA town: HeartGold's sand, grass, sea and sea rocks, the GBA's collision, and HeartGold building models
+on the GBA's doors (Center, Mart, Gym; Oak's lab model for the Lab and the Mansion). Its warps are the GBA's, in
+order; the porter places its people on the GBA's squares directly. A first pass: flat ground, no fences or trees.
 
 ## The rest of Kanto (towns, routes, the rooms HeartGold has)
 

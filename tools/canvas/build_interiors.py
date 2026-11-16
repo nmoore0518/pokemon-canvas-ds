@@ -53,10 +53,10 @@ def _floors(name, n, look, template, first=1):
 SS = 'MAP_SS_AQUA_1F'
 INTERIORS = (
     # the Pokemon Tower stands where HeartGold's Lavender has its Radio Tower: that door leads in
-    [dict(gba='PokemonTower_1F_Frlg', map='MAP_CANVAS_POKEMON_TOWER_1F', look='tower', template='MAP_SPROUT_TOWER_1F',
+    [dict(gba='PokemonTower_1F_Frlg', map='MAP_CANVAS_POKEMON_TOWER_1F', look='tower', template='MAP_SPROUT_TOWER_1F', place='MAP_LAVENDER',
           depth=-1, exits={'MAP_LAVENDER_TOWN': ('MAP_LAVENDER', 6)})] +
     [dict(gba='PokemonTower_%dF_Frlg' % i, map='MAP_CANVAS_POKEMON_TOWER_%dF' % i, look='tower', template='MAP_SPROUT_TOWER_2F',
-          depth=-i) for i in range(2, 8)] +
+          place='MAP_LAVENDER', depth=-i) for i in range(2, 8)] +
     # Silph Co.: HeartGold's headquarters is the 1F (ported there); its elevator door leads to our 2F's stairs
     [dict(gba='SilphCo_%dF_Frlg' % i, map='MAP_CANVAS_SILPH_CO_%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
           depth=-i, exits={('MAP_SILPH_CO_1F', '3'): ('MAP_SAFFRON_SILPH_CO_HQ', 1)}) for i in range(2, 12)] +
@@ -75,20 +75,20 @@ INTERIORS = (
           depth={'1F': -1, '2F': -2, 'B1F': 0}[f]) for f, n in (('1F', 7), ('2F', 6), ('B1F', 5)) for i in range(1, n + 1)] +
     # the Rocket Hideout, under the Game Corner (stairs added there: ADD_WARPS). Its spin-tile mazes are plain floor
     # for now (HeartGold's slide tiles need a gym's code running), and its elevator (a GBA dynamic warp) isn't built
-    [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
+    [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', place='MAP_CELADON',
           depth=i, exits={'MAP_CELADON_CITY_GAME_CORNER': ('MAP_CELADON_GAME_CORNER', 1)}) for i in range(1, 5)]
 )
-# Cinnabar: HeartGold's island is the ruin after the eruption, with only its Pokemon Center, so these have no door
-# there yet (their ways out lead to that Center's door); they're built and ported, waiting for our Cinnabar
-CIN = {'MAP_CINNABAR_ISLAND': ('MAP_CINNABAR_ISLAND', 0)}
+# Cinnabar (our town: build_cinnabar.py draws the GBA's in place of HeartGold's ruin)
+CIN = {('MAP_CINNABAR_ISLAND', str(i)): ('MAP_CINNABAR_ISLAND', i) for i in range(5)}   # (build_cinnabar.py: the GBA's warps, in order)
 INTERIORS += (
-    [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='plant', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN),
-     dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='plant', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN),
-     dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN)] +
+    [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='plant', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN,
+          place='MAP_CINNABAR_ISLAND'),
+     dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='plant', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND'),
+     dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND')] +
     [dict(gba='CinnabarIsland_PokemonLab_%s_Frlg' % r, map='MAP_CANVAS_CINNABAR_LAB_%s' % r.upper(), look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
           depth=0) for r in ('Lounge', 'ResearchRoom', 'ExperimentRoom')] +
     [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='tower', template='MAP_BURNED_TOWER_1F',
-          depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN) for f in ('1F', '2F', '3F', 'B1F')]
+          depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN, place='MAP_CINNABAR_ISLAND') for f in ('1F', '2F', '3F', 'B1F')]
 )
 # the Safari Zone, through a door we add at the back of HeartGold's Pal Park entrance (where the GBA's is)
 SZ = 'MAP_SAFARI_ZONE_01'
@@ -265,6 +265,8 @@ def main():
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
         fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(LOOKS[spec['look']]['area']), weather='0', **NO_SCRIPTS)
+        if spec.get('place'):       # (the name shown on entering: the town's, where the template is elsewhere)
+            fields['mapsec'] = header(spec['place'])['mapsec']
         set_header(spec['map'], fields)
         print(spec['gba'], '->', spec['map'], '%dx%d lands' % (nx, nz), lids)
     land = [d if d else land[209] for d in land]
