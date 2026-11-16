@@ -1,0 +1,78 @@
+{
+  "key": 19850,
+  "messages": [
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_YouWantDomeFossil",
+      "en_US": "Do you want the Dome Fossil?"
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_ObtainedDomeFossil",
+      "en_US": "Obtained the Dome Fossil!"
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_ThenThisFossilIsMine",
+      "en_US": [
+        "All right.\n",
+        "Then this fossil is mine!"
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_YouWantHelixFossil",
+      "en_US": "Do you want the Helix Fossil?"
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_ObtainedHelixFossil",
+      "en_US": "Obtained the Helix Fossil!"
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_LabOnCinnabarRegeneratesFossils",
+      "en_US": [
+        "Far away, on Cinnabar Island,\n",
+        "there’s a Pokémon Lab.\r",
+        "They do research on regenerating\n",
+        "fossils."
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_WellEachTakeAFossil",
+      "en_US": [
+        "We’ll each take a fossil!\n",
+        "No being greedy!"
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_MiguelIntro",
+      "en_US": [
+        "Hey, stop!\r",
+        "I found these fossils!\n",
+        "They’re both mine!"
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_EventMons_Text_CapFound",
+      "en_US": "{STRVAR_1 3, 6, 0} found the {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_EventMons_Text_CapInCase",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put the {STRVAR_1 3, 0, 0} in\n",
+        "the Cap Case."
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_EventMons_Text_CapNoCase",
+      "en_US": [
+        "There’s a little cap stuck here,\n",
+        "a Pikachu’s size. Someone must\r",
+        "have lost it…"
+      ]
+    },
+    {
+      "id": "msg_0863_CV_CANVAS_MT_MOON_B2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

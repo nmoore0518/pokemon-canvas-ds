@@ -2,11 +2,37 @@
   "key": 18191,
   "messages": [
     {
-      "id": "msg_0328_R04_00000",
+      "id": "msg_0328_R04_Route4_Text_MegaPunchTutor_Retired",
       "en_US": [
-        "Mt. Moon ahead.\r",
-        "Mt. Moon Square is on\n",
-        "the way to the top!"
+        "I used to teach Mega Punch.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Normal master in Pallet\r",
+        "Town."
+      ]
+    },
+    {
+      "id": "msg_0328_R04_Route4_Text_MegaKickTutor_Retired",
+      "en_US": [
+        "I used to teach Mega Kick.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Normal master in Pallet\r",
+        "Town."
+      ]
+    },
+    {
+      "id": "msg_0328_R04_Route4_Text_RouteSign",
+      "en_US": [
+        "Route 4\n",
+        "Mt. Moon - Cerulean City"
+      ]
+    },
+    {
+      "id": "msg_0328_R04_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

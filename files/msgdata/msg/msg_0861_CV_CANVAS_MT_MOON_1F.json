@@ -1,0 +1,61 @@
+{
+  "key": 19848,
+  "messages": [
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_MtMoon_1F_Text_MarcosIntro",
+      "en_US": [
+        "Whoa!\n",
+        "You shocked me!\f",
+        "…Oh, you’re just a kid!"
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_MtMoon_1F_Text_MarcosPostBattle",
+      "en_US": [
+        "Kids like you shouldn’t be\n",
+        "wandering around here in the dark."
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_MtMoon_1F_Text_BrockHelpsExcavateFossils",
+      "en_US": [
+        "Hi, I’m excavating for fossils here\n",
+        "under Mt. Moon.\r",
+        "Sometimes, Brock of Pewter Gym\n",
+        "lends me a hand."
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_MtMoon_1F_Text_ZubatIsABloodsucker",
+      "en_US": [
+        "Beware!\n",
+        "Zubat is a bloodsucker!"
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0861_CV_CANVAS_MT_MOON_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

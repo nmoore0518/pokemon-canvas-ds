@@ -547,6 +547,9 @@
 #define MAP_CANVAS_FIRST                                  540
 // canvas maps: begin
 #define MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE                  540
+#define MAP_CANVAS_MT_MOON_1F                             541
+#define MAP_CANVAS_MT_MOON_B1F                            542
+#define MAP_CANVAS_MT_MOON_B2F                            543
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

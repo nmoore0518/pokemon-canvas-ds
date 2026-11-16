@@ -2,24 +2,138 @@
   "key": 44978,
   "messages": [
     {
-      "id": "msg_0327_R03PC0101_00000",
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_TeamRocketAttacksCerulean",
       "en_US": [
-        "Oh my!\n",
-        "I remember there was nothing built here\f",
-        "when I climbed the mountain.\r",
-        "Things change, and it’s getting more\n",
-        "and more convenient.\n"
+        "Team Rocket attacks Cerulean\n",
+        "citizens…\r",
+        "Not a day goes by without Team\n",
+        "Rocket being in the news."
       ]
     },
     {
-      "id": "msg_0327_R03PC0101_00001",
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_CanHaveSixMonsWithYou",
       "en_US": [
-        "Many Trainers are visiting the mountain.\n",
-        "You never know what wild Pokémon you’ll\f",
-        "encounter. It is very important to\f",
-        "recover your Pokémon at a place like\f",
-        "this. Don’t forget to make a record\f",
-        "of your progress, either!\n"
+        "Okay, set six Poké Balls in my\n",
+        "belt…\r",
+        "Yeah, that’ll do it. At most, you\n",
+        "can have six Pokémon with you."
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_ShouldStoreMonsUsingPC",
+      "en_US": [
+        "Sometimes, you’ll have too many\n",
+        "Pokémon with you to add any more.\r",
+        "In that case, you should just\n",
+        "store some using any PC."
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_ItsANewspaper",
+      "en_US": "It’s a newspaper."
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_IDontGiveRefunds",
+      "en_US": [
+        "Man: Well, I don’t give refunds.\n",
+        "You knew what you were getting!"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_LaddieBuyMagikarpForJust500",
+      "en_US": [
+        "Man: Hello there, laddie!\n",
+        "Have I got a deal just for you!\r",
+        "I’ll let you have a secret Pokémon\n",
+        "- a Magikarp - for just ¥500!\r",
+        "So, you’ll buy it, am I right?"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500",
+      "en_US": [
+        "Man: Hello there, sweetie pie!\n",
+        "Have I got a deal just for you!\r",
+        "I’ll let you have a secret Pokémon\n",
+        "- a Magikarp - for just ¥500!\r",
+        "So, you’ll buy it, am I right?"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou",
+      "en_US": [
+        "No? You say no? I’m only doing this\n",
+        "as a favor to you!"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_YoullNeedMoreMoney",
+      "en_US": "You’ll need more money than that!"
+    },
+    {
+      "id": "msg_0327_R03PC0101_gText_NicknameThisPokemon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_NoRoomForMorePokemon",
+      "en_US": [
+        "There’s no more room for any more\n",
+        "Pokémon, it looks like."
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_PaidOutrageouslyForMagikarp",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} paid an outrageous ¥500\n",
+        "and bought the Magikarp…"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_gText_PkmnTransferredSomeonesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_gText_PkmnTransferredLanettesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_gText_PkmnTransferredSomeonesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_gText_PkmnTransferredLanettesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

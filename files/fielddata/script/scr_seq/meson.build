@@ -542,6 +542,9 @@ scr_seq_event_headers = files(
     'event_CV_FIGHT_AREA_UNUSED_9.h',
     'event_CV_BATTLE_PARK_UNUSED_1.h',
     'event_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.h',
+    'event_CV_CANVAS_MT_MOON_1F.h',
+    'event_CV_CANVAS_MT_MOON_B1F.h',
+    'event_CV_CANVAS_MT_MOON_B2F.h',
 )
 
 scr_seq_asm = files(
@@ -1524,4 +1527,10 @@ scr_seq_asm = files(
     'scr_seq_0976_CV_BATTLE_PARK_UNUSED_1_hdr.s',
     'scr_seq_0977_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.s',
     'scr_seq_0978_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_hdr.s',
+    'scr_seq_0979_CV_CANVAS_MT_MOON_1F.s',
+    'scr_seq_0980_CV_CANVAS_MT_MOON_1F_hdr.s',
+    'scr_seq_0981_CV_CANVAS_MT_MOON_B1F.s',
+    'scr_seq_0982_CV_CANVAS_MT_MOON_B1F_hdr.s',
+    'scr_seq_0983_CV_CANVAS_MT_MOON_B2F.s',
+    'scr_seq_0984_CV_CANVAS_MT_MOON_B2F_hdr.s',
 )

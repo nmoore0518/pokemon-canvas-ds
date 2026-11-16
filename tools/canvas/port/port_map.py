@@ -151,6 +151,11 @@ PEWTER = Anchored('MAP_PEWTER', [((17, 6), (1048, 78)), ((15, 16), (1047, 92)), 
                   extra=[((46, 23), (1077, 105)), ((46, 23), (1077, 106))])
 # (the GBA's Route 3 climbs north to Route 4 and Mt. Moon; HeartGold's ends at Mt. Moon's door)
 ROUTE3 = Anchored('MAP_ROUTE_3', [((0, 9), (1084, 103)), ((0, 11), (1084, 105)), ((72, 0), (1172, 104)), ((40, 10), (1128, 110))])
+ROUTE3_CENTER = Anchored('MAP_ROUTE_3_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2), (8, 11)), ((1, 2), (2, 13)), ((13, 2), (14, 13)),
+                                                         ((1, 7), (2, 18)), ((13, 7), (14, 18))], fixed={(7, 2): (8, 11)})
+# (the GBA's Route 4 starts west of Mt. Moon, by its Pokemon Center: HeartGold's Route 3 has those; this is the
+# part east of Mt. Moon, from its exit to Cerulean)
+ROUTE4 = Anchored('MAP_ROUTE_4', [((32, 6), (1195, 113)), ((107, 3), (1269, 107)), ((107, 17), (1269, 119)), ((60, 10), (1230, 113))])
 PEWTER_GYM = Anchored('MAP_PEWTER_GYM', [((6, 14), (7, 27)), ((6, 5), (7, 4))])
 PEWTER_MART = Anchored('MAP_PEWTER_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
 # (HeartGold's Center is deeper: the GBA's floor beside the counter is its floor in front of it)
@@ -189,6 +194,11 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
     'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
     'Route3_Frlg': ('MAP_ROUTE_3', ROUTE3),
+    'MtMoon_1F_Frlg': ('MAP_CANVAS_MT_MOON_1F', same),
+    'MtMoon_B1F_Frlg': ('MAP_CANVAS_MT_MOON_B1F', same),
+    'MtMoon_B2F_Frlg': ('MAP_CANVAS_MT_MOON_B2F', same),
+    'Route4_Frlg': ('MAP_ROUTE_4', ROUTE4, lambda x, y: x >= 30),
+    'Route4_PokemonCenter_1F_Frlg': ('MAP_ROUTE_3_POKECENTER_1F', ROUTE3_CENTER),
     'PewterCity_Mart_Frlg': ('MAP_PEWTER_POKEMART', PEWTER_MART),
     'PewterCity_PokemonCenter_1F_Frlg': ('MAP_PEWTER_POKECENTER_1F', PEWTER_CENTER),
     'PewterCity_Museum_1F_Frlg': ('MAP_PEWTER_MUSEUM_OF_SCIENCE', PEWTER_MUSEUM),
@@ -334,7 +344,7 @@ class Ids:
         return '0x%X' % (self.FLAG_BASE + f[name])
 
     def var(self, name):
-        m = re.match(r'VAR_TEMP_(\w+)$', name)
+        m = re.match(r'VAR_TEMP_([0-9A-F])$', name)
         if m: return '0x%X' % (0x4000 + int(m.group(1), 16))
         m = re.match(r'VAR_0x(80[0-9A-F]{2})$', name)
         if m: return '0x' + m.group(1)
@@ -419,7 +429,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': 'MEDAL', 'CLIPBOARD': 'SCROLL',
 }
 # Pokemon in the overworld: hg-engine's walking sprite of that species
 for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):

@@ -11,6 +11,8 @@ sudo tools/canvas/setup_engine.sh    # once: hg-engine (battle engine, Gen 5-9 P
 python3 tools/canvas/build_pallet.py # regenerate our Pallet Town into the game's data files (idempotent)
 python3 tools/canvas/build_rooms.py  # then the rooms we model from the GBA layouts (houses, lab)
 python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold room (Pokemon Center, Mart, Training Hall)
+python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon's three floors)
+python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
 python3 tools/canvas/test/walk.py st/t1_field.dst - tour R5 U6 s   # walk by tiles, screenshots -> st_tour.png
@@ -165,6 +167,18 @@ What else it does:
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
   table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
   screen through Oak, the lab, the type choice and the rival battle.
+
+## Caves
+
+HeartGold's Mt. Moon is one small floor; the GBA game's is three. `build_caves.py` models each floor from its GBA
+layout in HeartGold's cave look, built the way HeartGold builds its own caves (`bmdview.py` reads a map model's
+geometry; `texview.py` shows a texture set): `droad01` floor, rock rising in tiers a block high (faces of
+`dwall_n/e/s/w`, named for the side of the floor they stand on; tier tops `dcliff01`; the dark `d_ro` beyond),
+HeartGold's ladder models (69 up, 70 down) on squares of behaviour 0x3C/0x3E, cave mouths 0x6E (north),
+0x6F (south), 0x6C/0x6D (east/west), and HeartGold's cave floor (0x0A08, wild Pokemon). Floors bigger than a land
+span a matrix of lands. They are maps of our own (`MAP_CANVAS_MT_MOON_*`) with the header of HeartGold's Mt. Moon
+(its wild Pokemon for now); the doors on Route 3 and Route 4 into HeartGold's Mt. Moon lead into ours, and
+HeartGold's own (with Mt. Moon Square) is left alone.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 

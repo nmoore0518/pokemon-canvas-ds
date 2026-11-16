@@ -1,0 +1,17 @@
+#ifndef SCR_SEQ_CV_CANVAS_MT_MOON_1F_H_
+#define SCR_SEQ_CV_CANVAS_MT_MOON_1F_H_
+
+#define _EV_MtMoon_1F_EventScript_Marcos 0
+#define _EV_MtMoon_1F_EventScript_ItemParalyzeHeal 1
+#define _EV_MtMoon_1F_EventScript_ItemTM09 2
+#define _EV_MtMoon_1F_EventScript_ItemPotion 3
+#define _EV_MtMoon_1F_EventScript_ItemRareCandy 4
+#define _EV_MtMoon_1F_EventScript_ItemEscapeRope 5
+#define _EV_MtMoon_1F_EventScript_ItemMoonStone 6
+#define _EV_MtMoon_1F_EventScript_BaldingMan 7
+#define _EV_BerryField_EventScript_FindRock 8
+#define _EV_MtMoon_1F_EventScript_ZubatSign 9
+#define _EV_MtMoon_1F_OnTransition 10
+
+
+#endif

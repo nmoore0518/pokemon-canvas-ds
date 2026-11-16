@@ -109,6 +109,8 @@ ROOM_SLOTS = {   # GBA rooms built from their own layouts in unused slots (see b
     'MAP_PALLET_TOWN_GYM_LEFT_ROOM+250': 'MAP_BATTLE_TOWER_UNUSED_2',
     'MAP_PALLET_TOWN_GYM_RIGHT_ROOM+350': 'MAP_BATTLE_TOWER_UNUSED_3',
     'MAP_VIRIDIAN_CITY_PENNYS_HOUSE': 'MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE',   # (our own map id: see new_map)
+    # Mt. Moon's three floors (build_caves.py)
+    'MAP_MT_MOON_1F': 'MAP_CANVAS_MT_MOON_1F', 'MAP_MT_MOON_B1F': 'MAP_CANVAS_MT_MOON_B1F', 'MAP_MT_MOON_B2F': 'MAP_CANVAS_MT_MOON_B2F',
 }
 for _gba, _tmpl, _keep, _slot in CLONES:
     SLOTS[_gba] = _slot

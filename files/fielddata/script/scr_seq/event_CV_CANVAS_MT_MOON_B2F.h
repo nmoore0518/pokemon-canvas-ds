@@ -1,0 +1,19 @@
+#ifndef SCR_SEQ_CV_CANVAS_MT_MOON_B2F_H_
+#define SCR_SEQ_CV_CANVAS_MT_MOON_B2F_H_
+
+#define _EV_MtMoon_B2F_EventScript_DomeFossil 0
+#define _EV_MtMoon_B2F_EventScript_HelixFossil 1
+#define _EV_MtMoon_B2F_EventScript_Miguel 2
+#define _EV_MtMoon_B2F_EventScript_ItemStarPiece 3
+#define _EV_MtMoon_B2F_EventScript_ItemTM46 4
+#define _EV_MtMoon_B2F_EventScript_ItemRevive 5
+#define _EV_MtMoon_B2F_EventScript_ItemAntidote 6
+#define _EV_EventMons_EventScript_Cap1 7
+#define _EV_MtMoon_B2F_EventScript_MiguelTrigger 8
+#define _EV_MtMoon_B2F_OnTransition 9
+
+#define LOCALID_DOME_FOSSIL 1
+#define LOCALID_HELIX_FOSSIL 2
+#define LOCALID_MIGUEL 3
+
+#endif

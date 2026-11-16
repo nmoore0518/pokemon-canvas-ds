@@ -299,4 +299,7 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0297_CV_BATTLE_TOWER_UNUSED_3.bin',
     'map_matrix_0298_CV_BATTLE_TOWER_UNUSED_4.bin',
     'map_matrix_0299_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE.bin',
+    'map_matrix_0300_CV_MT_MOON_1F.bin',
+    'map_matrix_0301_CV_MT_MOON_B1F.bin',
+    'map_matrix_0302_CV_MT_MOON_B2F.bin',
 ))

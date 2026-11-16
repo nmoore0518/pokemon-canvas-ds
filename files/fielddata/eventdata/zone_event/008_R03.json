@@ -210,8 +210,8 @@
         {
             "x": 1172,
             "z": 102,
-            "header": "MAP_MOUNT_MOON",
-            "anchor": 0,
+            "header": "MAP_CANVAS_MT_MOON_1F",
+            "anchor": 3,
             "y": 0
         },
         {
