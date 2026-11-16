@@ -15,7 +15,7 @@
       "en_US": [
         "Brock: {STRVAR_1 3, 6, 0}! Good to see you again.\r",
         "Since Oak’s lab, I’ve wondered how your\n",
-        "NORMAL types would do against my Rock\f",
+        "Normal types would do against my Rock\f",
         "types.\r",
         "Let’s find out!"
       ]
@@ -53,7 +53,7 @@
         "Erika: Oh, {STRVAR_1 3, 6, 0}… Welcome. I’m so\n",
         "glad you came.\r",
         "I’ve been looking forward to seeing your\n",
-        "GRASS Pokémon again.\r",
+        "Grass Pokémon again.\r",
         "Shall we?"
       ]
     },
@@ -71,7 +71,7 @@
       "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_bug",
       "en_US": [
         "Koga: Fwahaha! The Bug trainer from\n",
-        "OAK’s lab.\r",
+        "Oak’s lab.\r",
         "Most call Bug Pokémon weak. Show me why\n",
         "they are wrong!"
       ]
@@ -156,7 +156,7 @@
       "en_US": [
         "Pewter Pokémon Gym\n",
         "Leader: Brock\r",
-        "WINNING Trainers:\n",
+        "Winning Trainers:\n",
         "{STRVAR_1 3, 7, 0}"
       ]
     },
@@ -196,7 +196,7 @@
       "en_US": [
         "Pewter Pokémon Gym\n",
         "Leader: Brock\r",
-        "WINNING Trainers:\n",
+        "Winning Trainers:\n",
         "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
       ]
     },
@@ -307,11 +307,11 @@
       "id": "msg_0462_T03GYM0101_cv_mentor_first_water",
       "en_US": [
         "Misty: Hmph. So the kid from\n",
-        "OAK’s lab made it all the way here.\r",
+        "Oak’s lab made it all the way here.\r",
         "Your Water Pokémon are good.\n",
         "Annoyingly good.\r",
         "There’s still only room for One\n",
-        "WATER Gym in Kanto!"
+        "Water Gym in Kanto!"
       ]
     },
     {
@@ -327,10 +327,10 @@
       "id": "msg_0462_T03GYM0101_cv_mentor_first_steel",
       "en_US": [
         "Lt. Surge: The Steel kid from\n",
-        "OAK’s lab! Your team held up under\f",
+        "Oak’s lab! Your team held up under\f",
         "fire.\r",
         "Still don’t buy a Steel Gym in\n",
-        "PALLET, though!"
+        "Pallet, though!"
       ]
     },
     {
@@ -366,7 +366,7 @@
         "Sabrina: …As I foresaw at Oak’s\n",
         "lab, you came.\r",
         "I still do not like a second\n",
-        "PSYCHIC Gym. But visions do not\f",
+        "Psychic Gym. But visions do not\f",
         "ask for permission."
       ]
     },

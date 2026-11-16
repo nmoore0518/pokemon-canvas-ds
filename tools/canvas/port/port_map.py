@@ -373,7 +373,7 @@ def text(s):
     """GBA string -> HeartGold message lines (\\n line, \\r new box, \\f scroll); returns (lines, buffers)"""
     s = s.split('$')[0]
     for a, b in WORDS: s = re.sub(re.escape(a) + r'S\b', b + 's', s).replace(a, b)     # (POKé BALLS -> Poké Balls)
-    s = re.sub(r"(?<![{\w])([A-ZÉ][A-Zé'É.]*[A-Zé])(?![\w}])", lambda m: unshout(m.group(1)), s)
+    s = re.sub(r"(?:(?<![{\w])|(?<=\\[pln]))([A-ZÉ][A-Zé'É.]*[A-Zé])(?![\w}])", lambda m: unshout(m.group(1)), s)
     bufs = set()
 
     def code(m):

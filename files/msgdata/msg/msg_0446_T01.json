@@ -156,7 +156,7 @@
         "welcome to the opening of Kanto’s\f",
         "newest Gym!\r",
         "For the first time in its history,\n",
-        "PALLET Town has a Gym of its own."
+        "Pallet Town has a Gym of its own."
       ]
     },
     {
@@ -164,7 +164,7 @@
       "en_US": [
         "And leading it is the new Champion\n",
         "of the Pokémon League…\r",
-        "PALLET Town’s very own…\r",
+        "Pallet Town’s very own…\r",
         "Leader {STRVAR_1 3, 6, 0}!"
       ]
     },
@@ -175,7 +175,7 @@
         "who walks through those doors will\f",
         "face Leader {STRVAR_1 3, 6, 0}.\r",
         "Beat them, and they’ll earn the\n",
-        "LEAGUE’s newest Badge!"
+        "League’s newest Badge!"
       ]
     },
     {
@@ -244,7 +244,7 @@
         "He wanted to become a Gym Leader too…\n",
         "among other things.\r",
         "Of course, there was no Gym in Pallet\n",
-        "TOWN when he was around.\r",
+        "Town when he was around.\r",
         "But it was always his ambition to become\n",
         "the best Pokémon Trainer.\r",
         "You have a chance to do what he didn’t.\n",
@@ -277,10 +277,10 @@
         "rest today.\r",
         "{STRVAR_1 3, 6, 0}, have you ever wondered why\n",
         "there’s a Chansey statue in Pallet\f",
-        "TOWN?\r",
+        "Town?\r",
         "The town put it up after your father\n",
         "passed. For what he did to weaken Team\f",
-        "ROCKET…\r",
+        "Rocket…\r",
         "…and for the Chansey he made to heal,\n",
         "not to hurt.\r",
         "“May all who visit Pallet Town leave a\n",
@@ -293,7 +293,7 @@
       "en_US": [
         "Mom: He would have hated having a\n",
         "statue. But he’d have loved that it’s a\f",
-        "CHANSEY."
+        "Chansey."
       ]
     },
     {
@@ -301,14 +301,14 @@
       "en_US": [
         "Oak: Ho ho! That he would.\r",
         "Oh, and one more thing. I spoke with the\n",
-        "LEAGUE before I came out here.\r",
+        "League before I came out here.\r",
         "After what happened at Viridian,\n",
         "they’ve agreed to count its Leader’s\f",
         "approval as given.\r",
-        "VIRIDIAN’s Leader is gone, after all. And\n",
+        "Viridian’s Leader is gone, after all. And\n",
         "you beat him fair and square.\r",
         "That makes eight, {STRVAR_1 3, 6, 0}. The Elite\n",
-        "FOUR are waiting for you.\r",
+        "Four are waiting for you.\r",
         "But before you go… Viridian has a new\n",
         "Leader already. He came by my lab this\f",
         "morning asking for you.\r",
@@ -496,7 +496,7 @@
       "id": "msg_0446_T01_PalletTown_Text_ChanseyStatueShort",
       "en_US": [
         "To make the Lucky Egg luckier,\n",
-        "CHANSEY wants {STRVAR_1 3, 0, 0}."
+        "Chansey wants {STRVAR_1 3, 0, 0}."
       ]
     },
     {

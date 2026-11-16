@@ -77,7 +77,7 @@
         "But a Gym should look like its\n",
         "Leader, so here’s my idea.\r",
         "Whenever you’re back in Pallet\n",
-        "TOWN, come in and fix it up.\r",
+        "Town, come in and fix it up.\r",
         "Furniture, puzzles, decorations…\n",
         "Whatever you like!\r",
         "Think of it as part of your\n",
@@ -97,7 +97,7 @@
         "Now, your journey will take you far\n",
         "from Pallet Town.\r",
         "So take this! It’s a Hot Air\n",
-        "BALLOON of my own design."
+        "Balloon of my own design."
       ]
     },
     {
@@ -154,7 +154,7 @@
         "a challenger, and they’ll vouch\f",
         "for you.\r",
         "Then the Elite Four. Then the\n",
-        "CHAMPION.\r",
+        "Champion.\r",
         "This Gym will be waiting for you.\n",
         "Now go! Get strong!"
       ]
@@ -284,12 +284,12 @@
         "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 6, 0}!\n",
         "So this is your gym. Not bad!\r",
         "I came with news. Every year, the\n",
-        "JOHTO League holds the Gym Leader\f",
-        "CONVENTION in Goldenrod City.\r",
+        "Johto League holds the Gym Leader\f",
+        "Convention in Goldenrod City.\r",
         "Gym Leaders and Elite Four from\n",
         "every region come. Kanto, Johto,\f",
-        "HOENN, Sinnoh… all the way to\f",
-        "PALDEA.\r",
+        "Hoenn, Sinnoh… all the way to\f",
+        "Paldea.\r",
         "And this year, there’s a new name\n",
         "on the list. Yours!\r",
         "Here’s your invitation."
@@ -331,7 +331,7 @@
         "{STRVAR_1 3, 0, 0}: Being a Leader opens a\n",
         "lot of doors, you know.\r",
         "Gym Leaders can get a pass to the\n",
-        "EXOTIC Pokémon Safari in Fuchsia.\r",
+        "Exotic Pokémon Safari in Fuchsia.\r",
         "Pokémon from every region live\n",
         "there. Hoenn, Sinnoh, all the way\f",
         "to Paldea!\r",
@@ -341,7 +341,7 @@
         "Catch enough kinds of Pokémon,\n",
         "and Oak will build onto your Gym.\r",
         "And there’s plenty more. Oak’s\n",
-        "AIDE in his lab keeps track of it\f",
+        "Aide in his lab keeps track of it\f",
         "all. Ask him anything!"
       ]
     },
@@ -366,7 +366,7 @@
         "a tournament. No League, no\f",
         "rules, no cameras.\r",
         "128 trainers. Champions, the\n",
-        "ELITE Four, Gym Leaders…\r",
+        "Elite Four, Gym Leaders…\r",
         "Rivals. Villains. Legends.\n",
         "The strongest there are."
       ]
@@ -388,7 +388,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakWillYouBattle",
       "en_US": [
         "Will you battle me for the\n",
-        "PALLET Town Gym?"
+        "Pallet Town Gym?"
       ]
     },
     {
@@ -402,7 +402,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_AideNotYet",
       "en_US": [
         "Hello! I’m one of Prof. Oak’s\n",
-        "AIDES.\r",
+        "Aides.\r",
         "Once the League names this Gym’s\n",
         "Leader, I’ll be running the\f",
         "challengers.\r",
@@ -451,7 +451,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_StageBlocked",
       "en_US": [
         "Hmm, there’s no way to the Battle\n",
-        "STAGE. We’ll battle right here!"
+        "Stage. We’ll battle right here!"
       ]
     },
     {
@@ -517,7 +517,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal2",
       "en_US": [
         "It’s me, {STRVAR_1 3, 6, 0}.\n",
-        "BILL. The PokéMANIAC.\r",
+        "Bill. The PokéMANIAC.\r",
         "…No, don’t look away. Please.\n",
         "I know what I am."
       ]
@@ -528,7 +528,7 @@
         "Bill: My Cell Separation System.\n",
         "You remember it.\r",
         "I wanted to know what it’s like to\n",
-        "BE a Pokémon. A Clefable.\r",
+        "be a Pokémon. A Clefable.\r",
         "Gentle. Beloved. Dancing in the\n",
         "moonlight on Mt. Moon.\r",
         "So I ran the machine backward.\n",
@@ -546,7 +546,7 @@
         "And it’s strong. Stronger than any\n",
         "Pokémon I’ve ever stored.\r",
         "Every day there’s a little less of\n",
-        "BILL left in here.\r",
+        "Bill left in here.\r",
         "I can still think. I can still\n",
         "talk. For now.\r",
         "It hurts. All the time. And this\n",
@@ -630,7 +630,7 @@
         "There’s a letter on the floor…\r",
         "It’s from the Johto League! An\n",
         "invitation to the Gym Leader\f",
-        "CONVENTION in Goldenrod City!"
+        "Convention in Goldenrod City!"
       ]
     },
     {
@@ -663,7 +663,7 @@
         "There’s a note at the bottom…\r",
         "“Gym Leaders may now buy a pass to\n",
         "the Exotic Pokémon Safari in\f",
-        "FUCHSIA City, home to Pokémon from\f",
+        "Fuchsia City, home to Pokémon from\f",
         "every region.\r",
         "For everything else a Leader can\n",
         "do, see Prof. Oak’s Aide.”"
@@ -673,7 +673,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_ReceivedInvitation",
       "en_US": [
         "{STRVAR_1 3, 6, 0} received the Gym Leader\n",
-        "CONVENTION invitation!"
+        "Convention invitation!"
       ]
     },
     {
@@ -873,7 +873,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillMenu",
       "en_US": [
         "Simulation: Title won.\n",
-        "BILL’s data is waiting."
+        "Bill’s data is waiting."
       ]
     },
     {
@@ -906,7 +906,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakRulesStillApply",
       "en_US": [
         "Oak: Hold on!\r",
-        "LEAGUE rules still apply: a Gym\n",
+        "League rules still apply: a Gym\n",
         "Leader’s team is one type, and no\f",
         "two Pokémon alike.\r",
         "Fix your team, then come challenge\n",
@@ -918,7 +918,7 @@
       "en_US": [
         "Oak: One more thing, Leader.\r",
         "A Champion’s team belongs in the\n",
-        "HALL of Fame. Yours has earned its\f",
+        "Hall of Fame. Yours has earned its\f",
         "place twice over!\r",
         "Go home and get some rest,\n",
         "{STRVAR_1 3, 6, 0}. Tomorrow, your Gym opens\f",
@@ -958,22 +958,22 @@
         "Challengers will keep coming, one\f",
         "after another, until one beats you.\r",
         "Your team still has to follow the\n",
-        "LEAGUE’s rules, of course.\r",
+        "League’s rules, of course.\r",
         "Every win earns prize money, and\n",
         "challengers often leave a gift.\r",
         "Your win streak is recorded, so\n",
         "try to set a record!\r",
         "Anyone who beats you earns your\n",
-        "BADGE, and their name goes on\f",
+        "Badge, and their name goes on\f",
         "the Gym statue.\r",
         "Put the Battle Stage anywhere in\n",
         "the Gym with the PC. That’s where\f",
         "you’ll battle.\r",
         "And now that the Gym is officially\n",
         "yours, the PC sells a Badge\f",
-        "PEDESTAL too.\r",
+        "Pedestal too.\r",
         "I’ll be in my lab. And my new\n",
-        "AIDE there keeps track of all a\f",
+        "Aide there keeps track of all a\f",
         "Gym Leader can do. Ask anytime!\r",
         "Make Pallet Town proud, {STRVAR_1 3, 6, 0}!"
       ]
@@ -1105,7 +1105,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillAnnounce",
       "en_US": [
         "Simulation: The last one…\n",
-        "BILL!"
+        "Bill!"
       ]
     },
     {
@@ -1381,7 +1381,7 @@
         "Oh, and your Tera Orb! {STRVAR_1 3, 2, 0} is\n",
         "yours for good now. Even when your\f",
         "Gym changes type, your Pokémon can\f",
-        "TERASTALLIZE into it.\r",
+        "Terastallize into it.\r",
         "Not in League battles, mind you. In\n",
         "a Gym, against the Elite Four or your\f",
         "rival, the rules say a Leader’s\f",
@@ -1390,7 +1390,7 @@
         "Everywhere else, each Pokémon uses\n",
         "its own Tera Type, as long as it’s a\f",
         "type you’ve mastered.\r",
-        "ARCHER in Viridian can change your\n",
+        "Archer in Viridian can change your\n",
         "Pokémon’s Tera Types. Go and see him!\r",
         "You can check a Pokémon’s Tera Type\n",
         "on its Skills page."
@@ -1426,7 +1426,7 @@
         "{STRVAR_1 3, 6, 0}, you’ve mastered them All!\r",
         "I never thought I’d see the day…\r",
         "Oh! That reminds me. The Exotic\n",
-        "SAFARI’s staff told me a story.\r",
+        "Safari’s staff told me a story.\r",
         "Deep in its Paldea Crater, they\n",
         "say, sleeps a Pokémon that holds\f",
         "the power of every type.\r",

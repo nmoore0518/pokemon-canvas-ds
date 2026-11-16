@@ -5,7 +5,7 @@
       "id": "msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_StudyAsOaksAide",
       "en_US": [
         "I study Pokémon as Prof. Oak’s\n",
-        "AIDE."
+        "Aide."
       ]
     },
     {
@@ -62,7 +62,7 @@
         "Bring your best Pokémon and see\n",
         "how you rate as a Trainer!\r",
         "Pokémon League Hq\n",
-        "INDIGO Plateau\r",
+        "Indigo Plateau\r",
         "Prof. Oak, please visit us!\n",
         "…"
       ]
@@ -125,7 +125,7 @@
         "way, too.\r",
         "Every Gym Leader, every battle\n",
         "with your rival, and the Elite\f",
-        "FOUR: one type only!\r",
+        "Four: one type only!\r",
         "And no two of the same Pokémon\n",
         "on your team, either.\r",
         "If you both make it through, you\n",
@@ -167,7 +167,7 @@
         "Prof. Oak is going to have his own\n",
         "radio show soon.\r",
         "The program will be called Prof.\n",
-        "OAK’s Pokémon Seminar."
+        "Oak’s Pokémon Seminar."
       ]
     },
     {
@@ -176,7 +176,7 @@
         "Hi, {STRVAR_1 3, 6, 0}. I bet you’ve become\n",
         "good friends with your Pokémon.\r",
         "By the way, did you know about\n",
-        "DAISY?\r",
+        "Daisy?\r",
         "If you show Daisy your Pokémon,\n",
         "she can tell how much it likes you.\r",
         "Occasionally, she will even groom\n",
@@ -291,7 +291,7 @@
       "id": "msg_0451_T01R0301_EventMons_Text_QuizE5",
       "en_US": [
         "Which of these types resists\n",
-        "ELECTRIC moves?"
+        "Electric moves?"
       ]
     },
     {
@@ -819,7 +819,7 @@
         "I’ll get the Pokédex completed,\n",
         "don’t you worry about a thing.\r",
         "I think I’ll try looking around\n",
-        "ONE Island first…\r",
+        "One Island first…\r",
         "Anyways, I’m outta here!"
       ]
     },
@@ -864,7 +864,7 @@
       "id": "msg_0451_T01R0301_EventMons_Text_OakPikachuOffer",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
-        "ELECTRIC types now!\r",
+        "Electric types now!\r",
         "A Pikachu here at the lab has\n",
         "been watching you on TV. It’s a\r",
         "strong one, and very picky.\r",
@@ -878,7 +878,7 @@
       "id": "msg_0451_T01R0301_EventMons_Text_OakEeveeOffer",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 6, 0}! A master of\n",
-        "NORMAL types now!\r",
+        "Normal types now!\r",
         "An Eevee here at the lab has\n",
         "been watching you on TV. It’s a\r",
         "strong one, and very picky.\r",
@@ -1110,7 +1110,7 @@
         "challengers often leave a gift.\f",
         "Your best streak is recorded.\r",
         "Anyone who beats you earns your\n",
-        "BADGE, and their name goes on\f",
+        "Badge, and their name goes on\f",
         "your Gym’s statue.\r",
         "Your Gym’s PC sells decorations\n",
         "and practice trainers. Battles\f",
@@ -1122,13 +1122,13 @@
       "en_US": [
         "Every year, the Johto League holds\n",
         "the Gym Leader Convention in\f",
-        "GOLDENROD City’s Radio Tower.\r",
+        "Goldenrod City’s Radio Tower.\r",
         "Your invitation comes to your Gym.\n",
         "Show it to the sailor at\f",
-        "VERMILION’s harbor, and the ferry\f",
+        "Vermilion’s harbor, and the ferry\f",
         "takes you to Olivine City.\r",
         "Gym Leaders, Elite Four and\n",
-        "CHAMPIONS from every region battle\f",
+        "Champions from every region battle\f",
         "there, in a hall for every type.\r",
         "Beat everyone in a hall to win its\n",
         "trophy for your Gym. Your Pokémon\f",
@@ -1140,9 +1140,9 @@
       "en_US": [
         "The Exotic Pokémon Safari is the\n",
         "second door of Fuchsia City’s\f",
-        "SAFARI Zone building.\r",
+        "Safari Zone building.\r",
         "Its attendant sells Gym Leaders an\n",
-        "EXOTIC Pass. It’s ¥10,000, and you\f",
+        "Exotic Pass. It’s ¥10,000, and you\f",
         "only need the one.\r",
         "Every region has its own zone,\n",
         "from Johto to Paldea. Battles there\f",
@@ -1162,10 +1162,10 @@
         "But a Gym Leader can go anywhere!\n",
         "Every Pokémon there is can be\f",
         "yours now.\r",
-        "JOHTO’s live on the routes around\n",
+        "Johto’s live on the routes around\n",
         "the Convention, and every region’s\f",
         "live in the Exotic Safari in\f",
-        "FUCHSIA City.\r",
+        "Fuchsia City.\r",
         "Try to catch them all!"
       ]
     },
@@ -1177,7 +1177,7 @@
         "After the first type, it’s 10.\r",
         "The last challenger of the streak\n",
         "is your mentor, with their full\f",
-        "CONVENTION team. Beat them!\r",
+        "Convention team. Beat them!\r",
         "When the streak ends, Prof. Oak\n",
         "comes to your Gym and offers you a\f",
         "new type. Your Badge changes too.\r",
@@ -1210,7 +1210,7 @@
         "Pokémon. It comes to your Gym the\f",
         "first time your Gym is that type.\r",
         "If it gets away, it hides deep in\n",
-        "CERULEAN Cave. Keep looking!\r",
+        "Cerulean Cave. Keep looking!\r",
         "And the Gym Charm from your mentor\n",
         "makes Shiny Pokémon of your Gym’s\f",
         "type turn up far more often."
@@ -1220,7 +1220,7 @@
       "id": "msg_0451_T01R0301_LeaderAide_Text_Penny",
       "en_US": [
         "Penny lives in the house by\n",
-        "VIRIDIAN City’s flower garden.\r",
+        "Viridian City’s flower garden.\r",
         "She knows how Eevee can become a\n",
         "Pokémon of any type.\r",
         "Now that your Gym’s official, bring\n",
@@ -1251,7 +1251,7 @@
         "you like.\r",
         "You’ll know them by their type’s\n",
         "colours. The board in the\f",
-        "ACADEMY’s main hall keeps count."
+        "Academy’s main hall keeps count."
       ]
     },
     {

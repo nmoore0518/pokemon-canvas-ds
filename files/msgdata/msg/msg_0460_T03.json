@@ -58,7 +58,7 @@
       "id": "msg_0460_T03_PewterCity_Text_BrocksLookingForChallengersFollowMe",
       "en_US": [
         "You’re a Trainer, right?\r",
-        "BROCK’s looking for new\n",
+        "Brock’s looking for new\n",
         "challengers. Follow me!"
       ]
     },
@@ -137,14 +137,14 @@
       "id": "msg_0460_T03_PewterCity_Text_ReceivedRunningShoesFromAide",
       "en_US": [
         "{STRVAR_1 3, 6, 0} received the\n",
-        "RUNNING Shoes from the Aide."
+        "Running Shoes from the Aide."
       ]
     },
     {
       "id": "msg_0460_T03_PewterCity_Text_SwitchedShoesWithRunningShoes",
       "en_US": [
         "{STRVAR_1 3, 6, 0} switched shoes with the\n",
-        "RUNNING Shoes."
+        "Running Shoes."
       ]
     },
     {

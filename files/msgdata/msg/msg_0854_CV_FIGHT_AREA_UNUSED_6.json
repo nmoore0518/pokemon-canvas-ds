@@ -6,9 +6,9 @@
       "en_US": [
         "A big hopper with a hand crank beside\n",
         "it. A plate on its side reads:\f",
-        "BALL Maker.\r",
+        "Ball Maker.\r",
         "Scratched under the hatch:\n",
-        "LV. 50 or Higher."
+        "Lv. 50 or Higher."
       ]
     },
     {
@@ -50,7 +50,7 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_ChangerAsk",
       "en_US": [
         "Move a Pokémon into a different\n",
-        "BALL?"
+        "Ball?"
       ]
     },
     {
@@ -163,7 +163,7 @@
         "A belt feeds into a falling sheet of\n",
         "glowing liquid. It churns and hisses.\r",
         "A plate on its side reads:\n",
-        "ABILITY Synthesizer.\r",
+        "Ability Synthesizer.\r",
         "A tank on the back is labeled:\n",
         "3 {STRVAR_1 3, 2, 0}."
       ]
@@ -179,9 +179,9 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthConfirm",
       "en_US": [
         "The screen flickers on.\r",
-        "SUBJECT: {STRVAR_1 3, 0, 0}.\n",
-        "SYNTHETIC Ability: {STRVAR_1 3, 1, 0}.\f",
-        "BEGIN?"
+        "Subject: {STRVAR_1 3, 0, 0}.\n",
+        "Synthetic Ability: {STRVAR_1 3, 1, 0}.\f",
+        "Begin?"
       ]
     },
     {
@@ -242,7 +242,7 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_MakerSampling",
       "en_US": [
         "Extracting Small Dna Sample.\n",
-        "PAINLESS Mode Engaged."
+        "Painless Mode Engaged."
       ]
     },
     {
@@ -311,7 +311,7 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_Outfits_Text_FoundRocketUniform",
       "en_US": [
         "{STRVAR_1 3, 6, 0} found a\n",
-        "TEAM Rocket uniform!"
+        "Team Rocket uniform!"
       ]
     },
     {
@@ -332,22 +332,22 @@
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthBlocked",
       "en_US": [
         "Subject: {STRVAR_1 3, 0, 0}.\n",
-        "ERROR. Ability Cannot be Removed."
+        "Error. Ability Cannot be Removed."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthAlready",
       "en_US": [
         "Subject: {STRVAR_1 3, 0, 0}.\n",
-        "ERROR. Synthetic Ability {STRVAR_1 3, 1, 0}\f",
-        "ALREADY Implanted."
+        "Error. Synthetic Ability {STRVAR_1 3, 1, 0}\f",
+        "Already Implanted."
       ]
     },
     {
       "id": "msg_0854_CV_FIGHT_AREA_UNUSED_6_PlayersHouse_B1F_Text_SynthDoneNice",
       "en_US": [
         "{STRVAR_1 3, 0, 0} loved the taste of the\n",
-        "APPLE Juice so much, it didn’t even\f",
+        "Apple Juice so much, it didn’t even\f",
         "notice the implant!\r",
         "{STRVAR_1 3, 0, 0} came out with\n",
         "{STRVAR_1 3, 1, 0}!\r",
