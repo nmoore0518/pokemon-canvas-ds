@@ -120,3 +120,8 @@ tmp*
 /st/
 /st_*.png
 /engine/
+
+# test screenshots (tools/canvas/test)
+/mv_*.png
+/tour_*.png
+/st/
