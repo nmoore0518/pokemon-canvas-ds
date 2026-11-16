@@ -193,6 +193,10 @@ slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to 
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
+- cave walls and cliffs: HeartGold's own textures and profile (`dwall_*` faces that lean back with a lip, the
+  `dcliff01_r` rim, `droad01_r` floor edges in caves; `wall01_g/h` outside), never flat upright walls; no black
+  triangles or holes where faces meet (check with `landview.py`); rocks are HeartGold's boulders, not walls
+
 - stairs: HeartGold's striped `slope` ramp, about three steps per block of height, with a low rail down each side;
   never a texture slot that animates
 - waterfalls: use HeartGold's animated waterfall models (`dsm_fal1` etc.), scaled to fit, with water behind them
