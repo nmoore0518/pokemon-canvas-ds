@@ -1337,7 +1337,7 @@ GymChallenge_EventScript_Statue:
 	WaitButton
 	// TODO(gba) special GymChallenge_BufferVictorList
 	GoTo _cv_stop
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gStringVar4
+	Call _cv_str4
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -2135,8 +2135,6 @@ GymHack_EventScript_GiveStatItem:
 	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymHack_EventScript_GiveStatItemDone
-	// TODO(gba) addpcitem VAR_0x8009, 1
-	GoTo _cv_stop
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymHack_Text_GiftSentToPC
 	WaitButton
@@ -2990,6 +2988,11 @@ _cv_unported_25:
 	CloseMsg
 	ReleaseAll
 	End
+
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
 
 _cv_stop:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_unported

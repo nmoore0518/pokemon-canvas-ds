@@ -2,19 +2,70 @@
     "header": "fielddata/script/scr_seq/event_T03R0601.h",
     "objects": [
         {
-            "id": "obj_T03R0601_gsoldman1",
+            "id": "1",
             "spriteId": "SPRITE_GSOLDMAN1",
-            "movement": 16,
+            "movement": 17,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T03R0601_000 + 1",
+            "scriptId": "_EV_PewterCity_House2_EventScript_OldMan + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSBABYBOY1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PewterCity_House2_EventScript_LittleBoy + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Claire + 1",
             "facingDirection": 2,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
+            "x": 9,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_GSGENTLEMAN",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Bernard + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 1,
             "z": 5,
             "y": 0
         }
@@ -27,5 +78,7 @@
             "anchor": 5,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

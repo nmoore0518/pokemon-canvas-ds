@@ -2,10 +2,26 @@
   "key": 54318,
   "messages": [
     {
-      "id": "msg_0324_R02R0401_00000",
+      "id": "msg_0324_R02R0401_Route2_ViridianForest_SouthEntrance_Text_ForestIsMaze",
       "en_US": [
-        "Viridian Forest is like a maze inside.\n",
-        "Be careful. Don’t get lost in there."
+        "Are you going to Viridian Forest?\n",
+        "It’s a natural maze in there.\f",
+        "Be careful you don’t get lost."
+      ]
+    },
+    {
+      "id": "msg_0324_R02R0401_Route2_ViridianForest_SouthEntrance_Text_RattataHasWickedBite",
+      "en_US": [
+        "Rattata may be small, but don’t\n",
+        "underestimate its wicked bite.\r",
+        "Have you caught one already?"
+      ]
+    },
+    {
+      "id": "msg_0324_R02R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

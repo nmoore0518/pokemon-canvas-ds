@@ -3,9 +3,7 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T03GYM0101_003 + 1
+	InitScriptEntry_OnTransition _EV_PewterCity_Gym_OnTransitionGuest + 1
 	InitScriptEntryEnd
 
 	InitScriptEnd

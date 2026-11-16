@@ -2,99 +2,481 @@
   "key": 39269,
   "messages": [
     {
-      "id": "msg_0462_T03GYM0101_00000",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_rock",
       "en_US": [
-        "Brock: Wow, it’s not often that we\n",
-        "get a challenger from Johto.\r",
-        "I’m Brock, the Pewter Gym Leader.\f",
-        "I’m an expert on Rock-type Pokémon.\r",
-        "My Pokémon are impervious to most\n",
-        "physical attacks.\r",
-        "You’ll have a hard time inflicting\n",
-        "any damage.\r",
-        "Come on!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it to Pewter!\r",
+        "We met in Oak’s lab, but here I’m a Gym\n",
+        "Leader, and you’re a challenger.\r",
+        "Show me what your Rock Pokémon can do!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00001",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_normal",
       "en_US": [
-        "Brock: Your Pokémon’s powerful\n",
-        "attacks overcame my\f",
-        "rock-hard resistance...\r",
-        "You’re stronger than\n",
-        "I expected...\f",
-        "Go ahead--take this Badge.\r"
+        "Brock: {STRVAR_1 3, 6, 0}! Good to see you again.\r",
+        "Since Oak’s lab, I’ve wondered how your\n",
+        "NORMAL types would do against my Rock\f",
+        "types.\r",
+        "Let’s find out!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00002",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_water",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the Boulder Badge from Brock!"
+        "Misty: Well, well. The kid from Oak’s lab.\r",
+        "A Water trainer, here to take the Water\n",
+        "Gym’s Badge? Ha!\r",
+        "Let’s see you try!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00003",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_electric",
       "en_US": [
-        "Brock: I really enjoyed the battle\n",
-        "with you, {STRVAR_1 3, 0, 0}!\f",
-        "I’ll give you the move Rock Slide, too.\r",
-        "It can sometimes cause your foe\n",
-        "to flinch.\r"
+        "Lt. Surge: Ten-hut! The Electric kid\n",
+        "from Oak’s lab!\r",
+        "This is my turf, soldier. Let’s see who’s\n",
+        "packing more voltage!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00004",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_steel",
       "en_US": [
-        "Brock: I really enjoyed the battle\n",
-        "with you, {STRVAR_1 3, 0, 0}!\f",
-        "I’ll give you the move Rock Slide, too.\r",
-        "It can sometimes cause your foe\n",
-        "to flinch.\r"
+        "Lt. Surge: The Steel kid! Told you I’d be\n",
+        "watching.\r",
+        "Let’s see if that armor holds up under\n",
+        "fire!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00005",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_grass",
       "en_US": [
-        "Brock: The world is huge. There are\n",
-        "still many strong Trainers like you.\r",
-        "Just wait and see.\r",
-        "I’m going to become a lot\n",
-        "stronger, too."
+        "Erika: Oh, {STRVAR_1 3, 6, 0}… Welcome. I’m so\n",
+        "glad you came.\r",
+        "I’ve been looking forward to seeing your\n",
+        "GRASS Pokémon again.\r",
+        "Shall we?"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00006",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_poison",
       "en_US": [
-        "Yo! Legend in the making! You look...\f",
-        "really rocking.\r",
-        "Are you battling the Gym Leaders\n",
-        "of Kanto?\r",
-        "They’re strong and dedicated people,\n",
-        "just like Johto’s Gym Leaders."
+        "Koga: …You have come, as I knew you\n",
+        "would.\r",
+        "I have watched you from the shadows\n",
+        "since Oak’s lab.\r",
+        "Now show me your Poison in the open!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00007",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_bug",
       "en_US": [
-        "Yo! Legend in the making! That Gym\n",
-        "didn’t give you much trouble.\r",
-        "The way you took charge was\n",
-        "really inspiring.\f",
-        "I mean that seriously."
+        "Koga: Fwahaha! The Bug trainer from\n",
+        "OAK’s lab.\r",
+        "Most call Bug Pokémon weak. Show me why\n",
+        "they are wrong!"
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00008",
-      "en_US": "Pewter City Pokémon Gym"
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_psychic",
+      "en_US": [
+        "Sabrina: …I saw this battle in a vision,\n",
+        "the day we met in Oak’s lab.\r",
+        "Two Psychic trainers. Only one leaves\n",
+        "with the win."
+      ]
     },
     {
-      "id": "msg_0462_T03GYM0101_00009",
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_fairy",
       "en_US": [
-        "Pewter City Pokémon Gym\r",
-        "Leader: Brock\n",
-        "Certified Trainer!\f",
-        "{STRVAR_1 3, 0, 0}"
+        "Sabrina: We meet again, as I said we\n",
+        "would.\r",
+        "Show me whether your Fairy Pokémon\n",
+        "trust you as much as I foresaw."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_prebattle_fire",
+      "en_US": [
+        "Blaine: Hah! Quiz! Who’s the Fire trainer\n",
+        "I met in Oak’s lab?\r",
+        "Answer: you! Now let’s see if you can\n",
+        "take the heat!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_BrockIntro",
+      "en_US": [
+        "So, you’re here. I’m Brock.\n",
+        "I’m Pewter’s Gym Leader.\r",
+        "My rock-hard willpower is evident\n",
+        "even in my Pokémon.\r",
+        "My Pokémon are all rock hard, and\n",
+        "have true-grit determination.\r",
+        "That’s right - my Pokémon are all\n",
+        "the Rock type!\r",
+        "Fuhaha! You’re going to challenge\n",
+        "me knowing that you’ll lose?\r",
+        "That’s the Trainer’s honor that\n",
+        "compels you to challenge me.\r",
+        "Fine, then!\n",
+        "Show me your best!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_LetMeTakeYouToTheTop",
+      "en_US": [
+        "Hiya!\n",
+        "Do you want to dream big?\r",
+        "Do you dare to dream of becoming\n",
+        "the Pokémon champ?\r",
+        "I’m no Trainer, but I can advise\n",
+        "you on how to win.\r",
+        "Let me take you to the top!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymAides_Text_PewterCity",
+      "en_US": [
+        "Hi! I’m one of Prof. Oak’s Aides.\n",
+        "He sent us to every Gym with tips\f",
+        "for future Gym Leaders.\r",
+        "Tip one: a Gym is a path from the\n",
+        "door to the Leader. Brock lines his\f",
+        "Trainers up so you must face them.\r",
+        "In your own Gym, challengers walk\n",
+        "from the door to your Battle Stage.\r",
+        "Gym Walls and Statues shape that\n",
+        "walk. Make it feel like a journey!\r",
+        "And see the rocks? A Gym’s look\n",
+        "should shout its type!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_GymStatue",
+      "en_US": [
+        "Pewter Pokémon Gym\n",
+        "Leader: Brock\r",
+        "WINNING Trainers:\n",
+        "{STRVAR_1 3, 7, 0}"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_YoureChampMaterial",
+      "en_US": [
+        "Just as I thought!\n",
+        "You’re Pokémon champ material!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_LetsGetHappening",
+      "en_US": [
+        "All right!\n",
+        "Let’s get happening!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_ItsFreeLetsGetHappening",
+      "en_US": [
+        "It’s a free service!\n",
+        "Let’s get happening!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymAides_Text_PewterCityAfter",
+      "en_US": [
+        "You beat Brock! Remember:\n",
+        "challengers walk the path you build.\r",
+        "Put your Battle Stage at the end of\n",
+        "a long, grand hall, and every\f",
+        "challenger feels the pressure!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_GymStatuePlayerWon",
+      "en_US": [
+        "Pewter Pokémon Gym\n",
+        "Leader: Brock\r",
+        "WINNING Trainers:\n",
+        "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_BrockPostBattle",
+      "en_US": [
+        "There are all kinds of Trainers in\n",
+        "this huge world of ours.\r",
+        "You appear to be very gifted as a\n",
+        "Pokémon Trainer.\r",
+        "So let me make a suggestion.\r",
+        "Go to the Gym in Cerulean and test\n",
+        "your abilities."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_TakeThisWithYou",
+      "en_US": [
+        "Wait!\n",
+        "Take this with you."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_ReceivedTM39FromBrock",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM39\n",
+        "from Brock."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_ExplainTM39",
+      "en_US": [
+        "A TM, Technical Machine, contains a\n",
+        "technique for Pokémon.\r",
+        "Using a TM teaches the move it\n",
+        "contains to a Pokémon.\r",
+        "A TM is good for only one use.\r",
+        "So, when you use one, pick the\n",
+        "Pokémon carefully.\r",
+        "Anyways…\n",
+        "TM39 contains Rock Tomb.\r",
+        "It hurls boulders at the foe and\n",
+        "lowers its Speed."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_TryDifferentPartyOrders",
+      "en_US": [
+        "The first Pokémon out in a match is\n",
+        "at the left of the Pokémon List.\r",
+        "By changing the order of Pokémon,\n",
+        "you may gain an advantage.\r",
+        "Try different orders to suit your\n",
+        "opponent’s party."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymHack_Text_BrockSilverCap",
+      "en_US": [
+        "Brock: One more thing.\r",
+        "The League sends every Gym a few of\n",
+        "these for promising challengers.\r",
+        "Prof. Oak told us about the new\n",
+        "Gym. I’d say you qualify."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymHack_Text_BrockSilverCapAfter",
+      "en_US": [
+        "That Silver Bottle Cap brings one\n",
+        "of a Pokémon’s stats to its peak.\r",
+        "A strong team is built like a\n",
+        "mountain: one solid layer at a\f",
+        "time. Choose wisely!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_DontHaveRoomForThis",
+      "en_US": "You don’t have room for this."
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "OAK’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "WATER Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "OAK’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "PALLET, though!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "PSYCHIC Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_GuardItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, no move is\f",
+        "super effective against it.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_EdgeItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, its moves always\f",
+        "hit for at least normal damage.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_Outfits_Text_ReceivedGymUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a\n",
+        "{STRVAR_1 3, 0, 0} Gym Uniform!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

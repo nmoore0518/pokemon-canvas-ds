@@ -2,26 +2,50 @@
   "key": 54302,
   "messages": [
     {
-      "id": "msg_0322_R02R0201_00000",
+      "id": "msg_0322_R02R0201_Route2_House_Text_FaintedMonsCanUseFieldMoves",
       "en_US": [
-        "Oh my good nuggets!\n",
-        "You’re the first visitor I’ve had in a\f",
-        "long time.\r",
-        "I’m going crazy with joy!\n",
-        "Since you look as bright as a Nugget,\f",
-        "let me give you a little present.\r"
+        "A fainted Pokémon just has no\n",
+        "energy left to battle.\r",
+        "It can still use moves like Cut\n",
+        "outside of battle."
       ]
     },
     {
-      "id": "msg_0322_R02R0201_00001",
-      "garbage": 20
+      "id": "msg_0322_R02R0201_Trade_Text_LookingForMonWannaTradeForMon",
+      "en_US": [
+        "I’m looking for the Pokémon\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Wanna trade one for my\n",
+        "{STRVAR_1 3, 1, 0}?"
+      ]
     },
     {
-      "id": "msg_0322_R02R0201_00002",
+      "id": "msg_0322_R02R0201_Trade_Text_HeyThanks",
+      "en_US": "Hey, thanks!"
+    },
+    {
+      "id": "msg_0322_R02R0201_Trade_Text_IsntMyOldMonGreat",
+      "en_US": "Isn’t my old {STRVAR_1 3, 1, 0} great?"
+    },
+    {
+      "id": "msg_0322_R02R0201_Trade_Text_AwwOhWell",
       "en_US": [
-        "That’s a Nugget.\r",
-        "I can’t give you any nuggets of wisdom,\n",
-        "so that’ll have to do!"
+        "Awww!\n",
+        "Oh, well…"
+      ]
+    },
+    {
+      "id": "msg_0322_R02R0201_Trade_Text_WhatThatsNoMon",
+      "en_US": [
+        "What?\n",
+        "That’s no {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0322_R02R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

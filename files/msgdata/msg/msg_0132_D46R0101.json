@@ -85,10 +85,6 @@
       ]
     },
     {
-      "id": "msg_0132_D46R0101_gStringVar4",
-      "en_US": "(missing text)"
-    },
-    {
       "id": "msg_0132_D46R0101_GymCandidate_Text_RecruitJoined",
       "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
     },

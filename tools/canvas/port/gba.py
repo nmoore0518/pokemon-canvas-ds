@@ -59,6 +59,8 @@ class Gba:
 
     def _read(self, f):
         cur = None
+        macro = None               # (a .macro in a map's scripts: its lines, expanded where it's used; no arguments)
+        local_macros = {}
         for raw in open(f, errors='ignore'):
             line = raw.split('@')[0].rstrip() if '"' not in raw else raw.rstrip('\n')
             if '"' in line:
@@ -68,6 +70,14 @@ class Gba:
             s = line.strip()
             if not s:
                 continue
+            m = re.match(r'^\.macro\s+(\w+)\s*$', s)
+            if m:
+                macro = local_macros.setdefault(m.group(1), []); continue
+            if s == '.endm':
+                macro = None; continue
+            if macro is not None:
+                parts = s.split(None, 1)
+                macro.append((parts[0], split_args(parts[1]) if len(parts) > 1 else [])); continue
             m = re.match(r'^(\w+)::?$', s)
             if m:
                 cur = m.group(1)
@@ -88,6 +98,8 @@ class Gba:
             parts = s.split(None, 1)
             cmd = parts[0]
             args = split_args(parts[1]) if len(parts) > 1 else []
+            if cmd in local_macros and not args:
+                self.labels[cur].extend(local_macros[cmd]); continue
             self.labels[cur].append((cmd, args))
 
     def value(self, name):

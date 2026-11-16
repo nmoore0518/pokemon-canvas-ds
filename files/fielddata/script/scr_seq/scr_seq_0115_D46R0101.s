@@ -97,8 +97,9 @@ ViridianForest_EventScript_ItemPotion2:
 	End
 	
 ViridianForest_EventScript_ItemShockDrive:
-	SetFlag 0x20A6
-	SetVar VAR_SPECIAL_RESULT, 1
+	SetVar 0x8004, 117
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	End
 	
@@ -182,7 +183,7 @@ GymCandidate_EventScript_RecruitOffer:
 	GoToIfEq GymCandidate_EventScript_Return
 	LockAll
 	FacePlayer
-	NPCMsg msg_0132_D46R0101_gStringVar4
+	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq _cv_yes_3
@@ -249,6 +250,11 @@ EventMons_EventScript_CapNoCase:
 EventMons_EventScript_ReleaseAllEnd:
 	ReleaseAll
 	End
+
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
 
 _cv_stop:
 	NPCMsg msg_0132_D46R0101_cv_unported

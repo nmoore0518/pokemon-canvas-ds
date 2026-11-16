@@ -2,16 +2,57 @@
   "key": 33855,
   "messages": [
     {
-      "id": "msg_0466_T03R0601_00000",
+      "id": "msg_0466_T03R0601_PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow",
       "en_US": [
-        "I used to enjoy snoozing\n",
-        "with the radio on...\r",
-        "It’s broken and is being fixed now.\r",
-        "...\n",
-        "...\f",
-        "...\f",
-        "...\r",
-        "It’s too quiet to fall asleep!"
+        "Pokémon learn new techniques as\n",
+        "they grow.\r",
+        "But some moves must be taught to\n",
+        "them by people."
+      ]
+    },
+    {
+      "id": "msg_0466_T03R0601_PewterCity_House2_Text_MonsEasierCatchIfStatused",
+      "en_US": [
+        "A Pokémon becomes easier to \n",
+        "catch if it has a status problem.\r",
+        "Sleep, poison, burn, or paralysis…\n",
+        "Those are all effective.\r",
+        "But catching Pokémon is never\n",
+        "a sure thing!"
+      ]
+    },
+    {
+      "id": "msg_0466_T03R0601_TrainingHouse_Text_ClaireIntro",
+      "en_US": [
+        "Training a new team? I’d be\n",
+        "delighted to help.\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0466_T03R0601_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0466_T03R0601_TrainingHouse_Text_BernardIntro",
+      "en_US": [
+        "No tricks, no immunities. Just\n",
+        "an honest battle.\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0466_T03R0601_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0466_T03R0601_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

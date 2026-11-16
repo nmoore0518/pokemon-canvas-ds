@@ -1968,15 +1968,15 @@ _cv_done_127:
 	WaitButton
 	// TODO(gba) special GymCandidate_BufferMentorIntro
 	GoTo _cv_stop
-	NPCMsg msg_0451_T01R0301_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special GymCandidate_BufferMentorStory
 	GoTo _cv_stop
-	NPCMsg msg_0451_T01R0301_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special GymCandidate_BufferMentorQuestion
 	GoTo _cv_stop
-	NPCMsg msg_0451_T01R0301_gStringVar4
+	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq _cv_yes_146
@@ -1987,7 +1987,7 @@ _cv_yes_146:
 _cv_yn_147:
 	// TODO(gba) special GymCandidate_BufferMentorAnswer
 	GoTo _cv_stop
-	NPCMsg msg_0451_T01R0301_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special GymCandidate_GiveMentorDecor
 	GoTo _cv_stop
@@ -1995,7 +1995,7 @@ _cv_yn_147:
 	CallIfEq GymCandidate_EventScript_MentorDecorGift
 	// TODO(gba) special GymCandidate_BufferMentorFarewell
 	GoTo _cv_stop
-	NPCMsg msg_0451_T01R0301_gStringVar4
+	Call _cv_str4
 	WaitButton
 	Call GymCandidate_EventScript_VisitorWalksOut
 	SetVar VAR_SPECIAL_RESULT, 0
@@ -3122,6 +3122,11 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyEndSignLadyScene:
 	Return
 	
 Outfits_EventScript_Return:
+	Return
+
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
 	Return
 
 _cv_stop:

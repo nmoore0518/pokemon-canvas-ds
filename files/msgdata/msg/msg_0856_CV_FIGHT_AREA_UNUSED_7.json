@@ -598,10 +598,6 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gStringVar4",
-      "en_US": "(missing text)"
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHeardTheCheering",
       "en_US": [
         "Oak: …Ah. {STRVAR_1 3, 6, 0}.\r",

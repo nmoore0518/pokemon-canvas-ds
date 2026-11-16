@@ -2,182 +2,206 @@
   "key": 18211,
   "messages": [
     {
-      "id": "msg_0460_T03_00000",
+      "id": "msg_0460_T03_PewterCity_Text_ClefairyCameFromMoon",
       "en_US": [
-        "Have you visited Pewter Gym?\r",
-        "The Gym Leader uses\n",
-        "Rock-type Pokémon."
+        "Clefairy came from the moon.\n",
+        "That’s what the rumor is.\r",
+        "They appeared after Moon Stones\n",
+        "fell on Mt. Moon."
       ]
     },
     {
-      "id": "msg_0460_T03_00001",
+      "id": "msg_0460_T03_PewterCity_Text_DidYouCheckOutMuseum",
+      "en_US": "Did you check out the Museum?"
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_ReallyYouHaveToGo",
       "en_US": [
-        "At night, CLEFAIRY come out to play\n",
-        "at Mt. Moon.\r",
-        "But not every night."
+        "Really?\n",
+        "You absolutely have to go!"
       ]
     },
     {
-      "id": "msg_0460_T03_00002",
+      "id": "msg_0460_T03_PewterCity_Text_ThisIsTheMuseum",
       "en_US": [
-        "Ah, you came all the way out here\n",
-        "from Johto?\r",
-        "That brings back memories.\r",
-        "When I was young, I went to Johto\n",
-        "to train.\r",
-        "You remind me so much of what I was\n",
-        "like as a young man.\r",
-        "Here. I want you to have this item\n",
-        "I found in Johto.\r"
+        "This is it, the Museum.\r",
+        "You have to pay to get in, but it’s\n",
+        "worth it. See you around!"
       ]
     },
     {
-      "id": "msg_0460_T03_00003",
-      "garbage": 22
-    },
-    {
-      "id": "msg_0460_T03_00004",
-      "garbage": 22
-    },
-    {
-      "id": "msg_0460_T03_00005",
+      "id": "msg_0460_T03_PewterCity_Text_BrockOnlySeriousTrainerHere",
       "en_US": [
-        "Going to new, unknown places and\n",
-        "seeing new people...\f",
-        "Those are the joys of travel."
+        "There aren’t many serious Pokémon\n",
+        "Trainers here.\r",
+        "They’re all like Bug Catchers,\n",
+        "you know, just hobbyists.\r",
+        "But Pewter Gym’s Brock isn’t like\n",
+        "that, not one bit."
       ]
     },
     {
-      "id": "msg_0460_T03_00006",
+      "id": "msg_0460_T03_PewterCity_Text_DoYouKnowWhatImDoing",
       "en_US": [
-        "Steven: It seems that LATIOS became\n",
-        "attracted to it in no time!\r"
+        "Psssst!\n",
+        "Do you know what I’m doing?"
       ]
     },
     {
-      "id": "msg_0460_T03_00007",
+      "id": "msg_0460_T03_PewterCity_Text_SprayingRepelToKeepWildMonsOut",
       "en_US": [
-        "Steven: It seems that LATIAS became\n",
-        "attracted to it in no time!\r"
+        "I’m spraying Repel to keep wild\n",
+        "Pokémon out of my garden!"
       ]
     },
     {
-      "id": "msg_0460_T03_00008",
+      "id": "msg_0460_T03_PewterCity_Text_BrocksLookingForChallengersFollowMe",
       "en_US": [
-        "I can feel that LATIOS is full of\n",
-        "fighting spirit!\r",
-        "I would love to challenge it,\n",
-        "but I will let you go for it!"
+        "You’re a Trainer, right?\r",
+        "BROCK’s looking for new\n",
+        "challengers. Follow me!"
       ]
     },
     {
-      "id": "msg_0460_T03_00009",
+      "id": "msg_0460_T03_PewterCity_Text_GoTakeOnBrock",
       "en_US": [
-        "I can feel that LATIAS is full of\n",
-        "fighting spirit!\r",
-        "I would love to challenge it,\n",
-        "but I will let you go for it!"
+        "If you have the right stuff,\n",
+        "go take on Brock!"
       ]
     },
     {
-      "id": "msg_0460_T03_00010",
-      "en_US": "LATIOS: Shuaaaann!\r"
-    },
-    {
-      "id": "msg_0460_T03_00011",
-      "en_US": "LATIAS: Huaaaaann!\r"
-    },
-    {
-      "id": "msg_0460_T03_00012",
-      "en_US": "LATIOS flew away to the distant sky...\r"
-    },
-    {
-      "id": "msg_0460_T03_00013",
-      "en_US": "LATIAS flew away to the distant sky...\r"
-    },
-    {
-      "id": "msg_0460_T03_00014",
-      "en_US": [
-        "Steven: Impressive!\n",
-        "It was a great battle!\r",
-        "I don’t think you had to give\n",
-        "everything you’ve got,\f",
-        "and that scares me...\r"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00015",
-      "en_US": [
-        "I’ve been away from the Hoenn\n",
-        "Pokémon League for too long.\r",
-        "I’ll have to excuse myself.\r",
-        "..................\r",
-        "Oh, I never got your name.\f",
-        "...But I won’t ask for it this time.\r",
-        "Our fun will have to wait for the\n",
-        "right time.\r"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00016",
-      "en_US": [
-        "Steven: Impressive!\n",
-        "It was a great battle!\r",
-        "LATIOS will be back once it recovers\n",
-        "to make amends for the defeat.\r"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00017",
-      "en_US": [
-        "Steven: Impressive!\n",
-        "It was a great battle!\r",
-        "LATIAS will be back once it recovers\n",
-        "to make amends for the defeat.\r"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00018",
-      "en_US": [
-        "Steven: I see.\n",
-        "You’d rather hide your true strength\f",
-        "from me. You have room to breathe,\f",
-        "and that scares me.\r"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00019",
-      "en_US": [
-        "Steven: What? You are not scared,\n",
-        "are you? Don’t be reserved. Go for it."
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00020",
-      "en_US": [
-        "Pewter City\n",
-        "Between Rugged Mountains"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00021",
-      "en_US": [
-        "Pewter City Pokémon Gym\n",
-        "Leader: Brock\f",
-        "The Rock-Solid Pokémon Trainer"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_00022",
+      "id": "msg_0460_T03_PewterCity_Text_MuseumOfScience",
       "en_US": "Pewter Museum of Science"
     },
     {
-      "id": "msg_0460_T03_00023",
-      "en_US": "Welcome to Pewter City!"
+      "id": "msg_0460_T03_PewterCity_Text_CallPoliceIfInfoOnThieves",
+      "en_US": [
+        "Notice!\r",
+        "Thieves have been stealing Pokémon\n",
+        "fossils from Mt. Moon.\r",
+        "Please call the Pewter Police if\n",
+        "you have any information."
+      ]
     },
     {
-      "id": "msg_0460_T03_00024",
-      "en_US": "The door’s locked..."
+      "id": "msg_0460_T03_PewterCity_Text_GymSign",
+      "en_US": [
+        "Pewter City Pokémon Gym\n",
+        "Leader: Brock\f",
+        "The Rock-Solid Pokémon Trainer!"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_TrainerTipsEarningEXP",
+      "en_US": [
+        "Trainer Tips\r",
+        "All Pokémon that appear in battle,\n",
+        "however briefly, earn EXP Points."
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_CitySign",
+      "en_US": [
+        "Pewter City\n",
+        "A Stone Gray City"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_WerentThoseFossilsAmazing",
+      "en_US": [
+        "Weren’t those fossils from Mt. Moon\n",
+        "amazing?"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_ThatsRightItsHardWork",
+      "en_US": [
+        "That’s right!\n",
+        "It’s hard work!"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_OhPlayer",
+      "en_US": "Oh, {STRVAR_1 3, 6, 0}!"
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_AskedToDeliverThis",
+      "en_US": [
+        "I’m glad I caught up to you.\n",
+        "I’m Prof. Oak’s Aide.\r",
+        "I’ve been asked to deliver this,\n",
+        "so here you go."
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_ReceivedRunningShoesFromAide",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the\n",
+        "RUNNING Shoes from the Aide."
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_SwitchedShoesWithRunningShoes",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} switched shoes with the\n",
+        "RUNNING Shoes."
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_ExplainRunningShoes",
+      "en_US": [
+        "Press the B Button to run.\n",
+        "But only where there’s room to run!"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_MustBeGoingBackToLab",
+      "en_US": [
+        "Well, I must be going back to\n",
+        "the Lab.\r",
+        "Bye-bye!"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_PewterCity_Text_RunningShoesLetterFromMom",
+      "en_US": [
+        "There’s a letter attached…\r",
+        "Dear {STRVAR_1 3, 6, 0},\r",
+        "Here is a pair of Running Shoes\n",
+        "for my beloved challenger.\r",
+        "Remember, I’ll always cheer for\n",
+        "you! Don’t ever give up!\r",
+        "From Mom"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0460_T03_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0460_T03_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0460_T03_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0460_T03_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

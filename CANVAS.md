@@ -150,6 +150,16 @@ What else it does:
   so the porter shows them again itself.
 - **The rival is named** the first time he speaks (HeartGold's intro only names the player).
 - **Message banks 829-853 belong to hg-engine** (it lays its own text over them): our own banks start at 854.
+- **Walks redone for HeartGold's layout** (`MOVES` in port_map.py): where a GBA scene walks you somewhere (Pewter's
+  guides lead you to the Gym and the Museum), the walk is HeartGold's shortest path there (`path`, `lead`), not
+  the GBA's steps. A `fixed` square can be `None` (a GBA trigger HeartGold's layout has no place for).
+- **Lines built in C** (`gStringVar4`): the special that picks one sets a temp var to its number (`Port.str4`) and
+  `msgbox gStringVar4` shows the one picked (`_cv_str4`). Used for the mentors' lines (`specials.MENTOR_TEXTS`,
+  read from `src/gym_candidate.c`).
+- **hg-engine's own items, Pokemon and moves** (Bottle Cap...) go into scripts by number.
+- **Not yet**: the Guest Leader challenges after each badge (GymCandidate_*: Brock's badge, TM and gifts work, then
+  "not ported yet"), type tutors, the painter's loft in Pewter (her paintings), the Museum's second floor, in-game
+  trades, the fossil pictures.
 - **Split maps**: a GBA map HeartGold splits in two (Route 2) gets two `MAPS` entries, `Map#part`, each with a
   test for which squares it takes.
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file

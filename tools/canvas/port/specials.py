@@ -138,7 +138,52 @@ def candidate_mentor_name(port, ret):
     return ['SetVar VAR_SPECIAL_RESULT, 0'] + chain(port, pt, cases)
 
 
+def _mentors():
+    """src/gym_candidate.c sMentors: the player's type -> (leader 0-7 / Elite Four 8-11, intro, first, approve)"""
+    src = open(G.P('src/gym_candidate.c')).read()
+    body = src[src.index('sMentors[NUMBER_OF_MON_TYPES] ='):]
+    body = body[:body.index('\n};')]
+    out = {}
+    for chunk in body.split('[TYPE_')[1:]:
+        m = re.match(r'(\w+)\] = \{(\w+),(.*)', chunk, re.S)
+        if not m: continue
+        t, who, strs = m.groups()
+        texts = re.findall(r'COMPOUND_STRING\("((?:[^"\\]|\\.)*)"\)', strs)
+        if len(texts) == 3: out[t] = (int(who, 0) if who[0].isdigit() else who, *texts)
+    return out
+
+
+MENTOR_TEXTS = _mentors()
+
+
+def mentor_line(port, ret, which):
+    """VAR_0x8009 = a Gym Leader; if they mentor the player's type, VAR_RESULT = 1 and gStringVar4 = their line"""
+    pt, who = port.var('VAR_PLAYER_TYPE'), port.var('VAR_0x8009')
+    out = ['SetVar VAR_SPECIAL_RESULT, 0']
+    for t, (w, intro, first, approve) in MENTOR_TEXTS.items():
+        if not isinstance(w, int): continue
+        if which == 'prebattle':
+            label = 'GymCandidate_Text_PreBattle' + t.capitalize()
+            if label not in port.g.texts: continue
+            raw = port.g.texts[label]
+        else:
+            raw = {'first': first, 'approve': approve, 'intro': intro}[which]
+        k = port.str4('cv_mentor_%s_%s' % (which, t.lower()), raw)
+        nxt = port.new('mentor')
+        out += ['CompareVarToValue %s, %d' % (who, w), 'GoToIfNe %s' % nxt, 'CompareVarToValue %s, %s' % (pt, _type(port, t)),
+                'GoToIfNe %s' % nxt, 'SetVar %s, %d' % (SCRATCH4, k), 'SetVar VAR_SPECIAL_RESULT, 1', nxt + ':']
+    return out
+
+
+SCRATCH4 = '0x401F'
+
+
 SPECIALS = {
+    'DisableMsgBoxWalkaway': lambda p, r: [],
+    # (the fossils' pictures: HeartGold has no picture window for them; their text still shows)
+    'OpenMuseumFossilPic': lambda p, r: [], 'CloseMuseumFossilPic': lambda p, r: [],
+    'GymCandidate_BufferMentorPreBattle': lambda p, r: mentor_line(p, r, 'prebattle'),
+    'GymCandidate_BufferMentorFirst': lambda p, r: mentor_line(p, r, 'first'),
     'ShouldTryRematchBattle': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],     # (rematches come later)
     # the old man's catching demo: HeartGold's own catching tutorial (a Weedle in the GBA game)
     'StartOldManTutorialBattle': lambda p, r: ['CatchingTutorial'],
@@ -173,6 +218,7 @@ SPECIALS = {
     'Outfit_CheckUnlocked': lambda p, r: ['SetVar VAR_SPECIAL_RESULT, 0'],
     'Outfit_CountUnlocked': lambda p, r: ['SetVar VAR_SPECIAL_RESULT, 1'],
     'Outfit_CatchUp': lambda p, r: [],
+    'Outfit_GiveGymUniform': lambda p, r: [],
 }
 
 CALLNATIVE_NO_OPS = ('UpdateFollowingPokemon',)

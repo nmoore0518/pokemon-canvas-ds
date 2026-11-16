@@ -418,7 +418,7 @@ _cv_yn_6:
 TypeTutor_EventScript_Intro:
 	// TODO(gba) special TypeTutor_BufferIntro
 	GoTo _cv_stop
-	NPCMsg msg_0452_T02_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetMet
 	GoTo _cv_stop
@@ -429,7 +429,7 @@ TypeTutor_EventScript_Intro:
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
 	GoTo _cv_stop
-	NPCMsg msg_0452_T02_gStringVar4
+	Call _cv_str4
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -438,7 +438,7 @@ TypeTutor_EventScript_Trial:
 TypeTutor_EventScript_JustDone:
 	// TODO(gba) special TypeTutor_BufferDone
 	GoTo _cv_stop
-	NPCMsg msg_0452_T02_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
@@ -520,8 +520,6 @@ GymHack_EventScript_GiveStatItem:
 	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymHack_EventScript_GiveStatItemDone
-	// TODO(gba) addpcitem VAR_0x8009, 1
-	GoTo _cv_stop
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0452_T02_GymHack_Text_GiftSentToPC
 	WaitButton
@@ -538,6 +536,11 @@ _cv_unported_19:
 	CloseMsg
 	ReleaseAll
 	End
+
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
 
 _cv_stop:
 	NPCMsg msg_0452_T02_cv_unported

@@ -2,12 +2,39 @@
   "key": 21543,
   "messages": [
     {
-      "id": "msg_0325_R02R0501_00000",
+      "id": "msg_0325_R02R0501_Route2_ViridianForest_NorthEntrance_Text_ManyMonsOnlyInForests",
       "en_US": [
-        "Viridian Forest not only has trees\n",
-        "standing like a maze but also has many\f",
-        "ups and downs.\r",
-        "That’s why people get lost easily here."
+        "Many Pokémon live only in forests \n",
+        "and caves.\r",
+        "You need to be persistent and look\n",
+        "everywhere to get different kinds."
+      ]
+    },
+    {
+      "id": "msg_0325_R02R0501_Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees",
+      "en_US": [
+        "Have you noticed the skinny trees\n",
+        "on the roadside?\r",
+        "They can be cut down by a special\n",
+        "Pokémon move, I hear."
+      ]
+    },
+    {
+      "id": "msg_0325_R02R0501_Route2_ViridianForest_NorthEntrance_Text_CanCancelEvolution",
+      "en_US": [
+        "Do you know the evolution-cancel\n",
+        "technique?\r",
+        "When a Pokémon is evolving, you\n",
+        "can stop the process.\r",
+        "It’s a technique for raising\n",
+        "Pokémon the way they are."
+      ]
+    },
+    {
+      "id": "msg_0325_R02R0501_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

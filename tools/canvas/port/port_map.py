@@ -53,6 +53,7 @@ class Anchored:
         self.indoor = 'EVERYWHERE' not in slots.header(slot)['matrixId']
         self.hg_signs = self.hg_trees = self.hg_trainers = self.hg_items = None
         self.last_spot = None
+        self.warps = ()                    # (HeartGold's doors: nobody stands in or right before one)
 
     def offset(self, x, y):
         tw = tx = ty = 0.0
@@ -69,7 +70,30 @@ class Anchored:
 
     def open(self, x, z):
         v = self.perm(x, z)
-        return v is not None and not v & 0x8000 and (v & 0xFF) not in (0x10, 0x11, 0x13, 0x15, 0x62, 0x63, 0x64, 0x65, 0x69, 0x6E)
+        ok = v is not None and not v & 0x8000 and (v & 0xFF) not in (0x10, 0x11, 0x13, 0x15, 0x62, 0x63, 0x64, 0x65, 0x69, 0x6E)
+        if ok and self.indoor and self.warps:
+            return (x, z) in self.inside()
+        return ok
+
+    def inside(self):
+        """a room's floor: the squares you can walk to from its doors (the land around a room reads as open too)"""
+        if getattr(self, '_inside', None) is None:
+            from collections import deque
+            seen, q = set(), deque()
+            for w in self.warps:
+                for dx, dz in ((0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)):
+                    c = (w[0] + dx, w[1] + dz)
+                    v = self.perm(*c)
+                    if v is not None and not v & 0x8000 and c not in seen: seen.add(c); q.append(c)
+            while q:
+                c = q.popleft()
+                for dx, dz in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+                    n = (c[0] + dx, c[1] + dz)
+                    v = self.perm(*n)
+                    if n not in seen and v is not None and not v & 0x8000 and 0 <= n[0] < 64 and 0 <= n[1] < 64:
+                        seen.add(n); q.append(n)
+            self._inside = seen
+        return self._inside
 
     def __call__(self, x, y, kind='pos'):
         if (x, y) in self.fixed: return self.fixed[(x, y)]
@@ -92,7 +116,8 @@ class Anchored:
             for r in range(0, 6):
                 ring = [(X + i, Z + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r]
                 for c in sorted(ring, key=lambda c: (c[0] - X) ** 2 + (c[1] - Z) ** 2):
-                    if self.open(*c) and (kind == 'trigger' or c not in self.used):
+                    near_door = kind == 'object' and any(abs(c[0] - w[0]) + abs(c[1] - w[1]) <= 1 for w in self.warps)
+                    if self.open(*c) and not near_door and (kind == 'trigger' or c not in self.used):
                         if kind == 'object': self.used.add(c)
                         return c
         return X, Z
@@ -113,7 +138,32 @@ VIRIDIAN_FOREST = Anchored('MAP_VIRIDIAN_FOREST', [((29, 62), (32, 77)), ((5, 9)
 # (the rival waits where the road from Viridian narrows: HeartGold's is four squares wide there, the GBA's three)
 ROUTE22 = Anchored('MAP_ROUTE_22', [((8, 5), (936, 266)), ((9, 5), (936, 267)), ((47, 7), (995, 258)), ((47, 12), (995, 263))],
                    fixed={(33, 4): (974, 265), (33, 5): (974, 266), (33, 6): (974, 267)}, extra=[((33, 6), (974, 268))])
-VIRIDIAN_MART = Anchored('MAP_VIRIDIAN_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))])
+VIRIDIAN_MART = Anchored('MAP_VIRIDIAN_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
+# Pewter: HeartGold's town is laid out differently (its Gym is reached from the north road). The guide who stops
+# you at the east road before Brock, and the aide with the Running Shoes after, stand at its narrowest point
+# (four squares wide); their walks are HeartGold's own paths (PEWTER_MOVES).
+PEWTER = Anchored('MAP_PEWTER', [((17, 6), (1048, 78)), ((15, 16), (1047, 92)), ((28, 18), (1060, 97)), ((33, 11), (1068, 87)),
+                                 ((17, 25), (1048, 106)), ((9, 30), (1037, 111)), ((22, 39), (1041, 121)), ((23, 39), (1042, 121)),
+                                 ((47, 21), (1089, 103))],
+                  fixed={(42, 20): (1075, 101), (42, 21): (1076, 102), (42, 22): (1076, 103), (42, 23): (1076, 104),
+                         (43, 23): (1076, 105), (46, 20): (1077, 101), (46, 21): (1077, 102), (46, 22): (1077, 103),
+                         (46, 23): (1077, 104), (33, 17): (1068, 98)},
+                  extra=[((46, 23), (1077, 105)), ((46, 23), (1077, 106))])
+# (the GBA's Route 3 climbs north to Route 4 and Mt. Moon; HeartGold's ends at Mt. Moon's door)
+ROUTE3 = Anchored('MAP_ROUTE_3', [((0, 9), (1084, 103)), ((0, 11), (1084, 105)), ((72, 0), (1172, 104)), ((40, 10), (1128, 110))])
+PEWTER_GYM = Anchored('MAP_PEWTER_GYM', [((6, 14), (7, 27)), ((6, 5), (7, 4))])
+PEWTER_MART = Anchored('MAP_PEWTER_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
+# (HeartGold's Center is deeper: the GBA's floor beside the counter is its floor in front of it)
+PEWTER_CENTER = Anchored('MAP_PEWTER_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2), (8, 11)), ((1, 2), (2, 13)), ((13, 2), (14, 13)),
+                                                      ((1, 7), (2, 18)), ((13, 7), (14, 18))], fixed={(7, 2): (8, 11)})
+# (the GBA museum's two floors share HeartGold's one; its ticket counter is HeartGold's turnstile)
+PEWTER_MUSEUM = Anchored('MAP_PEWTER_MUSEUM_OF_SCIENCE', [((14, 9), (10, 19)), ((13, 5), (10, 15)), ((4, 5), (6, 8)), ((26, 5), (25, 8))],
+                         fixed={(12, 5): None, (13, 5): None, (14, 5): (10, 16), (16, 5): (12, 15)})
+PEWTER_HOUSE_NE = Anchored('MAP_PEWTER_NORTHEAST_HOUSE', [((4, 7), (4, 8))])
+PEWTER_HOUSE_SW = Anchored('MAP_PEWTER_SOUTHWEST_HOUSE', [((4, 7), (4, 8))])
+ROUTE2_HOUSE = Anchored('MAP_ROUTE_2_HOUSE', [((4, 7), (4, 8))])
+FOREST_GATE_N = Anchored('MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE', [((7, 10), (5, 12)), ((7, 1), (5, 2))])
+FOREST_GATE_S = Anchored('MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE', [((7, 10), (5, 12)), ((7, 1), (5, 2))])
 
 MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PalletTown_Frlg': ('MAP_PALLET', pallet_xy),
@@ -136,7 +186,100 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'Route22_Frlg': ('MAP_ROUTE_22', ROUTE22),
     'ViridianCity_Mart_Frlg': ('MAP_VIRIDIAN_POKEMART', VIRIDIAN_MART),
     'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', same),
+    'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
+    'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
+    'Route3_Frlg': ('MAP_ROUTE_3', ROUTE3),
+    'PewterCity_Mart_Frlg': ('MAP_PEWTER_POKEMART', PEWTER_MART),
+    'PewterCity_PokemonCenter_1F_Frlg': ('MAP_PEWTER_POKECENTER_1F', PEWTER_CENTER),
+    'PewterCity_Museum_1F_Frlg': ('MAP_PEWTER_MUSEUM_OF_SCIENCE', PEWTER_MUSEUM),
+    'PewterCity_House1_Frlg': ('MAP_PEWTER_NORTHEAST_HOUSE', PEWTER_HOUSE_NE),
+    'PewterCity_House2_Frlg': ('MAP_PEWTER_SOUTHWEST_HOUSE', PEWTER_HOUSE_SW),
+    'Route2_House_Frlg': ('MAP_ROUTE_2_HOUSE', ROUTE2_HOUSE),
+    'Route2_ViridianForest_NorthEntrance_Frlg': ('MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE', FOREST_GATE_N),
+    'Route2_ViridianForest_SouthEntrance_Frlg': ('MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE', FOREST_GATE_S),
 }
+
+# ---------------------------------------------------------------- walks redone for HeartGold's layout
+DIRS = {'up': (0, -1), 'down': (0, 1), 'left': (-1, 0), 'right': (1, 0)}
+
+
+def path(xy, a, b, avoid=()):
+    """the shortest walk (GBA step names) from square a to b over open squares of xy's map, or None"""
+    from collections import deque
+    prev, q = {a: None}, deque([a])
+    while q:
+        c = q.popleft()
+        if c == b: break
+        for d, (dx, dz) in DIRS.items():
+            n = (c[0] + dx, c[1] + dz)
+            if n in prev or n in avoid or not xy.open(*n): continue
+            prev[n] = (c, d); q.append(n)
+    if b not in prev: return None
+    out, c = [], b
+    while prev[c]: c, d = prev[c]; out.append(d)
+    return out[::-1]
+
+
+def walk(steps, kind='walk'):
+    return [('%s_%s' % (kind, d), []) for d in steps]
+
+
+def lead(xy, guide, player, front, aside, then=None):
+    """A guide leads the player (next to them) to the square in front of a door: the guide walks there and steps
+    aside, the player follows a square behind and ends facing the door (up). -> (guide's walk, player's walk)"""
+    p = path(xy, guide, front, avoid={player})
+    if p is None: return [], []
+    into = next(d for d, v in DIRS.items() if (player[0] + v[0], player[1] + v[1]) == guide)
+    # (the guide steps aside across the way the player comes in, not back into them)
+    side = [d for d in (('left', 'right') if p[-1] in ('up', 'down') else ('down', 'up'))
+            if xy.open(front[0] + DIRS[d][0], front[1] + DIRS[d][1])]
+    aside = aside if aside in side or not side else side[0]
+    back = {'left': 'right', 'right': 'left', 'up': 'down', 'down': 'up'}[aside]
+    return walk(p + [aside]) + walk([back], 'walk_in_place_faster'), walk([into] + p) + walk(['up'], 'walk_in_place_faster')
+
+
+def pewter_moves(xy):
+    """Pewter's guides walk you to the Gym and the Museum; HeartGold's town needs its own paths for that"""
+    gym, museum = (1047, 93), (1048, 79)
+    m = {}
+    # the Gym guide (1075, 101) stops you on the east road, lanes 102-105 at x 1076
+    for lane, (z, mv, pw, gw) in enumerate([(102, 'GuideMoveToLeadTop', 'PlayerWalkToGymTop', 'GuideWalkToGymTop'),
+                                           (103, 'GuideMoveToLeadMid', 'PlayerWalkToGymMid', 'GuideWalkToGymMid'),
+                                           (104, 'GuideMoveToLeadBottom', 'PlayerWalkToGymBottom', 'GuideWalkToGymBottom'),
+                                           (105, 'GuideApproachPlayerRight', 'PlayerWalkToGymRight', 'GuideWalkToGymRight')]):
+        m['PewterCity_Movement_' + mv] = walk(['down'] * (z - 101)) + walk(['right'], 'walk_in_place_faster')
+        g, pl = lead(xy, (1075, z), (1076, z), gym, 'right')
+        m['PewterCity_Movement_' + gw], m['PewterCity_Movement_' + pw] = g, pl
+    # talked to from the west
+    m['PewterCity_Movement_PlayerWaitForGuideEast'] = []
+    m['PewterCity_Movement_GuideMoveToLeadEast'] = []
+    g, pl = lead(xy, (1075, 101), (1074, 101), gym, 'right')
+    m['PewterCity_Movement_GuideWalkToGymEast'], m['PewterCity_Movement_PlayerWalkToGymEast'] = g, pl
+    m['PewterCity_Movement_GymGuideExit'] = walk(['down'] * 4)
+    # the Museum guide (1068, 98) walks you to the Museum's door
+    guide = (1068, 98)
+    for facing, (dx, dz) in (('North', (0, 1)), ('South', (0, -1)), ('West', (1, 0)), ('East', (-1, 0))):
+        player = (guide[0] + dx, guide[1] + dz)
+        g, pl = lead(xy, guide, player, museum, 'right') if xy.open(*player) else ([], [])
+        m['PewterCity_Movement_GuideWalkToMuseum' + facing], m['PewterCity_Movement_PlayerWalkToMuseum' + facing] = g, pl
+    m['PewterCity_Movement_MuseumGuideExit'] = walk(['down'] * 3)
+    # the aide (1077, 101) with the Running Shoes: lanes 102-104 at x 1077; he leaves by the east road
+    m['PewterCity_Movement_AideApproachPlayerMid'] = [('delay_4', [])] + walk(['down'])
+    m['PewterCity_Movement_AideApproachPlayerBottom'] = [('delay_4', [])] + walk(['down'] * 2)
+    for i in range(4):
+        m['PewterCity_Movement_AideExit%d' % i] = walk(['right'] * 7)
+    return m
+
+
+MOVES = {'PewterCity_Frlg': pewter_moves}
+
+
+def pewter_gym_guide_lane4(p):
+    """the GBA game never walks you from the fourth lane (unreachable there); HeartGold's road is four wide"""
+    l = p.new('lane')
+    return ['CompareVarToValue %s, 3' % p.var('VAR_TEMP_1'), 'GoToIfNe %s' % l,
+            'Call %s' % p.label('PewterCity_EventScript_WalkToGymRight'), l + ':']
+
 
 # Lines of our own, before the first given command of a label. The GBA game names the rival in Oak's intro;
 # HeartGold's intro only names the player, so he's named the first time he speaks.
@@ -152,6 +295,7 @@ def new_game(p):
 
 
 INSERTS = {
+    'PewterCity_EventScript_GymGuideTrigger': ('call_if_eq', pewter_gym_guide_lane4),
     'PalletTown_OnTransition': (None, new_game),
     'PalletTown_ProfessorOaksLab_ChooseStarterScene': ('msgbox', [
         'GoToIfSet {flag[CV_RIVAL_NAMED]}, _cv_rival_named',
@@ -271,17 +415,17 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'CAMPER': 'CAMPBOY_2', 'PICNICKER': 'PICNICGIRL_2', 'BEAUTY': 'GSWOMAN3', 'COOLTRAINER_M': 'GSMAN3',
     'COOLTRAINER_F': 'GSWOMAN3', 'POKE_MANIAC': 'MANIA', 'ITEM_BALL': 'MONSTARBALL', 'PUSHABLE_BOULDER': 'ROCK',
     'BREAKABLE_ROCK': 'BREAKROCK', 'CUTTABLE_TREE': 'TREE', 'WORKER_M': 'WORKMAN', 'BALDING_MAN': 'GSMIDDLEMAN1',
-    'GYM_GUY': 'GSMAN1', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'CYCLEM', 'EXPERT_M': 'GSOLDMAN1',
+    'GYM_GUY': 'SUNGLASSES', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'CYCLEM', 'EXPERT_M': 'GSOLDMAN1',
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'PAINT_FIGURE': 'GSMAN2',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL',
 }
 # Pokemon in the overworld: hg-engine's walking sprite of that species
 for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):
     SPRITE.setdefault(_n, 'FOLLOWER_MON_' + _n)
 
-NO_OPS = ('opendoor', 'closedoor', 'waitdooranim', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
+NO_OPS = ('addpcitem', 'opendoor', 'closedoor', 'waitdooranim', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
           'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
 MOVETYPE = {'MOVEMENT_TYPE_NONE': 0, 'MOVEMENT_TYPE_LOOK_AROUND': 2, 'MOVEMENT_TYPE_WANDER_AROUND': 3,
             'MOVEMENT_TYPE_WANDER_UP_AND_DOWN': 4, 'MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT': 5, 'MOVEMENT_TYPE_FACE_UP': 14,
@@ -296,6 +440,12 @@ for _h in ('include/constants/items.h', 'include/constants/species.h', 'include/
     for _n in re.findall(r'#define\s+((?:ITEM|SPECIES|MOVE)_\w+)\s', open(os.path.join(ROOT, _h)).read()):
         HG_DEFINES[_n] = True
 
+# hg-engine's own items, Pokemon and moves (newer than HeartGold): scripts use their numbers
+ENGINE_DEFINES = {}
+for _h in ('item.h', 'species.h', 'moves.h'):
+    for _n, _v in re.findall(r'#define\s+((?:ITEM|SPECIES|MOVE)_\w+)\s+(\d+)', open(os.path.join(ROOT, 'engine/include/constants', _h)).read()):
+        ENGINE_DEFINES.setdefault(_n, _v)
+
 SYS_FLAGS = {'FLAG_SYS_GAME_CLEAR': 'FLAG_GAME_CLEAR'}      # GBA flags that are HeartGold's own
 HG_NAMES = {'ITEM_PARALYZE_HEAL': 'ITEM_PARLYZ_HEAL', 'ITEM_TINY_MUSHROOM': 'ITEM_TINYMUSHROOM',
             'ITEM_BIG_MUSHROOM': 'ITEM_BIGMUSHROOM', 'ITEM_X_SP_ATK': 'ITEM_X_SPECIAL', 'ITEM_X_SP_DEF': 'ITEM_X_SP__DEF',
@@ -303,6 +453,10 @@ HG_NAMES = {'ITEM_PARALYZE_HEAL': 'ITEM_PARLYZ_HEAL', 'ITEM_TINY_MUSHROOM': 'ITE
             'ITEM_NEVER_MELT_ICE': 'ITEM_NEVERMELTICE', 'ITEM_TWISTED_SPOON': 'ITEM_TWISTEDSPOON', 'ITEM_DEEP_SEA_TOOTH': 'ITEM_DEEPSEATOOTH',
             'ITEM_DEEP_SEA_SCALE': 'ITEM_DEEPSEASCALE', 'ITEM_ENERGY_POWDER': 'ITEM_ENERGYPOWDER', 'ITEM_HP_UP': 'ITEM_HP_UP'}
 # the GBA's scripts for things anyone can use (cut a tree, smash a rock...) -> HeartGold's
+STD_CALLS = {   # GBA shared scripts that HeartGold has its own of
+    'EventScript_PkmnCenterNurse_Frlg': ['SetVar VAR_SPECIAL_x8007, 0', 'CallStd std_nurse_joy'],
+    'EventScript_PkmnCenterNurse': ['SetVar VAR_SPECIAL_x8007, 0', 'CallStd std_nurse_joy'],
+}
 STD_OBJECT_SCRIPTS = {'EventScript_CutTree': 'std_field_cut', 'EventScript_RockSmash': 'std_field_rock_smash',
                       'EventScript_StrengthBoulder': 'std_field_strength'}
 BGM = {'MUS_RG_ENCOUNTER_RIVAL': 'SEQ_GS_E_RIVAL1', 'MUS_RG_RIVAL_EXIT': 'SEQ_GS_E_RIVAL2', 'MUS_RG_OAK': 'SEQ_GS_OHKIDO',
@@ -346,6 +500,8 @@ class Port:
         self.lines, self.done, self.todo, self.queue = [], set(), [], []
         self.msgs, self.msg_order = {}, []
         self.movements, self.n = {}, 0
+        self.str4s = []
+        self.moves = MOVES[gba_map](MAPS[gba_map][1]) if gba_map in MOVES else {}    # (walks redone for HeartGold's layout)
         self.xy = MAPS[gba_map][1]
         self.dyn, self.faded = [], False
         self.mapscript_labels = set()
@@ -401,6 +557,7 @@ class Port:
         if a.startswith(('SPECIES_', 'ITEM_', 'MOVE_')):
             a = HG_NAMES.get(a, a)
             if a in HG_DEFINES: return a
+            if a in ENGINE_DEFINES: return ENGINE_DEFINES[a]
             self.todo.append('constant %s not in HeartGold' % a)
             return '0'
         v = self.g.value(a)
@@ -431,12 +588,24 @@ class Port:
         self.lines.extend('\t' + l if not l.endswith(':') else l for l in ls)
 
     def say(self, label, wait=True):
+        if label == 'gStringVar4':           # (a line a special picked: see str4)
+            self.emit('Call _cv_str4')
+            if wait: self.emit('WaitButton')
+            return
         m = self.msg(label)
         bufs = self.msgs[label][1]
         if 'player' in bufs: self.emit('BufferPlayersName 6')
         if 'rival' in bufs: self.emit('BufferRivalsName 7')
         self.emit('NPCMsg %s' % m)
         if wait: self.emit('WaitButton')
+
+    def str4(self, key, gba_text):
+        """A line the GBA game builds in C into gStringVar4: it becomes one of this map's messages, and the special
+        that picks it sets SCRATCH[1] to its number; `msgbox gStringVar4` shows the one picked. -> its number"""
+        if key not in self.msgs:
+            self.msgs[key] = text(gba_text); self.msg_order.append(key)
+        if key not in self.str4s: self.str4s.append(key)
+        return self.str4s.index(key) + 1
 
     def own_msg(self, key, text):
         """a message of our own in this map's bank -> its id"""
@@ -572,10 +741,14 @@ class Port:
         if label in self.done: return
         self.done.add(label)
         cmds = self.g.labels.get(label)
+        if cmds is None and label in self.moves:
+            return self.movement(label, self.moves[label])
         if cmds is None:
             self.todo.append('script %s missing' % label)
             self.movements[label] = []          # (made in C in the GBA game: a still movement here, for now)
             return
+        if label in self.moves:
+            return self.movement(label, self.moves[label])
         if cmds and step(cmds[0][0]) is not None or (cmds and cmds[0][0] in ('step_end', 'face_player', 'face_away_player') + QUIET_STEPS):
             return self.movement(label, cmds)
         self.emit('', label + ':')
@@ -598,6 +771,7 @@ class Port:
             elif cmd in ('release', 'releaseall'): self.emit(*close, 'ReleaseAll'); open_msg = False
             elif cmd == 'faceplayer': self.emit('FacePlayer')
             elif cmd == 'goto': self.emit('GoTo %s' % self.label(a[0]))
+            elif cmd == 'call' and a[0] in STD_CALLS: self.emit(*STD_CALLS[a[0]])
             elif cmd == 'call': self.emit('Call %s' % self.label(a[0]))
             elif cmd == 'msgbox':
                 kind = a[1] if len(a) > 1 else 'MSGBOX_DEFAULT'
@@ -624,6 +798,7 @@ class Port:
             elif cmd == 'setflag':
                 self.emit('SetFlag %s' % self.flag(a[0]))
                 if self.alias(a[0]) == 'FLAG_SYS_POKEDEX_GET': self.emit('GivePokedex')
+                if self.alias(a[0]) == 'FLAG_SYS_B_DASH': self.emit('GiveRunningShoes')
             elif cmd == 'setworldmapflag':     # (where you've been: HeartGold's Fly points)
                 m = re.match(r'FLAG_WORLD_MAP_(\w+?)(_CITY|_TOWN|_ISLAND)?$', a[0])
                 town = m and {'PALLET': 'PALLET', 'VIRIDIAN': 'VIRIDIAN', 'PEWTER': 'PEWTER', 'CERULEAN': 'CERULEAN',
@@ -681,6 +856,15 @@ class Port:
                 if lines is None:
                     self.emit('SetVar %s, 0  // TODO(gba) specialvar %s' % (self.var(a[0]), a[1])); self.todo.append('special %s (%s)' % (a[1], label)); self.stop(label)
                 else: self.emit(*lines)
+            elif cmd == 'showmoneybox': self.emit('ShowMoneyBox 20, 2')
+            elif cmd == 'hidemoneybox': self.emit('HideMoneyBox')
+            elif cmd == 'updatemoneybox': self.emit('UpdateMoneyBox')
+            elif cmd == 'checkmoney': self.emit('HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, %s' % self.val(a[0]))
+            elif cmd == 'removemoney': self.emit('SubMoneyImmediate %s' % self.val(a[0]))
+            elif cmd == 'addmoney': self.emit('AddMoney %s' % self.val(a[0]))
+            elif cmd == 'set_gym_trainers_frlg':
+                self.emit('SetVar %s, %s' % (self.var('VAR_0x8008'), self.val(a[0])),
+                          'Call %s' % self.label('Common_EventScript_SetGymTrainers_Frlg'))
             elif cmd == 'special':
                 lines = SP.special(self, a[0], None)
                 if lines is None:
@@ -889,6 +1073,7 @@ def port(gba_map, g, ids, report):
         xy.hg_trees = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_TREE']
         xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
         xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
+        xy.warps = [(w['x'], w['z']) for w in ev.get('warps', [])]
     mj = G.map_json(gba_map.split('#')[0])
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
@@ -954,6 +1139,12 @@ def port(gba_map, g, ids, report):
         if e in unfinished:
             out += ['', '_cv_unported_%d:' % entries.index(e), '\tPlaySE SEQ_SE_DP_SELECT', '\tLockAll',
                     '\tNPCMsg %s' % p_msg_unported, '\tWaitButton', '\tCloseMsg', '\tReleaseAll', '\tEnd']
+    if p.str4s or any('Call _cv_str4' in l for l in p.lines):
+        out += ['', '_cv_str4:', '\tBufferPlayersName 6', '\tBufferRivalsName 7']
+        for i, k in enumerate(p.str4s):
+            out += ['\tCompareVarToValue %s, %d' % (SCRATCH[1], i + 1), '\tGoToIfNe _cv_str4_%d' % i,
+                    '\tNPCMsg %s_%s' % (bank, k), '\tReturn', '_cv_str4_%d:' % i]
+        out += ['\tReturn']
     out += ['', '_cv_stop:', '\tNPCMsg %s' % p_msg_unported, '\tWaitButton', '\tCloseMsg', '\tReleaseAll', '\tEnd']
     for l, steps in p.movements.items():
         out += ['', '\t.balign 4, 0', l + ':']
@@ -1014,7 +1205,9 @@ def port(gba_map, g, ids, report):
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})
     coords = []
     for c in triggers:
-        x, z = xy(c['x'], c['y'], 'trigger')
+        at = xy(c['x'], c['y'], 'trigger')
+        if at is None: continue                       # (a trigger square HeartGold's layout has no place for)
+        x, z = at
         if c['script'] in unfinished:
             continue                                  # (a half-ported scene could leave you stuck)
         where = [(x, z)] + [hz for gs, hz in getattr(xy, 'extra', []) if gs == (c['x'], c['y'])]

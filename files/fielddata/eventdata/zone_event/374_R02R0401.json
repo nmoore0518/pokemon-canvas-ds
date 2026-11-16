@@ -2,20 +2,37 @@
     "header": "fielddata/script/scr_seq/event_R02R0401.h",
     "objects": [
         {
-            "id": "obj_R02R0401_counterm",
-            "spriteId": "SPRITE_COUNTERM",
-            "movement": 17,
+            "id": "1",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_R02R0401_000 + 1",
-            "facingDirection": 3,
+            "scriptId": "_EV_Route2_ViridianForest_SouthEntrance_EventScript_Woman1 + 1",
+            "facingDirection": 2,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
             "z": 8,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSWOMAN1",
+            "movement": 3,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route2_ViridianForest_SouthEntrance_EventScript_Woman2 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 3,
+            "z": 9,
             "y": 0
         }
     ],
@@ -34,5 +51,7 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

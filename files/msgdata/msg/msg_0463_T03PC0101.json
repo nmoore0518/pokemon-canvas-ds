@@ -2,69 +2,177 @@
   "key": 44594,
   "messages": [
     {
-      "id": "msg_0463_T03PC0101_00000",
+      "id": "msg_0463_T03PC0101_PewterCity_PokemonCenter_1F_Text_Jigglypuff",
+      "en_US": "Jigglypuff: Puu pupuu!"
+    },
+    {
+      "id": "msg_0463_T03PC0101_PewterCity_PokemonCenter_1F_Text_TeamRocketMtMoonImOnPhone",
       "en_US": [
-        "...Yeah, and the Gym in Cinnabar’s\n",
-        "gone. I was really amazed.\r",
-        "...Yes? I’m on the phone.\n",
-        "Go away!"
+        "What!?\r",
+        "TEAM Rocket is at Mt. Moon?\n",
+        "Huh?\r",
+        "I’m on the phone!\n",
+        "Scram!"
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00001",
-      "en_US": "JIGGLYPUFF: Puu pupuu."
-    },
-    {
-      "id": "msg_0463_T03PC0101_00002",
+      "id": "msg_0463_T03PC0101_PewterCity_PokemonCenter_1F_Text_WhenJiggylypuffSingsMonsGetDrowsy",
       "en_US": [
-        "Most Pokémon get drowsy if they\n",
-        "hear a JIGGLYPUFF singing.\r",
-        "There are several moves that can be\n",
-        "used only while a Pokémon is asleep."
+        "Yawn!\r",
+        "When Jigglypuff sings, Pokémon get\n",
+        "drowsy…\r",
+        "…Me, too…\n",
+        "Snore…"
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00003",
+      "id": "msg_0463_T03PC0101_Text_IdLoveToHearYourProfile",
       "en_US": [
-        "Aw...\n",
-        "If only I had a HAUNTER...\r",
-        "If you have a HAUNTER,\n",
-        "you will trade it for my XATU,\f",
-        "won’t you? {YESNO 0}"
+        "Hi, glad to meet you!\r",
+        "…That’s unfriendly of you.\n",
+        "How about saying hi back?\r",
+        "So, come on, tell me about\n",
+        "yourself.\r",
+        "I’d love to hear your profile!"
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00004",
+      "id": "msg_0463_T03PC0101_PewterCity_PokemonCenter_1F_Text_TradingMyClefairyForPikachu",
       "en_US": [
-        "How wonderful! You made my day!\r",
-        "Thanks to you, I have finally got the\n",
-        "Pokémon I’ve been looking for...\f",
-        "since forever!"
+        "I really want a Pikachu, so I’m\n",
+        "trading my Clefairy for one."
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00005",
+      "id": "msg_0463_T03PC0101_PewterCity_PokemonCenter_1F_Text_TradingPikachuWithKid",
       "en_US": [
-        "It has to be a HAUNTER!\r",
-        "HAUNTER!!"
+        "I’m trading Pokémon with that kid\n",
+        "there.\r",
+        "I had two Pikachu, so I figured\n",
+        "I might as well trade one."
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00006",
+      "id": "msg_0463_T03PC0101_Text_TellMoreNextTime",
       "en_US": [
-        "You’d never turn down a trade\n",
-        "if you had a HAUNTER.\r",
-        "That means you just don’t have one.\n",
-        "That must be it..."
+        "Please tell me more about\n",
+        "yourself next time!"
       ]
     },
     {
-      "id": "msg_0463_T03PC0101_00007",
+      "id": "msg_0463_T03PC0101_Text_HiWeMeetAgain",
       "en_US": [
-        "How do you like the cool XATU\n",
-        "I traded you?\r",
-        "It’s so cool, because it used to be\n",
-        "with cool me!"
+        "Hi!\n",
+        "We meet again!"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_TellMeWhatsYourProfile",
+      "en_US": [
+        "Tell me something good about\n",
+        "yourself. What’s your profile?"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_ChangeYourProfile",
+      "en_US": [
+        "Would you like to change your\n",
+        "profile?"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_WhatsYourProfile",
+      "en_US": "What’s your profile?"
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_DontBeLikeThat",
+      "en_US": [
+        "Aww… Don’t be like that.\n",
+        "You can tell me your profile."
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_ExplainProfile",
+      "en_US": [
+        "A profile is written using four\n",
+        "words or phrases.\r",
+        "There’re plenty of words to choose\n",
+        "from for your profile.\r",
+        "The words and phrases are placed\n",
+        "in several convenient groups.\r",
+        "First, choose a group, then choose\n",
+        "a word or phrase.\r",
+        "…It’s easier than it sounds.\n",
+        "Why don’t you try it?"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0463_T03PC0101_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_WhatAreYouLikeNow",
+      "en_US": [
+        "What are you like now?\n",
+        "I’d really like to know."
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_LikeProfileWayItIs",
+      "en_US": [
+        "Okay, you like your profile the\n",
+        "way it is.\r",
+        "I think so, too."
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_HeardThatBefore",
+      "en_US": [
+        "Oh, I’ve heard that before…\r",
+        "My cousin, who lives far away,\n",
+        "always used to say that, I think."
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_DecidedNotTo",
+      "en_US": [
+        "Oh, you’ve decided not to?\n",
+        "You’re fickle, aren’t you?"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_Text_ProfileSaysSomethingAboutYou",
+      "en_US": [
+        "Hmhm…\r",
+        "Your profile really says something\n",
+        "about who you are.\r",
+        "Now that I know you better, it \n",
+        "makes us better friends than ever!"
+      ]
+    },
+    {
+      "id": "msg_0463_T03PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

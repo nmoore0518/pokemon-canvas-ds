@@ -833,8 +833,6 @@ PalletTown_EventScript_SignLadyShowSign:
 	SetVar 0x4002, 0
 	// TODO(gba) special SetWalkingIntoSignVars
 	GoTo _cv_stop
-	// TODO(gba) special DisableMsgBoxWalkaway
-	GoTo _cv_stop
 	NPCMsg msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy
 	WaitButton
 	Return
@@ -923,7 +921,7 @@ DadStory_EventScript_MemorialGoThere:
 TypeTutor_EventScript_Intro:
 	// TODO(gba) special TypeTutor_BufferIntro
 	GoTo _cv_stop
-	NPCMsg msg_0446_T01_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetMet
 	GoTo _cv_stop
@@ -934,7 +932,7 @@ TypeTutor_EventScript_Intro:
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
 	GoTo _cv_stop
-	NPCMsg msg_0446_T01_gStringVar4
+	Call _cv_str4
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -943,7 +941,7 @@ TypeTutor_EventScript_Trial:
 TypeTutor_EventScript_JustDone:
 	// TODO(gba) special TypeTutor_BufferDone
 	GoTo _cv_stop
-	NPCMsg msg_0446_T01_gStringVar4
+	Call _cv_str4
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
@@ -1087,6 +1085,11 @@ _cv_unported_25:
 	CloseMsg
 	ReleaseAll
 	End
+
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
 
 _cv_stop:
 	NPCMsg msg_0446_T01_cv_unported
