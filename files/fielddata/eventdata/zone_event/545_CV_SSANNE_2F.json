@@ -1,0 +1,137 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_2F.h",
+    "objects": [
+        {
+            "id": "LOCALID_SS_ANNE_RIVAL",
+            "spriteId": "SPRITE_GSLEADER16",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "0x2060",
+            "scriptId": "0",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 30,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_SEAMAN_2",
+            "movement": 4,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SSAnne_2F_Corridor_EventScript_Sailor + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 2,
+            "x": 2,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 2,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 3,
+            "z": 12,
+            "header": "MAP_CANVAS_SSANNE_3F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 30,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_CAPTAIN",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 6,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R1",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 10,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R2",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 14,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R3",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R4",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 22,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R5",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 26,
+            "z": 10,
+            "header": "MAP_CANVAS_SSANNE_2F_R6",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": [
+        {
+            "scriptId": "_EV_SSAnne_2F_Corridor_EventScript_RivalTriggerLeft + 1",
+            "x": 30,
+            "z": 6,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x502A"
+        },
+        {
+            "scriptId": "_EV_SSAnne_2F_Corridor_EventScript_RivalTriggerMid + 1",
+            "x": 31,
+            "z": 6,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x502A"
+        },
+        {
+            "scriptId": "_EV_SSAnne_2F_Corridor_EventScript_RivalTriggerRight + 1",
+            "x": 32,
+            "z": 6,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x502A"
+        }
+    ],
+    "bgs": []
+}

@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_6F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_6F_H_
+
+#define _EV_PokemonTower_6F_EventScript_Angelica 0
+#define _EV_PokemonTower_6F_EventScript_ItemRareCandy 1
+#define _EV_PokemonTower_6F_EventScript_ItemXAccuracy 2
+#define _EV_BerryField_EventScript_FindGhost 3
+#define _EV_PokemonTower_6F_EventScript_MarowakGhost 4
+
+
+#endif

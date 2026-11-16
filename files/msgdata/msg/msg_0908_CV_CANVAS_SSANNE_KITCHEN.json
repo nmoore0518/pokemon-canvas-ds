@@ -1,0 +1,90 @@
+{
+  "key": 19895,
+  "messages": [
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_BusyOutOfTheWay",
+      "en_US": [
+        "You, mon petit!\n",
+        "We’re busy here!\f",
+        "Out of the way!"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_SawOddBerryInTrash",
+      "en_US": [
+        "I saw an odd Berry in the trash.\n",
+        "I wonder what that was?"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_SoBusyImDizzy",
+      "en_US": [
+        "I’m so busy I’m getting dizzy!\n",
+        "You have to give me room here!"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_IAmLeChefMainCourseIs",
+      "en_US": [
+        "Er-hem!\n",
+        "Indeed I am le Chef!\r",
+        "Le main course is"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_PeelSpudsEveryDay",
+      "en_US": [
+        "Hum-de-hum-de-ho…\r",
+        "I peel spuds every day!\n",
+        "Hum-hum…"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton",
+      "en_US": [
+        "Did you hear about Snorlax?\n",
+        "It’s a glutton.\r",
+        "No other Pokémon eats and sleeps\n",
+        "the way Snorlax can and does!"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_OnlyGetToPeelOnions",
+      "en_US": [
+        "Snivel… Sniff…\r",
+        "I only get to peel onions…\n",
+        "Snivel…"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_SalmonDuSalad",
+      "en_US": [
+        "Salmon du Salad!\r",
+        "Les guests may gripe it’s fish\n",
+        "again, however!"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_EelsAuBarbecue",
+      "en_US": [
+        "Eels au Barbecue!\r",
+        "Les guests will mutiny, I fear."
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_SSAnne_Kitchen_Text_PrimeBeefsteak",
+      "en_US": [
+        "Prime Beefsteak!\r",
+        "But, have I enough fillets du\n",
+        "beef?"
+      ]
+    },
+    {
+      "id": "msg_0908_CV_CANVAS_SSANNE_KITCHEN_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

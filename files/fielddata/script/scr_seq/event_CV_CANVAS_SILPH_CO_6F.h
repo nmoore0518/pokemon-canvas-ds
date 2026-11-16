@@ -1,0 +1,16 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_6F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_6F_H_
+
+#define _EV_SilphCo_6F_EventScript_WorkerM1 0
+#define _EV_SilphCo_6F_EventScript_WorkerF1 1
+#define _EV_SilphCo_6F_EventScript_WorkerM2 2
+#define _EV_SilphCo_6F_EventScript_WorkerM3 3
+#define _EV_SilphCo_6F_EventScript_WorkerF2 4
+#define _EV_SilphCo_6F_EventScript_ItemHPUp 5
+#define _EV_SilphCo_6F_EventScript_ItemXSpecial 6
+#define _EV_SilphCo_6F_EventScript_Door 7
+#define _EV_SilphCo_6F_EventScript_FloorSign 8
+#define _EV_SilphCo_6F_OnLoad 9
+
+
+#endif

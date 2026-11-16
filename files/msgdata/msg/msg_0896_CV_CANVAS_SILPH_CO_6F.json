@@ -1,0 +1,104 @@
+{
+  "key": 19883,
+  "messages": [
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_HelpMePlease",
+      "en_US": [
+        "Oh dear, oh dear.\n",
+        "Help me, please!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_ThatManIsSuchACoward",
+      "en_US": [
+        "That man next to me…\n",
+        "He’s such a coward!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_TargetedSilphForOurMonProducts",
+      "en_US": [
+        "They must have targeted Silph for\n",
+        "our Pokémon products."
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_RocketsTookOverBuilding",
+      "en_US": [
+        "The Rockets came and took over\n",
+        "the building!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_RocketsTryingToConquerWorld",
+      "en_US": [
+        "Team Rocket is trying to conquer\n",
+        "the world with Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "6F"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_WeGotEngaged",
+      "en_US": [
+        "We got engaged.\n",
+        "Heheh!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_NeedsMeToLookAfterHim",
+      "en_US": [
+        "He’s so helpless, he needed\n",
+        "someone like me to look after him."
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_ComeWorkForSilphWhenYoureOlder",
+      "en_US": [
+        "Come work for Silph when you\n",
+        "get older."
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_BetterGetBackToWork",
+      "en_US": "Well, better get back to work."
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_SilphCo_6F_Text_RocketsRanAwayBecauseOfYou",
+      "en_US": [
+        "Team Rocket ran away, and it’s all\n",
+        "because of you!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0896_CV_CANVAS_SILPH_CO_6F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

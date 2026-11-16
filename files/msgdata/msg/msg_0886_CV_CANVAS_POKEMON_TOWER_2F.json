@@ -1,0 +1,127 @@
+{
+  "key": 19873,
+  "messages": [
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_PokemonTower_2F_Text_SilphScopeCouldUnmaskGhosts",
+      "en_US": [
+        "Even we could not identify the\n",
+        "wayward ghosts.\r",
+        "A Silph Scope might be able to\n",
+        "unmask them."
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_Grave",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\n",
+        "Trainer: {STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_PokemonTower_2F_Text_RivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Hey, {STRVAR_1 3, 6, 0}!\n",
+        "What brings you here?\f",
+        "Is your Pokémon dead?\r",
+        "Hey! It’s alive!\r",
+        "I can at least make them faint!\n",
+        "Let’s go!"
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_PokemonTower_2F_Text_RivalPostBattle",
+      "en_US": [
+        "How’s your Pokédex coming?\n",
+        "I just caught a Cubone!\r",
+        "I can’t find the bigger Marowak.\n",
+        "Where could they be?\r",
+        "I bet there aren’t any left!\r",
+        "Hey… has Gramps been weird to you\n",
+        "lately?\r",
+        "He keeps asking me how many\n",
+        "approvals I have. And about the\f",
+        "Gym. Never about my Pokédex.\r",
+        "…Whatever. I better get going.\n",
+        "I’ve got a lot to accomplish,\f",
+        "unlike you."
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_GirlLament",
+      "en_US": [
+        "…You found all ten of them.\r",
+        "Ten little ones who never grew up.\n",
+        "Nobody ever reads their names.\r",
+        "Everyone wants their Pokémon\n",
+        "to evolve. Bigger. Stronger.\r",
+        "But I always wondered…\r",
+        "When it evolves, what happens\n",
+        "to the little one it used to be?\r",
+        "Is it still in there somewhere?\n",
+        "Or does it just… go away?\r",
+        "…Does it die?\r",
+        "My Scyther never changed.\n",
+        "Not once. And it’s still here.\f",
+        "Still with me.\r",
+        "You remembered them as they were.\n",
+        "So this is yours now."
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_GirlKeepThemAsTheyAre",
+      "en_US": [
+        "Let a Pokémon that hasn’t evolved\n",
+        "hold it. It’ll hit so much harder.\r",
+        "Keep your Pokémon as it is.\r",
+        "It’s powerful enough.\n",
+        "It always was…"
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_Gone",
+      "en_US": "…The girl and her Scyther were gone."
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_GymHack_Text_RivalGoldCap",
+      "en_US": [
+        "Oh yeah, catch!\r",
+        "Gramps gave me a pile of these for\n",
+        "our Gym audition."
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_GymHack_Text_RivalGoldCapAfter",
+      "en_US": [
+        "A Gold Bottle Cap maxes out All of\n",
+        "a Pokémon’s stats.\r",
+        "My team doesn’t need it.\n",
+        "They’re perfect already!\r",
+        "I just don’t want to hear you say\n",
+        "you lost because your team was weak.\r",
+        "Smell ya later!"
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_GirlNoRoom",
+      "en_US": [
+        "…Your bag is too full to hold it.\r",
+        "Come back to them.\n",
+        "I’ll be waiting…"
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0886_CV_CANVAS_POKEMON_TOWER_2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

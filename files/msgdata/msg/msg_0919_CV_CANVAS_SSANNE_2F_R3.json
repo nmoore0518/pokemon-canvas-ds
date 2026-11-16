@@ -1,0 +1,30 @@
+{
+  "key": 19906,
+  "messages": [
+    {
+      "id": "msg_0919_CV_CANVAS_SSANNE_2F_R3_SSAnne_2F_Room3_Text_SeenMonsFerryPeople",
+      "en_US": [
+        "Ah, yes, I have seen some Pokémon\n",
+        "ferry people across the water!"
+      ]
+    },
+    {
+      "id": "msg_0919_CV_CANVAS_SSANNE_2F_R3_SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown",
+      "en_US": [
+        "Small trees can be chopped down\n",
+        "using the move Cut.\r",
+        "But remember this!\n",
+        "Cut is an HM technique.\r",
+        "Once learned, it is not so easily\n",
+        "discarded."
+      ]
+    },
+    {
+      "id": "msg_0919_CV_CANVAS_SSANNE_2F_R3_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

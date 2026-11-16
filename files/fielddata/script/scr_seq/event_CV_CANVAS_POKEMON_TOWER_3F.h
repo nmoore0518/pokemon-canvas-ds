@@ -1,0 +1,19 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_3F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_3F_H_
+
+#define _EV_PokemonTower_3F_EventScript_ItemEscapeRope 0
+#define _EV_TowerGraves_EventScript_Ghost 1
+#define _EV_PokemonTower_EventScript_Grave12 2
+#define _EV_PokemonTower_EventScript_Grave13 3
+#define _EV_PokemonTower_EventScript_Grave14 4
+#define _EV_PokemonTower_EventScript_Grave15 5
+#define _EV_PokemonTower_EventScript_Grave16 6
+#define _EV_PokemonTower_EventScript_Grave17 7
+#define _EV_PokemonTower_EventScript_Grave18 8
+#define _EV_PokemonTower_EventScript_Grave19 9
+#define _EV_PokemonTower_EventScript_Grave20 10
+#define _EV_PokemonTower_EventScript_Grave21 11
+#define _EV_TowerGraves_EventScript_HideGhosts 12
+
+
+#endif

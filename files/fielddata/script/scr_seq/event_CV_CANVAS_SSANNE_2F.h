@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_2F_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_2F_H_
+
+#define _EV_SSAnne_2F_Corridor_EventScript_Sailor 0
+#define _EV_SSAnne_2F_Corridor_EventScript_RivalTriggerLeft 1
+#define _EV_SSAnne_2F_Corridor_EventScript_RivalTriggerMid 2
+#define _EV_SSAnne_2F_Corridor_EventScript_RivalTriggerRight 3
+
+#define LOCALID_SS_ANNE_RIVAL 1
+
+#endif

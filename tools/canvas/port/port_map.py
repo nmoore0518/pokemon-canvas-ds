@@ -413,6 +413,9 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PokemonLeague_ChampionsRoom_Frlg': ('MAP_POKEMON_LEAGUE_LANCE_ROOM', Auto('MAP_POKEMON_LEAGUE_LANCE_ROOM')),
     'PokemonLeague_HallOfFame_Frlg': ('MAP_POKEMON_LEAGUE_HALL_OF_FAME', Auto('MAP_POKEMON_LEAGUE_HALL_OF_FAME')),
 }
+import build_interiors as _BI      # (the big interiors HeartGold has no building for: built from the GBA layouts)
+for _c in _BI.INTERIORS:
+    MAPS[_c['gba']] = (_c['map'], same)
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
 DEST_EXTRA = {
     'MAP_SSANNE_EXTERIOR': 'MAP_SS_AQUA_VERMILION_PORT_INTERIOR', 'MAP_POKEMON_TOWER_1F': 'MAP_LAVENDER_RADIO_STATION',

@@ -1,0 +1,46 @@
+{
+  "key": 19891,
+  "messages": [
+    {
+      "id": "msg_0904_CV_CANVAS_SSANNE_2F_SSAnne_2F_Corridor_Text_ThisShipIsLuxuryLiner",
+      "en_US": [
+        "This ship, she is a luxury liner for\n",
+        "Trainers of the world!\r",
+        "At every port, we hold parties with\n",
+        "invited Trainers."
+      ]
+    },
+    {
+      "id": "msg_0904_CV_CANVAS_SSANNE_2F_SSAnne_2F_Corridor_Text_RivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Bonjour!\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Imagine seeing you here!\n",
+        "{STRVAR_1 3, 6, 0}, were you really invited?\r",
+        "So how many Leaders approve of\n",
+        "you? I’ve got two, pal.\r",
+        "I already picked the paint for my\n",
+        "Gym. You’d hate it!"
+      ]
+    },
+    {
+      "id": "msg_0904_CV_CANVAS_SSANNE_2F_SSAnne_2F_Corridor_Text_RivalPostBattle",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: I heard there was a Cut\n",
+        "master on board.\r",
+        "But he was just a seasick old man!\r",
+        "Cut itself is really useful.\n",
+        "Yup, it’ll be handy.\r",
+        "You should go see him, too.\n",
+        "Smell ya!"
+      ]
+    },
+    {
+      "id": "msg_0904_CV_CANVAS_SSANNE_2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

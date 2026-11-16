@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_B1F_R5_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_B1F_R5_H_
+
+#define _EV_SSAnne_B1F_Room5_EventScript_Boy 0
+#define _EV_SSAnne_B1F_Room5_EventScript_Machoke 1
+#define _EV_SSAnne_B1F_Room5_EventScript_ItemSuperPotion 2
+
+
+#endif

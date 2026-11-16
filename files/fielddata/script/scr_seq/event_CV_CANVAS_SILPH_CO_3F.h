@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_3F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_3F_H_
+
+#define _EV_SilphCo_3F_EventScript_WorkerM 0
+#define _EV_SilphCo_3F_EventScript_ItemHyperPotion 1
+#define _EV_SilphCo_3F_EventScript_Door1 2
+#define _EV_SilphCo_3F_EventScript_Door2 3
+#define _EV_SilphCo_3F_EventScript_FloorSign 4
+#define _EV_SilphCo_3F_OnLoad 5
+
+
+#endif

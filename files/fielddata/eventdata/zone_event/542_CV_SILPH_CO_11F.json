@@ -1,0 +1,173 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SILPH_CO_11F.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
+            "type": 0,
+            "x": 5,
+            "z": 16,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
+            "type": 0,
+            "x": 5,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
+            "type": 0,
+            "x": 6,
+            "z": 16,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
+            "type": 0,
+            "x": 6,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_FloorSign + 1",
+            "type": 0,
+            "x": 8,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "LOCALID_SILPH_CO_GIOVANNI",
+            "spriteId": "SPRITE_SAKAKI",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "0x2199",
+            "scriptId": "0",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 11,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SILPH_CO_11F_GRUNT1",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 14,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1126)",
+            "facingDirection": 0,
+            "param0": 5,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 16,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21C6",
+            "scriptId": "_EV_SilphCo_11F_EventScript_ItemZinc + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 16,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SILPH_CO_11F_GRUNT2",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 14,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1127)",
+            "facingDirection": 0,
+            "param0": 5,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 19,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21C7",
+            "scriptId": "_EV_SilphCo_11F_EventScript_ItemStrongAcid + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 7,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SILPH_CO_11F_MOM",
+            "spriteId": "SPRITE_GSMAMA",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "0x21C3",
+            "scriptId": "0",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 6,
+            "z": 18,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 7,
+            "z": 2,
+            "header": "MAP_CANVAS_SILPH_CO_10F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 2,
+            "z": 5,
+            "header": "MAP_CANVAS_SILPH_CO_7F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

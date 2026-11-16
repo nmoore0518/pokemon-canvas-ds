@@ -1,0 +1,19 @@
+{
+  "key": 19898,
+  "messages": [
+    {
+      "id": "msg_0911_CV_CANVAS_SSANNE_1F_R2_SSAnne_1F_Room2_Text_CruisingAroundWorld",
+      "en_US": [
+        "We are cruising around the world,\n",
+        "my children and I."
+      ]
+    },
+    {
+      "id": "msg_0911_CV_CANVAS_SSANNE_1F_R2_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

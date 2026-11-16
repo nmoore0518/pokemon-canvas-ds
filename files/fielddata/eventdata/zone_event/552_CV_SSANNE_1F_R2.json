@@ -1,0 +1,84 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_1F_R2.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSGIRL2",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(881)",
+            "facingDirection": 1,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSBOY2",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(853)",
+            "facingDirection": 3,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 0,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SSAnne_1F_Room2_EventScript_Woman + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21D9",
+            "scriptId": "_EV_SSAnne_1F_Room2_EventScript_ItemTM31 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 2,
+            "z": 1,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 7,
+            "y": 0
+        }
+    ],
+    "coords": [],
+    "bgs": []
+}

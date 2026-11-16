@@ -1,0 +1,24 @@
+{
+  "key": 19914,
+  "messages": [
+    {
+      "id": "msg_0927_CV_CANVAS_SSANNE_B1F_R5_SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks",
+      "en_US": [
+        "My buddy Machoke is super strong!\r",
+        "He has enough Strength to move\n",
+        "big rocks!"
+      ]
+    },
+    {
+      "id": "msg_0927_CV_CANVAS_SSANNE_B1F_R5_SSAnne_B1F_Room5_Text_Machoke",
+      "en_US": "Machoke: Gwoh! Goggoh!"
+    },
+    {
+      "id": "msg_0927_CV_CANVAS_SSANNE_B1F_R5_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

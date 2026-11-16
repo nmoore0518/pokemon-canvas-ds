@@ -1,0 +1,19 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_5F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_5F_H_
+
+#define _EV_SilphCo_5F_EventScript_WorkerM 0
+#define _EV_SilphCo_5F_EventScript_ItemProtein 1
+#define _EV_SilphCo_5F_EventScript_ItemTM01 2
+#define _EV_SilphCo_5F_EventScript_ItemCardKey 3
+#define _EV_SilphCo_5F_EventScript_Scientist 4
+#define _EV_SilphCo_5F_EventScript_Door1 5
+#define _EV_SilphCo_5F_EventScript_Door2 6
+#define _EV_SilphCo_5F_EventScript_Door3 7
+#define _EV_SilphCo_5F_EventScript_PokemonReport3 8
+#define _EV_SilphCo_5F_EventScript_PokemonReport2 9
+#define _EV_SilphCo_5F_EventScript_PokemonReport1 10
+#define _EV_SilphCo_5F_EventScript_FloorSign 11
+#define _EV_SilphCo_5F_OnLoad 12
+
+
+#endif

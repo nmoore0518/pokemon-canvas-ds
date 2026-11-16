@@ -1,0 +1,42 @@
+{
+  "key": 19903,
+  "messages": [
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_SSAnne_1F_Room7_Text_ThomasIntro",
+      "en_US": [
+        "I am but a solitary traveler…\r",
+        "My sole companions and friends are\n",
+        "Pokémon I caught on my journeys…"
+      ]
+    },
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_SSAnne_1F_Room7_Text_ThomasPostBattle",
+      "en_US": "You should be nice to friends!"
+    },
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0916_CV_CANVAS_SSANNE_1F_R7_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

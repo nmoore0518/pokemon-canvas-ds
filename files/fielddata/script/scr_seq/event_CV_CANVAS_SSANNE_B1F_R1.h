@@ -1,0 +1,6 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_B1F_R1_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_B1F_R1_H_
+
+
+
+#endif

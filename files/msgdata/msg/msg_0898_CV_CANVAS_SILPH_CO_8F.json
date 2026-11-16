@@ -1,0 +1,56 @@
+{
+  "key": 19885,
+  "messages": [
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_SilphCo_8F_Text_WonderIfSilphIsFinished",
+      "en_US": "I wonder if Silph is finished…"
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_SilphCo_8F_Text_ToRocketBossMonsAreTools",
+      "en_US": [
+        "Team Rocket’s Boss is terribly\n",
+        "cruel!\r",
+        "To him, Pokémon are just tools to\n",
+        "be used.\r",
+        "What will happen if that tyrant\n",
+        "takes over our company…"
+      ]
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_SilphCo_8F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "8F"
+      ]
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_SilphCo_8F_Text_ThanksForSavingUs",
+      "en_US": "Thanks for saving us!"
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0898_CV_CANVAS_SILPH_CO_8F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

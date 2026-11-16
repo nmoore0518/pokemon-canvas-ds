@@ -1,0 +1,47 @@
+{
+  "key": 19879,
+  "messages": [
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_SilphCo_2F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "2F"
+      ]
+    },
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_Text_ThunderWaveTutor_Retired",
+      "en_US": [
+        "I used to teach Thunder\n",
+        "Wave. The Leader Academy’s\r",
+        "masters teach it now. Look\n",
+        "for the Electric master in\r",
+        "Vermilion City."
+      ]
+    },
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0892_CV_CANVAS_SILPH_CO_2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

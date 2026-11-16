@@ -1,0 +1,62 @@
+{
+  "key": 19877,
+  "messages": [
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_AngelicaIntro",
+      "en_US": [
+        "Give…me…\n",
+        "blood…"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_AngelicaPostBattle",
+      "en_US": "I feel anemic and weak…"
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_BeGoneIntruders",
+      "en_US": [
+        "Be gone…\n",
+        "Intruders…"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_GhostWasCubonesMother",
+      "en_US": [
+        "The ghost was the restless spirit\n",
+        "of Cubone’s mother!"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_MothersSpiritWasCalmed",
+      "en_US": [
+        "The mother’s spirit was calmed.\r",
+        "It departed to the afterlife…"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

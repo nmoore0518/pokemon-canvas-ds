@@ -1,0 +1,26 @@
+{
+  "key": 19900,
+  "messages": [
+    {
+      "id": "msg_0913_CV_CANVAS_SSANNE_1F_R4_SSAnne_1F_Room4_Text_WaitressCherryPiePlease",
+      "en_US": [
+        "Waitress, I would like a cherry\n",
+        "pie, please!"
+      ]
+    },
+    {
+      "id": "msg_0913_CV_CANVAS_SSANNE_1F_R4_SSAnne_1F_Room4_Text_WaiterCherryPiePlease",
+      "en_US": [
+        "Waiter, I would like a cherry pie,\n",
+        "please!"
+      ]
+    },
+    {
+      "id": "msg_0913_CV_CANVAS_SSANNE_1F_R4_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

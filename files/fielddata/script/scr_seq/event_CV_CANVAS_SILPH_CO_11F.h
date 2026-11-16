@@ -1,0 +1,18 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_11F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_11F_H_
+
+#define _EV_SilphCo_11F_EventScript_ItemZinc 0
+#define _EV_SilphCo_11F_EventScript_ItemStrongAcid 1
+#define _EV_SilphCo_11F_EventScript_Door 2
+#define _EV_SilphCo_11F_EventScript_FloorSign 3
+#define _EV_SilphCo_11F_EventScript_GiovanniTriggerLeft 4
+#define _EV_SilphCo_11F_EventScript_GiovanniTriggerRight 5
+#define _EV_SilphCo_11F_OnLoad 6
+#define _EV_SilphCo_11F_OnTransition 7
+
+#define LOCALID_SILPH_CO_GIOVANNI 1
+#define LOCALID_SILPH_CO_11F_GRUNT1 2
+#define LOCALID_SILPH_CO_11F_GRUNT2 4
+#define LOCALID_SILPH_CO_11F_MOM 6
+
+#endif

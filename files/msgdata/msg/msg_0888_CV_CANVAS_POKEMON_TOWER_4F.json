@@ -1,0 +1,62 @@
+{
+  "key": 19875,
+  "messages": [
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_TowerGraves_Text_Grave",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\n",
+        "Trainer: {STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_TowerGraves_Text_GirlLament",
+      "en_US": [
+        "…You found all ten of them.\r",
+        "Ten little ones who never grew up.\n",
+        "Nobody ever reads their names.\r",
+        "Everyone wants their Pokémon\n",
+        "to evolve. Bigger. Stronger.\r",
+        "But I always wondered…\r",
+        "When it evolves, what happens\n",
+        "to the little one it used to be?\r",
+        "Is it still in there somewhere?\n",
+        "Or does it just… go away?\r",
+        "…Does it die?\r",
+        "My Scyther never changed.\n",
+        "Not once. And it’s still here.\f",
+        "Still with me.\r",
+        "You remembered them as they were.\n",
+        "So this is yours now."
+      ]
+    },
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_TowerGraves_Text_GirlKeepThemAsTheyAre",
+      "en_US": [
+        "Let a Pokémon that hasn’t evolved\n",
+        "hold it. It’ll hit so much harder.\r",
+        "Keep your Pokémon as it is.\r",
+        "It’s powerful enough.\n",
+        "It always was…"
+      ]
+    },
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_TowerGraves_Text_Gone",
+      "en_US": "…The girl and her Scyther were gone."
+    },
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_TowerGraves_Text_GirlNoRoom",
+      "en_US": [
+        "…Your bag is too full to hold it.\r",
+        "Come back to them.\n",
+        "I’ll be waiting…"
+      ]
+    },
+    {
+      "id": "msg_0888_CV_CANVAS_POKEMON_TOWER_4F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

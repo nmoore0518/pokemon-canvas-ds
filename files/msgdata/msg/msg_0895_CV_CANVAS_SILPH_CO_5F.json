@@ -1,0 +1,87 @@
+{
+  "key": 19882,
+  "messages": [
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_RocketsInUproarAboutIntruder",
+      "en_US": [
+        "Team Rocket is in an uproar over\n",
+        "some intruder.\r",
+        "That’s you, right?"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_RocketBossLookingForStrongMons",
+      "en_US": [
+        "Those thugs that took over our\n",
+        "building…\r",
+        "Their Boss said he was looking for\n",
+        "strong Pokémon.\r",
+        "I hope our President managed to\n",
+        "avoid trouble…"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_SomeMonsEvolveWhenTraded",
+      "en_US": [
+        "It’s a Pokémon Report!\r",
+        "Some Pokémon have been confirmed\n",
+        "to evolve when they are traded."
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_Over350TechniquesConfirmed",
+      "en_US": [
+        "It’s a Pokémon Report!\r",
+        "Over 350 Pokémon techniques have\n",
+        "been confirmed."
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_PorygonFirstVRMon",
+      "en_US": [
+        "It’s a Pokémon Report!\r",
+        "Pokémon Lab created Porygon,\n",
+        "the first virtual-reality Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "5F"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_SilphCo_5F_Text_YoureOurHeroThankYou",
+      "en_US": [
+        "Team Rocket took off!\n",
+        "You’re our hero! Thank you!"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0895_CV_CANVAS_SILPH_CO_5F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

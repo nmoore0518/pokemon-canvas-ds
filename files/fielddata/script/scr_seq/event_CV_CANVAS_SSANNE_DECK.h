@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_DECK_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_DECK_H_
+
+#define _EV_SSAnne_Deck_EventScript_BaldingMan 0
+#define _EV_SSAnne_Deck_EventScript_Sailor 1
+#define _EV_SSAnne_Deck_EventScript_Youngster 2
+
+
+#endif

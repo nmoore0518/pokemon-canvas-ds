@@ -1,0 +1,340 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SILPH_CO_5F.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 18,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 19,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 19,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 19,
+            "z": 14,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 19,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 18,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 18,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 18,
+            "z": 14,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport3 + 1",
+            "type": 0,
+            "x": 28,
+            "z": 11,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport2 + 1",
+            "type": 0,
+            "x": 30,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport1 + 1",
+            "type": 0,
+            "x": 25,
+            "z": 15,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_FloorSign + 1",
+            "type": 0,
+            "x": 29,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 14,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1115)",
+            "facingDirection": 0,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 35,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1031)",
+            "facingDirection": 1,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 23,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_WORKMAN",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SilphCo_5F_EventScript_WorkerM + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 16,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 3,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1076)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1114)",
+            "facingDirection": 1,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 9,
+            "z": 21,
+            "y": 0
+        },
+        {
+            "id": "6",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21A6",
+            "scriptId": "_EV_SilphCo_5F_EventScript_ItemProtein + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 9,
+            "y": 0
+        },
+        {
+            "id": "7",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21A7",
+            "scriptId": "_EV_SilphCo_5F_EventScript_ItemTM01 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "8",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2198",
+            "scriptId": "_EV_SilphCo_5F_EventScript_ItemCardKey + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 22,
+            "z": 21,
+            "y": 0
+        },
+        {
+            "id": "9",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SilphCo_5F_EventScript_Scientist + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 2,
+            "yRange": 1,
+            "x": 2,
+            "z": 7,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 28,
+            "z": 2,
+            "header": "MAP_CANVAS_SILPH_CO_4F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 15,
+            "z": 7,
+            "header": "MAP_CANVAS_SILPH_CO_3F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 30,
+            "z": 2,
+            "header": "MAP_CANVAS_SILPH_CO_6F",
+            "anchor": 2,
+            "y": 0
+        },
+        {
+            "x": 10,
+            "z": 20,
+            "header": "MAP_CANVAS_SILPH_CO_9F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 2,
+            "z": 20,
+            "header": "MAP_CANVAS_SILPH_CO_3F",
+            "anchor": 5,
+            "y": 0
+        },
+        {
+            "x": 33,
+            "z": 5,
+            "header": "MAP_CANVAS_SILPH_CO_7F",
+            "anchor": 2,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

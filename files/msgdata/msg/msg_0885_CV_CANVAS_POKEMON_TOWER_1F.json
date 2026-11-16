@@ -1,0 +1,81 @@
+{
+  "key": 19872,
+  "messages": [
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_ErectedInMemoryOfDeadMons",
+      "en_US": [
+        "Pokémon Tower was erected in the\n",
+        "memory of Pokémon that died."
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_SenseSpiritsUpToMischief",
+      "en_US": [
+        "I am a Channeler.\r",
+        "There are spirits up to mischief.\n",
+        "I sense them high in the Tower."
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_GrowlitheWhyDidYouDie",
+      "en_US": [
+        "My Growlithe…\n",
+        "Why did you die?"
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_ComeToPayRespectsGirl",
+      "en_US": [
+        "Did you come to pay respects?\r",
+        "Bless your Pokémon-loving heart,\n",
+        "girl."
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_CameToPrayForDepartedClefairy",
+      "en_US": [
+        "I came to pray for my dearly\n",
+        "departed Clefairy.\r",
+        "Sniff!\n",
+        "I’m awash in tears…"
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_PokemonTower_1F_Text_ComeToPayRespectsSon",
+      "en_US": [
+        "Did you come to pay respects?\r",
+        "Bless your Pokémon-loving heart,\n",
+        "son."
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0885_CV_CANVAS_POKEMON_TOWER_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

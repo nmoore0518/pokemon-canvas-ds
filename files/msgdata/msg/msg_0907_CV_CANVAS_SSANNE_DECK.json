@@ -1,0 +1,34 @@
+{
+  "key": 19894,
+  "messages": [
+    {
+      "id": "msg_0907_CV_CANVAS_SSANNE_DECK_SSAnne_Deck_Text_FeelSeasick",
+      "en_US": [
+        "Urf… I feel ill…\r",
+        "I got seasick, so I stepped out to\n",
+        "get some air…"
+      ]
+    },
+    {
+      "id": "msg_0907_CV_CANVAS_SSANNE_DECK_SSAnne_Deck_Text_ScrubbingDecksHardWork",
+      "en_US": [
+        "Whew!\n",
+        "Scrubbing decks is hard work!"
+      ]
+    },
+    {
+      "id": "msg_0907_CV_CANVAS_SSANNE_DECK_SSAnne_Deck_Text_ShipDepartingSoon",
+      "en_US": [
+        "The party’s over.\n",
+        "The ship will be departing soon."
+      ]
+    },
+    {
+      "id": "msg_0907_CV_CANVAS_SSANNE_DECK_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

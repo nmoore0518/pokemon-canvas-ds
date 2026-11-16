@@ -1,0 +1,23 @@
+{
+  "key": 19909,
+  "messages": [
+    {
+      "id": "msg_0922_CV_CANVAS_SSANNE_2F_R6_SSAnne_2F_Room6_Text_ManyPeopleGetSeasick",
+      "en_US": "I hear many people get seasick."
+    },
+    {
+      "id": "msg_0922_CV_CANVAS_SSANNE_2F_R6_SSAnne_2F_Room6_Text_CaptainIsAwfullySick",
+      "en_US": [
+        "The Captain said he’s awfully sick.\n",
+        "He was all pale."
+      ]
+    },
+    {
+      "id": "msg_0922_CV_CANVAS_SSANNE_2F_R6_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

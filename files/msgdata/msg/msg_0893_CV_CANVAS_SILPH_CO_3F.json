@@ -1,0 +1,51 @@
+{
+  "key": 19880,
+  "messages": [
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_SilphCo_3F_Text_WhatAmIToDo",
+      "en_US": [
+        "I work for Silph Co.\n",
+        "What am I to do?"
+      ]
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_SilphCo_3F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "3F"
+      ]
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_SilphCo_3F_Text_YouAndYourMonsSavedUs",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0}!\n",
+        "You and your Pokémon saved us!"
+      ]
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0893_CV_CANVAS_SILPH_CO_3F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_2F_R2_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_2F_R2_H_
+
+#define _EV_SSAnne_2F_Room2_EventScript_ItemStardust 0
+
+
+#endif

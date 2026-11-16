@@ -1,0 +1,266 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SILPH_CO_9F.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 3,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 3,
+            "z": 11,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 13,
+            "z": 16,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 13,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 21,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 6,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 21,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 21,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 21,
+            "z": 12,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 12,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 2,
+            "z": 11,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 2,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 12,
+            "z": 16,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 12,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_FloorSign + 1",
+            "type": 0,
+            "x": 17,
+            "z": 1,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 4,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1080)",
+            "facingDirection": 1,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 26,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 14,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1124)",
+            "facingDirection": 0,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 15,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SilphCo_9F_EventScript_HealWoman + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_ROCKETM",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "0x2199",
+            "scriptId": "std_trainer(1123)",
+            "facingDirection": 1,
+            "param0": 5,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21BC",
+            "scriptId": "_EV_SilphCo_9F_EventScript_ItemTM42 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 30,
+            "z": 16,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 16,
+            "z": 2,
+            "header": "MAP_CANVAS_SILPH_CO_8F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 22,
+            "z": 18,
+            "header": "MAP_CANVAS_SILPH_CO_5F",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 9,
+            "z": 4,
+            "header": "MAP_CANVAS_SILPH_CO_3F",
+            "anchor": 4,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 2,
+            "header": "MAP_CANVAS_SILPH_CO_10F",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

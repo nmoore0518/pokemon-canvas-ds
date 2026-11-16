@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_9F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_9F_H_
+
+#define _EV_SilphCo_9F_EventScript_HealWoman 0
+#define _EV_SilphCo_9F_EventScript_ItemTM42 1
+#define _EV_SilphCo_9F_EventScript_Door1 2
+#define _EV_SilphCo_9F_EventScript_Door2 3
+#define _EV_SilphCo_9F_EventScript_Door3 4
+#define _EV_SilphCo_9F_EventScript_Door4 5
+#define _EV_SilphCo_9F_EventScript_FloorSign 6
+#define _EV_SilphCo_9F_OnLoad 7
+
+
+#endif

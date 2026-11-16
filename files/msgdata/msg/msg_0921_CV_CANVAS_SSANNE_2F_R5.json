@@ -1,0 +1,29 @@
+{
+  "key": 19908,
+  "messages": [
+    {
+      "id": "msg_0921_CV_CANVAS_SSANNE_2F_R5_SSAnne_2F_Room5_Text_HaveYouGoneToSafariZone",
+      "en_US": [
+        "Have you gone to the Safari Zone\n",
+        "in Fuchsia City?\r",
+        "There are many kinds of rare\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0921_CV_CANVAS_SSANNE_2F_R5_SSAnne_2F_Room5_Text_WeThinkSafariZoneIsAwesome",
+      "en_US": [
+        "Me and my daddy think the Safari\n",
+        "Zone is awesome!\f",
+        "I wish we could go there again."
+      ]
+    },
+    {
+      "id": "msg_0921_CV_CANVAS_SSANNE_2F_R5_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

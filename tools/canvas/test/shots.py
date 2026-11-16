@@ -15,9 +15,10 @@ OLD = struct.pack('<5i', 49, -1, 31 * 32 + 27 + 6, 32 * 11 + 49, 1)
 
 # (a game saved in an earlier test makes the title menu start on Continue: set it aside)
 DSV = os.path.expanduser('~/.config/desmume/%s.dsv' % os.path.basename(ROM)[:-4])
-if os.path.exists(DSV):
+try:
     os.replace(DSV, DSV + '.old')
-    if os.path.exists(BASE): os.remove(BASE)
+except FileNotFoundError:
+    pass
 if not os.path.exists(BASE) or os.path.getmtime(BASE) < os.path.getmtime(ROM):
     # the intro up to the last touch before the field (newgame.sh's steps)
     os.makedirs('st', exist_ok=True)

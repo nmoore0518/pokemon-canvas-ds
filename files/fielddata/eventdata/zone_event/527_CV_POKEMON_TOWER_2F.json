@@ -1,0 +1,209 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_POKEMON_TOWER_2F.h",
+    "objects": [
+        {
+            "id": "LOCALID_POKEMON_TOWER_RIVAL",
+            "spriteId": "SPRITE_GSLEADER16",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "0x2182",
+            "scriptId": "0",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 16,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PokemonTower_2F_EventScript_Channeler + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 3,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSBABYGIRL1",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "31",
+            "scriptId": "_EV_TowerGraves_EventScript_Ghost + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 0,
+            "z": 0,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "2623",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "31",
+            "scriptId": "_EV_TowerGraves_EventScript_Ghost + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 0,
+            "z": 0,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 4,
+            "z": 10,
+            "header": "MAP_CANVAS_POKEMON_TOWER_3F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 10,
+            "header": "MAP_CANVAS_POKEMON_TOWER_1F",
+            "anchor": 3,
+            "y": 0
+        }
+    ],
+    "bgs": [
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave00 + 1",
+            "type": 0,
+            "x": 9,
+            "z": 2,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave01 + 1",
+            "type": 0,
+            "x": 13,
+            "z": 2,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave02 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 4,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave03 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave04 + 1",
+            "type": 0,
+            "x": 11,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave05 + 1",
+            "type": 0,
+            "x": 15,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave06 + 1",
+            "type": 0,
+            "x": 19,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave07 + 1",
+            "type": 0,
+            "x": 5,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave08 + 1",
+            "type": 0,
+            "x": 15,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave09 + 1",
+            "type": 0,
+            "x": 4,
+            "z": 14,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave10 + 1",
+            "type": 0,
+            "x": 16,
+            "z": 14,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_PokemonTower_EventScript_Grave11 + 1",
+            "type": 0,
+            "x": 11,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": [
+        {
+            "scriptId": "_EV_PokemonTower_2F_EventScript_RivalTriggerRight + 1",
+            "x": 17,
+            "z": 5,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x503D"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_2F_EventScript_RivalTriggerDown + 1",
+            "x": 16,
+            "z": 6,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x503D"
+        }
+    ]
+}

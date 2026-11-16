@@ -1,0 +1,21 @@
+{
+  "key": 19897,
+  "messages": [
+    {
+      "id": "msg_0910_CV_CANVAS_SSANNE_1F_R1_SSAnne_1F_Room1_Text_ImAGlobalPoliceAgent",
+      "en_US": [
+        "Ssh…!\n",
+        "I’m a Global Police agent.\r",
+        "I’m on the trail of Team Rocket.\n",
+        "They’re up to nothing good!"
+      ]
+    },
+    {
+      "id": "msg_0910_CV_CANVAS_SSANNE_1F_R1_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

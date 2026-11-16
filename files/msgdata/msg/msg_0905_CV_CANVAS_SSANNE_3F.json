@@ -1,0 +1,21 @@
+{
+  "key": 19892,
+  "messages": [
+    {
+      "id": "msg_0905_CV_CANVAS_SSANNE_3F_SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons",
+      "en_US": [
+        "Our Captain is a sword master.\n",
+        "He’s awesome at using Cut.\r",
+        "They say he even teaches Cut\n",
+        "to Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0905_CV_CANVAS_SSANNE_3F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

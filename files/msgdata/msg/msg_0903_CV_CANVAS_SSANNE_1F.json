@@ -1,0 +1,32 @@
+{
+  "key": 19890,
+  "messages": [
+    {
+      "id": "msg_0903_CV_CANVAS_SSANNE_1F_SSAnne_1F_Corridor_Text_PassengersAreRestless",
+      "en_US": [
+        "The passengers are restless from\n",
+        "this long voyage.\r",
+        "You might be challenged by the\n",
+        "more bored ones!"
+      ]
+    },
+    {
+      "id": "msg_0903_CV_CANVAS_SSANNE_1F_SSAnne_1F_Corridor_Text_LeStrongSilentType",
+      "en_US": [
+        "Bonjour!\n",
+        "I am le waiter on this ship!\r",
+        "I will be happy to serve you\n",
+        "anything you please!\r",
+        "… … …\n",
+        "Ah! Le strong silent type!"
+      ]
+    },
+    {
+      "id": "msg_0903_CV_CANVAS_SSANNE_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

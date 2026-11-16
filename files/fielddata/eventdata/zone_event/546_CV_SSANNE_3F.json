@@ -1,0 +1,47 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_3F.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_SEAMAN_2",
+            "movement": 5,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SSAnne_3F_Corridor_EventScript_Sailor + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 3,
+            "yRange": 1,
+            "x": 10,
+            "z": 4,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 1,
+            "z": 4,
+            "header": "MAP_CANVAS_SSANNE_DECK",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_2F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 5,
+            "header": "MAP_CANVAS_SSANNE_DECK",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": [],
+    "bgs": []
+}

@@ -1,0 +1,33 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_1F_R7.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSGENTLEMAN",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SSAnne_1F_Room7_EventScript_Thomas + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 3,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 2,
+            "z": 1,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 11,
+            "y": 0
+        }
+    ],
+    "coords": [],
+    "bgs": []
+}

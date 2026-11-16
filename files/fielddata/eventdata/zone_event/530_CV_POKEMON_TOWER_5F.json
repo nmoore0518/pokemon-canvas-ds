@@ -1,0 +1,313 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_POKEMON_TOWER_5F.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 2,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1169)",
+            "facingDirection": 1,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 16,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1168)",
+            "facingDirection": 2,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 19,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1170)",
+            "facingDirection": 3,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 2,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1171)",
+            "facingDirection": 1,
+            "param0": 2,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_ITAKO",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PokemonTower_5F_EventScript_Channeler + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 12,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "6",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x218D",
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ItemNugget + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 16,
+            "y": 0
+        },
+        {
+            "id": "7",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x218E",
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ItemCleanseTag + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 9,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 4,
+            "z": 10,
+            "header": "MAP_CANVAS_POKEMON_TOWER_4F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 10,
+            "header": "MAP_CANVAS_POKEMON_TOWER_6F",
+            "anchor": 1,
+            "y": 0
+        }
+    ],
+    "bgs": [],
+    "coords": [
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 10,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 11,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 12,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 10,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 9,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 12,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 10,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 11,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_PurifiedZone + 1",
+            "x": 12,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 9,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 9,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 10,
+            "z": 11,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 11,
+            "z": 11,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 12,
+            "z": 11,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 13,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 13,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_5F_EventScript_ExitPurifiedZone + 1",
+            "x": 13,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4001"
+        }
+    ]
+}

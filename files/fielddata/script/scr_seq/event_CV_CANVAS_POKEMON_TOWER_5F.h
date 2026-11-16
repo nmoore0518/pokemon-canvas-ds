@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_5F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_5F_H_
+
+#define _EV_PokemonTower_5F_EventScript_Channeler 0
+#define _EV_PokemonTower_5F_EventScript_ItemNugget 1
+#define _EV_PokemonTower_5F_EventScript_ItemCleanseTag 2
+#define _EV_PokemonTower_5F_EventScript_PurifiedZone 3
+#define _EV_PokemonTower_5F_EventScript_ExitPurifiedZone 4
+
+
+#endif

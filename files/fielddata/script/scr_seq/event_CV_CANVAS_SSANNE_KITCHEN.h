@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_KITCHEN_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_KITCHEN_H_
+
+#define _EV_SSAnne_Kitchen_EventScript_Chef1 0
+#define _EV_SSAnne_Kitchen_EventScript_Chef2 1
+#define _EV_SSAnne_Kitchen_EventScript_Chef3 2
+#define _EV_SSAnne_Kitchen_EventScript_Chef4 3
+#define _EV_SSAnne_Kitchen_EventScript_Chef5 4
+#define _EV_SSAnne_Kitchen_EventScript_Chef6 5
+#define _EV_SSAnne_Kitchen_EventScript_Chef7 6
+#define _EV_SSAnne_Kitchen_EventScript_ItemGreatBall 7
+
+
+#endif

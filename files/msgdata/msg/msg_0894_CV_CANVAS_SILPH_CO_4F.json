@@ -1,0 +1,51 @@
+{
+  "key": 19881,
+  "messages": [
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_SilphCo_4F_Text_CantYouSeeImHiding",
+      "en_US": [
+        "Sssh!\n",
+        "Can’t you see I’m hiding?"
+      ]
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_SilphCo_4F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "4F"
+      ]
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_SilphCo_4F_Text_TeamRocketIsGone",
+      "en_US": [
+        "Huh?\n",
+        "Team Rocket is gone?"
+      ]
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0894_CV_CANVAS_SILPH_CO_4F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

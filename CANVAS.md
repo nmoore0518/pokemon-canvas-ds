@@ -11,7 +11,8 @@ sudo tools/canvas/setup_engine.sh    # once: hg-engine (battle engine, Gen 5-9 P
 python3 tools/canvas/build_pallet.py # regenerate our Pallet Town into the game's data files (idempotent)
 python3 tools/canvas/build_rooms.py  # then the rooms we model from the GBA layouts (houses, lab)
 python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold room (Pokemon Center, Mart, Training Hall)
-python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon's three floors)
+python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon, Rock Tunnel, ...)
+python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Pokemon Tower, Silph Co., S.S. Anne, ...)
 python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
@@ -219,6 +220,17 @@ slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to 
   Pokemon statues use HeartGold's own overworld sprite of that Pokemon (hg-engine has one for every species in
   `a/0/8/1`), enlarged and recoloured to stone or gold (`STATUE_FINISH`), standing like HeartGold's people
 
+
+## Big interiors HeartGold has no building for
+
+`build_interiors.py` builds the Pokemon Tower, Silph Co.'s 2F-11F, the Power Plant and the S.S. Anne from their GBA
+layouts the way caves are built, but as buildings in a HeartGold building's textures (`LOOKS`: the Sprout Tower's
+for the Tower, the Power Plant's for Silph Co. and the Power Plant, the S.S. Aqua's for the ship): the floor, walls a
+block and a half high round it, little blocked patches (tables, machines, gravestones) as low blocks, stairs and
+pads drawn in `mark`. A way out at the foot of a wall is an exit mat (0x65); stairs and pads are step-on warps.
+HeartGold's doors stand in for them: Lavender's Radio Tower is the Pokemon Tower, Silph Co.'s elevator door goes to
+our 2F, Route 10's Power Plant is ours, and Vermilion's ferry building boards the S.S. Anne (its dock outside is
+left out). Not yet: Silph Co.'s elevator (a GBA dynamic warp), its card-key doors, the GBA furniture.
 
 ## The rest of Kanto (towns, routes, the rooms HeartGold has)
 

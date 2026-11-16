@@ -1,0 +1,17 @@
+#ifndef SCR_SEQ_CV_CANVAS_POWER_PLANT_H_
+#define SCR_SEQ_CV_CANVAS_POWER_PLANT_H_
+
+#define _EV_PowerPlant_EventScript_ItemMaxPotion 0
+#define _EV_PowerPlant_EventScript_ItemTM17 1
+#define _EV_PowerPlant_EventScript_ItemTM25 2
+#define _EV_PowerPlant_EventScript_ItemThunderStone 3
+#define _EV_PowerPlant_EventScript_ItemElixir 4
+#define _EV_PowerPlant_EventScript_Zapdos 5
+#define _EV_PowerPlant_EventScript_Electrode2 6
+#define _EV_PowerPlant_EventScript_Electrode1 7
+#define _EV_PaintWorld_EventScript_Figure 8
+#define _EV_PowerPlant_OnResume 9
+#define _EV_PowerPlant_OnTransition 10
+
+
+#endif

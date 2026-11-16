@@ -1,0 +1,52 @@
+{
+  "key": 19886,
+  "messages": [
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_YouShouldTakeQuickNap",
+      "en_US": [
+        "You look tired.\n",
+        "You should take a quick nap."
+      ]
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_DontGiveUp",
+      "en_US": "Don’t give up!"
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "9F"
+      ]
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_ThankYouSoMuch",
+      "en_US": "Thank you so much."
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0899_CV_CANVAS_SILPH_CO_9F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "key": 19878,
+  "messages": [
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_MrFujiThankYouFollowMe",
+      "en_US": [
+        "Mr. Fuji: Heh?\n",
+        "You came to save me?\r",
+        "Thank you. But, I came here of my\n",
+        "own free will.\r",
+        "I came to calm the spirit of\n",
+        "Cubone’s mother.\r",
+        "I think Marowak’s spirit has\n",
+        "finally left us.\r",
+        "I must thank you for your kind\n",
+        "concern.\r",
+        "Follow me to my home, Pokémon\n",
+        "House, at the foot of this tower."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt1Intro",
+      "en_US": [
+        "What do you want?\n",
+        "Why are you here?"
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt1PostBattle",
+      "en_US": "I’m not going to forget this!"
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt2Intro",
+      "en_US": [
+        "This old guy marched right up to\n",
+        "our Hideout.\r",
+        "Then, he starts ranting about how\n",
+        "Team Rocket’s abusing Pokémon.\r",
+        "So, we’re just talking it over as\n",
+        "adults."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt2PostBattle",
+      "en_US": [
+        "Pokémon are only good for making\n",
+        "money. Why not use them?\r",
+        "You stay out of our business!"
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt3Intro",
+      "en_US": "You’re not saving anyone, kid!"
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt3PostBattle",
+      "en_US": "You’re not getting away with this!"
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0891_CV_CANVAS_POKEMON_TOWER_7F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

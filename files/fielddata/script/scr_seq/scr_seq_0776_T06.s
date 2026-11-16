@@ -478,7 +478,7 @@ VermilionCity_EventScript_ForemanBuilt:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	Wait 30, VAR_SPECIAL_RESULT
-	Warp MAP_VERMILION, 0, 1318, 306, DIR_SOUTH
+	Warp MAP_VERMILION, 0, 1318, 305, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll

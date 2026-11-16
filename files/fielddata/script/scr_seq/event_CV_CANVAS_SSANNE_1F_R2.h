@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_1F_R2_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_1F_R2_H_
+
+#define _EV_SSAnne_1F_Room2_EventScript_Woman 0
+#define _EV_SSAnne_1F_Room2_EventScript_ItemTM31 1
+
+
+#endif

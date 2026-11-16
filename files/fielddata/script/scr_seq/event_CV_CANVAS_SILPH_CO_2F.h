@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_2F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_2F_H_
+
+#define _EV_SilphCo_2F_EventScript_ThunderWaveTutor 0
+#define _EV_SilphCo_2F_EventScript_Door1 1
+#define _EV_SilphCo_2F_EventScript_Door2 2
+#define _EV_SilphCo_2F_EventScript_FloorSign 3
+#define _EV_SilphCo_2F_OnLoad 4
+
+
+#endif

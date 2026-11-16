@@ -1,0 +1,112 @@
+{
+  "key": 19888,
+  "messages": [
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "11F"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_GiovanniIntro",
+      "en_US": [
+        "Ah, {STRVAR_1 3, 6, 0}!\n",
+        "So we meet again!\r",
+        "You don’t belong here.\n",
+        "Keep your nose out of grown-up\f",
+        "matters…\r",
+        "Or, experience a world of pain!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_GiovanniPostBattle",
+      "en_US": [
+        "Blast it all!\n",
+        "You ruined our plans for Silph!\r",
+        "If only you were more like your\n",
+        "father! He knew the true worth of\f",
+        "Pokémon!\r",
+        "{STRVAR_1 3, 6, 0}! Never forget that all\n",
+        "Pokémon exist for Team Rocket!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_DadStory_Text_GiovanniSilphGift",
+      "en_US": [
+        "Giovanni: But fine. You want this?\r",
+        "I don’t need it. I’m plenty powerful\n",
+        "without it. You’ll see."
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_GymHack_Text_SilphGiovanniMultivitamin",
+      "en_US": [
+        "…Take this.\r",
+        "Silph was making it for Team Rocket.\n",
+        "Thanks to you, the deal is off."
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_GymHack_Text_SilphGiovanniMultivitaminAfter",
+      "en_US": [
+        "A Multivitamin lets you decide\n",
+        "exactly how a Pokémon trains.\r",
+        "A trainer who can beat me should\n",
+        "know how to use it.\r",
+        "Consider it… an investment.\n",
+        "We will meet again."
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_DadStory_Text_MomSilphBoy",
+      "en_US": [
+        "Mom: What are you doing here? Why are\n",
+        "you with him?!\r",
+        "Leave him alone, Giovanni!\r",
+        "{STRVAR_1 3, 6, 0}, come with me!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_DadStory_Text_MomSilphGirl",
+      "en_US": [
+        "Mom: What are you doing here? Why are\n",
+        "you with him?!\r",
+        "Leave her alone, Giovanni!\r",
+        "{STRVAR_1 3, 6, 0}, come with me!"
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0901_CV_CANVAS_SILPH_CO_11F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

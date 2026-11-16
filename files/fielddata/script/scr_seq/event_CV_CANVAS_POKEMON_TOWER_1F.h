@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_1F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_1F_H_
+
+#define _EV_PokemonTower_1F_EventScript_WorkerF 0
+#define _EV_PokemonTower_1F_EventScript_Channeler 1
+#define _EV_PokemonTower_1F_EventScript_Woman1 2
+#define _EV_PokemonTower_1F_EventScript_Woman2 3
+#define _EV_PokemonTower_1F_EventScript_BaldingMan 4
+#define _EV_TypeTutor_EventScript_Ghost 5
+#define _EV_PokemonTower_1F_OnTransition 6
+
+
+#endif

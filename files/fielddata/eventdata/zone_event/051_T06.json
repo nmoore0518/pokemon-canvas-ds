@@ -147,7 +147,7 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 1318,
+            "x": 1317,
             "z": 304,
             "y": 0
         },
@@ -165,7 +165,7 @@
             "xRange": 4,
             "yRange": 1,
             "x": 1314,
-            "z": 326,
+            "z": 322,
             "y": 0
         },
         {
@@ -181,8 +181,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1316,
-            "z": 338,
+            "x": 1304,
+            "z": 323,
             "y": 0
         },
         {
@@ -216,7 +216,7 @@
             "xRange": 4,
             "yRange": 1,
             "x": 1310,
-            "z": 298,
+            "z": 297,
             "y": 0
         },
         {
@@ -233,7 +233,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 1290,
-            "z": 320,
+            "z": 319,
             "y": 0
         },
         {
@@ -249,7 +249,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1319,
+            "x": 1318,
             "z": 320,
             "y": 0
         }
@@ -307,16 +307,16 @@
         {
             "x": 1309,
             "z": 340,
-            "header": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
-            "anchor": 0,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 2,
             "y": 0
         }
     ],
     "coords": [
         {
             "scriptId": "_EV_VermilionCity_EventScript_ExitedTicketCheck + 1",
-            "x": 1312,
-            "z": 328,
+            "x": 1304,
+            "z": 323,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -325,8 +325,8 @@
         },
         {
             "scriptId": "_EV_VermilionCity_EventScript_ExitedTicketCheck + 1",
-            "x": 1316,
-            "z": 336,
+            "x": 1304,
+            "z": 323,
             "w": 1,
             "h": 1,
             "y": 0,

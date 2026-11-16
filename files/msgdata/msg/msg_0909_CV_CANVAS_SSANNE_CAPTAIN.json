@@ -1,0 +1,93 @@
+{
+  "key": 19896,
+  "messages": [
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_CaptainIFeelSeasick",
+      "en_US": [
+        "Captain: Ooargh…\n",
+        "I feel hideous…\f",
+        "Urrp! Seasick…"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_RubbedCaptainsBack",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} rubbed the Captain’s\n",
+        "back!\r",
+        "Rub-rub…\n",
+        "Rub-rub…"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_ThankYouHaveHMForCut",
+      "en_US": [
+        "Captain: Whew! Thank you!\n",
+        "I’m feeling much better now.\r",
+        "You want to see my hidden Cut\n",
+        "technique?\r",
+        "I could show you my prized Cut\n",
+        "technique if I weren’t so ill…\r",
+        "I know! You can have this!\n",
+        "This Hidden Machine!\r",
+        "Teach Cut to your Pokémon, and\n",
+        "you can see it Cut anytime!"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_ObtainedHM01FromCaptain",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} obtained HM01\n",
+        "from the Captain!"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_Text_GymHack_AndTakeThisToo",
+      "en_US": [
+        "Oh, and take this, too!\r",
+        "It does the same job outside of\n",
+        "battle, no Pokémon needed."
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_ExplainCut",
+      "en_US": [
+        "Using Cut, you can chop down\n",
+        "small trees.\r",
+        "Why not try it with the trees\n",
+        "around Vermilion City?"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_HowToConquerSeasickness",
+      "en_US": [
+        "How to Conquer Seasickness…\n",
+        "The Captain’s reading this!"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_YuckShouldntHaveLooked",
+      "en_US": [
+        "Yuck!\n",
+        "Shouldn’t have looked!"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_SSAnne_CaptainsOffice_Text_SSAnneWillSetSailSoon",
+      "en_US": [
+        "Captain: …Whew!\r",
+        "Now that I’m not sick anymore,\n",
+        "I guess it’s time.\r",
+        "The S.S. Anne will set sail soon!\r",
+        "Farewell, until our return to\n",
+        "Vermilion City!"
+      ]
+    },
+    {
+      "id": "msg_0909_CV_CANVAS_SSANNE_CAPTAIN_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

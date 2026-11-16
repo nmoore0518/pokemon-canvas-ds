@@ -1,0 +1,204 @@
+{
+  "key": 19884,
+  "messages": [
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_HaveMonForSavingUs",
+      "en_US": [
+        "Oh! Hi! You’re not a Rocket!\n",
+        "You came to save us?\f",
+        "Why, thank you!\r",
+        "I want you to have this Pokémon\n",
+        "for saving us."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_ReallyDangerousHere",
+      "en_US": [
+        "You!\n",
+        "It’s really dangerous here!\r",
+        "You came to save me?\n",
+        "You can’t!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RocketsAfterMasterBall",
+      "en_US": [
+        "Team Rocket was after the Master\n",
+        "Ball, which catches any Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_BadIfTeamRocketTookOver",
+      "en_US": [
+        "It would be bad if Team Rocket\n",
+        "took over Silph or our Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "7F"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RocketBossWentToBoardroom",
+      "en_US": [
+        "Team Rocket’s Boss went to the\n",
+        "boardroom!\r",
+        "Is our President okay?\n",
+        "I’m worried."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_ObtainedLaprasFromEmployee",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} obtained a Lapras from\n",
+        "the Silph employee!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_NicknameThisPokemon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_NoMoreRoomForPokemon",
+      "en_US": [
+        "There’s no more room for Pokémon!\r",
+        "The Pokémon Boxes are full and\n",
+        "can’t accept any more!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_ThankYouSoMuch",
+      "en_US": "Thank you so much!"
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_CanceledMasterBallProject",
+      "en_US": [
+        "We canceled the Master Ball\n",
+        "project because of Team Rocket."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_WowYouChasedOffTeamRocket",
+      "en_US": [
+        "Wow!\r",
+        "You chased off Team Rocket all by\n",
+        "yourself?"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RivalWhatKeptYou",
+      "en_US": "{STRVAR_1 3, 7, 0}: What kept you, {STRVAR_1 3, 6, 0}?"
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Hahaha! I thought you’d\n",
+        "turn up if I waited here!\r",
+        "I guess Team Rocket slowed you\n",
+        "down! Not that I care!\r",
+        "I saw you in Saffron, so I decided\n",
+        "to see if you got better!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RivalPostBattle",
+      "en_US": [
+        "Well, {STRVAR_1 3, 6, 0}!\n",
+        "I’m moving on up and ahead!\r",
+        "By checking my Pokédex, I’m\n",
+        "starting to see what’s strong and\f",
+        "how they evolve!\r",
+        "Am I a genius or what?\r",
+        "I’ll get my last approvals, then\n",
+        "boot out the Elite Four.\r",
+        "Champion, and Leader of the Pallet\n",
+        "Gym! Both of them, all mine!\r",
+        "{STRVAR_1 3, 6, 0}, well, good luck to you!\n",
+        "Don’t sweat it!\f",
+        "Smell ya!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_ExplainLapras",
+      "en_US": [
+        "It’s a Lapras.\n",
+        "It’s a very intelligent Pokémon.\r",
+        "We kept it in our lab, but it will\n",
+        "be much better off with you.\r",
+        "I think you will be a good Trainer\n",
+        "for Lapras!\r",
+        "It’s a good swimmer.\n",
+        "It’ll give you a lift across water!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredSomeonesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredLanettesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredSomeonesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredLanettesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

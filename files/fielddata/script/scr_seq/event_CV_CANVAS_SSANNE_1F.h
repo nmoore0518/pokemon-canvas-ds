@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_1F_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_1F_H_
+
+#define _EV_SSAnne_1F_Corridor_EventScript_Sailor 0
+#define _EV_SSAnne_1F_Corridor_EventScript_WorkerM 1
+
+
+#endif

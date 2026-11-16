@@ -1,0 +1,21 @@
+{
+  "key": 19904,
+  "messages": [
+    {
+      "id": "msg_0917_CV_CANVAS_SSANNE_2F_R1_SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis",
+      "en_US": [
+        "I’ve journeyed far and wide, but in\n",
+        "all my travels I’ve never seen\f",
+        "any Pokémon sleep like this one!\r",
+        "It was something like this!"
+      ]
+    },
+    {
+      "id": "msg_0917_CV_CANVAS_SSANNE_2F_R1_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

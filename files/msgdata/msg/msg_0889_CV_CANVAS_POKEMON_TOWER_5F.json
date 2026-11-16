@@ -1,0 +1,29 @@
+{
+  "key": 19876,
+  "messages": [
+    {
+      "id": "msg_0889_CV_CANVAS_POKEMON_TOWER_5F_PokemonTower_5F_Text_RestHereInPurifiedSpace",
+      "en_US": [
+        "Come, child!\n",
+        "I have purified this space.\f",
+        "You can rest here."
+      ]
+    },
+    {
+      "id": "msg_0889_CV_CANVAS_POKEMON_TOWER_5F_PokemonTower_5F_Text_PurifiedZoneMonsFullyHealed",
+      "en_US": [
+        "Entered the purified and protected\n",
+        "zone.\r",
+        "{STRVAR_1 3, 6, 0}’s Pokémon were fully\n",
+        "healed."
+      ]
+    },
+    {
+      "id": "msg_0889_CV_CANVAS_POKEMON_TOWER_5F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

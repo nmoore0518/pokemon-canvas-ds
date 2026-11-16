@@ -150,8 +150,8 @@
         {
             "x": 1429,
             "z": 234,
-            "header": "MAP_LAVENDER_RADIO_STATION",
-            "anchor": 0,
+            "header": "MAP_CANVAS_POKEMON_TOWER_1F",
+            "anchor": 1,
             "y": 0
         }
     ],

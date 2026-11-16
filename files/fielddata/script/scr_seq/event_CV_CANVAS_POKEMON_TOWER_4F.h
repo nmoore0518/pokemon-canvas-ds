@@ -1,0 +1,19 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_4F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_4F_H_
+
+#define _EV_PokemonTower_4F_EventScript_ItemElixir 0
+#define _EV_PokemonTower_4F_EventScript_ItemAwakening 1
+#define _EV_PokemonTower_4F_EventScript_ItemGreatBall 2
+#define _EV_TowerGraves_EventScript_Ghost 3
+#define _EV_PokemonTower_EventScript_Grave22 4
+#define _EV_PokemonTower_EventScript_Grave23 5
+#define _EV_PokemonTower_EventScript_Grave24 6
+#define _EV_PokemonTower_EventScript_Grave25 7
+#define _EV_PokemonTower_EventScript_Grave26 8
+#define _EV_PokemonTower_EventScript_Grave27 9
+#define _EV_PokemonTower_EventScript_Grave28 10
+#define _EV_PokemonTower_EventScript_Grave29 11
+#define _EV_TowerGraves_EventScript_HideGhosts 12
+
+
+#endif

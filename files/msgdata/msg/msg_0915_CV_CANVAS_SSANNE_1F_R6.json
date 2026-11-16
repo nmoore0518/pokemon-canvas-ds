@@ -1,0 +1,40 @@
+{
+  "key": 19902,
+  "messages": [
+    {
+      "id": "msg_0915_CV_CANVAS_SSANNE_1F_R6_SSAnne_1F_Room6_Text_TakeAShortRest",
+      "en_US": [
+        "You look tired. Would you like to\n",
+        "take a short rest?"
+      ]
+    },
+    {
+      "id": "msg_0915_CV_CANVAS_SSANNE_1F_R6_SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed",
+      "en_US": [
+        "I’m glad to see that everyone is\n",
+        "looking refreshed and chipper."
+      ]
+    },
+    {
+      "id": "msg_0915_CV_CANVAS_SSANNE_1F_R6_SSAnne_1F_Room6_Text_SorryYouLookLikeMySister",
+      "en_US": [
+        "Oh, I’m sorry for fussing over you.\n",
+        "You look like my little sister…"
+      ]
+    },
+    {
+      "id": "msg_0915_CV_CANVAS_SSANNE_1F_R6_SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother",
+      "en_US": [
+        "Oh, I’m sorry for fussing over you.\n",
+        "You look like my little brother…"
+      ]
+    },
+    {
+      "id": "msg_0915_CV_CANVAS_SSANNE_1F_R6_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

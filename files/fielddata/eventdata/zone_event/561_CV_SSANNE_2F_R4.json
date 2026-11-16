@@ -1,0 +1,67 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_2F_R4.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSGENTLEMAN",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1196)",
+            "facingDirection": 3,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 0,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSGIRL2",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(882)",
+            "facingDirection": 1,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 3,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21DB",
+            "scriptId": "_EV_SSAnne_2F_Room4_EventScript_ItemXAttack + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 4,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 4,
+            "z": 7,
+            "header": "MAP_CANVAS_SSANNE_2F",
+            "anchor": 6,
+            "y": 0
+        }
+    ],
+    "coords": [],
+    "bgs": []
+}

@@ -1,0 +1,30 @@
+{
+  "key": 19899,
+  "messages": [
+    {
+      "id": "msg_0912_CV_CANVAS_SSANNE_1F_R3_SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff",
+      "en_US": [
+        "I always travel with Wigglytuff.\n",
+        "I never leave home without it."
+      ]
+    },
+    {
+      "id": "msg_0912_CV_CANVAS_SSANNE_1F_R3_SSAnne_1F_Room3_Text_Wigglytuff",
+      "en_US": "Wigglytuff: Puup pupuu!"
+    },
+    {
+      "id": "msg_0912_CV_CANVAS_SSANNE_1F_R3_SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy",
+      "en_US": [
+        "A world cruise is so elegant yet\n",
+        "cozy!"
+      ]
+    },
+    {
+      "id": "msg_0912_CV_CANVAS_SSANNE_1F_R3_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

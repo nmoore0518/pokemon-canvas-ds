@@ -157,8 +157,8 @@
         {
             "x": 1423,
             "z": 184,
-            "header": "MAP_ROUTE_10_POWER_PLANT_REPAIRED",
-            "anchor": 0,
+            "header": "MAP_CANVAS_POWER_PLANT",
+            "anchor": 1,
             "y": 0
         },
         {

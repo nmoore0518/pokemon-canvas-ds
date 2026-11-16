@@ -1,0 +1,50 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SSANNE_B1F.h",
+    "objects": [],
+    "warps": [
+        {
+            "x": 19,
+            "z": 3,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 5,
+            "y": 0
+        },
+        {
+            "x": 2,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_B1F_R1",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 6,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_B1F_R2",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 10,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_B1F_R3",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 14,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_B1F_R4",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 18,
+            "z": 2,
+            "header": "MAP_CANVAS_SSANNE_B1F_R5",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": [],
+    "bgs": []
+}

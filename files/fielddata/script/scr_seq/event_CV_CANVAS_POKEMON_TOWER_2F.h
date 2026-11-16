@@ -1,0 +1,24 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_2F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_2F_H_
+
+#define _EV_PokemonTower_2F_EventScript_Channeler 0
+#define _EV_TowerGraves_EventScript_Ghost 1
+#define _EV_PokemonTower_EventScript_Grave00 2
+#define _EV_PokemonTower_EventScript_Grave01 3
+#define _EV_PokemonTower_EventScript_Grave02 4
+#define _EV_PokemonTower_EventScript_Grave03 5
+#define _EV_PokemonTower_EventScript_Grave04 6
+#define _EV_PokemonTower_EventScript_Grave05 7
+#define _EV_PokemonTower_EventScript_Grave06 8
+#define _EV_PokemonTower_EventScript_Grave07 9
+#define _EV_PokemonTower_EventScript_Grave08 10
+#define _EV_PokemonTower_EventScript_Grave09 11
+#define _EV_PokemonTower_EventScript_Grave10 12
+#define _EV_PokemonTower_EventScript_Grave11 13
+#define _EV_PokemonTower_2F_EventScript_RivalTriggerRight 14
+#define _EV_PokemonTower_2F_EventScript_RivalTriggerDown 15
+#define _EV_TowerGraves_EventScript_HideGhosts 16
+
+#define LOCALID_POKEMON_TOWER_RIVAL 1
+
+#endif

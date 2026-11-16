@@ -1,0 +1,23 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_CO_7F_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_CO_7F_H_
+
+#define _EV_SilphCo_7F_EventScript_LaprasGuy 0
+#define _EV_SilphCo_7F_EventScript_WorkerF 1
+#define _EV_SilphCo_7F_EventScript_WorkerM1 2
+#define _EV_SilphCo_7F_EventScript_WorkerM2 3
+#define _EV_SilphCo_7F_EventScript_ItemCalcium 4
+#define _EV_SilphCo_7F_EventScript_ItemTM08 5
+#define _EV_BerryField_EventScript_FindSteel 6
+#define _EV_SilphCo_7F_EventScript_Door1 7
+#define _EV_SilphCo_7F_EventScript_Door2 8
+#define _EV_SilphCo_7F_EventScript_Door3 9
+#define _EV_SilphCo_7F_EventScript_FloorSign 10
+#define _EV_SilphCo_7F_EventScript_RivalTriggerTop 11
+#define _EV_SilphCo_7F_EventScript_RivalTriggerBottom 12
+#define _EV_SilphCo_7F_OnLoad 13
+#define _EV_SilphCo_7F_OnTransition 14
+
+#define LOCALID_SILPH_CO_RIVAL 1
+#define LOCALID_SILPH_CO_7F_WORKER_M2 8
+
+#endif

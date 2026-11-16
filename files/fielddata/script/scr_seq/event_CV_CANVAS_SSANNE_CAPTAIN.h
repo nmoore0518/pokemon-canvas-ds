@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_CANVAS_SSANNE_CAPTAIN_H_
+#define SCR_SEQ_CV_CANVAS_SSANNE_CAPTAIN_H_
+
+#define _EV_SSAnne_CaptainsOffice_EventScript_Captain 0
+#define _EV_SSAnne_CaptainsOffice_EventScript_Book 1
+#define _EV_SSAnne_CaptainsOffice_EventScript_TrashCan 2
+
+#define LOCALID_SS_ANNE_CAPTAIN 1
+
+#endif

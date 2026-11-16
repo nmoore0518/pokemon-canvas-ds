@@ -1,0 +1,51 @@
+{
+  "key": 19887,
+  "messages": [
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_SilphCo_10F_Text_WaaaImScared",
+      "en_US": [
+        "Waaaaa!\n",
+        "I’m scared!"
+      ]
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_SilphCo_10F_Text_FloorSign",
+      "en_US": [
+        "Silph Co. Head Office\n",
+        "10F"
+      ]
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_SilphCo_10F_Text_KeepMeCryingASecret",
+      "en_US": [
+        "About me crying…\n",
+        "Please keep it a secret."
+      ]
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_Text_TheDoorIsOpen",
+      "en_US": "The door is open…"
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_Text_CardKeyOpenedDoor",
+      "en_US": [
+        "Bingo!\n",
+        "The Card Key opened the door!"
+      ]
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_Text_ItNeedsCardKey",
+      "en_US": [
+        "No!\n",
+        "It needs a Card Key!"
+      ]
+    },
+    {
+      "id": "msg_0900_CV_CANVAS_SILPH_CO_10F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_TOWER_7F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_TOWER_7F_H_
+
+#define _EV_PokemonTower_7F_EventScript_MrFuji 0
+#define _EV_PokemonTower_7F_EventScript_Grunt1 1
+#define _EV_PokemonTower_7F_EventScript_Grunt2 2
+#define _EV_PokemonTower_7F_EventScript_Grunt3 3
+#define _EV_PaintWorld_EventScript_Figure 4
+
+#define LOCALID_POKEMON_TOWER_GRUNT1 2
+#define LOCALID_POKEMON_TOWER_GRUNT2 3
+#define LOCALID_POKEMON_TOWER_GRUNT3 4
+
+#endif
