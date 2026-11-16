@@ -4,7 +4,7 @@ an events file of its own whose doors lead back to our town (see slots.CLONES)."
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from slots import SLOTS, CLONES, CLONE_OF, header, set_header, events_file, new_events_file, EVENT_DIR
+from slots import NO_SCRIPTS, SLOTS, CLONES, CLONE_OF, header, set_header, events_file, new_events_file, EVENT_DIR
 
 KEEP_FROM_TEMPLATE = ['wildEncounterBank', 'areaDataBank', 'moveModelBank', 'matrixId', 'scriptsBank', 'scriptHeaderBank',
                       'msgBank', 'dayMusicId', 'nightMusicId', 'areaIcon', 'momCallIntroParam', 'regionNo', 'weather',
@@ -23,7 +23,9 @@ def main():
             pass
     for gba, tmpl, keep, slot in CLONES:
         t = header(tmpl)
-        ev = json.load(open(os.path.join(EVENT_DIR, events_file(tmpl))))
+        # (HeartGold's own events for the room: the porter may since have put the GBA game's people in it)
+        snap = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'hg_events', events_file(tmpl))
+        ev = json.load(open(snap if os.path.exists(snap) else os.path.join(EVENT_DIR, events_file(tmpl))))
         # the GBA room we're standing in for: who leads into it, and through which of their warps
         parents = {}
         for pid, pd in gba_name.items():
@@ -42,8 +44,13 @@ def main():
                 warps.append(dict(w, x=0, z=0, header=slot, anchor=0))
         ev['warps'] = warps
         ev['objects'] = [o for o in ev.get('objects', []) if keep is None or o['id'].split('_', 2)[2] in keep]
+        ported = os.path.exists(snap)       # (the template room now runs the GBA game's scripts: so does our copy)
+        if ported:
+            ev['objects'], ev['bgs'], ev['coords'] = [], [], []
         name = new_events_file(slot.replace('MAP_', ''), ev)
         fields = {k: t[k] for k in KEEP_FROM_TEMPLATE if k in t}
+        if ported:
+            fields.update(NO_SCRIPTS)
         fields.update(eventsBank=name, mapsec=town['mapsec'], worldMapX='32', worldMapY='11')
         set_header(slot, fields)
         print(gba, '->', slot, 'copy of', tmpl, len(ev['objects']), 'people')

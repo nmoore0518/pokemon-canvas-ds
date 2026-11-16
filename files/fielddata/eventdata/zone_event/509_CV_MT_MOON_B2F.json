@@ -13,7 +13,7 @@
     "objects": [
         {
             "id": "LOCALID_DOME_FOSSIL",
-            "spriteId": "SPRITE_BREAKROCK",
+            "spriteId": "7000",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x20C5",
@@ -30,7 +30,7 @@
         },
         {
             "id": "LOCALID_HELIX_FOSSIL",
-            "spriteId": "SPRITE_BREAKROCK",
+            "spriteId": "7000",
             "movement": 15,
             "type": 0,
             "eventFlag": "0x20C6",

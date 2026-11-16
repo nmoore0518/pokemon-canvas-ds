@@ -35,6 +35,10 @@ TEXSET = 70                     # HeartGold's Mt. Moon textures (area 70)
 LADDER_UP, LADDER_DOWN = 69, 70
 FLOOR = 0x0A08                  # walkable cave floor (behaviour 0x08), as HeartGold's Mt. Moon
 TIER = 16                       # a tier of rock: a block high
+# HeartGold's wall profile (read off its Mt. Moon): per tier, (how far back in blocks, height, texture row)
+PROFILE = [[(0, 0, 15.75), (0.21, 1.6, 13), (0.67, 16, 4), (1.0, 16, 0.25)],
+           [(1.0, 16, 15.75), (1.21, 17.6, 13), (1.67, 32, 4), (2.0, 32, 0.25)]]
+WALL_TEX = {(0, -1): 'dwall_n', (0, 1): 'dwall_s', (1, 0): 'dwall_e', (-1, 0): 'dwall_w'}   # by where the rock is
 
 CAVES = [   # GBA map, our map, how deep (ladders go up or down by it), the GBA's ways out -> (HeartGold map, warp)
     dict(gba='MtMoon_1F_Frlg', map='MAP_CANVAS_MT_MOON_1F', depth=0, exits={'MAP_ROUTE4': ('MAP_ROUTE_3', 0)}),
@@ -87,6 +91,45 @@ def build_floor(spec, depth_of):
         else:
             b = lambda dx, dy: not (0 <= x + dx < W and 0 <= y + dy < H) or blocked[y + dy][x + dx]
             mouths[(x, y)] = 0x6E if b(0, -1) else 0x6F if b(0, 1) else 0x6C if b(1, 0) else 0x6D
+    # every edge between a floor square and rock: (floor square, direction into the rock, how far it may lean)
+    rock = lambda x, y: not (0 <= x < W and 0 <= y < H) or blocked[y][x]
+    faces, corner_dir, vert_s = [], {}, {}
+    for y in range(H):
+        for x in range(W):
+            if blocked[y][x]: continue
+            for n in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+                if not rock(x + n[0], y + n[1]): continue
+                k = 0                     # how thick the rock is there (it may lean at most halfway through)
+                while k < 4 and rock(x + n[0] * (k + 1), y + n[1] * (k + 1)) and (0 <= x + n[0] * (k + 1) < W and 0 <= y + n[1] * (k + 1) < H):
+                    k += 1
+                thick = k if k < 4 and not rock(x + n[0] * (k + 1), y + n[1] * (k + 1)) else 99
+                sc = min(1.0, thick / 2 / 2.0)
+                faces.append(((x, y), n, sc))
+                t = (1, 0) if n[0] == 0 else (0, 1)
+                ex = x + (1 if n[0] > 0 else 0); ey = y + (1 if n[1] > 0 else 0)
+                for j, sgn in ((0, -1), (1, 1)):          # each end: which way the rock goes on from there
+                    side = (x + sgn * t[0], y + sgn * t[1]); diag = (side[0] + n[0], side[1] + n[1])
+                    if rock(*side): n2 = (sgn * t[0], sgn * t[1])            # (an inside corner)
+                    elif rock(*diag): n2 = None                              # (straight on)
+                    else: n2 = (-sgn * t[0], -sgn * t[1])                    # (an outside corner)
+                    corner_dir[((x, y), n, j)] = n if n2 is None else (n[0] + n2[0], n[1] + n2[1])
+                    e = (ex + t[0] * j, ey + t[1] * j)
+                    vert_s[e] = min(vert_s.get(e, 1.0), sc)
+    # faces in a straight line join into one strip (fewer polygons: a land's model must stay small)
+    fdict = {(f, n): sc for f, n, sc in faces}
+    runs = []
+    for (f, n), sc in sorted(fdict.items(), key=lambda kv: (kv[0][1], kv[0][0][1], kv[0][0][0]) if kv[0][1][0] == 0 else (kv[0][1], kv[0][0][0], kv[0][0][1])):
+        t = (1, 0) if n[0] == 0 else (0, 1)
+        prev = ((f[0] - t[0], f[1] - t[1]), n)
+        e0 = (f[0] + (1 if n[0] > 0 else 0), f[1] + (1 if n[1] > 0 else 0))
+        joint_ok = runs and runs[-1]['key'] == prev and corner_dir[(f, n, 0)] == n and runs[-1]['dir1'] == n \
+            and (f[0] % 32 if n[0] == 0 else f[1] % 32) != 0 and runs[-1]['sc'] == sc and vert_s[e0] >= sc
+        if joint_ok:
+            r = runs[-1]
+        else:
+            r = dict(n=n, f=f, sc=sc, end0=e0, dir0=corner_dir[(f, n, 0)], s0=min(sc, vert_s[e0])); runs.append(r)
+        e1 = (e0[0] + t[0], e0[1] + t[1])
+        r.update(key=(f, n), end1=e1, dir1=corner_dir[(f, n, 1)], s1=min(sc, vert_s[e1]))
     lands = []
     for lz in range(nz):
         for lx in range(nx):
@@ -106,18 +149,6 @@ def build_floor(spec, depth_of):
                     if inside and not blocked[y][x]:
                         perm[i] = FLOOR
                     # (the top of the square: drawn in runs along the row, below)
-                    # faces down to lower neighbours, a tier at a time (named for where the wall stands)
-                    for (dx, dy), name, n in (((0, 1), 'dwall_n', (0, 0, 1)), ((0, -1), 'dwall_s', (0, 0, -1)),
-                                              ((1, 0), 'dwall_w', (1, 0, 0)), ((-1, 0), 'dwall_e', (-1, 0, 0))):
-                        hn = h_of(x + dx, y + dy)
-                        for top in range(h, hn, -TIER):
-                            bot = top - TIER
-                            if dy == 1: a, b = (x0, z1), (x1, z1); u0 = x * 16
-                            elif dy == -1: a, b = (x1, z0), (x0, z0); u0 = x * 16
-                            elif dx == 1: a, b = (x1, z1), (x1, z0); u0 = y * 16
-                            else: a, b = (x0, z0), (x0, z1); u0 = y * 16
-                            M(name).quad([((a[0], bot, a[1]), (u0, 15.75)), ((b[0], bot, b[1]), (u0 + 16, 15.75)),
-                                          ((b[0], top, b[1]), (u0 + 16, 0.25)), ((a[0], top, a[1]), (u0, 0.25))], n)
                     if (x, y) in ladders:
                         m = ladders[(x, y)]
                         perm[i] = 0x0A3C if m == LADDER_UP else 0x0A3E
@@ -129,6 +160,28 @@ def build_floor(spec, depth_of):
                         if b == 0x6E:     # the mouth: a dark opening in the wall above
                             M('d_ro').quad([((x0 + 2, 0, z0 - 0.5), (0, 8)), ((x1 - 2, 0, z0 - 0.5), (8, 8)),
                                             ((x1 - 2, 28, z0 - 0.5), (8, 0)), ((x0 + 2, 28, z0 - 0.5), (0, 0))], (0, 0, 1))
+            # rock faces: HeartGold's profile (each tier rises a block while leaning back two thirds of a block,
+            # then a lip back to a whole block), joined at corners along the diagonal
+            for r in runs:
+                (fx, fy), (nx_, ny_) = r['f'], r['n']
+                if not (ox <= fx < ox + 32 and oz <= fy < oz + 32): continue
+                name = WALL_TEX[(nx_, ny_)]
+                nrm = (-nx_ * 0.6, 0.8, -ny_ * 0.6)
+                t = (1, 0) if nx_ == 0 else (0, 1)
+                e0, e1, n = r['end0'], r['end1'], (nx_, ny_)
+                # (an end that leans less than the run - beside thinner rock - changes over its last block only)
+                pts = [(e0, r['dir0'], r['s0'])]
+                if r['s0'] != r['sc'] and e0 != (e1[0] - t[0], e1[1] - t[1]): pts.append(((e0[0] + t[0], e0[1] + t[1]), n, r['sc']))
+                if r['s1'] != r['sc'] and (e1[0] - t[0], e1[1] - t[1]) != pts[-1][0]: pts.append(((e1[0] - t[0], e1[1] - t[1]), n, r['sc']))
+                pts.append((e1, r['dir1'], r['s1']))
+                for (ea, da, sa), (eb, db, sb) in zip(pts, pts[1:]):
+                    ends, dirs, ss = [ea, eb], [da, db], [sa, sb]
+                    u = [(e[0] if nx_ == 0 else e[1]) * 16 for e in ends]
+                    for strip in PROFILE:
+                        for (d0, h0, v0), (d1, h1, v1) in zip(strip, strip[1:]):
+                            P = lambda k, d, h: (U(ends[k][0] + dirs[k][0] * d * ss[k], ox), h, U(ends[k][1] + dirs[k][1] * d * ss[k], oz))
+                            M(name).quad([(P(0, d0, h0), (u[0], v0)), (P(1, d0, h0), (u[1], v0)),
+                                          (P(1, d1, h1), (u[1], v1)), (P(0, d1, h1), (u[0], v1))], nrm)
             # tops in runs: floor (droad01), tier tops in the light (dcliff01); the dark beyond is left undrawn
             # (a cave's background is black)
             def top_of(x, y):

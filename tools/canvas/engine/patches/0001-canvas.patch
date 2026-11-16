@@ -65,6 +65,81 @@ index 645bdc10..f44e9b40 100644
 +# Pokemon Canvas: map headers past HeartGold's 540 (made by the canvas tools: tools/canvas/build_map_headers.py)
 +CANVAS_MAP_HEADERS_TARGET := $(BUILD)/a028/9_21
 +CANVAS_MAP_HEADERS_BIN := data/canvas_map_headers.bin
+diff --git a/data/graphics/overworlds/custom/0000-cv_fossil.pal b/data/graphics/overworlds/custom/0000-cv_fossil.pal
+new file mode 100644
+index 00000000..1646e805
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0000-cv_fossil.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++115 197 164
++255 213 180
++246 189 148
++222 148 115
++123 65 65
++205 172 98
++123 115 65
++57 57 24
++230 106 74
++148 57 41
++82 16 0
++197 197 213
++139 139 148
++74 74 90
++255 255 255
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0000.json b/data/graphics/overworlds/custom/0000.json
+new file mode 100644
+index 00000000..872c3788
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0000.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_fossil": {
++			"frame": 0,
++			"coordTrans": 16,
++			"color0": 1,
++			"format": 3,
++			"height": 16,
++			"width": 16,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 70,
++			"unkBlockUnk1": 1,
++			"unk0": 128,
++			"unk1": 0,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_fossil": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_fossil.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0000.png b/data/graphics/overworlds/custom/0000.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7ffe5c4e7da79b704f759c6cfd676b1012026ae0
+GIT binary patch
+literal 252
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!73?$#)eFPFP2=EDUEk3&B|J5zu_D;DsrMTMB
+z@$8zU>S9MrONnP$UQ;YJg9I3k9=+P#J;lo_>i_@$KuxZ*ro94Ej3q&S!3+-1ZlnP@
+zRh}-6Ar*6c4;u0@I!d%XEZ;YyC+DEOQ0r!mZya|H2u|pTTYg3BJIjuVeoaUAi%K8O
+zu;rhyjluSYk8`=hlFBvt+AMxDdj!3eA8^cyF)Ug7`pvx_rbRKwHcB*I(ql;MzkJz#
+x*|}5Sdlbv|oX9?+l3eY)<@g<bhJZQt_FmT%`c_+Ac?om{gQu&X%Q~loCIA&3WfK4Z
+
+literal 0
+HcmV?d00001
+
 diff --git a/data/graphics/trainer_gfx/138.png b/data/graphics/trainer_gfx/138.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..26375766d48eebc8b074cd9a3a8a678ad0d99b2a
@@ -1818,6 +1893,29 @@ index cf38c7e5..42a77c8c 100644
      if (TT_TrainerTypeSexGet(bp->trainer_data[num].tr_type) == 1) // if trainer is female
      {
          rnd_tmp = 120;
+diff --git a/src/field/overworld_table.c b/src/field/overworld_table.c
+index e0101f32..d29a7632 100644
+--- a/src/field/overworld_table.c
++++ b/src/field/overworld_table.c
+@@ -23,7 +23,7 @@
+     { .tag = NEW_NPC_TAG_START + num, .gfx = NEW_NPC_GFX_START + num, .callback_params = 0 },
+ 
+ // adjust this depending on the amount of new npc's that you have added
+-#define MON_OVERWORLD_GFX_START (297)
++#define MON_OVERWORLD_GFX_START (298)   // Pokemon Canvas: one NPC overworld of our own (the fossil)
+ 
+ #define MON_FOLLOWER_ENTRY(species, cbparams) \
+     { .tag = MON_OVERWORLD_TAG_START + species, .gfx = MON_OVERWORLD_GFX_START + species, .callback_params = cbparams },
+@@ -370,6 +370,9 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+         { .tag = 1048, .gfx = MON_OVERWORLD_GFX_START + SPECIES_TYPHLOSION, .callback_params = OVERWORLD_SIZE_SMALL },
+         { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
+ 
++        // Pokemon Canvas: our own overworlds (data/graphics/overworlds/custom)
++        { .tag = NEW_NPC_TAG_START + 0, .gfx = NEW_NPC_GFX_START + 0, .callback_params = 0x0820 },   // the GBA game's fossil (as the breakable rock)
++
+         // pokémon follower specific overworlds start here... left off on gfx 1451 - galarian stunfisk which was inserted after all the others
+ 
+         MON_FOLLOWER_ENTRY(SPECIES_BULBASAUR, OVERWORLD_SIZE_SMALL)
 diff --git a/src/music_tables.c b/src/music_tables.c
 index ac6cc962..78370f3b 100644
 --- a/src/music_tables.c

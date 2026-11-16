@@ -178,7 +178,36 @@ def mentor_line(port, ret, which):
 SCRATCH4 = '0x401F'
 
 
+def _pallet_mart():
+    """src/stat_items.c: the Pallet Mart's stock, and the stat items each badge adds -> (base, [(flag, item)])"""
+    src = open(G.P('src/stat_items.c')).read()
+    base = re.findall(r'ITEM_\w+', src[src.index('sPalletMartBaseItems[] ='):].split('};')[0])
+    unlocks = re.findall(r'\{(ITEM_\w+),\s*(FLAG_\w+)\}', src[src.index('sStatItemUnlocks[] ='):].split('};')[0])
+    return base, unlocks
+
+
+def pallet_mart(port, ret):
+    """the Pallet Mart: its usual stock, plus the stat items unlocked so far (each badge in turn unlocks more)"""
+    base, unlocks = _pallet_mart()
+    flags = []
+    for item, flag in unlocks:
+        if flag not in flags: flags.append(flag)
+    done, out = port.new('mart'), []
+    stages = [port.new('mart') for _ in flags]
+    for f, l in reversed(list(zip(flags, stages))):
+        out.append('GoToIfSet %s, %s' % (port.flag(f), l))
+    def mart(items):
+        v = [port.val(i) for i in items]
+        v = [x for x in v if x != '0']
+        return ['CanvasMart %d' % len(v)] + ['.short %s' % x for x in v] + ['GoTo %s' % done]
+    out += mart(base)
+    for k, (f, l) in enumerate(zip(flags, stages)):
+        out += [l + ':'] + mart(base + [i for i, fl in unlocks if fl in flags[:k + 1]])
+    return out + [done + ':']
+
+
 SPECIALS = {
+    'GymHack_PalletMart': pallet_mart,
     'DisableMsgBoxWalkaway': lambda p, r: [],
     # (the fossils' pictures: HeartGold has no picture window for them; their text still shows)
     'OpenMuseumFossilPic': lambda p, r: [], 'CloseMuseumFossilPic': lambda p, r: [],

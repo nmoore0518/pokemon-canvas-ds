@@ -545,6 +545,7 @@ scr_seq_event_headers = files(
     'event_CV_CANVAS_MT_MOON_1F.h',
     'event_CV_CANVAS_MT_MOON_B1F.h',
     'event_CV_CANVAS_MT_MOON_B2F.h',
+    'event_CV_FIGHT_AREA_UNUSED_3.h',
 )
 
 scr_seq_asm = files(
@@ -1533,4 +1534,6 @@ scr_seq_asm = files(
     'scr_seq_0982_CV_CANVAS_MT_MOON_B1F_hdr.s',
     'scr_seq_0983_CV_CANVAS_MT_MOON_B2F.s',
     'scr_seq_0984_CV_CANVAS_MT_MOON_B2F_hdr.s',
+    'scr_seq_0985_CV_FIGHT_AREA_UNUSED_3.s',
+    'scr_seq_0986_CV_FIGHT_AREA_UNUSED_3_hdr.s',
 )

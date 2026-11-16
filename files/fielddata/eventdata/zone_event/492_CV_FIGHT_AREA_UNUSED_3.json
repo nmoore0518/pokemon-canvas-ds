@@ -1,38 +1,55 @@
 {
-    "header": "fielddata/script/scr_seq/event_T02FS0101.h",
+    "header": "fielddata/script/scr_seq/event_CV_FIGHT_AREA_UNUSED_3.h",
     "objects": [
         {
-            "id": "obj_T02FS0101_shopm1_2",
-            "spriteId": "SPRITE_SHOPM1_2",
-            "movement": 17,
+            "id": "1",
+            "spriteId": "SPRITE_GSBOY2",
+            "movement": 2,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T02FS0101_000 + 1",
-            "facingDirection": 3,
+            "scriptId": "_EV_PalletTown_Mart_EventScript_Youngster + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 2,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 9,
+            "z": 3,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSBOY1",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PalletTown_Mart_EventScript_Boy + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 5,
             "z": 6,
             "y": 0
         },
         {
-            "id": "obj_T02FS0101_shopm1_2_2",
+            "id": "3",
             "spriteId": "SPRITE_SHOPM1_2",
             "movement": 17,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T02FS0101_001 + 1",
+            "scriptId": "_EV_PalletTown_Mart_EventScript_Clerk + 1",
             "facingDirection": 3,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
+            "xRange": 1,
+            "yRange": 1,
             "x": 2,
-            "z": 4,
+            "z": 6,
             "y": 0
         }
     ],
@@ -44,5 +61,7 @@
             "anchor": 6,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

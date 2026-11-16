@@ -1,0 +1,15 @@
+{
+ "header": "fielddata/script/scr_seq/event_T02FS0101.h",
+ "objects": [],
+ "warps": [
+  {
+   "x": 4,
+   "z": 11,
+   "header": "MAP_PALLET",
+   "anchor": 6,
+   "y": 0
+  }
+ ],
+ "bgs": [],
+ "coords": []
+}

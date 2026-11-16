@@ -256,6 +256,18 @@ def wall_x(tex, x, z, y0, y1, vscale=16, normal=(1, 0, 0)):
          [(u1, (y1 - y0) * vscale), (u0, (y1 - y0) * vscale), (u0, 0), (u1, 0)], normal, owner)
 
 
+def rim(x, y):
+    """a plateau's edge square, one tier above the ground beside it and not walkable: HeartGold slopes its cliff
+    face back across such a square (the face rises two thirds of a block back, then a lip to the whole block)"""
+    if not (0 <= x < RW and 0 <= y < RH) or coll[y][x] != '1' or ramp[y][x] or topH[y][x] <= 0: return False
+    return any(lower_by_tier(x, y, x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+
+
+def lower_by_tier(x, y, x2, y2):
+    s2 = solid(x2, y2)
+    return s2 is not None and not ramp[y2][x2] and abs(topH[y][x] - s2 - 1.0) < 0.01
+
+
 def ground_tex(x, y):
     k = kind(x, y)
     if rocky[y][x]: return 'cliff01gs'
@@ -276,6 +288,7 @@ for y in range(RH):
                  [(0, v), (32, v), (32, 0), (0, 0)], (0, 0.7, 0.7), owner)
             continue
         if is_water(x, y): top_quad('sea_un', x, y, topH[y][x] - WATER_DROP, topH[y][x] - WATER_DROP); continue
+        if rim(x, y): continue                     # (its slope is the face: see below)
         top_quad(ground_tex(x, y), x, y, topH[y][x], topH[y][x])
 
 
@@ -306,15 +319,54 @@ def face(hi, lo):
     return ('wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'), 16
 
 
+# HeartGold's cliff profile (read off its own maps: the same in caves and outside): (back in blocks, height up, row)
+CLIFF = [(0, 0, 15.75), (0.21, 0.1, 13), (0.67, 1.0, 4), (1.0, 1.0, 0.25)]
+SLANTED = set()
+
+
+def slanted_face(lo, n):
+    """the face from ground square lo up into the rim square lo+n, leaning back across it; corners mitred"""
+    (x, y) = lo
+    hi = (x + n[0], y + n[1])
+    t = (1, 0) if n[0] == 0 else (0, 1)
+    top = topH[hi[1]][hi[0]]
+    # (the plateau goes on there: its own ground, or stairs that climb to it - the face runs straight up to them)
+    same = lambda xx, yy: 0 <= xx < RW and 0 <= yy < RH and (max(ramp[yy][xx][:2]) >= top - 0.01 if ramp[yy][xx] else topH[yy][xx] >= top - 0.01)
+    ex, ey = x + (1 if n[0] > 0 else 0), y + (1 if n[1] > 0 else 0)
+    ends, dirs = [], []
+    for j, sgn in ((0, -1), (1, 1)):
+        side, diag = (x + sgn * t[0], y + sgn * t[1]), (x + sgn * t[0] + n[0], y + sgn * t[1] + n[1])
+        if same(*side): d = (n[0] + sgn * t[0], n[1] + sgn * t[1])          # (an inside corner)
+        elif same(*diag): d = n                                              # (straight on)
+        else: d = (n[0] - sgn * t[0], n[1] - sgn * t[1])                     # (an outside corner)
+        ends.append((ex + t[0] * j, ey + t[1] * j)); dirs.append(d)
+    tex = 'wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'
+    base = solid(x, y)
+    u = [(e[0] if n[0] == 0 else e[1]) * 16 for e in ends]
+    nrm = (-n[0] * 0.6, 0.8, -n[1] * 0.6)
+    for (d0, h0, v0), (d1, h1, v1) in zip(CLIFF, CLIFF[1:]):
+        P = lambda k, d, h: (ends[k][0] + dirs[k][0] * d, Y(base + h), ends[k][1] + dirs[k][1] * d)
+        quad(tex, [P(0, d0, h0), P(1, d0, h0), P(1, d1, h1), P(0, d1, h1)], [(u[0], v0), (u[1], v0), (u[1], v1), (u[0], v1)],
+             nrm, lands[(hi[0] // 32, hi[1] // 32)])
+
+
+for y in range(RH):
+    for x in range(RW):
+        for n in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+            if rim(x + n[0], y + n[1]) and lower_by_tier(x + n[0], y + n[1], x, y) and coll[y][x] is not None:
+                slanted_face((x, y), n)
+                SLANTED.add(((x, y), (x + n[0], y + n[1])))
+
 for y in range(RH):
     for x in range(RW):
         a, right, down = solid(x, y), solid(x + 1, y), solid(x, y + 1)
-        if right is not None and abs(a - right) > 0.01:
+        slanted = lambda p, q: (p, q) in SLANTED or (q, p) in SLANTED
+        if right is not None and abs(a - right) > 0.01 and not slanted((x, y), (x + 1, y)):
             hi, lo = ((x, y), (x + 1, y)) if a > right else ((x + 1, y), (x, y))
             t, vs = face(hi, lo)
             wall_x(t, x + 1, y, min(a, right), max(a, right), vs, (1 if a > right else -1, 0, 0))
         falls = lambda xx, yy: 0 <= yy < RH and ramp[yy][xx] and ramp[yy][xx][2] == 'water'
-        if down is not None and abs(a - down) > 0.01 and not (falls(x, y) and falls(x, y + 1)):
+        if down is not None and abs(a - down) > 0.01 and not (falls(x, y) and falls(x, y + 1)) and not slanted((x, y), (x, y + 1)):
             hi, lo = ((x, y), (x, y + 1)) if a > down else ((x, y + 1), (x, y))
             t, vs = face(hi, lo)
             wall_z(t, x, y + 1, min(a, down), max(a, down), vs, (0, 0, 1 if a > down else -1))

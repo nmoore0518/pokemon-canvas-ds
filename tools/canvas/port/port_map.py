@@ -157,6 +157,7 @@ ROUTE3_CENTER = Anchored('MAP_ROUTE_3_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2
 # part east of Mt. Moon, from its exit to Cerulean)
 ROUTE4 = Anchored('MAP_ROUTE_4', [((32, 6), (1195, 113)), ((107, 3), (1269, 107)), ((107, 17), (1269, 119)), ((60, 10), (1230, 113))])
 PEWTER_GYM = Anchored('MAP_PEWTER_GYM', [((6, 14), (7, 27)), ((6, 5), (7, 4))])
+PALLET_MART = Anchored('MAP_FIGHT_AREA_UNUSED_3', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
 PEWTER_MART = Anchored('MAP_PEWTER_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
 # (HeartGold's Center is deeper: the GBA's floor beside the counter is its floor in front of it)
 PEWTER_CENTER = Anchored('MAP_PEWTER_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2), (8, 11)), ((1, 2), (2, 13)), ((13, 2), (14, 13)),
@@ -190,6 +191,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'ViridianForest_Frlg': ('MAP_VIRIDIAN_FOREST', VIRIDIAN_FOREST),
     'Route22_Frlg': ('MAP_ROUTE_22', ROUTE22),
     'ViridianCity_Mart_Frlg': ('MAP_VIRIDIAN_POKEMART', VIRIDIAN_MART),
+    'PalletTown_Mart_Frlg': ('MAP_FIGHT_AREA_UNUSED_3', PALLET_MART),     # (our copy of HeartGold's Viridian Mart)
     'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', same),
     'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
     'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
@@ -411,7 +413,8 @@ SE = {'SE_SELECT': 'SEQ_SE_DP_SELECT', 'SE_PIN': 'SEQ_SE_DP_SELECT', 'SE_DOOR': 
 FANFARE = {'MUS_OBTAIN_ITEM': 'SEQ_ME_ITEM', 'MUS_OBTAIN_KEY_ITEM': 'SEQ_ME_KEYITEM', 'MUS_LEVEL_UP': 'SEQ_ME_LVUP',
            'MUS_OBTAIN_BADGE': 'SEQ_ME_BADGE', 'MUS_HEAL': 'SEQ_ME_ASA', 'MUS_OBTAIN_TMHM': 'SEQ_ME_WAZA'}
 
-SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold sprite (without SPRITE_)
+SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold sprite (without SPRITE_); '#n': an
+    # overworld of our own by its tag (engine: data/graphics/overworlds/custom, src/field/overworld_table.c from 7000)
     'WOMAN_1': 'GSWOMAN1', 'WOMAN_2': 'GSWOMAN2', 'WOMAN_3': 'GSWOMAN3', 'WOMAN_4': 'GSWOMAN2', 'WOMAN_5': 'GSWOMAN3',
     'MAN_1': 'GSMAN1', 'MAN_2': 'GSMAN2', 'MAN_3': 'GSMAN3', 'MAN_4': 'GSMIDDLEMAN1', 'MAN_5': 'GSMAN2', 'MAN': 'GSMAN1',
     'FAT_MAN': 'GSBIGMAN', 'OLD_MAN': 'GSOLDMAN1', 'OLD_MAN_1': 'GSOLDMAN1', 'OLD_WOMAN': 'GSOLDWOMAN1',
@@ -429,7 +432,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': 'BREAKROCK', 'CLIPBOARD': 'SCROLL',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL',
 }
 # Pokemon in the overworld: hg-engine's walking sprite of that species
 for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):
@@ -1202,7 +1205,8 @@ def port(gba_map, g, ids, report):
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
-        objs.append({'id': o.get('local_id') or str(lid), 'spriteId': (str(101 + int(m.group(1), 16)) if m else 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')),
+        spr = SPRITE.get(gfx, 'GSMAN1')
+        objs.append({'id': o.get('local_id') or str(lid), 'spriteId': (str(101 + int(m.group(1), 16)) if m else spr[1:] if spr.startswith('#') else 'SPRITE_' + spr),
                      'movement': spot[3] if spot else mv, 'type': 1 if trainer_of(o) else 0, 'eventFlag': p.flag(o['flag']) if o['flag'] not in ('0', '0x0') else 'FLAG_NOTHING',
                      'scriptId': ('std_trainer(%d)' % trainer_of(o)) if trainer_of(o) else STD_OBJECT_SCRIPTS.get(o['script']) or (('_EV_%s + 1' % o['script']) if o['script'] not in ('0x0', '0') else '0'),
                      'facingDirection': spot[2] if spot else FACING.get(mv, 1), 'param0': (spot[4] if spot else int(o.get('trainer_sight_or_berry_tree_id', 0) or 0)) if trainer_of(o) else 0,
