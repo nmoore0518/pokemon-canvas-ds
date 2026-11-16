@@ -2,20 +2,41 @@
   "key": 53200,
   "messages": [
     {
-      "id": "msg_0468_T04FS0101_00000",
+      "id": "msg_0468_T04FS0101_gText_HowMayIServeYou",
       "en_US": [
-        "You’ll run into many Trainers on\n",
-        "the way to Cerulean Cape.\r",
-        "They want to see how they stack\n",
-        "up against other Trainers."
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0468_T04FS0101_00001",
+      "id": "msg_0468_T04FS0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0468_T04FS0101_CeruleanCity_Mart_Text_DoYouKnowAboutRareCandy",
       "en_US": [
-        "Misty is about the only person in town\n",
-        "who can beat the Trainers at\f",
-        "Cerulean Cape."
+        "Do you know about Rare Candy?\n",
+        "They don’t sell it in shops.\r",
+        "I think it makes Pokémon grow\n",
+        "very quickly all of a sudden."
+      ]
+    },
+    {
+      "id": "msg_0468_T04FS0101_CeruleanCity_Mart_Text_RepelWorksOnWeakMons",
+      "en_US": [
+        "Repel not only keeps bugs away,\n",
+        "it also works on weak Pokémon.\r",
+        "Put your strongest Pokémon at the\n",
+        "left of the Pokémon List.\r",
+        "If your first Pokémon is strong,\n",
+        "Repel’s effect is boosted."
+      ]
+    },
+    {
+      "id": "msg_0468_T04FS0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -156,6 +156,27 @@ ROUTE3_CENTER = Anchored('MAP_ROUTE_3_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2
 # (the GBA's Route 4 starts west of Mt. Moon, by its Pokemon Center: HeartGold's Route 3 has those; this is the
 # part east of Mt. Moon, from its exit to Cerulean)
 ROUTE4 = Anchored('MAP_ROUTE_4', [((32, 6), (1195, 113)), ((107, 3), (1269, 107)), ((107, 17), (1269, 119)), ((60, 10), (1230, 113))])
+# Cerulean: HeartGold's town has seven buildings to the GBA's ten (the GBA's House4/5 aren't built yet). The rival
+# waits where the road north narrows to the bridge (six squares wide: the side lanes take the nearer trigger).
+CERULEAN = Anchored('MAP_CERULEAN', [((22, 19), (1309, 131)), ((31, 21), (1318, 134)), ((29, 28), (1308, 144)), ((13, 28), (1298, 144)),
+                                     ((15, 17), (1304, 131)), ((10, 11), (1305, 116)), ((30, 11), (1319, 123)), ((1, 12), (1290, 107)),
+                                     ((23, 0), (1324, 97)), ((0, 19), (1280, 120)), ((47, 18), (1339, 107)), ((24, 39), (1303, 151))],
+                    fixed={(22, 6): (1323, 102), (23, 6): (1324, 102), (24, 6): (1325, 102),
+                           (22, 0): (1323, 97), (23, 0): (1324, 97), (24, 0): (1325, 97)},
+                    extra=[((22, 6), (1322, 102)), ((24, 6), (1326, 102)), ((24, 6), (1327, 102))])
+CERULEAN_GYM = Anchored('MAP_CERULEAN_GYM', [((8, 18), (10, 25)), ((8, 6), (10, 1))])
+CERULEAN_MART = Anchored('MAP_CERULEAN_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
+CERULEAN_CENTER = Anchored('MAP_CERULEAN_POKECENTER_1F', [((7, 8), (8, 19)), ((7, 2), (8, 11)), ((1, 2), (2, 13)), ((13, 2), (14, 13)),
+                                                         ((1, 7), (2, 18)), ((13, 7), (14, 18))], fixed={(7, 2): (8, 11)})
+CERULEAN_HOUSE1 = Anchored('MAP_CERULEAN_NORTH_HOUSE', [((3, 9), (4, 8))])
+CERULEAN_HOUSE2 = Anchored('MAP_CERULEAN_EAST_HOUSE', [((3, 7), (4, 8))])
+CERULEAN_HOUSE3 = Anchored('MAP_CERULEAN_WEST_HOUSE', [((4, 7), (4, 8))])
+CERULEAN_BIKE_SHOP = Anchored('MAP_CERULEAN_BIKE_MANIAC_HOUSE', [((5, 9), (6, 11))])
+# Nugget Bridge: HeartGold's is four squares wide to the GBA's three
+ROUTE24 = Anchored('MAP_ROUTE_24', [((11, 39), (1334, 95)), ((11, 11), (1334, 54)), ((5, 7), (1320, 46)), ((23, 8), (1330, 47))],
+                   fixed={(10, 15): (1334, 58), (11, 15): (1335, 58)}, extra=[((10, 15), (1333, 58)), ((11, 15), (1336, 58))])
+ROUTE25 = Anchored('MAP_ROUTE_25', [((0, 7), (1330, 47)), ((51, 4), (1407, 38)), ((24, 8), (1362, 46)), ((41, 8), (1385, 46))])
+SEA_COTTAGE = Anchored('MAP_ROUTE_25_SEA_COTTAGE', [((7, 9), (7, 11)), ((7, 5), (7, 7))])
 PEWTER_GYM = Anchored('MAP_PEWTER_GYM', [((6, 14), (7, 27)), ((6, 5), (7, 4))])
 PALLET_MART = Anchored('MAP_FIGHT_AREA_UNUSED_3', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
 PEWTER_MART = Anchored('MAP_PEWTER_POKEMART', [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
@@ -196,6 +217,17 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
     'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
     'Route3_Frlg': ('MAP_ROUTE_3', ROUTE3),
+    'CeruleanCity_Frlg': ('MAP_CERULEAN', CERULEAN),
+    'CeruleanCity_Gym_Frlg': ('MAP_CERULEAN_GYM', CERULEAN_GYM),
+    'CeruleanCity_Mart_Frlg': ('MAP_CERULEAN_POKEMART', CERULEAN_MART),
+    'CeruleanCity_PokemonCenter_1F_Frlg': ('MAP_CERULEAN_POKECENTER_1F', CERULEAN_CENTER),
+    'CeruleanCity_House1_Frlg': ('MAP_CERULEAN_NORTH_HOUSE', CERULEAN_HOUSE1),
+    'CeruleanCity_House2_Frlg': ('MAP_CERULEAN_EAST_HOUSE', CERULEAN_HOUSE2),
+    'CeruleanCity_House3_Frlg': ('MAP_CERULEAN_WEST_HOUSE', CERULEAN_HOUSE3),
+    'CeruleanCity_BikeShop_Frlg': ('MAP_CERULEAN_BIKE_MANIAC_HOUSE', CERULEAN_BIKE_SHOP),
+    'Route24_Frlg': ('MAP_ROUTE_24', ROUTE24),
+    'Route25_Frlg': ('MAP_ROUTE_25', ROUTE25),
+    'Route25_SeaCottage_Frlg': ('MAP_ROUTE_25_SEA_COTTAGE', SEA_COTTAGE),
     'MtMoon_1F_Frlg': ('MAP_CANVAS_MT_MOON_1F', same),
     'MtMoon_B1F_Frlg': ('MAP_CANVAS_MT_MOON_B1F', same),
     'MtMoon_B2F_Frlg': ('MAP_CANVAS_MT_MOON_B2F', same),
@@ -432,11 +464,16 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL', 'BILL': 'MASAKI', 'SWIMMER_M_WATER': 'GSSWIMMERM', 'SWIMMER_F_WATER': 'GSSWIMMERW',
 }
-# Pokemon in the overworld: hg-engine's walking sprite of that species
-for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):
-    SPRITE.setdefault(_n, 'FOLLOWER_MON_' + _n)
+# Pokemon in the overworld: HeartGold's standing sprite of that species where it has one (FOLLOWER_MON_STATIC_*),
+# else hg-engine's walking sprite (its tag is 2500 + the species: hg-engine has none of HeartGold's own follower
+# tags, SPRITE_FOLLOWER_MON_X without STATIC, and the game stops on them)
+_sprites_h = open(os.path.join(ROOT, 'include/constants/sprites.h')).read()
+_static = set(re.findall(r'#define SPRITE_FOLLOWER_MON_STATIC_([A-Z0-9_]+)\s', _sprites_h))
+for _n, _v in re.findall(r'#define SPECIES_([A-Z0-9_]+)\s+(\d+)', open(os.path.join(ROOT, 'engine/include/constants/species.h')).read()):
+    if _n in ('NONE', 'EGG') or int(_v) == 0: continue
+    SPRITE.setdefault(_n, 'FOLLOWER_MON_STATIC_' + _n if _n in _static else '#%d' % (2500 + int(_v)))
 
 NO_OPS = ('addpcitem', 'opendoor', 'closedoor', 'waitdooranim', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
           'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
@@ -458,6 +495,28 @@ ENGINE_DEFINES = {}
 for _h in ('item.h', 'species.h', 'moves.h'):
     for _n, _v in re.findall(r'#define\s+((?:ITEM|SPECIES|MOVE)_\w+)\s+(\d+)', open(os.path.join(ROOT, 'engine/include/constants', _h)).read()):
         ENGINE_DEFINES.setdefault(_n, _v)
+
+def _multichoices():
+    """the GBA game's fixed menus (src/data/script_menu.h): MULTI_* -> [item text]"""
+    src = open(G.P('src/data/script_menu.h')).read()
+    strings = {}
+    for f in ('src/strings.c',):
+        try: t = open(G.P(f)).read()
+        except OSError: continue
+        for n, v in re.findall(r'const u8 (gText_\w+)\[\]\s*=\s*_\("((?:[^"\\]|\\.)*)"\)', t): strings[n] = v
+    lists = {}
+    for n, body in re.findall(r'MenuAction (\w+)\[\]\s*=\s*\{(.*?)\n\};', src, re.S):
+        items = []
+        for m in re.finditer(r'\{\s*(?:COMPOUND_STRING\("((?:[^"\\]|\\.)*)"\)|(gText_\w+))', body):
+            items.append(m.group(1) if m.group(1) is not None else strings.get(m.group(2), m.group(2)))
+        lists[n] = [re.sub(r'\{CLEAR_TO \d+\}', '  ', re.sub(r'\{FONT_\w+\}', '', i)) for i in items]
+    out = {}
+    for k, n in re.findall(r'\[(MULTI_\w+)\]\s*=\s*MULTICHOICE\((\w+)\)', src):
+        if n in lists: out[k] = lists[n]
+    return out
+
+
+MULTICHOICES = _multichoices()
 
 SYS_FLAGS = {'FLAG_SYS_GAME_CLEAR': 'FLAG_GAME_CLEAR'}      # GBA flags that are HeartGold's own
 HG_NAMES = {'ITEM_PARALYZE_HEAL': 'ITEM_PARLYZ_HEAL', 'ITEM_TINY_MUSHROOM': 'ITEM_TINYMUSHROOM',
@@ -565,7 +624,8 @@ class Port:
         if a.startswith('OBJ_EVENT_GFX_'):        # a person's look, for a sprite var
             gfx = a.replace('OBJ_EVENT_GFX_', '').replace('_FRLG', '')
             if gfx not in SPRITE: self.todo.append('sprite %s (as a value)' % gfx)
-            return 'SPRITE_' + SPRITE.get(gfx, 'GSMAN1')
+            spr = SPRITE.get(gfx, 'GSMAN1')
+            return spr[1:] if spr.startswith('#') else 'SPRITE_' + spr
         if a in ('DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'): return str(['DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'].index(a))
         if a.startswith(('SPECIES_', 'ITEM_', 'MOVE_')):
             a = HG_NAMES.get(a, a)
@@ -669,8 +729,7 @@ class Port:
         return (slot,) + tuple(xy(x, y))
 
     def item(self, cmd, item, n):
-        it, n = self.val(item), self.val(n)
-        if item.startswith('ITEM_') and item not in HG_DEFINES:
+        if item.startswith('ITEM_') and HG_NAMES.get(item, item) not in HG_DEFINES and item not in ENGINE_DEFINES:
             # (an item HeartGold doesn't have yet: carried as a flag until we add it)
             f = self.flag('CV_HAS_' + item)
             if cmd in ('giveitem', 'additem'): self.emit('SetFlag %s' % f, 'SetVar VAR_SPECIAL_RESULT, 1')
@@ -680,6 +739,7 @@ class Port:
                 l = self.new('has')
                 self.emit('SetVar VAR_SPECIAL_RESULT, 0', 'GoToIfUnset %s, %s' % (f, l), 'SetVar VAR_SPECIAL_RESULT, 1', l + ':')
             return
+        it, n = self.val(item), self.val(n)
         op = {'giveitem': 'GiveItem', 'additem': 'GiveItem', 'checkitem': 'HasItem', 'removeitem': 'TakeItem',
               'checkitemspace': 'HasSpaceForItem'}[cmd]
         self.emit('%s %s, %s, VAR_SPECIAL_RESULT' % (op, it, n))
@@ -860,6 +920,9 @@ class Port:
             elif cmd == 'playse': self.emit('PlaySE %s' % SE.get(a[0], 'SEQ_SE_DP_SELECT'))
             elif cmd == 'waitse': self.emit('WaitSE SEQ_SE_DP_SELECT')
             elif cmd == 'playfanfare': self.emit('PlayFanfare %s' % FANFARE.get(a[0], 'SEQ_ME_ITEM'))
+            elif cmd == 'msgreceiveditem':      # (the message with the item fanfare; the item itself is given apart)
+                self.emit('PlayFanfare %s' % FANFARE.get(a[3] if len(a) > 3 else '', 'SEQ_ME_ITEM')); self.say(a[0], wait=False)
+                self.emit('WaitFanfare', 'WaitButton'); open_msg = True
             elif cmd == 'waitfanfare': self.emit('WaitFanfare')
             elif cmd == 'checkplayergender': self.emit('GetPlayerGender VAR_SPECIAL_RESULT')
             elif cmd == 'playmoncry': self.emit('PlayCry %s, 0' % self.val(a[0]))
@@ -939,6 +1002,15 @@ class Port:
             elif cmd == 'dynmultistack':
                 if a[6] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[6], label))
                 self.menu(self.dyn, a[2], a[5]); self.dyn = []
+            elif cmd in ('multichoice', 'multichoicedefault', 'multichoicegrid') and a[2] in MULTICHOICES:
+                items = []
+                for i, t in enumerate(MULTICHOICES[a[2]]):
+                    key = 'cv_mc_%s_%d' % (a[2][6:].lower(), i)
+                    if key not in self.msgs: self.msgs[key] = text(t); self.msg_order.append(key)
+                    items.append((key, str(i)))
+                self.menu(items, a[4] if cmd == 'multichoicedefault' else a[3], a[3] if cmd == 'multichoicedefault' else '0')
+            elif cmd == 'random':
+                self.emit('Random VAR_SPECIAL_RESULT, %s' % self.val(a[0]))
             elif cmd == 'dynmultichoice':
                 if a[5] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[5], label))
                 self.menu([(t, str(i)) for i, t in enumerate(a[6:])], a[2], a[4])

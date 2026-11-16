@@ -37,7 +37,7 @@
         },
         {
             "id": "LOCALID_PEWTER_HOUSE_NIDORAN",
-            "spriteId": "SPRITE_FOLLOWER_MON_NIDORAN_M",
+            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_NIDORAN_M",
             "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

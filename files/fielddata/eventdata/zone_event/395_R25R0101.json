@@ -2,20 +2,37 @@
     "header": "fielddata/script/scr_seq/event_R25R0101.h",
     "objects": [
         {
-            "id": "obj_R25R0101_gsoldman1",
-            "spriteId": "SPRITE_GSOLDMAN1",
+            "id": "LOCALID_BILL_HUMAN",
+            "spriteId": "SPRITE_MASAKI",
             "movement": 15,
             "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_R25R0101_000 + 1",
+            "eventFlag": "0x205A",
+            "scriptId": "_EV_Route25_SeaCottage_EventScript_Bill + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
+            "xRange": 1,
+            "yRange": 1,
             "x": 7,
             "z": 7,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_BILL_CLEFAIRY",
+            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_CLEFAIRY",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "0x20ED",
+            "scriptId": "_EV_Route25_SeaCottage_EventScript_Bill + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 10,
+            "z": 8,
             "y": 0
         }
     ],
@@ -27,5 +44,16 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [
+        {
+            "scriptId": "_EV_Route25_SeaCottage_EventScript_Computer + 1",
+            "type": 0,
+            "x": 4,
+            "z": 7,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": []
 }

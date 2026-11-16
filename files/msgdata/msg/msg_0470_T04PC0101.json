@@ -2,21 +2,59 @@
   "key": 11987,
   "messages": [
     {
-      "id": "msg_0470_T04PC0101_00000",
+      "id": "msg_0470_T04PC0101_CeruleanCity_PokemonCenter_1F_Text_EveryoneCallsBillPokemaniac",
       "en_US": [
-        "For battles, I’d much rather use\n",
-        "Pokémon I’ve been raising, even if\r",
-        "they’re weaker than some newly\n",
-        "caught Pokémon."
+        "Have you heard about Bill?\r",
+        "Everyone calls him a PokéMANIAC!\r",
+        "I think people are just jealous of\n",
+        "Bill, though.\r",
+        "Who wouldn’t want to boast about\n",
+        "their Pokémon?"
       ]
     },
     {
-      "id": "msg_0470_T04PC0101_00001",
+      "id": "msg_0470_T04PC0101_CeruleanCity_PokemonCenter_1F_Text_BillDoesWhateverForRareMons",
       "en_US": [
-        "The Magnet Train travels at over\n",
-        "340 mph. It goes between Kanto and\f",
-        "Johto in almost no time at all.\r",
-        "It really makes Johto accessible."
+        "That Bill!\r",
+        "I heard that he’ll do whatever it\n",
+        "takes to get rare Pokémon.\r",
+        "He’s not above doing all sorts\n",
+        "of things, I’ve heard."
+      ]
+    },
+    {
+      "id": "msg_0470_T04PC0101_CeruleanCity_PokemonCenter_1F_Text_BillCollectsRareMons",
+      "en_US": [
+        "Bill has lots of Pokémon!\n",
+        "He collects rare ones, too!"
+      ]
+    },
+    {
+      "id": "msg_0470_T04PC0101_CeruleanCity_PokemonCenter_1F_Text_TryTradingUpstairs",
+      "en_US": [
+        "Why don’t you go upstairs and try\n",
+        "trading Pokémon with your friends?\r",
+        "You could get a lot more variety\n",
+        "by trading.\r",
+        "The Pokémon you get in trades grow\n",
+        "quickly, too."
+      ]
+    },
+    {
+      "id": "msg_0470_T04PC0101_PokemonJournal_Text_SpecialFeatureMisty",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature: Cerulean Gym\n",
+        "Leader Misty!\r",
+        "Misty is said to worship Lorelei\n",
+        "of the Elite Four."
+      ]
+    },
+    {
+      "id": "msg_0470_T04PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

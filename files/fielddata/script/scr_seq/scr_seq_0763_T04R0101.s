@@ -3,11 +3,116 @@
 #include "msgdata/msg/msg_0471_T04R0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeruleanCity_House1_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T04R0101_000
+	ScrDef CeruleanCity_House1_EventScript_BadgeGuy
 	ScrDefEnd
+	
+CeruleanCity_House1_EventScript_BadgeGuy:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_BadgesHaveAmazingSecrets
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeAnotherBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_DescribeWhichBadge
+	SetVar 0x8004, 13
+	// TODO(gba) special ShowScrollableMultichoice
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeBoulderBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeCascadeBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeThunderBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeRainbowBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeSoulBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeMarshBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 6
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeVolcanoBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 7
+	GoToIfEq CeruleanCity_House1_EventScript_DescribeEarthBadge
+	CompareVarToValue VAR_SPECIAL_RESULT, 8
+	GoToIfEq CeruleanCity_House1_EventScript_StopDescribingBadges
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeruleanCity_House1_EventScript_StopDescribingBadges
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeBoulderBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_AttackStatFlash
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeCascadeBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv30Cut
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeThunderBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_SpeedStatFly
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeRainbowBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv50Strength
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeSoulBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_DefenseStatSurf
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeMarshBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv70RockSmash
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeVolcanoBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_SpStatsWaterfall
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_DescribeEarthBadge:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_AllMonsWillObeyYou
+	WaitButton
+	GoTo CeruleanCity_House1_EventScript_DescribeAnotherBadge
+	CloseMsg
+	End
+	
+CeruleanCity_House1_EventScript_StopDescribingBadges:
+	NPCMsg msg_0471_T04R0101_CeruleanCity_House1_Text_ComeVisitAnytime
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 
-scr_seq_T04R0101_000:
-	SimpleNPCMsg msg_0471_T04R0101_00000
+_cv_stop:
+	NPCMsg msg_0471_T04R0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

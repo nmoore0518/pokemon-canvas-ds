@@ -121,8 +121,17 @@ EventScript_GivenProfileBefore:
 	
 EventScript_AskForProfile:
 	NPCMsg msg_0463_T03PC0101_Text_TellMeWhatsYourProfile
-	// TODO(gba) multichoice 18, 6, MULTI_YESNOINFO_2, FALSE
-	GoTo _cv_stop
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_0, 0
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_1, 1
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_2, 2
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_2
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_AcceptGiveProfile
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -148,8 +157,17 @@ TypeTutor_EventScript_Talk:
 	
 EventScript_AskForNewProfile:
 	NPCMsg msg_0463_T03PC0101_Text_ChangeYourProfile
-	// TODO(gba) multichoice 18, 6, MULTI_YESNOINFO_2, FALSE
-	GoTo _cv_stop
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_0, 0
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_1, 1
+	ScrCmd_559 msg_0463_T03PC0101_cv_mc_yesnoinfo_2_2, 2
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_4
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_AcceptGiveNewProfile
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -219,9 +237,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_2
+	GoToIfLt _cv_menu_6
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_2:
+_cv_menu_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

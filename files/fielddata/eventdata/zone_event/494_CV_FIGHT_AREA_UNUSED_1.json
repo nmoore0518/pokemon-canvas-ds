@@ -37,7 +37,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_FOLLOWER_MON_MEOWTH",
+            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_MEOWTH",
             "movement": 5,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

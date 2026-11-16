@@ -2,18 +2,93 @@
   "key": 29742,
   "messages": [
     {
-      "id": "msg_0474_T04R0401_00000",
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_WelcomeToBikeShop",
       "en_US": [
-        "A long time ago, this cool boy rode my\n",
-        "Bike around, and that started this\f",
-        "entire Bike boom.\r",
-        "Then I decided to open a branch at\n",
-        "Goldenrod City.\r",
-        "And they started selling like the wind!\r",
-        "But no one comes to this shop anymore\n",
-        "because of that.\r",
-        "All I have left here is a bicycle pump...\r",
-        "Should I start selling inflatable tubes?"
+        "Hi!\n",
+        "Welcome to our Bike Shop.\r",
+        "Have we got just the Bike for\n",
+        "you!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_cv_mc_bike_shop_0",
+      "en_US": "Bicycle  ¥1,000,000"
+    },
+    {
+      "id": "msg_0474_T04R0401_cv_mc_bike_shop_1",
+      "en_US": "no Thanks"
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_BikesCoolButExpensive",
+      "en_US": [
+        "These bikes are cool, but they’re\n",
+        "way expensive!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_CityBikeGoodEnoughForMe",
+      "en_US": [
+        "A plain city bike is good enough\n",
+        "for me.\r",
+        "After all, you can’t put a shopping\n",
+        "basket on a mountain bike."
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_ShinyNewBicycle",
+      "en_US": "A shiny new Bicycle!"
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_HowDoYouLikeNewBicycle",
+      "en_US": [
+        "How do you like your new Bicycle?\n",
+        "Do you like how it rides?\r",
+        "You can take it out on Cycling\n",
+        "Road and even into caves!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_OhBikeVoucherHereYouGo",
+      "en_US": [
+        "Oh, that’s…\r",
+        "A Bike Voucher!\r",
+        "Okay!\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_ExchangedVoucherForBicycle",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} exchanged the\n",
+        "Bike Voucher for a Bicycle."
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_ThankYouComeAgain",
+      "en_US": [
+        "Thank you!\n",
+        "Come back again sometime!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_SorryYouCantAffordIt",
+      "en_US": [
+        "Sorry!\n",
+        "You can’t afford it!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_CeruleanCity_BikeShop_Text_WowYourBikeIsCool",
+      "en_US": [
+        "Wow.\n",
+        "Your Bike is really cool!"
+      ]
+    },
+    {
+      "id": "msg_0474_T04R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -2,10 +2,111 @@
   "key": 29702,
   "messages": [
     {
-      "id": "msg_0471_T04R0101_00000",
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_BadgesHaveAmazingSecrets",
       "en_US": [
-        "Are you collecting\n",
-        "Kanto Gym Badges?"
+        "Only skilled Trainers can collect\n",
+        "Pokémon Badges.\r",
+        "I see you have at least one.\r",
+        "Those Badges have amazing secrets,\n",
+        "did you know?"
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_DescribeWhichBadge",
+      "en_US": [
+        "Now then…\r",
+        "Which of the eight Badges should\n",
+        "I describe?"
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_AttackStatFlash",
+      "en_US": [
+        "The Attack stat of all your\n",
+        "Pokémon increases a little bit.\r",
+        "It also lets you use the move\n",
+        "Flash outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv30Cut",
+      "en_US": [
+        "Pokémon up to Lv. 30 will obey\n",
+        "you.\r",
+        "That includes even outsiders you\n",
+        "obtain in trades.\r",
+        "Pokémon of higher levels will\n",
+        "be unruly in battle, however.\r",
+        "It also lets you use the move\n",
+        "Cut outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_SpeedStatFly",
+      "en_US": [
+        "The Speed stat of all your\n",
+        "Pokémon increases a little bit.\r",
+        "It also lets you use the move\n",
+        "Fly outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv50Strength",
+      "en_US": [
+        "Pokémon up to Lv. 50 will obey\n",
+        "you.\r",
+        "That includes even outsiders you\n",
+        "obtain in trades.\r",
+        "Pokémon of higher levels will\n",
+        "be unruly in battle, however.\r",
+        "It also lets you use the move\n",
+        "Strength outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_DefenseStatSurf",
+      "en_US": [
+        "The Defense stat of all your\n",
+        "Pokémon increases a little bit.\r",
+        "It also lets you use the move\n",
+        "Surf outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_ObeyLv70RockSmash",
+      "en_US": [
+        "Pokémon up to Lv. 70 will obey\n",
+        "you.\r",
+        "That includes even outsiders you\n",
+        "obtain in trades.\r",
+        "Pokémon of higher levels will\n",
+        "be unruly in battle, however.\r",
+        "It also lets you use the move\n",
+        "Rock Smash outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_SpStatsWaterfall",
+      "en_US": [
+        "The Sp. Atk and Sp. Def stats of\n",
+        "all your Pokémon rise a little bit.\r",
+        "It also lets you use the move\n",
+        "Waterfall outside of battle."
+      ]
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_AllMonsWillObeyYou",
+      "en_US": "All Pokémon will obey you!"
+    },
+    {
+      "id": "msg_0471_T04R0101_CeruleanCity_House1_Text_ComeVisitAnytime",
+      "en_US": "Come visit me anytime you wish."
+    },
+    {
+      "id": "msg_0471_T04R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

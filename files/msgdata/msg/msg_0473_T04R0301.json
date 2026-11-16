@@ -2,25 +2,102 @@
   "key": 62487,
   "messages": [
     {
-      "id": "msg_0473_T04R0301_00000",
+      "id": "msg_0473_T04R0301_Trade_Text_DoYouHaveMonWouldYouTradeForMon",
       "en_US": [
-        "My husband lives happily with Pokémon\n",
-        "he got through trades.\r",
-        "I live happily having such a\n",
-        "great husband."
+        "Hello, there! Do you happen to\n",
+        "have a {STRVAR_1 3, 0, 0}?\r",
+        "Would you agree to a trade for\n",
+        "my {STRVAR_1 3, 1, 0}?"
       ]
     },
     {
-      "id": "msg_0473_T04R0301_00001",
-      "en_US": "Ah... I’m so happy..."
+      "id": "msg_0473_T04R0301_Trade_Text_Thanks",
+      "en_US": "Thanks!"
     },
     {
-      "id": "msg_0473_T04R0301_00002",
-      "en_US": "KANGASKHAN: Garu garuu."
+      "id": "msg_0473_T04R0301_CeruleanCity_House3_Text_PleaseTradeWithMyHusband",
+      "en_US": [
+        "My husband likes trading Pokémon.\r",
+        "You’re collecting Pokémon for your\n",
+        "Pokédex, aren’t you?\r",
+        "Would you please trade with him?"
+      ]
     },
     {
-      "id": "msg_0473_T04R0301_00003",
-      "en_US": "ZUBAT: Zuba zubaa."
+      "id": "msg_0473_T04R0301_TrainingHouse_Text_MarinaIntro",
+      "en_US": [
+        "Every Champion starts over\n",
+        "sometime. Let’s battle!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_Trade_Text_HasTradedMonGrownStronger",
+      "en_US": [
+        "The {STRVAR_1 3, 1, 0} that I traded you,\n",
+        "has it grown stronger?"
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_Trade_Text_WellIfYouDontWantTo",
+      "en_US": "Well, if you don’t want to…"
+    },
+    {
+      "id": "msg_0473_T04R0301_Trade_Text_ThisIsntMon",
+      "en_US": [
+        "Hmmm?\n",
+        "This isn’t a {STRVAR_1 3, 0, 0}.\r",
+        "Think of me if you get one."
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0473_T04R0301_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0473_T04R0301_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

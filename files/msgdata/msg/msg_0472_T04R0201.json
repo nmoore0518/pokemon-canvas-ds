@@ -2,21 +2,43 @@
   "key": 29726,
   "messages": [
     {
-      "id": "msg_0472_T04R0201_00000",
+      "id": "msg_0472_T04R0201_CeruleanCity_House2_Text_RocketsStoleTMForDig",
       "en_US": [
-        "I heard that some shady character is\n",
-        "skulking about.\r",
-        "I won’t stand for it if he turns out\n",
-        "to be a thief."
+        "Those miserable Rockets!\r",
+        "Look what they’ve done to my\n",
+        "house!\r",
+        "They stole a TM for teaching\n",
+        "Pokémon how to Dig holes!\r",
+        "I was going to use it on a\n",
+        "Mankey or a Sandshrew…\r",
+        "That cost me a bundle, it did!"
       ]
     },
     {
-      "id": "msg_0472_T04R0201_00001",
-      "en_US": "We were held up by robbers before."
+      "id": "msg_0472_T04R0201_CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood",
+      "en_US": [
+        "Team Rocket must be trying to Dig\n",
+        "their way into no good!"
+      ]
     },
     {
-      "id": "msg_0472_T04R0201_00002",
-      "en_US": "DIGLETT: Dug dug."
+      "id": "msg_0472_T04R0201_CeruleanCity_House2_Text_TeamRocketLeftWayOut",
+      "en_US": "Team Rocket left a way out!"
+    },
+    {
+      "id": "msg_0472_T04R0201_CeruleanCity_House2_Text_TeachDiglettDigWithoutTM",
+      "en_US": [
+        "I figure what’s lost is lost.\r",
+        "I decided to teach Diglett how to\n",
+        "Dig without a TM."
+      ]
+    },
+    {
+      "id": "msg_0472_T04R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

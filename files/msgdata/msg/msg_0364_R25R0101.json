@@ -2,172 +2,211 @@
   "key": 9287,
   "messages": [
     {
-      "id": "msg_0364_R25R0101_00000",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_TeleporterIsDisplayed",
       "en_US": [
-        "Hmm? You are here for my grandson?\n",
-        "His name is Bill.\r",
-        "He’s in Johto.\n",
-        "He does something with PCs,\f",
-        "so I’m house-sitting.\r"
+        "Teleporter is displayed on the PC\n",
+        "monitor."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00001",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_CheckOutRareMonsOnPC",
       "en_US": [
-        "Ah, my grandson mentioned a round,\n",
-        "blue Pokémon that has leaves\f",
-        "growing on its head.\r"
+        "Bill: Feel like checking out some\n",
+        "of my rare Pokémon on my PC?\r",
+        "Go on, check out my PC."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00002",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_SSAnnePartyYouGoInstead",
       "en_US": [
-        "Bill told me about a Pokémon that is\n",
-        "very loyal to its Trainer.\f",
-        "It’s a Fire-type Pokémon that’s\f",
-        "supposed to Roar well.\r"
+        "That cruise ship S.S. Anne is in\n",
+        "Vermilion City.\r",
+        "I hear there are lots of Trainers\n",
+        "on board, too.\r",
+        "They invited me to their party, but\n",
+        "I can’t stand fancy do’s.\r",
+        "Why don’t you go instead of me?\n",
+        "Go on and have a good time."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00003",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_ReceivedSSTicketFromBill",
       "en_US": [
-        "Do you know that Pokémon with large,\n",
-        "round eyes.\r",
-        "The one that sings a lullaby with\n",
-        "its cute voice!\r"
+        "{STRVAR_1 3, 6, 0} received an S.S. Ticket\n",
+        "from Bill."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00004",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_ImBillHelpMeOutPal",
       "en_US": [
-        "Do you know that hugely popular\n",
-        "Pokémon?\r",
-        "The Pokémon that has a yellow body\n",
-        "and bright red cheeks...\r",
-        "I would love to see what it looks\n",
-        "like before it evolves.\r"
+        "Hiya! I’m a Pokémon…\n",
+        "…No I’m not!\r",
+        "Call me Bill!\n",
+        "I’m a true-blue PokéMANIAC!\r",
+        "Hey!\n",
+        "What’s with that skeptical look?\r",
+        "I’m not joshing you, pal.\r",
+        "I screwed up an experiment and got\n",
+        "combined with a Pokémon!\r",
+        "So, how about it?\n",
+        "Help me out here!"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00005",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_ImBillHelpMeOutLady",
       "en_US": [
-        "I heard that there is a blue and round\n",
-        "Pokémon in Johto.\r",
-        "Bill told me that the end of its tail\n",
-        "works like a float.\r",
-        "Its belly is white. Just the belly.\n",
-        "I would love to see what it looks like.\r"
+        "Hiya! I’m a Pokémon…\n",
+        "…No I’m not!\r",
+        "Call me Bill!\n",
+        "I’m a true-blue PokéMANIAC!\r",
+        "Hey!\n",
+        "What’s with that skeptical look?\r",
+        "I’m not joshing you, lady.\r",
+        "I screwed up an experiment and got\n",
+        "combined with a Pokémon!\r",
+        "So, how about it?\n",
+        "Help me out here!"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00006",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_BillsFavoriteMonList",
+      "en_US": "Bill’s favorite Pokémon list!"
+    },
+    {
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator",
       "en_US": [
-        "My grandson Bill told me about a\n",
-        "Pokémon that has a long tongue.\r",
-        "It has ringlike marks on the front\n",
-        "of its legs, he said!\r"
+        "{STRVAR_1 3, 6, 0} initiated the Teleporter’s\n",
+        "Cell Separator."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00007",
+      "id": "msg_0364_R25R0101_Text_BillPalmPilot",
       "en_US": [
-        "Ah, my grandson mentioned a round,\n",
-        "blue Pokémon that has leaves\f",
-        "growing on its head.\r"
+        "Bill: Oh, and one more thing!\r",
+        "You know my Pokémon Storage\n",
+        "System? I’ve been tinkering…\r",
+        "and I made a PC that fits in your\n",
+        "pocket! I call it the Palm Pilot.\r",
+        "It links to the Storage System\n",
+        "from almost anywhere.\r",
+        "Not inside the Pokémon League,\n",
+        "though. They jam the signal.\r",
+        "Here, take this one. Tell me how\n",
+        "it works out!"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00008",
+      "id": "msg_0364_R25R0101_Text_BillPalmPilotHowTo",
       "en_US": [
-        "Do you know of a sea Pokémon that\n",
-        "has a red sphere in its body?\f",
-        "You know, the one that’s shaped like\f",
-        "a star?\r",
-        "I heard that it appears at night.\n",
-        "I would surely like to see it.\r"
+        "Bill: Use it from your Bag, or\n",
+        "register it to the Select Button."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00009",
+      "id": "msg_0364_R25R0101_Text_BillPalmPilotSecret",
       "en_US": [
-        "I heard about a cute Pokémon that\n",
-        "has six tails.\r",
-        "I would love to hug a cute Pokémon\n",
-        "like that.\r"
+        "Bill: Oh, and if anyone asks…\n",
+        "I’ve only been working on the PC.\r",
+        "Some of my other experiments are,\n",
+        "uh… not exactly approved.\r",
+        "Nothing to worry about! Probably.\n",
+        "Heh heh…"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00010",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_ThanksBudTakeThis",
       "en_US": [
-        "Do you know that hugely popular\n",
-        "Pokémon?\r",
-        "The Pokémon that has a yellow body\n",
-        "and bright red cheeks...\r",
-        "I would love to see what it looks\n",
-        "like before it evolves.\r"
+        "Bill: Yeehah!\n",
+        "Thanks, bud! I owe you one!\r",
+        "So, did you come to see my\n",
+        "Pokémon collection?\r",
+        "You didn’t?\n",
+        "That’s a bummer.\r",
+        "I’ve got to thank you…\n",
+        "Oh, here, maybe this’ll do."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00011",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_ThanksLadyTakeThis",
       "en_US": [
-        "If you have that Pokémon,\n",
-        "may I see it, please? {YESNO 0}"
+        "Bill: Yeehah!\n",
+        "Thanks, lady! I owe you one!\r",
+        "So, did you come to see my\n",
+        "Pokémon collection?\r",
+        "You didn’t?\n",
+        "That’s a bummer.\r",
+        "I’ve got to thank you…\n",
+        "Oh, here, maybe this’ll do."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00012",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_YouveGotTooMuchStuff",
+      "en_US": "You’ve got too much stuff!"
+    },
+    {
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_RunCellSeparationOnPC",
       "en_US": [
-        "You will show me?\n",
-        "How good of you!\r"
+        "Wait till I get inside the\n",
+        "Teleporter.\r",
+        "When I do, go to my PC and run\n",
+        "the Cell Separation System."
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00013",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_SeeWhichMon",
+      "en_US": "Which Pokémon do you want to see?"
+    },
+    {
+      "id": "msg_0364_R25R0101_cv_mc_eeveelutions_0",
+      "en_US": "Eevee"
+    },
+    {
+      "id": "msg_0364_R25R0101_cv_mc_eeveelutions_1",
+      "en_US": "Flareon"
+    },
+    {
+      "id": "msg_0364_R25R0101_cv_mc_eeveelutions_2",
+      "en_US": "Jolteon"
+    },
+    {
+      "id": "msg_0364_R25R0101_cv_mc_eeveelutions_3",
+      "en_US": "Vaporeon"
+    },
+    {
+      "id": "msg_0364_R25R0101_cv_mc_eeveelutions_4",
+      "en_US": "Quit looking."
+    },
+    {
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_NoPleaseChief",
       "en_US": [
-        "You don’t have it?\n",
-        "That’s too bad..."
+        "No!?\n",
+        "Now don’t be so cold!\r",
+        "Come on, you gotta help a guy in\n",
+        "deep, deep trouble!\r",
+        "What do you say, chief?\n",
+        "Please?\f",
+        "Okay?\f",
+        "All right!"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00014",
+      "id": "msg_0364_R25R0101_Route25_SeaCottage_Text_NoPleaseBeautiful",
       "en_US": [
-        "Hm?\r",
-        "That’s not the Pokémon that I was\n",
-        "told about..."
+        "No!?\n",
+        "Now don’t be so cold!\r",
+        "Come on, you gotta help a guy in\n",
+        "deep, deep trouble!\r",
+        "What do you say, beautiful?\n",
+        "Please?\f",
+        "Okay?\f",
+        "All right!"
       ]
     },
     {
-      "id": "msg_0364_R25R0101_00015",
+      "id": "msg_0364_R25R0101_cv_unported",
       "en_US": [
-        "Wow!\n",
-        "That Pokémon is called {STRVAR_1 0, 0, 0}!\r",
-        "It’s a wonderful Pokémon!\n",
-        "As a token of my appreciation,\f",
-        "I would like to give this to you!\r"
-      ]
-    },
-    {
-      "id": "msg_0364_R25R0101_00016",
-      "en_US": [
-        "Come visit again\n",
-        "sometime."
-      ]
-    },
-    {
-      "id": "msg_0364_R25R0101_00017",
-      "en_US": [
-        "Thanks for showing me so many\n",
-        "cute Pokémon.\f",
-        "I really enjoyed myself.\r",
-        "I’m glad I’ve lived such a long life."
-      ]
-    },
-    {
-      "id": "msg_0364_R25R0101_00018",
-      "en_US": [
-        "There is a dusty machine under\n",
-        "the cloth cover...\f",
-        "It has not been used for some time."
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -3,334 +3,838 @@
 #include "msgdata/msg/msg_0469_T04GYM0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeruleanCity_Gym_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T04GYM0101_000
-	ScrDef scr_seq_T04GYM0101_001
-	ScrDef scr_seq_T04GYM0101_002
-	ScrDef scr_seq_T04GYM0101_003
-	ScrDef scr_seq_T04GYM0101_004
-	ScrDef scr_seq_T04GYM0101_005
-	ScrDef scr_seq_T04GYM0101_006
-	ScrDef scr_seq_T04GYM0101_007
+	ScrDef CeruleanCity_Gym_EventScript_Misty
+	ScrDef CeruleanCity_Gym_EventScript_GymGuy
+	ScrDef GymAides_EventScript_CeruleanCity
+	ScrDef CeruleanCity_Gym_EventScript_GymStatue
+	ScrDef CeruleanCity_Gym_OnTransitionGuest
 	ScrDefEnd
-
-scr_seq_T04GYM0101_007:
-	GetPhoneBookRematch PHONE_CONTACT_MISTY, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 0
-	GoToIfNe _00ED
-	CheckBadge BADGE_EARTH, VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 0
-	GoToIfEq _00E5
-	Compare VAR_SCENE_ROUTE_25, 1
-	GoToIfEq _00E7
-	Compare VAR_SCENE_ROUTE_25, 2
-	GoToIfEq _00E7
-	CheckRegisteredPhoneNumber PHONE_CONTACT_MISTY, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 1
-	GoToIfEq _00AD
-	ScrCmd_522 VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 16
-	GoToIfNe _0090
-	SetFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	GoTo _00AB
-
-_0090:
-	Compare VAR_TEMP_x4000, 17
-	GoToIfNe _00A7
-	SetFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	GoTo _00AB
-
-_00A7:
-	ClearFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-_00AB:
-	End
-
-_00AD:
-	ScrCmd_522 VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 14
-	GoToIfNe _00C8
-	SetFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	GoTo _00E3
-
-_00C8:
-	Compare VAR_TEMP_x4000, 15
-	GoToIfNe _00DF
-	SetFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	GoTo _00E3
-
-_00DF:
-	ClearFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-_00E3:
-	End
-
-_00E5:
-	End
-
-_00E7:
-	ClearFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	End
-
-_00ED:
-	SetFlag FLAG_HIDE_CERULEAN_GYM_POPULATION
-	End
-
-scr_seq_T04GYM0101_004:
-	ScrCmd_609
-	LockAll
-	StopBGM SEQ_GS_GYM
-	PlayBGM SEQ_GS_EYE_ROCKET
-	ApplyMovement obj_T04GYM0101_rocketm, _01C8
-	WaitMovement
-	PlaySE SEQ_SE_DP_WALL_HIT2
-	NPCMsg msg_0469_T04GYM0101_00000
-	ApplyMovement obj_T04GYM0101_rocketm, _01D0
-	WaitMovement
-	NPCMsg msg_0469_T04GYM0101_00001
-	ApplyMovement obj_T04GYM0101_rocketm, _01E4
-	WaitMovement
-	NPCMsg msg_0469_T04GYM0101_00002
-	ApplyMovement obj_T04GYM0101_rocketm, _01F4
-	WaitMovement
-	NPCMsg msg_0469_T04GYM0101_00003
+	
+CeruleanCity_Gym_EventScript_Misty:
+	SetVar 0x8009, 1
+	SetVar VAR_SPECIAL_RESULT, 0
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_mentor_1
+	CompareVarToValue 0x5019, 5
+	GoToIfNe _cv_mentor_1
+	SetVar 0x401F, 1
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_1:
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_mentor_2
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_mentor_2
+	SetVar 0x401F, 2
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_2:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_mentor_3
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_mentor_3
+	SetVar 0x401F, 3
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_3:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_4
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_mentor_4
+	SetVar 0x401F, 4
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_4:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_5
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_mentor_5
+	SetVar 0x401F, 5
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_5:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_mentor_6
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_mentor_6
+	SetVar 0x401F, 6
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_6:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_7
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_mentor_7
+	SetVar 0x401F, 7
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_7:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_8
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_mentor_8
+	SetVar 0x401F, 8
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_8:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_9
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_mentor_9
+	SetVar 0x401F, 9
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_9:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_10
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_mentor_10
+	SetVar 0x401F, 10
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_10:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_mentor_11
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_mentor_11
+	SetVar 0x401F, 11
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_11:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeruleanCity_Gym_EventScript_MentorBattle
+	CheckTrainerFlag 1151
+	GoToIf TRUE, _cv_beaten_12
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_MistyIntro
+	WaitButton
 	CloseMsg
-	ScrCmd_729 VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0179
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0159
-	End
-
-_0159:
-	ApplyMovement obj_T04GYM0101_rocketm, _01FC
-	ApplyMovement obj_player, _0204
-	ApplyMovement obj_partner_poke, _0210
-	WaitMovement
-	GoTo _018B
-
-_0179:
-	ApplyMovement obj_T04GYM0101_rocketm, _01FC
-	ApplyMovement obj_player, _0204
-	WaitMovement
-_018B:
-	PlaySE SEQ_SE_DP_KAIDAN2
-	HidePerson obj_T04GYM0101_rocketm
-	WaitSE SEQ_SE_DP_KAIDAN2
-	StopBGM SEQ_GS_EYE_ROCKET
-	PlayBGM SEQ_GS_GYM
-	SetFlag FLAG_HIDE_CERULEAN_GYM_ROCKET
-	ClearFlag FLAG_HIDE_ROUTE_24_ROCKET
-	ClearFlag FLAG_HIDE_ROUTE_25_MISTY
-	ClearFlag FLAG_HIDE_ROUTE_25_MISTYS_BOYFRIEND
-	SetVar VAR_UNK_411C, 2
-	SetVar VAR_SCENE_ROUTE_24_ROCKET, 1
-	SetVar VAR_UNK_4088, 1
-	ReleaseAll
-	End
-
-	.balign 4, 0
-_01C8:
-	WalkFasterSouth 5
-	EndMovement
-
-	.balign 4, 0
-_01D0:
-	LockDir
-	JumpFarNorth
-	Delay8 2
-	WalkFastSouth 2
-	EndMovement
-
-	.balign 4, 0
-_01E4:
-	EmoteExclamationMark
-	LockDir
-	WalkNormalNorth 2
-	EndMovement
-
-	.balign 4, 0
-_01F4:
-	WalkNormalSouth 2
-	EndMovement
-
-	.balign 4, 0
-_01FC:
-	WalkFastSouth
-	EndMovement
-
-	.balign 4, 0
-_0204:
-	WalkFastWest
-	FaceEast
-	EndMovement
-
-	.balign 4, 0
-_0210:
-	WalkFastWest
-	EndMovement
-
-scr_seq_T04GYM0101_006:
-	ScrCmd_814
-	GoToIfSet FLAG_HIDE_CERULEAN_GYM_MACHINE_PART, _022F
-	MakeObjectVisible obj_T04GYM0101_stop
-	MakeObjectVisible obj_T04GYM0101_stop_2
-	End
-
-_022F:
-	End
-
-scr_seq_T04GYM0101_005:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	BufferPlayersName 0
-	NPCMsg msg_0469_T04GYM0101_00016
-	GoToIfNoItemSpace ITEM_MACHINE_PART, 1, _027C
-	CallStd std_obtain_item_verbose
-	HidePerson obj_T04GYM0101_stop
-	HidePerson obj_T04GYM0101_stop_2
-	SetFlag FLAG_HIDE_CERULEAN_GYM_MACHINE_PART
-	SetVar VAR_SCENE_ROUTE_24_ROCKET, 4
-	CloseMsg
-	ReleaseAll
-	End
-
-_027C:
-	CallStd std_bag_is_full
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T04GYM0101_000:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	CheckBadge BADGE_CASCADE, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0348
-	NPCMsg msg_0469_T04GYM0101_00008
-	CloseMsg
-	TrainerBattle TRAINER_LEADER_MISTY_MISTY, 0, 0, 0
+	TrainerBattle 1151, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _035E
-	GiveBadge BADGE_CASCADE
-	AddVar VAR_UNK_4135, 1
-	AddSpecialGameStat SCORE_EVENT_BADGE_GET
-	SetTrainerFlag TRAINER_SWIMMER_F_DIANA
-	SetTrainerFlag TRAINER_SWIMMER_F_BRIANA
-	SetTrainerFlag TRAINER_SWIMMER_F_JOY
-	SetTrainerFlag TRAINER_SAILOR_PARKER
-	SetTrainerFlag TRAINER_SAILOR_EDDIE
-	NPCMsg msg_0469_T04GYM0101_00009
-	BufferPlayersName 0
-	NPCMsg msg_0469_T04GYM0101_00010
-	PlayFanfare SEQ_ME_BADGE
-	WaitFanfare
-	CallIfSet FLAG_UNK_14D, _0364
-	BufferPlayersName 0
-	NPCMsg msg_0469_T04GYM0101_00011
-	GoTo _0307
-
-_0307:
-	GoToIfNoItemSpace ITEM_TM03, 1, _033E
-	CallStd std_give_item_verbose
-	SetFlag FLAG_GOT_TM03_FROM_MISTY
-	BufferPlayersName 0
-	NPCMsg msg_0469_T04GYM0101_00012
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_033E:
-	CallStd std_bag_is_full
-	CloseMsg
-	ReleaseAll
-	End
-
-_0348:
-	GoToIfUnset FLAG_GOT_TM03_FROM_MISTY, _0307
-	NPCMsg msg_0469_T04GYM0101_00013
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_035E:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_13
 	WhiteOut
+	End
+_cv_won_13:
+	SetTrainerFlag 1151
+	GoTo CeruleanCity_Gym_EventScript_MistyDefeated
+_cv_beaten_12:
+	End
+	
+CeruleanCity_Gym_EventScript_GymGuy:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x20DC, CeruleanCity_Gym_EventScript_GymGuyPostVictory
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_GymGuyAdvice
+	WaitButton
+	CloseMsg
 	ReleaseAll
 	End
-
-_0364:
-	ClearFlag FLAG_HIDE_ROUTE_25_SUICUNE
-	SetVar VAR_SCENE_ROUTE_25, 1
+	
+GymAides_EventScript_CeruleanCity:
+	GoToIfSet 0x208B, GymAides_EventScript_CeruleanCityAfter
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0469_T04GYM0101_GymAides_Text_CeruleanCity
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeruleanCity_Gym_EventScript_GymStatue:
+	LockAll
+	GoToIfSet 0x208B, CeruleanCity_Gym_EventScript_GymStatuePostVictory
+	BufferRivalsName 7
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_GymStatue
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeruleanCity_Gym_OnTransitionGuest:
+	SetFlag 0x2017
+	End
+	
+CeruleanCity_Gym_EventScript_MentorBattle:
+	CheckTrainerFlag 1151
+	GoToIf TRUE, _cv_beaten_14
+	TrainerBattle 1151, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_15
+	WhiteOut
+	End
+_cv_won_15:
+	SetTrainerFlag 1151
+	GoTo CeruleanCity_Gym_EventScript_MistyDefeated
+_cv_beaten_14:
+	GoTo CeruleanCity_Gym_EventScript_AfterLeaderBattle
+	
+CeruleanCity_Gym_EventScript_MistyDefeated:
+	SetFlag 0x20DC
+	SetFlag 0x208B
+	SetVar 0x8008, 2
+	Call Common_EventScript_SetGymTrainers_Frlg
+	GoTo CeruleanCity_Gym_EventScript_GiveTM03
+	End
+	
+CeruleanCity_Gym_EventScript_GymGuyPostVictory:
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_WeMakePrettyGoodTeam
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymAides_EventScript_CeruleanCityAfter:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0469_T04GYM0101_GymAides_Text_CeruleanCityAfter
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeruleanCity_Gym_EventScript_GymStatuePostVictory:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_GymStatuePlayerWon
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeruleanCity_Gym_EventScript_AfterLeaderBattle:
+	GoToIfUnset 0x20DD, CeruleanCity_Gym_EventScript_GiveTM03
+	Call GymHack_EventScript_MistyGifts
+	Call GymCandidate_EventScript_CeruleanCityTalk
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_ExplainTM03
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Common_EventScript_SetGymTrainers_Frlg:
+	CompareVarToValue 0x8008, 1
+	GoToIfEq EventScript_SetPewterGymTrainers
+	CompareVarToValue 0x8008, 2
+	GoToIfEq EventScript_SetCeruleanGymTrainers
+	CompareVarToValue 0x8008, 3
+	GoToIfEq EventScript_SetVermilionGymTrainers
+	CompareVarToValue 0x8008, 4
+	GoToIfEq EventScript_SetCeladonGymTrainers
+	CompareVarToValue 0x8008, 5
+	GoToIfEq EventScript_SetFuchsiaGymTrainers
+	CompareVarToValue 0x8008, 6
+	GoToIfEq EventScript_SetSaffronGymTrainers
+	CompareVarToValue 0x8008, 7
+	GoToIfEq EventScript_SetCinnabarGymTrainers
+	CompareVarToValue 0x8008, 8
+	GoToIfEq EventScript_SetViridianGymTrainers
+	End
+	
+CeruleanCity_Gym_EventScript_GiveTM03:
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_ExplainCascadeBadge
+	WaitButton
+	HasSpaceForItem ITEM_TM03, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeruleanCity_Gym_EventScript_NoRoomForTM03
+	GiveItem ITEM_TM03, 1, VAR_SPECIAL_RESULT
+	BufferItemName 1, ITEM_TM03
+	BufferPlayersName 6
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_ReceivedTM03FromMisty
+	PlayFanfare SEQ_ME_LVUP
+	WaitFanfare
+	WaitButton
+	SetFlag 0x20DD
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_ExplainTM03
+	WaitButton
+	Call GymHack_EventScript_MistyGifts
+	GoTo GymCandidate_EventScript_CeruleanCityAfterBadge
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymHack_EventScript_MistyGifts:
+	GoToIfSet 0x20DE, GymHack_EventScript_GiftsDone
+	NPCMsg msg_0469_T04GYM0101_GymHack_Text_MistySilverCap
+	WaitButton
+	SetVar 0x8009, 795
+	Call GymHack_EventScript_GiveStatItem
+	SetFlag 0x20DE
+	NPCMsg msg_0469_T04GYM0101_GymHack_Text_MistySilverCapAfter
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_CeruleanCityTalk:
+	SetVar 0x8009, 1
+	SetVar 0x800A, 6
+	GoTo GymCandidate_EventScript_TalkAgain
+	
+EventScript_SetPewterGymTrainers:
+	SetTrainerFlag 897
+	Return
+	
+EventScript_SetCeruleanGymTrainers:
+	SetTrainerFlag 904
+	SetTrainerFlag 980
+	Return
+	
+EventScript_SetVermilionGymTrainers:
+	SetTrainerFlag 896
+	SetTrainerFlag 966
+	SetTrainerFlag 1159
+	Return
+	
+EventScript_SetCeladonGymTrainers:
+	SetTrainerFlag 887
+	SetTrainerFlag 888
+	SetTrainerFlag 914
+	SetTrainerFlag 1010
+	SetTrainerFlag 1011
+	SetTrainerFlag 1012
+	SetTrainerFlag 1138
+	Return
+	
+EventScript_SetFuchsiaGymTrainers:
+	SetTrainerFlag 1039
+	SetTrainerFlag 1040
+	SetTrainerFlag 1033
+	SetTrainerFlag 1034
+	SetTrainerFlag 1037
+	SetTrainerFlag 1038
+	Return
+	
+EventScript_SetSaffronGymTrainers:
+	SetTrainerFlag 1025
+	SetTrainerFlag 1026
+	SetTrainerFlag 1027
+	SetTrainerFlag 1028
+	SetTrainerFlag 1175
+	SetTrainerFlag 1176
+	SetTrainerFlag 1177
+	Return
+	
+EventScript_SetCinnabarGymTrainers:
+	SetTrainerFlag 928
+	SetTrainerFlag 929
+	SetTrainerFlag 930
+	SetTrainerFlag 931
+	SetTrainerFlag 960
+	SetTrainerFlag 961
+	SetTrainerFlag 962
+	Return
+	
+EventScript_SetViridianGymTrainers:
+	SetTrainerFlag 1041
+	SetTrainerFlag 1042
+	SetTrainerFlag 1067
+	SetTrainerFlag 1068
+	SetTrainerFlag 1069
+	SetTrainerFlag 1128
+	SetTrainerFlag 1136
+	SetTrainerFlag 1137
+	Return
+	
+CeruleanCity_Gym_EventScript_NoRoomForTM03:
+	NPCMsg msg_0469_T04GYM0101_CeruleanCity_Gym_Text_BetterMakeRoomForThis
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_CeruleanCityAfterBadge:
+	SetVar 0x8009, 1
+	SetVar 0x800A, 6
+	GoTo GymCandidate_EventScript_AfterBadge
+	End
+	
+GymHack_EventScript_GiftsDone:
+	Return
+	
+GymHack_EventScript_GiveStatItem:
+	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymHack_EventScript_GiveStatItemDone
+	BufferItemName 1, 0x8009
+	NPCMsg msg_0469_T04GYM0101_GymHack_Text_GiftSentToPC
+	WaitButton
+	End
+	
+GymCandidate_EventScript_TalkAgain:
+	Call GymCandidate_EventScript_MentorGift
+	// TODO(gba) special GymCandidate_IsApproved
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Offer
+	CompareVarToValue 0x8009, 7
+	GoToIfEq GymCandidate_EventScript_Return
+	GoToIfSet 0x2008, GymCandidate_EventScript_OwnGym
+	// TODO(gba) special GymCandidate_BufferRepeatOffer
+	GoTo _cv_stop
+	Call _cv_str4
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_16
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_17
+_cv_yes_16:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_17:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_NotYet
+	SetVar 0x8007, 1
+	GoTo GymCandidate_EventScript_Start
+	CloseMsg
+	End
+	
+GymCandidate_EventScript_AfterBadge:
+	SetVar VAR_SPECIAL_RESULT, 0
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_mentor_18
+	CompareVarToValue 0x5019, 5
+	GoToIfNe _cv_mentor_18
+	SetVar 0x401F, 12
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_18:
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_mentor_19
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_mentor_19
+	SetVar 0x401F, 13
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_19:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_mentor_20
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_mentor_20
+	SetVar 0x401F, 14
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_20:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_21
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_mentor_21
+	SetVar 0x401F, 15
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_21:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_22
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_mentor_22
+	SetVar 0x401F, 16
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_22:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_mentor_23
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_mentor_23
+	SetVar 0x401F, 17
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_23:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_24
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_mentor_24
+	SetVar 0x401F, 18
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_24:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_25
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_mentor_25
+	SetVar 0x401F, 19
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_25:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_26
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_mentor_26
+	SetVar 0x401F, 20
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_26:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_27
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_mentor_27
+	SetVar 0x401F, 21
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_27:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_mentor_28
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_mentor_28
+	SetVar 0x401F, 22
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_28:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq GymCandidate_EventScript_ShowText4
+	Call GymCandidate_EventScript_MentorGift
+	GoTo GymCandidate_EventScript_Offer
+	End
+	
+GymHack_EventScript_GiveStatItemDone:
+	Return
+	
+GymCandidate_EventScript_MentorGift:
+	// TODO(gba) special GymCandidate_PrepareMentorGift
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Return
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_MentorGiveItem
+	PlaySE SEQ_SE_DP_DOOR
+	BufferPlayersName 6
+	NPCMsg msg_0469_T04GYM0101_GymCandidate_Text_SomeoneToSeeYou
+	WaitButton
+	CloseMsg
+	Call GymCandidate_EventScript_VisitorWalksIn
+	Call GymCandidate_EventScript_MentorGiveItem
+	Call GymCandidate_EventScript_VisitorWalksOut
+	Return
+	
+GymCandidate_EventScript_Offer:
+	// TODO(gba) special GymCandidate_BufferOffer
+	GoTo _cv_stop
+	Call _cv_str4
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_29
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_30
+_cv_yes_29:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_30:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_NotYet
+	SetVar 0x8007, 0
+	End
+	
+GymCandidate_EventScript_Return:
+	Return
+	
+GymCandidate_EventScript_OwnGym:
+	// TODO(gba) special GymCandidate_BufferOwnGym
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_NotYet:
+	NPCMsg msg_0469_T04GYM0101_GymCandidate_Text_NotYet
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_Start:
+	// TODO(gba) special GymHack_CheckTeamSpecial
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe GymCandidate_EventScript_TeamBreaksRules
+	SetVar 0x800B, 0
+	Call GymCandidate_EventScript_TakeLeadersPlace
+	End
+	
+GymCandidate_EventScript_ShowText4:
+	Call _cv_str4
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_MentorGiveItem:
+	// TODO(gba) special GymCandidate_BufferMentorGift
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	GiveItem 0x8004, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_MentorItemExplain
+	BufferItemName 1, 0x8004
+	NPCMsg msg_0469_T04GYM0101_GymHack_Text_GiftSentToPC
+	WaitButton
+	End
+	
+GymCandidate_EventScript_VisitorWalksIn:
+	// TODO(gba) special GymCandidate_PlanVisitorWalk
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_MentorAppears
+	CopyVar 0x401E, 0x8005
+	AddVar 0x401E, 2
+	CopyVar 0x401F, 0x8006
+	AddVar 0x401F, -3
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	ApplyMovement 0x800A, gMentorWalkIn
+	WaitMovement
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	Return
+	
+GymCandidate_EventScript_VisitorWalksOut:
+	// TODO(gba) special GymCandidate_VisitorWalked
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_GuestLeaves
+	CloseMsg
+	ApplyMovement 0x800A, gMentorWalkOut
+	WaitMovement
+	HidePerson 0x800A
+	SetFlag 0x2017
+	PlaySE SEQ_SE_DP_KAIDAN2
+	// TODO(gba) special GymCandidate_FaceBack
+	GoTo _cv_stop
+	Return
+	
+GymCandidate_EventScript_TeamBreaksRules:
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq GymCandidate_EventScript_ItemClause
+	NPCMsg msg_0469_T04GYM0101_GymCandidate_Text_TeamBreaksRules
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_TakeLeadersPlace:
+	// TODO(gba) special GymCandidate_PlanHold
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Return
+	// TODO(gba) special GymCandidate_BufferHoldText
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special GymCandidate_HoldLeaderAside
+	GoTo _cv_stop
+	ApplyMovement obj_player, gHoldPlayerIn
+	WaitMovement
+	Wait 30, VAR_SPECIAL_RESULT
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+	
+GymCandidate_EventScript_MentorItemExplain:
+	BufferItemName 0, 0x8004
+	CompareVarToValue 0x8009, 6
+	GoToIfEq GymCandidate_EventScript_EdgeItemExplain
+	NPCMsg msg_0469_T04GYM0101_GymCandidate_Text_GuardItemExplain
+	WaitButton
+	Call Outfits_EventScript_GymUniform
+	Return
+	
+GymCandidate_EventScript_MentorAppears:
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special GymCandidate_PlaceGuest
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_MentorNoRoom
+	CopyVar 0x401E, 0x8005
+	AddVar 0x401E, 2
+	CopyVar 0x401F, 0x8006
+	AddVar 0x401F, -3
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	End
+	
+GymCandidate_EventScript_GuestLeaves:
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	HidePerson 0x800A
+	SetFlag 0x2017
+	// TODO(gba) special GymCandidate_FaceBack
+	GoTo _cv_stop
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+	
+GymCandidate_EventScript_ItemClause:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_EdgeItemExplain:
+	NPCMsg msg_0469_T04GYM0101_GymCandidate_Text_EdgeItemExplain
+	WaitButton
+	Return
+	
+Outfits_EventScript_GymUniform:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Outfits_EventScript_Return
+	PlayFanfare SEQ_ME_ITEM
+	BufferPlayersName 6
+	NPCMsg msg_0469_T04GYM0101_Outfits_Text_ReceivedGymUniform
+	WaitFanfare
+	BufferPlayersName 6
+	NPCMsg msg_0469_T04GYM0101_Outfits_Text_PutInWardrobe
+	WaitButton
+	End
+	
+GymCandidate_EventScript_MentorNoRoom:
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
+Outfits_EventScript_Return:
+	Return
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0469_T04GYM0101_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0469_T04GYM0101_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0469_T04GYM0101_Text_GymHack_DuplicateItem
+	WaitButton
 	Return
 
-scr_seq_T04GYM0101_002:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	Compare VAR_UNK_4088, 2
-	GoToIfNe _03AD
-	CheckBadge BADGE_CASCADE, VAR_SPECIAL_RESULT
-	BufferPlayersName 0
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _03A4
-	NPCMsg msg_0469_T04GYM0101_00006
-	GoTo _03A7
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	CompareVarToValue 0x401F, 1
+	GoToIfNe _cv_str4_0
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_rock
+	Return
+_cv_str4_0:
+	CompareVarToValue 0x401F, 2
+	GoToIfNe _cv_str4_1
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_normal
+	Return
+_cv_str4_1:
+	CompareVarToValue 0x401F, 3
+	GoToIfNe _cv_str4_2
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_water
+	Return
+_cv_str4_2:
+	CompareVarToValue 0x401F, 4
+	GoToIfNe _cv_str4_3
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_electric
+	Return
+_cv_str4_3:
+	CompareVarToValue 0x401F, 5
+	GoToIfNe _cv_str4_4
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_steel
+	Return
+_cv_str4_4:
+	CompareVarToValue 0x401F, 6
+	GoToIfNe _cv_str4_5
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_grass
+	Return
+_cv_str4_5:
+	CompareVarToValue 0x401F, 7
+	GoToIfNe _cv_str4_6
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_poison
+	Return
+_cv_str4_6:
+	CompareVarToValue 0x401F, 8
+	GoToIfNe _cv_str4_7
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_bug
+	Return
+_cv_str4_7:
+	CompareVarToValue 0x401F, 9
+	GoToIfNe _cv_str4_8
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_psychic
+	Return
+_cv_str4_8:
+	CompareVarToValue 0x401F, 10
+	GoToIfNe _cv_str4_9
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_fairy
+	Return
+_cv_str4_9:
+	CompareVarToValue 0x401F, 11
+	GoToIfNe _cv_str4_10
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_prebattle_fire
+	Return
+_cv_str4_10:
+	CompareVarToValue 0x401F, 12
+	GoToIfNe _cv_str4_11
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_rock
+	Return
+_cv_str4_11:
+	CompareVarToValue 0x401F, 13
+	GoToIfNe _cv_str4_12
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_normal
+	Return
+_cv_str4_12:
+	CompareVarToValue 0x401F, 14
+	GoToIfNe _cv_str4_13
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_water
+	Return
+_cv_str4_13:
+	CompareVarToValue 0x401F, 15
+	GoToIfNe _cv_str4_14
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_electric
+	Return
+_cv_str4_14:
+	CompareVarToValue 0x401F, 16
+	GoToIfNe _cv_str4_15
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_steel
+	Return
+_cv_str4_15:
+	CompareVarToValue 0x401F, 17
+	GoToIfNe _cv_str4_16
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_grass
+	Return
+_cv_str4_16:
+	CompareVarToValue 0x401F, 18
+	GoToIfNe _cv_str4_17
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_poison
+	Return
+_cv_str4_17:
+	CompareVarToValue 0x401F, 19
+	GoToIfNe _cv_str4_18
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_bug
+	Return
+_cv_str4_18:
+	CompareVarToValue 0x401F, 20
+	GoToIfNe _cv_str4_19
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_psychic
+	Return
+_cv_str4_19:
+	CompareVarToValue 0x401F, 21
+	GoToIfNe _cv_str4_20
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_fairy
+	Return
+_cv_str4_20:
+	CompareVarToValue 0x401F, 22
+	GoToIfNe _cv_str4_21
+	NPCMsg msg_0469_T04GYM0101_cv_mentor_first_fire
+	Return
+_cv_str4_21:
+	Return
 
-_03A4:
-	NPCMsg msg_0469_T04GYM0101_00007
-_03A7:
-	GoTo _03F6
-
-_03AD:
-	NPCMsg msg_0469_T04GYM0101_00004
-	GoTo _03F6
-
-scr_seq_T04GYM0101_003:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	Compare VAR_UNK_4088, 2
-	GoToIfNe _03F3
-	CheckBadge BADGE_CASCADE, VAR_SPECIAL_RESULT
-	BufferPlayersName 0
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _03EA
-	NPCMsg msg_0469_T04GYM0101_00006
-	GoTo _03ED
-
-_03EA:
-	NPCMsg msg_0469_T04GYM0101_00007
-_03ED:
-	GoTo _03F6
-
-_03F3:
-	NPCMsg msg_0469_T04GYM0101_00005
-_03F6:
+_cv_stop:
+	NPCMsg msg_0469_T04GYM0101_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-scr_seq_T04GYM0101_001:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	CheckBadge BADGE_CASCADE, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0424
-	NPCMsg msg_0469_T04GYM0101_00014
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
+	.balign 4, 0
+gMentorWalkIn:
+	EndMovement
 
-_0424:
-	NPCMsg msg_0469_T04GYM0101_00015
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
+	.balign 4, 0
+gMentorWalkOut:
+	EndMovement
+
+	.balign 4, 0
+gHoldPlayerIn:
+	EndMovement
 	.balign 4, 0

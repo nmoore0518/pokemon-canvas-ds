@@ -1476,8 +1476,6 @@ _cv_shown_137:
 	WaitFade
 	PlayCry 0x8008, 0
 	WaitCry
-	// TODO(gba) special SpawnCameraObject
-	GoTo _cv_stop
 	ApplyMovement 127, gGymLegendCameraIn
 	WaitMovement
 	PlayBGM SEQ_GS_E_ARCEUS
@@ -1487,8 +1485,6 @@ _cv_shown_137:
 	Wait 30, VAR_SPECIAL_RESULT
 	ApplyMovement 127, gGymLegendCameraOut
 	WaitMovement
-	// TODO(gba) special RemoveCameraObject
-	GoTo _cv_stop
 	SetFlag 0x203B
 	SetVar 0x5014, 0
 	// TODO(gba) special GymLegend_Setup
@@ -2738,10 +2734,7 @@ GymSwitch_EventScript_OakHere:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered
 	WaitButton
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2045, _cv_has_186
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_186:
+	HasItem 1833, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymSwitch_EventScript_OakTeraTip
 	// TODO(gba) special GymSwitch_CanTakeNewType
@@ -2751,12 +2744,12 @@ _cv_has_186:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_187
+	GoToIfEq _cv_yes_186
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_188
-_cv_yes_187:
+	GoTo _cv_yn_187
+_cv_yes_186:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_188:
+_cv_yn_187:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakDeclined
 	SetVar 0x8004, 1
@@ -2844,9 +2837,9 @@ GymSwitch_EventScript_TypeMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_190
+	GoToIfLt _cv_menu_189
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_190:
+_cv_menu_189:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymSwitch_EventScript_ChoiceCancelled
 	// TODO(gba) special GymSwitch_BufferChoice
@@ -2857,12 +2850,12 @@ _cv_menu_190:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmOld
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_191
+	GoToIfEq _cv_yes_190
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_192
-_cv_yes_191:
+	GoTo _cv_yn_191
+_cv_yes_190:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_192:
+_cv_yn_191:
 	GoTo GymSwitch_EventScript_Confirmed
 	CloseMsg
 	End
@@ -2885,12 +2878,12 @@ GymSwitch_EventScript_ConfirmNew:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmNew
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_193
+	GoToIfEq _cv_yes_192
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_194
-_cv_yes_193:
+	GoTo _cv_yn_193
+_cv_yes_192:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_194:
+_cv_yn_193:
 	End
 	
 GymSwitch_EventScript_Confirmed:

@@ -20,7 +20,7 @@
         },
         {
             "id": "2",
-            "spriteId": "SPRITE_FOLLOWER_MON_EEVEE",
+            "spriteId": "2633",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -37,7 +37,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_FOLLOWER_MON_EEVEE",
+            "spriteId": "2633",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -54,7 +54,7 @@
         },
         {
             "id": "4",
-            "spriteId": "SPRITE_FOLLOWER_MON_VAPOREON",
+            "spriteId": "2634",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -71,7 +71,7 @@
         },
         {
             "id": "5",
-            "spriteId": "SPRITE_FOLLOWER_MON_JOLTEON",
+            "spriteId": "2635",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -88,7 +88,7 @@
         },
         {
             "id": "6",
-            "spriteId": "SPRITE_FOLLOWER_MON_FLAREON",
+            "spriteId": "2636",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -105,7 +105,7 @@
         },
         {
             "id": "7",
-            "spriteId": "SPRITE_FOLLOWER_MON_ESPEON",
+            "spriteId": "2696",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -122,7 +122,7 @@
         },
         {
             "id": "8",
-            "spriteId": "SPRITE_FOLLOWER_MON_UMBREON",
+            "spriteId": "2697",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -139,7 +139,7 @@
         },
         {
             "id": "9",
-            "spriteId": "SPRITE_FOLLOWER_MON_EEVEE",
+            "spriteId": "3250",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

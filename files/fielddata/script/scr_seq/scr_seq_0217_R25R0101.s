@@ -3,307 +3,382 @@
 #include "msgdata/msg/msg_0364_R25R0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route25_SeaCottage_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_R25R0101_000
+	ScrDef Route25_SeaCottage_EventScript_Bill
+	ScrDef Route25_SeaCottage_EventScript_Computer
+	ScrDef Route25_SeaCottage_OnTransition
 	ScrDefEnd
-
-scr_seq_R25R0101_000:
-	PlaySE SEQ_SE_DP_SELECT
+	
+Route25_SeaCottage_EventScript_Bill:
 	LockAll
 	FacePlayer
-	GoToIfSet FLAG_UNK_14E, _0020
-	NPCMsg msg_0364_R25R0101_00000
-	SetFlag FLAG_UNK_14E
-_0020:
-	GetGameVersion VAR_SPECIAL_x8002
-	Compare VAR_SPECIAL_x8002, 8
-	GoToIfNe _0037
-	GoTo _00B1
-
-_0037:
-	Compare VAR_UNK_412D, 0
-	GoToIfNe _004D
-	NPCMsg msg_0364_R25R0101_00001
-	GoTo _00AB
-
-_004D:
-	Compare VAR_UNK_412D, 1
-	GoToIfNe _0063
-	NPCMsg msg_0364_R25R0101_00002
-	GoTo _00AB
-
-_0063:
-	Compare VAR_UNK_412D, 2
-	GoToIfNe _0079
-	NPCMsg msg_0364_R25R0101_00003
-	GoTo _00AB
-
-_0079:
-	Compare VAR_UNK_412D, 3
-	GoToIfNe _008F
-	NPCMsg msg_0364_R25R0101_00004
-	GoTo _00AB
-
-_008F:
-	Compare VAR_UNK_412D, 4
-	GoToIfNe _00A5
-	NPCMsg msg_0364_R25R0101_00005
-	GoTo _00AB
-
-_00A5:
-	GoTo _0484
-
-_00AB:
-	GoTo _0125
-
-_00B1:
-	Compare VAR_UNK_412D, 0
-	GoToIfNe _00C7
-	NPCMsg msg_0364_R25R0101_00006
-	GoTo _0125
-
-_00C7:
-	Compare VAR_UNK_412D, 1
-	GoToIfNe _00DD
-	NPCMsg msg_0364_R25R0101_00007
-	GoTo _0125
-
-_00DD:
-	Compare VAR_UNK_412D, 2
-	GoToIfNe _00F3
-	NPCMsg msg_0364_R25R0101_00008
-	GoTo _0125
-
-_00F3:
-	Compare VAR_UNK_412D, 3
-	GoToIfNe _0109
-	NPCMsg msg_0364_R25R0101_00009
-	GoTo _0125
-
-_0109:
-	Compare VAR_UNK_412D, 4
-	GoToIfNe _011F
-	NPCMsg msg_0364_R25R0101_00010
-	GoTo _0125
-
-_011F:
-	GoTo _0484
-
-_0125:
-	NPCMsg msg_0364_R25R0101_00011
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _048D
-	NPCMsg msg_0364_R25R0101_00012
-	CloseMsg
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	PartySelectUI
-	GetPartySelection VAR_SPECIAL_x8000
-	RestoreOverworld
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	Compare VAR_SPECIAL_x8000, 255
-	GoToIfEq _048D
-	GetPartyMonSpecies VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
-	Compare VAR_SPECIAL_x8002, 8
-	GoToIfNe _0188
-	GoTo _02F0
-
-_0188:
-	Switch VAR_UNK_412D
-	Case 0, _01C8
-	Case 1, _01E4
-	Case 2, _0200
-	Case 3, _021C
-	GoTo _0238
-
-_01C8:
-	Compare VAR_SPECIAL_x8001, 43
-	GoToIfEq _01DE
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_01DE:
-	GoTo _024E
-
-_01E4:
-	Compare VAR_SPECIAL_x8001, 58
-	GoToIfEq _01FA
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_01FA:
-	GoTo _024E
-
-_0200:
-	Compare VAR_SPECIAL_x8001, 39
-	GoToIfEq _0216
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_0216:
-	GoTo _024E
-
-_021C:
-	Compare VAR_SPECIAL_x8001, 172
-	GoToIfEq _0232
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_0232:
-	GoTo _024E
-
-_0238:
-	Compare VAR_SPECIAL_x8001, 183
-	GoToIfEq _024E
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_024E:
-	BufferMonSpeciesName 0, VAR_SPECIAL_x8000
-	NPCMsg msg_0364_R25R0101_00015
-	Switch VAR_UNK_412D
-	Case 0, _0296
-	Case 1, _02A8
-	Case 2, _02BA
-	Case 3, _02CC
-	GoTo _02DE
-
-_0296:
-	SetVar VAR_SPECIAL_x8004, 85
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_02A8:
-	SetVar VAR_SPECIAL_x8004, 82
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_02BA:
-	SetVar VAR_SPECIAL_x8004, 229
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_02CC:
-	SetVar VAR_SPECIAL_x8004, 83
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_02DE:
-	SetVar VAR_SPECIAL_x8004, 84
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_02F0:
-	Switch VAR_UNK_412D
-	Case 0, _0330
-	Case 1, _034C
-	Case 2, _0368
-	Case 3, _0384
-	GoTo _03A0
-
-_0330:
-	Compare VAR_SPECIAL_x8001, 108
-	GoToIfEq _0346
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_0346:
-	GoTo _03B6
-
-_034C:
-	Compare VAR_SPECIAL_x8001, 43
-	GoToIfEq _0362
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_0362:
-	GoTo _03B6
-
-_0368:
-	Compare VAR_SPECIAL_x8001, 120
-	GoToIfEq _037E
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_037E:
-	GoTo _03B6
-
-_0384:
-	Compare VAR_SPECIAL_x8001, 37
-	GoToIfEq _039A
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_039A:
-	GoTo _03B6
-
-_03A0:
-	Compare VAR_SPECIAL_x8001, 172
-	GoToIfEq _03B6
-	NPCMsg msg_0364_R25R0101_00014
-	GoTo _0490
-
-_03B6:
-	BufferMonSpeciesName 0, VAR_SPECIAL_x8000
-	NPCMsg msg_0364_R25R0101_00015
-	Switch VAR_UNK_412D
-	Case 0, _03FE
-	Case 1, _0410
-	Case 2, _0422
-	Case 3, _0434
-	GoTo _0446
-
-_03FE:
-	SetVar VAR_SPECIAL_x8004, 229
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_0410:
-	SetVar VAR_SPECIAL_x8004, 85
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_0422:
-	SetVar VAR_SPECIAL_x8004, 84
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_0434:
-	SetVar VAR_SPECIAL_x8004, 82
-	SetVar VAR_SPECIAL_x8005, 1
-	GoTo _0452
-
-_0446:
-	SetVar VAR_SPECIAL_x8004, 83
-	SetVar VAR_SPECIAL_x8005, 1
-_0452:
-	HasSpaceForItem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _047A
-	CallStd std_give_item_verbose
-	AddVar VAR_UNK_412D, 1
-	NPCMsg msg_0364_R25R0101_00016
-	GoTo _0490
-
-_047A:
-	CallStd std_bag_is_full
-	CloseMsg
-	ReleaseAll
+	GoToIfSet 3, Route25_SeaCottage_EventScript_BillGoLookAtPC
+	GoToIfSet 0x20D3, Route25_SeaCottage_EventScript_BillGoToSSAnne
+	GoToIfSet 0x20EA, Route25_SeaCottage_EventScript_BillGiveSSTicket
+	GetPlayerGender VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Route25_SeaCottage_EventScript_BillAskForHelpMale
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Route25_SeaCottage_EventScript_BillAskForHelpFemale
 	End
-
-_0484:
-	NPCMsg msg_0364_R25R0101_00017
-	GoTo _0490
-
-_048D:
-	NPCMsg msg_0364_R25R0101_00013
-_0490:
+	
+Route25_SeaCottage_EventScript_Computer:
+	LockAll
+	GoToIfSet 3, Route25_SeaCottage_EventScript_OpenBillsMonList
+	GoToIfSet 2, Route25_SeaCottage_EventScript_RunCellSeparator
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_TeleporterIsDisplayed
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
+	
+Route25_SeaCottage_OnTransition:
+	CallIfUnset 0x20EA, Route25_SeaCottage_EventScript_HideClefairyBill
+	CallIfSet 0x20D3, Route25_SeaCottage_EventScript_SetReturnedAfterSSTicket
+	End
+	
+Route25_SeaCottage_EventScript_BillGoLookAtPC:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_CheckOutRareMonsOnPC
+	WaitButton
+	Call EventScript_BillGivesPalmPilot
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_BillGoToSSAnne:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_SSAnnePartyYouGoInstead
+	WaitButton
+	Call EventScript_BillGivesPalmPilot
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_BillGiveSSTicket:
+	GetPlayerGender VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	CallIfEq Route25_SeaCottage_EventScript_BillThanksMale
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq Route25_SeaCottage_EventScript_BillThanksFemale
+	HasSpaceForItem 456, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Route25_SeaCottage_EventScript_NoRoomForSSTicket
+	GiveItem 456, 1, VAR_SPECIAL_RESULT
+	BufferItemName 1, 456
+	BufferPlayersName 6
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ReceivedSSTicketFromBill
+	PlayFanfare SEQ_ME_ITEM
+	WaitFanfare
+	WaitButton
+	SetFlag 0x20EC
+	SetFlag 0x20E4
+	SetFlag 0x20D3
+	SetFlag 0x20D0
+	GoTo Route25_SeaCottage_EventScript_BillGoToSSAnne
+	CloseMsg
+	End
+	
+Route25_SeaCottage_EventScript_BillAskForHelpMale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ImBillHelpMeOutPal
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	GoTo Route25_SeaCottage_EventScript_BillAskForHelp
+	CloseMsg
+	End
+	
+Route25_SeaCottage_EventScript_BillAskForHelpFemale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ImBillHelpMeOutLady
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_3
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_4
+_cv_yes_3:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_4:
+	GoTo Route25_SeaCottage_EventScript_BillAskForHelp
+	CloseMsg
+	End
+	
+Route25_SeaCottage_EventScript_OpenBillsMonList:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_BillsFavoriteMonList
+	WaitButton
+	GoTo Route25_SeaCottage_EventScript_BillsMonList
+	CloseMsg
+	End
+	
+Route25_SeaCottage_EventScript_RunCellSeparator:
+	BufferPlayersName 6
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
+	WaitButton
+	CloseMsg
+	ClearFlag 2
+	SetFlag 0x20EA
+	ApplyMovement 127, Route25_SeaCottage_Movement_CameraPanToTeleporters
+	WaitMovement
+	Wait 35, VAR_SPECIAL_RESULT
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	SetVar 0x8004, 0
+	PlaySE SEQ_SE_DP_KI_GASYAN
+	WaitSE SEQ_SE_DP_KI_GASYAN
+	Wait 10, VAR_SPECIAL_RESULT
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	SetVar 0x8004, 1
+	PlaySE SEQ_SE_DP_KI_GASYAN
+	WaitSE SEQ_SE_DP_KI_GASYAN
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	Call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+	GoToIfUnset 0x205A, _cv_show_5
+	ClearFlag 0x205A
+	ShowPerson 1
+	SetFlag 0x205A
+	GoTo _cv_shown_6
+_cv_show_5:
+	ShowPerson 1
+_cv_shown_6:
+	ClearFlag 0x205A
+	Wait 50, VAR_SPECIAL_RESULT
+	PlayFanfare SEQ_ME_LVUP
+	ApplyMovement 1, Route25_SeaCottage_Movement_BillExitTeleporter
+	WaitMovement
+	WaitFanfare
+	ApplyMovement 127, Route25_SeaCottage_Movement_CameraPanBackFromTeleporters
+	WaitMovement
+	PlaySE SEQ_SE_DP_SELECT
+	ApplyMovement 1, Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom
+	WaitMovement
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_HideClefairyBill:
+	ClearFlag 0x20ED
+	MovePerson 1, 3, 5
+	Return
+	
+Route25_SeaCottage_EventScript_SetReturnedAfterSSTicket:
+	SetFlag 3
+	Return
+	
+EventScript_BillGivesPalmPilot:
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x20EE, _cv_has_7
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_has_7:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq EventScript_PalmPilotReturn
+	NPCMsg msg_0364_R25R0101_Text_BillPalmPilot
+	WaitButton
+	SetFlag 0x20EE
+	SetVar VAR_SPECIAL_RESULT, 1
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq EventScript_PalmPilotReturn
+	NPCMsg msg_0364_R25R0101_Text_BillPalmPilotHowTo
+	WaitButton
+	NPCMsg msg_0364_R25R0101_Text_BillPalmPilotSecret
+	WaitButton
+	End
+	
+Route25_SeaCottage_EventScript_BillThanksMale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ThanksBudTakeThis
+	WaitButton
+	Return
+	
+Route25_SeaCottage_EventScript_BillThanksFemale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ThanksLadyTakeThis
+	WaitButton
+	Return
+	
+Route25_SeaCottage_EventScript_NoRoomForSSTicket:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_YouveGotTooMuchStuff
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_BillAskForHelp:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	CallIfEq Route25_SeaCottage_EventScript_DeclineHelpBill
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_RunCellSeparationOnPC
+	WaitButton
+	CloseMsg
+	Wait 10, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x5002, 1
+	CallIfEq Route25_SeaCottage_EventScript_BillWalkToTeleporterSouth
+	CompareVarToValue 0x5002, 0
+	CallIfEq Route25_SeaCottage_EventScript_BillWalkToTeleporter
+	CompareVarToValue 0x5002, 2
+	CallIfEq Route25_SeaCottage_EventScript_BillWalkToTeleporter
+	CompareVarToValue 0x5002, 3
+	CallIfEq Route25_SeaCottage_EventScript_BillWalkToTeleporter
+	ApplyMovement 2, Route25_SeaCottage_Movement_BillEnterTeleporter
+	WaitMovement
+	HidePerson 2
+	SetFlag 0x20ED
+	PlaySE SEQ_SE_DP_SELECT
+	SetFlag 2
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_BillsMonList:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_SeeWhichMon
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0364_R25R0101_cv_mc_eeveelutions_0, 0
+	ScrCmd_559 msg_0364_R25R0101_cv_mc_eeveelutions_1, 1
+	ScrCmd_559 msg_0364_R25R0101_cv_mc_eeveelutions_2, 2
+	ScrCmd_559 msg_0364_R25R0101_cv_mc_eeveelutions_3, 3
+	ScrCmd_559 msg_0364_R25R0101_cv_mc_eeveelutions_4, 4
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_9
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_9:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Route25_SeaCottage_EventScript_ViewEevee
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Route25_SeaCottage_EventScript_ViewFlareon
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq Route25_SeaCottage_EventScript_ViewJolteon
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq Route25_SeaCottage_EventScript_ViewVaporeon
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq Route25_SeaCottage_EventScript_ExitBillsMonList
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq Route25_SeaCottage_EventScript_ExitBillsMonList
+	CloseMsg
+	End
+	
+Route25_SeaCottage_EventScript_PlayTeleporterBeepSE:
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	Wait 20, VAR_SPECIAL_RESULT
+	Return
+	
+EventScript_PalmPilotReturn:
+	Return
+	
+Route25_SeaCottage_EventScript_DeclineHelpBill:
+	GetPlayerGender VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	CallIfEq Route25_SeaCottage_EventScript_DeclineHelpBillMale
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq Route25_SeaCottage_EventScript_DeclineHelpBillFemale
+	Return
+	
+Route25_SeaCottage_EventScript_BillWalkToTeleporterSouth:
+	ApplyMovement 2, Route25_SeaCottage_Movement_BillWalkToTeleporterSouth
+	WaitMovement
+	Return
+	
+Route25_SeaCottage_EventScript_BillWalkToTeleporter:
+	ApplyMovement 2, Route25_SeaCottage_Movement_BillWalkToTeleporter
+	WaitMovement
+	Return
+	
+Route25_SeaCottage_EventScript_ViewEevee:
+	WaitButton
+	SetVar 0x8004, SPECIES_EEVEE
+	GoTo Route25_SeaCottage_EventScript_BillsMonList
+	End
+	
+Route25_SeaCottage_EventScript_ViewFlareon:
+	WaitButton
+	SetVar 0x8004, SPECIES_FLAREON
+	GoTo Route25_SeaCottage_EventScript_BillsMonList
+	End
+	
+Route25_SeaCottage_EventScript_ViewJolteon:
+	WaitButton
+	SetVar 0x8004, SPECIES_JOLTEON
+	GoTo Route25_SeaCottage_EventScript_BillsMonList
+	End
+	
+Route25_SeaCottage_EventScript_ViewVaporeon:
+	WaitButton
+	SetVar 0x8004, SPECIES_VAPOREON
+	GoTo Route25_SeaCottage_EventScript_BillsMonList
+	End
+	
+Route25_SeaCottage_EventScript_ExitBillsMonList:
+	ReleaseAll
+	End
+	
+Route25_SeaCottage_EventScript_DeclineHelpBillMale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_NoPleaseChief
+	WaitButton
+	Return
+	
+Route25_SeaCottage_EventScript_DeclineHelpBillFemale:
+	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_NoPleaseBeautiful
+	WaitButton
+	Return
+
+_cv_stop:
+	NPCMsg msg_0364_R25R0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_CameraPanToTeleporters:
+	WalkNormalNorth 2
+	WalkNormalEast 2
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_BillExitTeleporter:
+	WalkNormalSouth
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_CameraPanBackFromTeleporters:
+	Delay16 2
+	WalkNormalSouth 2
+	WalkNormalWest 2
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom:
+	WalkNormalEast 4
+	WalkNormalSouth 2
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_BillEnterTeleporter:
+	WalkNormalNorth
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_BillWalkToTeleporterSouth:
+	WalkNormalEast
+	WalkNormalNorth 2
+	WalkNormalWest
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+Route25_SeaCottage_Movement_BillWalkToTeleporter:
+	WalkNormalNorth 2
+	EndMovement
 	.balign 4, 0

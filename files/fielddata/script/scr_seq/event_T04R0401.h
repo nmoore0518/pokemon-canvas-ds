@@ -1,8 +1,10 @@
 #ifndef SCR_SEQ_T04R0401_H_
 #define SCR_SEQ_T04R0401_H_
 
-#define _EV_scr_seq_T04R0401_000 0
+#define _EV_CeruleanCity_BikeShop_EventScript_Clerk 0
+#define _EV_CeruleanCity_BikeShop_EventScript_Youngster 1
+#define _EV_CeruleanCity_BikeShop_EventScript_Woman 2
+#define _EV_CeruleanCity_BikeShop_EventScript_Bicycle 3
 
-#define obj_T04R0401_gsmiddleman1 0
 
-#endif // SCR_SEQ_T04R0401_H_
+#endif

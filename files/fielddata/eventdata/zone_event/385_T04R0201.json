@@ -2,53 +2,36 @@
     "header": "fielddata/script/scr_seq/event_T04R0201.h",
     "objects": [
         {
-            "id": "obj_T04R0201_fishing_2",
-            "spriteId": "SPRITE_FISHING_2",
-            "movement": 14,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T04R0201_000 + 1",
-            "facingDirection": 0,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 5,
-            "z": 3,
-            "y": 0
-        },
-        {
-            "id": "obj_T04R0201_middlewoman1_2",
-            "spriteId": "SPRITE_MIDDLEWOMAN1_2",
-            "movement": 16,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T04R0201_001 + 1",
-            "facingDirection": 2,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 8,
-            "z": 6,
-            "y": 0
-        },
-        {
-            "id": "obj_T04R0201_tsure_poke_static_diglett",
-            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_DIGLETT",
+            "id": "1",
+            "spriteId": "SPRITE_MOUNT_2",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T04R0201_002 + 1",
+            "scriptId": "_EV_CeruleanCity_House2_EventScript_Hiker + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 6,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSGIRL2",
+            "movement": 3,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_CeruleanCity_House2_EventScript_Lass + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 8,
             "z": 7,
             "y": 0
         }
@@ -61,5 +44,16 @@
             "anchor": 1,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [
+        {
+            "scriptId": "_EV_CeruleanCity_House2_EventScript_WallHole + 1",
+            "type": 0,
+            "x": 5,
+            "z": 2,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": []
 }

@@ -207,6 +207,11 @@ def pallet_mart(port, ret):
 
 
 SPECIALS = {
+    # Bill's cell separator: the camera stays with the player, the machine's own animation isn't there yet
+    'SpawnCameraObject': lambda p, r: [], 'RemoveCameraObject': lambda p, r: [],
+    'AnimateTeleporterHousing': lambda p, r: ['PlaySE SEQ_SE_DP_KI_GASYAN', 'WaitSE SEQ_SE_DP_KI_GASYAN'],
+    'AnimateTeleporterCable': lambda p, r: [],
+    'SetSeenMon': lambda p, r: [],        # (Bill's Eeveelutions on his PC: seen marks come with our Pokedex)
     'GymHack_PalletMart': pallet_mart,
     'DisableMsgBoxWalkaway': lambda p, r: [],
     # (the fossils' pictures: HeartGold has no picture window for them; their text still shows)

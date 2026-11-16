@@ -74,6 +74,18 @@
       ]
     },
     {
+      "id": "msg_0463_T03PC0101_cv_mc_yesnoinfo_2_0",
+      "en_US": "yes"
+    },
+    {
+      "id": "msg_0463_T03PC0101_cv_mc_yesnoinfo_2_1",
+      "en_US": "no"
+    },
+    {
+      "id": "msg_0463_T03PC0101_cv_mc_yesnoinfo_2_2",
+      "en_US": "gText_Info2"
+    },
+    {
       "id": "msg_0463_T03PC0101_Text_ChangeYourProfile",
       "en_US": [
         "Would you like to change your\n",

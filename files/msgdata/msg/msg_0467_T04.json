@@ -2,150 +2,286 @@
   "key": 18239,
   "messages": [
     {
-      "id": "msg_0467_T04_00000",
+      "id": "msg_0467_T04_CeruleanCity_Text_PeopleHereWereRobbed",
       "en_US": [
-        "Kanto’s Power Plant?\r",
-        "It’s near the end of Route 9, the road\n",
-        "that heads east from here.\r",
-        "I think there was an accident of\n",
-        "some sort there."
+        "The people here were robbed.\r",
+        "It’s obvious that Team Rocket is\n",
+        "behind this most heinous crime!\r",
+        "Even our Police Force has\n",
+        "trouble with the Rockets!"
       ]
     },
     {
-      "id": "msg_0467_T04_00001",
+      "id": "msg_0467_T04_CeruleanCity_Text_GruntIntro",
       "en_US": [
-        "You’re collecting every single kind\n",
-        "of Pokémon?\r",
-        "That must be quite a challenge, but\n",
-        "it sounds fun, too."
+        "Hey! Stay out!\n",
+        "It’s not your yard!\r",
+        "…Huh?\n",
+        "Me?\r",
+        "I’m an innocent bystander!\n",
+        "Don’t you believe me?"
       ]
     },
     {
-      "id": "msg_0467_T04_00002",
+      "id": "msg_0467_T04_CeruleanCity_Text_IfSlowbroWasntThereCouldCutTree",
       "en_US": [
-        "The cape in the north is a good\n",
-        "place for dates.\r",
-        "Girls like it!\r",
-        "Just between you and me...\n",
-        "Misty, the Gym Leader, is sometimes\f",
-        "there at the cape.\r",
-        "Guess I don’t stand a chance!"
+        "If that Slowbro wasn’t there, you\n",
+        "could Cut down the small tree.\r",
+        "That way, you could get to the\n",
+        "other side.\r",
+        "I think there’s a way around it,\n",
+        "though."
       ]
     },
     {
-      "id": "msg_0467_T04_00003",
-      "en_US": "SLOWBRO: Yarah?"
-    },
-    {
-      "id": "msg_0467_T04_00004",
-      "en_US": "SLOWBRO is full of the fighting spirit!"
-    },
-    {
-      "id": "msg_0467_T04_00005",
+      "id": "msg_0467_T04_CeruleanCity_Text_PokemonEncyclopediaAmusing",
       "en_US": [
-        "My SLOWBRO and I make an\n",
-        "awesome combination!\r",
-        "SLOWBRO, show me your Psychic!\r",
-        "...!\n",
-        "SLOWBRO’s Psychic hits hard!"
+        "You’re making an encyclopedia on\n",
+        "Pokémon? That sounds amusing."
       ]
     },
     {
-      "id": "msg_0467_T04_00006",
+      "id": "msg_0467_T04_CeruleanCity_Text_TrainerLifeIsToughIsntIt",
       "en_US": [
-        "This shady character asked me just now\n",
-        "how to get to the Power Plant.\r",
-        "He said it must be kept\n",
-        "“...confidential.”\r",
-        "What does that mean?"
+        "You’re a Trainer, too?\r",
+        "Collecting, battling…\n",
+        "It’s a tough life, isn’t it?"
       ]
     },
     {
-      "id": "msg_0467_T04_00007",
+      "id": "msg_0467_T04_CeruleanCity_Text_WantBrightRedBicycle",
       "en_US": [
-        "A shady character sneaked into\n",
-        "the Gym! What business does\f",
-        "he have with Misty?"
+        "I want a bright red bicycle.\r",
+        "I’ll keep it at home, so it won’t\n",
+        "get dirty."
       ]
     },
     {
-      "id": "msg_0467_T04_00008",
+      "id": "msg_0467_T04_CeruleanCity_Text_ThisIsCeruleanCave",
       "en_US": [
-        "I saw this shady guy in black go\n",
-        "off toward the Cape."
+        "This is Cerulean Cave.\r",
+        "Horribly strong Pokémon live inside\n",
+        "there.\r",
+        "It takes a very special Trainer to\n",
+        "be allowed inside there.\r",
+        "You’d have to be strong enough to\n",
+        "become the Pokémon League\f",
+        "Champion for starters.\r",
+        "And, you would have to have\n",
+        "made a great achievement."
       ]
     },
     {
-      "id": "msg_0467_T04_00009",
-      "en_US": "I’m a huge fan of Cerulean Gym’s Misty."
-    },
-    {
-      "id": "msg_0467_T04_00010",
-      "en_US": [
-        "I heard of a cave here that had\n",
-        "horribly powerful Pokémon in it.\f",
-        "That’s why I came here.\r"
-      ]
-    },
-    {
-      "id": "msg_0467_T04_00011",
-      "en_US": [
-        "Ayuh?\r",
-        "My Dowsing Machine is responding..."
-      ]
-    },
-    {
-      "id": "msg_0467_T04_00012",
-      "en_US": [
-        "This is...\n",
-        "The notorious Cerulean Cave!\r",
-        "Horribly powerful Pokémon live here.\n",
-        "Only those who have defeated all eight\f",
-        "Kanto Gym Leaders are allowed to\f",
-        "challenge it."
-      ]
-    },
-    {
-      "id": "msg_0467_T04_00013",
+      "id": "msg_0467_T04_CeruleanCity_Text_CitySign",
       "en_US": [
         "Cerulean City\n",
-        "The Floral Lagoon City"
+        "A Mysterious, Blue Aura Surrounds\f",
+        "It"
       ]
     },
     {
-      "id": "msg_0467_T04_00014",
+      "id": "msg_0467_T04_CeruleanCity_Text_GymSign",
       "en_US": [
         "Cerulean City Pokémon Gym\n",
         "Leader: Misty\f",
-        "The Tomboyish Mermaid"
+        "The Tomboyish Mermaid!"
       ]
     },
     {
-      "id": "msg_0467_T04_00015",
+      "id": "msg_0467_T04_CeruleanCity_Text_BikeShopSign",
       "en_US": [
-        "Trendsetter of the Bicycle Boom\r",
-        "Cerulean Bike Main Shop"
+        "Grass and caves handled easily!\n",
+        "Bike Shop"
       ]
     },
     {
-      "id": "msg_0467_T04_00016",
+      "id": "msg_0467_T04_CeruleanCity_Text_TrainerTipsHeldItems",
       "en_US": [
-        "There’s a notice here...\r",
-        "Stamp out thievery and make the city\n",
-        "a friendlier, more cheerful place!\f",
-        "Cerulean Police"
+        "Trainer Tips\r",
+        "A Pokémon can be made to hold\n",
+        "an item.\r",
+        "Some items can even be used by\n",
+        "the holding Pokémon in battle."
       ]
     },
     {
-      "id": "msg_0467_T04_00017",
+      "id": "msg_0467_T04_CeruleanCity_BikeShop_Text_ShinyNewBicycle",
+      "en_US": "A shiny new Bicycle!"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_OkayIllReturnStolenTM",
       "en_US": [
-        "Rt. 24 Ahead\n",
-        "East to Cerulean Cape"
+        "…Okay.\n",
+        "I’ll return the TM I stole."
       ]
     },
     {
-      "id": "msg_0467_T04_00018",
-      "en_US": "It’s locked..."
+      "id": "msg_0467_T04_CeruleanCity_Text_RecoveredTM28FromGrunt",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} recovered TM28 from\n",
+        "the Team Rocket Grunt."
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_BetterGetMovingBye",
+      "en_US": [
+        "I better get moving!\n",
+        "Bye!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_YouCanCutDownSmallTrees",
+      "en_US": [
+        "Did you know that you can Cut down\n",
+        "small trees?\r",
+        "Even that small tree in front of\n",
+        "the shop can be Cut down.\r",
+        "I think there’s a way around it,\n",
+        "though."
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroTookSnooze",
+      "en_US": "Slowbro took a snooze…"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroLoafingAround",
+      "en_US": "Slowbro is loafing around…"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroTurnedAway",
+      "en_US": "Slowbro turned away…"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroIgnoredOrders",
+      "en_US": "Slowbro ignored orders…"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroUseSonicboom",
+      "en_US": [
+        "Okay! Slowbro!\n",
+        "Use Sonicboom!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroPunch",
+      "en_US": "Slowbro, punch!"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroWithdraw",
+      "en_US": "Slowbro, Withdraw!"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroPayAttention",
+      "en_US": "Come on, Slowbro, pay attention!"
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_NoYouBlewItAgain",
+      "en_US": [
+        "No!\n",
+        "You blew it again!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_HardToControlMonsObedience",
+      "en_US": [
+        "No! That’s wrong!\n",
+        "It’s so hard to control Pokémon!\r",
+        "Your Pokémon’s obedience depends\n",
+        "on your abilities as a Trainer."
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_RivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Yo! {STRVAR_1 3, 6, 0}!\r",
+        "You’re still struggling along back\n",
+        "here?\r",
+        "I’m doing great! I caught a bunch\n",
+        "of strong and smart Pokémon!\r",
+        "Here, let me see what you caught,\n",
+        "{STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_RivalPostBattle",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Hey, guess what?\r",
+        "Brock let me run his Gym for a day.\n",
+        "I crushed every challenger!\r",
+        "That’s one approval for me.\n",
+        "The Pallet Gym is as good as mine!\r",
+        "Oh, and another thing.\r",
+        "I went to Bill’s and got him to\n",
+        "show me his rare Pokémon.\r",
+        "That added a lot of pages to my\n",
+        "Pokédex!\r",
+        "After all, Bill’s world famous as a\n",
+        "PokéMANIAC.\r",
+        "He invented the Pokémon Storage\n",
+        "System on PC, too.\r",
+        "Since you’re using his system,\n",
+        "you should go thank him.\r",
+        "Well, I better get rolling!\n",
+        "Smell ya later!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_OhRightLittlePresentAsFavor",
+      "en_US": [
+        "Oh, yeah, right.\r",
+        "I feel sorry for you. No, really.\n",
+        "You’re always plodding behind me.\r",
+        "So here, I’ll give you a little\n",
+        "present as a favor."
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_ExplainFameCheckerSmellYa",
+      "en_US": [
+        "A chatty gossip like you…\n",
+        "That thing’s perfect.\r",
+        "I don’t need it because I don’t\n",
+        "give a hoot about others.\r",
+        "All right, this time I really am\n",
+        "gone. Smell ya!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_CeruleanCity_Text_MakeRoomForThisCantRun",
+      "en_US": [
+        "Make room for this!\n",
+        "I can’t run until I give it to you!"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0467_T04_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0467_T04_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0467_T04_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0467_T04_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

@@ -1,28 +1,35 @@
 #ifndef SCR_SEQ_T04_H_
 #define SCR_SEQ_T04_H_
 
-#define _EV_scr_seq_T04_000 0
-#define _EV_scr_seq_T04_001 1
-#define _EV_scr_seq_T04_002 2
-#define _EV_scr_seq_T04_003 3
-#define _EV_scr_seq_T04_004 4
-#define _EV_scr_seq_T04_005 5
-#define _EV_scr_seq_T04_006 6
-#define _EV_scr_seq_T04_007 7
-#define _EV_scr_seq_T04_008 8
-#define _EV_scr_seq_T04_009 9
-#define _EV_scr_seq_T04_010 10
-#define _EV_scr_seq_T04_011 11
-#define _EV_scr_seq_T04_012 12
-#define _EV_scr_seq_T04_013 13
+#define _EV_CeruleanCity_EventScript_Policeman 0
+#define _EV_CeruleanCity_EventScript_Grunt 1
+#define _EV_CeruleanCity_EventScript_LittleBoy 2
+#define _EV_CeruleanCity_EventScript_BaldingMan 3
+#define _EV_CeruleanCity_EventScript_Slowbro 4
+#define _EV_CeruleanCity_EventScript_Lass 5
+#define _EV_CeruleanCity_EventScript_Youngster 6
+#define _EV_CeruleanCity_EventScript_Woman 7
+#define _EV_CeruleanCity_EventScript_CeruleanCaveGuard 8
+#define _EV_TypeTutor_EventScript_Water 9
+#define _EV_TypeTutor_EventScript_Ice 10
+#define _EV_CeruleanCity_EventScript_CitySign 11
+#define _EV_CeruleanCity_EventScript_GymSign 12
+#define _EV_CeruleanCity_EventScript_BikeShopSign 13
+#define _EV_CeruleanCity_EventScript_TrainerTips 14
+#define _EV_CeruleanCity_BikeShop_EventScript_Bicycle 15
+#define _EV_CeruleanCity_EventScript_RivalTriggerLeft 16
+#define _EV_CeruleanCity_EventScript_RivalTriggerMid 17
+#define _EV_CeruleanCity_EventScript_RivalTriggerRight 18
+#define _EV_CeruleanCity_EventScript_GruntTriggerTop 19
+#define _EV_CeruleanCity_EventScript_GruntTriggerBottom 20
+#define _EV_CeruleanCity_OnTransition 21
 
-#define obj_T04_gsman1                    0
-#define obj_T04_gswoman1                  1
-#define obj_T04_tsure_poke_static_slowbro 2
-#define obj_T04_gsbigman                  3
-#define obj_T04_gsman2                    4
-#define obj_T04_gsboy1                    5
-#define obj_T04_gsmiddleman1              6
-#define obj_T04_gsman1_2                  7
+#define LOCALID_CERULEAN_POLICEMAN 1
+#define LOCALID_CERULEAN_GRUNT 2
+#define LOCALID_CERULEAN_SLOWBRO 5
+#define LOCALID_CERULEAN_LASS 6
+#define LOCALID_CERULEAN_RIVAL 8
+#define LOCALID_CERULEAN_WOMAN 11
+#define LOCALID_CERULEAN_CAVE_GUARD 12
 
-#endif // SCR_SEQ_T04_H_
+#endif
