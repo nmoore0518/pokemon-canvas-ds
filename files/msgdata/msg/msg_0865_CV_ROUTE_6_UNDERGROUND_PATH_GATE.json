@@ -1,0 +1,19 @@
+{
+  "key": 19852,
+  "messages": [
+    {
+      "id": "msg_0865_CV_ROUTE_6_UNDERGROUND_PATH_GATE_UndergroundPath_SouthEntrance_Text_PeopleLoseThingsInTheDarkness",
+      "en_US": [
+        "People often lose things in the\n",
+        "darkness of the Underground Path."
+      ]
+    },
+    {
+      "id": "msg_0865_CV_ROUTE_6_UNDERGROUND_PATH_GATE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

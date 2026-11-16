@@ -2,36 +2,175 @@
   "key": 21543,
   "messages": [
     {
-      "id": "msg_0349_R12R0101_00000",
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_DoYouLikeToFish",
       "en_US": [
-        "I’m the Fishing Guru’s younger brother.\r",
-        "You seem to like fishing.\n",
-        "Am I right, or am I right?\f",
-        "People say I have keen eyes! {YESNO 0}"
+        "I’m the Fishing Guru’s younger\n",
+        "brother.\r",
+        "I simply looove fishing!\n",
+        "I can’t bear to go without.\r",
+        "Tell me, do you like to fish?"
       ]
     },
     {
-      "id": "msg_0349_R12R0101_00001",
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_OhThatsDisappointing",
       "en_US": [
-        "Yes, yes. Just as I thought!\r",
-        "Here, fishing fan!\n",
-        "Take this--it’s a Super Rod.\r"
+        "Oh…\n",
+        "That’s so disappointing…"
       ]
     },
     {
-      "id": "msg_0349_R12R0101_00002",
+      "id": "msg_0349_R12R0101_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "Try your hand at fishing wherever there\n",
-        "is water.\r",
-        "Remember--you can catch different\n",
-        "Pokémon depending on which Rod you use."
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0349_R12R0101_00003",
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_BlankChartOfSomeSort",
+      "en_US": [
+        "It’s a blank chart of some sort.\r",
+        "It has spaces for writing in\n",
+        "records of some kind."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_OhMagikarpAllowMeToSee",
+      "en_US": [
+        "Oh? {STRVAR_1 3, 6, 0}?\n",
+        "Why, if it isn’t a Magikarp!\r",
+        "Allow me to see it, quick!"
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_TakeThisAndFish",
+      "en_US": [
+        "Grand! I like your style.\n",
+        "I think we can be friends.\r",
+        "Take this and fish, young friend!"
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_ReceivedSuperRod",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a Super Rod from\n",
+        "the Fishing Guru’s brother."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_IfYouCatchBigMagikarpShowMe",
+      "en_US": [
+        "Fishing is a way of life!\n",
+        "It is like the finest poetry.\r",
+        "From the seas to rivers, go out\n",
+        "and land the big one, my friend.\r",
+        "Now, I have a request.\r",
+        "If you catch a big Magikarp \n",
+        "with that Rod, I want to see it.\r",
+        "As much as I love to fish, I also\n",
+        "love seeing gigantic Magikarp."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_MostGiganticMagikarpXSize",
+      "en_US": [
+        "The most gigantic Magikarp\n",
+        "I have ever witnessed…\r",
+        "{STRVAR_1 3, 2, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_TryFishingBringMeMagikarp",
+      "en_US": [
+        "Hello there, {STRVAR_1 3, 6, 0}!\n",
+        "Have you been fishing?\r",
+        "Try fishing with the Super Rod in\n",
+        "any body of water.\r",
+        "You’ll find different Pokémon in\n",
+        "different places.\r",
+        "Oh, and don’t forget to bring me\n",
+        "gigantic Magikarp."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_DoesntLookLikeMagikarp",
+      "en_US": [
+        "Uh… That doesn’t look much like\n",
+        "a Magikarp."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_HmmXSizeDoesntMeasureUp",
+      "en_US": [
+        "Hmm…\n",
+        "This one is {STRVAR_1 3, 1, 0} long.\r",
+        "It doesn’t measure up to the\n",
+        "{STRVAR_1 3, 2, 0} one you brought before."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_WhoaXSizeTakeThis",
+      "en_US": [
+        "… … …Whoa!\n",
+        "{STRVAR_1 3, 1, 0}!\r",
+        "You have a rare appreciation for\n",
+        "the fine, poetic aspects of fishing!\r",
+        "You must take this.\n",
+        "I insist!"
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_LookForwardToGreaterRecords",
+      "en_US": [
+        "I’ll look forward to seeing greater\n",
+        "records from you!"
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_HuhXSizeSameSizeAsLast",
       "en_US": [
         "Huh?\n",
-        "My own eyes deceived me?"
+        "{STRVAR_1 3, 1, 0}?\r",
+        "This is the same size as the one\n",
+        "I saw before."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_Route12_FishingHouse_Text_NoRoomForGift",
+      "en_US": [
+        "Oh, no!\r",
+        "I had a gift for you, but you have\n",
+        "no room for it."
+      ]
+    },
+    {
+      "id": "msg_0349_R12R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

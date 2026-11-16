@@ -2,114 +2,728 @@
   "key": 14692,
   "messages": [
     {
-      "id": "msg_0454_T02GYM0101_00000",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GiovanniIntro",
       "en_US": [
-        "Blue: Yo! Finally got here, huh?\r",
-        "I wasn’t in the mood at Cinnabar,\n",
-        "but now I’m ready to battle you.\r",
-        "...\r",
-        "You’re telling me you conquered all\n",
-        "the Gyms in Johto?\r",
-        "Hahaha!\f",
-        "Heh! Johto’s Gyms are that pathetic?\r",
-        "Hey, don’t worry about it.\n",
-        "I’ll know if you are good or not by\f",
-        "battling you right now.\r"
+        "Fwahahaha!\n",
+        "Welcome to my hideout!\r",
+        "It shall be so until I can restore\n",
+        "Team Rocket to its former glory.\r",
+        "But, you have found me again.\n",
+        "So be it.\f",
+        "This time, I’m not holding back!\r",
+        "Once more, you shall face\n",
+        "Giovanni, the greatest Trainer!"
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00001",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GiovanniPostBattle",
       "en_US": [
-        "Blue: No way!\r",
-        "How the heck did I lose to you?\r",
-        "...\r",
-        "Tch, all right...\f",
-        "Here, take this.\f",
-        "It’s the Earth Badge.\r"
+        "Having lost in this fashion, \n",
+        "I can’t face my followers.\f",
+        "I have betrayed their trust.\r",
+        "As of today, Team Rocket is\n",
+        "finished forever!\r",
+        "As for myself, I shall dedicate\n",
+        "my life to training again.\r",
+        "Let us meet again someday!\n",
+        "Farewell!"
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00002",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GymGuyAdvice",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the Earth Badge from Blue!"
+        "Yo!\n",
+        "Champ in the making!\r",
+        "Even I don’t know the Viridian\n",
+        "Leader’s identity.\r",
+        "But one thing’s certain.\n",
+        "This will be the toughest of all\f",
+        "the Gym Leaders.\r",
+        "Also, I heard that the Trainers\n",
+        "here like Ground-type Pokémon."
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00003",
+      "id": "msg_0454_T02GYM0101_GymAides_Text_ViridianCity",
       "en_US": [
-        "Blue: With this Badge, you’ll be able\n",
-        "to use the HM move Rock Climb!\f",
-        "Here!\r",
-        "Take this as well!\r"
+        "Prof. Oak’s Aide here!\n",
+        "Giovanni’s floor is covered in\f",
+        "spin tiles!\r",
+        "Step on one and you slide until\n",
+        "something stops you. Spinners decide\f",
+        "where challengers end up.\r",
+        "Mix them with Stop Tiles and you\n",
+        "control every step they take!"
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00004",
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherIntro",
       "en_US": [
-        "Blue: It contains Trick Room!\r",
-        "It allows slower Pokémon to move\n",
-        "before faster Pokémon for a while.\r",
-        "It’s a very tricky move, isn’t it?\n",
-        "Hence the name!"
+        "Archer: …So you’re the one. The kid who\n",
+        "beat the Boss. More than once.\r",
+        "I’m Archer. I was one of Team Rocket’s\n",
+        "executives. When Giovanni was away, I\f",
+        "ran things.\r",
+        "When he vanished, Team Rocket fell\n",
+        "apart. Some of us are still out there,\f",
+        "waiting for him to come back.\r",
+        "Not me. I turned myself in to the League.\r",
+        "They made me an offer. Viridian needed\n",
+        "a Leader, and the Boss’s Pokémon needed\f",
+        "a Trainer.\r",
+        "I’m on probation. One step out of line\n",
+        "and the League takes the Gym, and the\f",
+        "Pokémon with it.\r",
+        "And the ones still loyal to Giovanni call\n",
+        "me a traitor. Maybe they’re right."
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00005",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GymStatue",
       "en_US": [
-        "Blue: ...\r",
-        "All right, I was wrong. You’re the\n",
-        "real deal.\f",
-        "You are a good Trainer.\r",
-        "But I’m going to beat you someday.\n",
-        "Don’t you forget it!"
+        "Viridian Pokémon Gym\n",
+        "Leader: ?\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}"
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00006",
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniRematch",
       "en_US": [
-        "Yo, legend in the making!\r",
-        "The floor here is unstable,\n",
-        "so you should put away your Pokémon\f",
-        "...now!\r",
-        "The Gym Leader is a guy who battled\n",
-        "the Champion three years ago.\r",
-        "He’s no pushover.\n",
-        "Give it everything you’ve got!"
+        "Giovanni: Back again?\r",
+        "Then face the power your father gave\n",
+        "me!"
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00007",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis",
       "en_US": [
-        "Man, you are truly tough...\r",
-        "That was such an inspirational battle.\n",
-        "It brought tears to my eyes."
+        "The Earthbadge makes Pokémon of\n",
+        "any level obey without question.\r",
+        "It is evidence of your mastery as\n",
+        "a Pokémon Trainer.\r",
+        "With it, you can challenge the\n",
+        "Pokémon League.\r",
+        "Also, take this TM.\r",
+        "Consider it a gift for your Pokémon\n",
+        "League challenge."
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00008",
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_ReceivedTM26FromGiovanni",
       "en_US": [
-        "Yo, legend in the making!\r",
-        "The floor here is unstable,\n",
-        "so you should put away your Pokémon\f",
-        "...now!\r",
-        "The Gym Leader is a guy who battled\n",
-        "the Champion three years ago.\r",
-        "He’s no pushover.\n",
-        "Give it everything you’ve got!\r"
+        "{STRVAR_1 3, 6, 0} received TM26\n",
+        "from Giovanni."
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00009",
-      "en_US": "Viridian City Pokémon Gym"
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_ExplainTM26",
+      "en_US": [
+        "TM26 contains Earthquake.\r",
+        "It is a powerful attack that causes\n",
+        "a massive tremor.\r",
+        "I made it when I ran the Gym here,\n",
+        "far too long ago… "
+      ]
     },
     {
-      "id": "msg_0454_T02GYM0101_00010",
+      "id": "msg_0454_T02GYM0101_GymHack_Text_GiovanniSilverCap",
       "en_US": [
-        "Viridian City Pokémon Gym\r",
-        "Gym Leader: Blue\n",
-        "Certified Trainer!\f",
-        "{STRVAR_1 3, 0, 0}"
+        "Giovanni: The League insists every\n",
+        "Gym Leader hands these out."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymHack_Text_GiovanniSilverCapAfter",
+      "en_US": [
+        "Spend it on a Pokémon that has\n",
+        "earned it.\r",
+        "Strength is an investment.\n",
+        "Never waste it."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GymGuyPostVictory",
+      "en_US": [
+        "Blow me away! Giovanni was the\n",
+        "Gym Leader of Viridian?"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymAides_Text_ViridianCityAfter",
+      "en_US": [
+        "With the Earth Badge, your Gym PC\n",
+        "sells Spin Tiles and Stop Tiles.\r",
+        "Build a spinning maze… and test it\n",
+        "yourself. A Gym nobody can finish\f",
+        "isn’t much fun!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherOwedDad",
+      "en_US": [
+        "Archer: I owe your father more than I\n",
+        "can ever pay back.\r",
+        "I was just a Grunt who was good with\n",
+        "machines. He’s the one who brought me\f",
+        "into the labs. He taught me everything I\f",
+        "know.\r",
+        "The night he walked out on the Boss, I\n",
+        "was the one guarding the door. I had\f",
+        "orders to stop him.\r",
+        "I looked the other way. It’s the only\n",
+        "good thing I ever did in Team Rocket.\r",
+        "The Boss never found out it was me. He\n",
+        "just had your father’s lab cleared out.\f",
+        "Every note. Every prototype.\r",
+        "One of them was a crystal.\r",
+        "Your father found that it could make a\n",
+        "Pokémon shine like a gem and take on a\f",
+        "new type. He called it\f",
+        "Terastallization.\r",
+        "He never got to finish it. The Boss\n",
+        "ordered me to.\r",
+        "I told myself I was protecting his work.\n",
+        "That if I finished it, nobody worse would\f",
+        "get the chance.\r",
+        "I don’t know if that’s true. But it took\n",
+        "me years, and this is the only one that\f",
+        "works."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherGiveOrb",
+      "en_US": [
+        "Archer: It was always his. It’s yours\n",
+        "now."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTeraRules",
+      "en_US": [
+        "Archer: Hold it up in battle and one of\n",
+        "your Pokémon will Terastallize. One a\f",
+        "battle. It never runs out.\r",
+        "The League has rules about it, of\n",
+        "course. In Gym battles, League battles\f",
+        "and against your rival, a Gym Leader’s\f",
+        "Pokémon can only Terastallize into the\f",
+        "Gym’s type.\r",
+        "Anywhere else, a Pokémon can use its own\n",
+        "Tera Type, but only if it’s a type you’ve\f",
+        "mastered. Until then, it’s your Gym’s\f",
+        "type everywhere.\r",
+        "Once you’ve mastered a type, come and\n",
+        "see me. I can tune your Pokémon’s Tera\f",
+        "Types. It takes berries of the type:\f",
+        "three a time.\r",
+        "And {STRVAR_1 3, 6, 0}… the strongest Trainers\n",
+        "know how to use it too. Be ready."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherAskForgiveness",
+      "en_US": [
+        "Archer: I know I don’t have the right to\n",
+        "ask. But…\r",
+        "Can you forgive me?"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherForgiven",
+      "en_US": [
+        "Archer: …Thank you.\r",
+        "I’ll make this a Gym your father would\n",
+        "have respected."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_GymStatuePlayerWon",
+      "en_US": [
+        "Viridian Pokémon Gym\n",
+        "Leader: Giovanni\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniTakeThese",
+      "en_US": [
+        "Giovanni: You’re just like your father.\r",
+        "Take these."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ReceivedEarthBadge",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the Earthbadge from\n",
+        "Giovanni!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_ViridianCity_Gym_Text_YouDoNotHaveSpace",
+      "en_US": "You do not have space for this!"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherSomethingElse",
+      "en_US": [
+        "Archer: {STRVAR_1 3, 6, 0}. Wait.\r",
+        "There’s something I didn’t tell you last\n",
+        "time."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneOffer",
+      "en_US": [
+        "Archer: Want me to tune one of your\n",
+        "Pokémon’s Tera Types?"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTunePick",
+      "en_US": [
+        "Archer: {STRVAR_1 3, 0, 0}’s Tera Type is\n",
+        "{STRVAR_1 3, 1, 0}. Which type should it be?"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTunePrice",
+      "en_US": [
+        "Archer: The crystal needs something of\n",
+        "the type to take it in. For {STRVAR_1 3, 1, 0},\f",
+        "that’s {STRVAR_1 3, 2, 0}. Go ahead?"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuned",
+      "en_US": [
+        "Archer: Done. Outside League battles,\n",
+        "{STRVAR_1 3, 0, 0} will Terastallize into the\f",
+        "{STRVAR_1 3, 1, 0} type.\r",
+        "In a League battle, it’s still your Gym’s\n",
+        "type. Those are the rules."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherNotForgiven",
+      "en_US": [
+        "Archer: …I understand.\r",
+        "Then I’ll earn it. However long it takes."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYourFather",
+      "en_US": [
+        "Giovanni: He tried to stop me too, you\n",
+        "know.\r",
+        "He did well. He took down much of the\n",
+        "organization I built from within.\r",
+        "But he paid the price.\r",
+        "Do you know what he did, {STRVAR_1 3, 6, 0}? All\n",
+        "the evil things he contributed to Team\f",
+        "Rocket?\r",
+        "Ha. I bet you don’t know the first thing\n",
+        "about him.\r",
+        "He was my top deputy. My best scientist.\n",
+        "His inventions gave us unfathomable\f",
+        "power!\r",
+        "It was a shame when he defied me.\r",
+        "Something about a “conscience,”\n",
+        "treating Pokémon with “kindness” and\f",
+        "not as a means for power.\r",
+        "Blah, blah, blah. I shut him up, though.\n",
+        "Used his own inventions against him.\r",
+        "I tried to play nice with you. You’re his\n",
+        "child, after all.\r",
+        "And he was such a good deputy, even if\n",
+        "he was a little… soft.\r",
+        "But I’m done playing nice.\r",
+        "I’ll show you my true power… the power\n",
+        "your father gave me!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneLater",
+      "en_US": "Archer: Come back anytime."
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneEgg",
+      "en_US": [
+        "Archer: That’s an Egg. Let it hatch\n",
+        "first."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneAlready",
+      "en_US": [
+        "Archer: Its Tera Type is {STRVAR_1 3, 1, 0}\n",
+        "already."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneNoBerries",
+      "en_US": [
+        "Archer: The crystal needs something of\n",
+        "the type to take it in. For {STRVAR_1 3, 1, 0},\f",
+        "that’s {STRVAR_1 3, 2, 0}.\r",
+        "Wild Pokémon of the type carry them\n",
+        "sometimes, and you can grow them. Come\f",
+        "back when you have them."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYouLost",
+      "en_US": [
+        "Giovanni: Ha. Looks like I was right.\r",
+        "Now get out of here, kid."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniHow",
+      "en_US": [
+        "Giovanni: How?! Did you… did you use\n",
+        "your father’s inventions?\r",
+        "He beat me in the end too. Not at first.\r",
+        "He tried and tried and tried to do it\n",
+        "without help, but eventually he\f",
+        "succumbed to the allure of strength and\f",
+        "power.\r",
+        "He came back, one last time, with a team\n",
+        "full of his creations.\r",
+        "The strongest Pokémon I have ever\n",
+        "seen…\r",
+        "I wasn’t even angry; I was in awe.\r",
+        "And I was sure I could convince him to\n",
+        "come back to help Team Rocket.\r",
+        "And just when I thought I’d worn him\n",
+        "down, that’s when it happened.\r",
+        "His {STRVAR_1 3, 0, 0} got angry, or scared, or\n",
+        "confused, or something. Not that it\f",
+        "matters.\r",
+        "It attacked your father. And he didn’t\n",
+        "stand a chance.\r",
+        "But that doesn’t matter to me.\r",
+        "He beat me once and Team Rocket\n",
+        "survived. His kid beating me is no\f",
+        "different.\r",
+        "Now get out of my…"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_MomLastTime",
+      "en_US": [
+        "Mom: This is the last time you hurt my\n",
+        "family, Giovanni.\r",
+        "The last time!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ChanseyGlows",
+      "en_US": [
+        "Chansey let out a cry that shook the\n",
+        "whole Gym.\r",
+        "It began to glow, brighter and\n",
+        "brighter, with all the power Dad\f",
+        "had built into it."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ChanseyUnleashes",
+      "en_US": [
+        "Chansey unleashed it all at once, in a\n",
+        "blinding beam of light aimed straight\f",
+        "at Giovanni!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniOverwhelmed",
+      "en_US": [
+        "Giovanni: Wh-what is this…?!\r",
+        "This power… it’s… too much…!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniGone",
+      "en_US": [
+        "When the light faded, Giovanni was\n",
+        "gone.\r",
+        "The boss of Team Rocket had been\n",
+        "overwhelmed by the very power Dad\f",
+        "created."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_MomDadsChansey",
+      "en_US": [
+        "Mom: He created this Pokémon. This\n",
+        "Chansey.\r",
+        "After you were born… you inspired him.\r",
+        "It was an attempt to heal all the damage\n",
+        "he had done.\r",
+        "It’s strong, like the others, but it\n",
+        "derives its strength from something not\f",
+        "evil.\r",
+        "It’s a partner, a true friend.\r",
+        "He gave it to me when he got… swept up in\n",
+        "all this.\r",
+        "And I’ve kept it all these years as a way\n",
+        "to remember him.\r",
+        "Those last few months, {STRVAR_1 3, 6, 0}, he was\n",
+        "in shambles about what he’d done.\r",
+        "You were born and it gave him a new\n",
+        "perspective.\r",
+        "He tried to make up for the years of pain\n",
+        "he caused. And, in a way, he succeeded.\r",
+        "He succeeded with you.\r",
+        "What you did today, to finish the work\n",
+        "that he started… he would have been so\f",
+        "proud.\r",
+        "Take this Chansey. It’s yours now.\n",
+        "That’s what he would have wanted.\r",
+        "Go battle the Elite Four. Win your Gym."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ReceivedDadsChansey",
+      "en_US": "{STRVAR_1 3, 6, 0} received Dad’s Chansey!"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ReceivedDadsNotebook",
+      "en_US": [
+        "She handed you something.\r",
+        "{STRVAR_1 3, 6, 0} received Dad’s Notebook!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_MomConfession",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 6, 0}… there’s something I need\n",
+        "to tell you.\r",
+        "I knew your father worked with\n",
+        "Giovanni. I knew Team Rocket came to\f",
+        "our door at all hours.\r",
+        "But I never knew how deep it went. Not\n",
+        "until today.\r",
+        "He never told me, and I never asked. I\n",
+        "think I was afraid of the answer.\r",
+        "What I did know is that, at the end, he\n",
+        "was trying to make it right.\r",
+        "This Chansey. The switch in his lab that\n",
+        "makes his machines gentle. That was him\f",
+        "making amends.\r",
+        "I hid that switch after he died. I\n",
+        "couldn’t bear to look at it. It’s back\f",
+        "where it belongs now.\r",
+        "I should have told you all of this a long\n",
+        "time ago. I’m sorry.\r",
+        "Come on. Let’s go home. Prof. Oak wants\n",
+        "to see you."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_GuardItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, no move is\f",
+        "super effective against it.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ChanseySentToPC",
+      "en_US": "Dad’s Chansey was sent to the PC."
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_EdgeItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, its moves always\f",
+        "hit for at least normal damage.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_Outfits_Text_ReceivedGymUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a\n",
+        "{STRVAR_1 3, 0, 0} Gym Uniform!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -3,40 +3,55 @@
 #include "msgdata/msg/msg_0513_T08FS0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's FuchsiaCity_Mart_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T08FS0101_000
-	ScrDef scr_seq_T08FS0101_001
-	ScrDef scr_seq_T08FS0101_002
-	ScrDef scr_seq_T08FS0101_003
+	ScrDef FuchsiaCity_Mart_EventScript_Clerk
+	ScrDef FuchsiaCity_Mart_EventScript_Gentleman
+	ScrDef FuchsiaCity_Mart_EventScript_CooltrainerF
 	ScrDefEnd
-
-scr_seq_T08FS0101_000:
+	
+FuchsiaCity_Mart_EventScript_Clerk:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0513_T08FS0101_gText_HowMayIServeYou
+	CanvasMart 6
+	.short ITEM_ULTRA_BALL
+	.short ITEM_GREAT_BALL
+	.short ITEM_SUPER_POTION
+	.short ITEM_REVIVE
+	.short ITEM_FULL_HEAL
+	.short ITEM_MAX_REPEL
+	NPCMsg msg_0513_T08FS0101_gText_PleaseComeAgain
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+FuchsiaCity_Mart_EventScript_Gentleman:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	CallStd std_mart_intro
-	HoldMsg
-	SetVar VAR_SPECIAL_x8004, 24
-	CallStd std_special_mart
+	NPCMsg msg_0513_T08FS0101_FuchsiaCity_Mart_Text_DontTheyHaveSafariZonePennants
+	WaitButton
+	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T08FS0101_001:
+	
+FuchsiaCity_Mart_EventScript_CooltrainerF:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	CallStd std_mart_intro
-	HoldMsg
-	SetVar VAR_SPECIAL_x8004, 1
-	CallStd std_pokemart
+	NPCMsg msg_0513_T08FS0101_FuchsiaCity_Mart_Text_DidYouTryXSpeed
+	WaitButton
+	CloseMsg
 	ReleaseAll
 	End
 
-scr_seq_T08FS0101_002:
-	SimpleNPCMsg msg_0513_T08FS0101_00000
-	End
-
-scr_seq_T08FS0101_003:
-	SimpleNPCMsg msg_0513_T08FS0101_00002
+_cv_stop:
+	NPCMsg msg_0513_T08FS0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

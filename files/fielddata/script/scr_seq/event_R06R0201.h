@@ -1,8 +1,10 @@
 #ifndef SCR_SEQ_R06R0201_H_
 #define SCR_SEQ_R06R0201_H_
 
-#define _EV_scr_seq_R06R0201_000 0
+#define _EV_Route6_NorthEntrance_EventScript_Guard 0
+#define _EV_Route6_NorthEntrance_EventScript_GuardTriggerLeft 1
+#define _EV_Route6_NorthEntrance_EventScript_GuardTriggerMid 2
+#define _EV_Route6_NorthEntrance_EventScript_GuardTriggerRight 3
 
-#define obj_R06R0201_counterm 0
 
-#endif // SCR_SEQ_R06R0201_H_
+#endif

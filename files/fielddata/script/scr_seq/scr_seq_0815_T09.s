@@ -3,378 +3,560 @@
 #include "msgdata/msg/msg_0519_T09.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CinnabarIsland_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T09_000
-	ScrDef scr_seq_T09_001
-	ScrDef scr_seq_T09_002
-	ScrDef scr_seq_T09_003
-	ScrDef scr_seq_T09_004
+	ScrDef CinnabarIsland_EventScript_Woman
+	ScrDef CinnabarIsland_EventScript_OldMan
+	ScrDef TypeTutor_EventScript_Fire
+	ScrDef CinnabarIsland_EventScript_IslandSign
+	ScrDef CinnabarIsland_EventScript_PokemonLabSign
+	ScrDef CinnabarIsland_EventScript_GymSign
+	ScrDef CinnabarIsland_EventScript_GymDoorLocked
+	ScrDef CinnabarIsland_OnTransition
+	ScrDef _cv_unported_8
+	ScrDef _cv_unported_9
+	ScrDef CinnabarIsland_EventScript_ReturnFromSeviiIslands
 	ScrDefEnd
-
-scr_seq_T09_003:
-	GoToIfUnset FLAG_UNK_189, _0027
-	ClearFlag FLAG_UNK_189
+	
+CinnabarIsland_EventScript_Woman:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_BlaineLivedHereSinceBeforeLab
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
-
-_0027:
-	GoToIfSet FLAG_UNK_129, _0038
-	SetFlag FLAG_UNK_27D
-	End
-
-_0038:
-	SetFlag FLAG_UNK_25A
-	GetPhoneBookRematch PHONE_CONTACT_BLUE, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 0
-	GoToIfNe _007B
-	Compare VAR_UNK_40FD, 0
-	GoToIfEq _007B
-	GetWeekday VAR_TEMP_x4002
-	Compare VAR_TEMP_x4002, 5
-	GoToIfNe _0077
-	ClearFlag FLAG_UNK_25A
-	GoTo _007B
-
-_0077:
-	SetFlag FLAG_UNK_25A
-_007B:
-	CheckRegisteredPhoneNumber PHONE_CONTACT_BLAINE, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 1
-	GoToIfEq _00CC
-	CheckBadge BADGE_EARTH, VAR_TEMP_x4002
-	Compare VAR_TEMP_x4002, 1
-	GoToIfEq _00A9
-	GoTo _0102
-	End
-
-_00A9:
-	GetWeekday VAR_TEMP_x4002
-	Compare VAR_TEMP_x4002, 2
-	GoToIfNe _00C4
-	ClearFlag FLAG_UNK_27D
-	GoTo _00CA
-
-_00C4:
-	GoTo _0102
-
-_00CA:
-	End
-
-_00CC:
-	GetPhoneBookRematch PHONE_CONTACT_BLAINE, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 0
-	GoToIfNe _0102
-	GetWeekday VAR_TEMP_x4002
-	Compare VAR_TEMP_x4002, 4
-	GoToIfNe _00FA
-	ClearFlag FLAG_UNK_27D
-	GoTo _0100
-
-_00FA:
-	GoTo _0102
-
-_0100:
-	End
-
-_0102:
-	SetFlag FLAG_UNK_27D
-	End
-
-scr_seq_T09_000:
+	
+CinnabarIsland_EventScript_OldMan:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	Release obj_partner_poke
-	ApplyMovement obj_partner_poke, _02FC
-	WaitMovement
-	Lock obj_partner_poke
-	Compare VAR_UNK_40FD, 0
-	GoToIfNe _0304
-	GoToIfSet FLAG_UNK_128, _016F
-	SetFlag FLAG_UNK_128
-	NPCMsg msg_0519_T09_00000
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_ScientistsExperimentInMansion
+	WaitButton
 	CloseMsg
-	GetPlayerFacing VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 0
-	GoToIfNe _0162
-	ApplyMovement obj_T09_gsleader16, _0268
-	GoTo _016A
-
-_0162:
-	ApplyMovement obj_T09_gsleader16, _0280
-_016A:
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Fire:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 17
+	GoTo TypeTutor_EventScript_Talk
+	
+CinnabarIsland_EventScript_IslandSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_IslandSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CinnabarIsland_EventScript_PokemonLabSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_PokemonLab
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CinnabarIsland_EventScript_GymSign:
+	LockAll
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_GymSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CinnabarIsland_EventScript_GymDoorLocked:
+	LockAll
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
-	NPCMsg msg_0519_T09_00001
-_016F:
-	Compare VAR_UNK_4135, 7
-	GoToIfGe _018C
-	BufferInt 0, VAR_UNK_4135
-	NPCMsg msg_0519_T09_00004
+	Wait 20, VAR_SPECIAL_RESULT
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_DoorIsLocked
+	WaitButton
+	CloseMsg
+	ApplyMovement obj_player, CinnabarIsland_Movement_ForcePlayerFromDoor
+	WaitMovement
+	ReleaseAll
+	End
+	
+CinnabarIsland_OnTransition:
+	SetFlag FLAG_SYS_FLYPOINT_CINNABAR
+	Call CinnabarIsland_EventScript_CheckUnlockGym
+	CompareVarToValue 0x502B, 1
+	CallIfEq CinnabarIsland_EventScript_NoSeviiTrip
+	CompareVarToValue 0x502C, 1
+	CallIfEq CinnabarIsland_EventScript_NoSeviiTrip
+	CompareVarToValue 0x502B, 1
+	CallIfEq CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland
+	CompareVarToValue 0x502B, 3
+	CallIfEq CinnabarIsland_EventScript_ReadyObjectsReturnFromSeviiIslands
+	CompareVarToValue 0x502C, 1
+	CallIfEq CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter
+	End
+	
+CinnabarIsland_EventScript_ExitPokeCenterForOneIsland:
+	LockAll
+	ClearFlag 0x201A
+	SetVar 0x502C, 2
+	Wait 20, VAR_SPECIAL_RESULT
+	Call CinnabarIsland_EventScript_SailToOneIsland
+	ReleaseAll
+	End
+	
+CinnabarIsland_EventScript_BillScene:
+	LockAll
+	CallIfUnset 2, CinnabarIsland_EventScript_BillFacePlayer1
+	CallIfSet 2, CinnabarIsland_EventScript_BillFacePlayer2
+	PlaySE SEQ_SE_DP_SELECT
+	ApplyMovement 3, Common_Movement_ExclamationMark
+	WaitMovement
+	ApplyMovement 3, Common_Movement_Delay48
+	WaitMovement
+	CallIfUnset 2, CinnabarIsland_EventScript_BillApproachPlayer1
+	CallIfSet 2, CinnabarIsland_EventScript_BillApproachPlayer2
+	BufferPlayersName 6
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_HeyIfItIsntPlayer
+	WaitButton
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_ComeWithMeToOneIsland
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CinnabarIsland_EventScript_AgreeSailToOneIsland
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CinnabarIsland_EventScript_DeclineSailToOneIsland
+	CloseMsg
+	End
+	
+CinnabarIsland_EventScript_ReturnFromSeviiIslands:
+	LockAll
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_IfYouHaveTriPassYouCanGoAgain
+	WaitButton
+	CloseMsg
+	ApplyMovement 3, CinnabarIsland_Movement_BillExit
+	WaitMovement
+	HidePerson 3
+	SetFlag 0x2067
+	SetVar 0x502B, 4
+	SetFlag 0x206F
+	ClearFlag 0x2074
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Talk:
+	CopyVar 0x8008, 0x8004
+	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq TypeTutor_EventScript_Intro
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq TypeTutor_EventScript_Trial
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq TypeTutor_EventScript_JustDone
+	GoTo TypeTutor_EventScript_Teach
+	
+CinnabarIsland_EventScript_CheckUnlockGym:
+	GoToIfSet 0x20FC, CinnabarIsland_EventScript_UnlockGym
+	Return
+	
+CinnabarIsland_EventScript_NoSeviiTrip:
+	SetVar 0x502B, 0
+	SetVar 0x502C, 0
+	SetFlag 0x2067
+	SetFlag 0x2069
+	Return
+	
+CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland:
+	GetPlayerCoords 0x4014, 0x4015
+	SubVar 0x4014, 1019
+	SubVar 0x4015, 486
+	CompareVarToValue 0x4014, 18
+	GoToIfGe CinnabarIsland_EventScript_MoveSeagallopDown
+	SetFlag 2
+	MovePerson 3, 1045, 503
+	SetObjectMovementType 3, 14
+	SetObjectFacing 3, 0
+	MovePerson 4, 1059, 503
+	Return
+	
+CinnabarIsland_EventScript_ReadyObjectsReturnFromSeviiIslands:
+	MovePerson 3, 1049, 499
+	SetObjectMovementType 3, 14
+	SetObjectFacing 3, 0
+	Return
+	
+CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter:
+	SetFlag 2
+	MovePerson 3, 1040, 503
+	SetObjectMovementType 3, 16
+	SetObjectFacing 3, 2
+	MovePerson 4, 1059, 503
+	Return
+	
+CinnabarIsland_EventScript_SailToOneIsland:
+	CallIfSet 2, CinnabarIsland_EventScript_ApproachShore
+	GoToIfUnset 0x2068, _cv_show_3
+	ClearFlag 0x2068
+	ShowPerson 4
+	SetFlag 0x2068
+	GoTo _cv_shown_4
+_cv_show_3:
+	ShowPerson 4
+_cv_shown_4:
+	CallIfUnset 2, CinnabarIsland_EventScript_BoatArrive
+	CallIfSet 2, CinnabarIsland_EventScript_BoatArriveExitedPokeCenter
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_MyPalsBoatArrived
+	WaitButton
+	CloseMsg
+	CallIfUnset 2, CinnabarIsland_EventScript_BoardBoat
+	CallIfSet 2, CinnabarIsland_EventScript_BoardBoatExitedPokeCenter
+	SetVar 0x502B, 2
+	HidePerson 3
+	SetFlag 0x2067
+	Wait 40, VAR_SPECIAL_RESULT
+	SetFlag 0x2068
+	SetVar 0x502D, 1
+	SetVar 0x8004, 8
+	SetVar 0x8006, 1
+	GoTo EventScript_SetSail
+	End
+	
+CinnabarIsland_EventScript_BillFacePlayer1:
+	ApplyMovement 3, Common_Movement_WalkInPlaceFasterUp
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BillFacePlayer2:
+	ApplyMovement 3, Common_Movement_WalkInPlaceFasterLeft
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BillApproachPlayer1:
+	ApplyMovement 3, CinnabarIsland_Movement_BillApproachPlayer1
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BillApproachPlayer2:
+	ApplyMovement 3, CinnabarIsland_Movement_BillApproachPlayer2
+	WaitMovement
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterRight
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_AgreeSailToOneIsland:
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_AllRightLetsGo
+	WaitButton
+	CloseMsg
+	Call CinnabarIsland_EventScript_SailToOneIsland
+	ReleaseAll
+	End
+	
+CinnabarIsland_EventScript_DeclineSailToOneIsland:
+	NPCMsg msg_0519_T09_CinnabarIsland_Text_IllBeWaitingInPokeCenter
+	WaitButton
+	CloseMsg
+	CallIfUnset 2, CinnabarIsland_EventScript_BillExitToPokeCenter
+	CallIfSet 2, CinnabarIsland_EventScript_BillReturnToPokeCenter
+	HidePerson 3
+	SetFlag 0x2067
+	SetVar 0x502B, 2
+	ClearFlag 0x2069
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Intro:
+	// TODO(gba) special TypeTutor_BufferIntro
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	// TODO(gba) special TypeTutor_SetMet
+	GoTo _cv_stop
+	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
+	End
+	
+TypeTutor_EventScript_Trial:
+	// TODO(gba) special TypeTutor_BufferTrial
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_JustDone:
+	// TODO(gba) special TypeTutor_BufferDone
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	// TODO(gba) special TypeTutor_SetOpened
+	GoTo _cv_stop
+	End
+	
+TypeTutor_EventScript_Teach:
+	CopyVar 0x8004, 0x8008
+	NPCMsg msg_0519_T09_TypeTutor_Text_WhichMove
+	// TODO(gba) special TypeTutor_PushMoves
+	GoTo _cv_stop
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_6
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq TypeTutor_EventScript_Bye
+	CopyVar 0x8004, 0x8008
+	// TODO(gba) special TypeTutor_SelectMove
+	GoTo _cv_stop
+	NPCMsg msg_0519_T09_TypeTutor_Text_WhichMon
+	WaitButton
+	Call EventScript_ChooseMoveTutorMon
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq TypeTutor_EventScript_Teach
+	NPCMsg msg_0519_T09_TypeTutor_Text_Taught
+	WaitButton
+	GoTo TypeTutor_EventScript_Teach
+	
+CinnabarIsland_EventScript_UnlockGym:
+	SetVar 0x4001, 1
+	Return
+	
+CinnabarIsland_EventScript_MoveSeagallopDown:
+	MovePerson 4, 1058, 499
+	Return
+	
+CinnabarIsland_EventScript_ApproachShore:
+	ApplyMovement 3, CinnabarIsland_Movement_ApproachShore
+	ApplyMovement obj_player, CinnabarIsland_Movement_ApproachShore
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BoatArrive:
+	ApplyMovement 3, CinnabarIsland_Movement_BillFaceBoat
+	ApplyMovement 4, CinnabarIsland_Movement_BoatArrive
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BoatArriveExitedPokeCenter:
+	ApplyMovement 4, CinnabarIsland_Movement_BoatArrive
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BoardBoat:
+	ApplyMovement 3, CinnabarIsland_Movement_BillBoardBoat
+	ApplyMovement obj_player, CinnabarIsland_Movement_PlayerBoardBoat
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BoardBoatExitedPokeCenter:
+	ApplyMovement 3, CinnabarIsland_Movement_BillBoardBoatFromShore
+	ApplyMovement obj_player, CinnabarIsland_Movement_PlayerBoardBoatFromShore
+	WaitMovement
+	Return
+	
+EventScript_SetSail:
+	CloseMsg
+	Wait 20, VAR_SPECIAL_RESULT
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special DoSeagallopFerryScene
+	GoTo _cv_stop
+	End
+	
+CinnabarIsland_EventScript_BillExitToPokeCenter:
+	ApplyMovement 3, CinnabarIsland_Movement_BillExitToPokeCenter
+	WaitMovement
+	Return
+	
+CinnabarIsland_EventScript_BillReturnToPokeCenter:
+	ApplyMovement obj_player, CinnabarIsland_Movement_PlayerWatchBillExit
+	ApplyMovement 3, CinnabarIsland_Movement_BillApproachDoor
+	WaitMovement
+	ApplyMovement 3, CinnabarIsland_Movement_BillReEnterPokeCenter
+	WaitMovement
+	Return
+	
+TypeTutor_EventScript_Bye:
+	NPCMsg msg_0519_T09_TypeTutor_Text_Bye
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_ChooseMoveTutorMon:
+	// TODO(gba) special ChooseMonForMoveTutor
+	GoTo _cv_stop
+	LockAll
+	FacePlayer
+	Return
+
+_cv_unported_8:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0519_T09_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-_018C:
-	NPCMsg msg_0519_T09_00002
+_cv_unported_9:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0519_T09_cv_unported
+	WaitButton
 	CloseMsg
-	GetPlayerFacing VAR_TEMP_x4000
-	GetPersonCoords 253, VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
-	Compare VAR_TEMP_x4000, 0
-	GoToIfNe _01C7
-	Compare VAR_SPECIAL_x8004, 1035
-	GoToIfNe _01C1
-	ApplyMovement obj_partner_poke, _02D4
-	WaitMovement
-_01C1:
-	GoTo _01DE
+	ReleaseAll
+	End
 
-_01C7:
-	Compare VAR_SPECIAL_x8005, 495
-	GoToIfNe _01DE
-	ApplyMovement obj_partner_poke, _02E4
-	WaitMovement
-_01DE:
-	Compare VAR_TEMP_x4000, 0
-	GoToIfNe _01F9
-	ApplyMovement obj_T09_gsleader16, _0298
-	GoTo _0201
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
 
-_01F9:
-	ApplyMovement obj_T09_gsleader16, _02A4
-_0201:
-	WaitMovement
-	NPCMsg msg_0519_T09_00003
+_cv_stop:
+	NPCMsg msg_0519_T09_cv_unported
+	WaitButton
 	CloseMsg
-	Compare VAR_TEMP_x4000, 0
-	GoToIfNe _0233
-	ApplyMovement obj_T09_gsleader16, _02B0
-	ApplyMovement obj_player, _02F4
-	ApplyMovement obj_partner_poke, _02F4
-	GoTo _024B
-
-_0233:
-	ApplyMovement obj_T09_gsleader16, _02C0
-	ApplyMovement obj_player, _02F4
-	ApplyMovement obj_partner_poke, _02F4
-_024B:
-	WaitMovement
-	HidePerson obj_T09_gsleader16
-	SetFlag FLAG_UNK_25A
-	SetFlag FLAG_UNK_129
-	SetFlag FLAG_HIDE_VIRIDIAN_CITY_OLD_MAN_OUTSIDE_GYM_LOCKED
-	ClearFlag FLAG_HIDE_VIRIDIAN_CITY_OLD_MAN_OUTSIDE_GYM_UNLOCKED
 	ReleaseAll
 	End
 
 	.balign 4, 0
-_0268:
-	WalkOnSpotNormalEast
-	Delay8 2
-	WalkOnSpotNormalNorth
-	Delay8 2
-	WalkOnSpotNormalSouth
+Common_Movement_WalkInPlaceFasterUp:
+	WalkOnSpotFasterNorth
 	EndMovement
 
 	.balign 4, 0
-_0280:
-	WalkOnSpotNormalNorth
-	Delay8 2
-	WalkOnSpotNormalEast
-	Delay8 2
-	WalkOnSpotNormalWest
+CinnabarIsland_Movement_ForcePlayerFromDoor:
+	WalkNormalSouth
 	EndMovement
 
 	.balign 4, 0
-_0298:
+Common_Movement_ExclamationMark:
+	EmoteExclamationMark
+	EndMovement
+
+	.balign 4, 0
+Common_Movement_Delay48:
+	Delay16 3
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillExit:
+	WalkNormalSouth 6
+	EndMovement
+
+	.balign 4, 0
+Common_Movement_WalkInPlaceFasterLeft:
+	WalkOnSpotFasterWest
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillApproachPlayer1:
+	WalkNormalNorth
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillApproachPlayer2:
+	WalkNormalWest 3
+	EndMovement
+
+	.balign 4, 0
+Common_Movement_WalkInPlaceFasterRight:
+	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_ApproachShore:
+	WalkNormalEast 6
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillFaceBoat:
+	Delay16 2
+	Delay8
+	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BoatArrive:
+	Delay16 2
+	WalkFastWest 2
 	WalkNormalWest
-	WalkNormalSouth
+	WalkSlowWest 2
 	EndMovement
 
 	.balign 4, 0
-_02A4:
-	WalkNormalSouth
-	WalkNormalWest
-	EndMovement
-
-	.balign 4, 0
-_02B0:
+CinnabarIsland_Movement_BillBoardBoat:
+	WalkNormalEast
 	WalkNormalSouth 2
-	WalkNormalWest 2
-	WalkNormalSouth 8
+	WalkNormalEast
+	Delay4
+	SetInvisible
 	EndMovement
 
 	.balign 4, 0
-_02C0:
-	WalkNormalSouth
-	WalkNormalSouth 2
-	WalkNormalWest 2
-	WalkNormalSouth 7
-	EndMovement
-
-	.balign 4, 0
-_02D4:
+CinnabarIsland_Movement_PlayerBoardBoat:
 	WalkNormalSouth
 	WalkNormalEast
-	WalkOnSpotNormalWest
+	WalkNormalSouth 2
+	WalkOnSpotFasterEast
+	Delay4
+	WalkNormalEast
+	Delay4
+	SetInvisible
 	EndMovement
 
 	.balign 4, 0
-_02E4:
+CinnabarIsland_Movement_BillBoardBoatFromShore:
+	WalkNormalEast
+	Delay4
+	SetInvisible
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_PlayerBoardBoatFromShore:
+	WalkNormalEast
+	Delay4
+	WalkNormalEast
+	Delay4
+	SetInvisible
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillExitToPokeCenter:
+	WalkNormalEast
+	WalkNormalSouth 6
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_PlayerWatchBillExit:
 	WalkNormalWest
+	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillApproachDoor:
+	Delay16
+	WalkNormalWest
+	WalkOnSpotFasterNorth
+	EndMovement
+
+	.balign 4, 0
+CinnabarIsland_Movement_BillReEnterPokeCenter:
 	WalkNormalNorth
-	WalkOnSpotNormalEast
+	Delay4
+	SetInvisible
 	EndMovement
-
-	.balign 4, 0
-_02F4:
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_02FC:
-	Delay1
-	EndMovement
-
-_0304:
-	NPCMsg msg_0519_T09_00005
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0365
-	PhotoAlbumIsFull VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0370
-	NPCMsg msg_0519_T09_00006
-	CloseMsg
-	SetFlag FLAG_UNK_189
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	CameronPhoto 92
-	FacePlayer
-	LockAll
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ClearFlag FLAG_UNK_189
-	NPCMsg msg_0519_T09_00007
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0365:
-	NPCMsg msg_0519_T09_00008
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0370:
-	NPCMsg msg_0519_T09_00009
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T09_004:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	CheckRegisteredPhoneNumber PHONE_CONTACT_BLAINE, VAR_TEMP_x4001
-	Compare VAR_TEMP_x4001, 1
-	GoToIfEq _0429
-	Compare VAR_TEMP_x4004, 1
-	GoToIfGe _041E
-	NPCMsg msg_0519_T09_00010
-_03A6:
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _03CA
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfGe _040D
-	End
-
-_03CA:
-	BufferPlayersName 0
-	NPCMsg msg_0519_T09_00011
-	PlayFanfare SEQ_ME_POKEGEAR_REGIST
-	WaitFanfare
-	RegisterGearNumber PHONE_CONTACT_BLAINE
-	NPCMsg msg_0519_T09_00012
-	WaitButton
-	CloseMsg
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	SetFlag FLAG_UNK_27D
-	HidePerson obj_T09_gsleader15
-	PlaySE SEQ_SE_DP_KAIDAN2
-	WaitSE SEQ_SE_DP_KAIDAN2
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ReleaseAll
-	End
-
-_040D:
-	SetVar VAR_TEMP_x4004, 1
-	NPCMsg msg_0519_T09_00013
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_041E:
-	NPCMsg msg_0519_T09_00014
-	GoTo _03A6
-	End
-
-_0429:
-	NPCMsg msg_0519_T09_00015
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _048A
-	PhotoAlbumIsFull VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0495
-	NPCMsg msg_0519_T09_00016
-	CloseMsg
-	SetFlag FLAG_UNK_189
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	CameronPhoto 85
-	FacePlayer
-	LockAll
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ClearFlag FLAG_UNK_189
-	NPCMsg msg_0519_T09_00017
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_048A:
-	NPCMsg msg_0519_T09_00018
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0495:
-	NPCMsg msg_0519_T09_00019
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T09_001:
-	TrainerTipsEx 2, msg_0519_T09_00020
-	End
-
-scr_seq_T09_002:
-	DirectionSignpostEx 0, 9, msg_0519_T09_00021
-	End
 	.balign 4, 0

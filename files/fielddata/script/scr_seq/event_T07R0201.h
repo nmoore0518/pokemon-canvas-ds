@@ -1,16 +1,13 @@
 #ifndef SCR_SEQ_T07R0201_H_
 #define SCR_SEQ_T07R0201_H_
 
-#define _EV_scr_seq_T07R0201_000 0
-#define _EV_scr_seq_T07R0201_001 1
-#define _EV_scr_seq_T07R0201_002 2
-#define _EV_scr_seq_T07R0201_003 3
-#define _EV_scr_seq_T07R0201_004 4
-#define _EV_scr_seq_T07R0201_005 5
+#define _EV_CeladonCity_Condominiums_1F_EventScript_Meowth 0
+#define _EV_CeladonCity_Condominiums_1F_EventScript_Clefairy 1
+#define _EV_CeladonCity_Condominiums_1F_EventScript_Nidoran 2
+#define _EV_CeladonCity_Condominiums_1F_EventScript_TeaWoman 3
+#define _EV_PaintWorld_EventScript_Figure 4
+#define _EV_TypeTutor_EventScript_Fairy 5
+#define _EV_CeladonCity_Condominiums_1F_EventScript_SuiteSign 6
 
-#define obj_T07R0201_gsoldwoman1                 0
-#define obj_T07R0201_tsure_poke_static_meowth    1
-#define obj_T07R0201_tsure_poke_static_clefairy  2
-#define obj_T07R0201_tsure_poke_static_nidoran_f 3
 
-#endif // SCR_SEQ_T07R0201_H_
+#endif

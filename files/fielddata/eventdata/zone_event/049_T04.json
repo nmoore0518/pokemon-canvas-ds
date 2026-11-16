@@ -216,7 +216,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1308,
+            "x": 1307,
             "z": 145,
             "y": 0
         },
@@ -256,7 +256,7 @@
         },
         {
             "id": "12",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -273,7 +273,7 @@
         },
         {
             "id": "13",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 14,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

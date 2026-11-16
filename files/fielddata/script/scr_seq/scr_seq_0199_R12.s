@@ -3,227 +3,271 @@
 #include "msgdata/msg/msg_0348_R12.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route12_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_R12_000
-	ScrDef scr_seq_R12_001
-	ScrDef scr_seq_R12_002
-	ScrDef scr_seq_R12_003
-	ScrDef scr_seq_R12_004
-	ScrDef scr_seq_R12_005
+	ScrDef Route12_EventScript_Ned
+	ScrDef Route12_EventScript_Snorlax
+	ScrDef Route12_EventScript_Luca
+	ScrDef Route12_EventScript_ItemTM48
+	ScrDef Route12_EventScript_ItemIron
+	ScrDef Route12_EventScript_ItemChillDrive
+	ScrDef Route12_EventScript_RouteSign
+	ScrDef Route12_EventScript_FishingSign
+	ScrDef Route12_OnResume
 	ScrDefEnd
-
-scr_seq_R12_001:
-	GoToIfUnset FLAG_UNK_189, _002B
-	ClearFlag FLAG_UNK_189
+	
+Route12_EventScript_Ned:
+	CheckTrainerFlag 971
+	GoToIf TRUE, _cv_beaten_1
+	NPCMsg msg_0348_R12_Route12_Text_NedIntro
+	WaitButton
+	CloseMsg
+	TrainerBattle 971, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_2
+	WhiteOut
 	End
-
-_002B:
-	GetWeekday VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 1
-	GoToIfEq _004F
-	Compare VAR_TEMP_x4000, 3
-	GoToIfEq _004F
-	SetFlag FLAG_HIDE_CAMERON
+_cv_won_2:
+	SetTrainerFlag 971
+	GoTo GymCandidate_EventScript_RecruitWater
+_cv_beaten_1:
+	SetVar VAR_SPECIAL_RESULT, 0
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Route12_EventScript_NedRematch
+	SetVar 0x8004, 12
+	Call GymCandidate_EventScript_RecruitOffer
+	NPCMsg msg_0348_R12_Route12_Text_NedPostBattle
+	WaitButton
+	CloseMsg
 	End
-
-_004F:
-	ClearFlag FLAG_HIDE_CAMERON
-	End
-
-scr_seq_R12_004:
-	GoToIfSet FLAG_ENGAGING_STATIC_POKEMON, _006D
-	GoToIfSet FLAG_SNORLAX_MEET, _0087
-	End
-
-_006D:
-	SetFlag FLAG_HIDE_ROUTE_12_SNORLAX
-	HidePerson obj_R12_kabigon
-	HidePerson obj_R12_gsbabyboy1
-	HidePerson obj_R12_gsbabyboy1_2
-	HidePerson obj_R12_gsbabyboy1_3
-	ClearFlag FLAG_ENGAGING_STATIC_POKEMON
-	End
-
-_0087:
-	End
-
-scr_seq_R12_000:
-	PlaySE SEQ_SE_DP_SELECT
+	
+Route12_EventScript_Snorlax:
 	LockAll
 	FacePlayer
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 0
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _01B1
-	PhotoAlbumIsFull VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _01C5
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 1
-	CloseMsg
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	GetPlayerFacing VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _0102
-	ApplyMovement obj_player, _01DC
-	ApplyMovement obj_R12_gsmiddleman1, _0228
-	GoTo _0150
-
-_0102:
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _011D
-	ApplyMovement obj_player, _01F4
-	GoTo _0150
-
-_011D:
-	Compare VAR_SPECIAL_RESULT, 3
-	GoToIfNe _0140
-	ApplyMovement obj_player, _0214
-	ApplyMovement obj_R12_gsmiddleman1, _0228
-	GoTo _0150
-
-_0140:
-	ApplyMovement obj_player, _0200
-	ApplyMovement obj_R12_gsmiddleman1, _0228
-_0150:
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	ScrCmd_729 VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfNe _0177
-	ApplyMovement obj_partner_poke, _0234
-	WaitMovement
-_0177:
-	SetFlag FLAG_UNK_189
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	CameronPhoto 59
-	LockAll
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ClearFlag FLAG_UNK_189
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 2
-	WaitButton
+	GoToIfUnset 0x2107, Route12_EventScript_SnorlaxNoPokeFlute
+	NPCMsg msg_0348_R12_Text_WantToUsePokeFlute
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_3
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_4
+_cv_yes_3:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Route12_EventScript_DontUsePokeFlute
+	Call EventScript_AwakenSnorlax
+	// TODO(gba) setwildbattle SPECIES_SNORLAX, 30
+	GoTo _cv_stop
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry SPECIES_SNORLAX, 0
+	Wait 40, VAR_SPECIAL_RESULT
+	WaitCry
+	SetFlag 0x2108
+	SetFlag 0x2032
+	SetFlag 0x2109
+	// TODO(gba) dowildbattle 
+	GoTo _cv_stop
+	ClearFlag 0x2032
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_5
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Route12_EventScript_FoughtSnorlax
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq Route12_EventScript_FoughtSnorlax
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfEq Route12_EventScript_FoughtSnorlax
 	CloseMsg
 	ReleaseAll
 	End
-
-_01B1:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 5
+	
+Route12_EventScript_Luca:
+	CheckTrainerFlag 1030
+	GoToIf TRUE, _cv_beaten_6
+	NPCMsg msg_0348_R12_Route12_Text_LucaIntro
 	WaitButton
 	CloseMsg
-	ReleaseAll
+	TrainerBattle 1030, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_7
+	WhiteOut
 	End
-
-_01C5:
-	GetStdMsgNaix 2, VAR_SPECIAL_RESULT
-	MsgBoxExtern VAR_SPECIAL_RESULT, 3
+_cv_won_7:
+	SetTrainerFlag 1030
+	GoTo GymCandidate_EventScript_RecruitElectric
+_cv_beaten_6:
+	SetVar VAR_SPECIAL_RESULT, 0
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Route12_EventScript_LucaRematch
+	SetVar 0x8004, 14
+	Call GymCandidate_EventScript_RecruitOffer
+	NPCMsg msg_0348_R12_Route12_Text_LucaPostBattle
 	WaitButton
 	CloseMsg
-	ReleaseAll
 	End
-
-	.balign 4, 0
-_01DC:
-	WalkNormalEast
-	WalkNormalNorth 2
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_01F4:
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0200:
-	WalkNormalNorth
-	WalkNormalWest
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0214:
-	WalkNormalNorth
-	WalkNormalEast
-	WalkNormalNorth 3
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0228:
-	Delay8
-	WalkOnSpotNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_0234:
-	WalkNormalEast
-	WalkNormalNorth
-	FaceSouth
-	EndMovement
-
-scr_seq_R12_005:
+	
+Route12_EventScript_ItemTM48:
+	SetVar 0x8004, ITEM_TM48
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route12_EventScript_ItemIron:
+	SetVar 0x8004, ITEM_IRON
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route12_EventScript_ItemChillDrive:
+	SetVar 0x8004, 119
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route12_EventScript_RouteSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	RadioMusicIsPlaying 5, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0268
-	NPCMsg msg_0348_R12_00002
+	NPCMsg msg_0348_R12_Route12_Text_RouteSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route12_EventScript_FishingSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0348_R12_Route12_Text_SportfishingArea
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route12_OnResume:
+	CallIfSet 0x2032, Route12_EventScript_TryRemoveSnorlax
+	End
+	
+GymCandidate_EventScript_RecruitWater:
+	SetVar 0x8004, 12
+	GoTo GymCandidate_EventScript_RecruitAfterBattle
+	End
+	
+Route12_EventScript_NedRematch:
+	// (rematches come later)
+	ReleaseAll
+	End
+	NPCMsg msg_0348_R12_Route12_Text_NedPostBattle
+	WaitButton
+	CloseMsg
+	End
+	
+GymCandidate_EventScript_RecruitOffer:
+	// TODO(gba) special GymCandidate_BufferRecruit
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_Return
+	LockAll
+	FacePlayer
+	Call _cv_str4
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_8
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_9
+_cv_yes_8:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_9:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_RecruitDeclined
+	// TODO(gba) special GymCandidate_Recruit
+	GoTo _cv_stop
+	PlayFanfare SEQ_ME_ITEM
+	NPCMsg msg_0348_R12_GymCandidate_Text_RecruitJoined
+	WaitButton
+	WaitFanfare
+	NPCMsg msg_0348_R12_GymCandidate_Text_RecruitHowToPlace
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route12_EventScript_SnorlaxNoPokeFlute:
+	NPCMsg msg_0348_R12_Route12_Text_MonSprawledOutInSlumber
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route12_EventScript_DontUsePokeFlute:
+	ReleaseAll
+	End
+	
+EventScript_AwakenSnorlax:
+	BufferPlayersName 6
+	NPCMsg msg_0348_R12_Text_PlayedPokeFlute
+	PlayFanfare SEQ_ME_ITEM
+	WaitFanfare
+	NPCMsg msg_0348_R12_Text_SnorlaxWokeUp
+	WaitButton
+	Return
+	
+Route12_EventScript_FoughtSnorlax:
+	NPCMsg msg_0348_R12_Text_SnorlaxReturnedToMountains
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_RecruitElectric:
+	SetVar 0x8004, 14
+	GoTo GymCandidate_EventScript_RecruitAfterBattle
+	End
+	
+Route12_EventScript_LucaRematch:
+	// (rematches come later)
+	ReleaseAll
+	End
+	NPCMsg msg_0348_R12_Route12_Text_LucaPostBattle
+	WaitButton
+	CloseMsg
+	End
+	
+Route12_EventScript_TryRemoveSnorlax:
+	HidePerson 0x401D
+	Return
+	
+GymCandidate_EventScript_RecruitAfterBattle:
+	Call GymCandidate_EventScript_RecruitOffer
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_Return:
+	Return
+	
+GymCandidate_EventScript_RecruitDeclined:
+	NPCMsg msg_0348_R12_GymCandidate_Text_RecruitDeclined
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-_0268:
-	PlayCry SPECIES_SNORLAX, 0
-	NPCMsg msg_0348_R12_00003
-	WaitCry
-	CloseMsg
-	SetFlag FLAG_ENGAGING_STATIC_POKEMON
-	WildBattle SPECIES_SNORLAX, 50, 0
-	ClearFlag FLAG_ENGAGING_STATIC_POKEMON
-	CheckBattleWon VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _02AE
-	GetStaticEncounterOutcome VAR_TEMP_x4005
-	Compare VAR_TEMP_x4005, 4
-	CallIfEq _02B4
-	SetFlag FLAG_SNORLAX_MEET
-	ReleaseAll
-	End
-
-_02AE:
-	WhiteOut
-	ReleaseAll
-	End
-
-_02B4:
-	SetFlag FLAG_CAUGHT_SNORLAX
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
 	Return
 
-_02BA:
+_cv_stop:
+	NPCMsg msg_0348_R12_cv_unported
+	WaitButton
+	CloseMsg
 	ReleaseAll
-	End
-
-scr_seq_R12_002:
-	DirectionSignpostEx 1, 3, msg_0348_R12_00000
-	End
-
-scr_seq_R12_003:
-	TrainerTipsEx 2, msg_0348_R12_00001
 	End
 	.balign 4, 0

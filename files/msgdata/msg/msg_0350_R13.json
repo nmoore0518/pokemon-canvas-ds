@@ -2,25 +2,73 @@
   "key": 17171,
   "messages": [
     {
-      "id": "msg_0350_R13_00000",
+      "id": "msg_0350_R13_Route13_Text_PerryIntro",
       "en_US": [
-        "Trainer Tips\r",
-        "Look! Right there, at the east side of\n",
-        "the post."
+        "I’m not going to lose.\n",
+        "Not when the wind’s blowing my way!"
       ]
     },
     {
-      "id": "msg_0350_R13_00001",
+      "id": "msg_0350_R13_Route13_Text_PerryPostBattle",
       "en_US": [
-        "Rt. 13\n",
+        "I’m beat.\n",
+        "I guess I’ll Fly home."
+      ]
+    },
+    {
+      "id": "msg_0350_R13_Route13_Text_JaredIntro",
+      "en_US": "What’re you lookin’ at?"
+    },
+    {
+      "id": "msg_0350_R13_Route13_Text_JaredPostBattle",
+      "en_US": "Get lost!"
+    },
+    {
+      "id": "msg_0350_R13_Route13_Text_RouteSign",
+      "en_US": [
+        "Route 13\n",
         "North to Silence Bridge"
       ]
     },
     {
-      "id": "msg_0350_R13_00002",
+      "id": "msg_0350_R13_Route13_Text_SelectToSwitchItems",
       "en_US": [
-        "North to Lavender Town\n",
-        "West to Fuchsia City"
+        "Trainer Tips\r",
+        "Use Select to switch items in the\n",
+        "Items window."
+      ]
+    },
+    {
+      "id": "msg_0350_R13_Route13_Text_LookToLeftOfThatPost",
+      "en_US": [
+        "Trainer Tips\r",
+        "Look, look!\n",
+        "Look to the left of that post!"
+      ]
+    },
+    {
+      "id": "msg_0350_R13_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0350_R13_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0350_R13_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0350_R13_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

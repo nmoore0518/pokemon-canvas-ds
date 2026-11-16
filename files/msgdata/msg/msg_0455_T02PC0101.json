@@ -2,38 +2,38 @@
   "key": 11795,
   "messages": [
     {
-      "id": "msg_0455_T02PC0101_00000",
+      "id": "msg_0455_T02PC0101_PalletTown_PokemonCenter_1F_Text_FeelFreeToUsePC",
       "en_US": [
-        "Where in the world is Viridian’s\n",
-        "Gym Leader?\f",
-        "I wanted to challenge him..."
+        "Please feel free to use that PC in\n",
+        "the corner.\r",
+        "The receptionist told me so.\n",
+        "It’s so kind of her!"
       ]
     },
     {
-      "id": "msg_0455_T02PC0101_00001",
+      "id": "msg_0455_T02PC0101_PalletTown_PokemonCenter_1F_Text_PokeCenterInEveryTown",
       "en_US": [
-        "Viridian’s Gym Leader does not\n",
-        "rely on others!\r",
-        "The Gym Leader claims that his policy\n",
-        "is to lose to no one without having\f",
-        "any underlings.\r",
-        "That makes him even more popular,\n",
-        "and many Trainers have come to work\f",
-        "for him."
+        "There’s a Pokémon Center in every\n",
+        "town ahead.\r",
+        "They charge no money, so don’t\n",
+        "be shy about healing Pokémon."
       ]
     },
     {
-      "id": "msg_0455_T02PC0101_00002",
+      "id": "msg_0455_T02PC0101_PalletTown_PokemonCenter_1F_Text_PokeCentersHealMons",
       "en_US": [
-        "I heard that the Gym in Cinnabar\n",
-        "is gone.\r",
-        "I wonder what became of Blaine,\n",
-        "the Gym Leader."
+        "Pokémon Centers heal your tired,\n",
+        "hurt, or fainted Pokémon.\r",
+        "They make all Pokémon completely\n",
+        "healthy."
       ]
     },
     {
-      "id": "msg_0455_T02PC0101_00003",
-      "en_US": "My dream is to become a Gym Leader."
+      "id": "msg_0455_T02PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

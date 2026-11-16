@@ -3,9 +3,12 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T11_016 + 1
+	InitScriptEntry_OnFrameTable _cv_T11_frame
+	InitScriptEntry_OnTransition _EV_SaffronCity_OnTransition + 1
 	InitScriptEntryEnd
+
+_cv_T11_frame:
+	// (not yet: MoveExtractor_EventScript_SaffronVisit)
+	InitScriptFrameTableEnd
 
 	InitScriptEnd

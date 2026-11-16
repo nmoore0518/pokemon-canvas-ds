@@ -2,162 +2,151 @@
   "key": 54295,
   "messages": [
     {
-      "id": "msg_0488_T06R0301_00000",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_DidYouComeToHearAboutMyMons",
       "en_US": [
-        "I’m the Chairman of the\n",
-        "Pokémon Fan Club.\r",
-        "I’ve raised over 150 Pokémon.\r",
-        "I’m very fussy when it comes\n",
-        "to Pokémon.\r",
-        "Did you visit just to hear about\n",
-        "my Pokémon? {YESNO 0}"
+        "I chair the Pokémon Fan Club!\r",
+        "I raise more than a hundred\n",
+        "Pokémon!\r",
+        "I’m very fussy when it comes to\n",
+        "Pokémon! I surely am!\r",
+        "So…\r",
+        "Did you come visit to hear about\n",
+        "my Pokémon?"
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00001",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ComeBackToHearStory",
       "en_US": [
-        "Good! Then listen up!\r",
-        "So...my precious RAPIDASH...\r",
-        "It’s...cute...lovely...smart...\n",
-        "adorable...irresistible...plus...\f",
-        "amazing... Don’t you think so?\f",
-        "Oh, so...wild...beautiful...\f",
-        "kind... I love it!\r",
-        "Hug it... It’s warm and cuddly...\n",
-        "Oh, it’s...spectacular...captivating...\f",
-        "simply divine... I treasure it...\f",
-        "Oops! Look at the time! I’ve kept\f",
-        "you too long!\r",
-        "Thanks for hearing me out. I want to\n",
-        "give you this present!\r"
+        "Oh. Come back when you want to\n",
+        "hear my story!"
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00002",
-      "garbage": 20
-    },
-    {
-      "id": "msg_0488_T06R0301_00003",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmanVeryVocalAboutPokemon",
       "en_US": [
-        "It’s a Rare Candy that makes\n",
-        "Pokémon stronger.\r",
-        "I prefer making my Pokémon stronger\n",
-        "by battling, so you can have it."
+        "Our Chairman is very vocal about\n",
+        "Pokémon."
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00004",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_Pikachu",
+      "en_US": "Pikachu: Chu! Pikachu!"
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_Seel",
+      "en_US": "Seel: Kyuoo!"
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdoreMySeel",
       "en_US": [
-        "Hello, {STRVAR_1 3, 0, 0}!\r",
-        "Did you come see me about my\n",
-        "Pokémon again?\r",
-        "No? Oh... I had more tales to tell..."
+        "I just adore my Seel!\n",
+        "It’s so lovable!\r",
+        "It squeals, “Kyuuuh,” when I\n",
+        "hug it!"
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00005",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdmirePikachusTail",
       "en_US": [
-        "Hello, {STRVAR_1 3, 0, 0}!\r",
-        "Did you come see me about my\n",
-        "Pokémon again?\r",
-        "No? Oh... I had more tales to tell..."
+        "Won’t you admire my Pikachu’s\n",
+        "adorable tail?"
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00006",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ListenPolitelyToOtherTrainers",
       "en_US": [
-        "How disappointing...\r",
-        "Come back if you want to listen\n",
-        "to me again!"
+        "Let’s all listen politely to other\n",
+        "Trainers!"
       ]
     },
     {
-      "id": "msg_0488_T06R0301_00007",
-      "en_US": "Your Bag is jammed full."
-    },
-    {
-      "id": "msg_0488_T06R0301_00008",
-      "en_US": [
-        "Our Chairman is very vocal when it\n",
-        "comes to Pokémon..."
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00009",
-      "en_US": [
-        "I love the way CLEFAIRY opens up\n",
-        "its arms!\r",
-        "It’s so adorable!"
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00010",
-      "en_US": [
-        "I love CLEFAIRY, but I could never\n",
-        "catch one.\r",
-        "So I’m making do with a Poké Doll\n",
-        "that I found."
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00011",
-      "en_US": [
-        "I love CLEFAIRY, but I could never\n",
-        "catch one. So I’m making do with a\f",
-        "Poké Doll that I found.\r",
-        "What?\n",
-        "The girl who lost this Poké Doll\f",
-        "is sad...!\r",
-        "OK. Could you take this Poké Doll\n",
-        "back to that poor little girl?\r",
-        "I’ll befriend a real CLEFAIRY on\n",
-        "my own one day!\r"
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00012",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the lost Poké Doll!"
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00013",
-      "en_US": [
-        "You watch. I’m going to get a\n",
-        "real CLEFAIRY as my friend."
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00014",
-      "en_US": [
-        "Look at my darling BAYLEEF!\r",
-        "The leaf on its head is so cute\n",
-        "and fashionable!"
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00015",
-      "en_US": [
-        "It’s a CLEFAIRY!\n",
-        "Huh?\r",
-        "Oh, right. It’s a CLEFAIRY Poké Doll."
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00016",
-      "en_US": "BAYLEEF: Li liif!"
-    },
-    {
-      "id": "msg_0488_T06R0301_00017",
-      "en_US": [
-        "Let’s all listen politely to\n",
-        "other Trainers."
-      ]
-    },
-    {
-      "id": "msg_0488_T06R0301_00018",
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_SomeoneBragsBragBack",
       "en_US": "If someone brags, brag right back!"
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_DidntComeToSeeAboutMonsAgain",
+      "en_US": [
+        "Hello, {STRVAR_1 3, 6, 0}!\r",
+        "Did you come see me about my\n",
+        "Pokémon again?\r",
+        "No?\n",
+        "Too bad!"
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmansStory",
+      "en_US": [
+        "Good!\n",
+        "Then listen up!\r",
+        "My favorite Rapidash…\r",
+        "It’s…cute…lovely…smart… \n",
+        "plus…amazing…you think so?…\f",
+        "oh yes…it’s…stunning…\f",
+        "kindly…love it!\r",
+        "Hug it…when…sleeping…warm\n",
+        "and cuddly…spectacular…\f",
+        "ravishing…\f",
+        "…Oops! Look at the time!\f",
+        "I kept you too long!\r",
+        "Thanks for hearing me out!\n",
+        "I want you to have this!"
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ReceivedBikeVoucherFromChairman",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a Bike Voucher\n",
+        "from the Chairman."
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ExplainBikeVoucher",
+      "en_US": [
+        "Take that Bike Voucher to the\n",
+        "Bike Shop in Cerulean City.\r",
+        "Exchange that for a Bicycle\n",
+        "free of charge!\r",
+        "Don’t worry, my favorite Fearow\n",
+        "will Fly me anywhere I need to go.\r",
+        "So, I have no need for a Bicycle.\r",
+        "I hope you like cycling!"
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmanReallyAdoresHisMons",
+      "en_US": [
+        "Our Chairman really does adore his\n",
+        "Pokémon.\r",
+        "But the person who is most liked by\n",
+        "Pokémon is Daisy, I think."
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_SeelFarMoreAttractive",
+      "en_US": [
+        "Oh, dear!\r",
+        "My Seel is far more attractive.\n",
+        "By double, I would say."
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_PikachuTwiceAsCute",
+      "en_US": [
+        "Humph!\r",
+        "My Pikachu is twice as cute as\n",
+        "that one!"
+      ]
+    },
+    {
+      "id": "msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_MakeRoomForThis",
+      "en_US": "Make room for this!"
+    },
+    {
+      "id": "msg_0488_T06R0301_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

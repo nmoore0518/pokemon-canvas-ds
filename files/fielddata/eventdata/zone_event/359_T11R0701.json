@@ -2,64 +2,47 @@
     "header": "fielddata/script/scr_seq/event_T11R0701.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_T11R0701_003 + 1",
+            "scriptId": "_EV_SilphCo_1F_EventScript_FloorSign + 1",
             "type": 0,
             "x": 5,
             "z": 2,
             "y": 0,
-            "dir": 0
+            "dir": 4
         }
     ],
     "objects": [
         {
-            "id": "obj_T11R0701_gswoman6",
-            "spriteId": "SPRITE_GSWOMAN6",
-            "movement": 0,
+            "id": "1",
+            "spriteId": "SPRITE_GSWOMAN1",
+            "movement": 15,
             "type": 0,
-            "eventFlag": "FLAG_UNK_282",
-            "scriptId": "_EV_scr_seq_T11R0701_000 + 1",
-            "facingDirection": 2,
+            "eventFlag": "0x2062",
+            "scriptId": "_EV_SilphCo_1F_EventScript_Receptionist + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 22,
-            "z": 5,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 3,
             "y": 0
         },
         {
-            "id": "obj_T11R0701_policeman",
-            "spriteId": "SPRITE_POLICEMAN",
-            "movement": 16,
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
             "type": 0,
-            "eventFlag": "FLAG_UNK_281",
-            "scriptId": "_EV_scr_seq_T11R0701_001 + 1",
-            "facingDirection": 2,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 4,
-            "z": 4,
-            "y": 0
-        },
-        {
-            "id": "obj_T11R0701_daigo",
-            "spriteId": "SPRITE_DAIGO",
-            "movement": 0,
-            "type": 0,
-            "eventFlag": "FLAG_HIDE_SAFFRON_CITY_STEVEN",
-            "scriptId": "_EV_scr_seq_T11R0701_004 + 1",
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PaintWorld_EventScript_Figure + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 14,
-            "z": 8,
+            "x": 10,
+            "z": 9,
             "y": 0
         }
     ],
@@ -78,5 +61,6 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

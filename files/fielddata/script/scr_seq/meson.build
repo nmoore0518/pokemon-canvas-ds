@@ -546,6 +546,10 @@ scr_seq_event_headers = files(
     'event_CV_CANVAS_MT_MOON_B1F.h',
     'event_CV_CANVAS_MT_MOON_B2F.h',
     'event_CV_FIGHT_AREA_UNUSED_3.h',
+    'event_CV_ROUTE_6_UNDERGROUND_PATH_GATE.h',
+    'event_CV_ROUTE_16_EAST.h',
+    'event_CV_VIRIDIAN_POKECENTER_1F.h',
+    'event_CV_SAFFRON_FIGHTING_DOJO.h',
 )
 
 scr_seq_asm = files(
@@ -1536,4 +1540,12 @@ scr_seq_asm = files(
     'scr_seq_0984_CV_CANVAS_MT_MOON_B2F_hdr.s',
     'scr_seq_0985_CV_FIGHT_AREA_UNUSED_3.s',
     'scr_seq_0986_CV_FIGHT_AREA_UNUSED_3_hdr.s',
+    'scr_seq_0987_CV_ROUTE_6_UNDERGROUND_PATH_GATE.s',
+    'scr_seq_0988_CV_ROUTE_6_UNDERGROUND_PATH_GATE_hdr.s',
+    'scr_seq_0989_CV_ROUTE_16_EAST.s',
+    'scr_seq_0990_CV_ROUTE_16_EAST_hdr.s',
+    'scr_seq_0991_CV_VIRIDIAN_POKECENTER_1F.s',
+    'scr_seq_0992_CV_VIRIDIAN_POKECENTER_1F_hdr.s',
+    'scr_seq_0993_CV_SAFFRON_FIGHTING_DOJO.s',
+    'scr_seq_0994_CV_SAFFRON_FIGHTING_DOJO_hdr.s',
 )

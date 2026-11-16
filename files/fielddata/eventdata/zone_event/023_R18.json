@@ -2,9 +2,17 @@
     "header": "fielddata/script/scr_seq/event_R18.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_R18_001 + 1",
-            "type": 1,
+            "scriptId": "_EV_Route18_EventScript_CyclingRoadSign + 1",
+            "type": 0,
             "x": 1174,
+            "z": 424,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route18_EventScript_RouteSign + 1",
+            "type": 0,
+            "x": 1172,
             "z": 424,
             "y": 0,
             "dir": 4
@@ -12,52 +20,52 @@
     ],
     "objects": [
         {
-            "id": "obj_R18_gsman2",
+            "id": "1",
             "spriteId": "SPRITE_GSMAN2",
             "movement": 0,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(TRAINER_BIRD_KEEPER_GS_BOB)",
-            "facingDirection": 0,
-            "param0": 4,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1167,
-            "z": 434,
-            "y": 0
-        },
-        {
-            "id": "obj_R18_gsman2_2",
-            "spriteId": "SPRITE_GSMAN2",
-            "movement": 0,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(TRAINER_BIRD_KEEPER_GS_BORIS)",
+            "scriptId": "std_trainer(1054)",
             "facingDirection": 3,
             "param0": 4,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
+            "xRange": 1,
+            "yRange": 1,
             "x": 1162,
             "z": 435,
             "y": 0
         },
         {
-            "id": "obj_R18_gang",
-            "spriteId": "SPRITE_GANG",
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN2",
             "movement": 0,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(TRAINER_BIKER_CHARLES)",
+            "scriptId": "std_trainer(1053)",
+            "facingDirection": 0,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1167,
+            "z": 434,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 0,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1052)",
             "facingDirection": 3,
             "param0": 5,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
+            "xRange": 1,
+            "yRange": 1,
             "x": 1135,
             "z": 424,
             "y": 0
@@ -92,5 +100,6 @@
             "anchor": 1,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

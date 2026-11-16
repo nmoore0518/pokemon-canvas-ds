@@ -2,92 +2,437 @@
   "key": 22820,
   "messages": [
     {
-      "id": "msg_0531_T11GYM0101_00000",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_rock",
       "en_US": [
-        "Sabrina: I knew you were coming...\r",
-        "Three years ago I had a vision of\n",
-        "your arrival. You’re after my Badge.\r",
-        "I don’t enjoy battling, but it’s my\n",
-        "duty as a Gym Leader to confer\f",
-        "Badges on anyone who has proven\f",
-        "him- or herself worthy.\r",
-        "Since you wish it, I will show you my\n",
-        "psychic powers!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it to Pewter!\r",
+        "We met in Oak’s lab, but here I’m a Gym\n",
+        "Leader, and you’re a challenger.\r",
+        "Show me what your Rock Pokémon can do!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00001",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_normal",
       "en_US": [
-        "Sabrina: Your power...\n",
-        "It far exceeds what I foresaw...\r",
-        "Maybe it isn’t possible to fully\n",
-        "predict what the future holds...\r",
-        "OK, you win. You earned yourself\n",
-        "the Marsh Badge.\r"
+        "Brock: {STRVAR_1 3, 6, 0}! Good to see you again.\r",
+        "Since Oak’s lab, I’ve wondered how your\n",
+        "Normal types would do against my Rock\f",
+        "types.\r",
+        "Let’s find out!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00002",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_water",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the Marsh Badge!"
+        "Misty: Well, well. The kid from Oak’s lab.\r",
+        "A Water trainer, here to take the Water\n",
+        "Gym’s Badge? Ha!\r",
+        "Let’s see you try!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00003",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_electric",
       "en_US": [
-        "Sabrina: I failed to accurately predict\n",
-        "your power. That means that your\f",
-        "power is beyond my psychic ability.\r",
-        "You deserve this.\n",
-        "Please take this TM, too!\r"
+        "Lt. Surge: Ten-hut! The Electric kid\n",
+        "from Oak’s lab!\r",
+        "This is my turf, soldier. Let’s see who’s\n",
+        "packing more voltage!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00004",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_steel",
       "en_US": [
-        "Sabrina: It contains Skill Swap!\n",
-        "It swaps Abilities between the user\f",
-        "and the target.\r",
-        "You will become a celebrated and\n",
-        "beloved Champion!"
+        "Lt. Surge: The Steel kid! Told you I’d be\n",
+        "watching.\r",
+        "Let’s see if that armor holds up under\n",
+        "fire!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00005",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_grass",
       "en_US": [
-        "Sabrina: Your love for your Pokémon\n",
-        "smashed my psychic abilities...\r",
-        "The ability to love, I think, is some\n",
-        "kind of psychic ability..."
+        "Erika: Oh, {STRVAR_1 3, 6, 0}… Welcome. I’m so\n",
+        "glad you came.\r",
+        "I’ve been looking forward to seeing your\n",
+        "Grass Pokémon again.\r",
+        "Shall we?"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00006",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_poison",
       "en_US": [
-        "Yo, legend in the making!\r",
-        "A Trainer as skilled as you doesn’t\n",
-        "need to be told how to deal\f",
-        "with Psychic-type Pokémon, right?\r",
-        "I expect great things from you!\r",
-        "Good luck!"
+        "Koga: …You have come, as I knew you\n",
+        "would.\r",
+        "I have watched you from the shadows\n",
+        "since Oak’s lab.\r",
+        "Now show me your Poison in the open!"
       ]
     },
     {
-      "id": "msg_0531_T11GYM0101_00007",
-      "en_US": "That was another fantastic battle!"
-    },
-    {
-      "id": "msg_0531_T11GYM0101_00008",
-      "en_US": "Saffron City Pokémon Gym"
-    },
-    {
-      "id": "msg_0531_T11GYM0101_00009",
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_bug",
       "en_US": [
-        "Saffron City Pokémon Gym\r",
-        "Leader: Sabrina\n",
-        "Certified Trainer!\f",
-        "{STRVAR_1 3, 0, 0}"
+        "Koga: Fwahaha! The Bug trainer from\n",
+        "Oak’s lab.\r",
+        "Most call Bug Pokémon weak. Show me why\n",
+        "they are wrong!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_psychic",
+      "en_US": [
+        "Sabrina: …I saw this battle in a vision,\n",
+        "the day we met in Oak’s lab.\r",
+        "Two Psychic trainers. Only one leaves\n",
+        "with the win."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said we\n",
+        "would.\r",
+        "Show me whether your Fairy Pokémon\n",
+        "trust you as much as I foresaw."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_prebattle_fire",
+      "en_US": [
+        "Blaine: Hah! Quiz! Who’s the Fire trainer\n",
+        "I met in Oak’s lab?\r",
+        "Answer: you! Now let’s see if you can\n",
+        "take the heat!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_SabrinaIntro",
+      "en_US": [
+        "I had a vision of your arrival.\r",
+        "I have had psychic powers since\n",
+        "I was a child.\r",
+        "It started when a spoon I\n",
+        "carelessly tossed, bent.\r",
+        "I dislike battling, but if you wish,\n",
+        "I will show you my powers!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_GymGuyAdvice",
+      "en_US": [
+        "Yo!\n",
+        "Champ in the making!\r",
+        "Sabrina’s Pokémon use psychic\n",
+        "power instead of force.\r",
+        "Fighting Pokémon are especially\n",
+        "weak against Psychic Pokémon.\r",
+        "They’ll get destroyed before they\n",
+        "can even aim a punch!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymAides_Text_SaffronCity",
+      "en_US": [
+        "Prof. Oak’s Aide here!\n",
+        "Sabrina’s Gym is a maze of rooms\f",
+        "linked by warp panels.\r",
+        "Challengers can’t see the whole Gym\n",
+        "at once, so they never know what’s\f",
+        "coming next.\r",
+        "A Leader who keeps challengers\n",
+        "guessing has the upper hand!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_GymStatue",
+      "en_US": [
+        "Saffron Pokémon Gym\n",
+        "Leader: Sabrina\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_GymGuyPostVictory",
+      "en_US": [
+        "Psychic power, huh?\r",
+        "If I had that, I’d make a bundle\n",
+        "at the slots!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymAides_Text_SaffronCityAfter",
+      "en_US": [
+        "With the Marsh Badge, the Pallet\n",
+        "Town Mart stocks Ability Capsules.\r",
+        "The right Ability can turn a battle\n",
+        "around. Choose your team’s Abilities\f",
+        "with care!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_GymStatuePlayerWon",
+      "en_US": [
+        "Saffron Pokémon Gym\n",
+        "Leader: Sabrina\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_ExplainTM04",
+      "en_US": [
+        "TM04 is Calm Mind.\r",
+        "It makes the Pokémon concentrate\n",
+        "to raise both Sp. Atk and Sp. Def."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_ExplainMarshBadgeTakeThis",
+      "en_US": [
+        "The Marshbadge makes Pokémon up\n",
+        "to Lv. 70 obey you.\r",
+        "Stronger Pokémon will become wild,\n",
+        "ignoring your orders in battle.\r",
+        "Just don’t raise your Pokémon too\n",
+        "much to avoid that problem.\r",
+        "Wait, please take this TM with you."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_ReceivedTM04FromSabrina",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM04 from\n",
+        "Sabrina."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_SabrinaPostBattle",
+      "en_US": [
+        "Psychic power isn’t something that\n",
+        "only a few people have.\r",
+        "Everyone has psychic power.\n",
+        "People just don’t realize it."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymHack_Text_SabrinaSilverCap",
+      "en_US": [
+        "Sabrina: I foresaw that you would\n",
+        "win. So I kept this ready."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymHack_Text_SabrinaSilverCapAfter",
+      "en_US": [
+        "I also see you in a Gym of your\n",
+        "own, someday.\r",
+        "I can’t see who challenges you\n",
+        "there… Don’t prove my vision wrong."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_SaffronCity_Gym_Text_BagFullOfOtherItems",
+      "en_US": "Your Bag is full of other items."
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymCandidate_Text_GuardItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, no move is\f",
+        "super effective against it.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_GymCandidate_Text_EdgeItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, its moves always\f",
+        "hit for at least normal damage.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_Outfits_Text_ReceivedGymUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a\n",
+        "{STRVAR_1 3, 0, 0} Gym Uniform!"
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
+      "id": "msg_0531_T11GYM0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

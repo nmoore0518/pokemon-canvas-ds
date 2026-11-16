@@ -2,17 +2,118 @@
   "key": 17426,
   "messages": [
     {
-      "id": "msg_0502_T07R0202_00000",
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeIntro",
       "en_US": [
-        "Please take this elevator\n",
-        "to go to the roof."
+        "Oh! You’re a Gym Leader now?\n",
+        "Then you need a star for your\r",
+        "shows!\r",
+        "This Pikachu loves dressing up\n",
+        "more than anything. Its costumes\r",
+        "are my life’s work. Please, take\n",
+        "it!"
       ]
     },
     {
-      "id": "msg_0502_T07R0202_00001",
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeExplain",
       "en_US": [
-        "This elevator goes straight between\n",
-        "the first and the third floors."
+        "I have five costumes for it, but\n",
+        "each one has to suit you first.\r",
+        "Rock Star is cool: win 7 in a\n",
+        "row in the Academy’s Battle\r",
+        "Hall.\r",
+        "Belle is beautiful: decorate\n",
+        "your Gym with 20 pieces or more.\r",
+        "Pop Star is cute: win the\n",
+        "Convention’s Fairy hall.\r",
+        "Ph.D. is smart: hear every\n",
+        "lecture at the Academy.\r",
+        "Libre is tough: win the\n",
+        "Convention’s Fighting hall.\r",
+        "Come back any time and I’ll\n",
+        "dress it up!"
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_CeladonCity_Condominiums_2F_Text_GameFreakMeetingRoom",
+      "en_US": "Game Freak Meeting Room"
+    },
+    {
+      "id": "msg_0502_T07R0202_PokemonJournal_Text_SpecialFeatureErika",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature: Celadon Gym\n",
+        "Leader Erika!\r",
+        "Rumor has it that if you peek into\n",
+        "Celadon Gym, you can often\f",
+        "see Erika snoozing."
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeNotYet",
+      "en_US": [
+        "I make costumes for Pokémon.\n",
+        "Right now I’m sewing for a very\r",
+        "special client…\r",
+        "A Gym Leader, maybe? Come back\n",
+        "when you are one!"
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeAsk",
+      "en_US": [
+        "Costumes ready for you:\n",
+        "{STRVAR_1 3, 0, 0} of 5. Shall I dress\r",
+        "up your Pikachu?"
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeWhich",
+      "en_US": "Which Pikachu?"
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumePick",
+      "en_US": "Which costume?"
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeCosplay",
+      "en_US": "no Costume"
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeDone",
+      "en_US": [
+        "There! {STRVAR_1 3, 2, 0} looks\n",
+        "wonderful. A new costume, a new\r",
+        "move to show it off!"
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_Received",
+      "en_US": "{STRVAR_1 3, 6, 0} received {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeLater",
+      "en_US": "Come back any time!"
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_CostumeNotPikachu",
+      "en_US": [
+        "Hmm… My costumes only fit the\n",
+        "Pikachu I gave you."
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_EventMons_Text_NoRoom",
+      "en_US": [
+        "Oh… There’s no room for it in\n",
+        "your party or your boxes. Make\r",
+        "some space and come back!"
+      ]
+    },
+    {
+      "id": "msg_0502_T07R0202_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

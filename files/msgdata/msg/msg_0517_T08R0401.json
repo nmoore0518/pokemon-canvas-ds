@@ -2,17 +2,55 @@
   "key": 46126,
   "messages": [
     {
-      "id": "msg_0517_T08R0401_00000",
+      "id": "msg_0517_T08R0401_FuchsiaCity_House1_Text_BillIsMyGrandson",
       "en_US": [
-        "My grandpa is at my brother Bill’s\n",
-        "on Cerulean Cape."
+        "Hmm?\n",
+        "You’ve met Bill?\r",
+        "He’s my grandson!\r",
+        "He always liked collecting things,\n",
+        "even as a child!"
       ]
     },
     {
-      "id": "msg_0517_T08R0401_00001",
+      "id": "msg_0517_T08R0401_FuchsiaCity_House1_Text_WardenIsOldHasFalseTeeth",
       "en_US": [
-        "I saw these weird, slow Pokémon on\n",
-        "Cycling Road."
+        "The Safari Zone’s Warden is old, \n",
+        "but he’s still very much active.\r",
+        "All his teeth are false, though."
+      ]
+    },
+    {
+      "id": "msg_0517_T08R0401_FuchsiaCity_House1_Text_BillFilesHisOwnMonData",
+      "en_US": [
+        "Bill files his own Pokémon data on\n",
+        "his PC.\r",
+        "Did he show you?"
+      ]
+    },
+    {
+      "id": "msg_0517_T08R0401_TrainingHouse_Text_OpheliaIntro",
+      "en_US": [
+        "I came for the Safari Zone and\n",
+        "stayed for the battles!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0517_T08R0401_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0517_T08R0401_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0517_T08R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

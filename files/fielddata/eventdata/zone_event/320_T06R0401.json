@@ -2,37 +2,37 @@
     "header": "fielddata/script/scr_seq/event_T06R0401.h",
     "objects": [
         {
-            "id": "obj_T06R0401_middlewoman1_2",
-            "spriteId": "SPRITE_MIDDLEWOMAN1_2",
-            "movement": 0,
+            "id": "1",
+            "spriteId": "SPRITE_GSBABYGIRL1",
+            "movement": 14,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T06R0401_000 + 1",
+            "scriptId": "_EV_VermilionCity_House2_EventScript_Elyssa + 1",
             "facingDirection": 0,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 2,
-            "z": 4,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 5,
             "y": 0
         },
         {
-            "id": "obj_T06R0401_gsboy1",
-            "spriteId": "SPRITE_GSBOY1",
-            "movement": 20,
+            "id": "2",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 16,
             "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T06R0401_001 + 1",
-            "facingDirection": 3,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Serena + 1",
+            "facingDirection": 2,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 3,
-            "z": 4,
+            "x": 9,
+            "z": 5,
             "y": 0
         }
     ],
@@ -44,5 +44,7 @@
             "anchor": 3,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

@@ -1,43 +1,36 @@
 #ifndef SCR_SEQ_T06GYM0101_H_
 #define SCR_SEQ_T06GYM0101_H_
 
-#define _EV_scr_seq_T06GYM0101_000 0
-#define _EV_scr_seq_T06GYM0101_001 1
-#define _EV_scr_seq_T06GYM0101_002 2
-#define _EV_scr_seq_T06GYM0101_003 3
-#define _EV_scr_seq_T06GYM0101_004 4
-#define _EV_scr_seq_T06GYM0101_005 5
-#define _EV_scr_seq_T06GYM0101_006 6
-#define _EV_scr_seq_T06GYM0101_007 7
-#define _EV_scr_seq_T06GYM0101_008 8
-#define _EV_scr_seq_T06GYM0101_009 9
-#define _EV_scr_seq_T06GYM0101_010 10
-#define _EV_scr_seq_T06GYM0101_011 11
-#define _EV_scr_seq_T06GYM0101_012 12
-#define _EV_scr_seq_T06GYM0101_013 13
-#define _EV_scr_seq_T06GYM0101_014 14
-#define _EV_scr_seq_T06GYM0101_015 15
-#define _EV_scr_seq_T06GYM0101_016 16
-#define _EV_scr_seq_T06GYM0101_017 17
-#define _EV_scr_seq_T06GYM0101_018 18
-#define _EV_scr_seq_T06GYM0101_019 19
-#define _EV_scr_seq_T06GYM0101_020 20
-#define _EV_scr_seq_T06GYM0101_021 21
-#define _EV_scr_seq_T06GYM0101_022 22
-#define _EV_scr_seq_T06GYM0101_023 23
-#define _EV_scr_seq_T06GYM0101_024 24
-#define _EV_scr_seq_T06GYM0101_025 25
+#define _EV_VermilionCity_Gym_EventScript_LtSurge 0
+#define _EV_VermilionCity_Gym_EventScript_GymGuy 1
+#define _EV_VermilionCity_Gym_EventScript_Tucker 2
+#define _EV_GymAides_EventScript_VermilionCity 3
+#define _EV_VermilionCity_Gym_EventScript_GymStatue 4
+#define _EV_VermilionCity_Gym_EventScript_TrashCan1 5
+#define _EV_VermilionCity_Gym_EventScript_TrashCan2 6
+#define _EV_VermilionCity_Gym_EventScript_TrashCan3 7
+#define _EV_VermilionCity_Gym_EventScript_TrashCan4 8
+#define _EV_VermilionCity_Gym_EventScript_TrashCan5 9
+#define _EV_VermilionCity_Gym_EventScript_TrashCan6 10
+#define _EV_VermilionCity_Gym_EventScript_TrashCan7 11
+#define _EV_VermilionCity_Gym_EventScript_TrashCan8 12
+#define _EV_VermilionCity_Gym_EventScript_TrashCan9 13
+#define _EV_VermilionCity_Gym_EventScript_TrashCan10 14
+#define _EV_VermilionCity_Gym_EventScript_TrashCan11 15
+#define _EV_VermilionCity_Gym_EventScript_TrashCan12 16
+#define _EV_VermilionCity_Gym_EventScript_TrashCan13 17
+#define _EV_VermilionCity_Gym_EventScript_TrashCan14 18
+#define _EV_VermilionCity_Gym_EventScript_TrashCan15 19
+#define _EV_VermilionCity_Gym_OnLoad 20
+#define _EV_VermilionCity_Gym_OnTransition 21
 
-#define obj_T06GYM0101_stop        0
-#define obj_T06GYM0101_stop_2      1
-#define obj_T06GYM0101_stop_3      2
-#define obj_T06GYM0101_stop_4      3
-#define obj_T06GYM0101_stop_5      4
-#define obj_T06GYM0101_stop_6      5
-#define obj_T06GYM0101_gsman2      6
-#define obj_T06GYM0101_juggrer     7
-#define obj_T06GYM0101_gsgentleman 8
-#define obj_T06GYM0101_gsleader9   9
-#define obj_T06GYM0101_sunglasses  10
+#define LOCALID_VERMILIONCITY_GYM_OAK_AIDE 6
+#define LOCALID_VERMILION_GYM_GUEST 7
+#define obj_T06GYM0101_stop 0x7F00
+#define obj_T06GYM0101_stop_2 0x7F01
+#define obj_T06GYM0101_stop_3 0x7F02
+#define obj_T06GYM0101_stop_4 0x7F03
+#define obj_T06GYM0101_stop_5 0x7F04
+#define obj_T06GYM0101_stop_6 0x7F05
 
-#endif // SCR_SEQ_T06GYM0101_H_
+#endif

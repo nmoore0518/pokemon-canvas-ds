@@ -2,130 +2,241 @@
   "key": 17195,
   "messages": [
     {
-      "id": "msg_0529_T11_00000",
+      "id": "msg_0529_T11_SaffronCity_Text_WhatDoYouWantGetLost",
       "en_US": [
-        "Our city was featured on a\n",
-        "radio show.\r",
-        "It’s nice to hear praise for your\n",
-        "city, but it’s a bit embarrassing, too."
+        "What do you want?\n",
+        "Get lost!"
       ]
     },
     {
-      "id": "msg_0529_T11_00001",
+      "id": "msg_0529_T11_SaffronCity_Text_BossTakeTownForTeamRocket",
       "en_US": [
-        "I went to the Gym, raring for battles\n",
-        "against Trainers...\r",
-        "It turns out, I stumbled into the\n",
-        "unused Gym next door.\f",
-        "Boy, I was pretty embarrassed."
+        "Boss said he’ll take this town\n",
+        "in the name of Team Rocket!"
       ]
     },
     {
-      "id": "msg_0529_T11_00002",
+      "id": "msg_0529_T11_SaffronCity_Text_DontGetDefiantOrIllHurtYou",
       "en_US": [
-        "This is the house of the Copycat girl.\r",
-        "She is so good at being a copycat\n",
-        "of the way people talk that it’ll\f",
-        "confuse you when you talk to her."
+        "Don’t get defiant!\n",
+        "Or I’ll have to hurt you!"
       ]
     },
     {
-      "id": "msg_0529_T11_00003",
+      "id": "msg_0529_T11_SaffronCity_Text_SaffronBelongsToTeamRocket",
+      "en_US": "Saffron belongs to Team Rocket!"
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_CriminalLifeMakesMeFeelAlive",
       "en_US": [
-        "The Copycat girl looked unhappy.\r",
-        "She said she lost her cherished\n",
-        "Poké Doll--CLEFAIRY."
+        "My life as a criminal makes me feel\n",
+        "so alive!"
       ]
     },
     {
-      "id": "msg_0529_T11_00004",
+      "id": "msg_0529_T11_SaffronCity_Text_ImASecurityGuard",
       "en_US": [
-        "Going into an alley for the first time\n",
-        "makes me sorta anxious."
+        "I’m a security guard.\r",
+        "Suspicious kids I don’t allow in!\r",
+        "Oh, but you’re his kid. Maybe…\r",
+        "No!"
       ]
     },
     {
-      "id": "msg_0529_T11_00005",
+      "id": "msg_0529_T11_SaffronCity_Text_WeCanExploitMonsAroundWorld",
       "en_US": [
-        "Chomp... Chew...\r",
-        "The manager of the Power Plant\n",
-        "used to be a repairman in a\f",
-        "small factory.\r",
-        "Chew... Chew...\r",
-        "His hard work has taken him up the\n",
-        "ladder to eventually become the\f",
-        "manager of the Power Plant.\f",
-        "Chew... Gulp...\r",
-        "Quite impressive, don’t you think?\n",
-        "Haaah, I’m full!"
+        "With Silph under control, we can\n",
+        "exploit Pokémon around the world!\r",
+        "We’ll get stinking rich, yeahah!"
       ]
     },
     {
-      "id": "msg_0529_T11_00006",
+      "id": "msg_0529_T11_SaffronCity_Text_WatchWhereYoureWalking",
       "en_US": [
-        "This is Silph Co., famous for\n",
-        "Pokémon merchandise.\r",
-        "In the past, Team Rocket wanted the\n",
-        "company because of that."
+        "Ow!\n",
+        "Watch where you’re walking!"
       ]
     },
     {
-      "id": "msg_0529_T11_00007",
+      "id": "msg_0529_T11_SaffronCity_Text_SafeToGoOutAgain",
       "en_US": [
-        "There’s a place called Trainer House\n",
-        "in Viridian where Trainers gather from\f",
-        "all over the place."
+        "Yeah! Team Rocket is gone!\n",
+        "It’s safe to go out again!"
       ]
     },
     {
-      "id": "msg_0529_T11_00008",
+      "id": "msg_0529_T11_SaffronCity_Text_YouBeatTeamRocket",
       "en_US": [
-        "You came out from Johto?\r",
-        "You can zip back home by hopping on\n",
-        "the Magnet Train."
+        "You beat Team Rocket all alone?\n",
+        "That’s amazing!"
       ]
     },
     {
-      "id": "msg_0529_T11_00009",
+      "id": "msg_0529_T11_SaffronCity_Text_SawRocketBossEscaping",
       "en_US": [
-        "Kanto-Johto Magnet Train Line\n",
-        "Saffron City Station"
+        "I saw the Rocket Boss escaping\n",
+        "Silph’s building."
       ]
     },
     {
-      "id": "msg_0529_T11_00010",
+      "id": "msg_0529_T11_SaffronCity_Text_FlewHereOnPidgeot",
+      "en_US": [
+        "I flew here on my Pidgeot when\n",
+        "I read about Silph.\r",
+        "It’s already over?\n",
+        "I missed the media action…"
+      ]
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_Pidgeot",
+      "en_US": "Pidgeot: Bi bibii!"
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_PeopleComingBackToSaffron",
+      "en_US": [
+        "People fled from here in droves\n",
+        "when those Rockets came.\r",
+        "They should be flocking back to\n",
+        "Saffron now."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_HowCanClubNotRecognizeLance",
+      "en_US": [
+        "This Fan Club…\n",
+        "No one here has a clue!\r",
+        "How could they not recognize\n",
+        "the brilliance that is Lance?\r",
+        "He stands for justice!\n",
+        "He’s cool, and yet passionate!\f",
+        "He’s the greatest, Lance!"
+      ]
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_CitySign",
       "en_US": [
         "Saffron City\n",
-        "Shining Big City"
+        "Shining, Golden Land of Commerce"
       ]
     },
     {
-      "id": "msg_0529_T11_00011",
+      "id": "msg_0529_T11_SaffronCity_Text_FightingDojo",
+      "en_US": "Fighting Dojo"
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_SilphsLatestProduct",
       "en_US": [
-        "Everyone Is Welcome!\n",
-        "Fighting Dojo"
+        "Silph’s latest product!\n",
+        "Release to be determined…"
       ]
     },
     {
-      "id": "msg_0529_T11_00012",
+      "id": "msg_0529_T11_SaffronCity_Text_GreatBallImprovedCatchRate",
+      "en_US": [
+        "Trainer Tips\r",
+        "The new Great Ball offers improved\n",
+        "catching rates.\r",
+        "Try it on those hard-to-catch\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_SilphCoSign",
+      "en_US": "Silph Co. Office Building"
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_FullHealCuresStatus",
+      "en_US": [
+        "Trainer Tips\r",
+        "Full Heal cures all ailments like\n",
+        "burns, paralysis, poisoning,\f",
+        "freezing, and sleep.\r",
+        "It costs a bit more, but it’s more\n",
+        "convenient than buying other items."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_GymSign",
       "en_US": [
         "Saffron City Pokémon Gym\n",
         "Leader: Sabrina\f",
-        "The Mistress of Psychic-Type Pokémon!"
+        "The Master of Psychic Pokémon!"
       ]
     },
     {
-      "id": "msg_0529_T11_00013",
+      "id": "msg_0529_T11_SaffronCity_Text_MrPsychicsHouse",
+      "en_US": "Mr. Psychic’s House"
+    },
+    {
+      "id": "msg_0529_T11_SaffronCity_Text_TrainerFanClubSign",
       "en_US": [
-        "Silph Co.\n",
-        "Office Building"
+        "Pokémon Trainer Fan Club\r",
+        "Many Trainers have scribbled their\n",
+        "names on this sign."
       ]
     },
     {
-      "id": "msg_0529_T11_00014",
+      "id": "msg_0529_T11_SaffronCity_Text_HesTakingASnooze",
       "en_US": [
-        "Don’t Call Me Uncle Psychic!\n",
-        "Mr. Psychic’s House"
+        "…\n",
+        "Snore…\r",
+        "Hah! He’s taking a snooze!"
+      ]
+    },
+    {
+      "id": "msg_0529_T11_MoveExtractor_Text_SecondVisit",
+      "en_US": [
+        "Psst! Kid! It’s me, from Nugget\n",
+        "Bridge!\r",
+        "You… you beat the Boss at Silph\n",
+        "Co.?! And I recommended you!\r",
+        "I’m in so much trouble…\r",
+        "…But you know what? I heard the\n",
+        "Boss say “That child has talent.”\r",
+        "So he’s not mad. I think.\n",
+        "Here. Keep stealing moves!"
+      ]
+    },
+    {
+      "id": "msg_0529_T11_MoveExtractor_Text_SecondVisitAfter",
+      "en_US": [
+        "Lay low for a while, OK?\n",
+        "I’ll find you again."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_MoveExtractor_Text_ThirdVisit",
+      "en_US": [
+        "Kid… it’s over.\n",
+        "The Boss is gone.\r",
+        "No higher-ups. No recommendation.\n",
+        "Sorry, kid.\r",
+        "…Funny thing is, I don’t even mind.\r",
+        "You’re going to be a Gym Leader,\n",
+        "right? Take the last one.\r",
+        "Make your Gym the toughest in\n",
+        "Kanto with it."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_MoveExtractor_Text_ThirdVisitAfter",
+      "en_US": [
+        "Maybe I’ll go straight.\n",
+        "See you around, Leader."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0529_T11_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

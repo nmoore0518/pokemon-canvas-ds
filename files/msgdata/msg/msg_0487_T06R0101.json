@@ -2,27 +2,84 @@
   "key": 21510,
   "messages": [
     {
-      "id": "msg_0487_T06R0101_00000",
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_ImFishingGuruDoYouLikeToFish",
       "en_US": [
-        "I am the Fishing Dude, the elder of\n",
-        "the Fishing Bros.\r",
-        "Have you met the Fishing Guru at\n",
-        "Lake of Rage?\r",
-        "He dreams about seeing the world’s\n",
-        "greatest MAGIKARP.\r",
-        "If you don’t mind, could you show him\n",
-        "any MAGIKARP you catch?\r",
-        "Who knows, you may catch the\n",
-        "MAGIKARP of his dreams."
+        "I’m the Fishing Guru!\r",
+        "I simply looove fishing!\n",
+        "I can’t bear to go without.\r",
+        "Tell me, do you like to fish?"
       ]
     },
     {
-      "id": "msg_0487_T06R0101_00001",
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_OhThatsSoDisappointing",
       "en_US": [
-        "You found something in between\n",
-        "the pages...\r",
-        "It’s a photo of people fishing...\n",
-        "They look identical!"
+        "Oh…\n",
+        "That’s so disappointing…"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_TrainingHouse_Text_VivianIntro",
+      "en_US": [
+        "The sea air makes my Pokémon\n",
+        "feisty. Care to try them?\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_HowAreTheFishBiting",
+      "en_US": [
+        "Hello there, {STRVAR_1 3, 6, 0}!\r",
+        "How are the fish biting?"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_TakeThisAndFish",
+      "en_US": [
+        "Grand! I like your style.\n",
+        "I think we can be friends.\r",
+        "Take this and fish, young friend!"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_ReceivedOldRodFromFishingGuru",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received an Old Rod from\n",
+        "the Fishing Guru."
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_FishingIsAWayOfLife",
+      "en_US": [
+        "Fishing is a way of life!\n",
+        "It is like the finest poetry.\r",
+        "From the seas to rivers, go out\n",
+        "and land the big one, my friend."
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0487_T06R0101_VermilionCity_House1_Text_NoRoomForNiceGift",
+      "en_US": [
+        "Oh, no!\r",
+        "I had a nice gift for you, but you\n",
+        "have no room for it!"
+      ]
+    },
+    {
+      "id": "msg_0487_T06R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

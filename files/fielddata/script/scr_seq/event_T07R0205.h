@@ -1,8 +1,11 @@
 #ifndef SCR_SEQ_T07R0205_H_
 #define SCR_SEQ_T07R0205_H_
 
-#define _EV_scr_seq_T07R0205_000 0
+#define _EV_CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt 0
+#define _EV_CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall 1
+#define _EV_CeladonCity_Condominiums_RoofRoom_EventScript_Blackboard 2
+#define _EV_CeladonCity_Condominiums_RoofRoom_EventScript_TMsPamphlet 3
 
-#define obj_T07R0205_sunglasses 0
+#define LOCALID_EEVEE_POKEBALL 2
 
-#endif // SCR_SEQ_T07R0205_H_
+#endif

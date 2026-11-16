@@ -2,19 +2,76 @@
   "key": 44914,
   "messages": [
     {
-      "id": "msg_0520_T09PC0101_00000",
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_CinnabarGymLocked",
       "en_US": [
-        "I feel so sorry for Blaine.\n",
-        "He lost his Gym..."
+        "I came to visit the Cinnabar Gym,\n",
+        "but the door is locked tight.\r",
+        "There should be a key for it\n",
+        "somewhere.\r",
+        "Could it be in that burned-out\n",
+        "mansion?\r",
+        "The Gym Leader’s friend used to\n",
+        "live there, they say."
       ]
     },
     {
-      "id": "msg_0520_T09PC0101_00001",
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_VisitUnionRoom",
       "en_US": [
-        "It’s been a year since the\n",
-        "volcano erupted.\r",
-        "It is so fortunate that everyone\n",
-        "evacuated in time."
+        "Do you have lots of friends?\r",
+        "Linking up with the usual friends\n",
+        "is fun, of course.\r",
+        "But how about visiting the\n",
+        "Union Room every so often?\r",
+        "Who knows, you may end up making\n",
+        "new friends.\r",
+        "I think it would be worth your time\n",
+        "to check the Union Room."
+      ]
+    },
+    {
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves",
+      "en_US": [
+        "Pokémon can still learn techniques\n",
+        "after canceling evolution.\r",
+        "Evolution can wait until new moves\n",
+        "have been learned."
+      ]
+    },
+    {
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_ReadyToSailToOneIsland",
+      "en_US": [
+        "Bill: Hey, you kept me waiting!\n",
+        "Ready to set sail to One Island?"
+      ]
+    },
+    {
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_LetsGo",
+      "en_US": [
+        "Well, that’s it.\n",
+        "Let’s go!"
+      ]
+    },
+    {
+      "id": "msg_0520_T09PC0101_PokemonJournal_Text_SpecialFeatureMrFuji",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature:\n",
+        "Mr. Fuji of Pokémon House!\r",
+        "Editor: The shy Mr. Fuji turned\n",
+        "down our interview requests.\r",
+        "He is a kindly man who is adored\n",
+        "and respected in Lavender Town."
+      ]
+    },
+    {
+      "id": "msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet",
+      "en_US": "Oh, you’re still not done yet?"
+    },
+    {
+      "id": "msg_0520_T09PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

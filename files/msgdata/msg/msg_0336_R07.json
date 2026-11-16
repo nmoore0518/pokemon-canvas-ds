@@ -2,22 +2,48 @@
   "key": 18179,
   "messages": [
     {
-      "id": "msg_0336_R07_00000",
+      "id": "msg_0336_R07_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "There is a notice!\r",
-        "...Uncouth Trainers have been holding\n",
-        "battles in the Underground Path.\r",
-        "Because of rising complaints by local\n",
-        "residents, the Underground Path has\f",
-        "been sealed indefinitely.\f",
-        "           Signed, the Celadon Police"
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0336_R07_00001",
+      "id": "msg_0336_R07_Route7_Text_UndergroundPathSign",
       "en_US": [
-        "It won’t open!\r",
-        "It’s locked..."
+        "Underground Path\n",
+        "Celadon City - Lavender Town"
+      ]
+    },
+    {
+      "id": "msg_0336_R07_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0336_R07_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0336_R07_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0336_R07_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

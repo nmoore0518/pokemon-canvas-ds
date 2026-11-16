@@ -1,0 +1,31 @@
+{
+ "header": "fielddata/script/scr_seq/event_T11R0101.h",
+ "bgs": [
+  {
+   "scriptId": "_EV_scr_seq_T11R0101_001 + 1",
+   "type": 0,
+   "x": 6,
+   "z": 2,
+   "y": 131072,
+   "dir": 0
+  },
+  {
+   "scriptId": "_EV_scr_seq_T11R0101_002 + 1",
+   "type": 0,
+   "x": 8,
+   "z": 2,
+   "y": 0,
+   "dir": 0
+  }
+ ],
+ "objects": [],
+ "warps": [
+  {
+   "x": 7,
+   "z": 14,
+   "header": "MAP_PALLET",
+   "anchor": 8,
+   "y": 0
+  }
+ ]
+}

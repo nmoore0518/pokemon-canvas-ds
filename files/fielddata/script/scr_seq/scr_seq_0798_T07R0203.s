@@ -3,273 +3,115 @@
 #include "msgdata/msg/msg_0503_T07R0203.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeladonCity_Condominiums_3F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T07R0203_000
-	ScrDef scr_seq_T07R0203_001
-	ScrDef scr_seq_T07R0203_002
-	ScrDef scr_seq_T07R0203_003
-	ScrDef scr_seq_T07R0203_004
-	ScrDef scr_seq_T07R0203_005
-	ScrDef scr_seq_T07R0203_006
-	ScrDef scr_seq_T07R0203_007
-	ScrDef scr_seq_T07R0203_008
-	ScrDef scr_seq_T07R0203_009
-	ScrDef scr_seq_T07R0203_010
-	ScrDef scr_seq_T07R0203_011
-	ScrDef scr_seq_T07R0203_012
-	ScrDef scr_seq_T07R0203_013
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Programmer
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Designer
+	ScrDef CeladonCity_Condominiums_3F_EventScript_GraphicArtist
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Writer
+	ScrDef CeladonCity_Condominiums_3F_EventScript_DevelopmentRoomSign
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Computer1
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Computer2
+	ScrDef CeladonCity_Condominiums_3F_EventScript_Computer3
 	ScrDefEnd
-
-scr_seq_T07R0203_008:
-	GetFriendSprite VAR_OBJ_0
-	SetVar VAR_UNK_4125, 0
-	End
-
-scr_seq_T07R0203_011:
-	Compare VAR_UNK_412C, 0
-	GoToIfNe _006B
-	MovePersonFacing obj_T07R0203_var_1, 12, 0, 6, DIR_WEST
-	MovePersonFacing obj_T07R0203_tsure_poke_static_marill, 13, 0, 6, DIR_WEST
-_006B:
-	End
-
-scr_seq_T07R0203_010:
-	ScrCmd_609
-	LockAll
-	CallStd std_play_friend_music
-	ApplyMovement obj_T07R0203_var_1, _012C
-	ApplyMovement obj_T07R0203_tsure_poke_static_marill, _0138
-	WaitMovement
-	BufferPlayersName 0
-	GenderMsgBox msg_0503_T07R0203_00012, msg_0503_T07R0203_00013
-	CloseMsg
-	ApplyMovement obj_T07R0203_var_1, _0140
-	ApplyMovement obj_T07R0203_tsure_poke_static_marill, _0148
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	ApplyMovement obj_player, _0150
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	BufferPlayersName 0
-	GenderMsgBox msg_0503_T07R0203_00014, msg_0503_T07R0203_00015
-	CloseMsg
-	ApplyMovement obj_T07R0203_var_1, _015C
-	ApplyMovement obj_T07R0203_tsure_poke_static_marill, _016C
-	WaitMovement
-	ScrCmd_307 0, 0, 3, 2, 77
-	ScrCmd_310 77
-	ScrCmd_308 77
-	ApplyMovement obj_T07R0203_var_1, _0180
-	ApplyMovement obj_T07R0203_tsure_poke_static_marill, _018C
-	WaitMovement
-	ScrCmd_311 77
-	ScrCmd_308 77
-	ScrCmd_309 77
-	CallStd std_fade_end_friend_music
-	SetVar VAR_UNK_412C, 1
-	MovePersonFacing obj_T07R0203_var_1, 29, 0, 29, DIR_WEST
-	MovePersonFacing obj_T07R0203_tsure_poke_static_marill, 29, 0, 29, DIR_WEST
-	ReleaseAll
-	End
-
-	.balign 4, 0
-_012C:
-	WalkNormalWest 4
-	EmoteExclamationMark
-	EndMovement
-
-	.balign 4, 0
-_0138:
-	WalkNormalWest 4
-	EndMovement
-
-	.balign 4, 0
-_0140:
-	WalkNormalWest 4
-	EndMovement
-
-	.balign 4, 0
-_0148:
-	WalkNormalWest 4
-	EndMovement
-
-	.balign 4, 0
-_0150:
-	WalkNormalSouth 3
-	WalkOnSpotNormalEast
-	EndMovement
-
-	.balign 4, 0
-_015C:
-	WalkNormalNorth 2
-	WalkNormalWest
-	WalkNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_016C:
-	WalkNormalWest
-	WalkNormalNorth 2
-	WalkNormalWest
-	WalkOnSpotNormalNorth
-	EndMovement
-
-	.balign 4, 0
-_0180:
-	WalkNormalNorth
-	SetInvisible
-	EndMovement
-
-	.balign 4, 0
-_018C:
-	WalkNormalNorth 2
-	SetInvisible
-	EndMovement
-
-scr_seq_T07R0203_000:
+	
+CeladonCity_Condominiums_3F_EventScript_Programmer:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	CheckJohtoDexComplete VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0245
-	GoToIfSet FLAG_SAW_JOHTO_DEX_CERTIFICATE, _01ED
-	NPCMsg msg_0503_T07R0203_00001
-	PlayFanfare SEQ_ME_HYOUKA2
-	WaitFanfare
-	CloseMsg
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	ShowCertificate 0
-	RestoreOverworld
-	SetFlag FLAG_SAW_JOHTO_DEX_CERTIFICATE
-	AddSpecialGameStat SCORE_EVENT_REGIONAL_DEX_COMPLETE
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-_01ED:
-	CheckNationalDexComplete VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0245
-	GoToIfSet FLAG_SAW_NATIONAL_DEX_CERTIFICATE, _023A
-	NPCMsg msg_0503_T07R0203_00002
-	PlayFanfare SEQ_ME_HYOUKA2
-	WaitFanfare
-	CloseMsg
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	ShowCertificate 1
-	RestoreOverworld
-	SetFlag FLAG_SAW_NATIONAL_DEX_CERTIFICATE
-	AddSpecialGameStat SCORE_EVENT_NATIONAL_DEX_COMPLETE
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-_023A:
-	NPCMsg msg_0503_T07R0203_00003
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_ImTheProgrammer
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-_0245:
-	NPCMsg msg_0503_T07R0203_00000
+	
+CeladonCity_Condominiums_3F_EventScript_Designer:
+	LockAll
+	FacePlayer
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar HasAllKantoMons
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_Condominiums_3F_EventScript_CompletedPokedex
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_ImGameDesignerShowMeFinishedPokedex
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0203_009:
+	
+CeladonCity_Condominiums_3F_EventScript_GraphicArtist:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	CheckBadge BADGE_EARTH, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0276
-	NPCMsg msg_0503_T07R0203_00007
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_ImTheGraphicArtist
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-_0276:
-	GetItemQuantity ITEM_GB_SOUNDS, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _02A7
-	NPCMsg msg_0503_T07R0203_00008
-	GiveItemNoCheck ITEM_GB_SOUNDS, 1
-	NPCMsg msg_0503_T07R0203_00010
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_02A7:
-	NPCMsg msg_0503_T07R0203_00011
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T07R0203_001:
-	SimpleNPCMsg msg_0503_T07R0203_00004
-	End
-
-scr_seq_T07R0203_002:
-	SimpleNPCMsg msg_0503_T07R0203_00005
-	End
-
-scr_seq_T07R0203_003:
-	SimpleNPCMsg msg_0503_T07R0203_00006
-	End
-
-scr_seq_T07R0203_004:
+	
+CeladonCity_Condominiums_3F_EventScript_Writer:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0503_T07R0203_00016
+	FacePlayer
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_IWroteTheStory
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0203_013:
+	
+CeladonCity_Condominiums_3F_EventScript_DevelopmentRoomSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0503_T07R0203_00017
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_GameFreakDevelopmentRoom
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0203_005:
+	
+CeladonCity_Condominiums_3F_EventScript_Computer1:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0503_T07R0203_00018
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_ItsTheGameProgram
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0203_006:
+	
+CeladonCity_Condominiums_3F_EventScript_Computer2:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0503_T07R0203_00019
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_SomeonesPlayingGame
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0203_007:
+	
+CeladonCity_Condominiums_3F_EventScript_Computer3:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0503_T07R0203_00020
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_ItsScriptBetterNotLookAtEnding
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
+	
+CeladonCity_Condominiums_3F_EventScript_CompletedPokedex:
+	GoTo CeladonCity_Condominiums_3F_EventScript_ShowDiploma
+	End
+	
+CeladonCity_Condominiums_3F_EventScript_ShowDiploma:
+	NPCMsg msg_0503_T07R0203_CeladonCity_Condominiums_3F_Text_CompletedPokedexCongratulations
+	Wait 60, VAR_SPECIAL_RESULT
+	// TODO(gba) special Special_ShowDiploma
+	GoTo _cv_stop
+	CloseMsg
+	ReleaseAll
+	End
 
-scr_seq_T07R0203_012:
-	SimpleNPCMsg msg_0503_T07R0203_00021
+_cv_stop:
+	NPCMsg msg_0503_T07R0203_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

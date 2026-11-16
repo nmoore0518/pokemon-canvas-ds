@@ -2,52 +2,147 @@
   "key": 17422,
   "messages": [
     {
-      "id": "msg_0505_T07R0205_00000",
-      "en_US": "Let me recount a terrifying tale...\r"
-    },
-    {
-      "id": "msg_0505_T07R0205_00001",
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_TheresNothingIDontKnow",
       "en_US": [
-        "Then again, it’s not as scary while\n",
-        "it’s still light outside.\r",
-        "Come back after sunset, OK?"
+        "There is nothing that I don’t know,\n",
+        "like I wrote on the blackboard.\r",
+        "I know about the world of Pokémon\n",
+        "in your Game Boy Advance!\r",
+        "Get together with your friends and\n",
+        "enjoy trading Pokémon!"
       ]
     },
     {
-      "id": "msg_0505_T07R0205_00002",
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_WirelessAdapterLecture",
       "en_US": [
-        "Once upon a time, there was a little\n",
-        "boy who was given a new Bicycle...\f",
-        "He wanted to try it right away...\r",
-        "He was having so much fun that he\n",
-        "didn’t notice that it was\f",
-        "already dark...\r",
-        "While riding home in the pitch-black\n",
-        "night, the Bike suddenly slowed!\r",
-        "The pedals became heavy!\r",
-        "The Bike began slipping\n",
-        "backward as if it was dragged\f",
-        "by someone!\r",
-        "It was as if the Bike were cursed and\n",
-        "trying to drag him into oblivion!\r",
-        "...\r",
-        "...\r",
-        "Shrieeeek!\r",
-        "The boy had been riding uphill on\n",
-        "Cycling Road!\r",
-        "...\n",
-        "Ba-dum, ba-dum!\r",
-        "For listening so patiently, you may\n",
-        "take this item--Spell Tag!\r"
+        "Pokémon Lecture\r",
+        "Playing with the Wireless Adapter"
       ]
     },
     {
-      "id": "msg_0505_T07R0205_00003",
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_ReadWhichHeading",
+      "en_US": "Which heading do you want to read?"
+    },
+    {
+      "id": "msg_0505_T07R0205_cv_mc_linked_direct_union_0",
+      "en_US": "Linked Game Play"
+    },
+    {
+      "id": "msg_0505_T07R0205_cv_mc_linked_direct_union_1",
+      "en_US": "Direct Corner"
+    },
+    {
+      "id": "msg_0505_T07R0205_cv_mc_linked_direct_union_2",
+      "en_US": "Union Room"
+    },
+    {
+      "id": "msg_0505_T07R0205_cv_mc_linked_direct_union_3",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_PamphletOnTMs",
       "en_US": [
-        "Spell Tag boosts the power of\n",
-        "Ghost-type moves.\r",
-        "It won’t slow your Bicycle, so\n",
-        "don’t worry!"
+        "It’s a pamphlet on TMs.\r",
+        "… …\r",
+        "There are fifty TMs in all.\r",
+        "There are also seven HMs that\n",
+        "can be used repeatedly.\r",
+        "Silph Co."
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee",
+      "en_US": "{STRVAR_1 3, 6, 0} obtained an Eevee!"
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_NicknameThisPokemon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_NoMoreRoomForPokemon",
+      "en_US": [
+        "There’s no more room for Pokémon!\r",
+        "The Pokémon Boxes are full and\n",
+        "can’t accept any more!"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_ExplainWirelessClub",
+      "en_US": [
+        "The Pokémon Wireless Club is\n",
+        "upstairs at any Pokémon Center.\r",
+        "Visit one to link up with friend(s)\n",
+        "using your Wireless Adapter."
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_ExplainDirectCorner",
+      "en_US": [
+        "To link only with a friend, go to\n",
+        "the Direct Corner.\r",
+        "It is the right counter at the\n",
+        "Pokémon Wireless Club.\r",
+        "Go into the Trade Corner or the\n",
+        "Colosseum with your friend."
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_CeladonCity_Condominiums_RoofRoom_Text_ExplainUnionRoom",
+      "en_US": [
+        "To link and communicate with\n",
+        "anyone, go to the Union Room.\r",
+        "It is the left counter at the\n",
+        "Pokémon Wireless Club.\r",
+        "Go to the Union Room and enjoy\n",
+        "meeting other Trainers."
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_PkmnTransferredSomeonesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_PkmnTransferredLanettesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_PkmnTransferredSomeonesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_gText_PkmnTransferredLanettesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0505_T07R0205_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

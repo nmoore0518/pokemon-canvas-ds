@@ -3,16 +3,25 @@
 #include "msgdata/msg/msg_0504_T07R0204.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeladonCity_Condominiums_Roof_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T07R0204_000
-	ScrDef scr_seq_T07R0204_001
+	ScrDef CeladonCity_Condominiums_Roof_EventScript_Sign
 	ScrDefEnd
-
-scr_seq_T07R0204_001:
-	SetVar VAR_UNK_4125, 0
+	
+CeladonCity_Condominiums_Roof_EventScript_Sign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0504_T07R0204_CeladonCity_Condominiums_Roof_Text_IKnowEverything
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 
-scr_seq_T07R0204_000:
-	SimpleNPCMsg msg_0504_T07R0204_00000
+_cv_stop:
+	NPCMsg msg_0504_T07R0204_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

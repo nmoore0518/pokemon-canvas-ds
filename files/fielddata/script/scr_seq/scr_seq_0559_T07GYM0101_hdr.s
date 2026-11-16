@@ -3,9 +3,7 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T07GYM0101_002 + 1
+	InitScriptEntry_OnTransition _EV_CeladonCity_Gym_OnTransitionGuest + 1
 	InitScriptEntryEnd
 
 	InitScriptEnd

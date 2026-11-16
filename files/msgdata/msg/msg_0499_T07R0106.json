@@ -2,62 +2,253 @@
   "key": 17434,
   "messages": [
     {
-      "id": "msg_0499_T07R0106_00000",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_MySisterIsImmature",
       "en_US": [
-        "A vending machine with a \n",
-        "prize roulette...\r",
-        "It makes you happy when you get\n",
-        "something for free even if it’s worth\f",
-        "only $200.\r",
-        "Happiness does not come from how much\n",
-        "things are worth.\r",
-        "It is up to the heart of the one to\n",
-        "receive it..."
+        "My sister is a Trainer, believe it\n",
+        "or not.\r",
+        "But, she’s so immature, she drives\n",
+        "me nuts!"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00001",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_FloorSign",
       "en_US": [
-        "Aww! There are no games here!\n",
-        "I wanted to play..."
+        "Rooftop Square:\n",
+        "Vending Machines"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00002",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave",
       "en_US": [
-        "Have a Break at the Vending Machines\n",
-        "6F: Rooftop Atrium"
+        "A vending machine!\n",
+        "What does it have?"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00003",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ComeBackWhenMastered",
       "en_US": [
-        "It’s a vending machine.\n",
-        "Which drink would you like? {YESNO 0}"
+        "Every time you master a new type,\n",
+        "come see me! I’ll have another\f",
+        "Limited Edition Soda for you!"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00004",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImThirstyIWantDrink",
       "en_US": [
-        "Clang!\r",
-        "A can of {STRVAR_1 8, 0, 0} dropped down.\r"
+        "My drink got stuck in the vending\n",
+        "machine! And now I’m so thirsty!\r",
+        "I want a Fresh Water, a Soda Pop\n",
+        "and a Lemonade!"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00005",
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImThirstyGiveHerDrink",
       "en_US": [
-        "Clang!\r",
-        "Bonus! Another can of {STRVAR_1 8, 0, 0}\n",
-        "dropped down.\r"
+        "My drink got stuck in the vending\n",
+        "machine! And now I’m so thirsty!\r",
+        "Give her a drink?"
       ]
     },
     {
-      "id": "msg_0499_T07R0106_00006",
-      "en_US": "Not enough money..."
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_GiveWhichDrink",
+      "en_US": "Give her which drink?"
     },
     {
-      "id": "msg_0499_T07R0106_00007",
-      "en_US": "Decided not to buy a drink."
+      "id": "msg_0499_T07R0106_cv_mc_celadon_vending_machine_0",
+      "en_US": "Fresh Water  ¥200"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_celadon_vending_machine_1",
+      "en_US": "Soda Pop  ¥300"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_celadon_vending_machine_2",
+      "en_US": "Lemonade  ¥350"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_celadon_vending_machine_3",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NotThirsty",
+      "en_US": "Not thirsty!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_StillStuck",
+      "en_US": [
+        "Ahh, that’s all of them!\r",
+        "…But my drink’s Still stuck in that\n",
+        "dumb machine!\r",
+        "Hmph! Take this!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DrinkCameOut",
+      "en_US": [
+        "Oh! My drink came out!\r",
+        "…But I already have all these.\n",
+        "Here, you can have it!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_TakeTheMachine",
+      "en_US": [
+        "And the store’s throwing that\n",
+        "machine out anyway.\r",
+        "You have a gym, right?\n",
+        "Put it in your gym!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ReceivedDrinkMachine",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the\n",
+        "Drink Machine!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainDrinkMachine",
+      "en_US": [
+        "Set it up from the PC in your gym!\r",
+        "Put in a drink and some Berries,\n",
+        "and it mixes them into medicine!\r",
+        "And if you mix that Soda with a\n",
+        "type Berry… something cool happens!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_MasteredAType",
+      "en_US": [
+        "You mastered a new type? Wow!\n",
+        "Here, have another one!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_soda_pop_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_soda_pop_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_lemonade_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_lemonade_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_soda_pop_lemonade_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_soda_pop_lemonade_0",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0499_T07R0106_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YayFreshWaterHaveThis",
+      "en_US": [
+        "Yay!\r",
+        "Fresh Water!\r",
+        "Thank you!\n",
+        "You can have this from me!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YaySodaPopHaveThis",
+      "en_US": [
+        "Yay!\r",
+        "Soda Pop!\r",
+        "Thank you!\n",
+        "You can have this from me!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YayLemonadeHaveThis",
+      "en_US": [
+        "Yay!\r",
+        "Lemonade!\r",
+        "Thank you!\n",
+        "You can have this from me!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut",
+      "en_US": "A can of {STRVAR_1 3, 0, 0} popped out!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImNotThirstyAfterAll",
+      "en_US": [
+        "I already had one of those!\n",
+        "I want the other ones!"
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_Text_ReceivedItemFromLittleGirl",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a {STRVAR_1 3, 1, 0}\n",
+        "from the little girl."
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_StillWantOthers",
+      "en_US": "I still want the other ones, too!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NotEnoughMoney",
+      "en_US": "Oops, not enough money!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NoMoreRoomForStuff",
+      "en_US": "There’s no more room for stuff!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DontHaveSpaceForThis",
+      "en_US": "You don’t have space for this!"
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM16",
+      "en_US": [
+        "TM16 contains Light Screen.\r",
+        "It’s a move that weakens the power\n",
+        "of special attacks by your foe."
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM20",
+      "en_US": [
+        "TM20 contains Substitute.\r",
+        "It’s a move that makes a decoy\n",
+        "out of some of your Pokémon’s HP."
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM33",
+      "en_US": [
+        "TM33 contains Reflect.\r",
+        "It’s a move that weakens the power\n",
+        "of physical attacks by your foe."
+      ]
+    },
+    {
+      "id": "msg_0499_T07R0106_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

@@ -2,81 +2,100 @@
   "key": 17462,
   "messages": [
     {
-      "id": "msg_0510_T07R0701_00000",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_TakingBreakRightNow",
       "en_US": [
         "Hi!\r",
-        "We’re holding an eatathon contest.\n",
-        "We can’t serve you right now. Sorry."
+        "Sorry, but we’re taking a break\n",
+        "right now."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00001",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_OftenGoToDrugstore",
       "en_US": [
-        "Huff... Huff... Munch... Munch...\n",
-        "Huff... Huff... Munch... Munch...\r",
-        "When it comes to eating contests,\n",
-        "I’m quite confident.\r",
-        "But I can’t handle hot food.\f",
-        "If I have to hurry eating, my mouth...\f",
-        "Hot, hot, hot!\r"
+        "My Pokémon are weak, so I often\n",
+        "have to go to the Drugstore."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00002",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_ManLostItAllAtSlots",
       "en_US": [
-        "Chomp, chew, munch...\n",
-        "(Please don’t talk to me now!)\r",
-        "Chomp, chew, cough...\n",
-        "(Food is gonna come out of my mouth...)\r"
+        "Munch…\r",
+        "The man at that table lost it all\n",
+        "at the slots."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00003",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_TakeThisImBusted",
       "en_US": [
-        "Munch munch munch...\n",
-        "...What? This is the eatathon contest?\r",
-        "Ouch!\r",
-        "I thought it was the speed-eating\n",
-        "contest...\r"
+        "Go ahead! Laugh!\n",
+        "I’m flat-out busted!\r",
+        "No more slots for me!\n",
+        "I’m going straight!\r",
+        "Here!\n",
+        "I won’t be needing this anymore!"
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00004",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan",
       "en_US": [
-        "Crunch... Crunch...\r",
-        "I can keep eating!\n",
-        "More, chef!\r"
+        "{STRVAR_1 3, 6, 0} received a Coin Case\n",
+        "from the man."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00005",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner",
       "en_US": [
-        "Crunch... Crunch...\r",
-        "I can keep eating!\n",
-        "More, chef!\r"
+        "Psst! There’s a basement under the\n",
+        "Game Corner, I hear."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00006",
+      "id": "msg_0510_T07R0701_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "Maylene: Munch munch munch...\n",
-        "The eatathon contest!\r",
-        "I never dreamed of such a\n",
-        "wonderful thing.\r",
-        "After a strict diet during training,\n",
-        "I can eat like a HIPPOWDON.\r",
-        "The winner eats for free, too.\n",
-        "That’s just a dream come true!\r"
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0510_T07R0701_00007",
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_ThoughtIdWinItBack",
       "en_US": [
-        "Eatathon Contest!\n",
-        "No time limit!\f",
-        "A battle without end!\r",
-        "The biggest eater gets it\n",
-        "all for free!"
+        "I always thought I was going to\n",
+        "win it back…"
+      ]
+    },
+    {
+      "id": "msg_0510_T07R0701_CeladonCity_Restaurant_Text_MakeRoomForThis",
+      "en_US": "Make room for this!"
+    },
+    {
+      "id": "msg_0510_T07R0701_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0510_T07R0701_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0510_T07R0701_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0510_T07R0701_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

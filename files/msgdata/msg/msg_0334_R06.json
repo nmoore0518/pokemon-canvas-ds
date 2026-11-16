@@ -2,19 +2,17 @@
   "key": 18183,
   "messages": [
     {
-      "id": "msg_0334_R06_00000",
+      "id": "msg_0334_R06_Route6_Text_UndergroundPathSign",
       "en_US": [
-        "The road is closed until the problem at\n",
-        "the Power Plant is solved."
+        "Underground Path\n",
+        "Cerulean City - Vermilion City"
       ]
     },
     {
-      "id": "msg_0334_R06_00001",
+      "id": "msg_0334_R06_cv_unported",
       "en_US": [
-        "Underground Path\r",
-        "You can go from Vermilion City to\n",
-        "Cerulean City through this path under\f",
-        "Saffron City."
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

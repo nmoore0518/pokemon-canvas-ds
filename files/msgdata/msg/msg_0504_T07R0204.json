@@ -2,11 +2,14 @@
   "key": 17418,
   "messages": [
     {
-      "id": "msg_0504_T07R0204_00000",
+      "id": "msg_0504_T07R0204_CeladonCity_Condominiums_Roof_Text_IKnowEverything",
+      "en_US": "I Know Everything!"
+    },
+    {
+      "id": "msg_0504_T07R0204_cv_unported",
       "en_US": [
-        "High places--I do love them so!\r",
-        "I’d say the only thing that loves\n",
-        "heights as much as me is smoke!"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

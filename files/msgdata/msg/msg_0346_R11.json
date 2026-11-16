@@ -2,29 +2,87 @@
   "key": 17179,
   "messages": [
     {
-      "id": "msg_0346_R11_00000",
+      "id": "msg_0346_R11_Route11_Text_BernieIntro",
+      "en_US": "Watch out for live wires!"
+    },
+    {
+      "id": "msg_0346_R11_Route11_Text_BerniePostBattle",
+      "en_US": "Well, better get back to work."
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_GateGuard",
       "en_US": [
-        "Rt. 11\n",
-        "West to DIGLETT’s Cave"
+        "The Leader Academy is beyond\n",
+        "these trees.\r",
+        "Only Gym Leader candidates\n",
+        "who’ve been invited may enter.\r",
+        "Sorry, rules are rules!"
       ]
     },
     {
-      "id": "msg_0346_R11_00001",
-      "en_US": "DIGLETT’s Cave"
+      "id": "msg_0346_R11_Route11_Text_DiglettsCave",
+      "en_US": "Diglett’s Cave"
     },
     {
-      "id": "msg_0346_R11_00002",
+      "id": "msg_0346_R11_Academy_Text_InviteCall",
       "en_US": [
-        "There is a large Pokémon\n",
-        "sleeping peacefully.\f",
-        "It looks so content!"
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 6, 0}! Hold on a\n",
+        "second!"
       ]
     },
     {
-      "id": "msg_0346_R11_00003",
+      "id": "msg_0346_R11_Academy_Text_Escort1",
       "en_US": [
-        "...!\r",
-        "The SNORLAX opened its eyes wide!\r"
+        "{STRVAR_1 3, 0, 0}: Whew, there you\n",
+        "are. Three Badges already! I’ve\r",
+        "been watching.\r",
+        "You’ve done well enough that I\n",
+        "put your name forward… and the\r",
+        "Leader Academy said yes.\r",
+        "Remember those type masters\n",
+        "around Kanto? This is where\r",
+        "they’re from.\r",
+        "It’s a school for Gym Leader\n",
+        "candidates. Every region sends\r",
+        "its best hopefuls there.\r",
+        "It’s right through these trees.\n",
+        "Come on, I’ll walk you in."
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_Guard1",
+      "en_US": [
+        "Guard: Halt! The Academy is for\n",
+        "candidates only… Oh!\r",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "So this is the one you vouched\n",
+        "for. The Headmaster is expecting\r",
+        "you both. Go on through!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0346_R11_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0346_R11_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -2,49 +2,81 @@
   "key": 5159,
   "messages": [
     {
-      "id": "msg_0355_R16R0101_00000",
+      "id": "msg_0355_R16R0101_Route16_House_Text_FoundMySecretRetreat",
       "en_US": [
-        "If you cruise down the Cycling Road,\n",
-        "you will end up in Fuchsia City."
+        "Oh, dear.\n",
+        "You’ve found my secret retreat.\r",
+        "Please don’t tell anyone I’m here.\n",
+        "I’ll make it up to you with this!"
       ]
     },
     {
-      "id": "msg_0355_R16R0101_00001",
+      "id": "msg_0355_R16R0101_Route16_House_Text_ReceivedHM02FromGirl",
       "en_US": [
-        "Hello, hello. Would you like to hear\n",
-        "a trendy saying? {YESNO 0}"
+        "{STRVAR_1 3, 6, 0} received HM02\n",
+        "from the girl."
       ]
     },
     {
-      "id": "msg_0355_R16R0101_00002",
+      "id": "msg_0355_R16R0101_Route16_House_Text_ExplainHM02",
       "en_US": [
-        "Very well...\r",
-        "The trendy thing for you to say\n",
-        "would be...\r",
-        "{STRVAR_1 28, 0, 0}!\r",
-        "That’s a trendy sort of thing\n",
-        "to say."
+        "HM02 is Fly.\n",
+        "It’s a wonderfully convenient move.\r",
+        "Please, put it to good use."
       ]
     },
     {
-      "id": "msg_0355_R16R0101_00003",
+      "id": "msg_0355_R16R0101_Route16_House_Text_Fearow",
+      "en_US": "Fearow: Kyueen!"
+    },
+    {
+      "id": "msg_0355_R16R0101_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "Oh, come on now! With an attitude\n",
-        "like that, you’ll fall behind the times!"
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0355_R16R0101_00004",
+      "id": "msg_0355_R16R0101_Route16_House_Text_DontHaveAnyRoomForThis",
+      "en_US": "You don’t have any room for this."
+    },
+    {
+      "id": "msg_0355_R16R0101_Text_GymHack_AndTakeThisToo",
       "en_US": [
-        "I hope you’ll use trendy sayings\n",
-        "in trendy ways."
+        "Oh, and take this, too!\r",
+        "It does the same job outside of\n",
+        "battle, no Pokémon needed."
       ]
     },
     {
-      "id": "msg_0355_R16R0101_00005",
+      "id": "msg_0355_R16R0101_PaintWorld_Text_FigureSketch",
       "en_US": [
-        "Hello, hello. Are you using\n",
-        "trendy sayings?"
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0355_R16R0101_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0355_R16R0101_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0355_R16R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

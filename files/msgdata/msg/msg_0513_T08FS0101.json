@@ -2,32 +2,37 @@
   "key": 52816,
   "messages": [
     {
-      "id": "msg_0513_T08FS0101_00000",
+      "id": "msg_0513_T08FS0101_gText_HowMayIServeYou",
       "en_US": [
-        "I was hoping to buy some Safari Zone\n",
-        "souvenirs, but it’s not open!\r",
-        "I thought it was closed today,\n",
-        "but actually it’s gone!\r",
-        "I never saw it coming."
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0513_T08FS0101_00001",
+      "id": "msg_0513_T08FS0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0513_T08FS0101_FuchsiaCity_Mart_Text_DontTheyHaveSafariZonePennants",
       "en_US": [
-        "The Safari Zone has been moved\n",
-        "to Johto...\r",
-        "I hear that now the son of the Warden\n",
-        "is going to run Pal Park!"
+        "Don’t they have any pennants\n",
+        "promoting the Safari Zone?\r",
+        "How about some paper lanterns?\n",
+        "Aren’t there even any calendars?"
       ]
     },
     {
-      "id": "msg_0513_T08FS0101_00002",
+      "id": "msg_0513_T08FS0101_FuchsiaCity_Mart_Text_DidYouTryXSpeed",
       "en_US": [
-        "Have you been to the Pal Park?\r",
-        "The Safari Zone Warden’s son is\n",
-        "running it with his wife.\r",
-        "It must run in their family to\n",
-        "manage parks."
+        "Did you try X Speed?\n",
+        "It speeds up a Pokémon in battle."
+      ]
+    },
+    {
+      "id": "msg_0513_T08FS0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

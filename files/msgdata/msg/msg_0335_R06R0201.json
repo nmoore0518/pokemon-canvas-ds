@@ -2,22 +2,46 @@
   "key": 37918,
   "messages": [
     {
-      "id": "msg_0335_R06R0201_00000",
+      "id": "msg_0335_R06R0201_Route6_NorthEntrance_Text_HiHowsItGoing",
+      "en_US": "Hi, how’s it going?"
+    },
+    {
+      "id": "msg_0335_R06R0201_Route6_NorthEntrance_Text_ThirstyOnGuardDuty",
       "en_US": [
-        "Welcome to Saffron City, home of the\n",
-        "Magnet Train!\r",
-        "...That’s what I’d normally say, but\n",
-        "the Magnet Train isn’t running now.\r",
-        "It’s not getting any electricity\n",
-        "because there’s something wrong\f",
-        "with the Power Plant."
+        "I’m on guard duty.\n",
+        "Gee, I’m thirsty, though!\r",
+        "Oh, wait there, the road’s closed."
       ]
     },
     {
-      "id": "msg_0335_R06R0201_00001",
+      "id": "msg_0335_R06R0201_Route6_NorthEntrance_Text_ThatTeaLooksTasty",
       "en_US": [
-        "The Magnet Train is the most famous\n",
-        "thing about Saffron."
+        "Oh, that Tea…\n",
+        "It looks awfully tasty…"
+      ]
+    },
+    {
+      "id": "msg_0335_R06R0201_Route6_NorthEntrance_Text_ThanksIllShareTeaWithGuards",
+      "en_US": [
+        "Huh? I can have this drink?\n",
+        "Gee, thanks!\f",
+        "… …\f",
+        "Glug, glug…\f",
+        "… …\f",
+        "Gulp…\f",
+        "If you want to go to Saffron\f",
+        "City…\f",
+        "… …\f",
+        "You can go on through.\r",
+        "I’ll share this Tea with the other\n",
+        "guards!"
+      ]
+    },
+    {
+      "id": "msg_0335_R06R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

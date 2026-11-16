@@ -2,58 +2,97 @@
   "key": 18235,
   "messages": [
     {
-      "id": "msg_0475_T05_00000",
+      "id": "msg_0475_T05_LavenderTown_Text_DoYouBelieveInGhosts",
+      "en_US": "Do you believe in ghosts?"
+    },
+    {
+      "id": "msg_0475_T05_LavenderTown_Text_JustImaginingWhiteHand",
       "en_US": [
-        "That’s quite some building, eh?\n",
-        "It’s Kanto’s Radio Tower."
+        "Hahaha, I guess not.\r",
+        "That white hand on your shoulder…\n",
+        "I’m just imagining it."
       ]
     },
     {
-      "id": "msg_0475_T05_00001",
-      "en_US": "Kanto has many good radio shows."
-    },
-    {
-      "id": "msg_0475_T05_00002",
+      "id": "msg_0475_T05_LavenderTown_Text_TownKnownAsMonGraveSite",
       "en_US": [
-        "People come from all over to pay their\n",
-        "respects to the spirits of Pokémon."
+        "This town is known as the grave\n",
+        "site of Pokémon.\r",
+        "Memorial services are held in\n",
+        "Pokémon Tower."
       ]
     },
     {
-      "id": "msg_0475_T05_00003",
+      "id": "msg_0475_T05_LavenderTown_Text_GhostsAppearedInTower",
       "en_US": [
-        "You need a Poké Flute to wake\n",
-        "sleeping Pokémon.\f",
-        "Every Trainer has to know that!"
+        "Ghosts appeared in Pokémon Tower.\r",
+        "I think they’re the spirits of\n",
+        "Pokémon that the Rockets killed."
       ]
     },
     {
-      "id": "msg_0475_T05_00004",
+      "id": "msg_0475_T05_LavenderTown_Text_SilphScopeNotice",
+      "en_US": [
+        "New Silph Scope!\n",
+        "Make the Invisible Plain to See!\r",
+        "Silph Co."
+      ]
+    },
+    {
+      "id": "msg_0475_T05_LavenderTown_Text_TownSign",
       "en_US": [
         "Lavender Town\n",
-        "The Noble Town"
+        "The Noble Purple Town"
       ]
     },
     {
-      "id": "msg_0475_T05_00005",
+      "id": "msg_0475_T05_LavenderTown_Text_PokemonTowerSign",
       "en_US": [
-        "Kanto Radio Station\n",
-        "Your Best-Loved Shows On-Air\f",
-        "Around the Clock!"
+        "Pokémon Tower\n",
+        "Becalm the Spirits of Pokémon"
       ]
     },
     {
-      "id": "msg_0475_T05_00006",
+      "id": "msg_0475_T05_LavenderTown_Text_VolunteerPokemonHouse",
       "en_US": [
         "Lavender Volunteer\n",
         "Pokémon House"
       ]
     },
     {
-      "id": "msg_0475_T05_00007",
+      "id": "msg_0475_T05_LavenderTown_Text_SoThereAreBelievers",
       "en_US": [
-        "House of Memories\n",
-        "May Pokémon Spirits Rest Easy"
+        "Really?\n",
+        "So there are believers…"
+      ]
+    },
+    {
+      "id": "msg_0475_T05_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0475_T05_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0475_T05_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0475_T05_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0475_T05_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

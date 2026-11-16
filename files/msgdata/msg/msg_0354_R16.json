@@ -2,11 +2,17 @@
   "key": 17159,
   "messages": [
     {
-      "id": "msg_0354_R16_00000",
+      "id": "msg_0354_R16_Route16_Text_RouteSign",
       "en_US": [
-        "The Cycling Road starts here!\r",
-        "Enjoy coasting downhill on\n",
-        "your Bicycle!"
+        "Route 16\n",
+        "Celadon City - Fuchsia City"
+      ]
+    },
+    {
+      "id": "msg_0354_R16_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

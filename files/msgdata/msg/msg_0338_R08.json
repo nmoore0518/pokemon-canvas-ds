@@ -2,17 +2,65 @@
   "key": 18239,
   "messages": [
     {
-      "id": "msg_0338_R08_00000",
+      "id": "msg_0338_R08_Route8_Text_JuliaIntro",
       "en_US": [
-        "It won’t open!\r",
-        "It’s locked..."
+        "What’s a cute, round, and fluffy\n",
+        "Pokémon?"
       ]
     },
     {
-      "id": "msg_0338_R08_00001",
+      "id": "msg_0338_R08_Route8_Text_JuliaPostBattle",
       "en_US": [
-        "The notice is torn.\n",
-        "It’s impossible to read..."
+        "I read that Clefairy evolves when\n",
+        "it’s exposed to a Moon Stone.\r",
+        "I read that in a Pokémon Journal.\n",
+        "I wonder if it’s true?"
+      ]
+    },
+    {
+      "id": "msg_0338_R08_Route8_Text_AndreaIntro",
+      "en_US": [
+        "Meowth is so cute, meow, meow,\n",
+        "meow!"
+      ]
+    },
+    {
+      "id": "msg_0338_R08_Route8_Text_AndreaPostBattle",
+      "en_US": [
+        "I think Pidgey and Rattata are\n",
+        "cute, too!"
+      ]
+    },
+    {
+      "id": "msg_0338_R08_Route8_Text_UndergroundPathSign",
+      "en_US": [
+        "Underground Path\n",
+        "Celadon City - Lavender Town"
+      ]
+    },
+    {
+      "id": "msg_0338_R08_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0338_R08_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0338_R08_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0338_R08_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

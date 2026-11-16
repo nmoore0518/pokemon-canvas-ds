@@ -2,239 +2,140 @@
   "key": 18227,
   "messages": [
     {
-      "id": "msg_0491_T07_00000",
+      "id": "msg_0491_T07_CeladonCity_Text_KeepOutOfTeamRocketsWay",
+      "en_US": "Keep out of Team Rocket’s way!"
+    },
+    {
+      "id": "msg_0491_T07_CeladonCity_Text_MyTrustedPalPoliwrath",
       "en_US": [
-        "This is my trusted pal, POLIWRATH.\r",
-        "I wonder if it will become a Frog\n",
-        "Pokémon someday."
+        "This is my trusted pal, Poliwrath.\r",
+        "It evolved from a Poliwhirl when\n",
+        "I used a Water Stone."
       ]
     },
     {
-      "id": "msg_0491_T07_00001",
-      "en_US": "POLIWRATH: Poli poli!"
+      "id": "msg_0491_T07_CeladonCity_Text_Poliwrath",
+      "en_US": "Poliwrath: Ribi ribit!"
     },
     {
-      "id": "msg_0491_T07_00002",
+      "id": "msg_0491_T07_CeladonCity_Text_GotMyKoffingInCinnabar",
       "en_US": [
-        "Oh, my!\n",
-        "Were you staring at me?\r",
-        "Seeing me come out of the Game Corner\n",
-        "with a whole pile of Coins...\f",
-        "And grinning to myself?\f",
-        "You were, weren’t you?"
+        "I got my Koffing in Cinnabar.\r",
+        "It’s usually nice, but it breathes\n",
+        "poison when it’s angry."
       ]
     },
     {
-      "id": "msg_0491_T07_00003",
+      "id": "msg_0491_T07_CeladonCity_Text_GameCornerIsBadForCitysImage",
       "en_US": [
-        "GRIMER started to appear recently.\n",
-        "You see the pond in front of the house?\r",
-        "It has GRIMER, too.\n",
-        "I wonder where they came from.\r",
-        "Sigh..."
+        "Celadon takes pride in its efforts\n",
+        "to keep the city beautiful.\r",
+        "That’s why the new Game Corner is\n",
+        "bad for our city’s image."
       ]
     },
     {
-      "id": "msg_0491_T07_00004",
+      "id": "msg_0491_T07_CeladonCity_Text_BlewItAllAtSlots",
       "en_US": [
-        "Ha ha! This Gym is great!\n",
-        "It’s full of strong Trainers!"
+        "Moan…\n",
+        "I blew it all at the slots!\r",
+        "I knew I should have cashed in my\n",
+        "Coins for prizes!"
       ]
     },
     {
-      "id": "msg_0491_T07_00005",
+      "id": "msg_0491_T07_CeladonCity_Text_GetLostOrIllPunchYou",
       "en_US": [
-        "I’ll tell you a secret!\r",
-        "The Celadon Condominiums have some\n",
-        "places you can only reach by taking the\f",
-        "elevator on the second floor!"
+        "What are you staring at?\n",
+        "Get lost, or I’ll punch you."
       ]
     },
     {
-      "id": "msg_0491_T07_00006",
+      "id": "msg_0491_T07_CeladonCity_Text_GymIsGreatFullOfWomen",
       "en_US": [
-        "The restaurant there is having an\n",
-        "eating contest.\r",
-        "I heard that we have a great\n",
-        "contestant from the Sinnoh region\f",
-        "this year."
+        "Heheh! This Gym is great!\n",
+        "It’s full of women!"
       ]
     },
     {
-      "id": "msg_0491_T07_00007",
+      "id": "msg_0491_T07_CeladonCity_Text_ScaldedTongueOnTea",
       "en_US": [
-        "The Celadon Department Store offers\n",
-        "the widest range of items!\f",
-        "You can buy anything you want!\r",
-        "...Do I sound like their\n",
-        "sales representative?"
+        "Aaaagh, ow…\n",
+        "I scalded my tongue!\r",
+        "This nice old lady in the Mansion\n",
+        "gave me some Tea.\r",
+        "But it was boiling hot!\n",
+        "Gotta cool it to drink it."
       ]
     },
     {
-      "id": "msg_0491_T07_00008",
+      "id": "msg_0491_T07_CeladonCity_Text_SomeoneStoleSilphScope",
       "en_US": [
-        "I love this kind of place where\n",
-        "there are many buildings!\r",
-        "I heard Johto also has a city called\n",
-        "Goldenrod that has many\f",
-        "tall buildings.\f",
-        "I would love to visit there sometime."
+        "Oh, what am I to do…\r",
+        "Someone stole our Silph Scope.\r",
+        "The thief came running this way,\n",
+        "I’m sure of it.\r",
+        "But I lost sight of him!\n",
+        "Where’d he go?"
       ]
     },
     {
-      "id": "msg_0491_T07_00009",
+      "id": "msg_0491_T07_CeladonCity_Text_GuardSpecProtectsFromStatus",
       "en_US": [
-        "Erika: Hi, Jasmine. I heard Whitney from\n",
-        "Goldenrod Gym said you were too\f",
-        "plain and should look more fancy.\f",
-        "Is that true?\r"
+        "Trainer Tips\r",
+        "Guard Spec. protects Pokémon\n",
+        "from status-reduction moves during\f",
+        "battle.\r",
+        "Get your items at the\n",
+        "Celadon Dept. Store!"
       ]
     },
     {
-      "id": "msg_0491_T07_00010",
+      "id": "msg_0491_T07_CeladonCity_Text_PrizeExchangeSign",
       "en_US": [
-        "Jasmine: Yes...\r",
-        "I’m thinking maybe I should\n",
-        "participate in this Contest in Sinnoh\f",
-        "to try and be more vibrant...\r"
+        "Coins exchanged for prizes!\n",
+        "Prize Exchange"
       ]
     },
     {
-      "id": "msg_0491_T07_00011",
-      "en_US": "Erika: How did it go?\r"
-    },
-    {
-      "id": "msg_0491_T07_00012",
+      "id": "msg_0491_T07_CeladonCity_Text_GameCornerSign",
       "en_US": [
-        "Jasmine: I couldn’t bring myself to\n",
-        "go to the Contest.\r"
+        "Rocket Game Corner\n",
+        "The playground for grown-ups!"
       ]
     },
     {
-      "id": "msg_0491_T07_00013",
-      "en_US": [
-        "Erika: Oh, I see...\r",
-        "Then why don’t you try putting on\n",
-        "something especially gorgeous?\r"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00014",
-      "en_US": [
-        "Jasmine: Ah, yes!\n",
-        "Maybe I can bring myself to\f",
-        "enter the Contest!\r"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00015",
-      "en_US": [
-        "Erika: How about a fancy, light blue\n",
-        "outfit with a cape over it?\r"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00016",
-      "en_US": [
-        "Jasmine: What?\n",
-        "That’s too embarrassing!\r"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00017",
-      "en_US": [
-        "Erika: I see.\n",
-        "You think Clair from Blackthorn is a\f",
-        "little embarrassing...\f",
-        "I’m just taking notes.\r"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00018",
-      "en_US": [
-        "Jasmine: Oh, no!\n",
-        "Erika, that’s not what I meant!"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00019",
-      "en_US": [
-        "Erika: Hi, {STRVAR_1 3, 0, 0}.\r",
-        "Would you like to\n",
-        "exchange numbers? {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00020",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0} registered Erika\n",
-        "in the Pokégear!"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00021",
-      "en_US": [
-        "Erika: I am often free in the morning\n",
-        "on Sunday.\r",
-        "Call me around then."
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00022",
-      "en_US": "Erika: Oh, that’s too bad..."
-    },
-    {
-      "id": "msg_0491_T07_00023",
-      "en_US": [
-        "Erika: Would you like to\n",
-        "exchange numbers? {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00024",
-      "en_US": [
-        "Erika: Hi!\n",
-        "Good to see you here.\r",
-        "How would you like to take a picture\n",
-        "with me? {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00025",
-      "en_US": "Erika: Try and look cool now.\r"
-    },
-    {
-      "id": "msg_0491_T07_00026",
-      "en_US": [
-        "Erika: Good job.\n",
-        "It looks good!"
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00027",
-      "en_US": "Erika: Oh, that’s too bad..."
-    },
-    {
-      "id": "msg_0491_T07_00028",
-      "en_US": [
-        "Your Photo Album is full.\r",
-        "Access your PC and delete\n",
-        "some pictures."
-      ]
-    },
-    {
-      "id": "msg_0491_T07_00029",
-      "en_US": "Jasmine: Amphy is well thanks to you."
-    },
-    {
-      "id": "msg_0491_T07_00030",
+      "id": "msg_0491_T07_CeladonCity_Text_CitySign",
       "en_US": [
         "Celadon City\n",
-        "City of the Rainbow’s Colors"
+        "The City of Rainbow Dreams"
       ]
     },
     {
-      "id": "msg_0491_T07_00031",
+      "id": "msg_0491_T07_CeladonCity_Text_MansionSign",
+      "en_US": "Celadon Mansion"
+    },
+    {
+      "id": "msg_0491_T07_CeladonCity_Text_ExplainXAccuracyDireHit",
+      "en_US": [
+        "Trainer Tips\r",
+        "X Accuracy boosts the accuracy of\n",
+        "techniques.\r",
+        "Dire Hit jacks up the likelihood\n",
+        "of critical hits.\r",
+        "Get your items at the Celadon\n",
+        "Dept. Store!"
+      ]
+    },
+    {
+      "id": "msg_0491_T07_CeladonCity_Text_DeptStoreSign",
+      "en_US": [
+        "Find what you need at the\n",
+        "Celadon Dept. Store!"
+      ]
+    },
+    {
+      "id": "msg_0491_T07_CeladonCity_Text_GymSign",
       "en_US": [
         "Celadon City Pokémon Gym\n",
         "Leader: Erika\f",
@@ -242,32 +143,42 @@
       ]
     },
     {
-      "id": "msg_0491_T07_00032",
+      "id": "msg_0491_T07_Text_SoftboiledTutor_Retired",
       "en_US": [
-        "Find what you need at the\n",
-        "Celadon Dept. Store!"
+        "I used to teach Soft-Boiled.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Normal master in Pewter\r",
+        "City."
       ]
     },
     {
-      "id": "msg_0491_T07_00033",
-      "en_US": "Celadon Condominiums"
+      "id": "msg_0491_T07_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
     },
     {
-      "id": "msg_0491_T07_00034",
+      "id": "msg_0491_T07_TypeTutor_Text_WhichMon",
       "en_US": [
-        "Celadon Game Corner\n",
-        "A Fun Place for Everyone"
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
       ]
     },
     {
-      "id": "msg_0491_T07_00035",
+      "id": "msg_0491_T07_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0491_T07_TypeTutor_Text_Bye",
       "en_US": [
-        "Trainer Tips\r",
-        "Guard Spec. protects Pokémon\n",
-        "from status-reduction moves\f",
-        "during battle.\r",
-        "Get your items at the\n",
-        "Celadon Dept. Store!"
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0491_T07_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

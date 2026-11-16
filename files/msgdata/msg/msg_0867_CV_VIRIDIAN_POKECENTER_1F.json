@@ -1,0 +1,52 @@
+{
+  "key": 19854,
+  "messages": [
+    {
+      "id": "msg_0867_CV_VIRIDIAN_POKECENTER_1F_ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC",
+      "en_US": [
+        "Please feel free to use that PC in\n",
+        "the corner.\r",
+        "The receptionist told me so.\n",
+        "It’s so kind of her!"
+      ]
+    },
+    {
+      "id": "msg_0867_CV_VIRIDIAN_POKECENTER_1F_ViridianCity_PokemonCenter_1F_Text_PokeCenterInEveryTown",
+      "en_US": [
+        "There’s a Pokémon Center in every\n",
+        "town ahead.\r",
+        "They charge no money, so don’t\n",
+        "be shy about healing Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0867_CV_VIRIDIAN_POKECENTER_1F_ViridianCity_PokemonCenter_1F_Text_PokeCentersHealMons",
+      "en_US": [
+        "Pokémon Centers heal your tired,\n",
+        "hurt, or fainted Pokémon.\r",
+        "They make all Pokémon completely\n",
+        "healthy."
+      ]
+    },
+    {
+      "id": "msg_0867_CV_VIRIDIAN_POKECENTER_1F_Text_HealPadInnovator",
+      "en_US": [
+        "See that glowing pad on the floor?\n",
+        "It’s brand-new tech from Silph!\r",
+        "Step on it, and your Pokémon are\n",
+        "healed in a flash. No waiting!\r",
+        "…But a machine can’t smile at you\n",
+        "or ask how your journey’s going.\r",
+        "That’s why there will always be\n",
+        "a Nurse behind the counter."
+      ]
+    },
+    {
+      "id": "msg_0867_CV_VIRIDIAN_POKECENTER_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

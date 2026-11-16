@@ -2,36 +2,125 @@
   "key": 17438,
   "messages": [
     {
-      "id": "msg_0501_T07R0201_00000",
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_Meowth",
+      "en_US": "Meowth: Meow!"
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_Clefairy",
+      "en_US": "Clefairy: Pi pippippi!"
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_Nidoran",
+      "en_US": "Nidoran♀: Kya kyaoo!"
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead",
       "en_US": [
-        "Do you need anything?\n",
-        "I am the manager of the condominiums.\r",
-        "It’s pretty safe around here, so I\n",
-        "don’t have much to do.\r",
-        "I like to take my Pokémon out to\n",
-        "occupy myself.\r",
-        "...By the way, we have two\n",
-        "elevators here.\f",
-        "Don’t get confused."
+        "You shouldn’t spend all your money\n",
+        "on drinks.\r",
+        "Try this instead."
       ]
     },
     {
-      "id": "msg_0501_T07R0201_00001",
-      "en_US": "MEOWTH: Meow!"
-    },
-    {
-      "id": "msg_0501_T07R0201_00002",
-      "en_US": "CLEFAIRY: Clef cleff!"
-    },
-    {
-      "id": "msg_0501_T07R0201_00003",
-      "en_US": "NIDORAN♀: Kya kyaoo!"
-    },
-    {
-      "id": "msg_0501_T07R0201_00004",
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea",
       "en_US": [
-        "Please take this elevator\n",
-        "to go to the third floor."
+        "Nothing beats thirst like some hot\n",
+        "Tea.\r",
+        "It really is the best."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_ManagersSuite",
+      "en_US": [
+        "Celadon Mansion\n",
+        "Manager’s Suite"
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany",
+      "en_US": [
+        "My dear Pokémon keep me company.\n",
+        "Meowth even brings money home!"
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea",
+      "en_US": [
+        "Oh, hello, dearie.\n",
+        "Did you enjoy my Tea?\r",
+        "By the way, dear. Are you, by any\n",
+        "chance, from Pallet Town?\r",
+        "A girl from Pallet Town, Daisy,\n",
+        "she enjoys Tea every day.\r",
+        "She visits the Celadon Dept. Store\n",
+        "to buy some Tea."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_gText_TooBadBagIsFull",
+      "en_US": [
+        "Too bad!\n",
+        "The Bag is full…"
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0501_T07R0201_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0501_T07R0201_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0501_T07R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

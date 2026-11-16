@@ -1,17 +1,18 @@
 #ifndef SCR_SEQ_T07R0103_H_
 #define SCR_SEQ_T07R0103_H_
 
-#define _EV_scr_seq_T07R0103_000 0
-#define _EV_scr_seq_T07R0103_001 1
-#define _EV_scr_seq_T07R0103_002 2
-#define _EV_scr_seq_T07R0103_003 3
-#define _EV_scr_seq_T07R0103_004 4
-#define _EV_scr_seq_T07R0103_005 5
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_CounterTutor 0
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_GBAKid1 1
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_GBAKid3 2
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_GBAKid2 3
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_LittleGirl 4
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_FloorSign 5
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_TV1 6
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_TV2 7
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_TV3 8
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_TV4 9
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_SuperNES 10
+#define _EV_CeladonCity_DepartmentStore_3F_EventScript_Poster 11
 
-#define obj_T07R0103_shopm1_2  0
-#define obj_T07R0103_gsdsboy   1
-#define obj_T07R0103_gsdsboy_2 2
-#define obj_T07R0103_gsboy1    3
-#define obj_T07R0103_gsman1    4
 
-#endif // SCR_SEQ_T07R0103_H_
+#endif

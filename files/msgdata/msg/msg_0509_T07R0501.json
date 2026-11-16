@@ -2,243 +2,206 @@
   "key": 50215,
   "messages": [
     {
-      "id": "msg_0509_T07R0501_00000",
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_FancyThatPorygon",
       "en_US": [
-        "I wanted PORYGON, but I was short\n",
-        "by 100 Coins..."
+        "I sure do fancy that Porygon!\n",
+        "But, it’s hard to win at slots!"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00001",
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_RakedItInToday",
       "en_US": [
-        "Whew...\r",
-        "I’ve got to stay calm and collected...\r",
-        "I can’t lose my cool.\n",
-        "If I spend all my time playing here,\f",
-        "I could get in trouble at home."
+        "Gahaha! I raked it in today!\n",
+        "If only every day were like this…"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00002",
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes",
+      "en_US": "We exchange your Coins for prizes."
+    },
+    {
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_CoinCaseRequired",
+      "en_US": "A Coin Case is required…"
+    },
+    {
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WhichPrize",
+      "en_US": "Which prize would you like?"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_0",
+      "en_US": "Abra   180 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_1",
+      "en_US": "Clefairy   500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_2",
+      "en_US": "Dratini   2,800 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_3",
+      "en_US": "Scyther   5,500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_4",
+      "en_US": "Porygon   9,999 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_5",
+      "en_US": "Abra   120 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_6",
+      "en_US": "Clefairy   750 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_7",
+      "en_US": "Pinsir   2,500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_8",
+      "en_US": "Dratini   4,600 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_9",
+      "en_US": "Porygon   6,500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_more",
+      "en_US": "More…"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_tmprizes_0",
+      "en_US": "TM13  4,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_tmprizes_1",
+      "en_US": "TM23  3,500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_tmprizes_2",
+      "en_US": "TM24  4,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_tmprizes_3",
+      "en_US": "TM30  4,500 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_tmprizes_4",
+      "en_US": "TM35  4,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_0",
+      "en_US": "Smoke Ball  800 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_1",
+      "en_US": "Miracle Seed  1,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_2",
+      "en_US": "Charcoal  1,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_3",
+      "en_US": "Mystic Water  1,000 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_4",
+      "en_US": "Yellow Flute  1,600 Coins"
+    },
+    {
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize",
+      "en_US": "So, you want the {STRVAR_1 3, 0, 0}?"
+    },
+    {
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM",
       "en_US": [
-        "I woke up and realized my potential!\r",
-        "So, what potential was woken in me?\n",
-        "What’s my hidden power, you ask?\r",
-        "It’s a power that lets me see the\n",
-        "Hidden Power of a Pokémon.\r",
-        "When they learn that move, I can tell\n",
-        "what type the move will be.\r",
-        "So, want me to use my hidden power?\r",
-        "I’ll tell you what type your\n",
-        "Pokémon’s Hidden Power will be. {YESNO 0}"
+        "Okay, a TM of {STRVAR_1 3, 1, 0}\n",
+        "is what you want?"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00003",
+      "id": "msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_NeedMoreCoins",
       "en_US": [
-        "I’ll tell you what type your Pokémon’s\n",
-        "Hidden Power will be.\r",
-        "My own hidden power lets me\n",
-        "do that. {YESNO 0}"
+        "Sorry, you’ll need more Coins\n",
+        "than that."
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00004",
+      "id": "msg_0509_T07R0501_gText_TooBadBagIsFull",
       "en_US": [
-        "If this Pokémon were to learn\n",
-        "Hidden Power, the move’s type\f",
-        "would be {STRVAR_1 15, 0, 0}."
+        "Too bad!\n",
+        "The Bag is full…"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00005",
+      "id": "msg_0509_T07R0501_gText_PlayerObtainedTheMon",
       "en_US": [
-        "This Pokémon’s Hidden Power is the\n",
-        "{STRVAR_1 15, 0, 0} type."
+        "{STRVAR_1 3, 6, 0} obtained\n",
+        "the {STRVAR_1 3, 0, 0}!"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00006",
+      "id": "msg_0509_T07R0501_gText_NicknameThisPokemon",
       "en_US": [
-        "If you want to know, ask me, and I’ll\n",
-        "activate my hidden power for you."
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00007",
+      "id": "msg_0509_T07R0501_gText_NoMoreRoomForPokemon",
       "en_US": [
-        "A move that an Egg can learn?!\n",
-        "That’s flat-out impossible."
+        "There’s no more room for Pokémon!\r",
+        "The Pokémon Boxes are full and\n",
+        "can’t accept any more!"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00008",
+      "id": "msg_0509_T07R0501_gText_PkmnTransferredSomeonesPC",
       "en_US": [
-        "Oh, no. This Pokémon can’t learn the\n",
-        "move Hidden Power in the first place."
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00009",
+      "id": "msg_0509_T07R0501_gText_PkmnTransferredLanettesPC",
       "en_US": [
-        "Welcome!\r",
-        "We exchange your game coins for\n",
-        "fabulous prizes! {YESNO 0}"
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00010",
+      "id": "msg_0509_T07R0501_gText_PkmnTransferredSomeonesPCBoxFull",
       "en_US": [
-        "OK. Please save your coins and\n",
-        "come again!"
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00011",
-      "en_US": "Sorry! You need more coins. {YESNO 0}"
-    },
-    {
-      "id": "msg_0509_T07R0501_00012",
+      "id": "msg_0509_T07R0501_gText_PkmnTransferredLanettesPCBoxFull",
       "en_US": [
-        "{STRVAR_1 8, 0, 0}.\n",
-        "Is that right? {YESNO 0}"
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
       ]
     },
     {
-      "id": "msg_0509_T07R0501_00013",
-      "en_US": "Here you go!\r"
-    },
-    {
-      "id": "msg_0509_T07R0501_00014",
-      "en_US": "Sorry. You can’t carry any more.\r"
-    },
-    {
-      "id": "msg_0509_T07R0501_00015",
+      "id": "msg_0509_T07R0501_cv_unported",
       "en_US": [
-        "Your party’s full!\n",
-        "Please make some room\f",
-        "before you come back."
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00016",
-      "en_US": "Would you like {STRVAR_1 0, 1, 0}? {YESNO 0}"
-    },
-    {
-      "id": "msg_0509_T07R0501_00017",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the {STRVAR_1 0, 1, 0}! {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00018",
-      "en_US": [
-        "Welcome!\r",
-        "We exchange your coins for\n",
-        "fabulous prizes! {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00019",
-      "en_US": [
-        "You put away the {STRVAR_1 8, 0, 0}\n",
-        "in the {STRVAR_1 18, 1, 0} Pocket. {YESNO 0}"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00020",
-      "en_US": "CANCEL"
-    },
-    {
-      "id": "msg_0509_T07R0501_00021",
-      "en_US": "TECHNICAL MACHINE"
-    },
-    {
-      "id": "msg_0509_T07R0501_00022",
-      "en_US": "HELD ITEMS"
-    },
-    {
-      "id": "msg_0509_T07R0501_00023",
-      "en_US": [
-        "ENDURE\n",
-        "2,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00024",
-      "en_US": [
-        "DOUBLE TEAM\n",
-        "4,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00025",
-      "en_US": [
-        "HIDDEN POWER\n",
-        "6,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00026",
-      "en_US": [
-        "PSYCHIC\n",
-        "10,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00027",
-      "en_US": [
-        "GYRO BALL\n",
-        "10,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00028",
-      "en_US": [
-        "GIGA IMPACT\n",
-        "15,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00029",
-      "en_US": [
-        "SILK SCARF\n",
-        "1,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00030",
-      "en_US": [
-        "WIDE LENS\n",
-        "1,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00031",
-      "en_US": [
-        "ZOOM LENS\n",
-        "1,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00032",
-      "en_US": [
-        "METRONOME\n",
-        "1,000 Coins"
-      ]
-    },
-    {
-      "id": "msg_0509_T07R0501_00033",
-      "en_US": "MR. MIME{CURSOR_X 90}3,333 Coins"
-    },
-    {
-      "id": "msg_0509_T07R0501_00034",
-      "en_US": "EEVEE{CURSOR_X 90}6,666 Coins"
-    },
-    {
-      "id": "msg_0509_T07R0501_00035",
-      "en_US": "PORYGON{CURSOR_X 90}9,999 Coins"
     }
   ]
 }

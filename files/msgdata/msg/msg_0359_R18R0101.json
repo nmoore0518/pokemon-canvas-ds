@@ -2,21 +2,28 @@
   "key": 62503,
   "messages": [
     {
-      "id": "msg_0359_R18R0101_00000",
+      "id": "msg_0359_R18R0101_Route18_EastEntrance_1F_Text_CyclingRoadAllUphillFromHere",
       "en_US": [
-        "Cycling Road is all uphill from this end.\n",
-        "It’s really challenging.\r",
-        "Although, it may be interesting to go up\n",
-        "once pushing really hard on the pedals."
+        "Cycling Road is all uphill from\n",
+        "here."
       ]
     },
     {
-      "id": "msg_0359_R18R0101_00001",
+      "id": "msg_0359_R18R0101_Route18_EastEntrance_1F_Text_ExcuseMe",
+      "en_US": "Excuse me!"
+    },
+    {
+      "id": "msg_0359_R18R0101_Route18_EastEntrance_1F_Text_NeedBicycleForCyclingRoad",
       "en_US": [
-        "Hey, you!\r",
-        "Cycling Road is for cyclists only.\n",
-        "You have to be on a Bicycle if you want\f",
-        "to proceed!\r"
+        "You need a Bicycle to go out on\n",
+        "Cycling Road!"
+      ]
+    },
+    {
+      "id": "msg_0359_R18R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

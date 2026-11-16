@@ -2,40 +2,53 @@
   "key": 36466,
   "messages": [
     {
-      "id": "msg_0532_T11PC0101_00000",
+      "id": "msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame",
       "en_US": [
-        "What are Johto’s Pokémon Centers like?\r",
-        "...Oh, I see. So they’re not much\n",
-        "different from the ones in Kanto.\r",
-        "Then I’ll get my friend in Johto to\n",
-        "catch a MARILL and trade it to me!"
+        "Silph Co. is widely known to all.\r",
+        "It’s a victim of its own fame - it\n",
+        "attracted Team Rocket."
       ]
     },
     {
-      "id": "msg_0532_T11PC0101_00001",
+      "id": "msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies",
       "en_US": [
-        "I just happened to come through the\n",
-        "Rock Tunnel. There was some commotion\f",
-        "at the Power Plant."
+        "Pokémon growth rates differ from\n",
+        "species to species."
       ]
     },
     {
-      "id": "msg_0532_T11PC0101_00002",
+      "id": "msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets",
       "en_US": [
-        "Adventures are not always full of\n",
-        "oceans and mountains!\r",
-        "Daily life can be quite adventurous!\r",
-        "...By the way, I’ve heard people\n",
-        "talking about a cave in Cerulean.\r",
-        "Do you know anything?"
+        "Sigh…\n",
+        "Wouldn’t this be great?\r",
+        "If the Elite Four came and\n",
+        "stomped Team Rocket?"
       ]
     },
     {
-      "id": "msg_0532_T11PC0101_00003",
+      "id": "msg_0532_T11PC0101_PokemonJournal_Text_SpecialFeatureSabrina",
       "en_US": [
-        "Silph Co.’s head office and the\n",
-        "Magnet Train station--\f",
-        "they’re the places to see in Saffron."
+        "Pokémon Journal\r",
+        "Special Feature: Saffron Gym\n",
+        "Leader Sabrina!\r",
+        "People say that Sabrina can\n",
+        "communicate with her Pokémon\f",
+        "during battle without speaking."
+      ]
+    },
+    {
+      "id": "msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff",
+      "en_US": [
+        "Team Rocket took off!\n",
+        "We can go out safely again!\f",
+        "That’s great!"
+      ]
+    },
+    {
+      "id": "msg_0532_T11PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

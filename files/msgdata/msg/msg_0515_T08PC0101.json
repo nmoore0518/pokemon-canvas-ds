@@ -2,33 +2,37 @@
   "key": 12115,
   "messages": [
     {
-      "id": "msg_0515_T08PC0101_00000",
+      "id": "msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_CantBecomeGoodTrainerWithOneMon",
       "en_US": [
-        "Hey! You have a Pokédex!\n",
-        "Did Professor Oak give that to you?"
+        "You can’t become a good Trainer\n",
+        "with just one strong Pokémon.\r",
+        "But raising many Pokémon evenly\n",
+        "is no easy task, either."
       ]
     },
     {
-      "id": "msg_0515_T08PC0101_00001",
+      "id": "msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_PokemonLeagueWestOfViridian",
       "en_US": [
-        "I got quite a shock at the Gym.\n",
-        "There were all these girls who\f",
-        "looked identical."
+        "There’s a narrow trail west of\n",
+        "Viridian City.\r",
+        "It goes to the Pokémon League Hq.\n",
+        "The Hq governs all Trainers."
       ]
     },
     {
-      "id": "msg_0515_T08PC0101_00002",
+      "id": "msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_VisitSafariZoneForPokedex",
       "en_US": [
-        "I’m Janine! Hocus-pocus...\n",
-        "Poof!\r"
+        "If you’re working on a Pokédex,\n",
+        "visit the Safari Zone.\r",
+        "All sorts of rare Pokémon breed\n",
+        "there."
       ]
     },
     {
-      "id": "msg_0515_T08PC0101_00003",
+      "id": "msg_0515_T08PC0101_cv_unported",
       "en_US": [
-        "See? I look just like her now!\r",
-        "...?\r",
-        "Huh? Didn’t work?"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

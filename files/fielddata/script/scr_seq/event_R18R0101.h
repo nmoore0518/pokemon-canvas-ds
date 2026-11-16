@@ -1,11 +1,15 @@
 #ifndef SCR_SEQ_R18R0101_H_
 #define SCR_SEQ_R18R0101_H_
 
-#define _EV_scr_seq_R18R0101_000 0
-#define _EV_scr_seq_R18R0101_001 1
-#define _EV_scr_seq_R18R0101_002 2
-#define _EV_scr_seq_R18R0101_003 3
+#define _EV_Route18_EastEntrance_1F_EventScript_Guard 0
+#define _EV_EventScript_SetEnteringCyclingRoad 1
+#define _EV_Route18_EastEntrance_1F_EventScript_NeedBikeTriggerTop 2
+#define _EV_Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidTop 3
+#define _EV_Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMid 4
+#define _EV_Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidBottom 5
+#define _EV_Route18_EastEntrance_1F_EventScript_NeedBikeTriggerBottom 6
+#define _EV_EventScript_SetExitingCyclingRoad 7
+#define _EV_Route18_EastEntrance_1F_OnTransition 8
 
-#define obj_R18R0101_counterm 0
 
-#endif // SCR_SEQ_R18R0101_H_
+#endif

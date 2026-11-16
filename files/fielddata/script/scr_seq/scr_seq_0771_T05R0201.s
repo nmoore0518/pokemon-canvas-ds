@@ -3,37 +3,214 @@
 #include "msgdata/msg/msg_0478_T05R0201.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's LavenderTown_VolunteerPokemonHouse_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T05R0201_000
-	ScrDef scr_seq_T05R0201_001
-	ScrDef scr_seq_T05R0201_002
-	ScrDef scr_seq_T05R0201_003
-	ScrDef scr_seq_T05R0201_004
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_Youngster
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_PokemonFanMagazine
+	ScrDef LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf
 	ScrDefEnd
-
-scr_seq_T05R0201_000:
-	SimpleNPCMsg msg_0478_T05R0201_00000
-	End
-
-scr_seq_T05R0201_001:
-	SimpleNPCMsg msg_0478_T05R0201_00001
-	End
-
-scr_seq_T05R0201_002:
-	PlayCry SPECIES_PSYDUCK, 0
-	SimpleNPCMsg msg_0478_T05R0201_00002
-	WaitCry
-	End
-
-scr_seq_T05R0201_003:
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x2107, LavenderTown_VolunteerPokemonHouse_EventScript_FujiWardOrFlute
+	BufferPlayersName 6
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_IdLikeYouToHaveThis
+	WaitButton
+	HasSpaceForItem 651, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute
+	SetFlag 0x2107
+	GiveItem 651, 1, VAR_SPECIAL_RESULT
+	BufferItemName 1, 651
+	BufferPlayersName 6
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ReceivedPokeFluteFromMrFuji
+	PlayFanfare SEQ_ME_ITEM
+	WaitFanfare
+	WaitButton
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ExplainPokeFlute
+	WaitButton
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiSomethingElse
+	WaitButton
+	GoTo LavenderTown_VolunteerPokemonHouse_EventScript_FujiAskBattle
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino:
+	LockAll
+	FacePlayer
+	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_NIDORINO, 0
-	SimpleNPCMsg msg_0478_T05R0201_00003
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_Nidorino
+	WaitButton
 	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck:
+	LockAll
+	FacePlayer
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry SPECIES_PSYDUCK, 0
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_Psyduck
+	WaitButton
+	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_Youngster:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x20FA, LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_WhereDidMrFujiGo
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MrFujiLooksAfterOrphanedMons
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_PokemonFanMagazine:
+	LockAll
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_PokemonMagazinesLineShelf
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_FujiWardOrFlute:
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x212A, _cv_has_1
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_has_1:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiStillWaiting
+	WaitButton
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute:
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_FujiAskBattle:
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiAskBattle
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_2
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_3
+_cv_yes_2:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq LavenderTown_VolunteerPokemonHouse_EventScript_FujiLater
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiBattleIntro
+	WaitButton
+	CloseMsg
+	// TODO(gba) special GymChallenge_SetupFuji
+	GoTo _cv_stop
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_4
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_5
+	WhiteOut
+	End
+_cv_won_5:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_4:
+	ClearFlag 0x2036
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_6
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe LavenderTown_VolunteerPokemonHouse_EventScript_FujiLost
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiWon
+	WaitButton
+	SetFlag 0x212A
+	SetVar VAR_SPECIAL_RESULT, 1
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ExplainSpiritWard
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack:
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MrFujiWasPrayingForCubonesMother
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute:
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_FujiLater:
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiLater
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+LavenderTown_VolunteerPokemonHouse_EventScript_FujiLost:
+	HealParty
+	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiLost
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 
-scr_seq_T05R0201_004:
-	PlayCry SPECIES_PIDGEY, 0
-	SimpleNPCMsg msg_0478_T05R0201_00004
-	WaitCry
+_cv_stop:
+	NPCMsg msg_0478_T05R0201_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

@@ -2,40 +2,34 @@
   "key": 17414,
   "messages": [
     {
-      "id": "msg_0494_T07R0101_00000",
+      "id": "msg_0494_T07R0101_CeladonCity_DepartmentStore_1F_Text_WelcomeToDeptStore",
       "en_US": [
-        "Hello! Welcome to the Celadon\n",
-        "Department Store!\r",
-        "The directory is on the wall next to\n",
-        "the elevator."
+        "Hello!\n",
+        "Welcome to Celadon Dept. Store.\r",
+        "The board on the right describes\n",
+        "the store layout."
       ]
     },
     {
-      "id": "msg_0494_T07R0101_00001",
+      "id": "msg_0494_T07R0101_CeladonCity_DepartmentStore_1F_Text_FloorDescriptions",
       "en_US": [
-        "This department store is part of the\n",
-        "same chain as the one in Goldenrod City.\r",
-        "They were both renovated at the\n",
-        "same time."
+        "1F: Service Counter\r",
+        "2F: Trainer’S Market\r",
+        "3F: TV Game Shop\r",
+        "4F: Wise Man Gifts\r",
+        "5F: Drugstore\r",
+        "Rooftop Square: Vending Machines"
       ]
     },
     {
-      "id": "msg_0494_T07R0101_00002",
-      "en_US": [
-        "This is my first time here.\n",
-        "It’s so big...\f",
-        "I’m afraid I’ll get lost."
-      ]
+      "id": "msg_0494_T07R0101_CeladonCity_DepartmentStore_1F_Text_ServiceCounter",
+      "en_US": "1F: Service Counter"
     },
     {
-      "id": "msg_0494_T07R0101_00003",
+      "id": "msg_0494_T07R0101_cv_unported",
       "en_US": [
-        "1F: Service Counter\n",
-        "2F: Trainer’s Market\f",
-        "3F: TM Shop\f",
-        "4F: Wiseman Gifts\f",
-        "5F: Battle Collection\f",
-        "6F: Rooftop Atrium"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

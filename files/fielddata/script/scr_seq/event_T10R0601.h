@@ -1,14 +1,10 @@
 #ifndef SCR_SEQ_T10R0601_H_
 #define SCR_SEQ_T10R0601_H_
 
-#define _EV_scr_seq_T10R0601_000 0
-#define _EV_scr_seq_T10R0601_001 1
-#define _EV_scr_seq_T10R0601_002 2
+#define _EV_PokemonLeague_ChampionsRoom_OnResume 0
+#define _EV_PokemonLeague_ChampionsRoom_EventScript_EnterRoom 1
 
-#define obj_T10R0601_wataru      0
-#define obj_T10R0601_ookido      1
-#define obj_T10R0601_kurumi      2
-#define obj_T10R0601_babyboy1_11 3
-#define obj_T10R0601_leag_door2  4
+#define LOCALID_KANTO_CHAMPIONS_ROOM_RIVAL 1
+#define LOCALID_CHAMPIONS_ROOM_PROF_OAK 2
 
-#endif // SCR_SEQ_T10R0601_H_
+#endif

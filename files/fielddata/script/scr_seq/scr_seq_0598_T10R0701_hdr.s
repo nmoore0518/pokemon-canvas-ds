@@ -3,14 +3,11 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnFrameTable scr_seq_T10R0701_map_scripts_2
-	InitScriptEntry_OnLoad _EV_scr_seq_T10R0701_001 + 1
+	InitScriptEntry_OnFrameTable _cv_T10R0701_frame
 	InitScriptEntryEnd
 
-scr_seq_T10R0701_map_scripts_2:
-	InitScriptGoToIfEqual VAR_TEMP_x4001, 0, _EV_scr_seq_T10R0701_000 + 1
+_cv_T10R0701_frame:
+	// (not yet: PokemonLeague_HallOfFame_EventScript_EnterRoom)
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

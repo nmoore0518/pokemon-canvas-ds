@@ -2,28 +2,62 @@
   "key": 5150,
   "messages": [
     {
-      "id": "msg_0456_T02R0201_00000",
+      "id": "msg_0456_T02R0201_ViridianCity_House_Text_NicknamingIsFun",
       "en_US": [
-        "Do you put a lot of thought into naming\n",
-        "your Pokémon?\r",
-        "Giving them good nicknames adds to the\n",
-        "fun of trading with others."
+        "Coming up with nicknames is fun,\n",
+        "but it’s not so easy to do.\r",
+        "Clever names are nice, but simple\n",
+        "names are easier to remember."
       ]
     },
     {
-      "id": "msg_0456_T02R0201_00001",
+      "id": "msg_0456_T02R0201_ViridianCity_House_Text_MyDaddyLovesMonsToo",
+      "en_US": "My daddy loves Pokémon, too."
+    },
+    {
+      "id": "msg_0456_T02R0201_ViridianCity_House_Text_Speary",
+      "en_US": "Speary: Tetweet!"
+    },
+    {
+      "id": "msg_0456_T02R0201_TrainingHouse_Text_MorrisIntro",
       "en_US": [
-        "They’re Speary--a SPEAROW--and\n",
-        "Rattey--a RATTATA."
+        "My Chansey love a good spar.\n",
+        "They’re worth plenty of EXP, too.\r",
+        "Want to battle?"
       ]
     },
     {
-      "id": "msg_0456_T02R0201_00002",
-      "en_US": "Speary: Ch-chun!"
+      "id": "msg_0456_T02R0201_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
     },
     {
-      "id": "msg_0456_T02R0201_00003",
-      "en_US": "Rattey: Kikiii!"
+      "id": "msg_0456_T02R0201_TrainingHouse_Text_LydiaIntro",
+      "en_US": [
+        "Any Pokémon can hit mine, so\n",
+        "bring whoever needs training!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0456_T02R0201_ViridianCity_House_Text_SpearowNameSpeary",
+      "en_US": [
+        "Spearow\n",
+        "Name: Speary"
+      ]
+    },
+    {
+      "id": "msg_0456_T02R0201_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0456_T02R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

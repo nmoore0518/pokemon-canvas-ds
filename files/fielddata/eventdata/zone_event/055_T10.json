@@ -2,14 +2,6 @@
     "header": "fielddata/script/scr_seq/event_T10.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_T10_000 + 1",
-            "type": 1,
-            "x": 914,
-            "z": 202,
-            "y": 0,
-            "dir": 4
-        },
-        {
             "scriptId": "std_hiddenitem_t10_rare_candy",
             "type": 2,
             "x": 910,
@@ -33,5 +25,42 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "objects": [
+        {
+            "id": "LOCALID_CREDITS_RIVAL",
+            "spriteId": "SPRITE_GSLEADER16",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2065",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 911,
+            "z": 201,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CREDITS_PROF_OAK",
+            "spriteId": "SPRITE_OOKIDO",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2066",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 913,
+            "z": 201,
+            "y": 0
+        }
+    ],
+    "coords": []
 }

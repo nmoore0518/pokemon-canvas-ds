@@ -1,33 +1,34 @@
 #ifndef SCR_SEQ_T11_H_
 #define SCR_SEQ_T11_H_
 
-#define _EV_scr_seq_T11_000 0
-#define _EV_scr_seq_T11_001 1
-#define _EV_scr_seq_T11_002 2
-#define _EV_scr_seq_T11_003 3
-#define _EV_scr_seq_T11_004 4
-#define _EV_scr_seq_T11_005 5
-#define _EV_scr_seq_T11_006 6
-#define _EV_scr_seq_T11_007 7
-#define _EV_scr_seq_T11_008 8
-#define _EV_scr_seq_T11_009 9
-#define _EV_scr_seq_T11_010 10
-#define _EV_scr_seq_T11_011 11
-#define _EV_scr_seq_T11_012 12
-#define _EV_scr_seq_T11_013 13
-#define _EV_scr_seq_T11_014 14
-#define _EV_scr_seq_T11_015 15
-#define _EV_scr_seq_T11_016 16
+#define _EV_SaffronCity_EventScript_RocketGrunt1 0
+#define _EV_SaffronCity_EventScript_RocketGrunt2 1
+#define _EV_SaffronCity_EventScript_RocketGrunt3 2
+#define _EV_SaffronCity_EventScript_RocketGrunt4 3
+#define _EV_SaffronCity_EventScript_RocketGrunt5 4
+#define _EV_SaffronCity_EventScript_DoorGuardGrunt 5
+#define _EV_SaffronCity_EventScript_RocketGrunt7 6
+#define _EV_SaffronCity_EventScript_RocketGrunt6 7
+#define _EV_SaffronCity_EventScript_Youngster 8
+#define _EV_SaffronCity_EventScript_WorkerM 9
+#define _EV_SaffronCity_EventScript_Man 10
+#define _EV_SaffronCity_EventScript_Boy 11
+#define _EV_SaffronCity_EventScript_Pidgeot 12
+#define _EV_SaffronCity_EventScript_Lass 13
+#define _EV_SaffronCity_EventScript_BattleGirl 14
+#define _EV_SaffronCity_EventScript_CitySign 15
+#define _EV_SaffronCity_EventScript_DojoSign 16
+#define _EV_SaffronCity_EventScript_SilphProductSign 17
+#define _EV_SaffronCity_EventScript_TrainerTips2 18
+#define _EV_SaffronCity_EventScript_SilphCoSign 19
+#define _EV_SaffronCity_EventScript_TrainerTips1 20
+#define _EV_SaffronCity_EventScript_GymSign 21
+#define _EV_SaffronCity_EventScript_MrPsychicsHouseSign 22
+#define _EV_SaffronCity_EventScript_TrainerFanClubSign 23
+#define _EV_SaffronCity_OnTransition 24
+#define _EV_MoveExtractor_EventScript_SaffronVisit 25
 
-#define obj_T11_gsboy1         0
-#define obj_T11_gsgirl2        1
-#define obj_T11_gswoman2       2
-#define obj_T11_gsbigman       3
-#define obj_T11_gsman1         4
-#define obj_T11_gsboy2         5
-#define obj_T11_gswoman1       6
-#define obj_T11_gsmiddleman1   7
-#define obj_T11_gsmiddleman1_2 8
-#define obj_T11_gsmiddleman1_3 9
+#define LOCALID_SAFFRON_DOOR_GUARD_GRUNT 6
+#define LOCALID_SAFFRON_EXTRACTOR_GRUNT 16
 
-#endif // SCR_SEQ_T11_H_
+#endif

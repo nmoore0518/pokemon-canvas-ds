@@ -3,36 +3,25 @@
 #include "msgdata/msg/msg_0740_W19.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route19_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_W19_000
-	ScrDef scr_seq_W19_001
-	ScrDef scr_seq_W19_002
-	ScrDef scr_seq_W19_003
-	ScrDef scr_seq_W19_004
-	ScrDef scr_seq_W19_005
+	ScrDef Route19_EventScript_RouteSign
 	ScrDefEnd
-
-scr_seq_W19_000:
-	SimpleNPCMsg msg_0740_W19_00000
+	
+Route19_EventScript_RouteSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0740_W19_Route19_Text_RouteSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 
-scr_seq_W19_001:
-	SimpleNPCMsg msg_0740_W19_00002
-	End
-
-scr_seq_W19_002:
-	SimpleNPCMsg msg_0740_W19_00001
-	End
-
-scr_seq_W19_003:
-	SimpleNPCMsg msg_0740_W19_00003
-	End
-
-scr_seq_W19_004:
-	DirectionSignpostEx 1, 4, msg_0740_W19_00004
-	End
-
-scr_seq_W19_005:
-	TrainerTipsEx 3, msg_0740_W19_00005
+_cv_stop:
+	NPCMsg msg_0740_W19_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	.balign 4, 0

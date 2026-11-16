@@ -3,9 +3,7 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnResume _EV_scr_seq_R18R0101_001 + 1
+	InitScriptEntry_OnTransition _EV_Route18_EastEntrance_1F_OnTransition + 1
 	InitScriptEntryEnd
 
 	InitScriptEnd

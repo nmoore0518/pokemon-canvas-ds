@@ -2,42 +2,98 @@
   "key": 17422,
   "messages": [
     {
-      "id": "msg_0496_T07R0103_00000",
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_OTStandsForOriginalTrainer",
       "en_US": [
-        "I can’t decide which Pokémon I\n",
-        "should use this TM on..."
+        "Captured Pokémon are registered\n",
+        "with an ID No. and the Ot.\r",
+        "Ot stands for “Original Trainer” -\n",
+        "the Trainer that caught it first."
       ]
     },
     {
-      "id": "msg_0496_T07R0103_00001",
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_HaunterEvolvedOnTrade",
       "en_US": [
-        "Uh-oh! I traded my Pokémon without\n",
-        "removing the Up-Grade from it."
+        "Come on, Haunter!\r",
+        "I love Haunter!\n",
+        "I collect them!\r",
+        "Huh?\r",
+        "Haunter turned into a different\n",
+        "Pokémon while being traded!"
       ]
     },
     {
-      "id": "msg_0496_T07R0103_00002",
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_BuddyTradingKangaskhanForHaunter",
       "en_US": [
-        "Yeah! I’m finally getting a PORYGON!\r",
-        "I’m no good at the Coin game,\n",
-        "so I could never get enough Coins...\r",
-        "...Huh?\r",
-        "I traded PORYGON, and it turned into a\n",
-        "different Pokémon!"
+        "All right!\r",
+        "My buddy’s going to trade me his\n",
+        "Kangaskhan for my Haunter!"
       ]
     },
     {
-      "id": "msg_0496_T07R0103_00003",
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_CanIdentifyTradeMonsByID",
       "en_US": [
-        "The TM Shop sells\n",
-        "some rare moves."
+        "You can identify Pokémon you get\n",
+        "in trades by their ID Numbers."
       ]
     },
     {
-      "id": "msg_0496_T07R0103_00004",
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_TVGameShop",
+      "en_US": "3F: TV Game Shop"
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_AnRPG",
       "en_US": [
-        "Make Your Pokémon Stronger!\n",
-        "3F: TM Shop"
+        "An Rpg!\n",
+        "There’s no time for that!"
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_SportsGame",
+      "en_US": [
+        "A sports game!\n",
+        "Dad’ll like that!"
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_PuzzleGame",
+      "en_US": [
+        "A puzzle game!\n",
+        "Looks addictive!"
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_FightingGame",
+      "en_US": [
+        "A fighting game!\n",
+        "Looks tough!"
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_ItsSuperNES",
+      "en_US": "It’s a Super Nes."
+    },
+    {
+      "id": "msg_0496_T07R0103_CeladonCity_DepartmentStore_3F_Text_RedGreenBothArePokemon",
+      "en_US": [
+        "Red and Green!\n",
+        "Both are Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_Text_CounterTutor_Retired",
+      "en_US": [
+        "I used to teach Counter. The\n",
+        "Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Fighting master in Saffron\r",
+        "City."
+      ]
+    },
+    {
+      "id": "msg_0496_T07R0103_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

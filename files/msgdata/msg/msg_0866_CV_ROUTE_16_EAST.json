@@ -1,0 +1,49 @@
+{
+  "key": 19853,
+  "messages": [
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Text_WantToUsePokeFlute",
+      "en_US": "Want to use the Poké Flute?"
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Route16_Text_CyclingRoadSign",
+      "en_US": [
+        "Enjoy the slope!\n",
+        "Cycling Road"
+      ]
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Route16_Text_MonSprawledOutInSlumber",
+      "en_US": [
+        "A Pokémon is sprawled out in\n",
+        "a deep and comfortable slumber."
+      ]
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Text_PlayedPokeFlute",
+      "en_US": "{STRVAR_1 3, 6, 0} played the Poké Flute."
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Text_SnorlaxWokeUp",
+      "en_US": [
+        "Snorlax woke up!\r",
+        "It attacked in a grumpy rage!"
+      ]
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_Text_SnorlaxReturnedToMountains",
+      "en_US": [
+        "Snorlax calmed down.\n",
+        "It gave a huge yawn…\f",
+        "And returned to the mountains."
+      ]
+    },
+    {
+      "id": "msg_0866_CV_ROUTE_16_EAST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

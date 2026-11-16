@@ -223,7 +223,7 @@
         },
         {
             "id": "11",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -240,7 +240,7 @@
         },
         {
             "id": "12",
-            "spriteId": "SPRITE_GSMAN1",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

@@ -2,129 +2,486 @@
   "key": 14693,
   "messages": [
     {
-      "id": "msg_0485_T06GYM0101_00000",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_rock",
       "en_US": [
-        "Lt. Surge: Hey, you little tyke!\r",
-        "It may not be very smart to\n",
-        "challenge me, but it takes guts!\r",
-        "When it comes to Electric-type Pokémon,\n",
-        "I’m number one!\r",
-        "I’ve never lost on the battlefield.\r",
-        "I’ll zap you just like I do all my\n",
-        "enemies in battle!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it to Pewter!\r",
+        "We met in Oak’s lab, but here I’m a Gym\n",
+        "Leader, and you’re a challenger.\r",
+        "Show me what your Rock Pokémon can do!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00001",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_normal",
       "en_US": [
-        "Lt. Surge: Arrrgh!\n",
-        "You are strong!\r",
-        "OK, kid.\n",
-        "You get the Thunder Badge!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! Good to see you again.\r",
+        "Since Oak’s lab, I’ve wondered how your\n",
+        "Normal types would do against my Rock\f",
+        "types.\r",
+        "Let’s find out!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00002",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_water",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the Thunder Badge from Lt. Surge!"
+        "Misty: Well, well. The kid from Oak’s lab.\r",
+        "A Water trainer, here to take the Water\n",
+        "Gym’s Badge? Ha!\r",
+        "Let’s see you try!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00003",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_electric",
       "en_US": [
-        "Lt. Surge: That Thunder Badge suits\n",
-        "those who’ve defeated me!\f",
-        "Take good care of it, OK?\r",
-        "There is something else.\n",
-        "Here is a great TM for you!\r"
+        "Lt. Surge: Ten-hut! The Electric kid\n",
+        "from Oak’s lab!\r",
+        "This is my turf, soldier. Let’s see who’s\n",
+        "packing more voltage!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00004",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_steel",
       "en_US": [
-        "Lt. Surge: That TM contains\n",
-        "Shock Wave... Zzzap!\r",
-        "Use it to go like lightning!\r",
-        "When you go north, you will see\n",
-        "a big city called Saffron!"
+        "Lt. Surge: The Steel kid! Told you I’d be\n",
+        "watching.\r",
+        "Let’s see if that armor holds up under\n",
+        "fire!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00005",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_grass",
       "en_US": [
-        "Lt. Surge: Hey, kid!\n",
-        "Still slugging and chugging away?\r",
-        "When you go north, you will see a\n",
-        "big city called Saffron!"
+        "Erika: Oh, {STRVAR_1 3, 6, 0}… Welcome. I’m so\n",
+        "glad you came.\r",
+        "I’ve been looking forward to seeing your\n",
+        "Grass Pokémon again.\r",
+        "Shall we?"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00006",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_poison",
       "en_US": [
-        "Yo! Legend in the making!\n",
-        "You lucked out this time.\r",
-        "The traps at this Gym have been out\n",
-        "of order for a while.\r",
-        "But the traps are back up and\n",
-        "running now!\f",
-        "Why lucky, you may ask...\r",
-        "Because you can train yourself better\n",
-        "that way!\r",
-        "Make up your mind and go for Lt. Surge!"
+        "Koga: …You have come, as I knew you\n",
+        "would.\r",
+        "I have watched you from the shadows\n",
+        "since Oak’s lab.\r",
+        "Now show me your Poison in the open!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00007",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_bug",
       "en_US": [
-        "Whew! That was an electrifying bout!\n",
-        "It sure made my nerves tingle."
+        "Koga: Fwahaha! The Bug trainer from\n",
+        "Oak’s lab.\r",
+        "Most call Bug Pokémon weak. Show me why\n",
+        "they are wrong!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00008",
-      "en_US": "Nope! Nothing here but trash."
-    },
-    {
-      "id": "msg_0485_T06GYM0101_00009",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_psychic",
       "en_US": [
-        "...\n",
-        "Oh, you found a secret switch at the\f",
-        "bottom of the trash can!\f",
-        "Better press it."
+        "Sabrina: …I saw this battle in a vision,\n",
+        "the day we met in Oak’s lab.\r",
+        "Two Psychic trainers. Only one leaves\n",
+        "with the win."
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00010",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_fairy",
       "en_US": [
-        "Nope! Nothing here but trash.\n",
-        "Oh no, the electric fence is\f",
-        "locked again!"
+        "Sabrina: We meet again, as I said we\n",
+        "would.\r",
+        "Show me whether your Fairy Pokémon\n",
+        "trust you as much as I foresaw."
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00011",
-      "en_US": "The first electric fence is unlocked!"
-    },
-    {
-      "id": "msg_0485_T06GYM0101_00012",
+      "id": "msg_0485_T06GYM0101_cv_mentor_prebattle_fire",
       "en_US": [
-        "The second electric fence is unlocked!\r",
-        "Now the electric fences are gone, and\n",
-        "the path to the Leader is clear!"
+        "Blaine: Hah! Quiz! Who’s the Fire trainer\n",
+        "I met in Oak’s lab?\r",
+        "Answer: you! Now let’s see if you can\n",
+        "take the heat!"
       ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00013",
-      "en_US": "Vermilion City Pokémon Gym"
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_LtSurgeIntro",
+      "en_US": [
+        "Hey, kid! What do you think you’re\n",
+        "doing here?\r",
+        "You won’t live long in combat!\n",
+        "Not with your puny power!\r",
+        "I tell you, kid, electric Pokémon\n",
+        "saved me during the war!\r",
+        "They zapped my enemies into\n",
+        "paralysis!\r",
+        "The same as I’ll do to you!"
+      ]
     },
     {
-      "id": "msg_0485_T06GYM0101_00014",
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_GymGuyAdvice",
       "en_US": [
-        "Vermilion City Pokémon Gym\r",
-        "Gym Leader: Lt. Surge\n",
-        "Certified Trainer!\f",
-        "{STRVAR_1 3, 0, 0}"
+        "Yo!\n",
+        "Champ in the making!\r",
+        "Lt. Surge has a nickname.\r",
+        "People refer to him as the\n",
+        "Lightning American!\r",
+        "He’s an expert on electric\n",
+        "Pokémon.\r",
+        "Bird/Water-type Pokémon match\n",
+        "poorly against the Electric type.\r",
+        "Beware of paralysis, too.\r",
+        "Lt. Surge is very cautious.\r",
+        "He’s locked himself in, so it won’t\n",
+        "be easy getting to him."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_TuckerIntro",
+      "en_US": [
+        "When I was in the Army, Lt. Surge\n",
+        "was my strict Co.\r",
+        "He was a hard taskmaster."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_TuckerPostBattle",
+      "en_US": [
+        "It’s not easy opening that door.\r",
+        "Lt. Surge was always famous for\n",
+        "his cautious nature in the Army."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymAides_Text_VermilionCity",
+      "en_US": [
+        "Prof. Oak’s Aide here!\n",
+        "Lt. Surge hides his door switches\f",
+        "in these trash cans.\r",
+        "A puzzle slows challengers down and\n",
+        "makes them think before they reach\f",
+        "the Leader.\r",
+        "Challengers remember the Gym that\n",
+        "made them think!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_GymStatue",
+      "en_US": [
+        "Vermilion Pokémon Gym\n",
+        "Leader: Lt. Surge\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_GymGuyPostVictory",
+      "en_US": [
+        "Whew!\n",
+        "That match was electric!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymAides_Text_VermilionCityAfter",
+      "en_US": [
+        "With the Thunder Badge, your Gym PC\n",
+        "sells Trash Cans like these.\r",
+        "In your Gym they’re just for show,\n",
+        "but challengers love a Gym with\f",
+        "a story behind it!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_GymStatuePlayerWon",
+      "en_US": [
+        "Vermilion Pokémon Gym\n",
+        "Leader: Lt. Surge\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_NopeOnlyTrashHere",
+      "en_US": [
+        "Nope!\n",
+        "There’s only trash here."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_LtSurgePostBattle",
+      "en_US": [
+        "A little word of advice, kid!\r",
+        "Electricity is sure powerful!\r",
+        "But, it’s useless against Ground-\n",
+        "type Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_ExplainThunderBadgeTakeThis",
+      "en_US": [
+        "The Thunderbadge cranks up your\n",
+        "Pokémon’s Speed!\r",
+        "It also lets your Pokémon Fly\n",
+        "lightning-quick anytime, kid!\r",
+        "You’re special, kid!\n",
+        "Take this!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_ReceivedTM34FromLtSurge",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM34\n",
+        "from Lt. Surge."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_ExplainTM34",
+      "en_US": [
+        "TM34 contains Shock Wave!\r",
+        "Teach it to an Electric Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_OnlyTrashLocksWereReset",
+      "en_US": [
+        "Nope!\n",
+        "There’s only trash here.\r",
+        "Hey!\n",
+        "The electric locks were reset!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened",
+      "en_US": [
+        "Hey! There’s a switch under the\n",
+        "trash! Turn it on!\r",
+        "The first electric lock opened!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymHack_Text_SurgeSilverCap",
+      "en_US": "Lt. Surge: Hey, kid! Catch!"
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymHack_Text_SurgeSilverCapAfter",
+      "en_US": [
+        "That’s a Silver Bottle Cap!\r",
+        "In the war, we got every last volt\n",
+        "out of our Pokémon!\r",
+        "Pick one stat and max it out!\n",
+        "That’s an order, soldier!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_MakeRoomInYourBag",
+      "en_US": "Yo, kid, make room in your Bag!"
+    },
+    {
+      "id": "msg_0485_T06GYM0101_VermilionCity_Gym_Text_SecondLockOpened",
+      "en_US": [
+        "The second electric lock opened!\n",
+        "The motorized door opened!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymCandidate_Text_GuardItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, no move is\f",
+        "super effective against it.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_GymCandidate_Text_EdgeItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, its moves always\f",
+        "hit for at least normal damage.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_Outfits_Text_ReceivedGymUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a\n",
+        "{STRVAR_1 3, 0, 0} Gym Uniform!"
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
+      "id": "msg_0485_T06GYM0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

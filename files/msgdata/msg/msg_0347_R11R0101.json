@@ -2,24 +2,32 @@
   "key": 25639,
   "messages": [
     {
-      "id": "msg_0347_R11R0101_00000",
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_1F_Text_ManInLavenderRatesNames",
       "en_US": [
-        "Hello, passerby!\r",
-        "Have you seen DIGLETT’s Cave?\n",
-        "Normally you can go through it to get\f",
-        "to Route 2, but there is a sleeping\f",
-        "SNORLAX at the entrance now.\f",
-        "Somebody has to wake it up!"
+        "Don’t you think it’s hard to think\n",
+        "up good names for Pokémon?\r",
+        "Especially if you’ve caught a\n",
+        "whole bunch?\r",
+        "In Lavender Town, there’s a man\n",
+        "who rates Pokémon nicknames.\r",
+        "He can even help you rename your\n",
+        "Pokémon, too."
       ]
     },
     {
-      "id": "msg_0347_R11R0101_00001",
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_1F_Text_RockTunnelToReachLavender",
       "en_US": [
-        "Hello, passerby!\r",
-        "Have you been to DIGLETT’s Cave?\n",
-        "Now that the sleeping SNORLAX is gone,\f",
-        "you can go through it to get\f",
-        "to Route 2!"
+        "If you’re aiming to reach Lavender\n",
+        "Town, take Rock Tunnel.\r",
+        "You can get to Rock Tunnel from\n",
+        "Cerulean City."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -2,16 +2,11 @@
   "key": 20275,
   "messages": [
     {
-      "id": "msg_0743_W21_00000",
-      "garbage": 17
-    },
-    {
-      "id": "msg_0743_W21_00001",
-      "garbage": 6
-    },
-    {
-      "id": "msg_0743_W21_00002",
-      "garbage": 32
+      "id": "msg_0743_W21_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

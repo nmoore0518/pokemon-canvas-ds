@@ -2,10 +2,72 @@
   "key": 42014,
   "messages": [
     {
-      "id": "msg_0330_R05R0201_00000",
+      "id": "msg_0330_R05R0201_Trade_Text_DoYouHaveMonWantToTradeForMon",
       "en_US": [
-        "Many cities in Johto have long\n",
-        "histories. I’d love to visit!"
+        "Hi!\n",
+        "Do you have a {STRVAR_1 3, 0, 0}?\r",
+        "Want to trade it for my\n",
+        "{STRVAR_1 3, 1, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_Trade_Text_ThanksYoureAPal",
+      "en_US": "Thanks, you’re a pal!"
+    },
+    {
+      "id": "msg_0330_R05R0201_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_Trade_Text_HowIsMyOldMon",
+      "en_US": [
+        "How is my old {STRVAR_1 3, 1, 0}?\n",
+        "My {STRVAR_1 3, 0, 0} is doing great!"
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_Trade_Text_ThatsTooBad",
+      "en_US": "That’s too bad."
+    },
+    {
+      "id": "msg_0330_R05R0201_Trade_Text_ThisIsNoMon",
+      "en_US": [
+        "…This is no {STRVAR_1 3, 0, 0}.\r",
+        "If you get one, trade it with me."
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0330_R05R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

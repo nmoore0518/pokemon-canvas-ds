@@ -1,18 +1,12 @@
 #ifndef SCR_SEQ_T07GYM0101_H_
 #define SCR_SEQ_T07GYM0101_H_
 
-#define _EV_scr_seq_T07GYM0101_000 0
-#define _EV_scr_seq_T07GYM0101_001 1
-#define _EV_scr_seq_T07GYM0101_002 2
+#define _EV_CeladonCity_Gym_EventScript_Erika 0
+#define _EV_GymAides_EventScript_CeladonCity 1
+#define _EV_CeladonCity_Gym_EventScript_GymStatue 2
+#define _EV_CeladonCity_Gym_OnTransitionGuest 3
 
-#define obj_T07GYM0101_tree          0
-#define obj_T07GYM0101_tree_2        1
-#define obj_T07GYM0101_tree_3        2
-#define obj_T07GYM0101_gsbabygirl1   3
-#define obj_T07GYM0101_gsbabygirl1_2 4
-#define obj_T07GYM0101_gsgirl1       5
-#define obj_T07GYM0101_picnicgirl_2  6
-#define obj_T07GYM0101_gswoman2      7
-#define obj_T07GYM0101_gsleader12    8
+#define LOCALID_CELADONCITY_GYM_OAK_AIDE 12
+#define LOCALID_CELADON_GYM_GUEST 13
 
-#endif // SCR_SEQ_T07GYM0101_H_
+#endif

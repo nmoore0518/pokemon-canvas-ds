@@ -2,40 +2,153 @@
   "key": 46143,
   "messages": [
     {
-      "id": "msg_0523_T10R0201_00000",
+      "id": "msg_0523_T10R0201_PokemonLeague_LoreleisRoom_Text_PostBattle",
       "en_US": [
-        "Welcome to the Pokémon League!\r",
-        "Allow me to introduce myself.\n",
-        "I am Will.\r",
-        "I have trained all around the world,\r",
-        "making my Psychic-type Pokémon\n",
-        "powerful.\r",
-        "And, at last, I’ve been accepted into\n",
-        "the Elite Four.\f",
-        "I can only keep getting better!\f",
-        "Losing is not an option!\r"
+        "You’re better than I thought.\n",
+        "Go on ahead.\r",
+        "You only got a taste of the\n",
+        "Pokémon League’s power."
       ]
     },
     {
-      "id": "msg_0523_T10R0201_00001",
+      "id": "msg_0523_T10R0201_cv_mentor_first_rock",
       "en_US": [
-        "Even though I was defeated, I won’t\n",
-        "change my course.\r",
-        "I will continue battling until I stand\n",
-        "above all Trainers!\r",
-        "Now move on and experience\n",
-        "the true ferocity of the Elite Four.\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
       ]
     },
     {
-      "id": "msg_0523_T10R0201_00002",
+      "id": "msg_0523_T10R0201_cv_mentor_first_normal",
       "en_US": [
-        "Even though I was defeated, I won’t\n",
-        "change my course.\r",
-        "I will continue battling until I stand\n",
-        "above all Trainers!\r",
-        "Now move on and experience\n",
-        "the true ferocity of the Elite Four."
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_PokemonLeague_LoreleisRoom_Text_Intro",
+      "en_US": [
+        "Welcome to the Pokémon League.\r",
+        "I am Lorelei of the Elite Four.\r",
+        "No one can best me when it comes\n",
+        "to icy Pokémon.\r",
+        "Freezing moves are powerful.\r",
+        "Your Pokémon will be at my mercy\n",
+        "when they are frozen solid.\r",
+        "Hahaha!\n",
+        "Are you ready?"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_PokemonLeague_LoreleisRoom_Text_RematchIntro",
+      "en_US": [
+        "Welcome to the Pokémon League.\r",
+        "I, Lorelei of the Elite Four,\n",
+        "have returned!\r",
+        "You know how it goes.\n",
+        "No one can best me when it comes\f",
+        "to icy Pokémon.\r",
+        "Freezing moves are powerful.\r",
+        "Your Pokémon will be at my mercy\n",
+        "when they are frozen solid.\r",
+        "Hahaha!\n",
+        "Are you ready?"
+      ]
+    },
+    {
+      "id": "msg_0523_T10R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

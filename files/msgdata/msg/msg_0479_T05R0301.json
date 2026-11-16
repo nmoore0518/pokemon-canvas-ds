@@ -2,12 +2,33 @@
   "key": 58391,
   "messages": [
     {
-      "id": "msg_0479_T05R0301_00000",
+      "id": "msg_0479_T05R0301_LavenderTown_House1_Text_RocketsKilledCubonesMother",
       "en_US": [
-        "Lavender is a tiny, quiet town\n",
-        "at the foot of the mountains.\r",
-        "It’s gotten a bit busier since the\n",
-        "Radio Tower was built."
+        "Those horrible Rockets!\n",
+        "They deserve no mercy!\r",
+        "That poor Cubone’s mother…\r",
+        "It was killed trying to escape from\n",
+        "Team Rocket."
+      ]
+    },
+    {
+      "id": "msg_0479_T05R0301_LavenderTown_House1_Text_Cubone",
+      "en_US": "Cubone: Kyarugoo!"
+    },
+    {
+      "id": "msg_0479_T05R0301_LavenderTown_House1_Text_GhostOfPokemonTowerIsGone",
+      "en_US": [
+        "The ghost of Pokémon Tower is\n",
+        "gone!\r",
+        "Someone must have soothed its\n",
+        "restless spirit!"
+      ]
+    },
+    {
+      "id": "msg_0479_T05R0301_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -2,45 +2,28 @@
   "key": 46103,
   "messages": [
     {
-      "id": "msg_0528_T10R0701_00000",
+      "id": "msg_0528_T10R0701_PokemonLeague_HallOfFame_Text_OakCongratulations",
       "en_US": [
-        "Lance: It’s been a long time since I\n",
-        "last came here.\r",
-        "This is where we commemorate the\n",
-        "League Champions for all eternity.\r",
-        "Their courageous Pokémon are\n",
-        "also inducted.\r",
-        "Here today, we witnessed the rise\n",
-        "of a new League Champion--\r",
-        "a Trainer who feels compassion for,\n",
-        "and trust toward, all Pokémon.\r",
-        "A Trainer who succeeded through\n",
-        "perseverance and determination.\r",
-        "The new League Champion who has\n",
-        "all the makings of greatness!\r",
-        "{STRVAR_1 3, 0, 0}, allow me to register you\n",
-        "and your partners as Champions!\r"
+        "Oak: Er-hem!\n",
+        "Congratulations, {STRVAR_1 3, 6, 0}!\r",
+        "This floor is the Pokémon Hall of\n",
+        "Fame.\r",
+        "Pokémon League Champions are\n",
+        "honored for their exploits here.\r",
+        "Their Pokémon are also recorded in\n",
+        "the Hall of Fame.\r",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "You have worked hard to become\n",
+        "the new League Champion.\r",
+        "Congratulations, {STRVAR_1 3, 6, 0}, you and\n",
+        "your Pokémon are Hall of Famers!"
       ]
     },
     {
-      "id": "msg_0528_T10R0701_00001",
+      "id": "msg_0528_T10R0701_cv_unported",
       "en_US": [
-        "Lance: It’s been a long time since I\n",
-        "last came here.\r",
-        "This is where we commemorate the\n",
-        "League Champions for all eternity.\r",
-        "Their courageous Pokémon are\n",
-        "also inducted.\r",
-        "Here today, we witnessed the rise\n",
-        "of a new League Champion--\r",
-        "a Trainer who feels compassion for,\n",
-        "and trust toward, all Pokémon.\r",
-        "A Trainer who succeeded through\n",
-        "perseverance and determination.\r",
-        "The new League Champion who has\n",
-        "all the makings of greatness!\r",
-        "{STRVAR_1 3, 0, 0}, allow me to register you\n",
-        "and your partners as Champions!\r"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

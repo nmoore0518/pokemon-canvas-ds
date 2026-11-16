@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_VIRIDIAN_POKECENTER_1F_H_
+#define SCR_SEQ_CV_VIRIDIAN_POKECENTER_1F_H_
+
+#define _EV_ViridianCity_PokemonCenter_1F_EventScript_Nurse 0
+#define _EV_ViridianCity_PokemonCenter_1F_EventScript_Gentleman 1
+#define _EV_ViridianCity_PokemonCenter_1F_EventScript_Boy 2
+#define _EV_ViridianCity_PokemonCenter_1F_EventScript_Youngster 3
+#define _EV_ViridianCity_PokemonCenter_1F_EventScript_HealPadScientist 4
+#define _EV_ViridianCity_PokemonCenter_1F_OnTransition 5
+#define _EV_CableClub_OnResume 6
+
+#define LOCALID_VIRIDIAN_NURSE 1
+
+#endif

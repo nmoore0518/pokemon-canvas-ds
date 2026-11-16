@@ -1,6 +1,23 @@
 {
     "header": "fielddata/script/scr_seq/event_T04PC0101.h",
-    "bgs": [],
+    "bgs": [
+        {
+            "scriptId": "_EV_CeruleanCity_PokemonCenter_1F_EventScript_PokemonJournalMisty + 1",
+            "type": 0,
+            "x": 3,
+            "z": 12,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_CeruleanCity_PokemonCenter_1F_EventScript_PokemonJournalMisty + 1",
+            "type": 0,
+            "x": 4,
+            "z": 12,
+            "y": 0,
+            "dir": 4
+        }
+    ],
     "objects": [
         {
             "id": "LOCALID_CERULEAN_NURSE",
@@ -85,40 +102,6 @@
             "yRange": 1,
             "x": 4,
             "z": 14,
-            "y": 0
-        },
-        {
-            "id": "6",
-            "spriteId": "SPRITE_GSMAN1",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "0x203C",
-            "scriptId": "_EV_CeruleanCity_PokemonCenter_1F_EventScript_PokemonJournalMisty + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 2,
-            "z": 12,
-            "y": 0
-        },
-        {
-            "id": "7",
-            "spriteId": "SPRITE_GSMAN1",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "0x203C",
-            "scriptId": "_EV_CeruleanCity_PokemonCenter_1F_EventScript_PokemonJournalMisty + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 4,
-            "z": 12,
             "y": 0
         }
     ],

@@ -1,0 +1,186 @@
+{
+  "key": 19855,
+  "messages": [
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_HitoshiIntro",
+      "en_US": [
+        "Hwaah!\r",
+        "You’re trespassing in our\n",
+        "Fighting Dojo!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_HitoshiPostBattle",
+      "en_US": [
+        "The prime fighters across the land\n",
+        "train here."
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_MasterKoichiIntro",
+      "en_US": [
+        "Grunt!\r",
+        "I am the Karate Master!\n",
+        "I am the Leader here!\r",
+        "You wish to challenge us?\n",
+        "Expect no mercy!\r",
+        "Fwaaa!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_ChoosePrizedFightingMon",
+      "en_US": [
+        "Indeed, I have lost!\r",
+        "But, I beseech you, do not take\n",
+        "our emblem as your trophy!\r",
+        "In return, I will give you a prized\n",
+        "Fighting Pokémon!\r",
+        "Choose whichever one you like!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_YouWantHitmonlee",
+      "en_US": [
+        "You want the hard-kicking\n",
+        "Hitmonlee?"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_YouWantHitmonchan",
+      "en_US": [
+        "You want the piston-punching\n",
+        "Hitmonchan?"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_FightingDojo",
+      "en_US": "Fighting Dojo"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_EnemiesOnEverySide",
+      "en_US": "Enemies on every side!"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_GoesAroundComesAround",
+      "en_US": "What goes around comes around."
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_StayAndTrainWithUs",
+      "en_US": [
+        "Grunt!\n",
+        "Stay and train at karate with us!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_BetterNotGetGreedy",
+      "en_US": "Better not get greedy…"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the {STRVAR_1 3, 0, 0}\n",
+        "from the Karate Master."
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_NicknameThisPokemon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_NoMoreRoomForPokemon",
+      "en_US": [
+        "There’s no more room for Pokémon!\r",
+        "The Pokémon Boxes are full and\n",
+        "can’t accept any more!"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredSomeonesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredLanettesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredSomeonesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredLanettesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0868_CV_SAFFRON_FIGHTING_DOJO_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -2,10 +2,17 @@
   "key": 17163,
   "messages": [
     {
-      "id": "msg_0352_R15_00000",
+      "id": "msg_0352_R15_Route15_Text_RouteSign",
       "en_US": [
-        "Rt. 15\n",
-        "North to Lavender Town"
+        "Route 15\n",
+        "West to Fuchsia City"
+      ]
+    },
+    {
+      "id": "msg_0352_R15_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

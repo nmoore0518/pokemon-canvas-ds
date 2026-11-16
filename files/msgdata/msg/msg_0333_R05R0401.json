@@ -2,27 +2,108 @@
   "key": 42030,
   "messages": [
     {
-      "id": "msg_0333_R05R0401_00000",
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_WantMeToRaiseMon",
       "en_US": [
-        "Eeyaaaah!\r",
-        "I sense a sinister shadow hovering\n",
-        "over you.\f",
-        "Take this to ward it off!\r"
+        "I run the Day-Care service.\r",
+        "Would you like me to raise one of\n",
+        "your Pokémon?"
       ]
     },
     {
-      "id": "msg_0333_R05R0401_00001",
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_ComeAgain",
+      "en_US": "Come again."
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_OweMeXForMonsReturn",
       "en_US": [
-        "You were in mortal danger, but you’re\n",
-        "protected now."
+        "You owe me ¥{STRVAR_1 3, 1, 0} for the return\n",
+        "of this Pokémon."
       ]
     },
     {
-      "id": "msg_0333_R05R0401_00002",
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_WhichMonShouldIRaise",
+      "en_US": "Which Pokémon should I raise?"
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_LookAfterMonForAWhile",
       "en_US": [
-        "My grandma is into warding off what she\n",
-        "believes to be evil spirits.\f",
-        "I’m sorry that she startled you."
+        "Fine, I’ll look after your\n",
+        "{STRVAR_1 3, 0, 0} for a while."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_ComeSeeMeInAWhile",
+      "en_US": "Come see me in a while."
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_MonHasGrownByXLevels",
+      "en_US": [
+        "Your {STRVAR_1 3, 0, 0} has grown a lot.\n",
+        "Yes, quite a lot, I’d say.\r",
+        "Let me see…\n",
+        "By level, it’s grown by {STRVAR_1 3, 1, 0}.\r",
+        "Aren’t I great?"
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_MonNeedsToSpendMoreTime",
+      "en_US": [
+        "You’re back already?\r",
+        "Your {STRVAR_1 3, 0, 0} needs to spend\n",
+        "some more time with me."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_DontHaveEnoughMoney",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_ComeAnytimeYouLike",
+      "en_US": [
+        "Fine.\n",
+        "Come anytime you like."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_OnlyHaveOneMonWithYou",
+      "en_US": [
+        "Oh? You only have one Pokémon\n",
+        "with you."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_WhatWillYouBattleWith",
+      "en_US": [
+        "If you leave me that Pokémon,\n",
+        "what will you battle with?"
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_YouveGotNoRoomForIt",
+      "en_US": [
+        "You can’t take this Pokémon back\n",
+        "if you’ve got no room for it."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_ThankYouHeresMon",
+      "en_US": [
+        "Thank you!\n",
+        "Here’s your Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_Route5_PokemonDayCare_Text_PlayerGotMonBack",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} got {STRVAR_1 3, 0, 0} back\n",
+        "from the Day-Care Man."
+      ]
+    },
+    {
+      "id": "msg_0333_R05R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

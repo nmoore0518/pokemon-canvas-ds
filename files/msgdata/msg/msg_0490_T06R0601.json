@@ -2,11 +2,71 @@
   "key": 54335,
   "messages": [
     {
-      "id": "msg_0490_T06R0601_00000",
+      "id": "msg_0490_T06R0601_VermilionCity_House3_Text_PidgeyFlyLetterToSaffron",
       "en_US": [
-        "Over many years, DIGLETT dug a\n",
-        "large tunnel.\f",
-        "That tunnel goes to a distant town."
+        "I’m getting my Pidgey to fly a\n",
+        "letter to Saffron in the north."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_VermilionCity_House3_Text_Pidgey",
+      "en_US": "Pidgey: Kurukkoo!"
+    },
+    {
+      "id": "msg_0490_T06R0601_VermilionCity_House3_Text_SendMyPidgeyToUnionRoom",
+      "en_US": [
+        "I want to exchange Mail with all\n",
+        "sorts of people.\r",
+        "I send my Pidgey to a Union Room\n",
+        "to exchange Mail for me."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_VermilionCity_House3_Text_DearPippiLetter",
+      "en_US": [
+        "Dear Pippi,\n",
+        "I hope to see you soon.\r",
+        "I heard Saffron has problems with\n",
+        "Team Rocket.\r",
+        "Vermilion appears to be safe."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0490_T06R0601_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

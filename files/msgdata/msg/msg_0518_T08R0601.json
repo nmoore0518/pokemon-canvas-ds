@@ -2,26 +2,153 @@
   "key": 13375,
   "messages": [
     {
-      "id": "msg_0518_T08R0601_00000",
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_HifFuffHefifoo",
       "en_US": [
-        "My grandpa closed the Safari Zone\n",
-        "and now that we have an empty lot,\f",
-        "my dad decided to run the Pal Park!\r",
-        "It seems that catching and releasing\n",
-        "Pokémon runs in my family."
+        "Warden: Hif fuff hefifoo!\r",
+        "Ha lof ha feef ee hafahi ho.\n",
+        "Heff hee fwee!"
       ]
     },
     {
-      "id": "msg_0518_T08R0601_00001",
-      "en_US": "AIPOM: Pom Pom...?"
+      "id": "msg_0518_T08R0601_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
     },
     {
-      "id": "msg_0518_T08R0601_00002",
-      "en_US": "AIPOM: Pom Pom!"
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_OldMonMerchandiseOnDisplay",
+      "en_US": [
+        "Old Pokémon merchandise is on\n",
+        "display."
+      ]
     },
     {
-      "id": "msg_0518_T08R0601_00003",
-      "en_US": "AIPOM: Pommm..."
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_MonPhotosFossilsOnDisplay",
+      "en_US": [
+        "Pokémon photos and fossils are on\n",
+        "display."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_PokemonJournal_Text_SpecialFeatureKoga",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature: Fuchsia Gym\n",
+        "Leader Koga!\r",
+        "Koga is said to have a thorough\n",
+        "knowledge of medicine.\r",
+        "He even concocts medicine to nurse\n",
+        "his Pokémon to health."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_ExplainStrength",
+      "en_US": [
+        "Warden: Inside HM04 you’ll find\n",
+        "Strength.\r",
+        "It lets Pokémon move boulders when\n",
+        "you’re outside of battle.\r",
+        "Oh yes, did you find the Secret\n",
+        "House in the Safari Zone?"
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_GaveGoldTeethToWarden",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} gave the Gold Teeth\n",
+        "to the Warden."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_WardenPoppedInHisTeeth",
+      "en_US": "The Warden popped in his teeth!"
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_ReceivedHM04FromWarden",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received HM04\n",
+        "from the Warden."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_Text_GymHack_AndTakeThisToo",
+      "en_US": [
+        "Oh, and take this, too!\r",
+        "It does the same job outside of\n",
+        "battle, no Pokémon needed."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_AhHowheeHoHoo",
+      "en_US": [
+        "Ah howhee ho hoo!\n",
+        "Eef ee hafahi ho!"
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_HeOhayHeHaHoo",
+      "en_US": [
+        "Ha?\n",
+        "He ohay heh ha hoo ee haheh!"
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_ThanksSonGiveYouSomething",
+      "en_US": [
+        "Warden: Thanks, son!\n",
+        "You’re a real lifesaver!\r",
+        "No one could understand a word\n",
+        "that I said, not a one!\r",
+        "I was too ashamed to show my face\n",
+        "around the Office, even.\r",
+        "Let me give you something for your\n",
+        "trouble."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_FuchsiaCity_WardensHouse_Text_ThanksLassieGiveYouSomething",
+      "en_US": [
+        "Warden: Thank you, lassie!\n",
+        "You’re a real lifesaver!\r",
+        "No one could understand a word\n",
+        "that I said, not a one!\r",
+        "I was too ashamed to show my face\n",
+        "around the Office, even.\r",
+        "Let me give you something for your\n",
+        "trouble."
+      ]
+    },
+    {
+      "id": "msg_0518_T08R0601_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

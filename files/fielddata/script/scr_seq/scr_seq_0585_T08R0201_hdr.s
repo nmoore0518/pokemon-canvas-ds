@@ -3,15 +3,13 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnTransition _EV_scr_seq_T08R0201_000 + 1
-	InitScriptEntry_OnFrameTable scr_seq_T08R0201_map_scripts_2
+	InitScriptEntry_OnFrameTable _cv_T08R0201_frame
 	InitScriptEntryEnd
 
-scr_seq_T08R0201_map_scripts_2:
-	InitScriptGoToIfEqual VAR_UNK_4124, 1, _EV_scr_seq_T08R0201_001 + 1
-	InitScriptGoToIfEqual VAR_UNK_4124, 2, _EV_scr_seq_T08R0201_002 + 1
+_cv_T08R0201_frame:
+	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitWarpIn)
+	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitEarly)
+	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitWalkIn)
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

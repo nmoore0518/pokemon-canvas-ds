@@ -1,14 +1,19 @@
 #ifndef SCR_SEQ_T09_H_
 #define SCR_SEQ_T09_H_
 
-#define _EV_scr_seq_T09_000 0
-#define _EV_scr_seq_T09_001 1
-#define _EV_scr_seq_T09_002 2
-#define _EV_scr_seq_T09_003 3
-#define _EV_scr_seq_T09_004 4
+#define _EV_CinnabarIsland_EventScript_Woman 0
+#define _EV_CinnabarIsland_EventScript_OldMan 1
+#define _EV_TypeTutor_EventScript_Fire 2
+#define _EV_CinnabarIsland_EventScript_IslandSign 3
+#define _EV_CinnabarIsland_EventScript_PokemonLabSign 4
+#define _EV_CinnabarIsland_EventScript_GymSign 5
+#define _EV_CinnabarIsland_EventScript_GymDoorLocked 6
+#define _EV_CinnabarIsland_OnTransition 7
+#define _EV_CinnabarIsland_EventScript_ExitPokeCenterForOneIsland 8
+#define _EV_CinnabarIsland_EventScript_BillScene 9
+#define _EV_CinnabarIsland_EventScript_ReturnFromSeviiIslands 10
 
-#define obj_T09_gsleader16  0
-#define obj_T09_gsleader15  1
-#define obj_T09_monstarball 2
+#define LOCALID_CINNABAR_BILL 3
+#define LOCALID_CINNABAR_SEAGALLOP 4
 
-#endif // SCR_SEQ_T09_H_
+#endif

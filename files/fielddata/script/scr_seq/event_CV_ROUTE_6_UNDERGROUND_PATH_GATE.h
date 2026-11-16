@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_ROUTE_6_UNDERGROUND_PATH_GATE_H_
+#define SCR_SEQ_CV_ROUTE_6_UNDERGROUND_PATH_GATE_H_
+
+#define _EV_UndergroundPath_SouthEntrance_EventScript_Woman 0
+
+
+#endif

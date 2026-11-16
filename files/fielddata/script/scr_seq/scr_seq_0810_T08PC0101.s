@@ -3,85 +3,71 @@
 #include "msgdata/msg/msg_0515_T08PC0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's FuchsiaCity_PokemonCenter_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T08PC0101_000
-	ScrDef scr_seq_T08PC0101_001
-	ScrDef scr_seq_T08PC0101_002
-	ScrDef scr_seq_T08PC0101_003
+	ScrDef FuchsiaCity_PokemonCenter_1F_EventScript_Nurse
+	ScrDef FuchsiaCity_PokemonCenter_1F_EventScript_Man
+	ScrDef FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerF
+	ScrDef FuchsiaCity_PokemonCenter_1F_EventScript_Youngster
+	ScrDef FuchsiaCity_PokemonCenter_1F_OnTransition
+	ScrDef CableClub_OnResume
 	ScrDefEnd
-
-scr_seq_T08PC0101_000:
+	
+FuchsiaCity_PokemonCenter_1F_EventScript_Nurse:
+	LockAll
+	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
+	ReleaseAll
 	End
-
-scr_seq_T08PC0101_001:
-	SimpleNPCMsg msg_0515_T08PC0101_00000
-	End
-
-scr_seq_T08PC0101_002:
-	SimpleNPCMsg msg_0515_T08PC0101_00001
-	End
-
-scr_seq_T08PC0101_003:
+	
+FuchsiaCity_PokemonCenter_1F_EventScript_Man:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	NPCMsg msg_0515_T08PC0101_00002
-	GetPlayerFacing VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _006E
-	ApplyMovement obj_T08PC0101_gsgirl1, _009C
-	GoTo _0091
-
-_006E:
-	Compare VAR_SPECIAL_RESULT, 2
-	GoToIfNe _0089
-	ApplyMovement obj_T08PC0101_gsgirl1, _00C0
-	GoTo _0091
-
-_0089:
-	ApplyMovement obj_T08PC0101_gsgirl1, _00E4
-_0091:
-	NPCMsg msg_0515_T08PC0101_00003
+	NPCMsg msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_CantBecomeGoodTrainerWithOneMon
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
+	
+FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerF:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_PokemonLeagueWestOfViridian
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+FuchsiaCity_PokemonCenter_1F_EventScript_Youngster:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0515_T08PC0101_FuchsiaCity_PokemonCenter_1F_Text_VisitSafariZoneForPokedex
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+FuchsiaCity_PokemonCenter_1F_OnTransition:
+	End
+	
+CableClub_OnResume:
+	// TODO(gba) special InitUnionRoom
+	// TODO(gba) .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
+	Return
+	// TODO(gba) .else 
+	End
+	// TODO(gba) .endif 
+	End
 
-	.balign 4, 0
-_009C:
-	FaceEast
-	FaceNorth
-	FaceWest
-	FaceSouth
-	FaceEast
-	FaceNorth
-	FaceWest
-	FaceSouth
-	EndMovement
-
-	.balign 4, 0
-_00C0:
-	FaceNorth
-	FaceWest
-	FaceSouth
-	FaceEast
-	FaceNorth
-	FaceWest
-	FaceSouth
-	FaceEast
-	EndMovement
-
-	.balign 4, 0
-_00E4:
-	FaceSouth
-	FaceEast
-	FaceNorth
-	FaceWest
-	FaceSouth
-	FaceEast
-	FaceNorth
-	FaceWest
-	EndMovement
+_cv_stop:
+	NPCMsg msg_0515_T08PC0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 	.balign 4, 0

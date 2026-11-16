@@ -2,35 +2,104 @@
   "key": 4051,
   "messages": [
     {
-      "id": "msg_0342_R10PC0101_00000",
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_EveryTypeStrongerThanOthers",
       "en_US": [
-        "A Pokémon Center near a cave?\n",
-        "That’s mighty convenient."
+        "The types of Pokémon match up\n",
+        "differently with each other.\r",
+        "Every type is stronger than some\n",
+        "types and weaker than others."
       ]
     },
     {
-      "id": "msg_0342_R10PC0101_00001",
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_NuggetUselessSoldFor5000",
       "en_US": [
-        "The last time I came by the Power\n",
-        "Plant, I heard somebody screaming,\f",
-        "“Oh no, it must be a thief!”\r",
-        "I think it was the Manager’s voice."
+        "A Nugget is totally useless.\n",
+        "So I sold it for ¥5000."
       ]
     },
     {
-      "id": "msg_0342_R10PC0101_00002",
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_HeardGhostsHauntLavender",
       "en_US": [
-        "I hear Team Rocket got back together\n",
-        "in Johto but fell apart right away.\r",
-        "I didn’t know anything about that."
+        "I heard that ghosts haunt\n",
+        "Lavender Town."
       ]
     },
     {
-      "id": "msg_0342_R10PC0101_00003",
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_GiveEverstoneIfCaught20Mons",
       "en_US": [
-        "You can’t see it from here, but there’s\n",
-        "a Power Plant south of this\f",
-        "Pokémon Center!"
+        "Oh… {STRVAR_1 3, 6, 0}!\n",
+        "I’ve been looking for you!\r",
+        "It’s me, one of the ever-present\n",
+        "Aides to Prof. Oak.\r",
+        "If your Pokédex has complete data\n",
+        "on twenty species, I’m supposed to\f",
+        "give you a reward from Prof. Oak.\r",
+        "He entrusted me with this\n",
+        "Everstone.\r",
+        "So, {STRVAR_1 3, 6, 0}, let me ask you.\r",
+        "Have you gathered data on at least\n",
+        "twenty kinds of Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_GreatHereYouGo",
+      "en_US": [
+        "Great! You have caught or owned\n",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "Congratulations!\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the Everstone\n",
+        "from the Aide."
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Route10_PokemonCenter_1F_Text_ExplainEverstone",
+      "en_US": [
+        "Making Pokémon evolve certainly\n",
+        "can add to the Pokédex.\r",
+        "However, at times, you may not\n",
+        "want a certain Pokémon to evolve.\r",
+        "In that case, give the Everstone\n",
+        "to that Pokémon.\r",
+        "It will prevent evolution according\n",
+        "to the Professor."
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Aide_Text_GetEnoughMonsComeBackForItem",
+      "en_US": [
+        "…Oh. I see.\r",
+        "When you get {STRVAR_1 3, 0, 0} kinds of Pokémon,\n",
+        "come back for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Aide_Text_HaventCaughtEnoughMonsForItem",
+      "en_US": [
+        "Let’s see…\n",
+        "Uh-oh! You have caught only\f",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "You need {STRVAR_1 3, 0, 0} kinds\n",
+        "if you want the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_Aide_Text_DontHaveAnyRoomForItem",
+      "en_US": [
+        "Oh! I see you don’t have any\n",
+        "room for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0342_R10PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

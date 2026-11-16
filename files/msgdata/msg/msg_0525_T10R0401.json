@@ -2,35 +2,160 @@
   "key": 46095,
   "messages": [
     {
-      "id": "msg_0525_T10R0401_00000",
+      "id": "msg_0525_T10R0401_PokemonLeague_AgathasRoom_Text_PostBattle",
       "en_US": [
-        "I am Bruno of the Elite Four.\r",
-        "I always train to the extreme because\n",
-        "I believe in our potential.\r",
-        "That is how we became strong.\n",
-        "Can you withstand our power?\r",
-        "Hm? I see no fear in you. You look\n",
-        "determined. Perfect for battle!\r",
-        "Ready, {STRVAR_1 3, 0, 0}?\r",
-        "You will bow down to our\n",
-        "overwhelming power!\r",
-        "Hoo hah!\r"
+        "You win!\r",
+        "I see what the old duff sees in\n",
+        "you now.\r",
+        "I have nothing else to say.\n",
+        "Run along now, child!"
       ]
     },
     {
-      "id": "msg_0525_T10R0401_00001",
+      "id": "msg_0525_T10R0401_cv_mentor_first_rock",
       "en_US": [
-        "Having lost, I have no right to\n",
-        "say anything...\f",
-        "Go face your next challenge!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
       ]
     },
     {
-      "id": "msg_0525_T10R0401_00002",
+      "id": "msg_0525_T10R0401_cv_mentor_first_normal",
       "en_US": [
-        "Having lost, I have no right to\n",
-        "say anything...\f",
-        "Go face your next challenge!"
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_PokemonLeague_AgathasRoom_Text_Intro",
+      "en_US": [
+        "I am Agatha of the Elite Four.\r",
+        "I hear Oak’s taken a lot of\n",
+        "interest in you, child.\r",
+        "That old duff was once tough and\n",
+        "handsome.\r",
+        "But that was decades ago.\n",
+        "He’s a shadow of his former self.\r",
+        "Now he just wants to fiddle with\n",
+        "his Pokédex.\r",
+        "He’s wrong.\n",
+        "Pokémon are for battling!\r",
+        "{STRVAR_1 3, 6, 0}! I’ll show you how a real\n",
+        "Trainer battles!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_PokemonLeague_AgathasRoom_Text_RematchIntro",
+      "en_US": [
+        "I am Agatha of the Elite Four.\r",
+        "You’re the child that Oak’s taken\n",
+        "under his wing, aren’t you?\r",
+        "That old duff was once tough and\n",
+        "handsome.\r",
+        "But that was decades ago.\n",
+        "He’s a shadow of his former self.\r",
+        "Now he just wants to fiddle with\n",
+        "his Pokédex.\r",
+        "He’s wrong.\n",
+        "Pokémon are for battling!\r",
+        "{STRVAR_1 3, 6, 0}! I’ll show you how a real\n",
+        "Trainer battles!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

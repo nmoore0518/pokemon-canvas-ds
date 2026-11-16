@@ -96,9 +96,10 @@ class Anchored:
         return self._inside
 
     def __call__(self, x, y, kind='pos'):
-        if (x, y) in self.fixed: return self.fixed[(x, y)]
+        if (x, y) in self.fixed and kind != 'raw': return self.fixed[(x, y)]
         dx, dy = self.offset(x, y)
         X, Z = x + dx, y + dy
+        if kind == 'raw': return X, Z
         # (a cuttable tree, a trainer or an item ball goes where HeartGold has one: trees block paths, trainers'
         # sight lines and items' spots are laid out for HeartGold's map; spots left over stay empty)
         spots = {'tree': self.hg_trees, 'trainer': self.hg_trainers, 'item': self.hg_items}.get(kind)
@@ -106,14 +107,14 @@ class Anchored:
             best = min(spots, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
             spots.remove(best); self.used.add(best[:2]); self.last_spot = best
             return best[0], best[1]
-        if kind in ('trainer', 'item'): kind = 'object'
+        if kind in ('trainer', 'item', 'tree'): kind = 'object'
         if kind == 'sign':
             if self.hg_signs:
                 X, Z = min(self.hg_signs, key=lambda b: (b[0] - X) ** 2 + (b[1] - Z) ** 2)
                 self.hg_signs.remove((X, Z))
             return X, Z
         if kind in ('object', 'trigger'):
-            for r in range(0, 6):
+            for r in range(0, 12):
                 ring = [(X + i, Z + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r]
                 for c in sorted(ring, key=lambda c: (c[0] - X) ** 2 + (c[1] - Z) ** 2):
                     near_door = kind == 'object' and any(abs(c[0] - w[0]) + abs(c[1] - w[1]) <= 1 for w in self.warps)
@@ -121,6 +122,55 @@ class Anchored:
                         if kind == 'object': self.used.add(c)
                         return c
         return X, Z
+
+
+class Auto(Anchored):
+    """An Anchored map whose landmarks are worked out (auto_anchor.py): doors to the same rooms and exits to the same
+    maps in both games, plus any pairs given. Outdoors, people stay on their own map's part of the world."""
+
+    def __init__(self, slot, pairs=(), gba=None, **kw):
+        super().__init__(slot, list(pairs), **kw)
+        self.given, self.gba, self._auto = list(pairs), gba, None
+
+    def offset(self, x, y):
+        if self._auto is None:
+            import auto_anchor
+            gdir = self.gba or next(d for d, v in MAPS.items() if v[1] is self)
+            self._auto = auto_anchor.pairs(self.slot, gdir, DEST, PRIMARIES)
+            self.pairs = self.given + self._auto
+            if not self.pairs: self.pairs = [((0, 0), (0, 0))]
+        return super().offset(x, y)
+
+    def open(self, x, z):
+        if not self.indoor:
+            import auto_anchor
+            if auto_anchor.header_at(x, z) not in self._own(): return False
+        return super().open(x, z)
+
+    def _own(self):
+        import auto_anchor
+        if getattr(self, '_ownids', None) is None:
+            ids = auto_anchor.map_ids()
+            self._ownids = {ids[self.slot]} | {ids[s] for s in getattr(self, 'also', ())}
+        return self._ownids
+
+
+def on_map(T, slot):
+    """for a GBA map split over HeartGold maps: the squares T puts on slot's part of the world"""
+    def f(x, y):
+        import auto_anchor
+        return auto_anchor.header_at(*T(x, y, 'raw')) == auto_anchor.map_ids()[slot]
+    return f
+
+
+def center(slot):
+    """a Kanto Pokemon Center (HeartGold's are all one layout; the GBA's floor beside the counter is its floor in front)"""
+    return Anchored(slot, [((7, 8), (8, 19)), ((7, 2), (8, 11)), ((1, 2), (2, 13)), ((13, 2), (14, 13)),
+                           ((1, 7), (2, 18)), ((13, 7), (14, 18))], fixed={(7, 2): (8, 11)})
+
+
+def mart(slot):
+    return Anchored(slot, [((4, 7), (4, 11)), ((2, 3), (2, 6)), ((9, 5), (10, 4))], fixed={(2, 3): (2, 6)})
 
 
 # HeartGold's Viridian (doors and exits, GBA square -> HeartGold square)
@@ -192,6 +242,10 @@ ROUTE2_HOUSE = Anchored('MAP_ROUTE_2_HOUSE', [((4, 7), (4, 8))])
 FOREST_GATE_N = Anchored('MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE', [((7, 10), (5, 12)), ((7, 1), (5, 2))])
 FOREST_GATE_S = Anchored('MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE', [((7, 10), (5, 12)), ((7, 1), (5, 2))])
 
+# ---------------------------------------------------------------- the rest of Kanto: landmarks worked out (Auto)
+ROUTE10 = Auto('MAP_ROUTE_10', gba='Route10_Frlg'); ROUTE10.also = ('MAP_ROUTE_10_SOUTH',)
+ROUTE16 = Auto('MAP_ROUTE_16', gba='Route16_Frlg'); ROUTE16.also = ('MAP_ROUTE_16_EAST',)
+
 MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PalletTown_Frlg': ('MAP_PALLET', pallet_xy),
     'PalletTown_PlayersHouse_1F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_1F', same),
@@ -241,7 +295,130 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'Route2_House_Frlg': ('MAP_ROUTE_2_HOUSE', ROUTE2_HOUSE),
     'Route2_ViridianForest_NorthEntrance_Frlg': ('MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE', FOREST_GATE_N),
     'Route2_ViridianForest_SouthEntrance_Frlg': ('MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE', FOREST_GATE_S),
+    'VermilionCity_Frlg': ('MAP_VERMILION', Auto('MAP_VERMILION')),
+    'LavenderTown_Frlg': ('MAP_LAVENDER', Auto('MAP_LAVENDER')),
+    'CeladonCity_Frlg': ('MAP_CELADON', Auto('MAP_CELADON')),
+    'SaffronCity_Frlg': ('MAP_SAFFRON', Auto('MAP_SAFFRON')),
+    'FuchsiaCity_Frlg': ('MAP_FUCHSIA', Auto('MAP_FUCHSIA')),
+    'CinnabarIsland_Frlg': ('MAP_CINNABAR_ISLAND', Auto('MAP_CINNABAR_ISLAND')),
+    'IndigoPlateau_Exterior_Frlg': ('MAP_INDIGO_PLATEAU', Auto('MAP_INDIGO_PLATEAU')),
+    'Route5_Frlg': ('MAP_ROUTE_5', Auto('MAP_ROUTE_5')),
+    'Route6_Frlg': ('MAP_ROUTE_6', Auto('MAP_ROUTE_6')),
+    'Route7_Frlg': ('MAP_ROUTE_7', Auto('MAP_ROUTE_7')),
+    'Route8_Frlg': ('MAP_ROUTE_8', Auto('MAP_ROUTE_8')),
+    'Route9_Frlg': ('MAP_ROUTE_9', Auto('MAP_ROUTE_9')),
+    'Route11_Frlg': ('MAP_ROUTE_11', Auto('MAP_ROUTE_11')),
+    'Route12_Frlg': ('MAP_ROUTE_12', Auto('MAP_ROUTE_12')),
+    'Route13_Frlg': ('MAP_ROUTE_13', Auto('MAP_ROUTE_13')),
+    'Route14_Frlg': ('MAP_ROUTE_14', Auto('MAP_ROUTE_14')),
+    'Route15_Frlg': ('MAP_ROUTE_15', Auto('MAP_ROUTE_15')),
+    'Route17_Frlg': ('MAP_ROUTE_17', Auto('MAP_ROUTE_17')),
+    'Route18_Frlg': ('MAP_ROUTE_18', Auto('MAP_ROUTE_18')),
+    'Route19_Frlg': ('MAP_ROUTE_19', Auto('MAP_ROUTE_19')),
+    'Route20_Frlg': ('MAP_ROUTE_20', Auto('MAP_ROUTE_20')),
+    'Route10_Frlg': ('MAP_ROUTE_10', ROUTE10, lambda x, y: not on_map(ROUTE10, 'MAP_ROUTE_10_SOUTH')(x, y)),
+    'Route10_Frlg#south': ('MAP_ROUTE_10_SOUTH', ROUTE10, on_map(ROUTE10, 'MAP_ROUTE_10_SOUTH')),
+    'Route16_Frlg': ('MAP_ROUTE_16', ROUTE16, lambda x, y: not on_map(ROUTE16, 'MAP_ROUTE_16_EAST')(x, y)),
+    'Route16_Frlg#east': ('MAP_ROUTE_16_EAST', ROUTE16, on_map(ROUTE16, 'MAP_ROUTE_16_EAST')),
+    'Route21_North_Frlg': ('MAP_ROUTE_21', Auto('MAP_ROUTE_21')),
+    'VermilionCity_PokemonCenter_1F_Frlg': ('MAP_VERMILION_POKECENTER_1F', center('MAP_VERMILION_POKECENTER_1F')),
+    'VermilionCity_Mart_Frlg': ('MAP_VERMILION_POKEMART', mart('MAP_VERMILION_POKEMART')),
+    'LavenderTown_PokemonCenter_1F_Frlg': ('MAP_LAVENDER_POKECENTER_1F', center('MAP_LAVENDER_POKECENTER_1F')),
+    'LavenderTown_Mart_Frlg': ('MAP_LAVENDER_POKEMART', mart('MAP_LAVENDER_POKEMART')),
+    'CeladonCity_PokemonCenter_1F_Frlg': ('MAP_CELADON_POKECENTER_1F', center('MAP_CELADON_POKECENTER_1F')),
+    'SaffronCity_PokemonCenter_1F_Frlg': ('MAP_SAFFRON_POKECENTER_1F', center('MAP_SAFFRON_POKECENTER_1F')),
+    'SaffronCity_Mart_Frlg': ('MAP_SAFFRON_POKEMART', mart('MAP_SAFFRON_POKEMART')),
+    'FuchsiaCity_PokemonCenter_1F_Frlg': ('MAP_FUCHSIA_POKECENTER_1F', center('MAP_FUCHSIA_POKECENTER_1F')),
+    'FuchsiaCity_Mart_Frlg': ('MAP_FUCHSIA_POKEMART', mart('MAP_FUCHSIA_POKEMART')),
+    'CinnabarIsland_PokemonCenter_1F_Frlg': ('MAP_CINNABAR_ISLAND_POKECENTER_1F', center('MAP_CINNABAR_ISLAND_POKECENTER_1F')),
+    'ViridianCity_PokemonCenter_1F_Frlg': ('MAP_VIRIDIAN_POKECENTER_1F', center('MAP_VIRIDIAN_POKECENTER_1F')),
+    'PalletTown_PokemonCenter_1F_Frlg': ('MAP_FIGHT_AREA_UNUSED_2', center('MAP_FIGHT_AREA_UNUSED_2')),
+    'Route10_PokemonCenter_1F_Frlg': ('MAP_ROUTE_10_POKECENTER_1F', center('MAP_ROUTE_10_POKECENTER_1F')),
+    'VermilionCity_PokemonFanClub_Frlg': ('MAP_VERMILION_POKEMON_FAN_CLUB', Auto('MAP_VERMILION_POKEMON_FAN_CLUB')),
+    'VermilionCity_House1_Frlg': ('MAP_VERMILION_FISHING_DUDE_HOUSE', Auto('MAP_VERMILION_FISHING_DUDE_HOUSE')),
+    'VermilionCity_House2_Frlg': ('MAP_VERMILION_CENTRAL_HOUSE', Auto('MAP_VERMILION_CENTRAL_HOUSE')),
+    'VermilionCity_House3_Frlg': ('MAP_VERMILION_SOUTH_HOUSE', Auto('MAP_VERMILION_SOUTH_HOUSE')),
+    'VermilionCity_Gym_Frlg': ('MAP_VERMILION_GYM', Auto('MAP_VERMILION_GYM')),
+    'LavenderTown_VolunteerPokemonHouse_Frlg': ('MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE', Auto('MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE')),
+    'LavenderTown_House1_Frlg': ('MAP_LAVENDER_SOUTHWEST_HOUSE', Auto('MAP_LAVENDER_SOUTHWEST_HOUSE')),
+    'LavenderTown_House2_Frlg': ('MAP_LAVENDER_NAME_RATER', Auto('MAP_LAVENDER_NAME_RATER')),
+    'CeladonCity_DepartmentStore_1F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_1F', Auto('MAP_CELADON_DEPARTMENT_STORE_1F')),
+    'CeladonCity_DepartmentStore_2F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_2F', Auto('MAP_CELADON_DEPARTMENT_STORE_2F')),
+    'CeladonCity_DepartmentStore_3F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_3F', Auto('MAP_CELADON_DEPARTMENT_STORE_3F')),
+    'CeladonCity_DepartmentStore_4F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_4F', Auto('MAP_CELADON_DEPARTMENT_STORE_4F')),
+    'CeladonCity_DepartmentStore_5F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_5F', Auto('MAP_CELADON_DEPARTMENT_STORE_5F')),
+    'CeladonCity_DepartmentStore_Roof_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_ROOF', Auto('MAP_CELADON_DEPARTMENT_STORE_ROOF')),
+    'CeladonCity_DepartmentStore_Elevator_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_ELEVATOR', Auto('MAP_CELADON_DEPARTMENT_STORE_ELEVATOR')),
+    'CeladonCity_Condominiums_1F_Frlg': ('MAP_CELADON_CONDOMINIUMS_1F', Auto('MAP_CELADON_CONDOMINIUMS_1F')),
+    'CeladonCity_Condominiums_2F_Frlg': ('MAP_CELADON_CONDOMINIUMS_2F', Auto('MAP_CELADON_CONDOMINIUMS_2F')),
+    'CeladonCity_Condominiums_3F_Frlg': ('MAP_CELADON_CONDOMINIUMS_3F', Auto('MAP_CELADON_CONDOMINIUMS_3F')),
+    'CeladonCity_Condominiums_Roof_Frlg': ('MAP_CELADON_CONDOMINIUMS_ROOF', Auto('MAP_CELADON_CONDOMINIUMS_ROOF')),
+    'CeladonCity_Condominiums_RoofRoom_Frlg': ('MAP_CELADON_CONDOMINIUMS_ROOF_ROOM', Auto('MAP_CELADON_CONDOMINIUMS_ROOF_ROOM')),
+    'CeladonCity_GameCorner_Frlg': ('MAP_CELADON_GAME_CORNER', Auto('MAP_CELADON_GAME_CORNER')),
+    'CeladonCity_GameCorner_PrizeRoom_Frlg': ('MAP_CELADON_PRIZE_CORNER', Auto('MAP_CELADON_PRIZE_CORNER')),
+    'CeladonCity_Gym_Frlg': ('MAP_CELADON_GYM', Auto('MAP_CELADON_GYM')),
+    'CeladonCity_Restaurant_Frlg': ('MAP_CELADON_RESTAURANT', Auto('MAP_CELADON_RESTAURANT')),
+    'SaffronCity_Dojo_Frlg': ('MAP_SAFFRON_FIGHTING_DOJO', Auto('MAP_SAFFRON_FIGHTING_DOJO')),
+    'SaffronCity_Gym_Frlg': ('MAP_SAFFRON_GYM', Auto('MAP_SAFFRON_GYM')),
+    'SaffronCity_MrPsychicsHouse_Frlg': ('MAP_SAFFRON_MR_PSYCHIC_HOUSE', Auto('MAP_SAFFRON_MR_PSYCHIC_HOUSE')),
+    'SaffronCity_CopycatsHouse_1F_Frlg': ('MAP_SAFFRON_COPYCAT_HOUSE_1F', Auto('MAP_SAFFRON_COPYCAT_HOUSE_1F')),
+    'SaffronCity_CopycatsHouse_2F_Frlg': ('MAP_SAFFRON_COPYCAT_HOUSE_2F', Auto('MAP_SAFFRON_COPYCAT_HOUSE_2F')),
+    'SilphCo_1F_Frlg': ('MAP_SAFFRON_SILPH_CO_HQ', Auto('MAP_SAFFRON_SILPH_CO_HQ')),
+    'FuchsiaCity_Gym_Frlg': ('MAP_FUCHSIA_GYM', Auto('MAP_FUCHSIA_GYM')),
+    'FuchsiaCity_WardensHouse_Frlg': ('MAP_FUCHSIA_SAFARI_ZONE_WARDEN_HOUSE', Auto('MAP_FUCHSIA_SAFARI_ZONE_WARDEN_HOUSE')),
+    'FuchsiaCity_House1_Frlg': ('MAP_FUCHSIA_SOUTHWEST_HOUSE', Auto('MAP_FUCHSIA_SOUTHWEST_HOUSE')),
+    'FuchsiaCity_SafariZone_Entrance_Frlg': ('MAP_FUCHSIA_PAL_PARK_ENTRANCE', Auto('MAP_FUCHSIA_PAL_PARK_ENTRANCE')),
+    'ViridianCity_House_Frlg': ('MAP_VIRIDIAN_NORTHEAST_HOUSE', Auto('MAP_VIRIDIAN_NORTHEAST_HOUSE')),
+    'ViridianCity_School_Frlg': ('MAP_VIRIDIAN_TRAINER_HOUSE_1F', Auto('MAP_VIRIDIAN_TRAINER_HOUSE_1F')),
+    'ViridianCity_Gym_Frlg': ('MAP_VIRIDIAN_GYM', Auto('MAP_VIRIDIAN_GYM')),
+    'PalletTown_TrainingHall_Frlg': ('MAP_FIGHT_AREA_UNUSED_4', Auto('MAP_FIGHT_AREA_UNUSED_4')),
+    'Route5_PokemonDayCare_Frlg': ('MAP_ROUTE_5_HOUSE', Auto('MAP_ROUTE_5_HOUSE')),
+    'Route5_SouthEntrance_Frlg': ('MAP_ROUTE_5_SAFFRON_GATEHOUSE', Auto('MAP_ROUTE_5_SAFFRON_GATEHOUSE')),
+    'Route6_NorthEntrance_Frlg': ('MAP_ROUTE_6_SAFFRON_GATEHOUSE', Auto('MAP_ROUTE_6_SAFFRON_GATEHOUSE')),
+    'Route7_EastEntrance_Frlg': ('MAP_ROUTE_7_SAFFRON_GATEHOUSE', Auto('MAP_ROUTE_7_SAFFRON_GATEHOUSE')),
+    'Route8_WestEntrance_Frlg': ('MAP_ROUTE_8_SAFFRON_GATEHOUSE', Auto('MAP_ROUTE_8_SAFFRON_GATEHOUSE')),
+    'UndergroundPath_NorthEntrance_Frlg': ('MAP_ROUTE_5_UNDERGROUND_PATH_GATE', Auto('MAP_ROUTE_5_UNDERGROUND_PATH_GATE')),
+    'UndergroundPath_SouthEntrance_Frlg': ('MAP_ROUTE_6_UNDERGROUND_PATH_GATE', Auto('MAP_ROUTE_6_UNDERGROUND_PATH_GATE')),
+    'UndergroundPath_NorthSouthTunnel_Frlg': ('MAP_ROUTE_5_UNDERGROUND_PATH', Auto('MAP_ROUTE_5_UNDERGROUND_PATH')),
+    'Route11_EastEntrance_1F_Frlg': ('MAP_ROUTE_19_ROUTE_12_GATEHOUSE', Auto('MAP_ROUTE_19_ROUTE_12_GATEHOUSE')),
+    'Route12_FishingHouse_Frlg': ('MAP_ROUTE_12_FISHING_BROTHER_HOUSE', Auto('MAP_ROUTE_12_FISHING_BROTHER_HOUSE')),
+    'Route15_WestEntrance_1F_Frlg': ('MAP_ROUTE_15_FUCHSIA_GATEHOUSE', Auto('MAP_ROUTE_15_FUCHSIA_GATEHOUSE')),
+    'Route16_NorthEntrance_1F_Frlg': ('MAP_ROUTE_16_GATEHOUSE', Auto('MAP_ROUTE_16_GATEHOUSE')),
+    'Route16_House_Frlg': ('MAP_ROUTE_16_HOUSE', Auto('MAP_ROUTE_16_HOUSE')),
+    'Route18_EastEntrance_1F_Frlg': ('MAP_ROUTE_18_GATEHOUSE', Auto('MAP_ROUTE_18_GATEHOUSE')),
+    'Route22_NorthEntrance_Frlg': ('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE', Auto('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE')),
+    'Route2_EastBuilding_Frlg': ('MAP_ROUTE_2_SOUTHEAST_GATEHOUSE', Auto('MAP_ROUTE_2_SOUTHEAST_GATEHOUSE')),
+    'IndigoPlateau_PokemonCenter_1F_Frlg': ('MAP_POKEMON_LEAGUE_ENTRANCE', Auto('MAP_POKEMON_LEAGUE_ENTRANCE')),
+    'PokemonLeague_LoreleisRoom_Frlg': ('MAP_POKEMON_LEAGUE_WILL_ROOM', Auto('MAP_POKEMON_LEAGUE_WILL_ROOM')),
+    'PokemonLeague_BrunosRoom_Frlg': ('MAP_POKEMON_LEAGUE_KOGA_ROOM', Auto('MAP_POKEMON_LEAGUE_KOGA_ROOM')),
+    'PokemonLeague_AgathasRoom_Frlg': ('MAP_POKEMON_LEAGUE_BRUNO_ROOM', Auto('MAP_POKEMON_LEAGUE_BRUNO_ROOM')),
+    'PokemonLeague_LancesRoom_Frlg': ('MAP_POKEMON_LEAGUE_KAREN_ROOM', Auto('MAP_POKEMON_LEAGUE_KAREN_ROOM')),
+    'PokemonLeague_ChampionsRoom_Frlg': ('MAP_POKEMON_LEAGUE_LANCE_ROOM', Auto('MAP_POKEMON_LEAGUE_LANCE_ROOM')),
+    'PokemonLeague_HallOfFame_Frlg': ('MAP_POKEMON_LEAGUE_HALL_OF_FAME', Auto('MAP_POKEMON_LEAGUE_HALL_OF_FAME')),
 }
+# GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
+DEST_EXTRA = {
+    'MAP_SSANNE_EXTERIOR': 'MAP_SS_AQUA_VERMILION_PORT_INTERIOR', 'MAP_POKEMON_TOWER_1F': 'MAP_LAVENDER_RADIO_STATION',
+    'MAP_SAFFRON_CITY_CONNECTION': 'MAP_SAFFRON', 'MAP_ROCK_TUNNEL_1F': 'MAP_ROCK_TUNNEL_1F', 'MAP_POWER_PLANT': 'MAP_ROUTE_10_POWER_PLANT_REPAIRED',
+    'MAP_DIGLETTS_CAVE_SOUTH_ENTRANCE': 'MAP_DIGLETT_CAVE', 'MAP_DIGLETTS_CAVE_NORTH_ENTRANCE': 'MAP_DIGLETT_CAVE',
+    'MAP_SEAFOAM_ISLANDS_1F': 'MAP_SEAFOAM_ISLANDS_1F', 'MAP_ROUTE12_NORTH_ENTRANCE_1F': 'MAP_ROUTE_19_ROUTE_12_GATEHOUSE',
+    'MAP_VICTORY_ROAD_1F': 'MAP_VICTORY_ROAD_1F', 'MAP_CERULEAN_CAVE_1F': 'MAP_CERULEAN_CAVE_1F', 'MAP_ROUTE21_SOUTH': 'MAP_ROUTE_21',
+    'MAP_ROUTE23': 'MAP_VICTORY_ROAD_1F', 'MAP_SILPH_CO_1F': 'MAP_SAFFRON_SILPH_CO_HQ',
+}
+PRIMARIES = set(v[0] for k, v in MAPS.items() if '#' not in k)
+
+
+def _dest():
+    out = dict(slots.SLOTS)
+    for d, v in MAPS.items():
+        if '#' in d: continue
+        try: out[G.map_json(d)['id']] = v[0]
+        except Exception: pass
+    for k, v in DEST_EXTRA.items(): out.setdefault(k, v)
+    return out
+
+
+DEST = _dest()
 
 # ---------------------------------------------------------------- walks redone for HeartGold's layout
 DIRS = {'up': (0, -1), 'down': (0, 1), 'left': (-1, 0), 'right': (1, 0)}
@@ -464,6 +641,12 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
+    'LT_SURGE': 'GSLEADER9', 'SABRINA': 'GSLEADER10', 'ERIKA': 'GSLEADER11', 'KOGA': 'GSBIGFOUR2', 'BLAINE': 'GSLEADER13',
+    'LORELEI': 'GSBIGFOUR4', 'BRUNO': 'GSBIGFOUR3', 'AGATHA': 'GSOLDWOMAN1', 'LANCE': 'WATARU', 'MR_FUJI': 'GSOLDMAN1',
+    'FISHER': 'FISHING_2', 'OLD_MAN_2': 'OLDMAN1', 'TUBER_M_WATER': 'GSSWIMMERM', 'SWIMMER_M_LAND': 'GSSWIMMERM', 'SWIMMER_F_LAND': 'GSSWIMMERW',
+    'CRUSH_GIRL': 'GSGIRL3', 'CHEF': 'GSMAN3', 'GAUNTLET_ARCHER': 'GSMAN2',
+    **{'TYPE_TUTOR_' + t: 'GSMIDDLEMAN1' for t in ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'ELECTRIC', 'ICE', 'FIGHTING', 'POISON', 'GROUND',
+                                                   'FLYING', 'PSYCHIC', 'BUG', 'ROCK', 'GHOST', 'DRAGON', 'DARK', 'STEEL', 'FAIRY')},
     'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL', 'BILL': 'MASAKI', 'SWIMMER_M_WATER': 'GSSWIMMERM', 'SWIMMER_F_WATER': 'GSSWIMMERW',
 }
 # Pokemon in the overworld: HeartGold's standing sprite of that species where it has one (FOLLOWER_MON_STATIC_*),
@@ -634,6 +817,14 @@ class Port:
             self.todo.append('constant %s not in HeartGold' % a)
             return '0'
         v = self.g.value(a)
+        if v is None and re.search(r'[-+*/()]', a):         # (an expression of GBA constants: work it out)
+            def one(m):
+                w = self.g.value(m.group(0))
+                if w is None: w = {'MAX_COINS': 9999, 'MAX_MONEY': 999999}.get(m.group(0))
+                return str(w) if w is not None else m.group(0)
+            e = re.sub(r'\b[A-Z_][A-Z0-9_]*\b', one, a)
+            try: return str(int(eval(e, {}, {})))
+            except Exception: return e
         if v is None and re.match(r'^[A-Z_][A-Z0-9_]*$', a) and not a.startswith(('SPECIES_', 'ITEM_')):
             self.todo.append('constant %s unknown' % a); return '0'
         return str(v) if v is not None else a
@@ -643,6 +834,14 @@ class Port:
         a = self.alias(a)
         if a.startswith('VAR_'): return self.var(a)
         v = self.g.value(a)
+        if v is None and re.search(r'[-+*/()]', a):         # (an expression of GBA constants: work it out)
+            def one(m):
+                w = self.g.value(m.group(0))
+                if w is None: w = {'MAX_COINS': 9999, 'MAX_MONEY': 999999}.get(m.group(0))
+                return str(w) if w is not None else m.group(0)
+            e = re.sub(r'\b[A-Z_][A-Z0-9_]*\b', one, a)
+            try: return str(int(eval(e, {}, {})))
+            except Exception: return e
         if v is None and re.match(r'^[A-Z_][A-Z0-9_]*$', a) and not a.startswith(('SPECIES_', 'ITEM_')):
             self.todo.append('constant %s unknown' % a); return '0'
         return str(v) if v is not None else a
@@ -1093,6 +1292,26 @@ def write_messages(port, msg_file):
     open(path, 'a').write('\n')
 
 
+_crefs = []
+
+
+def c_object_refs():
+    if not _crefs:
+        for d, _, fs in os.walk(os.path.join(ROOT, 'src')):
+            for f in fs:
+                if f.endswith('.c'): _crefs.extend(re.findall(r'\bobj_[A-Z0-9]+_\w+', open(os.path.join(d, f), errors='replace').read()))
+        _crefs.append('')
+    return set(_crefs) - {''}
+
+
+def shared_banks(slot):
+    """another map uses this map's scripts or text (a copy of a room, two halves of a route): writing ours over them
+    would break it"""
+    h = slots.header(slot)
+    txt = open(os.path.join(ROOT, 'src/data/map_headers.h')).read() + open(slots.CANVAS_HEADERS).read()
+    return any(txt.count('= %s,' % h[k]) > 1 for k in ('scriptsBank', 'msgBank'))
+
+
 def own_banks(slot):
     """A map in one of our slots still shares HeartGold's EVERYWHERE scripts and text: give it files of its own
     (script, map-script header, event header, message bank), numbered after HeartGold's"""
@@ -1137,7 +1356,7 @@ def own_banks(slot):
 def port(gba_map, g, ids, report):
     slot, xy = MAPS[gba_map][:2]
     part = MAPS[gba_map][2] if len(MAPS[gba_map]) > 2 else (lambda x, y: True)   # (a GBA map split over two of HeartGold's)
-    if 'EVERYWHERE' in slots.header(slot)['scriptsBank']:
+    if 'EVERYWHERE' in slots.header(slot)['scriptsBank'] or shared_banks(slot):
         own_banks(slot)
     h = slots.header(slot)
     bank = h['msgBank']                           # e.g. msg_0446_T01
@@ -1166,6 +1385,10 @@ def port(gba_map, g, ids, report):
     people = [o for o in mj.get('object_events', []) if o.get('type', 'object') == 'object'
               and 'TYPE_TUTOR_DECOR' not in o['graphics_id'] and part(o['x'], o['y'])]       # (the tutors' decorations come with the tutors' own sprites)
     signs = [b for b in mj.get('bg_events', []) if b.get('type') == 'sign' and part(b['x'], b['y'])]
+    # (an invisible person is something to read, such as a journal on a shelf: HeartGold reads those as signs)
+    signs += [dict(o, _read=True) for o in people if o['graphics_id'] == '0' and o['movement_type'] == 'MOVEMENT_TYPE_INVISIBLE'
+              and o['script'] not in ('0x0', '0')]
+    people = [o for o in people if not (o['graphics_id'] == '0' and o['movement_type'] == 'MOVEMENT_TYPE_INVISIBLE')]
     def trainer_of(o):
         """a trainer whose script is just their battle and a line after: HeartGold's own trainer script runs it"""
         c = g.labels.get(o['script'], [])
@@ -1261,6 +1484,10 @@ def port(gba_map, g, ids, report):
     eh.append('')
     for o in people:
         if o.get('local_id'): eh.append('#define %s %d' % (o['local_id'], g.value(o['local_id'])))
+    # (HeartGold's own code that names this map's people, such as a gym's moving gates: their ids stay defined,
+    # as nobody's, so it still builds)
+    for k, n in enumerate(sorted(n for n in c_object_refs() if n.startswith('obj_%s_' % tag))):
+        eh.append('#define %s 0x%X' % (n, 0x7F00 + k))
     eh += ['', '#endif', '']
     open(os.path.join(SCR, 'event_%s.h' % tag), 'w').write('\n'.join(eh))
     # ---- people and signs
@@ -1287,7 +1514,7 @@ def port(gba_map, g, ids, report):
         if gfx not in SPRITE and not m: report.append('sprite %s -> GSMAN1 (no match yet)' % gfx)
     bgs = []
     for b in signs:
-        x, z = xy(b['x'], b['y'], 'sign')
+        x, z = xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})
     coords = []
     for c in triggers:

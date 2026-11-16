@@ -2,133 +2,190 @@
   "key": 13342,
   "messages": [
     {
-      "id": "msg_0527_T10R0601_00000",
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_PostBattle",
       "en_US": [
-        "Lance: I’ve been waiting for you.\r",
-        "{STRVAR_1 3, 0, 0}!\r",
-        "I knew that you, with your skills,\n",
-        "would eventually reach me here.\r",
-        "There’s no need for words now.\r",
-        "We will battle to determine who is\n",
-        "the stronger of the two of us.\r",
-        "As the most powerful Trainer and as\n",
-        "the Pokémon League Champion...\r",
-        "I, Lance the dragon master,\n",
-        "accept your challenge!\r"
+        "Why?\n",
+        "Why did I lose?\r",
+        "I never made any mistakes raising\n",
+        "my Pokémon…\r",
+        "Darn it! You’re the new Pokémon\n",
+        "League Champion!\r",
+        "Although I don’t like to admit it…"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00001",
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakPlayer",
+      "en_US": "Oak: {STRVAR_1 3, 6, 0}!"
+    },
+    {
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe",
       "en_US": [
-        "Lance: I’ve been waiting for you.\r",
-        "{STRVAR_1 3, 0, 0}!\r",
-        "I knew that you, with your skills,\n",
-        "would eventually reach me here.\r",
-        "There’s no need for words now.\r",
-        "We will battle to determine who is\n",
-        "the stronger of the two of us.\r",
-        "As the most powerful Trainer and as\n",
-        "the Pokémon League Champion...\r",
-        "I, Lance the dragon master,\n",
-        "accept your challenge!\r"
+        "Oak: {STRVAR_1 3, 6, 0}.\r",
+        "You understand that your victory\n",
+        "was not just your own doing.\r",
+        "The bond you share with your\n",
+        "Pokémon is marvelous.\r",
+        "{STRVAR_1 3, 6, 0}!\n",
+        "Come with me!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00002",
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakWait",
       "en_US": [
-        "...Whew.\r",
-        "You have become truly powerful,\n",
-        "{STRVAR_1 3, 0, 0}.\r",
-        "Your Pokémon have responded to your\n",
-        "strong and upstanding nature.\r",
-        "As a Trainer, you will continue to\n",
-        "grow strong with your Pokémon.\r"
+        "Oak: {STRVAR_1 3, 6, 0}! {STRVAR_1 3, 7, 0}!\n",
+        "Wait!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00003",
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakMadeIt",
       "en_US": [
-        "...Whew.\r",
-        "You have become truly powerful,\n",
-        "{STRVAR_1 3, 0, 0}.\r",
-        "Your Pokémon have responded to your\n",
-        "strong and upstanding nature.\r",
-        "As a Trainer, you will continue to\n",
-        "grow strong with your Pokémon.\r"
+        "Oak: Phew… I made it in time!\r",
+        "Look at you two. You both made it\n",
+        "all the way to the top!\r",
+        "Before you start, let me heal your\n",
+        "Pokémon. I want a fair fight!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00004",
-      "en_US": "......!\r"
-    },
-    {
-      "id": "msg_0527_T10R0601_00005",
+      "id": "msg_0527_T10R0601_GymFinale_Text_PokemonHealed",
       "en_US": [
-        "Mary: Oh, no! It’s all over!\n",
-        "Professor Oak, if you weren’t\f",
-        "so slow...\r"
+        "{STRVAR_1 3, 6, 0}’s Pokémon were\n",
+        "fully healed!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00006",
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakThisBattleDecides",
       "en_US": [
-        "Professor Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
-        "It’s been a long while.\f",
-        "You certainly look more impressive.\r",
-        "Your conquest of the League is just\n",
-        "fantastic!\r",
-        "Your dedication, trust, and love for\n",
-        "your Pokémon made this happen.\r",
-        "Your Pokémon were outstanding, too.\r",
-        "Because they believed in you as a\n",
-        "Trainer, they persevered.\r",
-        "Congratulations, {STRVAR_1 3, 0, 0}!\r"
+        "Oak: This battle decides two\n",
+        "things.\r",
+        "The winner becomes the Pokémon\n",
+        "League Champion…\r",
+        "…and the Leader of the new\n",
+        "Pallet Town Gym!\r",
+        "Now, show me everything you’ve\n",
+        "learned!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00007",
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_Intro",
       "en_US": [
-        "Professor Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
-        "It’s been a long while.\f",
-        "You certainly look more impressive.\r",
-        "Your conquest of the League is just\n",
-        "fantastic!\r",
-        "Your dedication, trust, and love for\n",
-        "your Pokémon made this happen.\r",
-        "Your Pokémon were outstanding, too.\r",
-        "Because they believed in you as a\n",
-        "Trainer, they persevered.\r",
-        "Congratulations, {STRVAR_1 3, 0, 0}!\r"
+        "{STRVAR_1 3, 7, 0}: Hey, {STRVAR_1 3, 6, 0}!\r",
+        "I was looking forward to seeing\n",
+        "you, {STRVAR_1 3, 6, 0}.\r",
+        "My rival should be strong to keep\n",
+        "me sharp.\r",
+        "While working on my Pokédex, I\n",
+        "looked all over for Pokémon.\r",
+        "Not only that, I assembled teams\n",
+        "that would beat any Pokémon type.\r",
+        "And now…\r",
+        "I’m the Pokémon League Champion!\r",
+        "{STRVAR_1 3, 6, 0}!\n",
+        "Do you know what that means?\r",
+        "I’ll tell you.\r",
+        "I am the most powerful Trainer in\n",
+        "the world!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00008",
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_RematchIntro",
       "en_US": [
-        "Mary: Let’s interview the brand-new\n",
-        "Champion!\r"
+        "{STRVAR_1 3, 7, 0}: Hey, {STRVAR_1 3, 6, 0}!\r",
+        "You came back, {STRVAR_1 3, 6, 0}!\n",
+        "Hahah, that is so great!\r",
+        "My rival should be strong to keep\n",
+        "me sharp.\r",
+        "While working on my Pokédex, I\n",
+        "looked all over for Pokémon.\r",
+        "Not only that, I assembled teams\n",
+        "that would beat any Pokémon type.\r",
+        "And now…\r",
+        "I’m the Pokémon League Champion!\r",
+        "{STRVAR_1 3, 6, 0}!\n",
+        "Do you know what that means?\r",
+        "I’ll tell you.\r",
+        "I am the most powerful Trainer in\n",
+        "the world!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00009",
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakCongratulations",
       "en_US": [
-        "Lance: This is getting to be a\n",
-        "bit too noisy...\r",
-        "{STRVAR_1 3, 0, 0}, could you come with me?\r"
+        "Oak: {STRVAR_1 3, 6, 0}!\n",
+        "You did it! You really did it!\r",
+        "The new Champion of the Pokémon\n",
+        "League… from little Pallet Town!\r",
+        "I’ve watched Trainers climb this\n",
+        "mountain for fifty years.\r",
+        "Not one of them did it with a\n",
+        "single type, start to finish!\r",
+        "And that means one thing more…\r",
+        "The Pallet Town Gym is yours,\n",
+        "{STRVAR_1 3, 6, 0}! Its very first Leader!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00010",
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakCongratulations",
       "en_US": [
-        "Lance: This is getting to be a\n",
-        "bit too noisy...\r",
-        "{STRVAR_1 3, 0, 0}, could you come with me?\r"
+        "Oak: So, you’ve won!\n",
+        "Sincerely, congratulations!\r",
+        "You’re the new Pokémon League\n",
+        "Champion!\r",
+        "You’ve grown up so much since you\n",
+        "first left with {STRVAR_1 3, 0, 0} to work\f",
+        "on the Pokédex.\r",
+        "{STRVAR_1 3, 6, 0}, you have come of age!"
       ]
     },
     {
-      "id": "msg_0527_T10R0601_00011",
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakToRival",
       "en_US": [
-        "Mary: Oh, wait!\n",
-        "We haven’t done the interview!"
+        "Oak: {STRVAR_1 3, 7, 0}…\r",
+        "You fought well. But you forgot to\n",
+        "treat your Pokémon with love and\f",
+        "trust.\r",
+        "A Gym Leader has to earn that\n",
+        "trust every single day.\r",
+        "Think about that before you\n",
+        "challenge {STRVAR_1 3, 6, 0}’s Gym!"
+      ]
+    },
+    {
+      "id": "msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakImDisappointedRival",
+      "en_US": [
+        "Oak: {STRVAR_1 3, 7, 0}…\n",
+        "I’m disappointed in you.\r",
+        "I came when I heard you’d beaten\n",
+        "the Elite Four.\r",
+        "But, when I got here, you had\n",
+        "already lost!\r",
+        "{STRVAR_1 3, 7, 0}, do you understand why\n",
+        "you lost?\r",
+        "You have forgotten to treat your\n",
+        "Pokémon with love and trust.\r",
+        "Without them, you will never\n",
+        "become a Champ again!"
+      ]
+    },
+    {
+      "id": "msg_0527_T10R0601_GymFinale_Text_OakSeeYouAtTheCeremony",
+      "en_US": [
+        "Oak: Now, {STRVAR_1 3, 6, 0}. The League wants\n",
+        "to make it official.\r",
+        "They’re throwing an opening\n",
+        "ceremony for your Gym, back home\f",
+        "in Pallet Town!\r",
+        "Half the town will be there. Your\n",
+        "mother’s probably baking already!\r",
+        "Go on ahead. I’ll…\r",
+        "…I’ll see you there."
+      ]
+    },
+    {
+      "id": "msg_0527_T10R0601_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

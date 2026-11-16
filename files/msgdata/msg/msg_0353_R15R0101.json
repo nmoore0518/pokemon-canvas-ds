@@ -2,14 +2,18 @@
   "key": 9255,
   "messages": [
     {
-      "id": "msg_0353_R15R0101_00000",
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_1F_Text_OaksAideCameByHere",
       "en_US": [
-        "West to the Cycling Road.\n",
-        "East to the Silence Bridge.\r",
-        "Coming from either way, everyone who\n",
-        "comes through this gate has a smile on\f",
-        "their face from the beautiful scenery.\r",
-        "You’re no exception!"
+        "Are you the kid who’s working on\n",
+        "a Pokédex?\r",
+        "Prof. Oak’s Aide came by here."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

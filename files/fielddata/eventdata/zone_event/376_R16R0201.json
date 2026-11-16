@@ -2,19 +2,36 @@
     "header": "fielddata/script/scr_seq/event_R16R0201.h",
     "objects": [
         {
-            "id": "obj_R16R0201_counterm",
-            "spriteId": "SPRITE_COUNTERM",
+            "id": "1",
+            "spriteId": "SPRITE_POLICEMAN",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_R16R0201_000 + 1",
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_Guard + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 5,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSOLDMAN1",
+            "movement": 5,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_OldMan + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
             "z": 4,
             "y": 0
         }
@@ -37,24 +54,115 @@
     ],
     "coords": [
         {
-            "scriptId": "_EV_scr_seq_R16R0201_001 + 1",
+            "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
             "x": 5,
-            "z": 6,
+            "z": 8,
             "w": 1,
-            "h": 3,
-            "y": 0,
-            "val": 0,
-            "var": "VAR_UNK_4129"
-        },
-        {
-            "scriptId": "_EV_scr_seq_R16R0201_002 + 1",
-            "x": 6,
-            "z": 6,
-            "w": 1,
-            "h": 3,
+            "h": 1,
             "y": 0,
             "val": 1,
-            "var": "VAR_UNK_412A"
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_EventScript_SetEnteringCyclingRoad + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerTop + 1",
+            "x": 1,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMidTop + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_EventScript_SetEnteringCyclingRoad + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_EventScript_SetEnteringCyclingRoad + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
+            "x": 6,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
+            "x": 9,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5030"
+        },
+        {
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMid + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMidBottom + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerBottom + 1",
+            "x": 1,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
         }
-    ]
+    ],
+    "bgs": []
 }

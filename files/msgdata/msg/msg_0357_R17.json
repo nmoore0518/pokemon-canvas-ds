@@ -2,16 +2,57 @@
   "key": 17155,
   "messages": [
     {
-      "id": "msg_0357_R17_00000",
-      "garbage": 16
+      "id": "msg_0357_R17_Route17_Text_RouteSign",
+      "en_US": [
+        "Route 17\n",
+        "Celadon City - Fuchsia City"
+      ]
     },
     {
-      "id": "msg_0357_R17_00001",
-      "garbage": 6
+      "id": "msg_0357_R17_Route17_Text_PressBToStayInPlace",
+      "en_US": [
+        "Trainer Tips\r",
+        "Press the B Button to stay in place\n",
+        "while on a slope."
+      ]
     },
     {
-      "id": "msg_0357_R17_00002",
-      "garbage": 22
+      "id": "msg_0357_R17_Route17_Text_SameSpeciesGrowDifferentRates",
+      "en_US": [
+        "Trainer Tips\r",
+        "All Pokémon are unique.\r",
+        "Even Pokémon of the same species\n",
+        "and level grow at different rates."
+      ]
+    },
+    {
+      "id": "msg_0357_R17_Route17_Text_WatchOutForDiscardedItems",
+      "en_US": [
+        "It’s a notice.\r",
+        "Watch out for discarded items."
+      ]
+    },
+    {
+      "id": "msg_0357_R17_Route17_Text_DontThrowGameThrowBalls",
+      "en_US": [
+        "It’s a notice!\r",
+        "Don’t throw the game, throw Poké\n",
+        "Balls instead!"
+      ]
+    },
+    {
+      "id": "msg_0357_R17_Route17_Text_CyclingRoadSign",
+      "en_US": [
+        "Cycling Road\n",
+        "Slope ends here!"
+      ]
+    },
+    {
+      "id": "msg_0357_R17_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

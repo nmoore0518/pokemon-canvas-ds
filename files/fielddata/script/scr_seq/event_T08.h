@@ -1,23 +1,27 @@
 #ifndef SCR_SEQ_T08_H_
 #define SCR_SEQ_T08_H_
 
-#define _EV_scr_seq_T08_000 0
-#define _EV_scr_seq_T08_001 1
-#define _EV_scr_seq_T08_002 2
-#define _EV_scr_seq_T08_003 3
-#define _EV_scr_seq_T08_004 4
-#define _EV_scr_seq_T08_005 5
-#define _EV_scr_seq_T08_006 6
-#define _EV_scr_seq_T08_007 7
-#define _EV_scr_seq_T08_008 8
-#define _EV_scr_seq_T08_009 9
+#define _EV_FuchsiaCity_EventScript_Erik 0
+#define _EV_FuchsiaCity_EventScript_Youngster 1
+#define _EV_FuchsiaCity_EventScript_LittleBoy 2
+#define _EV_FuchsiaCity_EventScript_OldMan 3
+#define _EV_FuchsiaCity_EventScript_SubstituteTutor 4
+#define _EV_FuchsiaCity_EventScript_Lass 5
+#define _EV_TypeTutor_EventScript_Poison 6
+#define _EV_TypeTutor_EventScript_Flying 7
+#define _EV_FuchsiaCity_EventScript_CitySign 8
+#define _EV_FuchsiaCity_EventScript_SafariZoneSign 9
+#define _EV_FuchsiaCity_EventScript_GymSign 10
+#define _EV_FuchsiaCity_EventScript_WardensHomeSign 11
+#define _EV_FuchsiaCity_EventScript_VoltorbSign 12
+#define _EV_FuchsiaCity_EventScript_SlowpokeSign 13
+#define _EV_FuchsiaCity_EventScript_ChanseySign 14
+#define _EV_FuchsiaCity_EventScript_KangaskhanSign 15
+#define _EV_FuchsiaCity_EventScript_FossilMonSign 16
+#define _EV_FuchsiaCity_EventScript_LaprasSign 17
+#define _EV_FuchsiaCity_EventScript_SafariGameSign 18
+#define _EV_FuchsiaCity_EventScript_ExoticSafariSign 19
+#define _EV_FuchsiaCity_OnTransition 20
 
-#define obj_T08_gsmiddleman1   0
-#define obj_T08_gswoman1       1
-#define obj_T08_gsboy2         2
-#define obj_T08_tree           3
-#define obj_T08_bonguri        4
-#define obj_T08_gsmiddleman1_2 5
-#define obj_T08_juggrer        6
 
-#endif // SCR_SEQ_T08_H_
+#endif

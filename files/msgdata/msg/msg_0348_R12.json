@@ -2,35 +2,98 @@
   "key": 17175,
   "messages": [
     {
-      "id": "msg_0348_R12_00000",
+      "id": "msg_0348_R12_Route12_Text_NedIntro",
       "en_US": [
-        "Rt. 12\n",
-        "North to Lavender Town"
+        "Yeah!\n",
+        "I got a bite here!"
       ]
     },
     {
-      "id": "msg_0348_R12_00001",
+      "id": "msg_0348_R12_Route12_Text_NedPostBattle",
       "en_US": [
-        "Fishing Spot\r",
-        "It’s called the Silence Bridge, because\n",
-        "everyone walks on tiptoe to avoid\f",
-        "scaring the Water-type Pokémon.\n",
-        "\n"
+        "Hang on!\n",
+        "My line’s snagged!"
       ]
     },
     {
-      "id": "msg_0348_R12_00002",
+      "id": "msg_0348_R12_Text_WantToUsePokeFlute",
+      "en_US": "Want to use the Poké Flute?"
+    },
+    {
+      "id": "msg_0348_R12_Route12_Text_LucaIntro",
       "en_US": [
-        "There is a large Pokémon sleeping\n",
-        "peacefully.\f",
-        "It looks so content!"
+        "Electricity is my specialty.\r",
+        "I don’t know a thing about Pokémon\n",
+        "of the sea, though."
       ]
     },
     {
-      "id": "msg_0348_R12_00003",
+      "id": "msg_0348_R12_Route12_Text_LucaPostBattle",
       "en_US": [
-        "...!\r",
-        "The SNORLAX opened its eyes wide!\r"
+        "Water conducts electricity, so you\n",
+        "should zap sea Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0348_R12_Route12_Text_RouteSign",
+      "en_US": [
+        "Route 12 \n",
+        "North to Lavender"
+      ]
+    },
+    {
+      "id": "msg_0348_R12_Route12_Text_SportfishingArea",
+      "en_US": "Sportfishing Area"
+    },
+    {
+      "id": "msg_0348_R12_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0348_R12_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0348_R12_Route12_Text_MonSprawledOutInSlumber",
+      "en_US": [
+        "A Pokémon is sprawled out in\n",
+        "a deep and comfortable slumber."
+      ]
+    },
+    {
+      "id": "msg_0348_R12_Text_PlayedPokeFlute",
+      "en_US": "{STRVAR_1 3, 6, 0} played the Poké Flute."
+    },
+    {
+      "id": "msg_0348_R12_Text_SnorlaxWokeUp",
+      "en_US": [
+        "Snorlax woke up!\r",
+        "It attacked in a grumpy rage!"
+      ]
+    },
+    {
+      "id": "msg_0348_R12_Text_SnorlaxReturnedToMountains",
+      "en_US": [
+        "Snorlax calmed down.\n",
+        "It gave a huge yawn…\f",
+        "And returned to the mountains."
+      ]
+    },
+    {
+      "id": "msg_0348_R12_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0348_R12_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

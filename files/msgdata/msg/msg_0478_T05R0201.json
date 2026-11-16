@@ -2,34 +2,178 @@
   "key": 25630,
   "messages": [
     {
-      "id": "msg_0478_T05R0201_00000",
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_IdLikeYouToHaveThis",
       "en_US": [
-        "Mr. Fuji does live here, but he’s\n",
-        "away now.\r",
-        "He should be at the House of Memories."
+        "Mr. Fuji: {STRVAR_1 3, 6, 0}…\r",
+        "Your Pokédex quest is one that\n",
+        "requires strong dedication.\r",
+        "Without deep love for Pokémon,\n",
+        "your quest may fail.\r",
+        "I’m not sure if this will help you,\n",
+        "but I’d like you to have it."
       ]
     },
     {
-      "id": "msg_0478_T05R0201_00001",
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ReceivedPokeFluteFromMrFuji",
       "en_US": [
-        "Can you believe it?\r",
-        "Some people get bored with taking\n",
-        "care of Pokémon.\r",
-        "Grandpa takes in such poor homeless\n",
-        "Pokémon and takes care of them."
+        "{STRVAR_1 3, 6, 0} received a Poké Flute\n",
+        "from Mr. Fuji."
       ]
     },
     {
-      "id": "msg_0478_T05R0201_00002",
-      "en_US": "PSYDUCK: Gu-guwa?"
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ExplainPokeFlute",
+      "en_US": [
+        "Upon hearing the Poké Flute,\n",
+        "sleeping Pokémon will spring awake.\r",
+        "Try using it on Pokémon that are\n",
+        "sleeping obstacles."
+      ]
     },
     {
-      "id": "msg_0478_T05R0201_00003",
-      "en_US": "NIDORINO: Gyun!"
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiSomethingElse",
+      "en_US": [
+        "Mr. Fuji: There is one more thing.\r",
+        "When I cared for the orphans up in\n",
+        "the Tower, I carried a charm to\f",
+        "keep the wild Pokémon away.\r",
+        "It is called the Spirit Ward. It\n",
+        "never wears out. I can hold it up,\f",
+        "or put it away, as I please.\r",
+        "But it is not a thing to give\n",
+        "lightly. You must earn it."
+      ]
     },
     {
-      "id": "msg_0478_T05R0201_00004",
-      "en_US": "PIDGEY: Pijji!"
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_Nidorino",
+      "en_US": "Nidorino: Gaoo!"
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_Psyduck",
+      "en_US": "Psyduck: Gwappa!"
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug",
+      "en_US": [
+        "It’s so warm!\n",
+        "Pokémon are so nice to hug."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_WhereDidMrFujiGo",
+      "en_US": [
+        "That’s odd, Mr. Fuji isn’t here.\n",
+        "Where’d he go?"
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MrFujiLooksAfterOrphanedMons",
+      "en_US": [
+        "This is really Mr. Fuji’s house.\r",
+        "He’s really kind.\r",
+        "He looks after abandoned and\n",
+        "orphaned Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped",
+      "en_US": [
+        "Pokémon Fan Magazine\n",
+        "Monthly Grand Prize Drawing!\r",
+        "The application form is…\r",
+        "Gone! It’s been clipped out.\n",
+        "Someone must have applied already."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_PokemonMagazinesLineShelf",
+      "en_US": [
+        "Pokémon magazines line the shelf.\r",
+        "Pokémon Insider…\r",
+        "Pokémon Fan…"
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiStillWaiting",
+      "en_US": [
+        "Mr. Fuji: The Spirit Ward is still\n",
+        "waiting for its next keeper."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis",
+      "en_US": "You must make room for this!"
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiAskBattle",
+      "en_US": [
+        "Show me how you and your Pokémon\n",
+        "stand together. Will you battle\f",
+        "an old man?"
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiBattleIntro",
+      "en_US": [
+        "Mr. Fuji: These Pokémon watch over\n",
+        "the little ones here. They will not\f",
+        "go easy on you."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiWon",
+      "en_US": [
+        "Mr. Fuji: Your Pokémon fought for\n",
+        "you, and you fought for them.\r",
+        "That is all the Spirit Ward has\n",
+        "ever asked of its keeper."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_ExplainSpiritWard",
+      "en_US": [
+        "Hold it up, and wild Pokémon weaker\n",
+        "than your lead will stay away.\r",
+        "Put it away when you want to meet\n",
+        "them again. It never runs out.\r",
+        "You’ll find it with your Tools. You\n",
+        "can register it to Select, too."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MrFujiWasPrayingForCubonesMother",
+      "en_US": [
+        "Mr. Fuji had been praying alone\n",
+        "for Cubone’s mother."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou",
+      "en_US": [
+        "Mr. Fuji: Has my Poké Flute\n",
+        "helped you?"
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiLater",
+      "en_US": [
+        "Mr. Fuji: Whenever you are ready.\n",
+        "I am not going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiLost",
+      "en_US": [
+        "Mr. Fuji: Not yet, I think.\r",
+        "Let me tend to your Pokémon. Come\n",
+        "back when you are ready."
+      ]
+    },
+    {
+      "id": "msg_0478_T05R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

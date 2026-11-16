@@ -2,20 +2,61 @@
   "key": 21550,
   "messages": [
     {
-      "id": "msg_0489_T06R0401_00000",
+      "id": "msg_0489_T06R0401_VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon",
       "en_US": [
-        "Do you know about the Magnet Train?\r",
-        "It’s a railway that connects\n",
-        "Kanto and Johto."
+        "Hi!\n",
+        "Do you have a {STRVAR_1 3, 0, 0}?\r",
+        "Want to trade it for my\n",
+        "{STRVAR_1 3, 1, 0}?"
       ]
     },
     {
-      "id": "msg_0489_T06R0401_00001",
+      "id": "msg_0489_T06R0401_VermilionCity_House2_Text_ThankYou",
+      "en_US": "Thank you!"
+    },
+    {
+      "id": "msg_0489_T06R0401_TrainingHouse_Text_SerenaIntro",
       "en_US": [
-        "Saffron! Saffron!\n",
-        "I want to go to Saffron City to see\f",
-        "the Magnet Train.\r",
-        "Magnet Train!"
+        "A battle a day keeps a team\n",
+        "sharp. Shall we?\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0489_T06R0401_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0489_T06R0401_VermilionCity_House2_Text_HowIsMyOldMon",
+      "en_US": [
+        "How is my old {STRVAR_1 3, 1, 0}?\r",
+        "My {STRVAR_1 3, 0, 0} is doing great!"
+      ]
+    },
+    {
+      "id": "msg_0489_T06R0401_VermilionCity_House2_Text_ThatsTooBad",
+      "en_US": "That’s too bad."
+    },
+    {
+      "id": "msg_0489_T06R0401_VermilionCity_House2_Text_ThisIsNoMon",
+      "en_US": [
+        "…This is no {STRVAR_1 3, 0, 0}.\r",
+        "If you get one, please trade it\n",
+        "to me!"
+      ]
+    },
+    {
+      "id": "msg_0489_T06R0401_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0489_T06R0401_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

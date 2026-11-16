@@ -2,11 +2,10 @@
   "key": 17199,
   "messages": [
     {
-      "id": "msg_0521_T10_00000",
+      "id": "msg_0521_T10_cv_unported",
       "en_US": [
-        "Indigo Plateau\r",
-        "The Ultimate Goal for Trainers!\n",
-        "Pokémon League HQ"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

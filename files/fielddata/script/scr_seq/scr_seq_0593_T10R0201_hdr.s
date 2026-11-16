@@ -3,14 +3,14 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
-
-
-	InitScriptEntry_OnFrameTable scr_seq_T10R0201_map_scripts_2
-	InitScriptEntry_OnLoad _EV_scr_seq_T10R0201_002 + 1
+	InitScriptEntry_OnFrameTable _cv_T10R0201_frame
+	InitScriptEntry_OnTransition _EV_PokemonLeague_LoreleisRoom_OnTransition + 1
+	InitScriptEntry_OnLoad _EV_PokemonLeague_LoreleisRoom_OnLoad + 1
+	InitScriptEntry_OnResume _EV_PokemonLeague_LoreleisRoom_OnResume + 1
 	InitScriptEntryEnd
 
-scr_seq_T10R0201_map_scripts_2:
-	InitScriptGoToIfEqual VAR_TEMP_x4001, 0, _EV_scr_seq_T10R0201_000 + 1
+_cv_T10R0201_frame:
+	// (not yet: PokemonLeague_LoreleisRoom_EventScript_EnterRoom)
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

@@ -2,19 +2,48 @@
   "key": 18187,
   "messages": [
     {
-      "id": "msg_0329_R05_00000",
+      "id": "msg_0329_R05_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "The road is closed until the problem at\n",
-        "the Power Plant is solved."
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0329_R05_00001",
+      "id": "msg_0329_R05_Route5_Text_UndergroundPathSign",
       "en_US": [
-        "Underground Path\r",
-        "You can travel from Cerulean City to\n",
-        "Vermilion City on this path under\f",
-        "Saffron City."
+        "Underground Path\n",
+        "Cerulean City - Vermilion City"
+      ]
+    },
+    {
+      "id": "msg_0329_R05_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0329_R05_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0329_R05_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0329_R05_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

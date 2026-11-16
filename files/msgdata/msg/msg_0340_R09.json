@@ -2,10 +2,81 @@
   "key": 18235,
   "messages": [
     {
-      "id": "msg_0340_R09_00000",
+      "id": "msg_0340_R09_Route9_Text_AliciaIntro",
       "en_US": [
-        "Rt. 9\n",
-        "East to Rock Tunnel"
+        "You have Pokémon with you!\n",
+        "You’re mine!"
+      ]
+    },
+    {
+      "id": "msg_0340_R09_Route9_Text_AliciaPostBattle",
+      "en_US": [
+        "The tunnel coming up is pitch-black\n",
+        "inside.\r",
+        "You’ll need Flash to get through\n",
+        "there."
+      ]
+    },
+    {
+      "id": "msg_0340_R09_Route9_Text_DrewIntro",
+      "en_US": [
+        "I’m taking the Rock Tunnel to\n",
+        "go to Lavender…"
+      ]
+    },
+    {
+      "id": "msg_0340_R09_Route9_Text_DrewPostBattle",
+      "en_US": "Are you off to Rock Tunnel, too?"
+    },
+    {
+      "id": "msg_0340_R09_Route9_Text_RouteSign",
+      "en_US": [
+        "Route 9\n",
+        "Cerulean City - Rock Tunnel"
+      ]
+    },
+    {
+      "id": "msg_0340_R09_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0340_R09_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0340_R09_EventMons_Text_CapFound",
+      "en_US": "{STRVAR_1 3, 6, 0} found the {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "msg_0340_R09_EventMons_Text_CapInCase",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put the {STRVAR_1 3, 0, 0} in\n",
+        "the Cap Case."
+      ]
+    },
+    {
+      "id": "msg_0340_R09_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0340_R09_EventMons_Text_CapNoCase",
+      "en_US": [
+        "There’s a little cap stuck here,\n",
+        "a Pikachu’s size. Someone must\r",
+        "have lost it…"
+      ]
+    },
+    {
+      "id": "msg_0340_R09_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -2,38 +2,121 @@
   "key": 21527,
   "messages": [
     {
-      "id": "msg_0323_R02R0301_00000",
+      "id": "msg_0323_R02R0301_Route2_EastBuilding_Text_GiveHM05IfSeen10Mons",
       "en_US": [
-        "So you are {STRVAR_1 3, 0, 0}?\n",
-        "Professor Oak is waiting for you in his\f",
-        "lab in Pallet Town.\r",
-        "Also, I received this from him.\n",
-        "He wants you to have this.\r"
+        "Hi! Remember me?\n",
+        "I’m one of Prof. Oak’s Aides.\r",
+        "If your Pokédex has complete data\n",
+        "on ten species, I’m supposed to\f",
+        "give you a reward.\r",
+        "Prof. Oak entrusted me with\n",
+        "HM05 for you.\r",
+        "So, {STRVAR_1 3, 6, 0}, let me ask you.\r",
+        "Have you gathered data on at least\n",
+        "ten kinds of Pokémon?"
       ]
     },
     {
-      "id": "msg_0323_R02R0301_00001",
+      "id": "msg_0323_R02R0301_Route2_EastBuilding_Text_GreatHereYouGo",
       "en_US": [
-        "So you are {STRVAR_1 3, 0, 0}?\n",
-        "Professor Oak is waiting for you in his\f",
-        "lab in Pallet Town.\r",
-        "Also, I received this from him.\n",
-        "He wants you to have this.\r"
+        "Great! You have caught or owned\n",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "Congratulations!\n",
+        "Here you go!"
       ]
     },
     {
-      "id": "msg_0323_R02R0301_00002",
+      "id": "msg_0323_R02R0301_Route2_EastBuilding_Text_ReceivedHM05FromAide",
       "en_US": [
-        "Sacred Ash is an amazing item that can\n",
-        "revive all fainted Pokémon!"
+        "{STRVAR_1 3, 6, 0} received HM05\n",
+        "from the Aide."
       ]
     },
     {
-      "id": "msg_0323_R02R0301_00003",
+      "id": "msg_0323_R02R0301_Text_GymHack_AndTakeThisToo",
       "en_US": [
-        "To the north is Pewter City.\n",
-        "To the south is Viridian City.\r",
-        "I know, I know. I sound like a sign."
+        "Oh, and take this, too!\r",
+        "It does the same job outside of\n",
+        "battle, no Pokémon needed."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_Route2_EastBuilding_Text_ExplainHM05",
+      "en_US": [
+        "HM05 contains the hidden move\n",
+        "Flash.\r",
+        "Flash lights up even the darkest\n",
+        "of caves and dungeons."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_Route2_EastBuilding_Text_CanGetThroughRockTunnel",
+      "en_US": [
+        "Once a Pokémon learns Flash, you\n",
+        "can get through Rock Tunnel."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_Aide_Text_GetEnoughMonsComeBackForItem",
+      "en_US": [
+        "…Oh. I see.\r",
+        "When you get {STRVAR_1 3, 0, 0} kinds of Pokémon,\n",
+        "come back for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_Aide_Text_HaventCaughtEnoughMonsForItem",
+      "en_US": [
+        "Let’s see…\n",
+        "Uh-oh! You have caught only\f",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "You need {STRVAR_1 3, 0, 0} kinds\n",
+        "if you want the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_Aide_Text_DontHaveAnyRoomForItem",
+      "en_US": [
+        "Oh! I see you don’t have any\n",
+        "room for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0323_R02R0301_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

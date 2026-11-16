@@ -2,81 +2,166 @@
   "key": 25646,
   "messages": [
     {
-      "id": "msg_0480_T05R0401_00000",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_WantMeToRateNicknames",
       "en_US": [
-        "Hello, there!\n",
+        "Hello, hello!\n",
         "I am the official Name Rater!\r",
-        "Want me to rate the nicknames\n",
-        "of your Pokémon? {YESNO 0}"
+        "Want me to rate the nicknames of\n",
+        "your Pokémon?"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00001",
+      "id": "msg_0480_T05R0401_TrainingHouse_Text_WinstonIntro",
       "en_US": [
-        "Which Pokémon nickname should\n",
-        "I critique, kid?"
+        "A quiet town needs a lively\n",
+        "battle now and then.\r",
+        "Want to battle?"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00002",
+      "id": "msg_0480_T05R0401_TrainingHouse_Text_After",
       "en_US": [
-        "{STRVAR_1 1, 0, 0}, is it?\n",
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_TrainingHouse_Text_EdithIntro",
+      "en_US": [
+        "Even Ghost Pokémon can land\n",
+        "a hit on my team. Try it!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_Tip",
+      "en_US": [
+        "Hello, hello!\n",
+        "I am the official Name Rater!\r",
+        "Before we begin, a little secret.\n",
+        "You don’t need me to rename\f",
+        "your Pokémon!\r",
+        "You may give a Pokémon a new\n",
+        "nickname whenever you like.\r",
+        "Just open its Summary, and press\n",
+        "A on the first page to Rename it.\r",
+        "Of course, a Pokémon from another\n",
+        "Trainer keeps the name it has.\r",
+        "Now then!"
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_StillWantRating",
+      "en_US": [
+        "Want me to rate the nicknames of\n",
+        "your Pokémon all the same?"
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0480_T05R0401_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_CritiqueWhichMonsNickname",
+      "en_US": [
+        "Which Pokémon’s nickname should\n",
+        "I critique?"
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_ISeeComeVisitAgain",
+      "en_US": [
+        "I see.\n",
+        "Do come visit again."
+      ]
+    },
+    {
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_GiveItANicerName",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, is it?\n",
         "That is a decent nickname!\r",
         "But, would you like me to give it\n",
-        "a much better name?\f",
-        "How about it? {YESNO 0}"
+        "a nicer name?\r",
+        "How about it?"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00003",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_ThatIsMerelyAnEgg",
       "en_US": [
-        "All right! Then, what shall the new\n",
-        "nickname be?\r"
+        "Now, now.\n",
+        "That is merely an Egg!"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00004",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_TrulyImpeccableName",
       "en_US": [
-        "There! From now on, this Pokémon\n",
-        "shall be known as {STRVAR_1 1, 0, 0}!\r",
-        "It is a much better name than before!\n",
-        "Don’t you agree?"
+        "{STRVAR_1 3, 0, 0}, is it?\n",
+        "That is a truly impeccable name!\r",
+        "Take good care of {STRVAR_1 3, 0, 0}!"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00005",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_WhatShallNewNicknameBe",
       "en_US": [
-        "OK.\n",
-        "Suit yourself.\r",
-        "Do come visit again if you’ve changed\n",
-        "your mind."
+        "Ah, good. Then, what shall the new\n",
+        "nickname be?"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00006",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_FromNowOnShallBeKnownAsSameName",
       "en_US": [
-        "There! From now on, this Pokémon\n",
-        "shall be known as {STRVAR_1 1, 0, 0}!\r",
-        "Not so different from before?\n",
-        "Your eyes are tricking you!\r",
-        "This one is better.\n",
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 3, 0, 0}!\r",
+        "It looks no different from before,\n",
+        "and yet, this is vastly superior!\r",
         "How fortunate for you!"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00007",
+      "id": "msg_0480_T05R0401_LavenderTown_House2_Text_FromNowOnShallBeKnownAsName",
       "en_US": [
-        "Hmm.\n",
-        "{STRVAR_1 1, 0, 0}, is it?\r",
-        "That is a truly impeccable name!\r",
-        "Take good care of {STRVAR_1 1, 0, 0}!"
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 3, 0, 0}!\r",
+        "It is a better name than before!\n",
+        "How fortunate for you!"
       ]
     },
     {
-      "id": "msg_0480_T05R0401_00008",
+      "id": "msg_0480_T05R0401_cv_unported",
       "en_US": [
-        "Huh...\n",
-        "That is merely an Egg!"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

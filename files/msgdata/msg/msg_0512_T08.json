@@ -2,131 +2,178 @@
   "key": 18191,
   "messages": [
     {
-      "id": "msg_0512_T08_00000",
+      "id": "msg_0512_T08_FuchsiaCity_Text_WheresSara",
       "en_US": [
-        "One of the Elite Four used to be\n",
-        "the Leader of Fuchsia’s Gym."
+        "Erik: Where’s Sara?\n",
+        "I said I’d meet her here."
       ]
     },
     {
-      "id": "msg_0512_T08_00001",
+      "id": "msg_0512_T08_FuchsiaCity_Text_ItemBallInThere",
       "en_US": [
-        "Koga’s daughter succeeded him as\n",
-        "the Gym Leader after he joined\f",
-        "the Elite Four."
+        "That item ball in there…\n",
+        "Were you wanting that?\r",
+        "Me, too!\n",
+        "…Huh? That’s a Pokémon?"
       ]
     },
     {
-      "id": "msg_0512_T08_00002",
+      "id": "msg_0512_T08_FuchsiaCity_Text_DidYouTrySafariGame",
       "en_US": [
-        "The Safari Zone wasn’t open\n",
-        "for a while.\r",
-        "Then it moved to Johto before\n",
-        "I knew it.\f",
-        "It’s sad...\r",
-        "It was this city’s main attraction."
+        "Did you try the Safari Game?\r",
+        "There are some rare Pokémon that\n",
+        "can only be caught there."
       ]
     },
     {
-      "id": "msg_0512_T08_00003",
+      "id": "msg_0512_T08_FuchsiaCity_Text_SafariZoneZooInFront",
+      "en_US": [
+        "The Safari Zone has a zoo in front\n",
+        "of the entrance.\r",
+        "Out back is the Safari Game for\n",
+        "catching Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0512_T08_FuchsiaCity_Text_SubstituteTutor_Retired",
+      "en_US": [
+        "I used to teach Substitute.\n",
+        "It’s a TM now: TM20. The\r",
+        "Celadon Dept. Store sells\n",
+        "it."
+      ]
+    },
+    {
+      "id": "msg_0512_T08_FuchsiaCity_Text_MyFatherIsGymLeader",
+      "en_US": [
+        "My father is the Gym Leader of\n",
+        "this town.\r",
+        "I’m training to use Poison Pokémon\n",
+        "as well as my father."
+      ]
+    },
+    {
+      "id": "msg_0512_T08_FuchsiaCity_Text_CitySign",
       "en_US": [
         "Fuchsia City\n",
-        "Happening and Passing City"
+        "Behold! It’s Passion Pink!"
       ]
     },
     {
-      "id": "msg_0512_T08_00004",
+      "id": "msg_0512_T08_FuchsiaCity_Text_SafariZoneSign",
+      "en_US": [
+        "Pokémon Paradise\n",
+        "Safari Zone"
+      ]
+    },
+    {
+      "id": "msg_0512_T08_FuchsiaCity_Text_GymSign",
       "en_US": [
         "Fuchsia City Pokémon Gym\n",
-        "Leader: Janine\f",
+        "Leader: Koga\f",
         "The Poisonous Ninja Master"
       ]
     },
     {
-      "id": "msg_0512_T08_00005",
+      "id": "msg_0512_T08_FuchsiaCity_Text_WardensHomeSign",
       "en_US": [
-        "There’s a notice here...\r",
-        "The Safari Zone is closed.\f",
-        "Instead, we have Pal Park."
+        "Safari Zone\n",
+        "Warden’s Home"
       ]
     },
     {
-      "id": "msg_0512_T08_00006",
-      "en_US": "Home of the Pal Park Warden"
-    },
-    {
-      "id": "msg_0512_T08_00007",
+      "id": "msg_0512_T08_FuchsiaCity_Text_VoltorbSign",
       "en_US": [
-        "Shard de Berry!\n",
-        "Shard de Berry!\r",
-        "Yah, yah!\n",
-        "I trade Berry for Shard.\r",
-        "If ya bring me some Shards,\n",
-        "I will give ya three Berries, yah!\r"
+        "Name: Voltorb\n",
+        "The very image of a Poké Ball."
       ]
     },
     {
-      "id": "msg_0512_T08_00008",
+      "id": "msg_0512_T08_FuchsiaCity_Text_SlowpokeSign",
       "en_US": [
-        "Shard de Berry!\n",
-        "Shard de Berry!\r",
-        "Yah, yah!\n",
-        "I trade Berry for Shard.\r",
-        "If ya bring me some Shards,\n",
-        "I will give ya three Berries, yah!\r",
-        "Which Shard will ya trade for\n",
-        "de Berry? {YESNO 0}"
+        "Name: Slowpoke\n",
+        "Friendly and very slow moving."
       ]
     },
     {
-      "id": "msg_0512_T08_00009",
+      "id": "msg_0512_T08_FuchsiaCity_Text_ChanseySign",
       "en_US": [
-        "More Shards to trade for\n",
-        "de Berries? {YESNO 0}"
+        "Name: Chansey\n",
+        "Catching one is all up to chance."
       ]
     },
     {
-      "id": "msg_0512_T08_00010",
+      "id": "msg_0512_T08_FuchsiaCity_Text_KangaskhanSign",
       "en_US": [
-        "Yah, yah!\n",
-        "Come back when ya’ve changed\f",
-        "ya mind, yah!\r"
+        "Name: Kangaskhan\r",
+        "A maternal Pokémon that raises its\n",
+        "young in a pouch on its belly."
       ]
     },
     {
-      "id": "msg_0512_T08_00011",
+      "id": "msg_0512_T08_FuchsiaCity_Text_KabutoSign",
       "en_US": [
-        "I’ll give ya de Berry set E\n",
-        "for de Red Shard, yah!\r"
+        "Name: Kabuto\n",
+        "An extremely rare Pokémon that was\f",
+        "regenerated from a fossil."
       ]
     },
     {
-      "id": "msg_0512_T08_00012",
+      "id": "msg_0512_T08_FuchsiaCity_Text_LaprasSign",
       "en_US": [
-        "I’ll give ya de Berry set F\n",
-        "for de Blue Shard, yah!\r"
+        "Name: Lapras\n",
+        "Aka the king of the seas."
       ]
     },
     {
-      "id": "msg_0512_T08_00013",
+      "id": "msg_0512_T08_FuchsiaCity_Text_SafariGameSign",
       "en_US": [
-        "I’ll give ya de Berry set G\n",
-        "for de Yellow Shard, yah!\r"
+        "Safari Game\n",
+        "Pokémon-U-Catch!"
       ]
     },
     {
-      "id": "msg_0512_T08_00014",
+      "id": "msg_0512_T08_FuchsiaCity_Text_ExoticSafariSign",
       "en_US": [
-        "I’ll give ya de Berry set H\n",
-        "for de Green Shard, yah!\r"
+        "New! Exotic Pokémon Safari\n",
+        "Pokémon from faraway regions!"
       ]
     },
     {
-      "id": "msg_0512_T08_00015",
+      "id": "msg_0512_T08_FuchsiaCity_Text_OmanyteSign",
       "en_US": [
-        "Ya already have many Berries\n",
-        "of dis set.\r",
-        "Come back when ya need more, yah!\r"
+        "Name: Omanyte\n",
+        "An extremely rare Pokémon that was\f",
+        "regenerated from a fossil."
+      ]
+    },
+    {
+      "id": "msg_0512_T08_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0512_T08_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0512_T08_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0512_T08_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0512_T08_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

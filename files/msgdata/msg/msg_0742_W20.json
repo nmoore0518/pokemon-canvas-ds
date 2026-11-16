@@ -2,18 +2,67 @@
   "key": 20279,
   "messages": [
     {
-      "id": "msg_0742_W20_00000",
+      "id": "msg_0742_W20_Route20_Text_NoraIntro",
+      "en_US": "My boyfriend gave me big pearls."
+    },
+    {
+      "id": "msg_0742_W20_Route20_Text_NoraPostBattle",
       "en_US": [
-        "Seafoam Islands\r",
-        "...Somebody put a notice\n",
-        "under the sign!\r",
-        "The Cinnabar Gym has moved here.\n",
-        "Leader: Blaine"
+        "Will my pearls grow bigger inside\n",
+        "Cloyster?"
       ]
     },
     {
-      "id": "msg_0742_W20_00001",
+      "id": "msg_0742_W20_Route20_Text_ShirleyIntro",
+      "en_US": [
+        "Seafoam is a quiet getaway.\n",
+        "I’m vacationing here."
+      ]
+    },
+    {
+      "id": "msg_0742_W20_Route20_Text_ShirleyPostBattle",
+      "en_US": [
+        "There’s a huge cavern underneath\n",
+        "this island."
+      ]
+    },
+    {
+      "id": "msg_0742_W20_Route20_Text_MistyTrainsHere",
+      "en_US": [
+        "Strong Trainers and Water Pokémon\n",
+        "are common sights in these parts.\r",
+        "They say that Misty of the\n",
+        "Cerulean Gym trains here."
+      ]
+    },
+    {
+      "id": "msg_0742_W20_Route20_Text_SeafoamIslands",
       "en_US": "Seafoam Islands"
+    },
+    {
+      "id": "msg_0742_W20_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0742_W20_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0742_W20_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0742_W20_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

@@ -1,21 +1,55 @@
 {
-    "header": "fielddata/script/scr_seq/event_R16R0301.h",
+    "header": "fielddata/script/scr_seq/event_CV_ROUTE_16_EAST.h",
     "objects": [
         {
-            "id": "obj_R16R0301_tree",
-            "spriteId": "SPRITE_TREE",
-            "movement": 0,
+            "id": "1",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1202)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1151,
+            "z": 274,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1202)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1157,
+            "z": 268,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "2643",
+            "movement": 15,
             "type": 0,
-            "eventFlag": "FLAG_MAPTEMP_010",
-            "scriptId": "std_field_cut",
-            "facingDirection": 0,
+            "eventFlag": "0x2120",
+            "scriptId": "_EV_Route16_EventScript_Snorlax + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1167,
-            "z": 264,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1151,
+            "z": 278,
             "y": 0
         }
     ],
@@ -41,5 +75,16 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [
+        {
+            "scriptId": "_EV_Route16_EventScript_CyclingRoadSign + 1",
+            "type": 0,
+            "x": 1154,
+            "z": 276,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": []
 }

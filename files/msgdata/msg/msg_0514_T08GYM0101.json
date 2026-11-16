@@ -2,142 +2,447 @@
   "key": 63847,
   "messages": [
     {
-      "id": "msg_0514_T08GYM0101_00000",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_rock",
       "en_US": [
-        "Fufufufu...\n",
-        "I’m sorry to disappoint you...\r",
-        "I’m only joking! I’m the real deal!\r",
-        "Janine of Fuchsia Gym, that’s me!\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it to Pewter!\r",
+        "We met in Oak’s lab, but here I’m a Gym\n",
+        "Leader, and you’re a challenger.\r",
+        "Show me what your Rock Pokémon can do!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00001",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_normal",
       "en_US": [
-        "Janine: I see... You have defeated\n",
-        "Koga, my father and a member of the\f",
-        "Elite Four, to come here.\r",
-        "No wonder you are strong!\r",
-        "You’ve definitely won...\n",
-        "Here’s the Soul Badge. Take it.\r"
+        "Brock: {STRVAR_1 3, 6, 0}! Good to see you again.\r",
+        "Since Oak’s lab, I’ve wondered how your\n",
+        "Normal types would do against my Rock\f",
+        "types.\r",
+        "Let’s find out!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00002",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_water",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "the Soul Badge from Janine!"
+        "Misty: Well, well. The kid from Oak’s lab.\r",
+        "A Water trainer, here to take the Water\n",
+        "Gym’s Badge? Ha!\r",
+        "Let’s see you try!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00003",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_electric",
       "en_US": [
-        "Janine: You’re so tough!\n",
-        "I have a special gift!\r",
-        "It’s Poison Jab, a powerful Poison-type\n",
-        "move that may poison its victim.\r"
+        "Lt. Surge: Ten-hut! The Electric kid\n",
+        "from Oak’s lab!\r",
+        "This is my turf, soldier. Let’s see who’s\n",
+        "packing more voltage!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00004",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_steel",
       "en_US": [
-        "Janine: I’m going to really apply\n",
-        "myself and improve my skills.\r",
-        "I want to become much better than\n",
-        "both my father and you!"
+        "Lt. Surge: The Steel kid! Told you I’d be\n",
+        "watching.\r",
+        "Let’s see if that armor holds up under\n",
+        "fire!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00005",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_grass",
       "en_US": [
-        "Yo, legend in the making!\n",
-        "Whoops! Take a good look around you.\r",
-        "The Trainers all look like the\n",
-        "Gym Leader, Janine.\r",
-        "Which of them is the real Janine?"
+        "Erika: Oh, {STRVAR_1 3, 6, 0}… Welcome. I’m so\n",
+        "glad you came.\r",
+        "I’ve been looking forward to seeing your\n",
+        "Grass Pokémon again.\r",
+        "Shall we?"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00006",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_poison",
       "en_US": [
-        "That was a great battle,\n",
-        "Trainer from Johto!"
+        "Koga: …You have come, as I knew you\n",
+        "would.\r",
+        "I have watched you from the shadows\n",
+        "since Oak’s lab.\r",
+        "Now show me your Poison in the open!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00007",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_bug",
       "en_US": [
-        "Fooled you!\n",
-        "Hahaha!\r"
+        "Koga: Fwahaha! The Bug trainer from\n",
+        "Oak’s lab.\r",
+        "Most call Bug Pokémon weak. Show me why\n",
+        "they are wrong!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00008",
-      "en_US": "Well? Wasn’t my disguise perfect?"
-    },
-    {
-      "id": "msg_0514_T08GYM0101_00009",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_psychic",
       "en_US": [
-        "Wahahaha!\r",
-        "You betcha! I’m Janine!\r"
+        "Sabrina: …I saw this battle in a vision,\n",
+        "the day we met in Oak’s lab.\r",
+        "Two Psychic trainers. Only one leaves\n",
+        "with the win."
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00010",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_fairy",
       "en_US": [
-        "That’s right, I’m a boy!\n",
-        "What’s wrong with a boy\f",
-        "dressing up as Janine?"
+        "Sabrina: We meet again, as I said we\n",
+        "would.\r",
+        "Show me whether your Fairy Pokémon\n",
+        "trust you as much as I foresaw."
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00011",
+      "id": "msg_0514_T08GYM0101_cv_mentor_prebattle_fire",
       "en_US": [
-        "Fufufu!\r",
-        "I’m Janine, the Gym Leader!\f",
-        "Wait, no I’m not! Gotcha!\r"
+        "Blaine: Hah! Quiz! Who’s the Fire trainer\n",
+        "I met in Oak’s lab?\r",
+        "Answer: you! Now let’s see if you can\n",
+        "take the heat!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00012",
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_KogaIntro",
       "en_US": [
-        "Fooled you!\n",
-        "Hahaha!\r"
+        "Koga: Fwahahaha!\r",
+        "A mere child like you dares to\n",
+        "challenge me?\r",
+        "The very idea makes me shiver\n",
+        "with mirth!\r",
+        "Very well, I shall show you true\n",
+        "terror as a ninja master.\r",
+        "Poison brings steady doom.\n",
+        "Sleep renders foes helpless.\r",
+        "Despair to the creeping horror of\n",
+        "Poison-type Pokémon!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00013",
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_GymGuyAdvice",
       "en_US": [
-        "It’s so fun to dress up as Janine,\n",
-        "our idol!"
+        "Yo!\n",
+        "Champ in the making!\r",
+        "Fuchsia Gym is a tricked-up place.\n",
+        "It’s riddled with invisible walls!\r",
+        "Koga might appear close, but he’s\n",
+        "blocked off.\r",
+        "You have to find gaps in the walls\n",
+        "to reach him."
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00014",
+      "id": "msg_0514_T08GYM0101_GymAides_Text_FuchsiaCity",
       "en_US": [
-        "I’m Janine!\n",
-        "How did you know I was real?\f",
-        "Let’s battle!\r"
+        "Prof. Oak’s Aide here!\n",
+        "Koga’s Gym is full of walls you\f",
+        "can’t see!\r",
+        "Challengers bump around looking for\n",
+        "the way through, and it wears them\f",
+        "out before they reach the Leader.\r",
+        "Sneaky… but very ninja!"
       ]
     },
     {
-      "id": "msg_0514_T08GYM0101_00015",
-      "en_US": "Or not!\r"
-    },
-    {
-      "id": "msg_0514_T08GYM0101_00016",
-      "en_US": "I feel stronger dressing up as Janine."
-    },
-    {
-      "id": "msg_0514_T08GYM0101_00017",
-      "en_US": "Fuchsia City Pokémon Gym"
-    },
-    {
-      "id": "msg_0514_T08GYM0101_00018",
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_GymStatue",
       "en_US": [
-        "Fuchsia City Pokémon Gym\r",
-        "Leader: Janine\n",
-        "Certified Trainer!\f",
-        "{STRVAR_1 3, 0, 0}"
+        "Fuchsia Pokémon Gym\n",
+        "Leader: Koga\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_GymGuyPostVictory",
+      "en_US": [
+        "It’s amazing how ninja can terrify,\n",
+        "even now!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymAides_Text_FuchsiaCityAfter",
+      "en_US": [
+        "With the Soul Badge, your Gym PC\n",
+        "sells Invisible Walls.\r",
+        "You’ll see them while decorating,\n",
+        "but challengers won’t. Build a maze…\f",
+        "just leave them a way through!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_GymStatuePlayerWon",
+      "en_US": [
+        "Fuchsia Pokémon Gym\n",
+        "Leader: Koga\r",
+        "Winning Trainers:\n",
+        "{STRVAR_1 3, 7, 0}, {STRVAR_1 3, 6, 0}"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_KogaPostBattle",
+      "en_US": [
+        "When afflicted by Toxic, a Pokémon\n",
+        "suffers more and more.\r",
+        "It suffers worsening damage as the\n",
+        "battle wears on!\r",
+        "It will surely terrorize foes!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_KogaExplainSoulBadge",
+      "en_US": [
+        "Now that you have the Soulbadge,\n",
+        "the Defense of your Pokémon rises.\r",
+        "It also lets you Surf outside of\n",
+        "battle.\r",
+        "Ah!\n",
+        "Take this, too!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_ReceivedTM06FromKoga",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM06\n",
+        "from Koga."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_KogaExplainTM06",
+      "en_US": [
+        "Sealed within that TM06 lies\n",
+        "Toxic!\r",
+        "It is a secret technique dating\n",
+        "back some four hundred years."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymHack_Text_KogaSilverCap",
+      "en_US": [
+        "Koga: Fwahahaha!\n",
+        "The League bids me give you this."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_FuchsiaCity_Gym_Text_MakeSpaceForThis",
+      "en_US": "Make space for this, child!"
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymHack_Text_KogaAbilityCapsule",
+      "en_US": [
+        "And this is my own gift.\n",
+        "A ninja’s secret!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymHack_Text_KogaAbilityCapsuleAfter",
+      "en_US": [
+        "An Ability Capsule switches a\n",
+        "Pokémon to its other Ability.\r",
+        "A foe who thinks he knows your\n",
+        "Pokémon is a foe already beaten."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymCandidate_Text_GuardItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, no move is\f",
+        "super effective against it.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_GymCandidate_Text_EdgeItemExplain",
+      "en_US": [
+        "When a Pokémon holds the\n",
+        "{STRVAR_1 3, 0, 0}, its moves always\f",
+        "hit for at least normal damage.\r",
+        "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_Outfits_Text_ReceivedGymUniform",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a\n",
+        "{STRVAR_1 3, 0, 0} Gym Uniform!"
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_Outfits_Text_PutInWardrobe",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
+        "upstairs."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
+      "id": "msg_0514_T08GYM0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

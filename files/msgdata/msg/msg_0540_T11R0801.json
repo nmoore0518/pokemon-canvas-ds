@@ -2,34 +2,31 @@
   "key": 42095,
   "messages": [
     {
-      "id": "msg_0540_T11R0801_00000",
+      "id": "msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople",
       "en_US": [
         "My daughter likes to mimic people.\n",
-        "Her mimicry has earned her the\f",
+        "It’s rather vexing.\r",
+        "Her mimicry has earned her the\n",
         "nickname Copycat around here."
       ]
     },
     {
-      "id": "msg_0540_T11R0801_00001",
+      "id": "msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered",
       "en_US": [
-        "My daughter is unique...\r",
-        "She would make friends, then her mimicry\n",
-        "would scare them away...\f",
-        "She only has a few friends."
+        "My daughter is so self-centered.\n",
+        "She has but a few friends."
       ]
     },
     {
-      "id": "msg_0540_T11R0801_00002",
-      "en_US": [
-        "She recently lost the Poké Doll that\n",
-        "a boy gave her three years ago.\r",
-        "Ever since then, she’s gotten even\n",
-        "better at mimicry..."
-      ]
+      "id": "msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_Chansey",
+      "en_US": "Chansey: Chaan! Sii!"
     },
     {
-      "id": "msg_0540_T11R0801_00003",
-      "en_US": "BLISSEY: Bliisii!"
+      "id": "msg_0540_T11R0801_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
     }
   ]
 }

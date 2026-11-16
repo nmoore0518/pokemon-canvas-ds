@@ -3,136 +3,189 @@
 #include "msgdata/msg/msg_0488_T06R0301.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's VermilionCity_PokemonFanClub_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T06R0301_000
-	ScrDef scr_seq_T06R0301_001
-	ScrDef scr_seq_T06R0301_002
-	ScrDef scr_seq_T06R0301_003
-	ScrDef scr_seq_T06R0301_004
-	ScrDef scr_seq_T06R0301_005
-	ScrDef scr_seq_T06R0301_006
-	ScrDef scr_seq_T06R0301_007
+	ScrDef VermilionCity_PokemonFanClub_EventScript_Chairman
+	ScrDef VermilionCity_PokemonFanClub_EventScript_WorkerF
+	ScrDef VermilionCity_PokemonFanClub_EventScript_Pikachu
+	ScrDef VermilionCity_PokemonFanClub_EventScript_Seel
+	ScrDef VermilionCity_PokemonFanClub_EventScript_Woman
+	ScrDef VermilionCity_PokemonFanClub_EventScript_FatMan
+	ScrDef VermilionCity_PokemonFanClub_EventScript_RulesSign1
+	ScrDef VermilionCity_PokemonFanClub_EventScript_RulesSign2
 	ScrDefEnd
-
-scr_seq_T06R0301_000:
-	PlaySE SEQ_SE_DP_SELECT
+	
+VermilionCity_PokemonFanClub_EventScript_Chairman:
 	LockAll
 	FacePlayer
-	GoToIfUnset FLAG_GOT_RARE_CANDY_FROM_FAN_CLUB_CHAIRMAN, _0044
-	BufferPlayersName 0
-	GenderMsgBox msg_0488_T06R0301_00004, msg_0488_T06R0301_00005
+	GoToIfSet 0x20E1, VermilionCity_PokemonFanClub_EventScript_AlreadyHeardStory
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_DidYouComeToHearAboutMyMons
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq VermilionCity_PokemonFanClub_EventScript_ChairmanStory
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ComeBackToHearStory
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-_0044:
-	NPCMsg msg_0488_T06R0301_00000
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _009E
-	NPCMsg msg_0488_T06R0301_00001
-	GoToIfNoItemSpace ITEM_RARE_CANDY, 1, _0093
-	CallStd std_give_item_verbose
-	SetFlag FLAG_GOT_RARE_CANDY_FROM_FAN_CLUB_CHAIRMAN
-	NPCMsg msg_0488_T06R0301_00003
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0093:
-	NPCMsg msg_0488_T06R0301_00007
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_009E:
-	NPCMsg msg_0488_T06R0301_00006
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T06R0301_001:
-	SimpleNPCMsg msg_0488_T06R0301_00008
-	End
-
-scr_seq_T06R0301_002:
-	PlaySE SEQ_SE_DP_SELECT
+	
+VermilionCity_PokemonFanClub_EventScript_WorkerF:
 	LockAll
 	FacePlayer
-	GetItemQuantity ITEM_LOST_ITEM, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _0141
-	GetItemQuantity ITEM_PASS, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _0141
-	GoToIfSet FLAG_UNK_119, _0116
-	GoToIfSet FLAG_RESTORED_POWER, _010B
-	NPCMsg msg_0488_T06R0301_00009
+	GoToIfSet FLAG_GAME_CLEAR, VermilionCity_PokemonFanClub_EventScript_WorkerFGameClear
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmanVeryVocalAboutPokemon
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-_010B:
-	NPCMsg msg_0488_T06R0301_00010
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_0116:
-	NPCMsg msg_0488_T06R0301_00011
-	HidePerson obj_T06R0301_mono_pip
-	SetFlag FLAG_HIDE_VERMILION_FAN_CLUB_LOST_ITEM
-	GiveItemNoCheck ITEM_LOST_ITEM, 1
-	SetVar VAR_UNK_4130, 1
-	ClearFlag FLAG_HIDE_VERMILION_CITY_STEVEN
-	CloseMsg
-	ReleaseAll
-	End
-
-_0141:
-	NPCMsg msg_0488_T06R0301_00013
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-scr_seq_T06R0301_003:
-	SimpleNPCMsg msg_0488_T06R0301_00014
-	End
-
-scr_seq_T06R0301_004:
-	PlaySE SEQ_SE_DP_SELECT
+	
+VermilionCity_PokemonFanClub_EventScript_Pikachu:
 	LockAll
 	FacePlayer
-	PlayCry SPECIES_BAYLEEF, 0
-	NPCMsg msg_0488_T06R0301_00016
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry SPECIES_PIKACHU, 0
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_Pikachu
+	WaitButton
 	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_Seel:
+	LockAll
+	FacePlayer
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry SPECIES_SEEL, 0
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_Seel
+	WaitButton
+	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_Woman:
+	LockAll
+	FacePlayer
+	GoToIfSet 3, VermilionCity_PokemonFanClub_EventScript_WomanSpokeToFatMan
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdoreMySeel
+	WaitButton
+	CloseMsg
+	ApplyMovement 5, Common_Movement_FaceOriginalDirection
+	WaitMovement
+	SetFlag 2
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_FatMan:
+	LockAll
+	FacePlayer
+	GoToIfSet 2, VermilionCity_PokemonFanClub_EventScript_FatManSpokeToWoman
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdmirePikachusTail
+	WaitButton
+	CloseMsg
+	ApplyMovement 6, Common_Movement_FaceOriginalDirection
+	WaitMovement
+	SetFlag 3
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_RulesSign1:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ListenPolitelyToOtherTrainers
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_RulesSign2:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_SomeoneBragsBragBack
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_AlreadyHeardStory:
+	BufferPlayersName 6
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_DidntComeToSeeAboutMonsAgain
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_ChairmanStory:
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmansStory
+	WaitButton
+	SetVar VAR_SPECIAL_RESULT, 1
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq VermilionCity_PokemonFanClub_EventScript_NoRoomForBikeVoucher
+	SetFlag 0x20E1
+	SetFlag 0x20E2
+	SetVar VAR_SPECIAL_RESULT, 1
+	BufferItemName 1, 0
+	BufferPlayersName 6
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ReceivedBikeVoucherFromChairman
+	PlayFanfare SEQ_ME_ITEM
+	WaitFanfare
+	WaitButton
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ExplainBikeVoucher
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_WorkerFGameClear:
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_ChairmanReallyAdoresHisMons
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_WomanSpokeToFatMan:
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_SeelFarMoreAttractive
+	WaitButton
+	CloseMsg
+	ApplyMovement 5, Common_Movement_FaceOriginalDirection
+	WaitMovement
+	ClearFlag 3
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_FatManSpokeToWoman:
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_PikachuTwiceAsCute
+	WaitButton
+	CloseMsg
+	ApplyMovement 6, Common_Movement_FaceOriginalDirection
+	WaitMovement
+	ClearFlag 2
+	ReleaseAll
+	End
+	
+VermilionCity_PokemonFanClub_EventScript_NoRoomForBikeVoucher:
+	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_MakeRoomForThis
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-scr_seq_T06R0301_007:
-	GoToIfSet FLAG_HIDE_VERMILION_FAN_CLUB_LOST_ITEM, _0198
-	SimpleNPCMsg msg_0488_T06R0301_00015
+_cv_stop:
+	NPCMsg msg_0488_T06R0301_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 
-_0198:
-	End
-
-scr_seq_T06R0301_005:
-	SimpleNPCMsg msg_0488_T06R0301_00017
-	End
-
-scr_seq_T06R0301_006:
-	SimpleNPCMsg msg_0488_T06R0301_00018
-	End
+	.balign 4, 0
+Common_Movement_FaceOriginalDirection:
+	EndMovement
 	.balign 4, 0

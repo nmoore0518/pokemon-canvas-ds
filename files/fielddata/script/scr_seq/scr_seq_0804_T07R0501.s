@@ -3,581 +3,671 @@
 #include "msgdata/msg/msg_0509_T07R0501.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeladonCity_GameCorner_PrizeRoom_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T07R0501_000
-	ScrDef scr_seq_T07R0501_001
-	ScrDef scr_seq_T07R0501_002
-	ScrDef scr_seq_T07R0501_003
-	ScrDef scr_seq_T07R0501_004
+	ScrDef CeladonCity_GameCorner_PrizeRoom_EventScript_BaldingMan
+	ScrDef CeladonCity_GameCorner_PrizeRoom_EventScript_OldMan
+	ScrDef CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons
+	ScrDef CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkTMs
+	ScrDef CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkItems
 	ScrDefEnd
-
-scr_seq_T07R0501_002:
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_BaldingMan:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	GoToIfSet FLAG_UNK_172, _004D
-	SetFlag FLAG_UNK_172
-	NPCMsg msg_0509_T07R0501_00002
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _00F2
-	GoTo _006D
-	End
-
-_004D:
-	NPCMsg msg_0509_T07R0501_00003
-	TouchscreenMenuHide
-	GetMenuChoice VAR_SPECIAL_RESULT
-	TouchscreenMenuShow
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _00F2
-	GoTo _006D
-	End
-
-_006D:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_FancyThatPorygon
+	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_OldMan:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_RakedItInToday
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons:
+	LockAll
+	FacePlayer
+	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
+	// TODO(gba) showcoinsbox 0, 0
+	GoTo _cv_stop
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
+	WaitButton
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeMon
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkTMs:
+	LockAll
+	FacePlayer
+	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
+	// TODO(gba) showcoinsbox 0, 0
+	GoTo _cv_stop
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
+	WaitButton
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeTM
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkItems:
+	LockAll
+	FacePlayer
+	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
+	// TODO(gba) showcoinsbox 0, 0
+	GoTo _cv_stop
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
+	WaitButton
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeItem
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_CoinCaseRequired
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeMon:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WhichPrize
+	TouchscreenMenuHide
+_cv_page_1:
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_0, 0
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_1, 1
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_2, 2
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_3, 3
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_4, 4
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_5, 5
+	ScrCmd_559 msg_0509_T07R0501_cv_more, 254
+	ScrCmd_067
+	CompareVarToValue VAR_SPECIAL_RESULT, 254
+	GoToIfEq _cv_page_2
+	GoTo _cv_page_2_end
+_cv_page_2:
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_6, 6
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_7, 7
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_8, 8
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_pokemon_prizes_9, 9
+	ScrCmd_559 msg_0509_T07R0501_cv_more, 254
+	ScrCmd_067
+	CompareVarToValue VAR_SPECIAL_RESULT, 254
+	GoToIfEq _cv_page_1
+_cv_page_2_end:
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_3
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_Abra
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_Clefairy
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_DratiniPinsir
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_ScytherDratini
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_Porygon
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeTM:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WhichPrize
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_tmprizes_0, 0
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_tmprizes_1, 1
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_tmprizes_2, 2
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_tmprizes_3, 3
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_tmprizes_4, 4
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_5
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TM13
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TM23
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TM24
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TM30
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TM35
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeItem:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_WhichPrize
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_0, 0
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_1, 1
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_2, 2
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_3, 3
+	ScrCmd_559 msg_0509_T07R0501_cv_mc_game_corner_battle_item_prizes_4, 4
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_7
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_7:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_SmokeBall
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_MiracleSeed
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_Charcoal
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_MysticWater
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_YellowFlute
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_Abra:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_ABRA
+	SetVar 0x4002, 180
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_ABRA
+	SetVar 0x4002, 120
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_Clefairy:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_CLEFAIRY
+	SetVar 0x4002, 500
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_CLEFAIRY
+	SetVar 0x4002, 750
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_DratiniPinsir:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_DRATINI
+	SetVar 0x4002, 2800
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_PINSIR
+	SetVar 0x4002, 2500
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ScytherDratini:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_SCYTHER
+	SetVar 0x4002, 5500
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_DRATINI
+	SetVar 0x4002, 4600
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_Porygon:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_PORYGON
+	SetVar 0x4002, 9999
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	SetVar 0x4001, SPECIES_PORYGON
+	SetVar 0x4002, 6500
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange:
+	// TODO(gba) hidecoinsbox 
+	GoTo _cv_stop
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TM13:
+	SetVar 0x4001, ITEM_TM13
+	SetVar 0x4002, 4000
+	BufferMoveName 1, MOVE_ICE_BEAM
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TM23:
+	SetVar 0x4001, ITEM_TM23
+	SetVar 0x4002, 3500
+	BufferMoveName 1, MOVE_IRON_TAIL
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TM24:
+	SetVar 0x4001, ITEM_TM24
+	SetVar 0x4002, 4000
+	BufferMoveName 1, MOVE_THUNDERBOLT
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TM30:
+	SetVar 0x4001, ITEM_TM30
+	SetVar 0x4002, 4500
+	BufferMoveName 1, MOVE_SHADOW_BALL
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TM35:
+	SetVar 0x4001, ITEM_TM35
+	SetVar 0x4002, 4000
+	BufferMoveName 1, MOVE_FLAMETHROWER
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_SmokeBall:
+	SetVar 0x4001, ITEM_SMOKE_BALL
+	SetVar 0x4002, 800
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_MiracleSeed:
+	SetVar 0x4001, ITEM_MIRACLE_SEED
+	SetVar 0x4002, 1000
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_Charcoal:
+	SetVar 0x4001, ITEM_CHARCOAL
+	SetVar 0x4002, 1000
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_MysticWater:
+	SetVar 0x4001, ITEM_MYSTIC_WATER
+	SetVar 0x4002, 1000
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_YellowFlute:
+	SetVar 0x4001, ITEM_YELLOW_FLUTE
+	SetVar 0x4002, 1600
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon:
+	BufferSpeciesName 0, 0x4001, 0, 0
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_8
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_9
+_cv_yes_8:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_9:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	// TODO(gba) checkcoins VAR_RESULT
+	GoTo _cv_stop
+	CompareVarToVar VAR_SPECIAL_RESULT, 0x4002
+	GoToIfLt CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins
+	CompareVarToValue 0x4001, SPECIES_ABRA
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GiveAbra
+	CompareVarToValue 0x4001, SPECIES_CLEFAIRY
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GiveClefairy
+	CompareVarToValue 0x4001, SPECIES_DRATINI
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GiveDratini
+	CompareVarToValue 0x4001, SPECIES_SCYTHER
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GiveScyther
+	CompareVarToValue 0x4001, SPECIES_PORYGON
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GivePorygon
+	CompareVarToValue 0x4001, SPECIES_PINSIR
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_GivePinsir
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_10
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_11
+_cv_yes_10:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_11:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem:
+	BufferItemName 0, 0x4001
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_12
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_13
+_cv_yes_12:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_13:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins:
+	NPCMsg msg_0509_T07R0501_CeladonCity_GameCorner_PrizeRoom_Text_NeedMoreCoins
+	WaitButton
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GiveAbra:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	GiveMon 0x4001, 9, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	GiveMon 0x4001, 7, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GiveClefairy:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	GiveMon 0x4001, 8, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	GiveMon 0x4001, 12, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GiveDratini:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	GiveMon 0x4001, 18, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	GiveMon 0x4001, 24, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GiveScyther:
+	GiveMon 0x4001, 25, 0, 0, 0, VAR_SPECIAL_RESULT
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GivePorygon:
+	// TODO(gba) #ifdef FIRERED
+	GoTo _cv_stop
+	GiveMon 0x4001, 26, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #else 
+	GoTo _cv_stop
+	// TODO(gba) #ifdef LEAFGREEN
+	GoTo _cv_stop
+	GiveMon 0x4001, 18, 0, 0, 0, VAR_SPECIAL_RESULT
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	// TODO(gba) #endif 
+	GoTo _cv_stop
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_GivePinsir:
+	GiveMon 0x4001, 18, 0, 0, 0, VAR_SPECIAL_RESULT
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize:
+	BufferItemName 0, 0x4001
+	// TODO(gba) checkcoins VAR_RESULT
+	GoTo _cv_stop
+	CompareVarToVar VAR_SPECIAL_RESULT, 0x4002
+	GoToIfLt CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins
+	HasSpaceForItem 0x4001, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull
+	// TODO(gba) removecoins VAR_TEMP_2
+	GoTo _cv_stop
+	// TODO(gba) updatecoinsbox 
+	GoTo _cv_stop
+	GiveItem 0x4001, 1, VAR_SPECIAL_RESULT
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull:
+	NPCMsg msg_0509_T07R0501_gText_TooBadBagIsFull
+	WaitButton
+	// TODO(gba) hidecoinsbox 
+	GoTo _cv_stop
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty:
+	// TODO(gba) removecoins VAR_TEMP_2
+	GoTo _cv_stop
+	// TODO(gba) updatecoinsbox 
+	GoTo _cv_stop
+	BufferSpeciesName 0, 0x4001, 0, 0
+	PlayFanfare SEQ_ME_LVUP
+	BufferPlayersName 6
+	NPCMsg msg_0509_T07R0501_gText_PlayerObtainedTheMon
+	WaitFanfare
+	NPCMsg msg_0509_T07R0501_gText_NicknameThisPokemon
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_14
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_15
+_cv_yes_14:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_15:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC:
+	// TODO(gba) removecoins VAR_TEMP_2
+	GoTo _cv_stop
+	// TODO(gba) updatecoinsbox 
+	GoTo _cv_stop
+	BufferSpeciesName 0, 0x4001, 0, 0
+	PlayFanfare SEQ_ME_LVUP
+	BufferPlayersName 6
+	NPCMsg msg_0509_T07R0501_gText_PlayerObtainedTheMon
+	WaitFanfare
+	NPCMsg msg_0509_T07R0501_gText_NicknameThisPokemon
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_16
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_17
+_cv_yes_16:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_17:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
+	Call Common_EventScript_NameReceivedBoxMon
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
+	CloseMsg
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull:
+	NPCMsg msg_0509_T07R0501_gText_NoMoreRoomForPokemon
+	WaitButton
+	// TODO(gba) hidecoinsbox 
+	GoTo _cv_stop
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon:
+	// TODO(gba) getpartysize 
+	GoTo _cv_stop
+	SubVar VAR_SPECIAL_RESULT, 1
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	Call Common_EventScript_NameReceivedPartyMon
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	End
+	
+CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC:
+	Call Common_EventScript_TransferredToPC
+	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	End
+	
+Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	PartySelectUI
-	GetPartySelection VAR_SPECIAL_x8000
-	RestoreOverworld
-	FadeScreen 6, 1, 1, RGB_BLACK
+	SetVar 0x8004, 0
+	NicknameInput 0x8004, VAR_SPECIAL_RESULT
+	LockAll
+	FacePlayer
+	Return
+	
+Common_EventScript_NameReceivedPartyMon:
+	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	Compare VAR_SPECIAL_x8000, 255
-	GoToIfEq _00F2
-	GetPartyMonSpecies VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
-	Compare VAR_SPECIAL_x8001, 0
-	GoToIfEq _00FD
-	GetHiddenPowerType VAR_SPECIAL_x8000, VAR_SPECIAL_x8004
-	Compare VAR_SPECIAL_x8004, 65535
-	GoToIfEq _00E7
-	MonHasMove VAR_SPECIAL_RESULT, MOVE_HIDDEN_POWER, VAR_SPECIAL_x8000
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0108
-	BufferTypeName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00005
-	GoTo _0118
-	End
+	NicknameInput 0x8004, VAR_SPECIAL_RESULT
+	Return
+	
+Common_EventScript_TransferredToPC:
+	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
+	GoTo _cv_stop
+	BufferSpeciesName 1, 0x5024, 0, 0
+	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
+	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
+	Return
+	
+EventScript_TransferredSomeonesPC:
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq EventScript_SomeonesPCBoxFull
+	NPCMsg msg_0509_T07R0501_gText_PkmnTransferredSomeonesPC
+	WaitButton
+	Return
+	
+EventScript_TransferredLanettesPC:
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq EventScript_LanettesPCBoxFull
+	NPCMsg msg_0509_T07R0501_gText_PkmnTransferredLanettesPC
+	WaitButton
+	Return
+	
+EventScript_SomeonesPCBoxFull:
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
+	GoTo _cv_stop
+	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
+	GoTo _cv_stop
+	NPCMsg msg_0509_T07R0501_gText_PkmnTransferredSomeonesPCBoxFull
+	WaitButton
+	Return
+	
+EventScript_LanettesPCBoxFull:
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
+	GoTo _cv_stop
+	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
+	GoTo _cv_stop
+	NPCMsg msg_0509_T07R0501_gText_PkmnTransferredLanettesPCBoxFull
+	WaitButton
+	Return
 
-_00E7:
-	NPCMsg msg_0509_T07R0501_00008
-	GoTo _0118
-	End
-
-_00F2:
-	NPCMsg msg_0509_T07R0501_00006
-	GoTo _0118
-	End
-
-_00FD:
-	NPCMsg msg_0509_T07R0501_00007
-	GoTo _0118
-	End
-
-_0108:
-	BufferTypeName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00004
-	GoTo _0118
-	End
-
-_0118:
+_cv_stop:
+	NPCMsg msg_0509_T07R0501_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-
-scr_seq_T07R0501_003:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	ScriptOverlayCmd 3, 0
-	NPCMsg msg_0509_T07R0501_00009
-	TouchscreenMenuHide
-	ScrCmd_116 0, 20, 2
-_0138:
-	MenuInit 1, 1, 0, 1, VAR_TEMP_x4000
-	MenuItemAdd 21, 255, 0
-	MenuItemAdd 22, 255, 1
-	MenuItemAdd 20, 255, 2
-	MenuExec
-	Switch VAR_TEMP_x4000
-	Case 0, _0180
-	Case 1, _021C
-	GoTo _0A43
-
-_0180:
-	MenuInit 1, 1, 0, 1, VAR_TEMP_x4000
-	MenuItemAdd 23, 255, 0
-	MenuItemAdd 24, 255, 1
-	MenuItemAdd 25, 255, 2
-	MenuItemAdd 26, 255, 3
-	MenuItemAdd 27, 255, 4
-	MenuItemAdd 28, 255, 5
-	MenuItemAdd 20, 255, 6
-	MenuExec
-	Switch VAR_TEMP_x4000
-	Case 0, _028E
-	Case 1, _0319
-	Case 2, _03A4
-	Case 3, _042F
-	Case 4, _04BA
-	Case 5, _0545
-	GoTo _0138
-
-_021C:
-	MenuInit 1, 1, 0, 1, VAR_TEMP_x4000
-	MenuItemAdd 29, 255, 0
-	MenuItemAdd 30, 255, 1
-	MenuItemAdd 31, 255, 2
-	MenuItemAdd 32, 255, 3
-	MenuItemAdd 20, 255, 4
-	MenuExec
-	Switch VAR_TEMP_x4000
-	Case 0, _05D0
-	Case 1, _065B
-	Case 2, _06E6
-	Case 3, _0771
-	GoTo _0138
-
-_028E:
-	GoToIfNoItemSpace ITEM_TM58, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _02D7
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_02D7:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 2000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 2000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_0319:
-	GoToIfNoItemSpace ITEM_TM32, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0362
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_0362:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 4000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 4000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_03A4:
-	GoToIfNoItemSpace ITEM_TM10, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _03ED
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_03ED:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 6000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 6000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_042F:
-	GoToIfNoItemSpace ITEM_TM29, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0478
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_0478:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 10000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 10000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_04BA:
-	GoToIfNoItemSpace ITEM_TM74, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0503
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_0503:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 10000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 10000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_0545:
-	GoToIfNoItemSpace ITEM_TM68, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _058E
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _0180
-_058E:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 15000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 15000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _0180
-	End
-
-_05D0:
-	GoToIfNoItemSpace ITEM_SILK_SCARF, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0619
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _021C
-_0619:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 1000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 1000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _021C
-	End
-
-_065B:
-	GoToIfNoItemSpace ITEM_WIDE_LENS, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _06A4
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _021C
-_06A4:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 1000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 1000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _021C
-	End
-
-_06E6:
-	GoToIfNoItemSpace ITEM_ZOOM_LENS, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _072F
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _021C
-_072F:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 1000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 1000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _021C
-	End
-
-_0771:
-	GoToIfNoItemSpace ITEM_METRONOME, 1, _0990
-	BufferItemName 0, VAR_SPECIAL_x8004
-	NPCMsg msg_0509_T07R0501_00012
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _07BA
-	CloseMsg
-	Compare VAR_SPECIAL_RESULT, 1
-	GoToIfEq _021C
-_07BA:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 1000
-	GoToIfLt _0A31
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	TakeCoins 1000
-	ScrCmd_118 0
-	BufferItemName 0, VAR_SPECIAL_x8004
-	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
-	BufferPocketName 1, VAR_SPECIAL_RESULT
-	NPCMsg msg_0509_T07R0501_00019
-	GiveItem VAR_SPECIAL_x8004, 1, VAR_SPECIAL_RESULT
-	GoTo _021C
-	End
-
-scr_seq_T07R0501_004:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	ScriptOverlayCmd 3, 0
-	NPCMsg msg_0509_T07R0501_00018
-	TouchscreenMenuHide
-	ScrCmd_116 0, 20, 2
-_0814:
-	MenuInit 1, 1, 0, 1, VAR_TEMP_x4000
-	MenuItemAdd 33, 255, 0
-	MenuItemAdd 34, 255, 1
-	MenuItemAdd 35, 255, 2
-	MenuItemAdd 20, 255, 3
-	MenuExec
-	Switch VAR_TEMP_x4000
-	Case 0, _0871
-	Case 1, _087D
-	Case 2, _0889
-	GoTo _0A43
-
-_0871:
-	SetOrCopyVar VAR_TEMP_x4002, 122
-	GoTo _0895
-
-_087D:
-	SetOrCopyVar VAR_TEMP_x4002, 133
-	GoTo _0895
-
-_0889:
-	SetOrCopyVar VAR_TEMP_x4002, 137
-	GoTo _0895
-
-_0895:
-	GetPartyCount VAR_SPECIAL_x8005
-	Compare VAR_SPECIAL_x8005, 6
-	GoToIfNe _08B3
-	NPCMsg msg_0509_T07R0501_00015
-	WaitButton
-	CloseMsg
-	GoTo _0A52
-
-_08B3:
-	BufferSpeciesName 1, VAR_TEMP_x4002, 0, 0
-	NPCMsg msg_0509_T07R0501_00016
-	GetMenuChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _08D7
-	CloseMsg
-	GoTo _0814
-
-_08D7:
-	Compare VAR_TEMP_x4002, 122
-	GoToIfNe _08FB
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 3333
-	GoToIfLt _0A3A
-	GoTo _0930
-
-_08FB:
-	Compare VAR_TEMP_x4002, 133
-	GoToIfNe _091F
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 6666
-	GoToIfLt _0A3A
-	GoTo _0930
-
-_091F:
-	GetCoinAmount VAR_SPECIAL_x8006
-	Compare VAR_SPECIAL_x8006, 9999
-	GoToIfLt _0A3A
-_0930:
-	NPCMsg msg_0509_T07R0501_00013
-	PlaySE SEQ_SE_DP_REGI
-	GiveMon VAR_TEMP_x4002, 15, 0, 0, 0, VAR_SPECIAL_RESULT
-	BufferPlayersName 0
-	BufferSpeciesName 1, VAR_TEMP_x4002, 0, 0
-	NPCMsg msg_0509_T07R0501_00017
-	Compare VAR_TEMP_x4002, 122
-	GoToIfNe _096A
-	TakeCoins 3333
-	GoTo _0985
-
-_096A:
-	Compare VAR_TEMP_x4002, 133
-	GoToIfNe _0981
-	TakeCoins 6666
-	GoTo _0985
-
-_0981:
-	TakeCoins 9999
-_0985:
-	ScrCmd_118 0
-	GoTo _0814
-	End
-
-_0990:
-	NPCMsg msg_0509_T07R0501_00014
-	CloseMsg
-_0995:
-	Compare VAR_SPECIAL_x8004, 385
-	GoToIfNe _09AE
-	GoTo _0180
-
-_09A8:
-	GoTo _0A31
-
-_09AE:
-	Compare VAR_SPECIAL_x8004, 359
-	GoToIfNe _09C7
-	GoTo _0180
-
-_09C1:
-	GoTo _0A31
-
-_09C7:
-	Compare VAR_SPECIAL_x8004, 337
-	GoToIfNe _09E0
-	GoTo _0180
-
-_09DA:
-	GoTo _0A31
-
-_09E0:
-	Compare VAR_SPECIAL_x8004, 356
-	GoToIfNe _09F9
-	GoTo _0180
-
-_09F3:
-	GoTo _0A31
-
-_09F9:
-	Compare VAR_SPECIAL_x8004, 401
-	GoToIfNe _0A12
-	GoTo _0180
-
-_0A0C:
-	GoTo _0A31
-
-_0A12:
-	Compare VAR_SPECIAL_x8004, 395
-	GoToIfNe _0A2B
-	GoTo _0180
-
-_0A25:
-	GoTo _0A31
-
-_0A2B:
-	GoTo _021C
-
-_0A31:
-	NPCMsg msg_0509_T07R0501_00011
-	GoTo _0995
-
-_0A3A:
-	NPCMsg msg_0509_T07R0501_00011
-	GoTo _0814
-
-_0A43:
-	NPCMsg msg_0509_T07R0501_00010
-	WaitButton
-	CloseMsg
-	GoTo _0A52
-	End
-
-_0A52:
-	ScrCmd_117
-	TouchscreenMenuShow
-	ScriptOverlayCmd 3, 1
-	ReleaseAll
-	End
-
-scr_seq_T07R0501_000:
-	SimpleNPCMsg msg_0509_T07R0501_00000
-	End
-
-scr_seq_T07R0501_001:
-	SimpleNPCMsg msg_0509_T07R0501_00001
 	End
 	.balign 4, 0

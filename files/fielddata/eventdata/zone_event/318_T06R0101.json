@@ -2,36 +2,36 @@
     "header": "fielddata/script/scr_seq/event_T06R0101.h",
     "objects": [
         {
-            "id": "obj_T06R0101_fishing_2",
+            "id": "1",
             "spriteId": "SPRITE_FISHING_2",
-            "movement": 0,
+            "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T06R0101_000 + 1",
+            "scriptId": "_EV_VermilionCity_House1_EventScript_FishingGuru + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 5,
-            "z": 5,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 6,
             "y": 0
         },
         {
-            "id": "obj_T06R0101_babyboy1_2",
-            "spriteId": "SPRITE_BABYBOY1_2",
-            "movement": 0,
+            "id": "2",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 16,
             "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T06R0101_001 + 1",
-            "facingDirection": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Vivian + 1",
+            "facingDirection": 2,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
+            "x": 9,
             "z": 5,
             "y": 0
         }
@@ -44,5 +44,7 @@
             "anchor": 0,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

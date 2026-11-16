@@ -2,38 +2,30 @@
     "header": "fielddata/script/scr_seq/event_R07.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_R07_000 + 1",
-            "type": 1,
+            "scriptId": "_EV_Route7_EventScript_UndergroundPathSign + 1",
+            "type": 0,
             "x": 1260,
             "z": 248,
             "y": 0,
             "dir": 4
-        },
-        {
-            "scriptId": "_EV_scr_seq_R07_001 + 1",
-            "type": 0,
-            "x": 1261,
-            "z": 247,
-            "y": 0,
-            "dir": 0
         }
     ],
     "objects": [
         {
-            "id": "obj_R07_monstarball",
-            "spriteId": "SPRITE_MONSTARBALL",
-            "movement": 0,
+            "id": "1",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
             "type": 0,
-            "eventFlag": "FLAG_HIDE_ITEMBALL_R07_MENTAL_HERB",
-            "scriptId": "std_itemball_r07_mental_herb",
-            "facingDirection": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PaintWorld_EventScript_Figure + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1263,
-            "z": 226,
+            "x": 1268,
+            "z": 245,
             "y": 0
         }
     ],
@@ -52,5 +44,6 @@
             "anchor": 1,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

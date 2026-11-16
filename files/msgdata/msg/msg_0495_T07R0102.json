@@ -2,85 +2,76 @@
   "key": 17418,
   "messages": [
     {
-      "id": "msg_0495_T07R0102_00000",
+      "id": "msg_0495_T07R0102_CeladonCity_DepartmentStore_2F_Text_BuyReviveForLongOutings",
       "en_US": [
-        "I just recently became a Trainer.\f",
-        "My son encouraged me to do it.\r",
-        "I’m impressed by the selection of\n",
-        "convenient items."
+        "For long outings, you should buy\n",
+        "Revive."
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00001",
+      "id": "msg_0495_T07R0102_gText_HowMayIServeYou",
       "en_US": [
-        "My dad’s having a hard time learning\n",
-        "the names of items and how they are\f",
-        "supposed to be used..."
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00002",
+      "id": "msg_0495_T07R0102_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0495_T07R0102_CeladonCity_DepartmentStore_2F_Text_LanceComesToBuyCapes",
       "en_US": [
-        "Top Grade Items for Trainers!\n",
-        "2F: Trainer’s Market"
+        "We have a customer, Lance, who\n",
+        "occasionally comes.\r",
+        "He always buys capes.\r",
+        "I wonder… Does he have many\n",
+        "identical capes at home?"
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00003",
-      "en_US": "Wake: Hmm... Hmm... Humm...\r"
-    },
-    {
-      "id": "msg_0495_T07R0102_00004",
-      "en_US": "Wake: Ha! This is quite a mask...\r"
-    },
-    {
-      "id": "msg_0495_T07R0102_00005",
+      "id": "msg_0495_T07R0102_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "Wake: Huh? You talking to me?\r",
-        "Your eyes...are on my\n",
-        "Crasher Wake mask?\r",
-        "No, no, no!\n",
-        "I can never let it go!\r",
-        "...\n",
-        "Huh? That’s not it?\f",
-        "You want the other mask?\r",
-        "Hmm.\n",
-        "OK.\r"
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00006",
+      "id": "msg_0495_T07R0102_CeladonCity_DepartmentStore_2F_Text_FloorSign",
       "en_US": [
-        "Wake: What?\n",
-        "That’s not enough?\r",
-        "You’re quite a negotiator for your\n",
-        "age... All right, I’ll give you this, too!\r"
+        "Top-Grade Items for Trainers!\r",
+        "2F: Trainer’S Market"
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00007",
+      "id": "msg_0495_T07R0102_PaintWorld_Text_FigureSketch",
       "en_US": [
-        "Wake: ...\r",
-        "Arrr, all right, all right! I will give you\n",
-        "this much-valued one as well!\r"
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00008",
+      "id": "msg_0495_T07R0102_PaintWorld_Text_FigureMega",
       "en_US": [
-        "Wake: It’s OK.\n",
-        "I’ve already paid for you.\r",
-        "Presents for you from the one\n",
-        "who wears masks the best.\f",
-        "Don’t be shy.\f",
-        "Ha ha ha!\r"
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
       ]
     },
     {
-      "id": "msg_0495_T07R0102_00009",
+      "id": "msg_0495_T07R0102_PaintWorld_Text_Dissolve",
       "en_US": [
-        "Wake: Hmm... Hmm... Humm...\r",
-        "Ha! This is quite a mask..."
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0495_T07R0102_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -3,41 +3,48 @@
 #include "msgdata/msg/msg_0540_T11R0801.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's SaffronCity_CopycatsHouse_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T11R0801_000
-	ScrDef scr_seq_T11R0801_001
-	ScrDef scr_seq_T11R0801_002
+	ScrDef SaffronCity_CopycatsHouse_1F_EventScript_CopycatsDad
+	ScrDef SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom
+	ScrDef SaffronCity_CopycatsHouse_1F_EventScript_Chansey
 	ScrDefEnd
-
-scr_seq_T11R0801_000:
-	SimpleNPCMsg msg_0540_T11R0801_00000
-	End
-
-scr_seq_T11R0801_001:
+	
+SaffronCity_CopycatsHouse_1F_EventScript_CopycatsDad:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	GoToIfSet FLAG_RESTORED_POWER, _003F
-	NPCMsg msg_0540_T11R0801_00001
+	NPCMsg msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-_003F:
-	NPCMsg msg_0540_T11R0801_00002
+	
+SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T11R0801_002:
-	PlaySE SEQ_SE_DP_SELECT
+	
+SaffronCity_CopycatsHouse_1F_EventScript_Chansey:
 	LockAll
 	FacePlayer
-	PlayCry SPECIES_BLISSEY, 0
-	NPCMsg msg_0540_T11R0801_00003
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry SPECIES_CHANSEY, 0
+	NPCMsg msg_0540_T11R0801_SaffronCity_CopycatsHouse_1F_Text_Chansey
+	WaitButton
 	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+
+_cv_stop:
+	NPCMsg msg_0540_T11R0801_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll

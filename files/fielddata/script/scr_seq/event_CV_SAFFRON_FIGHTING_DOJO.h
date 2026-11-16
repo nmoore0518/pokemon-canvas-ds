@@ -1,0 +1,17 @@
+#ifndef SCR_SEQ_CV_SAFFRON_FIGHTING_DOJO_H_
+#define SCR_SEQ_CV_SAFFRON_FIGHTING_DOJO_H_
+
+#define _EV_SaffronCity_Dojo_EventScript_Hitoshi 0
+#define _EV_SaffronCity_Dojo_EventScript_MasterKoichi 1
+#define _EV_SaffronCity_Dojo_EventScript_HitmonleeBall 2
+#define _EV_SaffronCity_Dojo_EventScript_HitmonchanBall 3
+#define _EV_TypeTutor_EventScript_Fighting 4
+#define _EV_SaffronCity_Dojo_EventScript_Statue 5
+#define _EV_SaffronCity_Dojo_EventScript_LeftScroll 6
+#define _EV_SaffronCity_Dojo_EventScript_RightScroll 7
+#define _EV_SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft 8
+#define _EV_SaffronCity_Dojo_EventScript_TriggerMasterBattleRight 9
+
+#define LOCALID_KARATE_MASTER 5
+
+#endif

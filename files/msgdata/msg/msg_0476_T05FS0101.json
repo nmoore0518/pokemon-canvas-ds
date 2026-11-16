@@ -2,21 +2,50 @@
   "key": 20465,
   "messages": [
     {
-      "id": "msg_0476_T05FS0101_00000",
+      "id": "msg_0476_T05FS0101_gText_HowMayIServeYou",
       "en_US": [
-        "Repel is a necessity if you are\n",
-        "going to explore a cave.\r",
-        "Even though I like exploring, I still\n",
-        "haven’t made it to all the caves."
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0476_T05FS0101_00001",
+      "id": "msg_0476_T05FS0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0476_T05FS0101_LavenderTown_Mart_Text_SearchingForStatRaiseItems",
       "en_US": [
-        "I heard about a craftsman who\n",
-        "makes custom Poké Balls in the\f",
-        "Johto town of Azalea.\r",
-        "I wish I had some."
+        "I’m searching for items that raise\n",
+        "the stats of Pokémon.\r",
+        "They’re effective over the course\n",
+        "of a single battle.\r",
+        "X Attack, X Defend, X Speed, \n",
+        "and X Special are what I’m after.\r",
+        "Do you know where I can get them?"
+      ]
+    },
+    {
+      "id": "msg_0476_T05FS0101_LavenderTown_Mart_Text_DidYouBuyRevives",
+      "en_US": [
+        "Did you buy some Revives?\n",
+        "They revive any fainted Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0476_T05FS0101_LavenderTown_Mart_Text_TrainerDuosCanChallengeYou",
+      "en_US": [
+        "Sometimes, a Trainer duo will\n",
+        "challenge you with two Pokémon\f",
+        "at the same time.\r",
+        "If that happens, you have to send\n",
+        "out two Pokémon to battle, too."
+      ]
+    },
+    {
+      "id": "msg_0476_T05FS0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

@@ -3,142 +3,540 @@
 #include "msgdata/msg/msg_0499_T07R0106.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeladonCity_DepartmentStore_Roof_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T07R0106_000
-	ScrDef scr_seq_T07R0106_001
-	ScrDef scr_seq_T07R0106_002
-	ScrDef scr_seq_T07R0106_003
+	ScrDef CeladonCity_DepartmentStore_Roof_EventScript_CooltrainerM
+	ScrDef CeladonCity_DepartmentStore_Roof_EventScript_ThirstyGirl
+	ScrDef CeladonCity_DepartmentStore_Roof_EventScript_FloorSign
+	ScrDef CeladonCity_DepartmentStore_Roof_EventScript_VendingMachine
 	ScrDefEnd
-
-scr_seq_T07R0106_000:
-	SimpleNPCMsg msg_0499_T07R0106_00000
-	End
-
-scr_seq_T07R0106_001:
-	SimpleNPCMsg msg_0499_T07R0106_00001
-	End
-
-scr_seq_T07R0106_002:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_CooltrainerM:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0499_T07R0106_00002
+	FacePlayer
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_MySisterIsImmature
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T07R0106_003:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ThirstyGirl:
+	LockAll
+	FacePlayer
+	Call CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinks
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AfterDrinks
+	Call CeladonCity_DepartmentStore_Roof_EventScript_CheckPlayerHasDrinks
+	CompareVarToValue 0x4001, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_IWantDrink
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_AskGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_FloorSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0499_T07R0106_00003
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_FloorSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_VendingMachine:
+	LockAll
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave
 	ShowMoneyBox 20, 2
-	GoTo _005E
-
-_005E:
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinks:
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x212C, CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
+	GoToIfUnset 0x212D, CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
+	GoToIfUnset 0x212E, CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
+	SetVar VAR_SPECIAL_RESULT, 1
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AfterDrinks:
+	// TODO(gba) special DrinkMachine_FixFlag
+	GoTo _cv_stop
+	GoToIfUnset 0x212F, CeladonCity_DepartmentStore_Roof_EventScript_Finale
+	// TODO(gba) special DrinkGirl_SodasOwed
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe CeladonCity_DepartmentStore_Roof_EventScript_MasterySoda
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ComeBackWhenMastered
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_CheckPlayerHasDrinks:
+	SetVar 0x4001, 0
+	HasItem ITEM_FRESH_WATER, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_SetHasFreshWater
+	HasItem ITEM_SODA_POP, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_SetHasSodaPop
+	HasItem ITEM_LEMONADE, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_SetHasLemonade
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_IWantDrink:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImThirstyIWantDrink
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveDrink:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImThirstyGiveHerDrink
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_GiveWhichDrink
+	CompareVarToValue 0x4001, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWater
+	CompareVarToValue 0x4001, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveSodaPop
+	CompareVarToValue 0x4001, 3
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWaterSodaPop
+	CompareVarToValue 0x4001, 4
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveLemonade
+	CompareVarToValue 0x4001, 5
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWaterLemonade
+	CompareVarToValue 0x4001, 6
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveSodaPopLemonade
+	CompareVarToValue 0x4001, 7
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_AskGiveAllDrinks
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink:
 	TouchscreenMenuHide
-	MenuInitStdGmm 1, 1, 0, 1, VAR_SPECIAL_x8000
-	MenuItemAdd 209, 255, 0
-	MenuItemAdd 210, 255, 1
-	MenuItemAdd 211, 255, 2
-	MenuItemAdd 212, 255, 3
-	MenuExec
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_celadon_vending_machine_0, 0
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_celadon_vending_machine_1, 1
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_celadon_vending_machine_2, 2
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_celadon_vending_machine_3, 3
+	ScrCmd_067
 	TouchscreenMenuShow
-	Switch VAR_SPECIAL_x8000
-	Case 0, _00C2
-	Case 1, _00CE
-	Case 2, _00DA
-	NPCMsg msg_0499_T07R0106_00007
-	GoTo _0205
-
-_00C2:
-	SetVar VAR_SPECIAL_x8001, 30
-	GoTo _011C
-
-_00CE:
-	SetVar VAR_SPECIAL_x8001, 31
-	GoTo _011C
-
-_00DA:
-	SetVar VAR_SPECIAL_x8001, 32
-	GoTo _011C
-
-_00E6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_4
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_4:
+	CopyVar 0x4001, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x4001, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_BuyFreshWater
+	CompareVarToValue 0x4001, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_BuySodaPop
+	CompareVarToValue 0x4001, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_BuyLemonade
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NotThirsty
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone:
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_Finale:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_StillStuck
+	WaitButton
+	CloseMsg
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DrinkCameOut
+	WaitButton
+	SetVar 0x8009, 0
+	Call GymHack_EventScript_GiveStatItem
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_TakeTheMachine
+	WaitButton
+	// TODO(gba) special DrinkGirl_GiveMachine
+	GoTo _cv_stop
+	PlayFanfare SEQ_ME_ITEM
+	BufferPlayersName 6
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ReceivedDrinkMachine
+	WaitFanfare
+	Call EventScript_RestorePrevTextColor
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainDrinkMachine
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_MasterySoda:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_MasteredAType
+	WaitButton
+	SetVar 0x8009, 0
+	Call GymHack_EventScript_GiveStatItem
+	// TODO(gba) special DrinkGirl_GaveMasterySoda
+	GoTo _cv_stop
+	// TODO(gba) special DrinkGirl_SodasOwed
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe CeladonCity_DepartmentStore_Roof_EventScript_MasterySoda
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ComeBackWhenMastered
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_SetHasFreshWater:
+	AddVar 0x4001, 1
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_SetHasSodaPop:
+	AddVar 0x4001, 2
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_SetHasLemonade:
+	AddVar 0x4001, 4
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink:
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWater:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_6
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveFreshWater
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveSodaPop:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_soda_pop_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_8
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_8:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveSodaPop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWaterSodaPop:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_soda_pop_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_10
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_10:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveFreshWater
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveSodaPop
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveLemonade:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_lemonade_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_12
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_12:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveLemonade
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveFreshWaterLemonade:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_lemonade_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_14
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_14:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveFreshWater
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveLemonade
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveSodaPopLemonade:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_soda_pop_lemonade_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_16
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_16:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveSodaPop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveLemonade
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_AskGiveAllDrinks:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0499_T07R0106_cv_mc_thirsty_girl_fresh_water_soda_pop_lemonade_0, 0
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_18
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_18:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveFreshWater
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveSodaPop
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_GiveLemonade
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_BuyFreshWater:
+	SetVar 0x4000, ITEM_FRESH_WATER
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 200
-	Return
-
-_00F0:
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_BuySodaPop:
+	SetVar 0x4000, ITEM_SODA_POP
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 300
-	Return
-
-_00FA:
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_BuyLemonade:
+	SetVar 0x4000, ITEM_LEMONADE
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 350
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine:
+	HideMoneyBox
+	ReleaseAll
+	End
+	
+GymHack_EventScript_GiveStatItem:
+	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymHack_EventScript_GiveStatItemDone
+	BufferItemName 1, 0x8009
+	NPCMsg msg_0499_T07R0106_GymHack_Text_GiftSentToPC
+	WaitButton
+	End
+	
+EventScript_RestorePrevTextColor:
+	CopyVar 0x5015, 0x5016
 	Return
-
-_0104:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_GiveFreshWater:
+	SetVar 0x8008, ITEM_FRESH_WATER
+	SetVar 0x8009, ITEM_TM16
+	GoToIfSet 0x212C, CeladonCity_DepartmentStore_Roof_EventScript_NotThirstyAfterAll
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YayFreshWaterHaveThis
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_GiveDrink
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_GiveSodaPop:
+	SetVar 0x8008, ITEM_SODA_POP
+	SetVar 0x8009, ITEM_TM20
+	GoToIfSet 0x212D, CeladonCity_DepartmentStore_Roof_EventScript_NotThirstyAfterAll
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YaySodaPopHaveThis
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_GiveDrink
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_GiveLemonade:
+	SetVar 0x8008, ITEM_LEMONADE
+	SetVar 0x8009, ITEM_TM33
+	GoToIfSet 0x212E, CeladonCity_DepartmentStore_Roof_EventScript_NotThirstyAfterAll
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_YayLemonadeHaveThis
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_GiveDrink
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_NotEnoughMoney
+	HasSpaceForItem 0x4000, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForDrink
+	CompareVarToValue 0x4001, 0
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyFreshWater
+	CompareVarToValue 0x4001, 1
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneySodaPop
+	CompareVarToValue 0x4001, 2
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyLemonade
+	UpdateMoneyBox
+	BufferItemName 0, 0x4000
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut
+	WaitButton
+	GiveItem 0x4000, 1, VAR_SPECIAL_RESULT
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ChooseNewDrink
+	CloseMsg
+	End
+	
+GymHack_EventScript_GiveStatItemDone:
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_NotThirstyAfterAll:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ImNotThirstyAfterAll
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_GiveDrink:
+	BufferItemName 0, 0x8008
+	BufferItemName 1, 0x8009
+	TakeItem 0x8008, 1, VAR_SPECIAL_RESULT
+	HasSpaceForItem 0x8009, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForReward
+	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	PlayFanfare SEQ_ME_LVUP
+	BufferPlayersName 6
+	NPCMsg msg_0499_T07R0106_Text_ReceivedItemFromLittleGirl
+	WaitFanfare
+	// TODO(gba) putitemaway VAR_0x8009
+	GoTo _cv_stop
+	Call EventScript_RestorePrevTextColor
+	CompareVarToValue 0x8008, ITEM_FRESH_WATER
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM16
+	CompareVarToValue 0x8008, ITEM_SODA_POP
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM20
+	CompareVarToValue 0x8008, ITEM_LEMONADE
+	CallIfEq CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM33
+	Call CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinks
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq CeladonCity_DepartmentStore_Roof_EventScript_Finale
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_StillWantOthers
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_NotEnoughMoney:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NotEnoughMoney
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForDrink:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_NoMoreRoomForStuff
+	WaitButton
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	CloseMsg
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyFreshWater:
 	SubMoneyImmediate 200
 	Return
-
-_010C:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneySodaPop:
 	SubMoneyImmediate 300
 	Return
-
-_0114:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyLemonade:
 	SubMoneyImmediate 350
 	Return
-
-_011C:
-	Compare VAR_SPECIAL_x8000, 0
-	CallIfEq _00E6
-	Compare VAR_SPECIAL_x8000, 1
-	CallIfEq _00F0
-	Compare VAR_SPECIAL_x8000, 2
-	CallIfEq _00FA
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _01F0
-	HasSpaceForItem VAR_SPECIAL_x8001, 1, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _01F9
-	Compare VAR_SPECIAL_x8000, 0
-	CallIfEq _0104
-	Compare VAR_SPECIAL_x8000, 1
-	CallIfEq _010C
-	Compare VAR_SPECIAL_x8000, 2
-	CallIfEq _0114
-	UpdateMoneyBox
-	BufferItemName 0, VAR_SPECIAL_x8001
-	PlaySE SEQ_SE_DP_JIHANKI
-	BufferItemName 0, VAR_SPECIAL_x8001
-	NPCMsg msg_0499_T07R0106_00004
-	GiveItemNoCheck VAR_SPECIAL_x8001, 1
-	Random VAR_SPECIAL_RESULT, 64
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfNe _01E7
-	PlaySE SEQ_SE_DP_JIHANKI
-	BufferItemName 0, VAR_SPECIAL_x8001
-	NPCMsg msg_0499_T07R0106_00005
-	HasSpaceForItem VAR_SPECIAL_x8001, 1, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _01F9
-	CallStd std_give_item_verbose
-_01E7:
-	NPCMsg msg_0499_T07R0106_00003
-	GoTo _005E
-
-_01F0:
-	NPCMsg msg_0499_T07R0106_00006
-	GoTo _0205
-
-_01F9:
-	CallStd std_bag_is_full
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ChooseNewDrink:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink
 	CloseMsg
-	HideMoneyBox
-	ReleaseAll
 	End
-
-_0205:
+	
+CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForReward:
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_DontHaveSpaceForThis
 	WaitButton
 	CloseMsg
-	HideMoneyBox
+	ReleaseAll
+	End
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM16:
+	SetFlag 0x212C
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM16
+	WaitButton
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM20:
+	SetFlag 0x212D
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM20
+	WaitButton
+	Return
+	
+CeladonCity_DepartmentStore_Roof_EventScript_ExplainTM33:
+	SetFlag 0x212E
+	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_ExplainTM33
+	WaitButton
+	Return
+
+_cv_stop:
+	NPCMsg msg_0499_T07R0106_cv_unported
+	WaitButton
+	CloseMsg
 	ReleaseAll
 	End
 	.balign 4, 0

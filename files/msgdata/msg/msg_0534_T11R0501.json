@@ -2,20 +2,62 @@
   "key": 9222,
   "messages": [
     {
-      "id": "msg_0534_T11R0501_00000",
+      "id": "msg_0534_T11R0501_SaffronCity_MrPsychicsHouse_Text_YouWantedThis",
       "en_US": [
-        "...\r",
-        "...\r",
-        "...\r",
-        "...I got it!\r",
-        "You wanted this!\r"
+        "…Wait! Don’t say a word!\r",
+        "You wanted this!"
       ]
     },
     {
-      "id": "msg_0534_T11R0501_00001",
+      "id": "msg_0534_T11R0501_SaffronCity_MrPsychicsHouse_Text_ReceivedTM29FromMrPsychic",
       "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM29\n",
+        "from Mr. Psychic."
+      ]
+    },
+    {
+      "id": "msg_0534_T11R0501_SaffronCity_MrPsychicsHouse_Text_ExplainTM29",
+      "en_US": [
+        "You already know, don’t you?\n",
         "TM29 is Psychic.\r",
-        "It may lower the target’s Sp. Def."
+        "It’s an attack that may also lower\n",
+        "the target’s special stats."
+      ]
+    },
+    {
+      "id": "msg_0534_T11R0501_SaffronCity_MrPsychicsHouse_Text_YouveNoRoom",
+      "en_US": [
+        "Where do you plan to put this?\n",
+        "You’ve no room."
+      ]
+    },
+    {
+      "id": "msg_0534_T11R0501_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
+    },
+    {
+      "id": "msg_0534_T11R0501_TypeTutor_Text_WhichMon",
+      "en_US": [
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0534_T11R0501_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0534_T11R0501_TypeTutor_Text_Bye",
+      "en_US": [
+        "Come back any time. A Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
+      "id": "msg_0534_T11R0501_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

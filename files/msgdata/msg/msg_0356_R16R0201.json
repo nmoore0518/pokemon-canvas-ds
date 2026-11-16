@@ -2,23 +2,38 @@
   "key": 5183,
   "messages": [
     {
-      "id": "msg_0356_R16R0201_00000",
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_CyclingRoadIsDownhillCourse",
       "en_US": [
-        "Cycling Road starts here.\n",
-        "It’s all downhill, so it’s totally\f",
-        "exhilarating.\r",
-        "Some people prefer convenient and cool\n",
-        "transportation such as the Fast Ship\f",
-        "and the Magnet Train.\f",
-        "You prefer the Bicycle, don’t you?"
+        "Cycling Road is a downhill course\n",
+        "by the sea. It’s a great ride."
       ]
     },
     {
-      "id": "msg_0356_R16R0201_00001",
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_HowdYouGetInGoodEffort",
       "en_US": [
-        "You! Stop right there!\r",
-        "You have to be on a Bicycle to go on\n",
-        "the Cycling Road!\r"
+        "How’d you get in?\n",
+        "Good effort!"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_ExcuseMeWaitUp",
+      "en_US": [
+        "Excuse me!\n",
+        "Wait up, please!"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_NoPedestriansOnCyclingRoad",
+      "en_US": [
+        "No pedestrians are allowed on\n",
+        "Cycling Road!"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

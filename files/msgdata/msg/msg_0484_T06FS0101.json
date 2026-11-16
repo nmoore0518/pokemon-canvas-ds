@@ -2,19 +2,41 @@
   "key": 20369,
   "messages": [
     {
-      "id": "msg_0484_T06FS0101_00000",
+      "id": "msg_0484_T06FS0101_gText_HowMayIServeYou",
       "en_US": [
-        "Team Rocket is no longer in Kanto.\n",
-        "That alone makes me happy."
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0484_T06FS0101_00001",
+      "id": "msg_0484_T06FS0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0484_T06FS0101_VermilionCity_Mart_Text_MonsGoodOrBadDependingOnTrainer",
       "en_US": [
-        "I’m thinking about going shopping\n",
-        "in Saffron.\r",
-        "Follow the northern route, and you’ll\n",
-        "be there in no time."
+        "I think Pokémon can be good or\n",
+        "bad. It depends on the Trainer."
+      ]
+    },
+    {
+      "id": "msg_0484_T06FS0101_VermilionCity_Mart_Text_TeamRocketAreWickedPeople",
+      "en_US": [
+        "There are wicked people who will\n",
+        "use Pokémon for criminal acts.\r",
+        "Team Rocket traffics in rare\n",
+        "Pokémon, for example.\r",
+        "They also abandon Pokémon that\n",
+        "they consider unpopular or useless.\r",
+        "That’s the sort of horrid people\n",
+        "they are, Team Rocket."
+      ]
+    },
+    {
+      "id": "msg_0484_T06FS0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

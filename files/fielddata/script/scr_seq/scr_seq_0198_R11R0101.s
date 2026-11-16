@@ -3,28 +3,37 @@
 #include "msgdata/msg/msg_0347_R11R0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's Route11_EastEntrance_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_R11R0101_000
-	ScrDef scr_seq_R11R0101_001
+	ScrDef Route11_EastEntrance_1F_EventScript_TopGuard
+	ScrDef Route11_EastEntrance_1F_EventScript_BottomGuard
 	ScrDefEnd
-
-scr_seq_R11R0101_000:
-	SetVar VAR_UNK_4085, 0
-	End
-
-scr_seq_R11R0101_001:
+	
+Route11_EastEntrance_1F_EventScript_TopGuard:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	GoToIfSet FLAG_SNORLAX_MEET, _0030
-	NPCMsg msg_0347_R11R0101_00000
-_0028:
+	NPCMsg msg_0347_R11R0101_Route11_EastEntrance_1F_Text_ManInLavenderRatesNames
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route11_EastEntrance_1F_EventScript_BottomGuard:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0347_R11R0101_Route11_EastEntrance_1F_Text_RockTunnelToReachLavender
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-_0030:
-	NPCMsg msg_0347_R11R0101_00001
-	GoTo _0028
+_cv_stop:
+	NPCMsg msg_0347_R11R0101_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 	.balign 4, 0

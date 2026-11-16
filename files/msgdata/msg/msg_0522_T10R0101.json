@@ -2,194 +2,155 @@
   "key": 46119,
   "messages": [
     {
-      "id": "msg_0522_T10R0101_00000",
+      "id": "msg_0522_T10R0101_gText_HowMayIServeYou",
       "en_US": [
-        "At the Pokémon League, you’ll get\n",
-        "tested by the Elite Four.\f",
-        "You have to beat them all.\r",
-        "If you lose, you have to start\n",
-        "all over!"
+        "Welcome!\r",
+        "How may I serve you?"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00001",
+      "id": "msg_0522_T10R0101_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_GymGuyAdvice",
       "en_US": [
-        "Some Trainers suddenly feel\n",
-        "discouraged and leave.\r",
-        "My ABRA can take you home.\n",
-        "But...\r",
-        "Trainers just Fly home lately...\n",
-        "I feel left out.\f",
-        "I am sure my ABRA feels the same way."
+        "Yo!\n",
+        "Champ in the making!\r",
+        "At the Pokémon League, you will\n",
+        "face the Elite Four all in a row.\r",
+        "If you lose, you have to start all\n",
+        "over again!\r",
+        "This is it!\n",
+        "Go for it!"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00002",
-      "en_US": "ABRA: Aabra..."
-    },
-    {
-      "id": "msg_0522_T10R0101_00003",
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck",
       "en_US": [
-        "{STRVAR_1 3, 0, 0}: Hold it.\r",
-        "You’re going to take the Pokémon\n",
-        "League challenge now?\r",
-        "You’ll have to give up on that.\r",
-        "My well-trained-beyond-recognition\n",
-        "Pokémon are going to pound you.\r",
-        "Right now, right here!\n",
-        "I challenge you!\r"
+        "From here on, you face the\n",
+        "Elite Four one by one.\r",
+        "If you win, a door opens to the\n",
+        "next Trainer. Good luck!"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00004",
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_AgathaWhuppedUs",
       "en_US": [
-        "{STRVAR_1 3, 0, 0}: ...Oh, no... I still can’t\n",
-        "win after all that training...\r",
-        "I...I have to believe more in my\n",
-        "Pokémon...\r",
-        "...No big deal.\n",
-        "Sorry to have got in the way.\r",
-        "Don’t forget to rest your Pokémon\n",
-        "before you challenge the Champion!\r"
+        "Agatha’s Ghost-type Pokémon are\n",
+        "horrifically terrifying in toughness.\r",
+        "I took my Fighting-type Pokémon\n",
+        "and raised them to the max.\r",
+        "I went at Agatha feeling pretty\n",
+        "confident, but she whupped us.\r",
+        "That old lady’s also got a really\n",
+        "short fuse, too.\r",
+        "It doesn’t take anything to get\n",
+        "that scary lady hollering."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00005",
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_LancesCousinGymLeaderFarAway",
       "en_US": [
-        "Once you enter this door, you will be\n",
-        "facing one of the Elite Four.\r",
-        "They are really tough!\n",
-        "You cannot exit once you enter.\f",
-        "Are you ready?\f",
-        "Be courageous and go for it!\r"
+        "Maybe becoming an Elite Four\n",
+        "member is in the blood.\r",
+        "From what I’ve heard, Lance has\n",
+        "a cousin who’s a Gym Leader\f",
+        "somewhere far away."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00006",
+      "id": "msg_0522_T10R0101_PokemonJournal_Text_SpecialFeatureLance",
       "en_US": [
-        "Once you enter this door, you will be\n",
-        "facing one of the Elite Four.\r",
-        "They are really tough!\n",
-        "You cannot exit once you enter.\f",
-        "Are you ready?\f",
-        "Be courageous and go for it!"
+        "Pokémon Journal\r",
+        "Special Feature:\n",
+        "Elite Four’s Lance!\r",
+        "Lance’s grandfather is thought to\n",
+        "be the elder of a famous clan of\f",
+        "dragon masters."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00007",
-      "en_US": "Which Ranking do you want to see? {YESNO 0}"
-    },
-    {
-      "id": "msg_0522_T10R0101_00008",
-      "en_US": "GROUP RANKING"
-    },
-    {
-      "id": "msg_0522_T10R0101_00009",
-      "en_US": "GLOBAL RANKING"
-    },
-    {
-      "id": "msg_0522_T10R0101_00010",
-      "en_US": "QUIT"
-    },
-    {
-      "id": "msg_0522_T10R0101_00011",
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipOffer",
       "en_US": [
-        "What kind of Ranking\n",
-        "do you want to see? {YESNO 0}"
+        "You again! You’ve beaten the Elite\n",
+        "Four twice and reached the Champion.\r",
+        "The League has seen enough. I can\n",
+        "take you straight to the Champion.\r",
+        "Shall I?"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00012",
-      "en_US": "POKéMON RECORDS"
+      "id": "msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipGo",
+      "en_US": "Right this way. Good luck!"
     },
     {
-      "id": "msg_0522_T10R0101_00013",
-      "en_US": "BATTLE TOWER RECORDS"
+      "id": "msg_0522_T10R0101_TypeTutor_Text_WhichMove",
+      "en_US": "Which move should I teach?"
     },
     {
-      "id": "msg_0522_T10R0101_00014",
-      "en_US": "QUIT"
-    },
-    {
-      "id": "msg_0522_T10R0101_00015",
+      "id": "msg_0522_T10R0101_TypeTutor_Text_WhichMon",
       "en_US": [
-        "Which record would you like\n",
-        "to see? {YESNO 0}"
+        "Which Pokémon should learn\n",
+        "{STRVAR_1 3, 0, 0}?"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00016",
+      "id": "msg_0522_T10R0101_TypeTutor_Text_Taught",
+      "en_US": "Well done! Anything else?"
+    },
+    {
+      "id": "msg_0522_T10R0101_GymCandidate_Text_NeedApprovals",
       "en_US": [
-        "POKéMON\n",
-        "DEFEATED"
+        "The League only lets in Gym\n",
+        "Leader candidates with the\f",
+        "approval of all eight Leaders.\r",
+        "You have {STRVAR_1 3, 0, 0} of 8 so far.\n",
+        "Come back when you have them all!"
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00017",
+      "id": "msg_0522_T10R0101_Text_GymHack_WrongType",
       "en_US": [
-        "POKéMON\n",
-        "CAUGHT"
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00018",
+      "id": "msg_0522_T10R0101_Text_GymHack_Duplicate",
       "en_US": [
-        "POKéMON\n",
-        "EGGS"
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00019",
+      "id": "msg_0522_T10R0101_Text_GymHack_DuplicateItem",
       "en_US": [
-        "ENCOUNTERED\n",
-        "WHILE FISHING"
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00020",
+      "id": "msg_0522_T10R0101_TypeTutor_Text_Bye",
       "en_US": [
-        "SINGLE\n",
-        "BATTLES"
+        "Come back any time. A Leader\n",
+        "never stops learning."
       ]
     },
     {
-      "id": "msg_0522_T10R0101_00021",
+      "id": "msg_0522_T10R0101_cv_unported",
       "en_US": [
-        "DOUBLE\n",
-        "BATTLES"
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
-    },
-    {
-      "id": "msg_0522_T10R0101_00022",
-      "en_US": [
-        "MULTI\n",
-        "BATTLES"
-      ]
-    },
-    {
-      "id": "msg_0522_T10R0101_00023",
-      "en_US": [
-        "LINK MULTI\n",
-        "BATTLES"
-      ]
-    },
-    {
-      "id": "msg_0522_T10R0101_00024",
-      "en_US": [
-        "WI-FI BATTLE\n",
-        "ROOM"
-      ]
-    },
-    {
-      "id": "msg_0522_T10R0101_00025",
-      "en_US": [
-        "AVG WIN\n",
-        "STREAK"
-      ]
-    },
-    {
-      "id": "msg_0522_T10R0101_00026",
-      "en_US": "RETURN"
     }
   ]
 }

@@ -2,20 +2,37 @@
     "header": "fielddata/script/scr_seq/event_T11R0501.h",
     "objects": [
         {
-            "id": "obj_T11R0501_fishing_2",
-            "spriteId": "SPRITE_FISHING_2",
+            "id": "1",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_scr_seq_T11R0501_000 + 1",
+            "scriptId": "_EV_SaffronCity_MrPsychicsHouse_EventScript_MrPsychic + 1",
             "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMIDDLEMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_TypeTutor_EventScript_Psychic + 1",
+            "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
-            "z": 5,
+            "x": 9,
+            "z": 4,
             "y": 0
         }
     ],
@@ -27,5 +44,7 @@
             "anchor": 14,
             "y": 0
         }
-    ]
+    ],
+    "bgs": [],
+    "coords": []
 }

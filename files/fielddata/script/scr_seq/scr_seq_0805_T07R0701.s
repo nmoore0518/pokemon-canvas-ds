@@ -3,105 +3,152 @@
 #include "msgdata/msg/msg_0510_T07R0701.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's CeladonCity_Restaurant_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T07R0701_000
-	ScrDef scr_seq_T07R0701_001
-	ScrDef scr_seq_T07R0701_002
-	ScrDef scr_seq_T07R0701_003
-	ScrDef scr_seq_T07R0701_004
-	ScrDef scr_seq_T07R0701_005
-	ScrDef scr_seq_T07R0701_006
+	ScrDef CeladonCity_Restaurant_EventScript_Chef
+	ScrDef CeladonCity_Restaurant_EventScript_Woman
+	ScrDef CeladonCity_Restaurant_EventScript_FatMan
+	ScrDef CeladonCity_Restaurant_EventScript_CoinCaseMan
+	ScrDef CeladonCity_Restaurant_EventScript_WorkerM
+	ScrDef PaintWorld_EventScript_Figure
 	ScrDefEnd
-
-scr_seq_T07R0701_005:
+	
+CeladonCity_Restaurant_EventScript_Chef:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	NPCMsg msg_0510_T07R0701_00006
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_TakingBreakRightNow
+	WaitButton
 	CloseMsg
-	ApplyMovement obj_T07R0701_leader4, _003C
-	WaitMovement
 	ReleaseAll
 	End
-
-	.balign 4, 0
-_003C:
-	WalkOnSpotNormalEast
-	EndMovement
-
-scr_seq_T07R0701_004:
+	
+CeladonCity_Restaurant_EventScript_Woman:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	HasItem ITEM_COIN_CASE, 1, VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _0074
-	NPCMsg msg_0510_T07R0701_00004
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_OftenGoToDrugstore
+	WaitButton
 	CloseMsg
-	ApplyMovement obj_T07R0701_gswoman1, _00D8
-	WaitMovement
 	ReleaseAll
 	End
-
-_0074:
-	NPCMsg msg_0510_T07R0701_00005
-	CloseMsg
-	ApplyMovement obj_T07R0701_gswoman1, _00D8
-	WaitMovement
-	ReleaseAll
-	End
-
-scr_seq_T07R0701_001:
+	
+CeladonCity_Restaurant_EventScript_FatMan:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	NPCMsg msg_0510_T07R0701_00001
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_ManLostItAllAtSlots
+	WaitButton
 	CloseMsg
-	ApplyMovement obj_T07R0701_gsbigman_3, _00E0
-	WaitMovement
 	ReleaseAll
 	End
-
-scr_seq_T07R0701_002:
+	
+CeladonCity_Restaurant_EventScript_CoinCaseMan:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x2136, CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_TakeThisImBusted
+	WaitButton
+	HasSpaceForItem ITEM_COIN_CASE, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq CeladonCity_Restaurant_EventScript_NoRoomForCoinCase
+	GiveItem ITEM_COIN_CASE, 1, VAR_SPECIAL_RESULT
+	BufferItemName 1, ITEM_COIN_CASE
+	BufferPlayersName 6
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan
+	PlayFanfare SEQ_ME_LVUP
+	WaitFanfare
+	WaitButton
+	SetFlag 0x2136
+	CloseMsg
+	ReleaseAll
+	End
+	
+CeladonCity_Restaurant_EventScript_WorkerM:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	NPCMsg msg_0510_T07R0701_00002
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner
+	WaitButton
 	CloseMsg
-	ApplyMovement obj_T07R0701_gsbigman_2, _00E0
-	WaitMovement
 	ReleaseAll
 	End
-
-scr_seq_T07R0701_003:
-	PlaySE SEQ_SE_DP_SELECT
+	
+PaintWorld_EventScript_Figure:
 	LockAll
 	FacePlayer
-	NPCMsg msg_0510_T07R0701_00003
+	CompareVarToValue 0x5020, 2
+	GoToIfEq PaintWorld_EventScript_FigureSketch
+	CompareVarToValue 0x5020, 3
+	GoToIfEq PaintWorld_EventScript_FigureMega
+	NPCMsg msg_0510_T07R0701_PaintWorld_Text_FigureFirst
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
+CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase:
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_ThoughtIdWinItBack
+	WaitButton
 	CloseMsg
-	ApplyMovement obj_T07R0701_gsbigman, _00D8
-	WaitMovement
+	ReleaseAll
+	End
+	
+CeladonCity_Restaurant_EventScript_NoRoomForCoinCase:
+	NPCMsg msg_0510_T07R0701_CeladonCity_Restaurant_Text_MakeRoomForThis
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PaintWorld_EventScript_FigureSketch:
+	NPCMsg msg_0510_T07R0701_PaintWorld_Text_FigureSketch
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
+PaintWorld_EventScript_FigureMega:
+	NPCMsg msg_0510_T07R0701_PaintWorld_Text_FigureMega
+	WaitButton
+	End
+	
+PaintWorld_EventScript_FigureBattle:
+	CloseMsg
+	// TODO(gba) special Painter_SetupFigure
+	GoTo _cv_stop
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_1
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_2
+	WhiteOut
+	End
+_cv_won_2:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_1:
+	ClearFlag 0x2036
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_3
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_3:
+	// TODO(gba) special Painter_RecordBattle
+	GoTo _cv_stop
+	NPCMsg msg_0510_T07R0701_PaintWorld_Text_Dissolve
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_WHITE
+	WaitFade
+	// TODO(gba) warpsilent MAP_PEWTER_CITY_PAINTER_LOFT, 8, 4
+	GoTo _cv_stop
 	ReleaseAll
 	End
 
-	.balign 4, 0
-_00D8:
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_00E0:
-	WalkOnSpotNormalNorth
-	EndMovement
-
-scr_seq_T07R0701_000:
-	SimpleNPCMsg msg_0510_T07R0701_00000
-	End
-
-scr_seq_T07R0701_006:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0510_T07R0701_00007
+_cv_stop:
+	NPCMsg msg_0510_T07R0701_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll

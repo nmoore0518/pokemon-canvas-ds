@@ -3,41 +3,89 @@
 #include "msgdata/msg/msg_0532_T11PC0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's SaffronCity_PokemonCenter_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T11PC0101_000
-	ScrDef scr_seq_T11PC0101_001
-	ScrDef scr_seq_T11PC0101_002
-	ScrDef scr_seq_T11PC0101_003
+	ScrDef SaffronCity_PokemonCenter_1F_EventScript_Nurse
+	ScrDef SaffronCity_PokemonCenter_1F_EventScript_Gentleman
+	ScrDef SaffronCity_PokemonCenter_1F_EventScript_Woman
+	ScrDef SaffronCity_PokemonCenter_1F_EventScript_Youngster
+	ScrDef SaffronCity_PokemonCenter_1F_EventScript_PokemonJournalSabrina
+	ScrDef SaffronCity_PokemonCenter_1F_OnTransition
+	ScrDef CableClub_OnResume
 	ScrDefEnd
-
-scr_seq_T11PC0101_000:
+	
+SaffronCity_PokemonCenter_1F_EventScript_Nurse:
+	LockAll
+	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
+	ReleaseAll
 	End
-
-scr_seq_T11PC0101_001:
-	SimpleNPCMsg msg_0532_T11PC0101_00000
-	End
-
-scr_seq_T11PC0101_002:
+	
+SaffronCity_PokemonCenter_1F_EventScript_Gentleman:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	GoToIfSet FLAG_RESTORED_POWER, _004F
-	NPCMsg msg_0532_T11PC0101_00001
+	NPCMsg msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+SaffronCity_PokemonCenter_1F_EventScript_Woman:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+SaffronCity_PokemonCenter_1F_EventScript_Youngster:
+	LockAll
+	FacePlayer
+	CompareVarToValue 0x5031, 1
+	GoToIfEq SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone
+	NPCMsg msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+SaffronCity_PokemonCenter_1F_EventScript_PokemonJournalSabrina:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0532_T11PC0101_PokemonJournal_Text_SpecialFeatureSabrina
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+SaffronCity_PokemonCenter_1F_OnTransition:
+	End
+	
+CableClub_OnResume:
+	// TODO(gba) special InitUnionRoom
+	// TODO(gba) .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
+	Return
+	// TODO(gba) .else 
+	End
+	// TODO(gba) .endif 
+	End
+	
+SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone:
+	NPCMsg msg_0532_T11PC0101_SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
-_004F:
-	NPCMsg msg_0532_T11PC0101_00002
+_cv_stop:
+	NPCMsg msg_0532_T11PC0101_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-
-scr_seq_T11PC0101_003:
-	SimpleNPCMsg msg_0532_T11PC0101_00003
 	End
 	.balign 4, 0

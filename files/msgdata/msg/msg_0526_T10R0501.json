@@ -2,43 +2,170 @@
   "key": 13318,
   "messages": [
     {
-      "id": "msg_0526_T10R0501_00000",
+      "id": "msg_0526_T10R0501_PokemonLeague_LancesRoom_Text_PostBattle",
       "en_US": [
-        "I am Karen of the Elite Four.\r",
-        "You’re {STRVAR_1 3, 0, 0}? How amusing.\n",
-        "I love Dark-type Pokémon.\r",
-        "I’m known for my overpowering tactics.\r",
-        "Think you can take them?\n",
-        "Just try to entertain me.\r",
-        "Let’s go.\r"
+        "I still can’t believe my dragons\n",
+        "lost to you, {STRVAR_1 3, 6, 0}.\r",
+        "You are now the Pokémon League\n",
+        "Champion!\r",
+        "…Or, you would have been, but\n",
+        "you have one more challenge left.\r",
+        "There is one more Trainer to face!\n",
+        "His name is…\r",
+        "{STRVAR_1 3, 7, 0}!\r",
+        "He beat the Elite Four before\n",
+        "you.\r",
+        "He is the real Pokémon League\n",
+        "Champion."
       ]
     },
     {
-      "id": "msg_0526_T10R0501_00001",
+      "id": "msg_0526_T10R0501_cv_mentor_first_rock",
       "en_US": [
-        "Strong Pokémon.\r",
-        "Weak Pokémon.\r",
-        "That is only the selfish perception\n",
-        "of people.\r",
-        "Truly skilled Trainers should try to\n",
-        "win with the Pokémon they love best.\r",
-        "I like your style.\n",
-        "You understand what’s important.\r",
-        "Go on--the Champion is waiting.\r"
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
       ]
     },
     {
-      "id": "msg_0526_T10R0501_00002",
+      "id": "msg_0526_T10R0501_cv_mentor_first_normal",
       "en_US": [
-        "Strong Pokémon.\r",
-        "Weak Pokémon.\r",
-        "That is only the selfish perception\n",
-        "of people.\r",
-        "Truly skilled Trainers should try to\n",
-        "win with the Pokémon they love best.\r",
-        "I like your style.\n",
-        "You understand what’s important.\r",
-        "Go on--the Champion is waiting."
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_PokemonLeague_LancesRoom_Text_Intro",
+      "en_US": [
+        "Ah! I’ve heard about you,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "I lead the Elite Four.\r",
+        "You can call me Lance the dragon\n",
+        "Trainer.\r",
+        "You know that dragons are\n",
+        "mythical Pokémon.\r",
+        "They’re hard to catch and raise,\n",
+        "but their powers are superior.\r",
+        "They’re virtually indestructible.\n",
+        "There’s no being clever with them.\r",
+        "Well, are you ready to lose?\r",
+        "Your League challenge ends with\n",
+        "me, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_PokemonLeague_LancesRoom_Text_RematchIntro",
+      "en_US": [
+        "Ah!\n",
+        "So, you’ve returned, {STRVAR_1 3, 6, 0}!\r",
+        "I lead the Elite Four.\r",
+        "You can call me Lance the dragon\n",
+        "Trainer.\r",
+        "You know that dragons are\n",
+        "mythical Pokémon.\r",
+        "They’re hard to catch and raise,\n",
+        "but their powers are superior.\r",
+        "They’re virtually indestructible.\n",
+        "There’s no being clever with them.\r",
+        "Well, are you ready to lose?\r",
+        "Your League challenge ends with\n",
+        "me, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0526_T10R0501_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

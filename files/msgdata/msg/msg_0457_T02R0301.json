@@ -2,93 +2,209 @@
   "key": 37911,
   "messages": [
     {
-      "id": "msg_0457_T02R0301_00000",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ReadBlackboardCarefully",
       "en_US": [
-        "Welcome to Trainer House, the newest\n",
-        "and most happening place in Viridian.\f",
-        "We’re open to Trainers only.\r",
-        "You can battle against the best\n",
-        "of the best right downstairs."
+        "Okay!\r",
+        "Be sure to read what’s on the\n",
+        "blackboard carefully!"
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00001",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_TryingToMemorizeNotes",
       "en_US": [
-        "Viridian is the town closest to\n",
-        "Indigo Plateau.\r",
-        "They built this place because so\n",
-        "many Trainers pass through on their\f",
-        "way up to Indigo Plateau."
+        "Whew! I’m trying to memorize all my\n",
+        "notes."
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00002",
+      "id": "msg_0457_T02R0301_PaintWorld_Text_FigureFirst",
       "en_US": [
-        "They hold practice battles\n",
-        "downstairs here.\r",
-        "I would love to see how well a\n",
-        "Trainer from Johto battles."
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00003",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_NotebookFirstPage",
       "en_US": [
-        "You go all over the place and battle\n",
-        "all kinds of Trainers.\r",
-        "This is not just to train your Pokémon.\n",
-        "This is also a chance to experience\f",
-        "many things yourself.\r",
-        "I bet the Champion from\n",
-        "Pallet Town went to all the\f",
-        "cities and towns in Kanto."
+        "Let’s check out the notebook.\r",
+        "First page…\r",
+        "Poké Balls are used to catch\n",
+        "Pokémon.\r",
+        "Up to six Pokémon can be carried\n",
+        "in your party.\r",
+        "People who raise and battle\n",
+        "with Pokémon are called Trainers."
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00004",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_TurnThePage",
+      "en_US": "Turn the page?"
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_NotebookSecondPage",
       "en_US": [
-        "Whew...\r",
-        "I’m taking a rest from\n",
-        "Pokémon battles."
+        "Second page…\r",
+        "A healthy Pokémon may be hard to\n",
+        "catch, so weaken it first.\r",
+        "Poison, burn, or cause another\n",
+        "status problem to weaken it."
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00005",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_NotebookThirdPage",
       "en_US": [
-        "Practice battles are held in the\n",
-        "Training Hall downstairs.\r",
-        "Skilled Trainers are invited to\n",
-        "participate.\r",
-        "Communicate with your friends through\n",
-        "the Pokéwalker to bring them here!\r",
-        "Be aware that you cannot bring them\n",
-        "here once you are downstairs!"
+        "Third page…\r",
+        "Pokémon Trainers seek others to\n",
+        "engage in Pokémon battles.\r",
+        "To Trainers, the taste of victory\n",
+        "is sweet, indeed.\r",
+        "Battles are constantly waged at\n",
+        "Pokémon Gyms everywhere."
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00006",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_NotebookFourthPage",
       "en_US": [
-        "Trainer House Rules\r",
-        "1. You can challenge various Trainers\n",
-        "    once a day.\r",
-        "2. All Pokémon over Level 50 become\n",
-        "    Level 50 for the battle.\r",
-        "3. You cannot use items from your Bag.\r",
-        "4. Afterward, your Pokémon will recover\n",
-        "    and the held item will be restored.\r",
-        "5. You cannot earn experience from\n",
-        "    the battle.\r",
-        "6. You earn Battle Points instead!\r",
-        "Skilled Trainers are invited to\n",
-        "participate."
+        "Fourth page…\r",
+        "The ultimate goal for all Pokémon\n",
+        "Trainers is simple.\r",
+        "It is to defeat the top eight\n",
+        "Pokémon Gym Leaders.\r",
+        "Do so to earn the right to face…\r",
+        "The Elite Four of the Pokémon\n",
+        "League!"
       ]
     },
     {
-      "id": "msg_0457_T02R0301_00007",
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_HeyDontLookAtMyNotes",
       "en_US": [
-        "...What’s this?\n",
-        "A strategy memo?\r",
-        "This writing looks like ONIX tracks...\f",
-        "It’s completely illegible..."
+        "Girl: Hey!\n",
+        "Don’t look at my notes!"
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_BlackboardListsStatusProblems",
+      "en_US": [
+        "The blackboard lists Pokémon\n",
+        "Status problems during battles."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_PokemonJournal_Text_SpecialFeatureProfOak",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature: Prof. Oak,\n",
+        "the Pokémon Researcher!\r",
+        "Prof. Oak reportedly lives with his\n",
+        "grandchildren Daisy and {STRVAR_1 3, 7, 0}."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ReadWhichTopic",
+      "en_US": "Which topic do you want to read?"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_0",
+      "en_US": "Psn"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_1",
+      "en_US": "Par"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_2",
+      "en_US": "Slp"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_3",
+      "en_US": "Brn"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_4",
+      "en_US": "Frz"
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_mc_status_info_5",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ExplainSleep",
+      "en_US": [
+        "A Pokémon can’t attack if it’s\n",
+        "asleep.\r",
+        "Pokémon will stay asleep even\n",
+        "after battles.\r",
+        "Use Awakening to awaken one\n",
+        "from sleep."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ExplainPoison",
+      "en_US": [
+        "When poisoned, a Pokémon’s health\n",
+        "steadily drops.\r",
+        "Poison lingers after battles.\n",
+        "Use an Antidote to cure poison!"
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ExplainParalysis",
+      "en_US": [
+        "Paralysis reduces Speed and may\n",
+        "prevent the Pokémon from moving.\r",
+        "Paralysis remains after battles.\n",
+        "Use Parlyz Heal for treatment."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ExplainBurn",
+      "en_US": [
+        "A burn reduces Attack power.\n",
+        "It also causes ongoing HP loss.\r",
+        "A burn remains after a battle.\n",
+        "Use Burn Heal to cure a burn."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_ViridianCity_School_Text_ExplainFreeze",
+      "en_US": [
+        "A frozen Pokémon becomes\n",
+        "helplessly immobile.\r",
+        "It stays frozen even after the\n",
+        "battle ends.\r",
+        "Use Ice Heal to thaw out the\n",
+        "suffering Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0457_T02R0301_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

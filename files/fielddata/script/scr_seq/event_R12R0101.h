@@ -1,8 +1,9 @@
 #ifndef SCR_SEQ_R12R0101_H_
 #define SCR_SEQ_R12R0101_H_
 
-#define _EV_scr_seq_R12R0101_000 0
+#define _EV_Route12_FishingHouse_EventScript_FishingGuruBrother 0
+#define _EV_PaintWorld_EventScript_Figure 1
+#define _EV_Route12_FishingHouse_EventScript_MagikarpRecordSign 2
 
-#define obj_R12R0101_fishing_2 0
 
-#endif // SCR_SEQ_R12R0101_H_
+#endif

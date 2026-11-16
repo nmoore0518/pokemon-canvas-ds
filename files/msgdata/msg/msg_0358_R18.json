@@ -2,10 +2,24 @@
   "key": 17215,
   "messages": [
     {
-      "id": "msg_0358_R18_00000",
+      "id": "msg_0358_R18_Route18_Text_CyclingRoadSign",
       "en_US": [
-        "Rt. 18\n",
-        "East to Fuchsia City"
+        "Cycling Road\n",
+        "No pedestrians permitted!"
+      ]
+    },
+    {
+      "id": "msg_0358_R18_Route18_Text_RouteSign",
+      "en_US": [
+        "Route 18\n",
+        "Celadon City - Fuchsia City"
+      ]
+    },
+    {
+      "id": "msg_0358_R18_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

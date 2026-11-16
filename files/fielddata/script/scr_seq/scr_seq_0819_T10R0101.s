@@ -3,377 +3,343 @@
 #include "msgdata/msg/msg_0522_T10R0101.h"
 #include "macros/script.inc"
 
+// Pokemon Canvas: ported from the GBA game's IndigoPlateau_PokemonCenter_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
 
-	ScrDef scr_seq_T10R0101_000
-	ScrDef scr_seq_T10R0101_001
-	ScrDef scr_seq_T10R0101_002
-	ScrDef scr_seq_T10R0101_003
-	ScrDef scr_seq_T10R0101_004
-	ScrDef scr_seq_T10R0101_005
-	ScrDef scr_seq_T10R0101_006
-	ScrDef scr_seq_T10R0101_007
-	ScrDef scr_seq_T10R0101_008
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_Clerk
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_Nurse
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_GymGuy
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_BlackBelt
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_CooltrainerM
+	ScrDef TypeTutor_EventScript_Dragon
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_PokemonJournal
+	ScrDef _cv_unported_8
+	ScrDef IndigoPlateau_PokemonCenter_1F_OnTransition
+	ScrDef CableClub_OnResume
 	ScrDefEnd
-
-scr_seq_T10R0101_005:
-	SetFlag FLAG_HIDE_WILLS_ROOM_RETREAT
-	SetFlag FLAG_HIDE_KOGAS_ROOM_RETREAT
-	SetFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
-	SetFlag FLAG_HIDE_KARENS_ROOM_RETREAT
-	ClearFlag FLAG_HIDE_WILLS_ROOM_EXIT
-	ClearFlag FLAG_HIDE_KOGAS_ROOM_EXIT
-	ClearFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
-	ClearFlag FLAG_HIDE_KARENS_ROOM_EXIT
-	ClearFlag FLAG_DEFEATED_WILL
-	ClearFlag FLAG_DEFEATED_KOGA
-	ClearFlag FLAG_DEFEATED_BRUNO
-	ClearFlag FLAG_DEFEATED_KAREN
-	Compare VAR_UNK_40FC, 1
-	GoToIfLe _00AC
-	GoToIfSet FLAG_UNK_AA9, _00AC
-	GetWeekday VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 1
-	GoToIfNe _008B
-	SetVar VAR_UNK_4119, 1
-	GoTo _00AA
-
-_008B:
-	Compare VAR_TEMP_x4000, 3
-	GoToIfNe _00A4
-	SetVar VAR_UNK_4119, 1
-	GoTo _00AA
-
-_00A4:
-	SetVar VAR_UNK_4119, 0
-_00AA:
-	End
-
-_00AC:
-	End
-
-scr_seq_T10R0101_001:
-	SimpleNPCMsg msg_0522_T10R0101_00000
-	End
-
-scr_seq_T10R0101_002:
-	SimpleNPCMsg msg_0522_T10R0101_00001
-	End
-
-scr_seq_T10R0101_003:
-	PlaySE SEQ_SE_DP_SELECT
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_Clerk:
 	LockAll
 	FacePlayer
-	PlayCry SPECIES_ABRA, 0
-	NPCMsg msg_0522_T10R0101_00002
-	WaitCry
+	NPCMsg msg_0522_T10R0101_gText_HowMayIServeYou
+	CanvasMart 7
+	.short ITEM_ULTRA_BALL
+	.short ITEM_GREAT_BALL
+	.short ITEM_FULL_RESTORE
+	.short ITEM_MAX_POTION
+	.short ITEM_REVIVE
+	.short ITEM_FULL_HEAL
+	.short ITEM_MAX_REPEL
+	NPCMsg msg_0522_T10R0101_gText_PleaseComeAgain
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
-
-scr_seq_T10R0101_006:
-	ScrCmd_609
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_Nurse:
 	LockAll
-	FadeOutBGM 0, 3
-	ApplyMovement obj_player, _01DC
-	WaitMovement
-	CallStd std_play_rival_intro_music
-	GetPlayerCoords VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
-	ClearFlag FLAG_HIDE_INDIGO_PLATEAU_RIVAL
-	ShowPerson obj_T10R0101_gsrivel
-	MovePersonFacing obj_T10R0101_gsrivel, VAR_SPECIAL_x8000, 0, 23, DIR_NORTH
-	ToggleFollowingPokemonMovement 0
-	WaitFollowingPokemonMovement
-	FollowingPokemonMovement 55
-	ApplyMovement obj_T10R0101_gsrivel, _0208
-	ApplyMovement obj_player, _01E8
-	WaitMovement
-	WaitFollowingPokemonMovement
-	ToggleFollowingPokemonMovement 1
-	FollowingPokemonMovement 48
-	BufferRivalsName 0
-	NPCMsg msg_0522_T10R0101_00003
-	CloseMsg
-	GetStarterChoice VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 152
-	GoToIfNe _016E
-	TrainerBattle TRAINER_RIVAL_SILVER_20, 0, 0, 0
-	GoTo _0191
-
-_016E:
-	Compare VAR_SPECIAL_RESULT, 155
-	GoToIfNe _0189
-	TrainerBattle TRAINER_RIVAL_SILVER_21, 0, 0, 0
-	GoTo _0191
-
-_0189:
-	TrainerBattle TRAINER_RIVAL_SILVER_19, 0, 0, 0
-_0191:
-	CheckBattleWon VAR_SPECIAL_RESULT
-	Compare VAR_SPECIAL_RESULT, 0
-	GoToIfEq _01CE
-	CallStd std_play_rival_outro_music
-	BufferRivalsName 0
-	NPCMsg msg_0522_T10R0101_00004
-	CloseMsg
-	ApplyMovement obj_T10R0101_gsrivel, _0210
-	WaitMovement
-	SetVar VAR_UNK_4119, 0
-	SetFlag FLAG_UNK_AA9
-	HidePerson obj_T10R0101_gsrivel
-	CallStd std_fade_end_rival_outro_music
-	ReleaseAll
-	End
-
-_01CE:
-	HidePerson obj_T10R0101_gsrivel
-	SetFlag FLAG_HIDE_INDIGO_PLATEAU_RIVAL
-	WhiteOut
-	ReleaseAll
-	End
-
-	.balign 4, 0
-_01DC:
-	EmoteExclamationMark
-	Delay8
-	EndMovement
-
-	.balign 4, 0
-_01E8:
-	Delay8 2
-	WalkNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_01F4:
-	Delay8 2
-	WalkNormalEast
-	WalkNormalNorth
-	WalkOnSpotNormalSouth
-	EndMovement
-
-	.balign 4, 0
-_0208:
-	WalkNormalNorth 7
-	EndMovement
-
-	.balign 4, 0
-_0210:
-	WalkOnSpotNormalSouth
-	WalkNormalSouth 7
-	EndMovement
-
-scr_seq_T10R0101_000:
+	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
-	End
-
-scr_seq_T10R0101_004:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	CallStd std_mart_intro
-	HoldMsg
-	SetVar VAR_SPECIAL_x8004, 13
-	CallStd std_special_mart
 	ReleaseAll
 	End
-
-scr_seq_T10R0101_008:
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_GymGuy:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	FacePlayer
-	Compare VAR_TEMP_x4005, 1
-	GoToIfGe _0293
-	NPCMsg msg_0522_T10R0101_00005
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_GymGuyAdvice
+	WaitButton
 	CloseMsg
-	GetPlayerFacing VAR_TEMP_x4000
-	Compare VAR_TEMP_x4000, 2
-	GoToIfNe _027D
-	ApplyMovement obj_T10R0101_counterm, _02A0
-	GoTo _0287
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard:
+	LockAll
+	FacePlayer
+	CompareVarToValue 0x5037, 2
+	GoToIfGe IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipOffer
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_BlackBelt:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_AgathaWhuppedUs
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_CooltrainerM:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_LancesCousinGymLeaderFarAway
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Dragon:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 18
+	GoTo TypeTutor_EventScript_Talk
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_PokemonJournal:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0522_T10R0101_PokemonJournal_Text_SpecialFeatureLance
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamCheck:
+	LockAll
+	Call GymCandidate_EventScript_LeagueApprovalCheck
+	// TODO(gba) special GymHack_CheckTeamSpecial
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamOk
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CloseMsg
+	ApplyMovement obj_player, Common_Movement_WalkDown
+	WaitMovement
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_OnTransition:
+	End
+	// TODO(gba) @ Gym Trainer hack: FireRed's guard blocked the door ("Lorelei is absent") from the National Dex
+	End
+	
+CableClub_OnResume:
+	// TODO(gba) special InitUnionRoom
+	// TODO(gba) .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
+	Return
+	// TODO(gba) .else 
+	End
+	// TODO(gba) .endif 
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipOffer:
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipOffer
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo
+	// TODO(gba) special GymHack_CheckTeamSpecial
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipTeam
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipGo
+	WaitButton
+	CloseMsg
+	PlaySE SEQ_SE_DP_KAIDAN2
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_POKEMON_LEAGUE_LANCE_ROOM, 0, 6, 28, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Talk:
+	CopyVar 0x8008, 0x8004
+	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq TypeTutor_EventScript_Intro
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq TypeTutor_EventScript_Trial
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq TypeTutor_EventScript_JustDone
+	GoTo TypeTutor_EventScript_Teach
+	
+GymCandidate_EventScript_LeagueApprovalCheck:
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x2093, _cv_appr_3
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_3:
+	GoToIfUnset 0x2094, _cv_appr_4
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_4:
+	GoToIfUnset 0x2095, _cv_appr_5
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_5:
+	GoToIfUnset 0x2096, _cv_appr_6
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_6:
+	GoToIfUnset 0x2097, _cv_appr_7
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_7:
+	GoToIfUnset 0x2098, _cv_appr_8
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_8:
+	GoToIfUnset 0x2099, _cv_appr_9
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_9:
+	GoToIfUnset 0x2007, _cv_appr_10
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_10:
+	BufferInt 0, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 8
+	GoToIfLt GymCandidate_EventScript_NotApproved
+	Return
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamOk:
+	ReleaseAll
+	End
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo:
+	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipTeam:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_Intro:
+	// TODO(gba) special TypeTutor_BufferIntro
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	// TODO(gba) special TypeTutor_SetMet
+	GoTo _cv_stop
+	// TODO(gba) special TypeTutor_GetState
+	GoTo _cv_stop
+	End
+	
+TypeTutor_EventScript_Trial:
+	// TODO(gba) special TypeTutor_BufferTrial
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+TypeTutor_EventScript_JustDone:
+	// TODO(gba) special TypeTutor_BufferDone
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	// TODO(gba) special TypeTutor_SetOpened
+	GoTo _cv_stop
+	End
+	
+TypeTutor_EventScript_Teach:
+	CopyVar 0x8004, 0x8008
+	NPCMsg msg_0522_T10R0101_TypeTutor_Text_WhichMove
+	// TODO(gba) special TypeTutor_PushMoves
+	GoTo _cv_stop
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_12
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_12:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq TypeTutor_EventScript_Bye
+	CopyVar 0x8004, 0x8008
+	// TODO(gba) special TypeTutor_SelectMove
+	GoTo _cv_stop
+	NPCMsg msg_0522_T10R0101_TypeTutor_Text_WhichMon
+	WaitButton
+	Call EventScript_ChooseMoveTutorMon
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq TypeTutor_EventScript_Teach
+	NPCMsg msg_0522_T10R0101_TypeTutor_Text_Taught
+	WaitButton
+	GoTo TypeTutor_EventScript_Teach
+	
+GymCandidate_EventScript_NotApproved:
+	NPCMsg msg_0522_T10R0101_GymCandidate_Text_NeedApprovals
+	WaitButton
+	CloseMsg
+	ApplyMovement obj_player, Common_Movement_WalkDown
+	WaitMovement
+	ReleaseAll
+	End
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0522_T10R0101_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0522_T10R0101_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0522_T10R0101_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
+	
+TypeTutor_EventScript_Bye:
+	NPCMsg msg_0522_T10R0101_TypeTutor_Text_Bye
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_ChooseMoveTutorMon:
+	// TODO(gba) special ChooseMonForMoveTutor
+	GoTo _cv_stop
+	LockAll
+	FacePlayer
+	Return
 
-_027D:
-	ApplyMovement obj_T10R0101_counterm, _02B0
-	WaitMovement
-_0287:
-	WaitMovement
-	SetVar VAR_TEMP_x4005, 1
+_cv_unported_8:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0522_T10R0101_cv_unported
+	WaitButton
+	CloseMsg
 	ReleaseAll
 	End
 
-_0293:
-	NPCMsg msg_0522_T10R0101_00006
+_cv_str4:
+	BufferPlayersName 6
+	BufferRivalsName 7
+	Return
+
+_cv_stop:
+	NPCMsg msg_0522_T10R0101_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 
 	.balign 4, 0
-_02A0:
-	LockDir
-	WalkNormalWest
-	UnlockDir
+Common_Movement_WalkDown:
+	WalkNormalSouth
 	EndMovement
-
-	.balign 4, 0
-_02B0:
-	LockDir
-	WalkNormalEast
-	UnlockDir
-	EndMovement
-
-scr_seq_T10R0101_007:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	FacePlayer
-	NPCMsg msg_0522_T10R0101_00007
-	TouchscreenMenuHide
-_02CD:
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00008, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00009, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00010, 255, 2
-	MenuExec
-	Switch VAR_SPECIAL_RESULT
-	Case 0, _0317
-	Case 1, _0456
-	GoTo _058C
-	End
-
-_0317:
-	Compare VAR_UNK_40E6, 0
-	GoToIfEq _037A
-	NPCMsg msg_0522_T10R0101_00011
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00012, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00013, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00014, 255, 2
-	MenuExec
-	Switch VAR_SPECIAL_RESULT
-	Case 0, _037A
-	Case 1, _03F1
-	GoTo _0371
-	End
-
-_0371:
-	NPCMsg msg_0522_T10R0101_00007
-	GoTo _02CD
-
-_037A:
-	NPCMsg msg_0522_T10R0101_00015
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00016, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00017, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00018, 255, 2
-	MenuItemAdd msg_0522_T10R0101_00019, 255, 3
-	MenuItemAdd msg_0522_T10R0101_00026, 255, 4
-	MenuExec
-	Compare VAR_SPECIAL_RESULT, 4
-	GoToIfEq _03CF
-	CloseMsg
-	ViewRankings RANKINGS_SCOPE_GROUP, RANKINGS_PAGE_POKEMON, VAR_SPECIAL_RESULT
-	NPCMsg msg_0522_T10R0101_00007
-	TouchscreenMenuHide
-	GoTo _02CD
-
-_03CF:
-	Compare VAR_UNK_40E6, 0
-	GoToIfNe _03EB
-	NPCMsg msg_0522_T10R0101_00007
-	GoTo _02CD
-
-_03E5:
-	GoTo _03F1
-
-_03EB:
-	GoTo _0317
-
-_03F1:
-	NPCMsg msg_0522_T10R0101_00015
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00020, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00021, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00022, 255, 2
-	MenuItemAdd msg_0522_T10R0101_00023, 255, 3
-	MenuItemAdd msg_0522_T10R0101_00024, 255, 4
-	MenuItemAdd msg_0522_T10R0101_00025, 255, 5
-	MenuItemAdd msg_0522_T10R0101_00026, 255, 6
-	MenuExec
-	Compare VAR_SPECIAL_RESULT, 6
-	GoToIfEq _03CF
-	CloseMsg
-	ViewRankings RANKINGS_SCOPE_GROUP, RANKINGS_PAGE_BATTLE_TOWER, VAR_SPECIAL_RESULT
-	NPCMsg msg_0522_T10R0101_00007
-	TouchscreenMenuHide
-	GoTo _02CD
-
-_0456:
-	Compare VAR_UNK_40E6, 0
-	GoToIfEq _04B0
-	NPCMsg msg_0522_T10R0101_00011
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00012, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00013, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00014, 255, 2
-	MenuExec
-	Switch VAR_SPECIAL_RESULT
-	Case 0, _04B0
-	Case 1, _0527
-	GoTo _02CD
-	End
-
-_04B0:
-	NPCMsg msg_0522_T10R0101_00015
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00016, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00017, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00018, 255, 2
-	MenuItemAdd msg_0522_T10R0101_00019, 255, 3
-	MenuItemAdd msg_0522_T10R0101_00026, 255, 4
-	MenuExec
-	Compare VAR_SPECIAL_RESULT, 4
-	GoToIfEq _0505
-	CloseMsg
-	ViewRankings RANKINGS_SCOPE_GLOBAL, RANKINGS_PAGE_POKEMON, VAR_SPECIAL_RESULT
-	NPCMsg msg_0522_T10R0101_00007
-	TouchscreenMenuHide
-	GoTo _02CD
-
-_0505:
-	Compare VAR_UNK_40E6, 0
-	GoToIfNe _0521
-	NPCMsg msg_0522_T10R0101_00007
-	GoTo _02CD
-
-_051B:
-	GoTo _0527
-
-_0521:
-	GoTo _0456
-
-_0527:
-	NPCMsg msg_0522_T10R0101_00015
-	MenuInit 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	MenuItemAdd msg_0522_T10R0101_00020, 255, 0
-	MenuItemAdd msg_0522_T10R0101_00021, 255, 1
-	MenuItemAdd msg_0522_T10R0101_00022, 255, 2
-	MenuItemAdd msg_0522_T10R0101_00023, 255, 3
-	MenuItemAdd msg_0522_T10R0101_00024, 255, 4
-	MenuItemAdd msg_0522_T10R0101_00025, 255, 5
-	MenuItemAdd msg_0522_T10R0101_00026, 255, 6
-	MenuExec
-	Compare VAR_SPECIAL_RESULT, 6
-	GoToIfEq _0505
-	CloseMsg
-	ViewRankings RANKINGS_SCOPE_GLOBAL, RANKINGS_PAGE_BATTLE_TOWER, VAR_SPECIAL_RESULT
-	NPCMsg msg_0522_T10R0101_00007
-	TouchscreenMenuHide
-	GoTo _02CD
-
-_058C:
-	TouchscreenMenuShow
-	CloseMsg
-	ReleaseAll
-	End
 	.balign 4, 0

@@ -2,120 +2,338 @@
   "key": 8067,
   "messages": [
     {
-      "id": "msg_0511_T07SP0101_00000",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_CanExchangeCoinsNextDoor",
       "en_US": [
-        "My name is Mr. Game!\r",
-        "My heart pounds with excitement when\n",
-        "people enjoy my Coin game!\r",
-        "In fact, that’s what I live for!\n",
-        "You look like quite a challenger!\r",
-        "Why don’t you play my Coin game?\f",
-        "You can get fabulous prizes if you\n",
-        "manage to collect a lot of Coins. {YESNO 0}"
+        "Welcome!\r",
+        "You can exchange your Coins for\n",
+        "fabulous prizes next door."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00001",
-      "garbage": 2
-    },
-    {
-      "id": "msg_0511_T07SP0101_00002",
-      "garbage": 3
-    },
-    {
-      "id": "msg_0511_T07SP0101_00003",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_WelcomeBuySomeCoins",
       "en_US": [
-        "All right!\n",
-        "Here is your Coin Case!\r"
+        "Welcome to Rocket Game Corner!\r",
+        "Do you need some game Coins?\n",
+        "Would you like to buy some?"
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00004",
+      "id": "msg_0511_T07SP0101_cv_mc_game_corner_coin_purchase_counter_0",
+      "en_US": " 50 Coins  ¥1,000"
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_game_corner_coin_purchase_counter_1",
+      "en_US": "500 Coins  ¥10,000"
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_game_corner_coin_purchase_counter_2",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_RumoredTeamRocketRunsThisPlace",
       "en_US": [
-        "Show me how you play and make\n",
-        "my heart pound with excitement!\r"
+        "Keep this quiet.\r",
+        "It’s rumored that this place is run\n",
+        "by Team Rocket."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00005",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_ThinkMachinesHaveDifferentOdds",
       "en_US": [
-        "Playing my Coin game will make your\n",
-        "heart and my heart both pound with\f",
-        "excitement, you know?"
+        "I think these machines have\n",
+        "different odds."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00006",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_DoYouWantToPlay",
+      "en_US": "Kid, do you want to play?"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_Received10CoinsFromMan",
       "en_US": [
-        "My name is Mr. Game!\r",
-        "My heart pounds with excitement when\n",
-        "people enjoy my Coin game!\r",
-        "In fact, that’s what I live for!\n",
-        "Go ahead and play it!\f",
-        "Make my heart pound with excitement!"
+        "{STRVAR_1 3, 6, 0} received 10 Coins\n",
+        "from the man."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00007",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_GymGuyAdvice",
       "en_US": [
-        "Go ahead and play my Coin game!\n",
-        "Make my heart pound with excitement!"
+        "Hey!\r",
+        "You have better things to do,\n",
+        "champ in the making!\r",
+        "Celadon Gym’s Leader is Erika.\r",
+        "She is a user of Grass-type\n",
+        "Pokémon, and at one with nature.\r",
+        "She might appear docile because of\n",
+        "her flower arranging…\r",
+        "But she’s not one to be taken\n",
+        "lightly!"
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00008",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_WinOrLoseItsOnlyLuck",
       "en_US": [
-        "What a feeling!\n",
-        "Nothing beats Coin-game spectatorship!\r",
-        "Oh! I almost forgot!\r",
-        "You can go to the building next door\n",
-        "and exchange your Coins for prizes."
+        "These slot games…\n",
+        "Win or lose, it’s only by luck."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00009",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_SoEasyToGetHooked",
       "en_US": [
-        "Did you come back to play\n",
-        "my Coin game?"
+        "Games are scary!\n",
+        "It’s so easy to get hooked!"
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00010",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_WantSomeCoins",
       "en_US": [
-        "It seems you need a Coin Case\n",
-        "to play...\r"
+        "What’s up?\n",
+        "Want some Coins?"
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00011",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_Received20CoinsFromNiceGuy",
       "en_US": [
-        "Mr. Game: Aha!\n",
-        "You must be here to play my Coin game!\r",
-        "Come here and I’ll give you a Coin Case!"
+        "{STRVAR_1 3, 6, 0} received 20 Coins\n",
+        "from the nice guy."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00012",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_HereAreSomeCoinsShoo",
       "en_US": [
-        "Mr. Game: Show me how you play and\n",
-        "make my heart pound with excitement!\r"
+        "Hey, what? You’re throwing me off!\n",
+        "Here are some Coins, so shoo!"
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00013",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_Received20CoinsFromMan",
       "en_US": [
-        "Mr. Game: Huh?\r",
-        "Why don’t you sit across from me\n",
-        "and show me how you play?"
+        "{STRVAR_1 3, 6, 0} received 20 Coins\n",
+        "from the man."
       ]
     },
     {
-      "id": "msg_0511_T07SP0101_00014",
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_GruntIntro",
       "en_US": [
-        "Yo, legend in the making!\n",
-        "Do you play this Coin game, too?\r",
-        "I’ve been trying for the prize Pokémon,\n",
-        "but that’s a tough game to beat!"
+        "I’m guarding this poster!\n",
+        "Go away, or else!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_GruntPostBattle",
+      "en_US": [
+        "The Team Rocket Hideout might\n",
+        "be discovered!\r",
+        "Wait, you’re that inventor from\n",
+        "Pallet Town!\r",
+        "Oh, wait… never mind.\r",
+        "I better tell Boss!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_Pit_Text_Overheard",
+      "en_US": [
+        "(The man is whispering to his\n",
+        "friend…)\r",
+        "…changed it again. Word this week\n",
+        "is Gravel.\r",
+        "Same place. The wall past the prize\n",
+        "shop, the building with no door.\f",
+        "Just walk right into it."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_Pit_Text_WhispererCaught",
+      "en_US": [
+        "Huh? Were you listening?\r",
+        "…I was talking about my garden.\n",
+        "Gravel. For the path. Get lost."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_Pit_Text_ListenerBeatIt",
+      "en_US": [
+        "Beat it, kid. Grown-up\n",
+        "conversation."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_OutOfOrder",
+      "en_US": [
+        "out of Order\n",
+        "This is broken."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_OutToLunch",
+      "en_US": [
+        "out to Lunch\n",
+        "This is reserved."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_SomeonesKeys",
+      "en_US": [
+        "Someone’s keys!\n",
+        "They’ll be back."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_SwitchBehindPosterPushIt",
+      "en_US": [
+        "Hey!\r",
+        "A switch behind the poster!?\n",
+        "Let’s push it!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_TryPokemonPrinter",
+      "en_US": [
+        "It’s a Pokémon Printer!\r",
+        "It can put a print of your Pokémon\n",
+        "on the back of your Trainer Card.\r",
+        "It costs only ¥50.\n",
+        "Would you like to try it?"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_ChoosePrintType",
+      "en_US": "Please choose the print type."
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_trainer_card_icon_tint_0",
+      "en_US": "Normal"
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_trainer_card_icon_tint_1",
+      "en_US": "Black"
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_trainer_card_icon_tint_2",
+      "en_US": "Pink"
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_mc_trainer_card_icon_tint_3",
+      "en_US": "Sepia"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_ComePlaySometime",
+      "en_US": [
+        "No?\n",
+        "Please come play sometime!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_WinsComeAndGo",
+      "en_US": [
+        "Wins seem to come and go.\n",
+        "Nothing’s a sure thing."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_DontHaveCoinCase",
+      "en_US": [
+        "Oops!\n",
+        "Don’t have the Coin Case!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_DontNeedMyCoins",
+      "en_US": "You don’t need my Coins!"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_RareMonsForCoins",
+      "en_US": [
+        "They offer rare Pokémon that can\n",
+        "be exchanged for your Coins.\r",
+        "But, I just can’t seem to win!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_NeedMoreCoinsForMonIWant",
+      "en_US": [
+        "Darn! I need more Coins for the\n",
+        "Pokémon I want!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_YouHaveLotsOfCoins",
+      "en_US": "You have lots of Coins!"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_WatchReelsClosely",
+      "en_US": [
+        "The trick is to watch the reels\n",
+        "closely."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_YouveGotPlentyCoins",
+      "en_US": [
+        "You’ve got plenty of your own\n",
+        "Coins!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_SlotMachineWantToPlay",
+      "en_US": [
+        "A slot machine!\n",
+        "Want to play?"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_DontHaveEnoughMoney",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_SorryDontHaveCoinCase",
+      "en_US": [
+        "Oh, I’m sorry.\n",
+        "You don’t have a Coin Case."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_CoinCaseIsRequired",
+      "en_US": "A Coin Case is required…"
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_BigSmileForPhoto",
+      "en_US": [
+        "A big smile for the photo, please!\n",
+        "Three… Two… One…\r",
+        "Flash!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_PrintIsReadyCheckTrainerCard",
+      "en_US": [
+        "Your Pokémon print is ready!\n",
+        "Check your Trainer Card."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_CoinCaseIsFull",
+      "en_US": [
+        "Whoops!\n",
+        "Your Coin Case is full."
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_CantAffordCoins",
+      "en_US": "You can’t afford the Coins."
+    },
+    {
+      "id": "msg_0511_T07SP0101_CeladonCity_GameCorner_Text_HereAreYourCoins",
+      "en_US": [
+        "Thank you.\n",
+        "Here are your Coins!"
+      ]
+    },
+    {
+      "id": "msg_0511_T07SP0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]

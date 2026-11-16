@@ -2,23 +2,159 @@
     "header": "fielddata/script/scr_seq/event_T11R0101.h",
     "bgs": [
         {
-            "scriptId": "_EV_scr_seq_T11R0101_001 + 1",
+            "scriptId": "_EV_TrainingHouse_EventScript_HallStatue + 1",
             "type": 0,
             "x": 6,
             "z": 2,
-            "y": 131072,
-            "dir": 0
+            "y": 0,
+            "dir": 4
         },
         {
-            "scriptId": "_EV_scr_seq_T11R0101_002 + 1",
+            "scriptId": "_EV_TrainingHouse_EventScript_HallStatue + 1",
             "type": 0,
             "x": 8,
             "z": 2,
             "y": 0,
-            "dir": 0
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_TrainingHouse_EventScript_HallScrollLeft + 1",
+            "type": 0,
+            "x": 6,
+            "z": 2,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_TrainingHouse_EventScript_HallScrollRight + 1",
+            "type": 0,
+            "x": 8,
+            "z": 2,
+            "y": 0,
+            "dir": 4
         }
     ],
-    "objects": [],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSGENTLEMAN",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Harold + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 2,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Penelope + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 12,
+            "z": 10,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Isabella + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 2,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_GSGENTLEMAN",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Reginald + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 12,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Arabella + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 7,
+            "z": 7,
+            "y": 0
+        },
+        {
+            "id": "6",
+            "spriteId": "SPRITE_GSWOMAN2",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x203C",
+            "scriptId": "_EV_TrainingHouse_EventScript_Matilda + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 7,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "7",
+            "spriteId": "SPRITE_PCWOMAN1",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_TrainingHouse_EventScript_HallAttendant + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 5,
+            "z": 13,
+            "y": 0
+        }
+    ],
     "warps": [
         {
             "x": 7,
@@ -27,5 +163,6 @@
             "anchor": 8,
             "y": 0
         }
-    ]
+    ],
+    "coords": []
 }

@@ -2,30 +2,34 @@
   "key": 11955,
   "messages": [
     {
-      "id": "msg_0493_T07PC0101_00000",
+      "id": "msg_0493_T07PC0101_CeladonCity_PokemonCenter_1F_Text_PokeFluteAwakensSleepingMons",
       "en_US": [
-        "That Pokégear you have--\n",
-        "it’s way too cool!\r",
-        "Is that the...latest model?"
+        "A Poké Flute awakens sleeping\n",
+        "Pokémon. You know that.\r",
+        "It does so with a sound that only\n",
+        "they can hear."
       ]
     },
     {
-      "id": "msg_0493_T07PC0101_00001",
+      "id": "msg_0493_T07PC0101_CeladonCity_PokemonCenter_1F_Text_RodeHereFromFuchsia",
       "en_US": [
-        "Erika is a master of Grass-type\n",
-        "Pokémon.\r",
-        "She’ll make you pay if you don’t\n",
-        "watch yourself."
+        "I rode here from Fuchsia.\r",
+        "It’s an uphill ride on Cycling\n",
+        "Road, so I’m exhausted."
       ]
     },
     {
-      "id": "msg_0493_T07PC0101_00002",
+      "id": "msg_0493_T07PC0101_CeladonCity_PokemonCenter_1F_Text_GoToCyclingRoadIfIHadBike",
       "en_US": [
-        "The Game Corner in this city used\n",
-        "to be run by Team Rocket...\r",
-        "But when Team Rocket was removed,\n",
-        "this rich, game-loving man renovated\f",
-        "the Game Corner for the fun of it."
+        "If I had a Bike, I would go to\n",
+        "Cycling Road!"
+      ]
+    },
+    {
+      "id": "msg_0493_T07PC0101_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
       ]
     }
   ]
