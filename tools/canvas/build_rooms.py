@@ -130,7 +130,7 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
                        blocks=dict(top=(180, 180, 164), face=0x2A3, height=24), things=[]),
          texset=55, buildset=53, area=55),
     # Viridian City: Penny's house (its door is added to HeartGold's Viridian by build_kanto.py, warp 7 there)
-    # (bigger than the GBA's 11x9, for a plush of every Eeveelution: three plain columns each side of the rug and
+    # (bigger than the GBA's 11x9, with room for her plushes about the floor: three plain columns each side of the rug and
     # two plain rows above it, 17x11. The plushes' squares are the porter's: port_map.pennys_plushes)
     dict(gba='ViridianCity_PennysHouse_Frlg', map='MAP_VIRIDIAN_CITY_PENNYS_HOUSE', keep_people=False,
          widen=dict(cols=[(2, 3, PENNY_COL), (9, 3, PENNY_COL)], rows=[(3, 2, [(1, 3)] * 11)]),

@@ -424,26 +424,55 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
 import build_interiors as _BI      # (the big interiors HeartGold has no building for: built from the GBA layouts)
 
 
-# Penny's house: a plush of every Eeveelution. The GBA had room (and sprite palettes) for eight; our room is bigger
-# (build_rooms.py: 17x11), so Eevee and its eighteen evolutions all stand along the walls: HeartGold's own on the
-# left, Eevee in the middle under the map, the GBA game's new ones on the right. None stands in front of or beside
-# the wall furniture (HeartGold's models reach over those squares: the TV covers 8 and 9 and the edge of 7).
-# Each is the GBA's plush (its script and text: Valyreon's own, the others' shared one).
+# Penny's house: her Eeveelution plushes. The GBA had room (and sprite palettes) for eight in a row along the
+# walls; our room is bigger (build_rooms.py: 17x11) and they are left about the place the way she'd leave them:
+# one watching the TV, one at the sink, one on a chair, one beside her. Seven are HeartGold's own species, five
+# the GBA game's new ones (Valyreon with the GBA's line, the other four with lines of ours in its mould: OWN_GBA).
+# None stands on, in front of or beside the wall furniture (HeartGold's models reach over those squares), and
+# none on the table: a person's height is the floor's whatever the event says, so it stood inside it.
+#   species: (x, z, facing, its script: None = the GBA's shared one)
 PENNY_PLUSHES = {
-    'EEVEE': (10, 2),
-    'LEAFEON': (2, 2), 'GLACEON': (3, 2), 'SYLVEON': (4, 2),
-    'VAPOREON': (0, 3), 'JOLTEON': (0, 4), 'FLAREON': (0, 5), 'ESPEON': (0, 6), 'UMBREON': (0, 7),
-    'ODEON': (11, 2), 'ASSASSEON': (12, 2), 'HYPEREON': (13, 2), 'POISEON': (14, 2), 'SUBTERRANEON': (15, 2),
-    'OBSIDEON': (16, 3), 'LENNEON': (16, 4), 'APPARITEON': (16, 5), 'AUTOMATEON': (16, 6), 'VALYREON': (16, 7),
+    'EEVEE': (9, 8, 'DOWN', None),            # on the rug, facing the door
+    'VAPOREON': (1, 3, 'UP', None),           # at the sink
+    'FLAREON': (8, 4, 'UP', None),            # watching the TV
+    'JOLTEON': (4, 7, 'RIGHT', None),
+    'ESPEON': (10, 6, 'LEFT', None),          # on a chair
+    'SYLVEON': (3, 5, 'DOWN', None),
+    'UMBREON': (15, 8, 'LEFT', None),         # in the corner by the plant
+    'VALYREON': (12, 5, 'LEFT', 'ViridianCity_PennysHouse_EventScript_PlushNew'),      # beside Penny
+    'ODEON': (10, 2, 'DOWN', 'Canvas_PennysHouse_EventScript_PlushOdeon'),             # under the map
+    'HYPEREON': (14, 3, 'LEFT', 'Canvas_PennysHouse_EventScript_PlushHypereon'),
+    'AUTOMATEON': (3, 2, 'DOWN', 'Canvas_PennysHouse_EventScript_PlushAutomateon'),
+    'APPARITEON': (1, 8, 'RIGHT', 'Canvas_PennysHouse_EventScript_PlushAppariteon'),   # behind the plant
 }
+# Scripts and text of ours in the GBA game's own notation (read as if they were in its files). Nick writes the
+# final dialogue: these are stand-ins in the mould of the GBA's Valyreon plush line.
+OWN_GBA = {
+    'Canvas_PennysHouse_EventScript_PlushOdeon':
+        "It's an ODEON plush.\\p…ODEON? One of its eyes is sewn\\nshut, and it looks deliberate.$",
+    'Canvas_PennysHouse_EventScript_PlushHypereon':
+        "It's a HYPEREON plush.\\pIts felt wings are spread wide,\\nas if it's about to take off.$",
+    'Canvas_PennysHouse_EventScript_PlushAutomateon':
+        "It's an AUTOMATEON plush.\\pThe little brass gear on its collar\\nactually turns!$",
+    'Canvas_PennysHouse_EventScript_PlushAppariteon':
+        "It's an APPARITEON plush.\\p…Wasn't it facing the other way\\na second ago?$",
+}
+
+
+def own_gba(g):
+    """our sign scripts above, added to the GBA game's as it reads them"""
+    for label, s in OWN_GBA.items():
+        g.texts[label + '_Text'] = s
+        g.labels[label] = [('msgbox', [label + '_Text', 'MSGBOX_SIGN']), ('end', [])]
 
 
 def pennys_plushes(people):
     plush = lambda o: re.match(r'OBJ_EVENT_GFX_SPECIES\((\w+)\)$', o['graphics_id'])
     have = {plush(o).group(1): o for o in people if plush(o)}
     out = [o for o in people if not plush(o)]
-    for n, at in PENNY_PLUSHES.items():
-        o = dict(have.get(n) or have['SYLVEON'], graphics_id='OBJ_EVENT_GFX_SPECIES(%s)' % n, _at=at)
+    for n, (x, z, face, script) in PENNY_PLUSHES.items():
+        o = dict(have['SYLVEON'], graphics_id='OBJ_EVENT_GFX_SPECIES(%s)' % n, movement_type='MOVEMENT_TYPE_FACE_' + face, _at=(x, z))
+        if script: o['script'] = script
         o.pop('local_id', None)
         out.append(o)
     return out
@@ -1671,6 +1700,7 @@ def reachable(p, e):
 
 def main():
     g, ids = G.Gba(), Ids()
+    own_gba(g)
     report = []
     for m in sys.argv[1:] or list(MAPS):
         port(m, g, ids, report)

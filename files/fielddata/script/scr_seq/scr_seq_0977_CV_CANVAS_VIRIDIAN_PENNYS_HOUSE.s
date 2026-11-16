@@ -9,6 +9,10 @@
 	ScrDef ViridianCity_PennysHouse_EventScript_Penny
 	ScrDef ViridianCity_PennysHouse_EventScript_Plush
 	ScrDef ViridianCity_PennysHouse_EventScript_PlushNew
+	ScrDef Canvas_PennysHouse_EventScript_PlushOdeon
+	ScrDef Canvas_PennysHouse_EventScript_PlushHypereon
+	ScrDef Canvas_PennysHouse_EventScript_PlushAutomateon
+	ScrDef Canvas_PennysHouse_EventScript_PlushAppariteon
 	ScrDefEnd
 	
 ViridianCity_PennysHouse_EventScript_Penny:
@@ -33,6 +37,42 @@ ViridianCity_PennysHouse_EventScript_PlushNew:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_PlushNew
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Canvas_PennysHouse_EventScript_PlushOdeon:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushOdeon_Text
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Canvas_PennysHouse_EventScript_PlushHypereon:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushHypereon_Text
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Canvas_PennysHouse_EventScript_PlushAutomateon:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushAutomateon_Text
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Canvas_PennysHouse_EventScript_PlushAppariteon:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushAppariteon_Text
 	WaitButton
 	CloseMsg
 	ReleaseAll

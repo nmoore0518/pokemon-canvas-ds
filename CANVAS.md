@@ -269,7 +269,11 @@ From Nick's review of the Kanto build (rooms, `build_rooms.py`):
   each side): a plush next to it looked tucked under it
 - a room that needs more floor than the GBA's gets plain columns and rows (`widen` with a list of squares to copy
   the blocks from, where no whole column is plain); people of ours placed on its new squares go in the porter's
-  `PEOPLE` (Penny's house: a plush of every Eeveelution)
+  `PEOPLE` (Penny's house: twelve Eeveelution plushes left about the room, facing different ways, not lined up
+  along the walls)
+- a person's height is the floor's whatever its event says: something meant to sit on a table stands inside it
+  (a chair's square works: the sprite hides the seat). Lines of ours for things the GBA has no script for go in
+  the porter's `OWN_GBA`, in the GBA's notation, as stand-ins for Nick's own
 
 
 ## Big interiors HeartGold has no building for

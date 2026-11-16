@@ -40,6 +40,38 @@
       ]
     },
     {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushOdeon_Text",
+      "en_US": [
+        "It’s an Odeon plush.\r",
+        "…Odeon? One of its eyes is sewn\n",
+        "shut, and it looks deliberate."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushHypereon_Text",
+      "en_US": [
+        "It’s a Hypereon plush.\r",
+        "Its felt wings are spread wide,\n",
+        "as if it’s about to take off."
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushAutomateon_Text",
+      "en_US": [
+        "It’s an Automateon plush.\r",
+        "The little brass gear on its collar\n",
+        "actually turns!"
+      ]
+    },
+    {
+      "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_Canvas_PennysHouse_EventScript_PlushAppariteon_Text",
+      "en_US": [
+        "It’s an Appariteon plush.\r",
+        "…Wasn’t it facing the other way\n",
+        "a second ago?"
+      ]
+    },
+    {
       "id": "msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_AnotherEevee",
       "en_US": [
         "Oh, another Eevee!\r",

@@ -4,6 +4,10 @@
 #define _EV_ViridianCity_PennysHouse_EventScript_Penny 0
 #define _EV_ViridianCity_PennysHouse_EventScript_Plush 1
 #define _EV_ViridianCity_PennysHouse_EventScript_PlushNew 2
+#define _EV_Canvas_PennysHouse_EventScript_PlushOdeon 3
+#define _EV_Canvas_PennysHouse_EventScript_PlushHypereon 4
+#define _EV_Canvas_PennysHouse_EventScript_PlushAutomateon 5
+#define _EV_Canvas_PennysHouse_EventScript_PlushAppariteon 6
 
 
 #endif
