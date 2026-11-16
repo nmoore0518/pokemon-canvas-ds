@@ -1,0 +1,168 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SAFARI_EAST.h",
+    "warps": [
+        {
+            "x": 8,
+            "z": 9,
+            "header": "MAP_CANVAS_SAFARI_NORTH",
+            "anchor": 6,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 10,
+            "header": "MAP_CANVAS_SAFARI_NORTH",
+            "anchor": 7,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 11,
+            "header": "MAP_CANVAS_SAFARI_NORTH",
+            "anchor": 8,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 26,
+            "header": "MAP_CANVAS_SAFARI_CENTER",
+            "anchor": 9,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 27,
+            "header": "MAP_CANVAS_SAFARI_CENTER",
+            "anchor": 10,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 28,
+            "header": "MAP_CANVAS_SAFARI_CENTER",
+            "anchor": 11,
+            "y": 0
+        },
+        {
+            "x": 40,
+            "z": 14,
+            "header": "MAP_CANVAS_SAFARI_EAST_REST",
+            "anchor": 1,
+            "y": 0
+        }
+    ],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x220D",
+            "scriptId": "_EV_SafariZone_East_EventScript_ItemMaxPotion + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 13,
+            "z": 12,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x220E",
+            "scriptId": "_EV_SafariZone_East_EventScript_ItemFullRestore + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 37,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x220F",
+            "scriptId": "_EV_SafariZone_East_EventScript_ItemTM11 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 31,
+            "z": 18,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2210",
+            "scriptId": "_EV_SafariZone_East_EventScript_ItemLeafStone + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 36,
+            "z": 17,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2211",
+            "scriptId": "_EV_SafariZone_East_EventScript_ItemBurnDrive + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 43,
+            "z": 9,
+            "y": 0
+        }
+    ],
+    "bgs": [
+        {
+            "scriptId": "_EV_SafariZone_East_EventScript_AreaSign + 1",
+            "type": 0,
+            "x": 18,
+            "z": 27,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SafariZone_East_EventScript_RestHouseSign + 1",
+            "type": 0,
+            "x": 43,
+            "z": 15,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SafariZone_East_EventScript_TrainerTips + 1",
+            "type": 0,
+            "x": 17,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "coords": []
+}

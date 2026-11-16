@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_WEST_REST_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_WEST_REST_H_
+
+#define _EV_SafariZone_West_RestHouse_EventScript_Scientist 0
+#define _EV_SafariZone_West_RestHouse_EventScript_Man 1
+#define _EV_SafariZone_West_RestHouse_EventScript_CooltrainerF 2
+
+
+#endif

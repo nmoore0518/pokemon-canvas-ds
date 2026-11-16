@@ -375,4 +375,13 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0373_CV_POKEMON_MANSION_2F.bin',
     'map_matrix_0374_CV_POKEMON_MANSION_3F.bin',
     'map_matrix_0375_CV_POKEMON_MANSION_B1F.bin',
+    'map_matrix_0376_CV_SAFARI_CENTER.bin',
+    'map_matrix_0377_CV_SAFARI_EAST.bin',
+    'map_matrix_0378_CV_SAFARI_NORTH.bin',
+    'map_matrix_0379_CV_SAFARI_WEST.bin',
+    'map_matrix_0380_CV_SAFARI_CENTER_REST.bin',
+    'map_matrix_0381_CV_SAFARI_EAST_REST.bin',
+    'map_matrix_0382_CV_SAFARI_NORTH_REST.bin',
+    'map_matrix_0383_CV_SAFARI_WEST_REST.bin',
+    'map_matrix_0384_CV_SAFARI_SECRETHOUSE.bin',
 ))

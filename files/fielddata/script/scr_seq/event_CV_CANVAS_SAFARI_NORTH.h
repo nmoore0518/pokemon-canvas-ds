@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_NORTH_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_NORTH_H_
+
+#define _EV_SafariZone_North_EventScript_ItemProtein 0
+#define _EV_SafariZone_North_EventScript_ItemTM47 1
+#define _EV_SafariZone_North_EventScript_ItemQuickClaw 2
+#define _EV_SafariZone_North_EventScript_TrainerTips1 3
+#define _EV_SafariZone_North_EventScript_AreaSign 4
+#define _EV_SafariZone_North_EventScript_TrainerTips2 5
+#define _EV_SafariZone_North_EventScript_TrainerTips3 6
+#define _EV_SafariZone_North_EventScript_RestHouseSign 7
+
+
+#endif

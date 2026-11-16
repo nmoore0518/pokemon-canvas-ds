@@ -1,0 +1,47 @@
+{
+  "key": 19935,
+  "messages": [
+    {
+      "id": "msg_0948_CV_CANVAS_SAFARI_NORTH_REST_SafariZone_East_Text_MyEeveeEvolvedIntoFlareon",
+      "en_US": [
+        "My Eevee evolved into Flareon.\r",
+        "But, a friend’s Eevee turned into a\n",
+        "Vaporeon. I wonder why?"
+      ]
+    },
+    {
+      "id": "msg_0948_CV_CANVAS_SAFARI_NORTH_REST_SafariZone_East_Text_KeepAnyItemFoundOnSafari",
+      "en_US": [
+        "You can keep any item you find in\n",
+        "the Safari Zone.\r",
+        "But, you’ll run out of time if you\n",
+        "try for all of them at once."
+      ]
+    },
+    {
+      "id": "msg_0948_CV_CANVAS_SAFARI_NORTH_REST_SafariZone_East_Text_PrizeInDeepestPartOfSafariZone",
+      "en_US": [
+        "Go to the deepest part of the\n",
+        "Safari Zone. You will win a prize!"
+      ]
+    },
+    {
+      "id": "msg_0948_CV_CANVAS_SAFARI_NORTH_REST_SafariZone_West_Text_KogaPatrolsSafariEverySoOften",
+      "en_US": [
+        "The Safari Zone’s huge, wouldn’t\n",
+        "you say?\r",
+        "Fuchsia’s Gym Leader, Koga, \n",
+        "patrols the grounds every so often.\r",
+        "Thanks to him, we can play here\n",
+        "knowing that we’re safe."
+      ]
+    },
+    {
+      "id": "msg_0948_CV_CANVAS_SAFARI_NORTH_REST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

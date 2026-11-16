@@ -1,0 +1,35 @@
+{
+  "key": 19936,
+  "messages": [
+    {
+      "id": "msg_0949_CV_CANVAS_SAFARI_WEST_REST_SafariZone_West_Text_RocksMakeMonRunButEasierCatch",
+      "en_US": [
+        "Tossing Rocks at Pokémon might\n",
+        "make them run, but they’ll be\f",
+        "easier to catch."
+      ]
+    },
+    {
+      "id": "msg_0949_CV_CANVAS_SAFARI_WEST_REST_SafariZone_West_Text_BaitMakesMonStickAround",
+      "en_US": [
+        "Using Bait will make Pokémon more\n",
+        "likely to stick around if they get\f",
+        "busy eating."
+      ]
+    },
+    {
+      "id": "msg_0949_CV_CANVAS_SAFARI_WEST_REST_SafariZone_West_Text_HikedLotsDidntSeeMonIWanted",
+      "en_US": [
+        "I hiked a lot, but I didn’t see any\n",
+        "Pokémon I wanted."
+      ]
+    },
+    {
+      "id": "msg_0949_CV_CANVAS_SAFARI_WEST_REST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

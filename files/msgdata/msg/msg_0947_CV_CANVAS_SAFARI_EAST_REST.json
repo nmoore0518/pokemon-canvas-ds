@@ -1,0 +1,33 @@
+{
+  "key": 19934,
+  "messages": [
+    {
+      "id": "msg_0947_CV_CANVAS_SAFARI_EAST_REST_SafariZone_East_Text_HowManyDidYouCatch",
+      "en_US": [
+        "How many did you catch?\n",
+        "I’m bushed from the effort!"
+      ]
+    },
+    {
+      "id": "msg_0947_CV_CANVAS_SAFARI_EAST_REST_SafariZone_East_Text_CaughtChanseyAllWorthwhile",
+      "en_US": [
+        "I caught a Chansey!\r",
+        "That makes this all worthwhile."
+      ]
+    },
+    {
+      "id": "msg_0947_CV_CANVAS_SAFARI_EAST_REST_SafariZone_East_Text_TiredFromAllTheFun",
+      "en_US": [
+        "Whew!\n",
+        "I’m tired from all the fun!"
+      ]
+    },
+    {
+      "id": "msg_0947_CV_CANVAS_SAFARI_EAST_REST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

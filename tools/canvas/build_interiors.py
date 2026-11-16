@@ -35,7 +35,14 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     'tower': dict(area=77, floor='d15_yuka01', wall='d17_wall01', top='d15_wall01a', low='d17_ita', mark='d15_yuka03'),
     'plant': dict(area=44, floor='kn_c_yuka2', wall='kn_c_kabe1', top='mpwr_r04', low='counter_g02', mark='kn_c_stair'),
     'ship': dict(area=42, floor='sn_h_yuka1', wall='sn_h_kabe1', top='h_kage', low='table01', mark='ar_s_mat'),
+    'house': dict(area=42, floor='mo_yuka', wall='mo_kabe', top='h_kage', low='table01', mark='d_mat01'),
+    # outdoors (the Safari Zone): Fuchsia's set; the GBA's trees are a hedge of HeartGold's trees (a row of them
+    # on each face, the canopy on top), with its tall grass and ponds
+    'safari': dict(area=16, floor='grass02', wall='tree01_re', top='tree01_un', low='etc_a', mark='road01',
+                   grass='egrass', water='pond_un'),
 }
+TALL_GRASS_MB = {2}
+WATER_MB = {16, 17, 18, 19, 20, 21, 24, 26, 44, 45}
 
 
 def _floors(name, n, look, template, first=1):
@@ -83,9 +90,22 @@ INTERIORS += (
     [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='tower', template='MAP_BURNED_TOWER_1F',
           depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN) for f in ('1F', '2F', '3F', 'B1F')]
 )
+# the Safari Zone, through a door we add at the back of HeartGold's Pal Park entrance (where the GBA's is)
+SZ = 'MAP_SAFARI_ZONE_01'
+INTERIORS += (
+    [dict(gba='SafariZone_Center_Frlg', map='MAP_CANVAS_SAFARI_CENTER', look='safari', template=SZ, depth=0,
+          exits={'MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE': ('MAP_FUCHSIA_PAL_PARK_ENTRANCE', 1)}),
+     dict(gba='SafariZone_East_Frlg', map='MAP_CANVAS_SAFARI_EAST', look='safari', template=SZ, depth=0),
+     dict(gba='SafariZone_North_Frlg', map='MAP_CANVAS_SAFARI_NORTH', look='safari', template=SZ, depth=0),
+     dict(gba='SafariZone_West_Frlg', map='MAP_CANVAS_SAFARI_WEST', look='safari', template=SZ, depth=0)] +
+    [dict(gba='SafariZone_%s_Frlg' % r, map='MAP_CANVAS_SAFARI_%s' % r.upper().replace('_RESTHOUSE', '_REST'), look='house',
+          template='MAP_FUCHSIA_SOUTHWEST_HOUSE', depth=0)
+     for r in ('Center_RestHouse', 'East_RestHouse', 'North_RestHouse', 'West_RestHouse', 'SecretHouse')]
+)
 # warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
 # the room's warp list, so no other warp's number moves.
-ADD_WARPS = [('MAP_CELADON_GAME_CORNER', (12, 3), 0x3E, 'MAP_CANVAS_ROCKET_HIDEOUT_B1F', 0)]   # (the GBA's hidden stairs)
+ADD_WARPS = [('MAP_CELADON_GAME_CORNER', (12, 3), 0x3E, 'MAP_CANVAS_ROCKET_HIDEOUT_B1F', 0),    # (the GBA's hidden stairs)
+             ('MAP_FUCHSIA_PAL_PARK_ENTRANCE', (8, 4), 0x3E, 'MAP_CANVAS_SAFARI_CENTER', 1)]
 # HeartGold's doors that stood for these places -> ours: (map, its warp index) -> (our map, GBA warp index there)
 DOORS = {('MAP_LAVENDER', 6): ('MAP_CANVAS_POKEMON_TOWER_1F', 1),
          ('MAP_SAFFRON_SILPH_CO_HQ', 1): ('MAP_CANVAS_SILPH_CO_2F', 3),
@@ -123,8 +143,12 @@ def build_floor(spec, depth_of):
             if len(comp) <= 6 and not edge: low |= set(comp)
     floor = lambda x, y: not blocked(x, y)
     near_floor = lambda x, y: any(floor(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
-    height = lambda x, y: 0 if floor(x, y) else LOW_H if (x, y) in low else WALL_H if near_floor(x, y) else None
+    outdoors = 'grass' in look            # (outdoors every tree is drawn: no dark between the hedges)
+    height = lambda x, y: 0 if floor(x, y) else LOW_H if (x, y) in low else WALL_H if outdoors or near_floor(x, y) else None
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
+    mb = lambda x, y: lay.behavior(lay.metatile(x, y))
+    water = {(x, y) for y in range(H) for x in range(W) if floor(x, y) and 'water' in look and mb(x, y) in WATER_MB}
+    grass = {(x, y) for y in range(H) for x in range(W) if floor(x, y) and 'grass' in look and mb(x, y) in TALL_GRASS_MB}
     # how each warp square acts
     kind = {}
     for (x, y), w in warps.items():
@@ -153,10 +177,12 @@ def build_floor(spec, depth_of):
                     if inland and 0 <= x < W and 0 <= y < H:
                         i = (y - oz) * 32 + (x - ox)
                         if floor(x, y):
-                            perm[i] = kind.get((x, y), 0x0000)
+                            perm[i] = kind.get((x, y), 0x0010 if (x, y) in water else 0x0002 if (x, y) in grass else 0x0000)
                     if not inland or h is None: continue
                     tex = look['floor'] if h == 0 else look['low'] if h == LOW_H else look['top']
                     if (x, y) in warps and kind[(x, y)] != 0x65: tex = look['mark']
+                    elif (x, y) in water: tex, h = look['water'], -2
+                    elif (x, y) in grass: tex = look['grass']
                     tops.setdefault((tex, h), set()).add((x, y))
                     if h:
                         for n in ((0, 1), (0, -1), (1, 0), (-1, 0)):

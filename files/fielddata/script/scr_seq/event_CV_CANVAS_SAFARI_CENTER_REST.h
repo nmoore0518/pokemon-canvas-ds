@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_CENTER_REST_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_CENTER_REST_H_
+
+#define _EV_SafariZone_Center_RestHouse_EventScript_Scientist 0
+#define _EV_SafariZone_Center_RestHouse_EventScript_Sara 1
+
+
+#endif

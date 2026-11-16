@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_SECRETHOUSE_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_SECRETHOUSE_H_
+
+#define _EV_SafariZone_SecretHouse_EventScript_Attendant 0
+
+
+#endif

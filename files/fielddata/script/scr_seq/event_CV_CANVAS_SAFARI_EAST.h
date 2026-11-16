@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_EAST_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_EAST_H_
+
+#define _EV_SafariZone_East_EventScript_ItemMaxPotion 0
+#define _EV_SafariZone_East_EventScript_ItemFullRestore 1
+#define _EV_SafariZone_East_EventScript_ItemTM11 2
+#define _EV_SafariZone_East_EventScript_ItemLeafStone 3
+#define _EV_SafariZone_East_EventScript_ItemBurnDrive 4
+#define _EV_SafariZone_East_EventScript_AreaSign 5
+#define _EV_SafariZone_East_EventScript_RestHouseSign 6
+#define _EV_SafariZone_East_EventScript_TrainerTips 7
+
+
+#endif

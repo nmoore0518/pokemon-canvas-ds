@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_WEST_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_WEST_H_
+
+#define _EV_SafariZone_West_EventScript_ItemGoldTeeth 0
+#define _EV_SafariZone_West_EventScript_ItemTM32 1
+#define _EV_SafariZone_West_EventScript_ItemMaxPotion 2
+#define _EV_SafariZone_West_EventScript_ItemMaxRevive 3
+#define _EV_SafariZone_West_EventScript_LostTeethNotice 4
+#define _EV_SafariZone_West_EventScript_TrainerTips 5
+#define _EV_SafariZone_West_EventScript_AreaSign 6
+#define _EV_SafariZone_West_EventScript_RestHouseSign 7
+
+
+#endif

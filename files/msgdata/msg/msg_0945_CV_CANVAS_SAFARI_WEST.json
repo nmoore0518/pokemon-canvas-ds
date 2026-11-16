@@ -1,0 +1,42 @@
+{
+  "key": 19932,
+  "messages": [
+    {
+      "id": "msg_0945_CV_CANVAS_SAFARI_WEST_SafariZone_West_Text_PleaseFindWardensLostTeeth",
+      "en_US": [
+        "Request Notice\r",
+        "Please find the Safari Warden’s\n",
+        "lost Gold Teeth.\f",
+        "They’re around here somewhere.\r",
+        "Reward offered!\n",
+        "Contact: Warden"
+      ]
+    },
+    {
+      "id": "msg_0945_CV_CANVAS_SAFARI_WEST_SafariZone_West_Text_SearchForSecretHouse",
+      "en_US": [
+        "Trainer Tips\r",
+        "Zone Exploration Campaign!\n",
+        "The Search for the Secret House!"
+      ]
+    },
+    {
+      "id": "msg_0945_CV_CANVAS_SAFARI_WEST_SafariZone_West_Text_AreaSign",
+      "en_US": [
+        "Area 3\n",
+        "East: Center Area"
+      ]
+    },
+    {
+      "id": "msg_0945_CV_CANVAS_SAFARI_WEST_SafariZone_West_Text_RestHouse",
+      "en_US": "Rest House"
+    },
+    {
+      "id": "msg_0945_CV_CANVAS_SAFARI_WEST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

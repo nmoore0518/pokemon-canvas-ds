@@ -231,6 +231,13 @@ pads drawn in `mark`. A way out at the foot of a wall is an exit mat (0x65); sta
 HeartGold's doors stand in for them: Lavender's Radio Tower is the Pokemon Tower, Silph Co.'s elevator door goes to
 our 2F, Route 10's Power Plant is ours, and Vermilion's ferry building boards the S.S. Anne (its dock outside is
 left out). Not yet: Silph Co.'s elevator (a GBA dynamic warp), its card-key doors, the GBA furniture.
+The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden ones are: `ADD_WARPS`); its
+spin-tile mazes are plain floor for now. The Safari Zone's four areas are built the same way outdoors (`safari`
+look, Fuchsia's set: the GBA's trees a hedge of HeartGold's, tall grass `egrass` with HeartGold's grass behaviour,
+ponds), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the Secret House
+(Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are built and ported but have no
+door yet: HeartGold's Cinnabar is the ruin after the eruption (rebuilding the town from the GBA layout, as Pallet
+was, is the next step there).
 
 ## The rest of Kanto (towns, routes, the rooms HeartGold has)
 

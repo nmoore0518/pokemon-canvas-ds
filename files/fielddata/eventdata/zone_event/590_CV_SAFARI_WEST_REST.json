@@ -1,0 +1,81 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SAFARI_WEST_REST.h",
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 3,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SafariZone_West_RestHouse_EventScript_Scientist + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 3,
+            "z": 4,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SafariZone_West_RestHouse_EventScript_Man + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_SafariZone_West_RestHouse_EventScript_CooltrainerF + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
+            "z": 3,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 3,
+            "z": 9,
+            "header": "MAP_CANVAS_SAFARI_WEST",
+            "anchor": 10,
+            "y": 0
+        },
+        {
+            "x": 4,
+            "z": 9,
+            "header": "MAP_CANVAS_SAFARI_WEST",
+            "anchor": 10,
+            "y": 0
+        },
+        {
+            "x": 5,
+            "z": 9,
+            "header": "MAP_CANVAS_SAFARI_WEST",
+            "anchor": 10,
+            "y": 0
+        }
+    ],
+    "bgs": [],
+    "coords": []
+}

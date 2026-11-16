@@ -582,4 +582,13 @@ zone_event_json = files(
     '580_CV_POKEMON_MANSION_2F.json',
     '581_CV_POKEMON_MANSION_3F.json',
     '582_CV_POKEMON_MANSION_B1F.json',
+    '583_CV_SAFARI_CENTER.json',
+    '584_CV_SAFARI_EAST.json',
+    '585_CV_SAFARI_NORTH.json',
+    '586_CV_SAFARI_WEST.json',
+    '587_CV_SAFARI_CENTER_REST.json',
+    '588_CV_SAFARI_EAST_REST.json',
+    '589_CV_SAFARI_NORTH_REST.json',
+    '590_CV_SAFARI_WEST_REST.json',
+    '591_CV_SAFARI_SECRETHOUSE.json',
 )

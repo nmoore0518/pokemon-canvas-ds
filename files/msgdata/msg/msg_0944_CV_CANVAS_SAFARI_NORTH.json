@@ -1,0 +1,44 @@
+{
+  "key": 19931,
+  "messages": [
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_SafariZone_North_Text_SecretHouseStillAhead",
+      "en_US": [
+        "Trainer Tips\r",
+        "The Secret House is still ahead."
+      ]
+    },
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_SafariZone_North_Text_Area2",
+      "en_US": "Area 2"
+    },
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_SafariZone_North_Text_ZigzagThroughTallGrass",
+      "en_US": [
+        "Trainer Tips\r",
+        "Pokémon hide in tall grass.\r",
+        "Zigzag through grassy areas to\n",
+        "flush them out."
+      ]
+    },
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_SafariZone_North_Text_WinFreeHMFindSecretHouse",
+      "en_US": [
+        "Trainer Tips\r",
+        "Win a free HM for finding the\n",
+        "Secret House."
+      ]
+    },
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_SafariZone_North_Text_RestHouse",
+      "en_US": "Rest House"
+    },
+    {
+      "id": "msg_0944_CV_CANVAS_SAFARI_NORTH_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

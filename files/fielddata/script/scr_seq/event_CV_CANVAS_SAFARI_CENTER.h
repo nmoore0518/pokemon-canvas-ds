@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_CENTER_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_CENTER_H_
+
+#define _EV_SafariZone_Center_EventScript_ItemNugget 0
+#define _EV_PaintWorld_EventScript_Figure 1
+#define _EV_SafariZone_Center_EventScript_RestHouseSign 2
+#define _EV_SafariZone_Center_EventScript_TrainerTips 3
+#define _EV_SafariZone_Center_EventScript_AreaSign 4
+#define _EV_SafariZone_Center_OnTransition 5
+
+
+#endif

@@ -623,6 +623,15 @@
 #define MAP_CANVAS_POKEMON_MANSION_2F                     614
 #define MAP_CANVAS_POKEMON_MANSION_3F                     615
 #define MAP_CANVAS_POKEMON_MANSION_B1F                    616
+#define MAP_CANVAS_SAFARI_CENTER                          617
+#define MAP_CANVAS_SAFARI_EAST                            618
+#define MAP_CANVAS_SAFARI_NORTH                           619
+#define MAP_CANVAS_SAFARI_WEST                            620
+#define MAP_CANVAS_SAFARI_CENTER_REST                     621
+#define MAP_CANVAS_SAFARI_EAST_REST                       622
+#define MAP_CANVAS_SAFARI_NORTH_REST                      623
+#define MAP_CANVAS_SAFARI_WEST_REST                       624
+#define MAP_CANVAS_SAFARI_SECRETHOUSE                     625
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

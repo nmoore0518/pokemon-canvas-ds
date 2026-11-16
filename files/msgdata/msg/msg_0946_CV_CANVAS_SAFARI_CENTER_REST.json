@@ -1,0 +1,26 @@
+{
+  "key": 19933,
+  "messages": [
+    {
+      "id": "msg_0946_CV_CANVAS_SAFARI_CENTER_REST_SafariZone_Center_Text_CatchingMonsAsGifts",
+      "en_US": [
+        "I’m catching Pokémon to take home\n",
+        "as gifts."
+      ]
+    },
+    {
+      "id": "msg_0946_CV_CANVAS_SAFARI_CENTER_REST_SafariZone_Center_Text_WhereDidErikGo",
+      "en_US": [
+        "Sara: Where did my boyfriend,\n",
+        "Erik, go?"
+      ]
+    },
+    {
+      "id": "msg_0946_CV_CANVAS_SAFARI_CENTER_REST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

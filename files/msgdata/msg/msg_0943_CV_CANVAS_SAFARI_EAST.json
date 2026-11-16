@@ -1,0 +1,31 @@
+{
+  "key": 19930,
+  "messages": [
+    {
+      "id": "msg_0943_CV_CANVAS_SAFARI_EAST_SafariZone_East_Text_AreaSign",
+      "en_US": [
+        "Area 1\n",
+        "West: Center Area"
+      ]
+    },
+    {
+      "id": "msg_0943_CV_CANVAS_SAFARI_EAST_SafariZone_East_Text_RestHouse",
+      "en_US": "Rest House"
+    },
+    {
+      "id": "msg_0943_CV_CANVAS_SAFARI_EAST_SafariZone_East_Text_TimeDeclinesOnlyWhileYouWalk",
+      "en_US": [
+        "Trainer Tips\r",
+        "The remaining time declines only\n",
+        "while you walk."
+      ]
+    },
+    {
+      "id": "msg_0943_CV_CANVAS_SAFARI_EAST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

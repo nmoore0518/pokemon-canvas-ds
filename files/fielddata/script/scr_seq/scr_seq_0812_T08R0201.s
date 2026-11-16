@@ -141,8 +141,11 @@ FuchsiaCity_SafariZone_Entrance_EventScript_ReturnToSafariZone:
 	CloseMsg
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_ReEnter
 	WaitMovement
-	// TODO(gba) warp MAP_SAFARI_ZONE_CENTER, 26, 30
-	GoTo _cv_stop
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_CANVAS_SAFARI_CENTER, 0, 26, 30, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	End
 	
 FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:
@@ -172,8 +175,11 @@ FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:
 	// TODO(gba) special EnterSafariMode
 	GoTo _cv_stop
 	SetVar 0x5034, 2
-	// TODO(gba) warp MAP_SAFARI_ZONE_CENTER, 255, 26, 30
-	GoTo _cv_stop
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_CANVAS_SAFARI_CENTER, 0, 255, 26, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	End
 	
 FuchsiaCity_SafariZone_Entrance_EventScript_ForcePlayerBack:
