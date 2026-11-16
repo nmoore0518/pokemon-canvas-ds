@@ -31,11 +31,14 @@ def tris(land, ox, oz):
     return out
 
 
+BG = (0, 0, 0)
+
+
 def render(T, texs, center, span, W=512, pitch=40):
     H = int(W * 0.75)
     cx, cz = center
     a = math.radians(pitch)
-    img = np.zeros((H, W, 3), np.uint8); zb = np.full((H, W), 1e9)
+    img = np.zeros((H, W, 3), np.uint8); img[:] = BG; zb = np.full((H, W), 1e9)
     scale = W / (span * 16)
     for tex, tri in T:
         im = texs.get(tex)

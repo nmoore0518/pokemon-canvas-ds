@@ -117,7 +117,10 @@ for r in REC:
                 hb, hf = -0.4 * (y - y0), -0.4 * (y - y0 + 1)
                 if x in stairs: ramp[y][x] = (hb, hf, 'stairs')
                 elif x in falls: ramp[y][x] = (hb - WATER_DROP, hf - WATER_DROP, 'water')
-                else: topH[y][x] = hf; rocky[y][x] = True
+                else:
+                    # HeartGold's terraced cliff: level rock on top, then two tiers down to the shore, each a
+                    # block high and sloped back across a square (rim faces: see slanted_face)
+                    topH[y][x] = -max(0, (y - y0) - (y1 - y0 - 2)); rocky[y][x] = True
 for r in REC:
     if r[0] == 'raised':
         _, x0, y0, x1, y1, interior, _, stairs, _ = r
@@ -259,7 +262,7 @@ def wall_x(tex, x, z, y0, y1, vscale=16, normal=(1, 0, 0)):
 def rim(x, y):
     """a plateau's edge square, one tier above the ground beside it and not walkable: HeartGold slopes its cliff
     face back across such a square (the face rises two thirds of a block back, then a lip to the whole block)"""
-    if not (0 <= x < RW and 0 <= y < RH) or coll[y][x] != '1' or ramp[y][x] or topH[y][x] <= 0: return False
+    if not (0 <= x < RW and 0 <= y < RH) or coll[y][x] != '1' or ramp[y][x]: return False
     return any(lower_by_tier(x, y, x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
 
 
@@ -336,16 +339,26 @@ def slanted_face(lo, n):
     ends, dirs = [], []
     for j, sgn in ((0, -1), (1, 1)):
         side, diag = (x + sgn * t[0], y + sgn * t[1]), (x + sgn * t[0] + n[0], y + sgn * t[1] + n[1])
+        on_ramp = lambda xx, yy: 0 <= xx < RW and 0 <= yy < RH and ramp[yy][xx]
         if same(*side): d = (n[0] + sgn * t[0], n[1] + sgn * t[1])          # (an inside corner)
-        elif same(*diag): d = n                                              # (straight on)
+        elif same(*diag) or on_ramp(*diag): d = n                            # (straight on: stairs or falls beside
+                                                                             # it have their own side wall)
         else: d = (n[0] - sgn * t[0], n[1] - sgn * t[1])                     # (an outside corner)
         ends.append((ex + t[0] * j, ey + t[1] * j)); dirs.append(d)
     tex = 'wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'
     base = solid(x, y)
     u = [(e[0] if n[0] == 0 else e[1]) * 16 for e in ends]
     nrm = (-n[0] * 0.6, 0.8, -n[1] * 0.6)
+    P = lambda k, d, h: (ends[k][0] + dirs[k][0] * d, Y(base + h), ends[k][1] + dirs[k][1] * d)
+    # where the face ends against walkable ground of the plateau, close the end of its slope (or the dark
+    # beneath shows through as a triangle)
+    for k, sgn in ((0, -1), (1, 1)):
+        diag = (x + sgn * t[0] + n[0], y + sgn * t[1] + n[1])
+        if dirs[k] == n and 0 <= diag[0] < RW and 0 <= diag[1] < RH and not ramp[diag[1]][diag[0]] and not rim(*diag) \
+                and topH[diag[1]][diag[0]] >= top - 0.01:
+            quad(tex, [P(k, 0, 0), P(k, 0, 1.0), P(k, 1.0, 1.0), P(k, 0.67, 1.0)], [(u[k], 15.75), (u[k] + 16, 0.25), (u[k] + 16, 0.25), (u[k] + 8, 4)],
+                 (t[0] * sgn, 0, t[1] * sgn), lands[(hi[0] // 32, hi[1] // 32)])
     for (d0, h0, v0), (d1, h1, v1) in zip(CLIFF, CLIFF[1:]):
-        P = lambda k, d, h: (ends[k][0] + dirs[k][0] * d, Y(base + h), ends[k][1] + dirs[k][1] * d)
         quad(tex, [P(0, d0, h0), P(1, d0, h0), P(1, d1, h1), P(0, d1, h1)], [(u[0], v0), (u[1], v0), (u[1], v1), (u[0], v1)],
              nrm, lands[(hi[0] // 32, hi[1] // 32)])
 

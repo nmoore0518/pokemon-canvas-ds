@@ -172,13 +172,24 @@ What else it does:
 
 HeartGold's Mt. Moon is one small floor; the GBA game's is three. `build_caves.py` models each floor from its GBA
 layout in HeartGold's cave look, built the way HeartGold builds its own caves (`bmdview.py` reads a map model's
-geometry; `texview.py` shows a texture set): `droad01` floor, rock rising in tiers a block high (faces of
-`dwall_n/e/s/w`, named for the side of the floor they stand on; tier tops `dcliff01`; the dark `d_ro` beyond),
-HeartGold's ladder models (69 up, 70 down) on squares of behaviour 0x3C/0x3E, cave mouths 0x6E (north),
-0x6F (south), 0x6C/0x6D (east/west), and HeartGold's cave floor (0x0A08, wild Pokemon). Floors bigger than a land
-span a matrix of lands. They are maps of our own (`MAP_CANVAS_MT_MOON_*`) with the header of HeartGold's Mt. Moon
-(its wild Pokemon for now); the doors on Route 3 and Route 4 into HeartGold's Mt. Moon lead into ours, and
-HeartGold's own (with Mt. Moon Square) is left alone.
+geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG without the game):
+- rock rises from the floor in tiers a block high, by rings of rock (two tiers; one where the wall is thin):
+  each tier's face is HeartGold's profile (it leans back two thirds of a block while rising, then a lip back to
+  the whole block), textured `dwall_n/e/s/w` by where the rock is; corners are mitred along the diagonal;
+- above the second tier, the rim (`dcliff01_r`: light at the edge, fading to the dark), then the dark; a tier's
+  top and anything the faces leave open is `dcliff01`; the floor (`droad01`) has its darker edge (`droad01_r`)
+  along the foot of every wall;
+- little patches of rock out on the floor (the GBA's rock piles) are HeartGold's boulder (`d_rock01`), stood up;
+- HeartGold's ladder models (69 up, 70 down) on squares of behaviour 0x3C/0x3E; cave mouths 0x6E (north), 0x6F
+  (south), 0x6C/0x6D (east/west); HeartGold's cave floor (0x0A08, wild Pokemon).
+- **Polygons**: the DS draws 2048 a frame, people included; a cave drawn square by square leaves none for them
+  (they vanish). Flat pieces are drawn in runs, straight faces as one strip.
+Floors bigger than a land span a matrix of lands. They are maps of our own (`MAP_CANVAS_MT_MOON_*`) with the header
+of HeartGold's Mt. Moon (its wild Pokemon for now); the doors on Route 3 and Route 4 into HeartGold's Mt. Moon lead
+into ours, and HeartGold's own (with Mt. Moon Square) is left alone.
+
+**Cliffs outside** (Pallet's plateaus and terraces, `build_pallet.py`) use the same HeartGold profile: the face
+slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to the shore are two such tiers.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
