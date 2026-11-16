@@ -74,7 +74,9 @@ def build_floor(spec, depth_of):
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
     dims, pals = texdims(TEXSET)
     pal_of = lambda t: next(p for p in (t + '_pl', t) if p in pals)
-    h_of = lambda x, y: (min(tier[y][x], 2) * TIER) if 0 <= x < W and 0 <= y < H else 2 * TIER
+    # (rock stands two tiers tall wherever it is, its top in the dark, as HeartGold's caves are seen from above;
+    # tier steps would make the GBA's thin rock walls into wide ledges)
+    h_of = lambda x, y: 0 if 0 <= x < W and 0 <= y < H and not blocked[y][x] else 2 * TIER
     # ladders and mouths
     ladders, mouths = {}, {}
     for w in gm.get('warp_events', []):
@@ -103,18 +105,7 @@ def build_floor(spec, depth_of):
                     x0, x1, z0, z1 = U(x, ox), U(x + 1, ox), U(y, oz), U(y + 1, oz)
                     if inside and not blocked[y][x]:
                         perm[i] = FLOOR
-                    # the top of the square
-                    if (x, y) in ladders and ladders[(x, y)] == LADDER_DOWN:
-                        pass                                     # (the ladder's hole)
-                    elif h == 0:
-                        M('droad01').quad([((x0, 0, z1), (x * 16, (y + 1) * 16)), ((x1, 0, z1), ((x + 1) * 16, (y + 1) * 16)),
-                                           ((x1, 0, z0), ((x + 1) * 16, y * 16)), ((x0, 0, z0), (x * 16, y * 16))], up)
-                    else:
-                        lit = h < 2 * TIER or any(h_of(x + dx, y + dy) < h for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
-                        t = 'dcliff01' if inside and lit and tier[y][x] < 3 else 'd_ro'
-                        tw, th = dims[t]
-                        M(t).quad([((x0, h, z1), (x * 16 % tw, 16 + y * 16 % th)), ((x1, h, z1), (x * 16 % tw + 16, 16 + y * 16 % th)),
-                                   ((x1, h, z0), (x * 16 % tw + 16, y * 16 % th)), ((x0, h, z0), (x * 16 % tw, y * 16 % th))], up)
+                    # (the top of the square: drawn in runs along the row, below)
                     # faces down to lower neighbours, a tier at a time (named for where the wall stands)
                     for (dx, dy), name, n in (((0, 1), 'dwall_n', (0, 0, 1)), ((0, -1), 'dwall_s', (0, 0, -1)),
                                               ((1, 0), 'dwall_w', (1, 0, 0)), ((-1, 0), 'dwall_e', (-1, 0, 0))):
@@ -138,8 +129,29 @@ def build_floor(spec, depth_of):
                         if b == 0x6E:     # the mouth: a dark opening in the wall above
                             M('d_ro').quad([((x0 + 2, 0, z0 - 0.5), (0, 8)), ((x1 - 2, 0, z0 - 0.5), (8, 8)),
                                             ((x1 - 2, 28, z0 - 0.5), (8, 0)), ((x0 + 2, 28, z0 - 0.5), (0, 0))], (0, 0, 1))
+            # tops in runs: floor (droad01), tier tops in the light (dcliff01); the dark beyond is left undrawn
+            # (a cave's background is black)
+            def top_of(x, y):
+                if (x, y) in ladders and ladders[(x, y)] == LADDER_DOWN: return None      # (the ladder's hole)
+                h = h_of(x, y)
+                if h == 0: return ('droad01', 0)
+                inside = x < W and y < H
+                lit = h < 2 * TIER or any(h_of(x + dx, y + dy) < h for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+                return None
+            for y in range(oz, oz + 32):
+                x = ox
+                while x < ox + 32:
+                    k = top_of(x, y)
+                    e = x + 1
+                    while e < ox + 32 and top_of(e, y) == k: e += 1
+                    if k:
+                        t, h = k
+                        x0, x1, z0, z1 = U(x, ox), U(e, ox), U(y, oz), U(y + 1, oz)
+                        M(t).quad([((x0, h, z1), (x * 16, (y + 1) * 16)), ((x1, h, z1), (e * 16, (y + 1) * 16)),
+                                   ((x1, h, z0), (e * 16, y * 16)), ((x0, h, z0), (x * 16, y * 16))], up)
+                    x = e
             groups = [(t, t, pal_of(t), mesh, {'repeat': 3, 'size': dims[t]}) for t, mesh in meshes.items()]
-            model = build_model('canvas_cave_%s_%d' % (spec['gba'][:10].lower(), len(lands)), groups)
+            model = build_model('cv_cave_%d' % (spec['depth'] * 10 + len(lands)), groups)     # (names: 16 at most)
             model += b'\0' * (-len(model) % 4)
             bld = b''.join(struct.pack('<I3i3i3i8x', m, int(px * 4096), int(py * 4096), int(pz * 4096), 0, 0, 0, 4096, 4096, 4096)
                            for m, px, py, pz in props)

@@ -429,7 +429,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': 'MEDAL', 'CLIPBOARD': 'SCROLL',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': 'BREAKROCK', 'CLIPBOARD': 'SCROLL',
 }
 # Pokemon in the overworld: hg-engine's walking sprite of that species
 for _n in re.findall(r'#define SPRITE_FOLLOWER_MON_(?!STATIC)([A-Z0-9_]+)\s', open(os.path.join(ROOT, 'include/constants/sprites.h')).read()):

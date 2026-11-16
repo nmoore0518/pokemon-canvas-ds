@@ -77,6 +77,7 @@ def build_model(name, groups):
     """groups: [(material name, texture name, palette name, Mesh, opts dict)] -> BMD0 bytes.
     Every group becomes a material, in order (HeartGold animates map materials by index, so an empty
     group can hold a place); only groups with geometry get a shape."""
+    assert len(name) <= 16 and all(len(g[0]) <= 16 and len(g[1]) <= 16 and len(g[2]) <= 16 for g in groups), 'names: 16 at most'
     nmat = len(groups)
     drawn = [i for i, g in enumerate(groups) if g[3].quads or g[3].tris]
     nshp = len(drawn)
