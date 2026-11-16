@@ -255,7 +255,7 @@ ROUTE16 = Auto('MAP_ROUTE_16', gba='Route16_Frlg'); ROUTE16.also = ('MAP_ROUTE_1
 
 MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PalletTown_Frlg': ('MAP_PALLET', pallet_xy),
-    'PalletTown_PlayersHouse_1F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_1F', same),
+    'PalletTown_PlayersHouse_1F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_1F', None),     # (widened: room_xy below)
     'PalletTown_PlayersHouse_2F_Frlg': ('MAP_PALLET_TOWN_REDS_HOUSE_2F', same),
     'PalletTown_PlayersHouse_B1F_Frlg': ('MAP_FIGHT_AREA_UNUSED_6', same),
     'PalletTown_RivalsHouse_Frlg': ('MAP_PALLET_TOWN_BLUES_HOUSE_1F', same),
@@ -422,6 +422,19 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PokemonLeague_HallOfFame_Frlg': ('MAP_POKEMON_LEAGUE_HALL_OF_FAME', Auto('MAP_POKEMON_LEAGUE_HALL_OF_FAME')),
 }
 import build_interiors as _BI      # (the big interiors HeartGold has no building for: built from the GBA layouts)
+
+
+def room_xy(gba):
+    """a room build_rooms.py built wider or longer than the GBA's (widen): its squares move with the columns/rows added"""
+    import build_rooms
+    w = next((r.get('widen') for r in build_rooms.ROOMS if r['gba'] == gba and r.get('widen')), None) or {}
+    cols = [c if len(c) == 3 else (c[0], c[1], c[0]) for c in w.get('cols', [])]
+    rows = [r if len(r) == 3 else (r[0], r[1], r[0]) for r in w.get('rows', [])]
+    return lambda x, y, kind='pos': (x + sum(n for c, n, _ in cols if c <= x), y + sum(n for r, n, _ in rows if r <= y))
+
+
+for _d, _v in list(MAPS.items()):
+    if _v[1] is None: MAPS[_d] = (_v[0], room_xy(_d)) + tuple(_v[2:])
 for _c in _BI.INTERIORS:
     MAPS[_c['gba']] = (_c['map'], same)
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)

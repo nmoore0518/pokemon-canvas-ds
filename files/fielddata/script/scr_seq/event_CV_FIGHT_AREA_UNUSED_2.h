@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_FIGHT_AREA_UNUSED_2_H_
+#define SCR_SEQ_CV_FIGHT_AREA_UNUSED_2_H_
+
+#define _EV_PalletTown_PokemonCenter_1F_EventScript_Nurse 0
+#define _EV_PalletTown_PokemonCenter_1F_EventScript_Gentleman 1
+#define _EV_PalletTown_PokemonCenter_1F_EventScript_Boy 2
+#define _EV_PalletTown_PokemonCenter_1F_EventScript_Youngster 3
+#define _EV_PalletTown_PokemonCenter_1F_OnTransition 4
+#define _EV_CableClub_OnResume 5
+
+#define LOCALID_PALLET_NURSE 1
+
+#endif

@@ -1,0 +1,101 @@
+{
+  "key": 19939,
+  "messages": [
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_HaroldIntro",
+      "en_US": [
+        "Welcome to the Pallet Training\n",
+        "Hall. I’m the first test!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_PenelopeIntro",
+      "en_US": [
+        "Only Champions train here.\n",
+        "Show me what you’ve got!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_IsabellaIntro",
+      "en_US": [
+        "Strong opponents mean lots of\n",
+        "EXP. Ready?\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_ReginaldIntro",
+      "en_US": [
+        "Every type can strike my team.\n",
+        "Come, test yours!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_ArabellaIntro",
+      "en_US": [
+        "Few make it this far. Let’s\n",
+        "make it worth your while.\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_MatildaIntro",
+      "en_US": [
+        "I’m the Hall’s master. My Chansey\n",
+        "family has trained Champions!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_RestTeam",
+      "en_US": [
+        "Welcome to the Pallet Training\n",
+        "Hall. Shall I rest your team?"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_TeamRested",
+      "en_US": [
+        "Your Pokémon are good as new.\n",
+        "Train hard!"
+      ]
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_HallStatue",
+      "en_US": "Pallet Training Hall"
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_HallScrollLeft",
+      "en_US": "“Every battle is a lesson.”"
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_HallScrollRight",
+      "en_US": "“Rest well, then battle again.”"
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_TrainingHouse_Text_AttendantBye",
+      "en_US": "Train hard!"
+    },
+    {
+      "id": "msg_0952_CV_FIGHT_AREA_UNUSED_4_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

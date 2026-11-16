@@ -632,6 +632,8 @@ scr_seq_event_headers = files(
     'event_CV_CANVAS_SAFARI_NORTH_REST.h',
     'event_CV_CANVAS_SAFARI_WEST_REST.h',
     'event_CV_CANVAS_SAFARI_SECRETHOUSE.h',
+    'event_CV_FIGHT_AREA_UNUSED_2.h',
+    'event_CV_FIGHT_AREA_UNUSED_4.h',
 )
 
 scr_seq_asm = files(
@@ -1794,4 +1796,8 @@ scr_seq_asm = files(
     'scr_seq_1156_CV_CANVAS_SAFARI_WEST_REST_hdr.s',
     'scr_seq_1157_CV_CANVAS_SAFARI_SECRETHOUSE.s',
     'scr_seq_1158_CV_CANVAS_SAFARI_SECRETHOUSE_hdr.s',
+    'scr_seq_1159_CV_FIGHT_AREA_UNUSED_2.s',
+    'scr_seq_1160_CV_FIGHT_AREA_UNUSED_2_hdr.s',
+    'scr_seq_1161_CV_FIGHT_AREA_UNUSED_4.s',
+    'scr_seq_1162_CV_FIGHT_AREA_UNUSED_4_hdr.s',
 )

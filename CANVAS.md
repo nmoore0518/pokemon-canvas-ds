@@ -221,6 +221,21 @@ slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to 
   Pokemon statues use HeartGold's own overworld sprite of that Pokemon (hg-engine has one for every species in
   `a/0/8/1`), enlarged and recoloured to stone or gold (`STATUE_FINISH`), standing like HeartGold's people
 
+From Nick's review of the Kanto build (rooms, `build_rooms.py`):
+- doormats (room models 1 and 3) stand a unit off the floor (`MAT_LIFT`), and every room's floor runs a quarter
+  square past its last row under the mat's front: level with the floor, or hanging over the dark, the mat showed
+  in two pieces
+- a staircase down: the floor reaches right up to the stairs model (`STAIR_DOWN_RECT`, its footprint), never a
+  hole of whole squares (that left a black border round it)
+- HeartGold's models can be bigger than the GBA furniture they stand for (its TV is two squares wide to the GBA's
+  one): check each room for models that overlap, and widen the room with a plain column where they do
+  (`widen=dict(cols=[(col, n, plain_col)])`; the porter moves the room's people and warps into it to match)
+- a GBA map script that changes a room's metatiles (a bookcase over stairs until the story opens them) becomes a
+  room variant: the room's own land is drawn as the script first leaves it, a second land as it is once the flag
+  is set, and the engine shows that one while the flag is set (`variant=` in ROOMS -> `canvas_variants.h`)
+- GBA art that reaches up into the wall rows (the basement's hopper) is drawn once, on its card: the wall strip
+  behind it carries on the wall from the nearest clear column
+
 
 ## Big interiors HeartGold has no building for
 

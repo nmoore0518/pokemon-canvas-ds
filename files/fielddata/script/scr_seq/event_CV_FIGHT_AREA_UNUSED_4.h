@@ -1,0 +1,16 @@
+#ifndef SCR_SEQ_CV_FIGHT_AREA_UNUSED_4_H_
+#define SCR_SEQ_CV_FIGHT_AREA_UNUSED_4_H_
+
+#define _EV_TrainingHouse_EventScript_Harold 0
+#define _EV_TrainingHouse_EventScript_Penelope 1
+#define _EV_TrainingHouse_EventScript_Isabella 2
+#define _EV_TrainingHouse_EventScript_Reginald 3
+#define _EV_TrainingHouse_EventScript_Arabella 4
+#define _EV_TrainingHouse_EventScript_Matilda 5
+#define _EV_TrainingHouse_EventScript_HallAttendant 6
+#define _EV_TrainingHouse_EventScript_HallStatue 7
+#define _EV_TrainingHouse_EventScript_HallScrollLeft 8
+#define _EV_TrainingHouse_EventScript_HallScrollRight 9
+
+
+#endif

@@ -51,6 +51,18 @@ if os.environ.get('ASSERTS'):      # (report GF_AssertFail calls: where the game
         if adr != '1': emu.memory.register_exec(int(adr, 16), _entry)
     emu.memory.register_exec(0x0202551C, lambda a, s: hits.append('%s<-%s' % (hex(emu.memory.register_arm9.lr), last[0])))
 
+SAVE_PTR = 0x021D2228            # sSaveDataPtr
+MISC_HEADER = 0x2F014 + 9 * 16 + 8   # SaveData.arrayHeaders[SAVE_MISC].offset (hg-engine's bigger save)
+CANVAS_FLAGS = 0x6A4             # SAVE_MISC_DATA.canvasFlags (engine/include/save.h)
+
+
+def set_canvas_flag(n):
+    save = emu.memory.unsigned.read_long(SAVE_PTR)
+    misc = save + 0x10 + emu.memory.unsigned.read_long(save + MISC_HEADER)
+    a = misc + CANVAS_FLAGS + n // 8
+    emu.memory.write_byte(a, emu.memory.unsigned.read_byte(a) | (1 << (n % 8)))
+
+
 lst, out = sys.argv[1], sys.argv[2]
 os.makedirs(out, exist_ok=True)
 addr = None
@@ -76,7 +88,9 @@ for line in open(lst):
             A()
     run(frames)
     for a in p[5:]:          # (then: step.py's actions, such as hUP:20 to walk through a door)
-        if a[0] == 'w': run(int(a[1:]))
+        if a.startswith('flag:'):    # one of our flags set in the save (the n of flag 0x2000 + n): see set_canvas_flag
+            set_canvas_flag(int(a[5:]))
+        elif a[0] == 'w': run(int(a[1:]))
         elif a[0] == 'h':
             k, nf = a[1:].split(':'); m = keymask(getattr(Keys, 'KEY_' + k)); emu.input.keypad_add_key(m); run(int(nf)); emu.input.keypad_rm_key(m); run(4)
         else:

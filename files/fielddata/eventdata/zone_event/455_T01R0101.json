@@ -24,7 +24,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
+            "x": 9,
             "z": 5,
             "y": 0
         }
@@ -45,7 +45,7 @@
             "y": 0
         },
         {
-            "x": 10,
+            "x": 11,
             "z": 2,
             "header": "MAP_PALLET_TOWN_REDS_HOUSE_2F",
             "anchor": 0,
@@ -59,7 +59,7 @@
             "y": 0
         },
         {
-            "x": 9,
+            "x": 10,
             "z": 2,
             "header": "MAP_FIGHT_AREA_UNUSED_6",
             "anchor": 0,

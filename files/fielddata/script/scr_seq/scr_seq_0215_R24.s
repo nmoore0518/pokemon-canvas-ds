@@ -172,7 +172,7 @@ _cv_shown_6:
 	SetVar 0x5008, 3
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	Warp MAP_PALLET_TOWN_REDS_HOUSE_1F, 0, 9, 5, DIR_SOUTH
+	Warp MAP_PALLET_TOWN_REDS_HOUSE_1F, 0, 10, 5, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll

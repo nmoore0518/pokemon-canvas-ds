@@ -25,16 +25,5 @@
             "y": 0
         }
     ],
-    "coords": [
-        {
-            "scriptId": "_EV_scr_seq_T02GYM0101_003 + 1",
-            "x": 1,
-            "z": 46,
-            "w": 9,
-            "h": 1,
-            "y": 0,
-            "val": 0,
-            "var": "VAR_UNK_4127"
-        }
-    ]
+    "coords": []
 }

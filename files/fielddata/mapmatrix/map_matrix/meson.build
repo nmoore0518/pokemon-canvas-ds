@@ -384,4 +384,5 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0382_CV_SAFARI_NORTH_REST.bin',
     'map_matrix_0383_CV_SAFARI_WEST_REST.bin',
     'map_matrix_0384_CV_SAFARI_SECRETHOUSE.bin',
+    'map_matrix_0385_CV_HOUSE_1F_OPEN.bin',
 ))

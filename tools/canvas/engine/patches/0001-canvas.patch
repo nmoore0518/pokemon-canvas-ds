@@ -131,11 +131,12 @@ new file mode 100644
 index 0000000000000000000000000000000000000000..7ffe5c4e7da79b704f759c6cfd676b1012026ae0
 GIT binary patch
 literal 252
-zcmeAS@N?(olHy`uVBq!ia0vp^0wB!73?$#)eFPFP2=EDUEk3&B|J5zu_D;DsrMTMB
-z@$8zU>S9MrONnP$UQ;YJg9I3k9=+P#J;lo_>i_@$KuxZ*ro94Ej3q&S!3+-1ZlnP@
-zRh}-6Ar*6c4;u0@I!d%XEZ;YyC+DEOQ0r!mZya|H2u|pTTYg3BJIjuVeoaUAi%K8O
-zu;rhyjluSYk8`=hlFBvt+AMxDdj!3eA8^cyF)Ug7`pvx_rbRKwHcB*I(ql;MzkJz#
-x*|}5Sdlbv|oX9?+l3eY)<@g<bhJZQt_FmT%`c_+Ac?om{gQu&X%Q~loCIA&3WfK4Z
+zcmV<Y00aMtP)<h;3K|Lk000e1NJLTq000mG000mK0{{R3?cL&10000mP)t-sbH$|p
+z)wK4#l-`tcdqF|XtYUj}K{+`X=4wimIVn;Q0L8`Ci;I*>N?QN_{{R30MVglC00001
+zbW%=J06^y0W&i*HdPzh<RCt_C!7&a2K^TVNcfOd6Y{5Sgg|jI32;9ICkceKV)GGG`
+zxRFkR#J?3A#b`YbkhTCl*i1urK%{xBZz}{&9J~=rBj5;{TrqT|>+If)0-{{Tu^58V
+zE&ySV)6+ku&dT?UA$GjTYs4gDdqcFx+z$XyoIgKG)*z0nI@IX^0000<MNUMnLSTXw
+C9c2>$
 
 literal 0
 HcmV?d00001
@@ -2071,27 +2072,30 @@ index 74403e9d..755b340e 100644
      };
  #endif // EXPAND_TRAINER_PRIZE_MONEY
 diff --git a/tools/narcpy.py b/tools/narcpy.py
-index 3ea72b91..2d14f643 100644
+index 3ea72b91..7864c666 100644
 --- a/tools/narcpy.py
 +++ b/tools/narcpy.py
-@@ -22,15 +22,24 @@ if args[0] == 'extract':
+@@ -22,15 +22,27 @@ if args[0] == 'extract':
              with open(name, 'wb') as out:
                  out.write(data)
  elif args[0] == 'create':
-+    # Pokemon Canvas: members go by the number after the last '_', not by name: a NARC of 1000 members or more
-+    # extracts as 2_0003 where the rules copy 2_003 in (and a directory can keep an older extraction's names).
-+    # Of two files for one member, the newer wins (the one copied in after the extraction).
++    # Pokemon Canvas: a NARC of 1000 members or more extracts as 2_0003 where the rules copy 2_003 in (and a
++    # directory can keep an older extraction's names). Where every file is named <prefix>_<number>, members go by
++    # number and, of two files for one member, the newer wins (the one copied in after the extraction); any other
++    # directory packs in name order, as before.
 +    import re
-+    best, other = {}, []
-+    for entry in os.listdir(args[2]):
-+        m = re.match(r'(\d+)', entry.rsplit('_', 1)[-1])
-+        path = os.path.join(args[2], entry)
-+        if not m:
-+            other.append(path)
-+            continue
-+        idx = int(m.group(1))
-+        if idx not in best or os.path.getmtime(path) >= os.path.getmtime(best[idx]):
-+            best[idx] = path
++    entries = os.listdir(args[2])
++    named = [re.fullmatch(r'(.+)_(\d+)', e) for e in entries]
++    if entries and all(named):
++        best = {}
++        for e, m in zip(entries, named):
++            key = (m.group(1), int(m.group(2)))
++            path = os.path.join(args[2], e)
++            if key not in best or os.path.getmtime(path) >= os.path.getmtime(best[key]):
++                best[key] = path
++        paths = [best[k] for k in sorted(best)]
++    else:
++        paths = [os.path.join(args[2], e) for e in sorted(entries)]
      files = []
 -    for v in range(len(os.listdir(args[2]))):
 -        files.append(None)
@@ -2101,7 +2105,7 @@ index 3ea72b91..2d14f643 100644
 -        with open(os.path.join(args[2], entry), 'rb') as f:
 -            files[idx] = f.read()
 -        idx += 1
-+    for path in [best[i] for i in sorted(best)] + sorted(other):
++    for path in paths:
 +        with open(path, 'rb') as f:
 +            files.append(f.read())
  

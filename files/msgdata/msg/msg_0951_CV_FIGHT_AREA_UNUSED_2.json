@@ -1,0 +1,39 @@
+{
+  "key": 19938,
+  "messages": [
+    {
+      "id": "msg_0951_CV_FIGHT_AREA_UNUSED_2_PalletTown_PokemonCenter_1F_Text_FeelFreeToUsePC",
+      "en_US": [
+        "Please feel free to use that PC in\n",
+        "the corner.\r",
+        "The receptionist told me so.\n",
+        "It’s so kind of her!"
+      ]
+    },
+    {
+      "id": "msg_0951_CV_FIGHT_AREA_UNUSED_2_PalletTown_PokemonCenter_1F_Text_PokeCenterInEveryTown",
+      "en_US": [
+        "There’s a Pokémon Center in every\n",
+        "town ahead.\r",
+        "They charge no money, so don’t\n",
+        "be shy about healing Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0951_CV_FIGHT_AREA_UNUSED_2_PalletTown_PokemonCenter_1F_Text_PokeCentersHealMons",
+      "en_US": [
+        "Pokémon Centers heal your tired,\n",
+        "hurt, or fainted Pokémon.\r",
+        "They make all Pokémon completely\n",
+        "healthy."
+      ]
+    },
+    {
+      "id": "msg_0951_CV_FIGHT_AREA_UNUSED_2_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}
