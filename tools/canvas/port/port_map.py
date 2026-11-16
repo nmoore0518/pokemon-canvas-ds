@@ -75,6 +75,11 @@ class Anchored:
             return (x, z) in self.inside()
         return ok
 
+    def wet(self, x, z):
+        """water a swimmer can be in"""
+        v = self.perm(x, z)
+        return v is not None and not v & 0x8000 and (v & 0xFF) in (0x10, 0x11, 0x15)
+
     def inside(self):
         """a room's floor: the squares you can walk to from its doors (the land around a room reads as open too)"""
         if getattr(self, '_inside', None) is None:
@@ -119,7 +124,8 @@ class Anchored:
                 ring = [(X + i, Z + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r]
                 for c in sorted(ring, key=lambda c: (c[0] - X) ** 2 + (c[1] - Z) ** 2):
                     near_door = kind == 'object' and any(abs(c[0] - w[0]) + abs(c[1] - w[1]) <= 1 for w in self.warps)
-                    if self.open(*c) and not near_door and (kind == 'trigger' or c not in self.used):
+                    if (self.wet(*c) if getattr(self, 'want_water', False) else self.open(*c)) and not near_door \
+                            and (kind == 'trigger' or c not in self.used):
                         if kind == 'object': self.used.add(c)
                         return c
         return X, Z
@@ -337,7 +343,9 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'Route10_Frlg#south': ('MAP_ROUTE_10_SOUTH', ROUTE10, on_map(ROUTE10, 'MAP_ROUTE_10_SOUTH')),
     'Route16_Frlg': ('MAP_ROUTE_16', ROUTE16, lambda x, y: not on_map(ROUTE16, 'MAP_ROUTE_16_EAST')(x, y)),
     'Route16_Frlg#east': ('MAP_ROUTE_16_EAST', ROUTE16, on_map(ROUTE16, 'MAP_ROUTE_16_EAST')),
-    'Route21_North_Frlg': ('MAP_ROUTE_21', Auto('MAP_ROUTE_21')),
+    # (HeartGold's Route 21 is one map for the GBA's North and South: the two stretched over its 64 rows)
+    'Route21_North_Frlg+Route21_South_Frlg': ('MAP_ROUTE_21', Anchored('MAP_ROUTE_21', [((0, 0), (1028, 416)), ((23, 0), (1051, 416)),
+                                                                                    ((0, 99), (1028, 479)), ((23, 99), (1051, 479))])),
     'VermilionCity_PokemonCenter_1F_Frlg': ('MAP_VERMILION_POKECENTER_1F', center('MAP_VERMILION_POKECENTER_1F')),
     'VermilionCity_Mart_Frlg': ('MAP_VERMILION_POKEMART', mart('MAP_VERMILION_POKEMART')),
     'LavenderTown_PokemonCenter_1F_Frlg': ('MAP_LAVENDER_POKECENTER_1F', center('MAP_LAVENDER_POKECENTER_1F')),
@@ -423,7 +431,7 @@ DEST_EXTRA = {
     'MAP_DIGLETTS_CAVE_SOUTH_ENTRANCE': 'MAP_DIGLETT_CAVE', 'MAP_DIGLETTS_CAVE_NORTH_ENTRANCE': 'MAP_DIGLETT_CAVE',
     'MAP_SEAFOAM_ISLANDS_1F': 'MAP_SEAFOAM_ISLANDS_1F', 'MAP_ROUTE12_NORTH_ENTRANCE_1F': 'MAP_ROUTE_19_ROUTE_12_GATEHOUSE',
     'MAP_VICTORY_ROAD_1F': 'MAP_VICTORY_ROAD_1F', 'MAP_CERULEAN_CAVE_1F': 'MAP_CERULEAN_CAVE_1F', 'MAP_ROUTE21_SOUTH': 'MAP_ROUTE_21',
-    'MAP_ROUTE23': 'MAP_VICTORY_ROAD_1F', 'MAP_SILPH_CO_1F': 'MAP_SAFFRON_SILPH_CO_HQ',
+    'MAP_ROUTE21_NORTH': 'MAP_ROUTE_21', 'MAP_ROUTE23': 'MAP_VICTORY_ROAD_1F', 'MAP_SILPH_CO_1F': 'MAP_SAFFRON_SILPH_CO_HQ',
 }
 PRIMARIES = set(v[0] for k, v in MAPS.items() if '#' not in k)
 
@@ -783,7 +791,7 @@ class Port:
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
         self.flag_of = {}             # a person's local id -> their flag
-        for o in G.map_json(gba_map.split('#')[0]).get('object_events', []):
+        for o in merged_json(gba_map.split('#')[0]).get('object_events', []):
             if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
                 self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
                 self.flag_of[self.localid(o['local_id'])] = o['flag']
@@ -1398,7 +1406,7 @@ def port(gba_map, g, ids, report):
         xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
         xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
         xy.warps = [(w['x'], w['z']) for w in ev.get('warps', [])]
-    mj = G.map_json(gba_map.split('#')[0])
+    mj = merged_json(gba_map.split('#')[0])
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
     entries = []
@@ -1424,7 +1432,7 @@ def port(gba_map, g, ids, report):
                 and part(c['x'], c['y'])]
     for c in triggers:
         if c['script'] not in entries: entries.append(c['script'])
-    gdir = gba_map.split('#')[0]
+    gdir = gba_map.split('#')[0].split('+')[0]
     mapscripts = [(c, a) for c, a in g.labels.get(gdir.replace('_Frlg', '') + '_Frlg_MapScripts', g.labels.get(gdir + '_MapScripts', []))]
     on = {}
     for c, a in mapscripts:
@@ -1519,8 +1527,11 @@ def port(gba_map, g, ids, report):
         mv = MOVETYPE.get(o['movement_type'], 15)
         kind = 'tree' if 'CUTTABLE_TREE' in o['graphics_id'] else 'trainer' if trainer_of(o) else \
             'item' if o['graphics_id'] == 'OBJ_EVENT_GFX_ITEM_BALL' else 'object'
-        if isinstance(xy, Anchored): xy.last_spot = None
+        if isinstance(xy, Anchored):
+            xy.last_spot = None
+            xy.want_water = '_WATER' in o['graphics_id']        # (swimmers stay in the water)
         at = xy(o['x'], o['y'], kind)
+        if isinstance(xy, Anchored): xy.want_water = False
         if at is None: continue
         x, z = at
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
@@ -1560,6 +1571,24 @@ def port(gba_map, g, ids, report):
     report += ['  unfinished: ' + e for e in entries if e in unfinished]
     report += ['  stops early: ' + e for e in stops]
     report += ['  todo: ' + t for t in sorted(set(p.todo))]
+
+
+def merged_json(name):
+    """a GBA map, or GBA maps joined top to bottom ('A+B': B's squares below A's) where HeartGold has one map for
+    them (its Route 21 is the GBA's North and South)"""
+    parts = name.split('+')
+    mj = json.loads(json.dumps(G.map_json(parts[0])))
+    import gba_map
+    dy = gba_map.Layout(mj['layout']).h
+    for p_ in parts[1:]:
+        m2 = G.map_json(p_)
+        for k in ('object_events', 'bg_events', 'coord_events'):
+            for e in m2.get(k, []):
+                e = dict(e, y=e['y'] + dy)
+                if k == 'object_events' and e.get('local_id'): e['local_id'] = e['local_id']
+                mj.setdefault(k, []).append(e)
+        dy += gba_map.Layout(m2['layout']).h
+    return mj
 
 
 def reachable(p, e):
