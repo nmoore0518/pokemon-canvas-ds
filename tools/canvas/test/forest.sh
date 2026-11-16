@@ -3,7 +3,7 @@
 # up Route 2 and into Viridian Forest (st/TAG_f*.png). Use a ROM with trainers (test/no_encounters.py --keep-trainers).
 set -e
 T=$1; D=$(dirname "$0"); export ROM=${ROM:-build/canvas_tr.nds}
-A=$(for i in $(seq 1 12); do printf "A w300 "; done)
+A=$(for i in $(seq 1 42); do printf "A w300 "; done)
 python3 $D/step.py st/${T}_p11.dst st/${T}_f1.dst $A B w100 B w100 hDOWN:200 w300 s:${T}_f1 >/dev/null 2>&1
 OUT=st/${T}_f2.dst python3 $D/tour.py st/${T}_f1.dst ${T}f g1036,290 >/dev/null 2>&1
 python3 $D/step.py st/${T}_f2.dst st/${T}_f3.dst hUP:900 w200 >/dev/null 2>&1
