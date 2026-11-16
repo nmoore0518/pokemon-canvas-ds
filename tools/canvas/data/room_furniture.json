@@ -1,0 +1,249 @@
+{
+ "MAP_BATTLE_PARK_UNUSED_1": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_BATTLE_PARK_UNUSED_2": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_BATTLE_TOWER_UNUSED_1": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_BATTLE_TOWER_UNUSED_2": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_BATTLE_TOWER_UNUSED_3": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    8,
+    2
+   ]
+  ]
+ },
+ "MAP_FIGHT_AREA_UNUSED_1": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_FIGHT_AREA_UNUSED_6": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_FIGHT_AREA_UNUSED_7": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_FIGHT_AREA_UNUSED_8": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_FIGHT_AREA_UNUSED_9": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_PALLET_TOWN_BLUES_HOUSE_1F": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_PALLET_TOWN_BLUES_HOUSE_2F": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_PALLET_TOWN_OAKS_LAB": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_PALLET_TOWN_REDS_HOUSE_1F": {
+  "first": 2,
+  "squares": [
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_PALLET_TOWN_REDS_HOUSE_2F": {
+  "first": 2,
+  "squares": [
+   [
+    1,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_VIRIDIAN_GYM": {
+  "first": 2,
+  "squares": []
+ }
+}

@@ -5,7 +5,7 @@
             "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_Computer + 1",
             "type": 0,
             "x": 2,
-            "z": 1,
+            "z": 2,
             "y": 0,
             "dir": 4
         },
@@ -21,7 +21,7 @@
             "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_LeftSign + 1",
             "type": 0,
             "x": 6,
-            "z": 1,
+            "z": 2,
             "y": 0,
             "dir": 4
         },
@@ -29,7 +29,7 @@
             "scriptId": "_EV_PalletTown_ProfessorOaksLab_EventScript_RightSign + 1",
             "type": 0,
             "x": 7,
-            "z": 1,
+            "z": 2,
             "y": 0,
             "dir": 4
         },

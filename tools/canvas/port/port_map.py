@@ -274,7 +274,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'Route22_Frlg': ('MAP_ROUTE_22', ROUTE22),
     'ViridianCity_Mart_Frlg': ('MAP_VIRIDIAN_POKEMART', VIRIDIAN_MART),
     'PalletTown_Mart_Frlg': ('MAP_FIGHT_AREA_UNUSED_3', PALLET_MART),     # (our copy of HeartGold's Viridian Mart)
-    'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', same),
+    'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', None),      # (a bigger room: build_rooms.py)
     'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
     'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
     'Route3_Frlg': ('MAP_ROUTE_3', ROUTE3),
@@ -422,6 +422,52 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'PokemonLeague_HallOfFame_Frlg': ('MAP_POKEMON_LEAGUE_HALL_OF_FAME', Auto('MAP_POKEMON_LEAGUE_HALL_OF_FAME')),
 }
 import build_interiors as _BI      # (the big interiors HeartGold has no building for: built from the GBA layouts)
+
+
+# Penny's house: a plush of every Eeveelution. The GBA had room (and sprite palettes) for eight; our room is bigger
+# (build_rooms.py: 17x11), so Eevee and its eighteen evolutions all stand along the walls: HeartGold's own on the
+# left, Eevee in the middle under the map, the GBA game's new ones on the right. None stands in front of or beside
+# the wall furniture (HeartGold's models reach over those squares: the TV covers 8 and 9 and the edge of 7).
+# Each is the GBA's plush (its script and text: Valyreon's own, the others' shared one).
+PENNY_PLUSHES = {
+    'EEVEE': (10, 2),
+    'LEAFEON': (2, 2), 'GLACEON': (3, 2), 'SYLVEON': (4, 2),
+    'VAPOREON': (0, 3), 'JOLTEON': (0, 4), 'FLAREON': (0, 5), 'ESPEON': (0, 6), 'UMBREON': (0, 7),
+    'ODEON': (11, 2), 'ASSASSEON': (12, 2), 'HYPEREON': (13, 2), 'POISEON': (14, 2), 'SUBTERRANEON': (15, 2),
+    'OBSIDEON': (16, 3), 'LENNEON': (16, 4), 'APPARITEON': (16, 5), 'AUTOMATEON': (16, 6), 'VALYREON': (16, 7),
+}
+
+
+def pennys_plushes(people):
+    plush = lambda o: re.match(r'OBJ_EVENT_GFX_SPECIES\((\w+)\)$', o['graphics_id'])
+    have = {plush(o).group(1): o for o in people if plush(o)}
+    out = [o for o in people if not plush(o)]
+    for n, at in PENNY_PLUSHES.items():
+        o = dict(have.get(n) or have['SYLVEON'], graphics_id='OBJ_EVENT_GFX_SPECIES(%s)' % n, _at=at)
+        o.pop('local_id', None)
+        out.append(o)
+    return out
+
+
+# Rooms build_rooms.py made: the squares of the first floor row that HeartGold's wall furniture stands on (the
+# GBA's stood in the wall rows, with open floor in front). Those are closed, so what the GBA had there moves:
+# a sign on the furniture (the TV's screen, a shelf) comes down onto its square, to be read from the square in
+# front; a person standing there steps one square forward.
+def _furniture():
+    try: return json.load(open(os.path.join(os.path.dirname(HERE), 'data', 'room_furniture.json')))
+    except FileNotFoundError: return {}
+
+
+def off_furniture(slot, x, z, sign=False):
+    f = _FURN.get(slot)
+    if not f: return x, z
+    sq = set(map(tuple, f['squares']))
+    if sign: return (x, f['first']) if z < f['first'] and (x, f['first']) in sq else (x, z)
+    return (x, z + 1) if (x, z) in sq else (x, z)
+
+
+_FURN = _furniture()
+PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
 
 
 def room_xy(gba):
@@ -698,6 +744,10 @@ _static = set(re.findall(r'#define SPRITE_FOLLOWER_MON_STATIC_([A-Z0-9_]+)\s', _
 for _n, _v in re.findall(r'#define SPECIES_([A-Z0-9_]+)\s+(\d+)', open(os.path.join(ROOT, 'engine/include/constants/species.h')).read()):
     if _n in ('NONE', 'EGG') or int(_v) == 0: continue
     SPRITE.setdefault(_n, 'FOLLOWER_MON_STATIC_' + _n if _n in _static else '#%d' % (2500 + int(_v)))
+# (our own species, after hg-engine's last: tools/canvas/build_species.py)
+_last = int(re.search(r'#define SPECIES_PECHARUNT\s+(\d+)', open(os.path.join(ROOT, 'engine/include/constants/species.h')).read()).group(1))
+for _n, _v in re.findall(r'#define SPECIES_([A-Z0-9_]+)\s+\(MAX_CANONICAL_MON_NUM \+ (\d+)\)', open(os.path.join(ROOT, 'engine/include/constants/species.h')).read()):
+    SPRITE.setdefault(_n, '#%d' % (2500 + _last + int(_v)))
 
 NO_OPS = ('addpcitem', 'opendoor', 'closedoor', 'waitdooranim', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
           'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
@@ -1430,6 +1480,7 @@ def port(gba_map, g, ids, report):
     signs += [dict(o, _read=True) for o in people if o['graphics_id'] == '0' and o['movement_type'] == 'MOVEMENT_TYPE_INVISIBLE'
               and o['script'] not in ('0x0', '0')]
     people = [o for o in people if not (o['graphics_id'] == '0' and o['movement_type'] == 'MOVEMENT_TYPE_INVISIBLE')]
+    if gba_map in PEOPLE: people = PEOPLE[gba_map](people)
     def trainer_of(o):
         """a trainer whose script is just their battle and a line after: HeartGold's own trainer script runs it"""
         c = g.labels.get(o['script'], [])
@@ -1543,10 +1594,11 @@ def port(gba_map, g, ids, report):
         if isinstance(xy, Anchored):
             xy.last_spot = None
             xy.want_water = '_WATER' in o['graphics_id']        # (swimmers stay in the water)
-        at = xy(o['x'], o['y'], kind)
+        at = o['_at'] if '_at' in o else xy(o['x'], o['y'], kind)
         if isinstance(xy, Anchored): xy.want_water = False
         if at is None: continue
-        x, z = at
+        x, z = off_furniture(slot, *at)
+        if (x, z) != tuple(at): report.append('  %s at %s stood on furniture: now at %s' % (gfx, tuple(at), (x, z)))
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
@@ -1561,6 +1613,7 @@ def port(gba_map, g, ids, report):
     bgs = []
     for b in signs:
         x, z = xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
+        x, z = off_furniture(slot, x, z, sign=True)
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})
     coords = []
     for c in triggers:

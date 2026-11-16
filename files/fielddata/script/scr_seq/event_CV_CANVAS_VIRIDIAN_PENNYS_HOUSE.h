@@ -2,8 +2,8 @@
 #define SCR_SEQ_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_H_
 
 #define _EV_ViridianCity_PennysHouse_EventScript_Penny 0
-#define _EV_ViridianCity_PennysHouse_EventScript_PlushNew 1
-#define _EV_ViridianCity_PennysHouse_EventScript_Plush 2
+#define _EV_ViridianCity_PennysHouse_EventScript_Plush 1
+#define _EV_ViridianCity_PennysHouse_EventScript_PlushNew 2
 
 
 #endif

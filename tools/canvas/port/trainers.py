@@ -95,16 +95,12 @@ def default_moves(species, level):
 
 
 ALIASES = {'MOVE_FAINT_ATTACK': 'MOVE_FEINT_ATTACK', 'MOVE_SOFTBOILED': 'MOVE_SOFT_BOILED'}
-# The GBA game's own Eeveelutions aren't in hg-engine yet: Eevee stands in
-EEVEE_STAND_INS = ('VALYREON', 'SUBTERRANEON', 'POISEON', 'ODEON', 'OBSIDEON', 'LENNEON', 'HYPEREON', 'AUTOMATEON',
-                   'ASSASSEON', 'APPARITEON')
 
 
 def const(name, prefix):
     n = name.strip().upper().replace('♀', '_F').replace('♂', '_M').replace('. ', '_').replace('.', '')
     n = re.sub(r"['’]", '', n)
     n = re.sub(r'[^A-Z0-9]+', '_', n).strip('_')
-    if prefix == 'SPECIES_' and n in EEVEE_STAND_INS: n = 'EEVEE'
     return ALIASES.get(prefix + n, prefix + n)
 
 

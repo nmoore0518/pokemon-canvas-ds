@@ -7,8 +7,10 @@ cd "$ROOT"
 make rom -j"$(nproc)"
 engine/.venv/bin/python tools/canvas/check_code_layout.py build/heartgold.us/pokeheartgold.us.nds
 python3 tools/canvas/build_map_headers.py   # our maps past HeartGold's 540, handed to the engine
-cp tools/canvas/data/canvas_trainers.h tools/canvas/data/canvas_trainer_order.h tools/canvas/data/canvas_variants.h engine/data/   # (port/trainers.py, build_rooms.py)
+cp tools/canvas/data/canvas_trainers.h tools/canvas/data/canvas_trainer_order.h tools/canvas/data/canvas_variants.h tools/canvas/data/canvas_cries.h engine/data/   # (port/trainers.py, build_rooms.py, build_species.py)
 cp build/heartgold.us/pokeheartgold.us.nds engine/rom.nds
+# the engine's sprite rules follow its species list (ours come after Pecharunt: build_species.py)
+(cd engine && .venv/bin/python scripts/reformat_sprite_data.py build_pokegra.mk && { cmp -s build_pokegra.mk data/graphics/pokegra.mk || cp build_pokegra.mk data/graphics/pokegra.mk; } && rm -f build_pokegra.mk)
 mkdir -p engine/build/narc     # (a fresh engine checkout lacks it, and its NARC rules write there)
 make -C engine ROM_TOOL=tools/ndstool -j"$(nproc)"
 cp engine/test.nds build/canvas.nds

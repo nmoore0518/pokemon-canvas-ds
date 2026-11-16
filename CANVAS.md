@@ -123,7 +123,7 @@ What else it does:
   `canvas_trainers.json`): the rival's 108 teams (every rival battle picks his team for that stage by
   `VAR_RIVAL_TYPE`), then the 624 others. Classes map to HeartGold's (by gender where it has both; leaders and the
   Elite Four by name: HeartGold has no Lorelei or Agatha picture, stand-ins for now); Pokemon without moves listed
-  get the last four they'd have learned; the GBA's own Eeveelutions are Eevee until we add them as species. A
+  get the last four they'd have learned; the GBA's own Eeveelutions are species of ours (below). A
   trainer whose script is just the battle and a line after uses HeartGold's own trainer script (`std_trainer`),
   with sight; their intro/defeat/after lines go in the trainer data. Others battle from their own script.
   Our trainers' defeated flags live in our flags from 3072 on (`engine/src/canvas_flags.c` hooks
@@ -169,6 +169,32 @@ What else it does:
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
   table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
   screen through Oak, the lab, the type choice and the rival battle.
+
+## Our own species (the ten new Eeveelutions)
+
+`build_species.py` adds the GBA game's Odeon, Assasseon, Hypereon, Poiseon, Subterraneon, Obsideon, Lenneon,
+Appariteon, Automateon and Valyreon to hg-engine as its fakemon: `SPECIES_ODEON..` are
+`MAX_CANONICAL_MON_NUM + 1..10` (1076-1085) with `NUM_OF_FAKEMONS 10`, so hg-engine's megas and forms all move up
+ten. It is run once and its output lives in the engine patch (it is safe to run again; `engine/make_patch.sh`
+writes the patch). What it writes, from the GBA repo's `canvas_families.h`, learnsets and `graphics/pokemon/`:
+- stats, types, abilities (the hidden one in `HiddenAbilityTable.c`), dex text, level-up and teachable moves
+  (level 0 = learned on evolving), base exp, and the small tables (baby = Eevee, heights, icon palette, sprite
+  offsets, follower size);
+- Eevee's evolutions: a method of ours, `EVO_LEVEL_HOLD_ITEM` (level up holding the type's item, any time of day;
+  the item is used up, as on the GBA). They come first in Eevee's list, as the game takes the first that fits.
+  `MAX_EVOS_PER_POKE` is 19 for it;
+- cries: each borrows an Eeveelution's, as on the GBA (`canvas_cries.h`, read in `GrabCryNumSpeciesForm`), so
+  the forms' cries stay where they are in the sound data;
+- art: the GBA's 64x64 front (two frames) and back set in the DS's 80x80 frames, the back carrying the shiny
+  palette; the icon on the nearest of the DS's three icon palettes; the overworld sprite (follower, and Penny's
+  plush) is the front and back shrunk to the size of hg-engine's Eeveelutions. Those shrunk sprites are the
+  weakest art: hg-engine's own are drawn for that size.
+Not done: they aren't in the Pokedex's lists (hg-engine's dex data is laid out for exactly its 1075 species;
+`NUM_OF_MONS` stays 1075), and their dex text is the GBA's four lines where the DS page shows three.
+After a change to the species list, clear `engine/build` except `engine/build/sdat` (the converted cries) before
+building: its sprite and form files are named by species number, and make only looks at dates.
+Checked in the emulator: a wild Odeon, Valyreon's back, icon, summary and moves, and an Eevee holding a Dragon
+Fang levelling up into Valyreon (the Fang gone afterwards).
 
 ## Caves
 
@@ -235,6 +261,15 @@ From Nick's review of the Kanto build (rooms, `build_rooms.py`):
   is set, and the engine shows that one while the flag is set (`variant=` in ROOMS -> `canvas_variants.h`)
 - GBA art that reaches up into the wall rows (the basement's hopper) is drawn once, on its card: the wall strip
   behind it carries on the wall from the nearest clear column
+- HeartGold's wall furniture (kitchen, cupboard, TV, bookshelf, PC, machines) stands in the first floor row, where
+  the GBA's stood in the wall rows with open floor in front: those squares are closed (you could walk into the
+  sink), and the porter moves what the GBA had there (`room_furniture.json`, `off_furniture`): a sign on the
+  furniture comes down onto its square, to be read from in front; a person steps one square forward
+- nobody and nothing stands beside a model that is wider than its squares either (the TV reaches half a square
+  each side): a plush next to it looked tucked under it
+- a room that needs more floor than the GBA's gets plain columns and rows (`widen` with a list of squares to copy
+  the blocks from, where no whole column is plain); people of ours placed on its new squares go in the porter's
+  `PEOPLE` (Penny's house: a plush of every Eeveelution)
 
 
 ## Big interiors HeartGold has no building for

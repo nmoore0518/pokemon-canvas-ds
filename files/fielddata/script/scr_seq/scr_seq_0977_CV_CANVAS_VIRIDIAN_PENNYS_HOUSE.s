@@ -7,8 +7,8 @@
 // or the porter, not this file.
 
 	ScrDef ViridianCity_PennysHouse_EventScript_Penny
-	ScrDef ViridianCity_PennysHouse_EventScript_PlushNew
 	ScrDef ViridianCity_PennysHouse_EventScript_Plush
+	ScrDef ViridianCity_PennysHouse_EventScript_PlushNew
 	ScrDefEnd
 	
 ViridianCity_PennysHouse_EventScript_Penny:
@@ -20,19 +20,19 @@ ViridianCity_PennysHouse_EventScript_Penny:
 	SetFlag 0x20A1
 	GoTo ViridianCity_PennysHouse_EventScript_FirstEevee
 	
-ViridianCity_PennysHouse_EventScript_PlushNew:
+ViridianCity_PennysHouse_EventScript_Plush:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_PlushNew
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Plush
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 	
-ViridianCity_PennysHouse_EventScript_Plush:
+ViridianCity_PennysHouse_EventScript_PlushNew:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Plush
+	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_PlushNew
 	WaitButton
 	CloseMsg
 	ReleaseAll

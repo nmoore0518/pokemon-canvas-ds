@@ -90,6 +90,7 @@ BEHAVIOR = {0x65: 0x65, 0xEB: 0x5E, 0xEE: 0x5F, 0x86: 0x86, 0x83: 0x83, 0x85: 0x
 HOUSE = dict(floor='red_h_yuka1', wall='red_h_kabe1', texset=43, buildset=41, area=43)
 LAB = dict(floor='o_kido_yuka1', wall='o_kido_kaeb1', texset=43, buildset=41, area=43)
 GYM = dict(texset=55, buildset=53, area=55, template='MAP_VIRIDIAN_GYM', keep_people=False)
+PENNY_COL = [(4, 0), (4, 1), (4, 2), (1, 3), (1, 3), (1, 3), (1, 3), (1, 7), (0, 8)]   # a column of plain wall and floor in Penny's house
 ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), look, keep HeartGold's people there
     # (the house's 1F: a column more between the TV and the stairs down, as HeartGold's TV is two squares wide; until
     # MOM shows them, a cupboard stands over the stairs, as the GBA's map script draws it: the room's own land is
@@ -129,7 +130,10 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
                        blocks=dict(top=(180, 180, 164), face=0x2A3, height=24), things=[]),
          texset=55, buildset=53, area=55),
     # Viridian City: Penny's house (its door is added to HeartGold's Viridian by build_kanto.py, warp 7 there)
+    # (bigger than the GBA's 11x9, for a plush of every Eeveelution: three plain columns each side of the rug and
+    # two plain rows above it, 17x11. The plushes' squares are the porter's: port_map.pennys_plushes)
     dict(gba='ViridianCity_PennysHouse_Frlg', map='MAP_VIRIDIAN_CITY_PENNYS_HOUSE', keep_people=False,
+         widen=dict(cols=[(2, 3, PENNY_COL), (9, 3, PENNY_COL)], rows=[(3, 2, [(1, 3)] * 11)]),
          template='MAP_VIRIDIAN_NORTHEAST_HOUSE', exits={'MAP_VIRIDIAN_CITY': ('MAP_VIRIDIAN', 7)}, **HOUSE),
     # the Pallet Gym (the decorating system fills it at run time) and the rooms Oak builds on: every 100 kinds of
     # POKeMON caught adds a room (back, left, right), and 50, 150, 250, 350 make the hall and those rooms bigger
@@ -186,12 +190,22 @@ def widen(gm, lay, cols=(), rows=()):
     `rows`); its events move with the squares they stand on"""
     import copy
     gm = copy.deepcopy(gm)
-    # (an entry (col, n, src) puts n copies of column src before col instead: a plain column into a gap)
-    cols = [c if len(c) == 3 else (c[0], c[1], c[0]) for c in cols]
-    rows = [r if len(r) == 3 else (r[0], r[1], r[0]) for r in rows]
-    cmap = [s_ for x in range(lay.w) for s_ in [src for c, n, src in cols if c == x for _ in range(n)] + [x]]
-    rmap = [s_ for y in range(lay.h) for s_ in [src for r, n, src in rows if r == y for _ in range(n)] + [y]]
-    lay.blocks = [[lay.blocks[ry][cx] for cx in cmap] for ry in rmap]
+    # (an entry (col, n, src) puts n copies of column src before col instead: a plain column into a gap. src may
+    # also be a list of (x, y) squares of the room, one per row, whose blocks make up the new column: plain wall
+    # and floor where no whole column is plain. Likewise rows; where a new row crosses a new column, the row's
+    # square for the column it was put before)
+    blk = lambda s: [lay.blocks[y][x] for x, y in s] if isinstance(s, (list, tuple)) else s
+    cols = [(c[0], c[1], blk(c[2] if len(c) == 3 else c[0])) for c in cols]
+    rows = [(r[0], r[1], blk(r[2] if len(r) == 3 else r[0])) for r in rows]
+    cmap = [s_ for x in range(lay.w) for s_ in [(x, src) for c, n, src in cols if c == x for _ in range(n)] + [(x, x)]]
+    rmap = [s_ for y in range(lay.h) for s_ in [(y, src) for r, n, src in rows if r == y for _ in range(n)] + [(y, y)]]
+
+    def cell(r, c):
+        (ay, rs), (ax, cs) = r, c
+        if isinstance(rs, list): return rs[ax]
+        if isinstance(cs, list): return cs[rs]
+        return lay.blocks[rs][cs]
+    lay.blocks = [[cell(r, c) for c in cmap] for r in rmap]
     lay.w, lay.h = len(cmap), len(rmap)
     sx = lambda x: x + sum(n for c, n, _ in cols if c <= x)
     sy = lambda y: y + sum(n for r, n, _ in rows if r <= y)
@@ -236,6 +250,9 @@ def write_variants(variants):
         lines.append('    { %d, %d, %d },   /* %s while %s */ \\' % (maps[slot], ids['flags'][flag] if 'flags' in ids else ids[flag], num, slot, flag))
     lines.append('')
     open(os.path.join(HERE, 'data', 'canvas_variants.h'), 'w').write('\n'.join(lines) + '\n')
+
+
+STANDS = {}       # map slot -> its first floor row and the squares of it HeartGold's wall furniture stands on
 
 
 def build_room(spec, land_id):
@@ -478,6 +495,7 @@ def build_room(spec, land_id):
         perm[y * 32 + x] = b
     if spec.get('floor_flags'):    # (HeartGold's slide tiles only carry you over squares with these flags set)
         perm = [v if v & 0x8000 else v | spec['floor_flags'] for v in perm]
+    stands = []
     for y in range(H):
         for x in range(W):
             m = mid(x, y)
@@ -490,6 +508,14 @@ def build_room(spec, land_id):
                 elif where == 'wallhang': cz = wall_z + 0.1
                 elif where == 'shelf': cz = y + 0.5 if y >= first else first + 0.4
                 else: cz = y + h / 2
+                if where == 'wall' or (where == 'shelf' and y < first):
+                    # (HeartGold's model stands in the first floor row, where the GBA's stood in the wall rows above:
+                    # its squares there are closed, or you could walk into it; the porter moves the GBA's people
+                    # and signs off them, room_furniture.json)
+                    for dx in range(w):
+                        if x + dx < W and (x + dx, first) not in warp_sq:
+                            perm[first * 32 + x + dx] = 0x8000
+                            stands.append((x + dx, first))
                 props.append((model, U(cx), yoff + (MAT_LIFT if name == 'mat' else 0), U(cz)))
             if m in WINDOWS.get(tsn(m), {}):
                 w = WINDOWS[tsn(m)][m]          # HeartGold's window picture on the wall
@@ -522,6 +548,8 @@ def build_room(spec, land_id):
         struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
     p = struct.pack('<1024H', *perm)
     land = struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc
+    s = STANDS.setdefault(SLOTS[spec['map']], {'first': first, 'squares': []})
+    s['squares'] = sorted(set(map(tuple, s['squares'])) | set(stands))
     return land, props, gm, own
 
 
@@ -618,6 +646,7 @@ def main():
             a = bytearray(areas[spec['area']]); struct.pack_into('<HH', a, 0, k, k); areas[k] = bytes(a)
             set_header(slot, {'areaDataBank': str(k)})
         print(spec['gba'], '-> land', lid, len(props), 'props', '(%d textures of its own)' % len(own) if own else '')
+    json.dump(STANDS, open(os.path.join(HERE, 'data', 'room_furniture.json'), 'w'), indent=1, sort_keys=True)
     # each room's building set must list its furniture, and the set's texture file must hold their textures
     used = {}
     for i, spec in enumerate(ROOMS):
