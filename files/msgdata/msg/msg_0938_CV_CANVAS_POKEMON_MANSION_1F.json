@@ -1,0 +1,27 @@
+{
+  "key": 19925,
+  "messages": [
+    {
+      "id": "msg_0938_CV_CANVAS_POKEMON_MANSION_1F_PokemonMansion_Text_PressSecretSwitch",
+      "en_US": [
+        "A secret switch!\r",
+        "Press it?"
+      ]
+    },
+    {
+      "id": "msg_0938_CV_CANVAS_POKEMON_MANSION_1F_PokemonMansion_Text_WhoWouldnt",
+      "en_US": "Who wouldn’t?"
+    },
+    {
+      "id": "msg_0938_CV_CANVAS_POKEMON_MANSION_1F_PokemonMansion_Text_NotQuiteYet",
+      "en_US": "Not quite yet!"
+    },
+    {
+      "id": "msg_0938_CV_CANVAS_POKEMON_MANSION_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

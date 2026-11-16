@@ -1,0 +1,68 @@
+{
+  "key": 19928,
+  "messages": [
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_B1F_Text_LewisIntro",
+      "en_US": [
+        "Uh-oh…\n",
+        "Where am I now?"
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_B1F_Text_LewisPostBattle",
+      "en_US": [
+        "You can find stuff lying around.\n",
+        "The residents must’ve left them."
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_B1F_Text_MewtwoIsFarTooPowerful",
+      "en_US": [
+        "Diary: Sept. 1\n",
+        "Mewtwo is far too powerful.\r",
+        "We have failed to curb its vicious\n",
+        "tendencies…"
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_GymCandidate_Text_RecruitJoined",
+      "en_US": "{STRVAR_1 3, 0, 0} joined your Gym!"
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_GymCandidate_Text_RecruitHowToPlace",
+      "en_US": [
+        "Place your new Trainer from the\n",
+        "Gym PC, under Trainers."
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_Text_PressSecretSwitch",
+      "en_US": [
+        "A secret switch!\r",
+        "Press it?"
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_Text_WhoWouldnt",
+      "en_US": "Who wouldn’t?"
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_GymCandidate_Text_RecruitDeclined",
+      "en_US": [
+        "Oh… OK. If you change your mind,\n",
+        "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_PokemonMansion_Text_NotQuiteYet",
+      "en_US": "Not quite yet!"
+    },
+    {
+      "id": "msg_0941_CV_CANVAS_POKEMON_MANSION_B1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_MANSION_3F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_MANSION_3F_H_
+
+#define _EV_PokemonMansion_3F_EventScript_ItemMaxPotion 0
+#define _EV_PokemonMansion_3F_EventScript_ItemIron 1
+#define _EV_PokemonMansion_3F_EventScript_ItemAmuletCoin 2
+#define _EV_PokemonMansion_3F_EventScript_DiaryFeb6th 3
+#define _EV_PokemonMansion_3F_EventScript_Statue 4
+#define _EV_PokemonMansion_3F_OnLoad 5
+
+
+#endif

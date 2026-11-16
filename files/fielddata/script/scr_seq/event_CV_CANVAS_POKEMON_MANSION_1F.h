@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_MANSION_1F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_MANSION_1F_H_
+
+#define _EV_PokemonMansion_1F_EventScript_ItemCarbos 0
+#define _EV_PokemonMansion_1F_EventScript_ItemEscapeRope 1
+#define _EV_PokemonMansion_1F_EventScript_ItemProtein 2
+#define _EV_BerryField_EventScript_FindFire 3
+#define _EV_PokemonMansion_1F_EventScript_Statue 4
+#define _EV_PokemonMansion_1F_OnLoad 5
+#define _EV_PokemonMansion_1F_OnTransition 6
+
+
+#endif

@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_LAB_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_LAB_H_
+
+#define _EV_CinnabarIsland_PokemonLab_Entrance_EventScript_Scientist 0
+#define _EV_CinnabarIsland_PokemonLab_Entrance_EventScript_DrFujiPhoto 1
+#define _EV_CinnabarIsland_PokemonLab_Entrance_EventScript_MeetingRoomSign 2
+#define _EV_CinnabarIsland_PokemonLab_Entrance_EventScript_RAndDRoomSign 3
+#define _EV_CinnabarIsland_PokemonLab_Entrance_EventScript_TestingRoomSign 4
+#define _EV_CinnabarIsland_PokemonLab_Entrance_OnTransition 5
+
+
+#endif

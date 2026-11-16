@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_LAB_LOUNGE_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_LAB_LOUNGE_H_
+
+#define _EV_CinnabarIsland_PokemonLab_Lounge_EventScript_Scientist 0
+#define _EV_CinnabarIsland_PokemonLab_Lounge_EventScript_Clifton 1
+#define _EV_CinnabarIsland_PokemonLab_Lounge_EventScript_Norma 2
+#define _EV_TrainingHouse_EventScript_Beatrix 3
+#define _EV_TrainingHouse_EventScript_Alistair 4
+
+
+#endif

@@ -1,0 +1,35 @@
+{
+  "key": 19927,
+  "messages": [
+    {
+      "id": "msg_0940_CV_CANVAS_POKEMON_MANSION_3F_PokemonMansion_1F_Text_MewGaveBirthToMewtwo",
+      "en_US": [
+        "Diary: Feb. 6\n",
+        "Mew gave birth.\r",
+        "We named the newborn Mewtwo."
+      ]
+    },
+    {
+      "id": "msg_0940_CV_CANVAS_POKEMON_MANSION_3F_PokemonMansion_Text_PressSecretSwitch",
+      "en_US": [
+        "A secret switch!\r",
+        "Press it?"
+      ]
+    },
+    {
+      "id": "msg_0940_CV_CANVAS_POKEMON_MANSION_3F_PokemonMansion_Text_WhoWouldnt",
+      "en_US": "Who wouldn’t?"
+    },
+    {
+      "id": "msg_0940_CV_CANVAS_POKEMON_MANSION_3F_PokemonMansion_Text_NotQuiteYet",
+      "en_US": "Not quite yet!"
+    },
+    {
+      "id": "msg_0940_CV_CANVAS_POKEMON_MANSION_3F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

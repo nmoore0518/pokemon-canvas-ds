@@ -71,6 +71,18 @@ INTERIORS = (
     [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
           depth=i, exits={'MAP_CELADON_CITY_GAME_CORNER': ('MAP_CELADON_GAME_CORNER', 1)}) for i in range(1, 5)]
 )
+# Cinnabar: HeartGold's island is the ruin after the eruption, with only its Pokemon Center, so these have no door
+# there yet (their ways out lead to that Center's door); they're built and ported, waiting for our Cinnabar
+CIN = {'MAP_CINNABAR_ISLAND': ('MAP_CINNABAR_ISLAND', 0)}
+INTERIORS += (
+    [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='plant', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN),
+     dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='plant', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN),
+     dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN)] +
+    [dict(gba='CinnabarIsland_PokemonLab_%s_Frlg' % r, map='MAP_CANVAS_CINNABAR_LAB_%s' % r.upper(), look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
+          depth=0) for r in ('Lounge', 'ResearchRoom', 'ExperimentRoom')] +
+    [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='tower', template='MAP_BURNED_TOWER_1F',
+          depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN) for f in ('1F', '2F', '3F', 'B1F')]
+)
 # warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
 # the room's warp list, so no other warp's number moves.
 ADD_WARPS = [('MAP_CELADON_GAME_CORNER', (12, 3), 0x3E, 'MAP_CANVAS_ROCKET_HIDEOUT_B1F', 0)]   # (the GBA's hidden stairs)

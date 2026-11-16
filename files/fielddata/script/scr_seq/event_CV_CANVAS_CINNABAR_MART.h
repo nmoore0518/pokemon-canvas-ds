@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_MART_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_MART_H_
+
+#define _EV_CinnabarIsland_Mart_EventScript_Clerk 0
+#define _EV_CinnabarIsland_Mart_EventScript_Woman 1
+#define _EV_CinnabarIsland_Mart_EventScript_Scientist 2
+
+
+#endif

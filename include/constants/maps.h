@@ -613,6 +613,16 @@
 #define MAP_CANVAS_ROCKET_HIDEOUT_B2F                     604
 #define MAP_CANVAS_ROCKET_HIDEOUT_B3F                     605
 #define MAP_CANVAS_ROCKET_HIDEOUT_B4F                     606
+#define MAP_CANVAS_CINNABAR_GYM                           607
+#define MAP_CANVAS_CINNABAR_MART                          608
+#define MAP_CANVAS_CINNABAR_LAB                           609
+#define MAP_CANVAS_CINNABAR_LAB_LOUNGE                    610
+#define MAP_CANVAS_CINNABAR_LAB_RESEARCHROOM              611
+#define MAP_CANVAS_CINNABAR_LAB_EXPERIMENTROOM            612
+#define MAP_CANVAS_POKEMON_MANSION_1F                     613
+#define MAP_CANVAS_POKEMON_MANSION_2F                     614
+#define MAP_CANVAS_POKEMON_MANSION_3F                     615
+#define MAP_CANVAS_POKEMON_MANSION_B1F                    616
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

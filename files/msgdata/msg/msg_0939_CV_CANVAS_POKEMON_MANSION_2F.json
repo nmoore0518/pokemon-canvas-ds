@@ -1,0 +1,44 @@
+{
+  "key": 19926,
+  "messages": [
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_PokemonMansion_1F_Text_ChristenedDiscoveredMonMew",
+      "en_US": [
+        "Diary: July 10\n",
+        "We christened the newly discovered\f",
+        "Pokémon, Mew."
+      ]
+    },
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_PokemonMansion_1F_Text_NewMonDiscoveredInGuyanaJungle",
+      "en_US": [
+        "Diary: July 5\n",
+        "Guyana, South America\r",
+        "A new Pokémon was discovered deep\n",
+        "in the jungle."
+      ]
+    },
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_PokemonMansion_Text_PressSecretSwitch",
+      "en_US": [
+        "A secret switch!\r",
+        "Press it?"
+      ]
+    },
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_PokemonMansion_Text_WhoWouldnt",
+      "en_US": "Who wouldn’t?"
+    },
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_PokemonMansion_Text_NotQuiteYet",
+      "en_US": "Not quite yet!"
+    },
+    {
+      "id": "msg_0939_CV_CANVAS_POKEMON_MANSION_2F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

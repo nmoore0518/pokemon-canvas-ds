@@ -1,0 +1,190 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_POKEMON_MANSION_1F.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_PokemonMansion_1F_EventScript_Statue + 1",
+            "type": 0,
+            "x": 5,
+            "z": 5,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 16,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1071)",
+            "facingDirection": 2,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 22,
+            "z": 24,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x21FF",
+            "scriptId": "_EV_PokemonMansion_1F_EventScript_ItemCarbos + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 29,
+            "z": 32,
+            "y": 0
+        },
+        {
+            "id": "3",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2200",
+            "scriptId": "_EV_PokemonMansion_1F_EventScript_ItemEscapeRope + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 22,
+            "z": 6,
+            "y": 0
+        },
+        {
+            "id": "4",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2201",
+            "scriptId": "_EV_PokemonMansion_1F_EventScript_ItemProtein + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 27,
+            "z": 15,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_GSBOY2",
+            "movement": 5,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1236)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 2,
+            "yRange": 1,
+            "x": 8,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "6",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2202",
+            "scriptId": "_EV_BerryField_EventScript_FindFire + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 24,
+            "z": 23,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 7,
+            "z": 33,
+            "header": "MAP_CINNABAR_ISLAND",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 8,
+            "z": 33,
+            "header": "MAP_CINNABAR_ISLAND",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 9,
+            "z": 33,
+            "header": "MAP_CINNABAR_ISLAND",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 10,
+            "z": 13,
+            "header": "MAP_CANVAS_POKEMON_MANSION_2F",
+            "anchor": 2,
+            "y": 0
+        },
+        {
+            "x": 25,
+            "z": 27,
+            "header": "MAP_CANVAS_POKEMON_MANSION_B1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 34,
+            "z": 33,
+            "header": "MAP_CINNABAR_ISLAND",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 35,
+            "z": 34,
+            "header": "MAP_CINNABAR_ISLAND",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 19,
+            "z": 22,
+            "header": "MAP_CANVAS_POKEMON_MANSION_3F",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 20,
+            "z": 22,
+            "header": "MAP_CANVAS_POKEMON_MANSION_3F",
+            "anchor": 4,
+            "y": 0
+        },
+        {
+            "x": 11,
+            "z": 13,
+            "header": "MAP_CANVAS_POKEMON_MANSION_2F",
+            "anchor": 2,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

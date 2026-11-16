@@ -1,0 +1,48 @@
+{
+  "key": 19923,
+  "messages": [
+    {
+      "id": "msg_0936_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_CinnabarIsland_PokemonLab_ResearchRoom_Text_EeveeCanEvolveIntroThreeMons",
+      "en_US": [
+        "Eevee can evolve into one of three\n",
+        "kinds of Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0936_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_CinnabarIsland_PokemonLab_ResearchRoom_Text_AnAmberPipe",
+      "en_US": "An amber pipe!"
+    },
+    {
+      "id": "msg_0936_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_CinnabarIsland_PokemonLab_ResearchRoom_Text_LegendaryBirdEmail",
+      "en_US": [
+        "There’s an e-mail message.\r",
+        "… … …\r",
+        "There are three legendary bird\n",
+        "Pokémon.\r",
+        "They are Articuno, Zapdos, and\n",
+        "Moltres.\r",
+        "Their whereabouts are unknown.\r",
+        "We plan to explore the cavern\n",
+        "close to Cerulean.\r",
+        "From: Pokémon Research Team…"
+      ]
+    },
+    {
+      "id": "msg_0936_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_Text_MetronomeTutor_Retired",
+      "en_US": [
+        "I used to teach Metronome.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Normal master in Pewter\r",
+        "City."
+      ]
+    },
+    {
+      "id": "msg_0936_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

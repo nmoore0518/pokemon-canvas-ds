@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_LAB_RESEARCHROOM_H_
+
+#define _EV_CinnabarIsland_PokemonLab_ResearchRoom_EventScript_MetronomeTutor 0
+#define _EV_CinnabarIsland_PokemonLab_ResearchRoom_EventScript_Scientist 1
+#define _EV_CinnabarIsland_PokemonLab_ResearchRoom_EventScript_AmberPipe 2
+#define _EV_CinnabarIsland_PokemonLab_ResearchRoom_EventScript_Computer 3
+
+
+#endif

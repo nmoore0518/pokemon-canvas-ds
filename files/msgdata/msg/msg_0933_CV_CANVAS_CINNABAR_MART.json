@@ -1,0 +1,38 @@
+{
+  "key": 19920,
+  "messages": [
+    {
+      "id": "msg_0933_CV_CANVAS_CINNABAR_MART_gText_HowMayIServeYou",
+      "en_US": [
+        "Welcome!\r",
+        "How may I serve you?"
+      ]
+    },
+    {
+      "id": "msg_0933_CV_CANVAS_CINNABAR_MART_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0933_CV_CANVAS_CINNABAR_MART_CinnabarIsland_Mart_Text_DontTheyHaveXAttack",
+      "en_US": [
+        "Don’t they have X Attack?\r",
+        "I like it because it raises the\n",
+        "Attack stat in battle."
+      ]
+    },
+    {
+      "id": "msg_0933_CV_CANVAS_CINNABAR_MART_CinnabarIsland_Mart_Text_ExtraItemsNeverHurt",
+      "en_US": [
+        "It never hurts to have extra items.\n",
+        "You never know what might happen."
+      ]
+    },
+    {
+      "id": "msg_0933_CV_CANVAS_CINNABAR_MART_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

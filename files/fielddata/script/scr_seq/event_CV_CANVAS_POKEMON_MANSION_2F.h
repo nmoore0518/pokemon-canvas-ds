@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_MANSION_2F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_MANSION_2F_H_
+
+#define _EV_PokemonMansion_2F_EventScript_ItemCalcium 0
+#define _EV_PokemonMansion_2F_EventScript_ItemZinc 1
+#define _EV_PokemonMansion_2F_EventScript_ItemHPUp 2
+#define _EV_PokemonMansion_2F_EventScript_Statue 3
+#define _EV_PokemonMansion_2F_EventScript_DiaryJuly10th 4
+#define _EV_PokemonMansion_2F_EventScript_DiaryJuly5th 5
+#define _EV_PokemonMansion_2F_OnLoad 6
+
+
+#endif

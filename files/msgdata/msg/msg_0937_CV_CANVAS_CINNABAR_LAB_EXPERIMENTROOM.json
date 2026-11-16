@@ -1,0 +1,196 @@
+{
+  "key": 19924,
+  "messages": [
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_Trade_Text_LookingForMonWannaTradeForMon",
+      "en_US": [
+        "I’m looking for the Pokémon\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Wanna trade one for my\n",
+        "{STRVAR_1 3, 1, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_Trade_Text_HeyThanks",
+      "en_US": "Hey, thanks!"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+      "en_US": [
+        "Hiya!\r",
+        "I am important doctor.\n",
+        "Yes, very much so, indeed.\r",
+        "Here, I study rare Pokémon fossils.\n",
+        "All the time, I study.\r",
+        "You!\n",
+        "Have you a fossil for me?"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+      "en_US": [
+        "Oh!\n",
+        "That is {STRVAR_1 3, 1, 0}, it is!\r",
+        "It is fossil of {STRVAR_1 3, 0, 0},\n",
+        "a Pokémon that is already extinct!\r",
+        "My Resurrection Machine will make\n",
+        "that Pokémon live again!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+      "en_US": [
+        "So!\n",
+        "You hurry and give me that!\r",
+        "{STRVAR_1 3, 6, 0} handed over the\n",
+        "{STRVAR_1 3, 1, 0} to the weird doctor."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+      "en_US": [
+        "I take a little time!\n",
+        "You go for walk a little while!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_Trade_Text_IsntMyOldMonGreat",
+      "en_US": "Isn’t my old {STRVAR_1 3, 1, 0} great?"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_Trade_Text_AwwOhWell",
+      "en_US": [
+        "Awww!\n",
+        "Oh, well…"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_Trade_Text_WhatThatsNoMon",
+      "en_US": [
+        "What?\n",
+        "That’s no {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+      "en_US": [
+        "You late.\n",
+        "Where were you?\r",
+        "Your fossil is back to life!\n",
+        "It was {STRVAR_1 3, 0, 0} like I think!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad",
+      "en_US": [
+        "No!\n",
+        "Is too bad!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+      "en_US": [
+        "Aiyah!\n",
+        "You come again!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NoMoreRoomForPokemon",
+      "en_US": [
+        "There’s no more room for Pokémon!\r",
+        "The Pokémon Boxes are full and\n",
+        "can’t accept any more!"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the {STRVAR_1 3, 0, 0}\n",
+        "from the doctor."
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NicknameThisPokemon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredSomeonesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Someone’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredLanettesPC",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Bill’s PC.\r",
+        "Lanette’s PC.\r",
+        "It was placed in \n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredSomeonesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Someone’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredLanettesPCBoxFull",
+      "en_US": [
+        "Box “{STRVAR_1 3, 2, 0}” on\n",
+        "Bill’s PC was full.\r",
+        "Lanette’s PC was full.\r",
+        "{STRVAR_1 3, 1, 0} was transferred to\n",
+        "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

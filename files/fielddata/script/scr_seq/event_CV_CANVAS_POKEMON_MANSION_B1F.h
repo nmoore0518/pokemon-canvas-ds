@@ -1,0 +1,14 @@
+#ifndef SCR_SEQ_CV_CANVAS_POKEMON_MANSION_B1F_H_
+#define SCR_SEQ_CV_CANVAS_POKEMON_MANSION_B1F_H_
+
+#define _EV_PokemonMansion_B1F_EventScript_ItemTM22 0
+#define _EV_PokemonMansion_B1F_EventScript_Lewis 1
+#define _EV_PokemonMansion_B1F_EventScript_ItemTM14 2
+#define _EV_PokemonMansion_B1F_EventScript_ItemFullRestore 3
+#define _EV_PokemonMansion_B1F_EventScript_ItemSecretKey 4
+#define _EV_PokemonMansion_B1F_EventScript_DiarySep1st 5
+#define _EV_PokemonMansion_B1F_EventScript_Statue 6
+#define _EV_PokemonMansion_B1F_OnLoad 7
+
+
+#endif

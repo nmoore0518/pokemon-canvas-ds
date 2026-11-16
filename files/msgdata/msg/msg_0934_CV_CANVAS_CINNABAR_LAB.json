@@ -1,0 +1,49 @@
+{
+  "key": 19921,
+  "messages": [
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_CinnabarIsland_PokemonLab_Entrance_Text_StudyMonsExtensively",
+      "en_US": [
+        "We study Pokémon extensively\n",
+        "every day.\r",
+        "People often bring us rare Pokémon\n",
+        "for examination."
+      ]
+    },
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_CinnabarIsland_PokemonLab_Entrance_Text_PhotoOfLabFounderDrFuji",
+      "en_US": [
+        "A photo of the Lab’s founder…\n",
+        "Dr. Fuji?!"
+      ]
+    },
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_CinnabarIsland_PokemonLab_Entrance_Text_MeetingRoomSign",
+      "en_US": [
+        "Pokémon Lab\n",
+        "Meeting Room"
+      ]
+    },
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_CinnabarIsland_PokemonLab_Entrance_Text_RAndDRoomSign",
+      "en_US": [
+        "Pokémon Lab\n",
+        "R & D Room"
+      ]
+    },
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_CinnabarIsland_PokemonLab_Entrance_Text_TestingRoomSign",
+      "en_US": [
+        "Pokémon Lab\n",
+        "Testing Room"
+      ]
+    },
+    {
+      "id": "msg_0934_CV_CANVAS_CINNABAR_LAB_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_GYM_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_GYM_H_
+
+#define _EV_CinnabarIsland_Gym_EventScript_Quinn 0
+#define _EV_CinnabarIsland_Gym_EventScript_Avery 1
+#define _EV_CinnabarIsland_Gym_EventScript_Ramon 2
+#define _EV_CinnabarIsland_Gym_EventScript_Derek 3
+#define _EV_CinnabarIsland_Gym_EventScript_Dusty 4
+#define _EV_CinnabarIsland_Gym_EventScript_Zac 5
+#define _EV_CinnabarIsland_Gym_EventScript_Blaine 6
+#define _EV_CinnabarIsland_Gym_EventScript_GymGuy 7
+#define _EV_GymAides_EventScript_CinnabarIsland 8
+#define _EV_CinnabarIsland_Gym_EventScript_GymStatue 9
+#define _EV_CinnabarIsland_Gym_EventScript_Quz1Left 10
+#define _EV_CinnabarIsland_Gym_EventScript_Quz1Right 11
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz2Left 12
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz2Right 13
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz3Left 14
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz3Right 15
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz4Left 16
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz4Right 17
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz5Left 18
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz5Right 19
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz6Left 20
+#define _EV_CinnabarIsland_Gym_EventScript_Quiz6Right 21
+#define _EV_CinnabarIsland_Gym_EventScript_BlaineFujiPhoto 22
+#define _EV_CinnabarIsland_Gym_OnLoad 23
+#define _EV_CinnabarIsland_Gym_OnTransitionGuest 24
+
+#define LOCALID_QUINN 1
+#define LOCALID_AVERY 3
+#define LOCALID_RAMON 4
+#define LOCALID_DEREK 5
+#define LOCALID_DUSTY 6
+#define LOCALID_ZAC 7
+#define LOCALID_CINNABARISLAND_GYM_OAK_AIDE 10
+#define LOCALID_CINNABAR_GYM_GUEST 11
+
+#endif

@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_H_
+#define SCR_SEQ_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_H_
+
+#define _EV_CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett 0
+#define _EV_CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist 1
+#define _EV_PaintWorld_EventScript_Figure 2
+
+
+#endif
