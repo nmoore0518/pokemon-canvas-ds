@@ -16,16 +16,19 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from nitro import read_narc, write_narc
 from g3d import Mesh, build_model
-import gba_map, slots
+import gba_map, slots, landedit
 from build_rooms import texdims
 
 LAND_NARC = os.path.join(slots.ROOT, 'files/a/0/6/5')
 LAND = 205                        # HeartGold's Cinnabar
+NORTH, EAST = 204, 206            # Routes 21 and 20 beside it
 CELL = (32, 15)
 OX, OZ = 8, 0                     # the GBA map's corner in the land
 TEXSET = 18
 ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']   # (see build_pallet.py)
-GROUND, SEA = 0, -2
+GROUND, SEA, BED = 16, 7, 7          # HeartGold's own levels, as the routes round the island have them
+SURF = 8                          # (where someone surfing is: HeartGold's sea has a second, clear layer there)
+ROCK_W = 24                       # a rock's card for one square (HeartGold's big rock is 32 wide, on 2x2 squares)
 WATER_MB = {16, 17, 18, 19, 20, 21, 24, 26, 44, 45}
 # by the GBA door they stand on: HeartGold model, its door model, door offset from the model (units), door centre x
 BUILDINGS = {
@@ -79,10 +82,8 @@ def main():
         for lx in range(32):
             k = at(lx, lz)
             i = lz * 32 + lx
-            if k == 'sea':
-                perm[i] = 0x0015; tex, h = 'sea_un', SEA
-            elif k == 'rock':
-                perm[i] = 0x8000; tex, h = 'sea_rock', SEA
+            if k in ('sea', 'rock'):
+                perm[i] = 0x0015 if k == 'sea' else 0x8000; tex, h = 'sea_un', SEA
             elif k == 'ground':
                 perm[i] = 0x0000; tex, h = ground_tex(lx, lz), GROUND
             else:
@@ -93,25 +94,52 @@ def main():
         tw, th = dims[tex]
         runs, start = [], xs[0]
         for a, b in zip(xs, xs[1:] + [None]):
-            if b != a + 1 or tex == 'sea_rock':
+            if b != a + 1:
                 runs.append((start, a + 1)); start = b
         for x0, x1 in runs:
             M(tex).quad([((U(x0), h, U(lz + 1)), (x0 * 16, (lz + 1) * 16)), ((U(x1), h, U(lz + 1)), (x1 * 16, (lz + 1) * 16)),
                          ((U(x1), h, U(lz)), (x1 * 16, lz * 16)), ((U(x0), h, U(lz)), (x0 * 16, lz * 16))], up)
-    # the shore: a face from the ground down to the sea where they meet
+    # (a sheet of sea just under it all, out past the land's edges: where the corners of our squares fall along the
+    # edge of a neighbour's bigger ones, or of each other's runs, single pixels would show through)
+    e = 264
+    M('sea_un').quad([((-e, SEA - 0.25, e), (-e + 256, e + 256)), ((e, SEA - 0.25, e), (e + 256, e + 256)),
+                      ((e, SEA - 0.25, -e), (e + 256, -e + 256)), ((-e, SEA - 0.25, -e), (-e + 256, -e + 256))], up)
+    # rocks in the sea: HeartGold's rock, a card leaning back out of the water as its routes have them, one a square
+    s = ROCK_W / 32.0
     for lz in range(32):
         for lx in range(32):
-            if at(lx, lz) not in ('ground', 'block'): continue
+            if at(lx, lz) != 'rock': continue
+            cx, cz = U(lx) + 8, U(lz) + 8
+            x0, x1, zf, zb = cx - ROCK_W / 2.0, cx + ROCK_W / 2.0, cz + 11.3 * s, cz - 11.3 * s
+            yb, yt = SEA + 1.7, SEA + 1.7 + 22.6 * s
+            M('sea_rock').quad([((x0, yb, zf), (0, 32)), ((x1, yb, zf), (32, 32)), ((x1, yt, zb), (32, 0)), ((x0, yt, zb), (0, 0))],
+                               (0, 0.7, 0.7))
+    # the shore: HeartGold's sand sloping out under the sea from every edge of the ground (half a square, so that
+    # someone surfing along it is clear of it)
+    land = lambda lx, lz: 0 <= lx < 32 and 0 <= lz < 32 and at(lx, lz) in ('ground', 'block')
+    V0, V1 = 0.4, 15.6
+    for lz in range(32):
+        for lx in range(32):
+            if not land(lx, lz): continue
             for n in ((0, 1), (0, -1), (1, 0), (-1, 0)):
-                if 0 <= lx + n[0] < 32 and 0 <= lz + n[1] < 32 and at(lx + n[0], lz + n[1]) in ('sea', 'rock'):
-                    if n[0] == 0:
-                        z = U(lz + (1 if n[1] > 0 else 0)); a, b = (U(lx), z), (U(lx + 1), z)
-                        if n[1] < 0: a, b = b, a
-                    else:
-                        x = U(lx + (1 if n[0] > 0 else 0)); a, b = (x, U(lz + 1)), (x, U(lz))
-                        if n[0] < 0: a, b = b, a
-                    M('beach01_r2').quad([((a[0], SEA, a[1]), (0, 16)), ((b[0], SEA, b[1]), (16, 16)), ((b[0], GROUND, b[1]), (16, 0)),
-                                          ((a[0], GROUND, a[1]), (0, 0))], (n[0], 0, n[1]))
+                if land(lx + n[0], lz + n[1]): continue
+                if n[0] == 0:
+                    z = U(lz + (1 if n[1] > 0 else 0)); a, b = (U(lx), z), (U(lx + 1), z)
+                    if n[1] < 0: a, b = b, a
+                else:
+                    x = U(lx + (1 if n[0] > 0 else 0)); a, b = (x, U(lz + 1)), (x, U(lz))
+                    if n[0] < 0: a, b = b, a
+                o = (n[0] * 8, n[1] * 8)
+                M('swave_un').quad([((a[0] + o[0], BED, a[1] + o[1]), (0, V1)), ((b[0] + o[0], BED, b[1] + o[1]), (16, V1)),
+                                    ((b[0], GROUND, b[1]), (16, V0)), ((a[0], GROUND, a[1]), (0, V0))], (n[0] * 0.5, 0.87, n[1] * 0.5))
+            # (and round the ground's outer corners)
+            for dx, dz in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+                if land(lx + dx, lz) or land(lx, lz + dz) or land(lx + dx, lz + dz): continue
+                c = (U(lx + (1 if dx > 0 else 0)), U(lz + (1 if dz > 0 else 0)))
+                q = [((c[0] + dx * 8, BED, c[1]), (0, V1)), ((c[0] + dx * 8, BED, c[1] + dz * 8), (8, V1)),
+                     ((c[0], BED, c[1] + dz * 8), (16, V1)), ((c[0], GROUND, c[1]), (8, V0))]
+                if dx * dz > 0: q = [q[2], q[1], q[0], q[3]]
+                M('swave_un').quad(q, (dx * 0.4, 0.87, dz * 0.4))
     # buildings on the GBA's doors; door squares are HeartGold doors (blocked, behaviour 0x69: walk into them)
     props = []
     f = lambda v: int(round(v * 4096))
@@ -126,15 +154,35 @@ def main():
     # (HeartGold animates this area's first eight materials by index: they hold their places, sea_un's is the sea)
     groups = [(t, 'sea_un', pal_of('sea_un'), meshes[t] if t == 'sea_un' else Mesh(), {'repeat': 3, 'flip': 0, 'size': dims['sea_un']})
               for t in ANIM_SLOTS] + \
-             [(t, t, pal_of(t), m, {'repeat': 3, 'size': dims[t]}) for t, m in meshes.items() if t not in ANIM_SLOTS]
+             [(t, t, pal_of(t), m, {'repeat': 0 if t == 'sea_rock' else 3, 'size': dims[t]}) for t, m in meshes.items() if t not in ANIM_SLOTS]
     model = build_model('cv_cinnabar', groups)
     model += b'\0' * (-len(model) % 4)
     assert len(model) < 60000, len(model)
     bld = b''.join(props)
-    bdhc = struct.pack('<4s6H', b'BDHC', 2, 1, 1, 1, 1, 1) + struct.pack('<2i2i', -256 * 4096, -256 * 4096, 256 * 4096, 256 * 4096) + \
-        struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
+    # heights: the ground's and the sea's, a plate for every run of a row
+    fx = lambda v: int(round(v * 4096))
+    pts, cst, plates, strips, access = [], [], [], [], []
+    idx = lambda lst, v: lst.index(v) if v in lst else (lst.append(v) or len(lst) - 1)
+    for lz in range(32):
+        row, lx = [], 0
+        while lx < 32:
+            hh = GROUND if land(lx, lz) else SURF
+            end = lx + 1
+            while end < 32 and (GROUND if land(end, lz) else SURF) == hh: end += 1
+            plates.append((idx(pts, (fx(U(lx)), fx(U(lz)))), idx(pts, (fx(U(end)), fx(U(lz + 1)))), 0, idx(cst, -fx(hh))))
+            row.append(len(plates) - 1); lx = end
+        strips.append((fx(U(lz + 1)), len(row), len(access))); access += row
+    bdhc = struct.pack('<4s6H', b'BDHC', len(pts), 1, len(cst), len(plates), len(strips), len(access)) + \
+        b''.join(struct.pack('<2i', *q) for q in pts) + struct.pack('<3i', 0, 4096, 0) + b''.join(struct.pack('<i', c) for c in cst) + \
+        b''.join(struct.pack('<4H', *q) for q in plates) + b''.join(struct.pack('<iHH', *q) for q in strips) + \
+        b''.join(struct.pack('<H', q) for q in access)
     p = struct.pack('<1024H', *perm)
     land, btnf = read_narc(open(LAND_NARC, 'rb').read())
+    # HeartGold's routes to the north and east still draw the foam along the shore its own Cinnabar had at their edge
+    foam = lambda edge: lambda tex, vs: tex in ('pond_line', 'sea_line02') and all(edge(v) for v in vs)
+    for lid, edge in ((NORTH, lambda v: v[2] >= 246), (EAST, lambda v: v[0] <= -239)):
+        land[lid], n = landedit.strip(land[lid], foam(edge))
+        if n: print('Cinnabar: %d faces of the old shore out of land %d' % (n, lid))
     land[LAND] = struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     # the town's warps: the GBA's, in its order

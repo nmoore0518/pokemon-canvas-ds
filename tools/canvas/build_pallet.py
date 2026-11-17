@@ -528,6 +528,50 @@ def perm(ld):
             out.append(v)
     return struct.pack('<1024H', *out)
 
+# ---------------------------------------------------------------- the way down to Route 21
+# HeartGold's Route 21 is below us with its sea at 7 (and a clear layer over it at 8); our shore, under the cliffs, has its own at -20. The last
+# rows of the region (the channel between the trees and the bay it opens into: nothing but sea and forest) lean up
+# to meet it: everything in them, sea, ground, trees and the heights walked on, is lifted by how far down the rows
+# it is. From above a sea leaning ten degrees is still a sea, and someone surfing down it comes out level with
+# Route 21's instead of under it.
+TILT_ROW, TILT_BY = 55, 27.0
+tilt_at = lambda ld, z: max(0.0, z - ((TILT_ROW - 32 * ld.by) * 16 - 256)) * TILT_BY / ((RH - TILT_ROW) * 16) if ld.by == BH - 1 else 0.0
+
+
+def _cut(verts, z0, keep_far):
+    """the part of a face on one side of z = z0 (each vertex ((x, y, z), (s, t)))"""
+    out = []
+    inside = lambda v: (v[0][2] >= z0) == keep_far or abs(v[0][2] - z0) < 1e-6
+    for a, b in zip(verts, verts[1:] + verts[:1]):
+        if inside(a): out.append(a)
+        if (a[0][2] - z0) * (b[0][2] - z0) < -1e-9:
+            t = (z0 - a[0][2]) / (b[0][2] - a[0][2])
+            out.append((tuple(a[0][k] + t * (b[0][k] - a[0][k]) for k in range(3)), tuple(a[1][k] + t * (b[1][k] - a[1][k]) for k in range(2))))
+    return out
+
+
+def tilt(ld):
+    if ld.by != BH - 1: return
+    z0 = (TILT_ROW - 32 * ld.by) * 16 - 256
+    lift = lambda verts: [((x, y + tilt_at(ld, z), z), uv) for (x, y, z), uv in verts]
+    for mesh in ld.mesh.values():
+        quads, tris = [], []
+        for verts, n in mesh.quads + mesh.tris:
+            zs = [v[0][2] for v in verts]
+            # (a level face lying across the first tilted row's edge is cut along it, so that it bends there)
+            parts = [verts] if not (min(zs) < z0 - 0.01 and max(zs) > z0 + 0.01 and abs(n[1]) > 0.99) else \
+                [_cut(verts, z0, False), _cut(verts, z0, True)]
+            for q in parts:
+                assert len(q) in (3, 4), q
+                (quads if len(q) == 4 else tris).append((lift(q), n))
+        mesh.quads, mesh.tris = quads, tris
+    ld.props = [(model, x, y + tilt_at(ld, z), z, sc) for model, x, y, z, sc in ld.props]
+    # (a strip of sea just under the bottom edge and out past it, for the single pixels that show through where
+    # the corners of our squares fall along the edge of Route 21's bigger ones)
+    h = Y(LOW - WATER_DROP) + TILT_BY - 0.3
+    ld.mesh['sea_un'].quad([((-256, h, 264), (0, 520)), ((256, h, 264), (512, 520)), ((256, h, 250), (512, 506)), ((-256, h, 250), (0, 506))], (0, 1, 0))
+
+
 # ---------------------------------------------------------------- heights: one plate per run of equal flat blocks in a row
 def bdhc(ld):
     pts, nrm, cst, plates, strips, access = [], [], [], [], [], []
@@ -553,7 +597,12 @@ def bdhc(ld):
                     end += 1
             x0, x1 = lx * 16 - 256, end * 16 - 256
             z0, z1 = ly * 16 - 256, (ly + 1) * 16 - 256
-            if key[0] == 'flat':
+            if key[0] == 'flat' and tilt_at(ld, z1) > 0:
+                s = TILT_BY / ((RH - TILT_ROW) * 16.0)
+                ln = (1 + s * s) ** 0.5
+                n = (0, fx(1 / ln), fx(-s / ln))
+                d = fx(-(Y(key[1]) + tilt_at(ld, z0) - s * z0) / ln)
+            elif key[0] == 'flat':
                 n, d = (0, 4096, 0), -fx(Y(key[1]))
             else:
                 yb, yf = Y(key[1]), Y(key[2])
@@ -575,6 +624,7 @@ def bdhc(ld):
 
 
 def land_file(ld):
+    tilt(ld)
     groups = []
     for i, slot in enumerate(ANIM_SLOTS):
         mesh = ld.mesh['sea_un'] if slot == 'sea_un' else Mesh()
