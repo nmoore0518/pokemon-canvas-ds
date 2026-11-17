@@ -35,6 +35,7 @@ TEXSET = 70                     # HeartGold's Mt. Moon textures (area 70)
 LADDER_UP, LADDER_DOWN = 69, 70
 FLOOR = 0x0A08                  # walkable cave floor (behaviour 0x08), as HeartGold's Mt. Moon
 TIER = 16                       # a tier of rock: a block high
+WATER_Y = -8                    # cave water lies half a block below the floor, as in HeartGold's Union Cave, with banks round it
 # HeartGold's wall profile (read off its Mt. Moon): per tier, (how far back in blocks, height, texture row)
 PROFILE = [[(0, 0, 15.75), (0.21, 1.6, 13), (0.67, 16, 4), (1.0, 16, 0.25)],
            [(1.0, 16, 15.75), (1.21, 17.6, 13), (1.67, 32, 4), (2.0, 32, 0.25)]]
@@ -253,7 +254,11 @@ def build_floor(spec, depth_of):
                     if lv >= 1 and faced and not faced4:
                         # (only a diagonal is lower: the faces round that corner reach in from its corner; the rest
                         # of the square is rock top, just below their lips)
-                        flats.setdefault(('dcliff01', lv * TIER - 0.4, None), set()).add((x, y))
+                        # (at the top tier that is the rim, turning the corner: light at the corner, dark beyond, not a
+                        # pale square)
+                        dg = next(((dx, dy) for dx in (-1, 1) for dy in (-1, 1) if LV(x + dx, y + dy) < lv), None)
+                        if lv == 2 and dg: flats.setdefault(('dcliff01_r', lv * TIER - 0.4, ('corner',) + dg), set()).add((x, y))
+                        else: flats.setdefault(('dcliff01', lv * TIER - 0.4, None), set()).add((x, y))
                     if lv >= 1 and faced4:
                         # the square's top between the lips of the faces across it (a thin wall's flat top; anything
                         # the faces don't reach, instead of the dark showing through)
@@ -343,9 +348,22 @@ def build_floor(spec, depth_of):
                     e = x + 1
                     while e < ox + 32 and (e, y) in water: e += 1
                     x0, x1, z0, z1 = U(x, ox), U(e, ox), U(y, oz), U(y + 1, oz)
-                    M('driver').quad([((x0, -3, z1), (x * 16, (y + 1) * 16)), ((x1, -3, z1), (e * 16, (y + 1) * 16)),
-                                      ((x1, -3, z0), (e * 16, y * 16)), ((x0, -3, z0), (x * 16, y * 16))], up)
+                    M('driver').quad([((x0, WATER_Y, z1), (x * 16, (y + 1) * 16)), ((x1, WATER_Y, z1), (e * 16, (y + 1) * 16)),
+                                      ((x1, WATER_Y, z0), (e * 16, y * 16)), ((x0, WATER_Y, z0), (x * 16, y * 16))], up)
                     x = e
+                # the pool's banks: HeartGold's (`dpond_line`), from the water up to the floor, wherever water ends
+                for x in range(ox, ox + 32):
+                    if (x, y) not in water: continue
+                    for n in DIRS4:
+                        if (x + n[0], y + n[1]) in water: continue
+                        x0, x1, z0, z1 = U(x, ox), U(x + 1, ox), U(y, oz), U(y + 1, oz)
+                        if n[0] == 0:
+                            zz = z1 if n[1] > 0 else z0; a, b = ((x1, zz), (x0, zz)) if n[1] > 0 else ((x0, zz), (x1, zz))
+                        else:
+                            xx = x1 if n[0] > 0 else x0; a, b = ((xx, z0), (xx, z1)) if n[0] > 0 else ((xx, z1), (xx, z0))
+                        tw_, th_ = dims['dpond_line']
+                        M('dpond_line').quad([((a[0], WATER_Y, a[1]), (0, th_)), ((b[0], WATER_Y, b[1]), (tw_, th_)),
+                                              ((b[0], 0.3, b[1]), (tw_, 0)), ((a[0], 0.3, a[1]), (0, 0))], (-n[0], 0, -n[1]))
             if not meshes:      # (a land all rock, past the cave's edge: the dark, as in HeartGold)
                 M('d_ro').quad([((-256, 32, 256), (0, 8)), ((256, 32, 256), (8, 8)), ((256, 32, -256), (8, 0)), ((-256, 32, -256), (0, 0))], up)
             groups = [(t, t, pal_of(t), mesh, {'repeat': 3, 'size': dims[t]}) for t, mesh in meshes.items()]
