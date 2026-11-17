@@ -50,6 +50,18 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
                   lowside='tmc_gc07', mat='tmc_gc02', stairs=(7, 8, 9, 10), wall_top=40),
     'house': dict(area=42, ship=True, plain=('r39_kabe', 'fs_room8', 'maq_pt13'), floor='mo_yuka', wall='r39_kabe', cap='fs_room8', side='maq_pt13',
                   low='table01', lowside='re_ki', mat='d_mat01', stairs=(7, 8, 9, 10), wall_top=40),
+    # the Safari Zone's rest houses (and the Secret House): the GBA's room in the ship set's house textures: a green
+    # mat floor, its plants (HeartGold's) and its cabinets along the back wall, its cushions on the floor, its
+    # counter and the boxes behind it as low blocks. furniture: as SHIP_FURNITURE; wall_art: a GBA wall metatile ->
+    # (texture, s, t, w, h, from and to how high, squares wide) drawn on the wall from that column; cushions: a
+    # floor metatile -> a texture laid on its square; low_mt: metatiles that are a low block wherever they stand
+    # (the counter runs to the room's edge, which would make a wall of it; nobody stands behind it, so the floor
+    # there is part of it); floor_mt: closed metatiles that are floor all the same (under a plant's pot)
+    'resthouse': dict(area=42, ship=True, plain=('r39_kabe', 'fs_room8', 'maq_pt13', 'mo_baketu'), floor='r39_ragu', wall='r39_kabe', cap='fs_room8',
+                      side='maq_pt13', low='mo_baketu', lowside='re_ki', mat='d_mat01', stairs=(7, 8, 9, 10), wall_top=40,
+                      furniture={0x28E: (23, 1, 2, (0, 0.5))}, wall_art={0x2A8: ('maq_pt04', 0, 0, 32, 32, 6, 38, 2)},
+                      cushions={0x291: 'week_hu02'},
+                      floor_mt={0x296}, low_mt={0x2B6, 0x2A5, 0x2BB, 0x29C, 0x2A4, 0x2AF, 0x2BA, 0x29F, 0x2A6, 0x2A7, 0x2C4, 0x2C5, 0x2AD, 0x2AE, 0x2B5}),
     # outdoors (the Safari Zone): Fuchsia's set; the GBA's trees are a hedge of HeartGold's trees (a row of them
     # on each face, the canopy on top), with its tall grass and ponds
     'safari': dict(area=16, floor='grass02', wall='tree01_re', top='tree01_un', low='etc_a', mark='road01',
@@ -119,7 +131,7 @@ INTERIORS += (
      dict(gba='SafariZone_East_Frlg', map='MAP_CANVAS_SAFARI_EAST', look='safari', template=SZ, depth=0),
      dict(gba='SafariZone_North_Frlg', map='MAP_CANVAS_SAFARI_NORTH', look='safari', template=SZ, depth=0),
      dict(gba='SafariZone_West_Frlg', map='MAP_CANVAS_SAFARI_WEST', look='safari', template=SZ, depth=0)] +
-    [dict(gba='SafariZone_%s_Frlg' % r, map='MAP_CANVAS_SAFARI_%s' % r.upper().replace('_RESTHOUSE', '_REST'), look='house',
+    [dict(gba='SafariZone_%s_Frlg' % r, map='MAP_CANVAS_SAFARI_%s' % r.upper().replace('_RESTHOUSE', '_REST'), look='resthouse',
           template='MAP_FUCHSIA_SOUTHWEST_HOUSE', depth=0)
      for r in ('Center_RestHouse', 'East_RestHouse', 'North_RestHouse', 'West_RestHouse', 'SecretHouse')]
 )
@@ -184,7 +196,8 @@ def ship_parts(spec):
     inb = lambda x, y: 0 <= x < W and 0 <= y < H
     warps = {(w['x'], w['y']): w for w in gm.get('warp_events', [])}
     isvoid = lambda x, y: not inb(x, y) or lay.metatile(x, y) in void
-    free = lambda x, y: inb(x, y) and not isvoid(x, y) and lay.collision(x, y) == 0
+    floor_mt = LOOKS.get(spec['look'], {}).get('floor_mt', ())     # (closed in the GBA, but floor: a plant's pot stands on it)
+    free = lambda x, y: inb(x, y) and not isvoid(x, y) and (lay.collision(x, y) == 0 or lay.metatile(x, y) in floor_mt)
     # (the GBA leaves squares open outside its rooms, in the borders: floor is what you can get to from a door)
     # (and from where people stand: a room behind a door that a script opens is floor too)
     people = {(o['x'], o['y']) for o in gm.get('object_events', [])}
@@ -234,8 +247,15 @@ def ship_parts(spec):
             edge = any(inb(c[0] + dx, c[1] + dy) and isvoid(c[0] + dx, c[1] + dy) for c in comp for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
             if len(comp) <= 12 and not edge: things |= set(comp)
             if not edge: inner |= set(comp)                     # (anything closed that stands inside the room)
+    low_mt = LOOKS.get(spec['look'], {}).get('low_mt', ())
+    forced = {(x, y) for y in range(H) for x in range(W) if lay.metatile(x, y) in low_mt and (x, y) not in band and (x, y) not in reach and (x, y) not in warps}
+    things |= forced; inner |= forced
+    # (and everything closed that is no wall itself, joined to one or not: not in a wall's rows, and with no dark
+    # beside it even cornerwise. The Tower's gravestones run in rows out from its walls.)
+    deep = {(x, y) for y in range(H) for x in range(W) if wallish(x, y) and (x, y) not in band and (x, y) not in warps
+            and not any(not inb(x + dx, y + dy) or isvoid(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))}
     return dict(gm=gm, lay=lay, W=W, H=H, warps=warps, people=people, isvoid=isvoid, open=open_, door=door, walk=walk, wallish=wallish,
-                band=band, things=things, inner=inner)
+                band=band, things=things, inner=inner, deep=deep)
 
 
 def build_ship_floor(spec, depth_of):
@@ -256,12 +276,12 @@ def build_ship_floor(spec, depth_of):
     floor_tex = SHIP['carpet'][spec['gba'].split('_')[1]] if room else SHIP['floor']
     wall_tex = SHIP['paper'] if room else SHIP['wall']
     low_tex = SHIP['steel'] if 'Kitchen' in spec['gba'] else SHIP['low']
-    stones = set(P['inner']) if SHIP.get('slab') else set()      # (the Tower: every closed square inside a room is a gravestone)
+    stones = set(P['inner']) | set(P['deep']) if SHIP.get('slab') else set()      # (the Tower: every closed square inside a room is a gravestone)
     # furniture of HeartGold's
     props, closed = [], set()
     for y in range(H):
         for x in range(W):
-            f = SHIP_FURNITURE.get(lay.metatile(x, y)) if SHIP.get('furniture') else None
+            f = (SHIP_FURNITURE if SHIP.get('furniture') is True else SHIP.get('furniture') or {}).get(lay.metatile(x, y))
             if not f: continue
             model, w, h, (mx, mz) = f
             props.append((model, x + w / 2 + mx, y + h / 2 + mz))
@@ -354,6 +374,12 @@ def build_ship_floor(spec, depth_of):
                 for x, k in row(lambda x, y: height(x, y) == 6): top(SHIP['cap'], x, k, y, 6)
                 for x, k in row(lambda x, y: height(x, y) == -4): top(SHIP['sea'], x, k, y, -4, plain=True)
                 for x, k in row(lambda x, y: kind.get((x, y)) == 0x65): top(SHIP['mat'], x, k, y, 1)
+                for x in range(X0, X1):              # a cushion on its square
+                    tex = SHIP.get('cushions', {}).get(lay.metatile(x, y)) if 0 <= x < W and 0 <= y < H else None
+                    if not tex: continue
+                    tw, th = dims[tex]
+                    a0, a1, b0, b1 = U(x, ox) + 2, U(x + 1, ox) - 2, U(y, oz) + 2, U(y + 1, oz) - 2
+                    M(tex).quad([((a0, 1, b1), (0, th)), ((a1, 1, b1), (tw, th)), ((a1, 1, b0), (tw, 0)), ((a0, 1, b0), (0, 0))], up)
                 for x, k in row(lambda x, y: height(x, y) == 1): top(SHIP['cap'], x, k, y, 0)       # (the deck's edge, under its rail)
                 if deck:        # a rail along every edge of the planks (HeartGold's ship ladder on its side: two bars and posts)
                     for x in range(X0, X1):
@@ -367,7 +393,7 @@ def build_ship_floor(spec, depth_of):
                             for p0, p1, nn in ((a, b, (n[0], 0, n[1])), (b, a, (-n[0], 0, -n[1]))):
                                 M(SHIP['rail']).quad([((p0[0], 0, p0[1]), (0, 0)), ((p1[0], 0, p1[1]), (0, 32)), ((p1[0], 11, p1[1]), (22, 32)), ((p0[0], 11, p0[1]), (22, 0))], nn)
                 for x in range(X0, X1):              # a stone standing on its square
-                    if (x, y) not in stones: continue
+                    if (x, y) not in stones or (x, y) in closed: continue
                     a0, a1, b0, b1 = U(x, ox) + 3, U(x + 1, ox) - 3, U(y, oz) + 6, U(y + 1, oz) - 4
                     M(SHIP['slab']).quad([((a0, 18, b1), (3, 6)), ((a1, 18, b1), (13, 6)), ((a1, 18, b0), (13, 0)), ((a0, 18, b0), (3, 0))], up)
                     for a, b, n in (((a0, b1), (a1, b1), (0, 0, 1)), ((a1, b1), (a1, b0), (1, 0, 0)), ((a0, b0), (a0, b1), (-1, 0, 0))):
@@ -400,6 +426,10 @@ def build_ship_floor(spec, depth_of):
                     M(SHIP['cap']).quad([((a[0], WALL_TOP, z), (1, 2)), ((b[0], WALL_TOP, z), (1 + (k * 8 if SHIP['cap'] not in plain else 1), 2)), ((b[0], WALL_TOP, z - 8), (1 + (k * 8 if SHIP['cap'] not in plain else 1), 1)), ((a[0], WALL_TOP, z - 8), (1, 1))], up)
                 for x in cols:
                     sq = [(x, y - k) for k in (1, 2, 3) if band.get((x, y - k)) == (y, k - 1)]
+                    art = next((SHIP['wall_art'][lay.metatile(*s)] for s in sq if lay.metatile(*s) in SHIP.get('wall_art', {})), None)
+                    if art:       # (a cabinet against the wall, from this column)
+                        tex, s_, t_, w, h, y0, y1, wide = art
+                        face(tex, (U(x, ox), z + 2), (U(x + wide, ox), z + 2), y0, y1, fwd, (s_, t_, s_ + w, t_ + h))
                     if 'door' not in SHIP: continue
                     if any(door(*s) for s in sq):
                         tex, s, t_, w, h = SHIP['door']
