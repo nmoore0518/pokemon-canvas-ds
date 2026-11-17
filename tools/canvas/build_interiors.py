@@ -160,7 +160,10 @@ def ship_parts(spec):
     isvoid = lambda x, y: not inb(x, y) or lay.metatile(x, y) in void
     free = lambda x, y: inb(x, y) and not isvoid(x, y) and lay.collision(x, y) == 0
     # (the GBA leaves squares open outside its rooms, in the borders: floor is what you can get to from a door)
-    reach, todo = set(warps), list(warps)
+    # (and from where people stand: a room behind a door that a script opens is floor too)
+    people = {(o['x'], o['y']) for o in gm.get('object_events', [])}
+    reach = set(warps) | {s for s in people if free(*s)}
+    todo = list(reach)
     while todo:
         x, y = todo.pop()
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
@@ -204,7 +207,7 @@ def ship_parts(spec):
             # (a wall has the dark beyond it somewhere; a thing stands clear of it)
             edge = any(inb(c[0] + dx, c[1] + dy) and isvoid(c[0] + dx, c[1] + dy) for c in comp for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
             if len(comp) <= 12 and not edge: things |= set(comp)
-    return dict(gm=gm, lay=lay, W=W, H=H, warps=warps, isvoid=isvoid, open=open_, door=door, walk=walk, wallish=wallish,
+    return dict(gm=gm, lay=lay, W=W, H=H, warps=warps, people=people, isvoid=isvoid, open=open_, door=door, walk=walk, wallish=wallish,
                 band=band, things=things)
 
 
@@ -235,7 +238,8 @@ def build_ship_floor(spec, depth_of):
             if not f: continue
             model, w, h, (mx, mz) = f
             props.append((model, x + w / 2 + mx, y + h / 2 + mz))
-            closed |= {(x + i, y + j) for i in range(w) for j in range(h)}
+            if model != 53:      # (a chair is sat on; and nobody the GBA stands somewhere is shut in)
+                closed |= {(x + i, y + j) for i in range(w) for j in range(h)} - P['people']
     floor = lambda x, y: (walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in closed
     # stairs to another deck: HeartGold's staircase, on the square that takes you there (the GBA's look the same up or down)
     for (x, y), w in warps.items():

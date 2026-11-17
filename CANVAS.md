@@ -296,6 +296,27 @@ from the GBA town: HeartGold's sand, grass, sea and sea rocks, the GBA's collisi
 on the GBA's doors (Center, Mart, Gym; Oak's lab model for the Lab and the Mansion). Its warps are the GBA's, in
 order; the porter places its people on the GBA's squares directly. A first pass: flat ground, no fences or trees.
 
+### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
+
+Nick: Gen 4 graphics like the rest of the game, with the GBA's layout, style and things in the GBA's places (not
+the GBA's own tile art: that was tried for the S.S. Anne and dropped). Each look in `LOOKS` (and `SHIP`) is a set
+of HeartGold textures for one builder, which reads the GBA map like this:
+- squares the GBA draws black are nothing; **floor is only what you can reach** from a door or from where a
+  person stands (the GBA leaves squares open out in the black and in the borders; the first pass drew those as
+  floor, and that was most of what looked wrong);
+- the wall above a stretch of floor (up to three rows of GBA wall, with black beyond) stands up at the floor's
+  far edge; where a bed or table stands against it, the wall comes from the columns either side. A warp square set
+  in it is a door (HeartGold's door picture on the ship), a porthole tile a porthole;
+- walls at the sides and the near edge are a low kerb, so they hide nothing; small closed patches are low blocks,
+  or in the Tower standing stones (gravestones);
+- furniture the look has models for is HeartGold's (`SHIP_FURNITURE`: bed, table, chair, plant; stairs between
+  decks are HeartGold's staircase), and `ship_models` adds those models to the area's building set;
+- a room can be widened like build_rooms' (`widen=`; the cabins are two columns and a row bigger).
+The porter then moves anyone the GBA has on open floor who lands on a closed square to the nearest open one
+(`settle`), in maps we built.
+Still rough: the Tower's stones and the low blocks are plain boxes; Silph's and the Hideout's tables are the
+same; stairs down have no hole; the deck's rails and sea are flat colour.
+
 ## The rest of Kanto (towns, routes, the rooms HeartGold has)
 
 Maps that keep HeartGold's layout get the GBA game's people by landmarks worked out in `port/auto_anchor.py`: a

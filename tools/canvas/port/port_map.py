@@ -496,6 +496,37 @@ def off_furniture(slot, x, z, sign=False):
 
 
 _FURN = _furniture()
+
+
+_lay = {}
+
+
+def _open_on_gba(mj, o):
+    """is the GBA square this person stands on open floor? (a clerk behind a counter, a statue: no)"""
+    try:
+        if mj['layout'] not in _lay:
+            import gba_map
+            _lay[mj['layout']] = gba_map.Layout(mj['layout'])
+        L = _lay[mj['layout']]
+        return 0 <= o['x'] < L.w and 0 <= o['y'] < L.h and L.collision(o['x'], o['y']) == 0
+    except Exception:
+        return False
+
+
+def settle(slot, x, z, taken):
+    """In a map we built: someone the GBA has on open floor who lands on a closed square here (furniture of
+    HeartGold's is bigger, a wall stands where the GBA drew one flat) steps to the nearest open square that is
+    free and is no door."""
+    import world
+    ok = lambda a, b: (lambda v: v is not None and not v & 0x8000 and (v & 0xFF) == 0)(world.perm_in(slot, a, b))
+    v = world.perm_in(slot, x, z)
+    if v is None or not v & 0x8000: return x, z       # (open, or water, grass, a mat: where the GBA has them)
+    for r in range(1, 4):
+        ring = sorted(((x + i, z + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r),
+                      key=lambda c: (abs(c[0] - x) + abs(c[1] - z), c[1] < z))
+        for c in ring:
+            if c[0] >= 0 and c[1] >= 0 and ok(*c) and c not in taken: return c
+    return x, z
 PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
 
 
@@ -1613,6 +1644,7 @@ def port(gba_map, g, ids, report):
     open(os.path.join(SCR, 'event_%s.h' % tag), 'w').write('\n'.join(eh))
     # ---- people and signs
     objs = []
+    _taken = set()
     for i, o in enumerate(people):
         gfx = o['graphics_id'].replace('OBJ_EVENT_GFX_', '').replace('_FRLG', '')
         sm = re.match(r'SPECIES\((\w+)\)$', gfx)            # (a Pokemon: its walking sprite, or Eevee's for ones HeartGold lacks)
@@ -1627,7 +1659,10 @@ def port(gba_map, g, ids, report):
         if isinstance(xy, Anchored): xy.want_water = False
         if at is None: continue
         x, z = off_furniture(slot, *at)
-        if (x, z) != tuple(at): report.append('  %s at %s stood on furniture: now at %s' % (gfx, tuple(at), (x, z)))
+        if not isinstance(xy, Anchored) and '_at' not in o and kind in ('object', 'trainer') and _open_on_gba(mj, o):
+            x, z = settle(slot, x, z, _taken)
+        _taken.add((x, z))
+        if (x, z) != tuple(at): report.append('  %s at %s stood on something closed: now at %s' % (gfx, tuple(at), (x, z)))
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
