@@ -54,7 +54,9 @@ the set's shared texture file (`a/0/7/0`). Things learned the hard way:
 - materials need their texture size filled in, or every texel samples the same spot
 - the DS file system's tables are read at boot, so a savestate from before a data change is no good after it
 - map texture animations are bound to materials by index, not name: Pallet's area animation scrolls materials
-  0..7, so those slots are placeholders (only slot 4, sea_un, is used) or the ground scrolls
+  0..7, so those slots are placeholders (only slot 4, sea_un, is used) or the ground scrolls. The area data's
+  third half-word is the animation (a member of `a/1/4/0`, 0xFFFF none); every builder must hold those slots
+  (the caves' areas scroll 0..4, the Safari Zone's 0..7)
 
 ## Interiors
 
@@ -201,9 +203,8 @@ Fang levelling up into Valyreon (the Fang gone afterwards).
 HeartGold's Mt. Moon is one small floor; the GBA game's is three. `build_caves.py` models each floor from its GBA
 layout in HeartGold's cave look, built the way HeartGold builds its own caves (`bmdview.py` reads a map model's
 geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG without the game):
-- rock rises from the floor in tiers a block high, by rings of rock (two tiers; one where the wall is thin):
-  each tier's face is HeartGold's profile (it leans back two thirds of a block while rising, then a lip back to
-  the whole block), textured `dwall_n/e/s/w` by where the rock is; corners are mitred along the diagonal;
+- rock rises from the floor in tiers a block high, by rings of rock, each tier built from the **tile kit**
+  (below): square pieces that all meet one another, never stretched;
 - **only whole pieces, never squeezed** (Nick): a face is one square deep and one block high, always. So a wall
   one square thick can only be a step between two floors a tier apart; the heights are real (below), and
   anything thinner than the pieces need is made thicker by doubling columns and rows of the GBA map
@@ -220,8 +221,8 @@ geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG
 - only what can be reached from a ladder, a mouth or where someone stands is floor (the GBA leaves squares open
   in its borders);
 - a face that stops against steps or against floor as high as its lip gets the wall's side there (`caps`, and
-  the steps' own); the inside of a corner is covered by the two faces mitred across it and has no top of its own
-  (the pale squares that used to sit in corners were that top, drawn over the faces);
+  the steps' own); an inside corner is HeartGold's own corner piece and has no top of its own (the pale squares
+  that used to sit in corners were that top, drawn over the faces);
 - **no gaps**: `holes.py`-style check: render the lands with `landview` on a magenta ground and look for
   enclosed magenta (a ladder down's square is one by design);
 - above the second tier, the rim (`dcliff01_r`: light at the edge, fading to the dark), then the dark; a tier's
@@ -232,13 +233,49 @@ geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG
   side by side; one to a pile's square, none on a square whose rock to the south leans over it (a card a square
   made the ice crystals cut each other up);
 - **the floor's darker border** (`droad01_r`) runs along every edge of the floor: the foot of a wall, the lip of
-  a cliff, the water's bank, and round a corner of rock that pokes into it (only the strip with the border in
-  it is drawn, so two meet square at a corner);
+  a cliff, the water's bank, and round a corner of rock that pokes into it (the tile kit's border pieces, below);
 - rock that lies level with the floor beside it is floor (a plateau is floor to its edge, not a paler tile);
 - HeartGold's ladder models (69 up, 70 down) on squares of behaviour 0x3C/0x3E; cave mouths 0x6E (north), 0x6F
   (south), 0x6C/0x6D (east/west); HeartGold's cave floor (0x0A08, wild Pokemon).
 - **Polygons**: the DS draws 2048 a frame, people included; a cave drawn square by square leaves none for them
   (they vanish). Flat pieces are drawn in runs, straight faces as one strip.
+
+### The tile kit (`cave_kit.py`, laid by `build_caves.py`)
+Every square of rock with lower ground in the 8 squares round it is one wall piece a tier high, chosen by which of
+those squares are lower (`classify`):
+- **straight** (one side lower): HeartGold's face (`PROFILE`, three bands leaning back, `dwall_n/e/s/w` by the
+  side), drawn in runs as quad strips;
+- **inside corner** (only the square cornerwise lower): HeartGold's own piece (`dwall_wn/ne/es/sw`), read out of
+  Union Cave's lands at build time (`corner_pieces`, `SOURCES`);
+- **outside corner** (two neighbouring sides lower): the straight face on each lower side, mitred along the
+  diagonal (two triangles a side, cut at the profile's bands). HeartGold's outside corner is rounded and stands
+  back from the square; drawn on our squares it left pale crosses, and a floor border that follows its curve
+  needed more pictures than a texture set holds;
+- **anything else**: laid by distance (`laid`): each point as far up the profile as it is from the nearest lower
+  square, so it meets whatever is beside it. The water's bank is laid the same way (`BANK`).
+- every piece has the profile along each side of its square, so any piece meets any other. All normals point up
+  (HeartGold's walls carry none and are lit evenly; real normals made north faces dark).
+- **the floor's border** (`droad01_r`'s left half is HeartGold's straight piece): a square against rock on one
+  side is the straight piece, in runs; any other border square (rock on two or more sides, a corner of rock poking
+  in) is a picture of its own, made from the straight piece by each texel's distance from the nearest rock
+  (`border_texture`; past `BAND_END` = 16 texels it is the floor's own texture, in the border's colours). The rim
+  above the top tier is done the same way from `dcliff01_r`. A border square has no floor under it (the DS cannot
+  tell a unit's difference in depth and the two fought).
+- those pictures go in **atlases** in the cave's texture set (`cv_border*`, `cv_rim*`): 16 texels wide, at most 512
+  high (32 pieces each; wider or taller ones read wrongly on the DS), alike pieces sharing a cell. A first pass over
+  every cave counts the pieces, then passes repeat until no new piece turns up, then the real pass. A HeartGold
+  area's texture set must stay under 56 KB (asserted).
+- **material order**: the cave areas share Union Cave's texture animation, which scrolls a land's materials 0..4
+  by index (its river, river_r, sea_line02, sea_un, sea_on: `anim_slots` reads them from `a/1/4/0`), so those
+  places are held by empty materials. Anything put there slides (the atlases there drew the wrong pieces, half a
+  square out: the ice caves' pale blocks).
+- **under it all**, the floor again, well below everything, in a few rectangles over the squares the cave draws:
+  where pieces meet at a point along another's side the DS leaves a pixel open now and then, and the dark showed
+  through as black dots. Dropped first (before a tier of rock) when a land is too big (Victory Road 1F).
+- a land's model must stay under 61400 bytes (`CAVE_LIMIT`): a land too busy goes without the floor under it all,
+  then with fewer tiers of rock (`RINGS` 3, 2, 1).
+- ladders are behaviour 0x61 only; a hole (0x0F) is cut into its square (dark `d_ro` with floor round it);
+  arrival squares are plain floor.
 Floors bigger than a land span a matrix of lands. They are maps of our own (`MAP_CANVAS_MT_MOON_*`) with the header
 of HeartGold's Mt. Moon (its wild Pokemon for now); the doors on Route 3 and Route 4 into HeartGold's Mt. Moon lead
 into ours, and HeartGold's own (with Mt. Moon Square) is left alone.

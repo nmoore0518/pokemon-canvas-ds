@@ -21,9 +21,12 @@ def normal10(n):
 
 
 class Mesh:
-    """Quads and triangles for one material: each vertex (pos units xyz, uv in texels, normal)"""
+    """Quads, triangles and strips of them for one material: each vertex (pos units xyz, uv in texels), and a
+    normal a polygon (or a strip). A strip shares vertices between its polygons: a quad strip is pairs of vertices
+    across it (v0 v1, v2 v3, ...: quads v0 v1 v3 v2, v2 v3 v5 v4, ...), a triangle strip v0 v1 v2 v3 ... (triangles
+    v0 v1 v2, v1 v2 v3, ...)."""
     def __init__(self):
-        self.quads, self.tris = [], []
+        self.quads, self.tris, self.strips = [], [], []
 
     def quad(self, verts, normal):
         self.quads.append((verts, normal))
@@ -31,9 +34,33 @@ class Mesh:
     def tri(self, verts, normal):
         self.tris.append((verts, normal))
 
+    def qstrip(self, verts, normal):
+        self.strips.append((3, verts, normal))
+
+    def tstrip(self, verts, normal):
+        self.strips.append((2, verts, normal))
+
+    def __bool__(self):
+        return bool(self.quads or self.tris or self.strips)
+
+    def all_verts(self):
+        return [v for items in (self.quads, self.tris) for verts, _ in items for v in verts] + [v for _, verts, _ in self.strips for v in verts]
+
 
 def display_list(mesh):
     ops = []
+
+    def vertex(x, y, z, s, t):
+        ss, tt = int(round(s * 16)), int(round(t * 16))
+        assert -32768 <= ss < 32768 and -32768 <= tt < 32768, (s, t)
+        ops.append((0x22, [(ss & 0xFFFF) | ((tt & 0xFFFF) << 16)]))
+        # VTX_10 (6 fraction bits: one world unit at our scale) when it fits, else VTX_16
+        q = [int(round(c / POS_SCALE * 64)) for c in (x, y, z)]
+        if all(-512 <= c < 512 for c in q):
+            ops.append((0x24, [(q[0] & 0x3FF) | ((q[1] & 0x3FF) << 10) | ((q[2] & 0x3FF) << 20)]))
+        else:
+            vx, vy, vz = fx16(x / POS_SCALE), fx16(y / POS_SCALE), fx16(z / POS_SCALE)
+            ops.append((0x23, [(vx & 0xFFFF) | ((vy & 0xFFFF) << 16), vz & 0xFFFF]))
     for prim, items in ((1, mesh.quads), (0, mesh.tris)):
         if not items:
             continue
@@ -44,16 +71,13 @@ def display_list(mesh):
             if nn != last_n:
                 ops.append((0x21, [nn])); last_n = nn
             for (x, y, z), (s, t) in verts:
-                ss, tt = int(round(s * 16)), int(round(t * 16))
-                assert -32768 <= ss < 32768 and -32768 <= tt < 32768, (s, t)
-                ops.append((0x22, [(ss & 0xFFFF) | ((tt & 0xFFFF) << 16)]))
-                # VTX_10 (6 fraction bits: one world unit at our scale) when it fits, else VTX_16
-                q = [int(round(c / POS_SCALE * 64)) for c in (x, y, z)]
-                if all(-512 <= c < 512 for c in q):
-                    ops.append((0x24, [(q[0] & 0x3FF) | ((q[1] & 0x3FF) << 10) | ((q[2] & 0x3FF) << 20)]))
-                else:
-                    vx, vy, vz = fx16(x / POS_SCALE), fx16(y / POS_SCALE), fx16(z / POS_SCALE)
-                    ops.append((0x23, [(vx & 0xFFFF) | ((vy & 0xFFFF) << 16), vz & 0xFFFF]))
+                vertex(x, y, z, s, t)
+        ops.append((0x41, []))
+    for prim, verts, n in mesh.strips:
+        ops.append((0x40, [prim]))
+        ops.append((0x21, [normal10(n)]))
+        for (x, y, z), (s, t) in verts:
+            vertex(x, y, z, s, t)
         ops.append((0x41, []))
     out = bytearray()
     for i in range(0, len(ops), 4):
@@ -79,7 +103,7 @@ def build_model(name, groups):
     group can hold a place); only groups with geometry get a shape."""
     assert len(name) <= 16 and all(len(g[0]) <= 16 and len(g[1]) <= 16 and len(g[2]) <= 16 for g in groups), 'names: 16 at most'
     nmat = len(groups)
-    drawn = [i for i, g in enumerate(groups) if g[3].quads or g[3].tris]
+    drawn = [i for i, g in enumerate(groups) if g[3]]
     nshp = len(drawn)
     # ---- render commands
     sbc = bytearray(b'\x26\x00\x00\x00\x00' + b'\x02\x00\x01' + b'\x0b')
@@ -141,9 +165,9 @@ def build_model(name, groups):
         dl_off += len(dl)
     shps = build_dict(shp_ent, 4) + heads + b''.join(dls)
     # ---- info
-    allv = [v[0] for g in groups for items in (g[3].quads, g[3].tris) for verts, _ in items for v in verts]
-    nq = sum(len(g[3].quads) for g in groups)
-    nt = sum(len(g[3].tris) for g in groups)
+    allv = [v[0] for g in groups for v in g[3].all_verts()]
+    nq = sum(len(g[3].quads) + sum((len(v) - 2) // 2 for p, v, _ in g[3].strips if p == 3) for g in groups)
+    nt = sum(len(g[3].tris) + sum(len(v) - 2 for p, v, _ in g[3].strips if p == 2) for g in groups)
     mn = [min(v[k] for v in allv) for k in range(3)]
     mx = [max(v[k] for v in allv) for k in range(3)]
     box = [fx16(mn[k] / BOX_SCALE) for k in range(3)] + [fx16((mx[k] - mn[k]) / BOX_SCALE) for k in range(3)]
