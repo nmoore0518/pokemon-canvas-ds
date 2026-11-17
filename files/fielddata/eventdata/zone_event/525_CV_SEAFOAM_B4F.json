@@ -4,7 +4,7 @@
         {
             "scriptId": "_EV_SeafoamIslands_B4F_EventScript_FastCurrentSign + 1",
             "type": 0,
-            "x": 30,
+            "x": 31,
             "z": 2,
             "y": 0,
             "dir": 4
@@ -13,7 +13,7 @@
             "scriptId": "_EV_SeafoamIslands_B4F_EventScript_BoulderHintSign + 1",
             "type": 0,
             "x": 14,
-            "z": 18,
+            "z": 21,
             "y": 0,
             "dir": 4
         }
@@ -33,7 +33,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 8,
-            "z": 18,
+            "z": 21,
             "y": 0
         },
         {
@@ -50,7 +50,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 9,
-            "z": 18,
+            "z": 21,
             "y": 0
         },
         {
@@ -84,20 +84,20 @@
             "xRange": 1,
             "yRange": 1,
             "x": 22,
-            "z": 19,
+            "z": 22,
             "y": 0
         }
     ],
     "warps": [
         {
             "x": 15,
-            "z": 9,
+            "z": 10,
             "header": "MAP_CANVAS_SEAFOAM_B3F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 32,
+            "x": 33,
             "z": 5,
             "header": "MAP_CANVAS_SEAFOAM_B3F",
             "anchor": 4,
@@ -105,14 +105,14 @@
         },
         {
             "x": 8,
-            "z": 17,
+            "z": 19,
             "header": "MAP_CANVAS_SEAFOAM_B3F",
             "anchor": 7,
             "y": 0
         },
         {
             "x": 9,
-            "z": 17,
+            "z": 19,
             "header": "MAP_CANVAS_SEAFOAM_B3F",
             "anchor": 8,
             "y": 0
@@ -121,18 +121,8 @@
     "coords": [
         {
             "scriptId": "_EV_SeafoamIslands_B4F_EventScript_UpwardCurrent + 1",
-            "x": 26,
-            "z": 19,
-            "w": 1,
-            "h": 1,
-            "y": 0,
-            "val": 0,
-            "var": "0x503C"
-        },
-        {
-            "scriptId": "_EV_SeafoamIslands_B4F_EventScript_UpwardCurrent + 1",
             "x": 27,
-            "z": 19,
+            "z": 22,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -142,7 +132,17 @@
         {
             "scriptId": "_EV_SeafoamIslands_B4F_EventScript_UpwardCurrent + 1",
             "x": 28,
-            "z": 19,
+            "z": 22,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x503C"
+        },
+        {
+            "scriptId": "_EV_SeafoamIslands_B4F_EventScript_UpwardCurrent + 1",
+            "x": 29,
+            "z": 22,
             "w": 1,
             "h": 1,
             "y": 0,

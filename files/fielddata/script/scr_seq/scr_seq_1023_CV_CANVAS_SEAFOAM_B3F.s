@@ -30,7 +30,7 @@ SeafoamIslands_B3F_EventScript_EnterByFalling:
 	SetVar 0x503C, 1
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	Warp MAP_CANVAS_SEAFOAM_B4F, 0, 27, 21, DIR_SOUTH
+	Warp MAP_CANVAS_SEAFOAM_B4F, 0, 28, 24, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll

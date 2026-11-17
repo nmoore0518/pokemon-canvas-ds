@@ -15,7 +15,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 7,
+            "x": 8,
             "z": 3,
             "y": 0
         },
@@ -32,8 +32,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 11,
-            "z": 16,
+            "x": 13,
+            "z": 23,
             "y": 0
         },
         {
@@ -49,8 +49,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 25,
-            "z": 5,
+            "x": 31,
+            "z": 6,
             "y": 0
         },
         {
@@ -66,8 +66,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 7,
-            "z": 21,
+            "x": 8,
+            "z": 30,
             "y": 0
         },
         {
@@ -83,8 +83,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 13,
-            "z": 21,
+            "x": 16,
+            "z": 30,
             "y": 0
         },
         {
@@ -100,8 +100,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 5,
-            "z": 20,
+            "x": 6,
+            "z": 29,
             "y": 0
         },
         {
@@ -117,8 +117,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 14,
-            "z": 20,
+            "x": 17,
+            "z": 29,
             "y": 0
         },
         {
@@ -134,8 +134,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 11,
-            "z": 21,
+            "x": 13,
+            "z": 30,
             "y": 0
         },
         {
@@ -151,8 +151,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 9,
-            "z": 18,
+            "x": 11,
+            "z": 27,
             "y": 0
         },
         {
@@ -168,21 +168,21 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 33,
-            "z": 15,
+            "x": 40,
+            "z": 22,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 33,
-            "z": 21,
+            "x": 40,
+            "z": 30,
             "header": "MAP_CERULEAN",
             "anchor": 7,
             "y": 0
         },
         {
-            "x": 34,
+            "x": 41,
             "z": 2,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 0,
@@ -190,42 +190,42 @@
         },
         {
             "x": 1,
-            "z": 7,
+            "z": 9,
             "header": "MAP_CANVAS_CERULEAN_CAVE_B1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 10,
+            "x": 12,
             "z": 2,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 5,
-            "z": 15,
+            "x": 6,
+            "z": 22,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 30,
-            "z": 10,
+            "x": 36,
+            "z": 14,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 24,
-            "z": 11,
+            "x": 30,
+            "z": 16,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 4,
             "y": 0
         },
         {
             "x": 2,
-            "z": 4,
+            "z": 5,
             "header": "MAP_CANVAS_CERULEAN_CAVE_2F",
             "anchor": 5,
             "y": 0

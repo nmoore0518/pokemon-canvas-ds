@@ -15,7 +15,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 39,
+            "x": 41,
             "z": 27,
             "y": 0
         }
@@ -29,8 +29,8 @@
             "y": 0
         },
         {
-            "x": 82,
-            "z": 71,
+            "x": 86,
+            "z": 72,
             "header": "MAP_CANVAS_DIGLETTS_CAVE_S",
             "anchor": 1,
             "y": 0

@@ -568,6 +568,9 @@ for _d, _v in list(MAPS.items()):
     if _v[1] is None: MAPS[_d] = (_v[0], room_xy(_d)) + tuple(_v[2:])
 for _c in _BI.INTERIORS:
     MAPS[_c['gba']] = (_c['map'], room_xy(_c['gba']) if _c.get('widen') else same)
+import build_caves as _BC           # (caves are widened where a wall is too thin for HeartGold's pieces: cave_widen)
+for _c in _BC.CAVES:
+    MAPS[_c['gba']] = (_c['map'], _BC.cave_xy(_c['gba']))
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
 DEST_EXTRA = {
     'MAP_SSANNE_EXTERIOR': 'MAP_SS_AQUA_VERMILION_PORT_INTERIOR', 'MAP_POKEMON_TOWER_1F': 'MAP_LAVENDER_RADIO_STATION',

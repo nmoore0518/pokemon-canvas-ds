@@ -5,7 +5,7 @@
             "scriptId": "_EV_RockTunnel_1F_EventScript_RouteSign + 1",
             "type": 0,
             "x": 14,
-            "z": 33,
+            "z": 40,
             "y": 0,
             "dir": 4
         }
@@ -24,8 +24,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 26,
-            "z": 28,
+            "x": 28,
+            "z": 34,
             "y": 0
         },
         {
@@ -41,8 +41,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 39,
-            "z": 27,
+            "x": 43,
+            "z": 33,
             "y": 0
         },
         {
@@ -58,8 +58,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 45,
-            "z": 24,
+            "x": 50,
+            "z": 29,
             "y": 0
         },
         {
@@ -75,8 +75,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 20,
-            "z": 17,
+            "x": 21,
+            "z": 21,
             "y": 0
         },
         {
@@ -93,7 +93,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 5,
-            "z": 20,
+            "z": 25,
             "y": 0
         },
         {
@@ -126,7 +126,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 27,
+            "x": 30,
             "z": 10,
             "y": 0
         },
@@ -143,7 +143,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 37,
+            "x": 41,
             "z": 5,
             "y": 0
         },
@@ -160,8 +160,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 33,
-            "z": 22,
+            "x": 37,
+            "z": 27,
             "y": 0
         },
         {
@@ -177,21 +177,21 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 22,
-            "z": 22,
+            "x": 24,
+            "z": 27,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 17,
+            "x": 18,
             "z": 2,
             "header": "MAP_ROUTE_10",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 45,
+            "x": 50,
             "z": 2,
             "header": "MAP_CANVAS_ROCK_TUNNEL_B1F",
             "anchor": 0,
@@ -205,22 +205,22 @@
             "y": 0
         },
         {
-            "x": 20,
-            "z": 13,
+            "x": 21,
+            "z": 14,
             "header": "MAP_CANVAS_ROCK_TUNNEL_B1F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 45,
-            "z": 21,
+            "x": 50,
+            "z": 26,
             "header": "MAP_CANVAS_ROCK_TUNNEL_B1F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 18,
-            "z": 37,
+            "x": 19,
+            "z": 44,
             "header": "MAP_ROUTE_10_SOUTH",
             "anchor": 0,
             "y": 0

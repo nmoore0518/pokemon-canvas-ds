@@ -204,13 +204,26 @@ geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG
 - rock rises from the floor in tiers a block high, by rings of rock (two tiers; one where the wall is thin):
   each tier's face is HeartGold's profile (it leans back two thirds of a block while rising, then a lip back to
   the whole block), textured `dwall_n/e/s/w` by where the rock is; corners are mitred along the diagonal;
-- **a wall one or two squares thick is a ridge**: its two faces lean in until they meet at the top. (It used to
-  be a low kerb with a pale flat top, which made the GBA's mazes of thin walls look like pavements: most of what
-  read as "the scale is off".)
-- **no gaps**: where a face leans less at one end than the other (beside a thin wall's face, at an inside
-  corner), its lip slants across the square, and the top of the square is drawn from that lip, not as a
-  rectangle. `holes.py`-style check: render the lands with `landview` on a magenta ground and look for enclosed
-  magenta (a ladder down's square is one by design);
+- **only whole pieces, never squeezed** (Nick): a face is one square deep and one block high, always. So a wall
+  one square thick can only be a step between two floors a tier apart; the heights are real (below), and
+  anything thinner than the pieces need is made thicker by doubling columns and rows of the GBA map
+  (`cave_widen`: two squares between floors of the same height, n between floors n tiers apart; where the GBA
+  has two elevations side by side with nothing between, the new squares are the cliff). People, items and ladders
+  move with the squares (`cave_xy`, which the porter uses). A rock square higher than the squares on two opposite
+  sides of it is lowered to a flat top (a wall three thick is a block with a pale top, as HeartGold's are).
+- **heights** (`cave_heights`): the GBA's elevation where it uses it (3 the ground, 4 a tier up; water is got
+  onto from 3), and its steps (metatiles 0x284/0x2B4, which climb a tier going north) where both ends have the
+  same elevation (Mt. Moon B2F, Seafoam 1F). Rock is a tier higher each ring out from the lowest floor near it,
+  for `RINGS` (3) tiers, then the rim, then the dark. Steps are HeartGold's `dslope`, a tier in a square; the
+  heights walked on are in the land's BDHC (a plate a run, sloped on steps); ladders and people stand at their
+  floor's height.
+- only what can be reached from a ladder, a mouth or where someone stands is floor (the GBA leaves squares open
+  in its borders);
+- a face that stops against steps or against floor as high as its lip gets the wall's side there (`caps`, and
+  the steps' own); the inside of a corner is covered by the two faces mitred across it and has no top of its own
+  (the pale squares that used to sit in corners were that top, drawn over the faces);
+- **no gaps**: `holes.py`-style check: render the lands with `landview` on a magenta ground and look for
+  enclosed magenta (a ladder down's square is one by design);
 - above the second tier, the rim (`dcliff01_r`: light at the edge, fading to the dark), then the dark; a tier's
   top and anything the faces leave open is `dcliff01`; the floor (`droad01`) has its darker edge (`droad01_r`)
   along the foot of every wall;
@@ -228,9 +241,9 @@ two entrance rooms too), Victory Road, Cerulean Cave and the Seafoam Islands, ea
 cave of that name (wild Pokemon, music) **and its look** (`AREAS`: HeartGold's caves share texture names across
 their sets, so the area is all that changes): Rock Tunnel 83, Diglett's Cave 82 (brown earth), Cerulean Cave 73
 (purple, crystals for boulders), the Seafoam Islands 104 (ice, HeartGold's lower floors), Mt. Moon and Victory
-Road 70. Water you surf is HeartGold's cave water (behaviour 0x15, `driver`), half a block below the floor with
-HeartGold's banks (`dpond_line`) on every edge; a bank's wavy edges are cut out of its texture, so it stands a
-little above the floor and reaches under the water (nothing else is behind them). A floor is dark until Flash
+Road 70. Water you surf is HeartGold's cave water (behaviour 0x15, `driver`), half a block below its floor, with
+HeartGold's bank round every edge of it (`BANK`, read off Union Cave: a lip on the land, then down into the
+water), against walls as well as floor. A floor is dark until Flash
 only where the GBA's is (Rock Tunnel). HeartGold has no
 Route 23: its League reception gate leads into our Victory Road 1F, and Victory Road 2F's way out is the Plateau.
 Not yet: Victory Road's and Seafoam's boulder switches and currents, ledges inside a floor.
