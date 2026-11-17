@@ -21,8 +21,8 @@
     ],
     "warps": [
         {
-            "x": 4,
-            "z": 7,
+            "x": 6,
+            "z": 8,
             "header": "MAP_CANVAS_SSANNE_2F",
             "anchor": 3,
             "y": 0

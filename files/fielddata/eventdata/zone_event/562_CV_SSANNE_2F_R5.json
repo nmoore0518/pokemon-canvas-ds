@@ -14,7 +14,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 5,
+            "x": 7,
             "z": 2,
             "y": 0
         },
@@ -31,15 +31,15 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 3,
-            "z": 5,
+            "x": 5,
+            "z": 6,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 4,
-            "z": 7,
+            "x": 6,
+            "z": 8,
             "header": "MAP_CANVAS_SSANNE_2F",
             "anchor": 7,
             "y": 0

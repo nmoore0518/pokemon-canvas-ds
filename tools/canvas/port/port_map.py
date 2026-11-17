@@ -502,7 +502,7 @@ PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its 
 def room_xy(gba):
     """a room build_rooms.py built wider or longer than the GBA's (widen): its squares move with the columns/rows added"""
     import build_rooms
-    w = next((r.get('widen') for r in build_rooms.ROOMS if r['gba'] == gba and r.get('widen')), None) or {}
+    w = next((r.get('widen') for r in list(build_rooms.ROOMS) + list(_BI.INTERIORS) if r['gba'] == gba and r.get('widen')), None) or {}
     cols = [c if len(c) == 3 else (c[0], c[1], c[0]) for c in w.get('cols', [])]
     rows = [r if len(r) == 3 else (r[0], r[1], r[0]) for r in w.get('rows', [])]
     return lambda x, y, kind='pos': (x + sum(n for c, n, _ in cols if c <= x), y + sum(n for r, n, _ in rows if r <= y))
@@ -511,7 +511,7 @@ def room_xy(gba):
 for _d, _v in list(MAPS.items()):
     if _v[1] is None: MAPS[_d] = (_v[0], room_xy(_d)) + tuple(_v[2:])
 for _c in _BI.INTERIORS:
-    MAPS[_c['gba']] = (_c['map'], same)
+    MAPS[_c['gba']] = (_c['map'], room_xy(_c['gba']) if _c.get('widen') else same)
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
 DEST_EXTRA = {
     'MAP_SSANNE_EXTERIOR': 'MAP_SS_AQUA_VERMILION_PORT_INTERIOR', 'MAP_POKEMON_TOWER_1F': 'MAP_LAVENDER_RADIO_STATION',
