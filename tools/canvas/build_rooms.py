@@ -306,6 +306,16 @@ def build_room(spec, land_id):
         elif x >= x1: doors[(x, y)] = 0x62       # east
         elif y < first: doors[(x, y)] = 0x64     # north
     fw, fh = dims[spec['floor']]
+
+    def stair_model(x, y, model):
+        """HeartGold's staircases come both ways round (7 up to the right, 8 up to the left; 9 down to the left, 10 down
+        to the right): the GBA's climbs or goes down towards the closed side of its two squares, so ours does"""
+        shut = lambda xx: not (0 <= xx < W) or blocked(xx, max(y, first)) or not any(not blocked(xx, yy) for yy in range(first, last + 1))
+        left = shut(x - 1) and not shut(x + 2)
+        if model == 7: return 8 if left else 7
+        if model == 9: return 9 if left or not shut(x + 2) else 10
+        return model
+    down_rect = lambda x, y: (-15, 13, -12, 18) if stair_model(x, y, 9) == 10 else STAIR_DOWN_RECT
     holes = set()          # floor squares a staircase down goes through
     for y in range(H):
         for x in range(W):
@@ -326,8 +336,9 @@ def build_room(spec, land_id):
     for y in range(H):
         for x in range(W):
             if mid(x, y) not in STAIRS_DOWN.get(tsn(mid(x, y)), {}): continue
-            ax, bx = x + 1 + STAIR_DOWN_RECT[0] / 16, x + 1 + STAIR_DOWN_RECT[1] / 16
-            az, bz = first + 0.5 + STAIR_DOWN_RECT[2] / 16, first + 0.5 + STAIR_DOWN_RECT[3] / 16
+            R_ = down_rect(x, y)
+            ax, bx = x + 1 + R_[0] / 16, x + 1 + R_[1] / 16
+            az, bz = first + 0.5 + R_[2] / 16, first + 0.5 + R_[3] / 16
             zt, zb_ = (wall_z if y <= first else y), y + 2
             for (qa, qb, qc, qd) in ((x, ax, zt, zb_), (bx, x + 2, zt, zb_), (ax, bx, zt, az), (ax, bx, bz, zb_)):
                 if qb - qa < 0.01 or qd - qc < 0.01: continue
@@ -523,9 +534,9 @@ def build_room(spec, land_id):
                 zz = U(wall_z) + 1
                 M('red_h_mado').quad([((a, 17, zz), (0, 16)), ((b, 17, zz), (16, 16)), ((b, 40, zz), (16, 0)), ((a, 40, zz), (0, 0))], fwd)
             if m in STAIRS_UP.get(tsn(m), {}):
-                props.append((STAIRS_UP[tsn(m)][m], U(x + 1), 0, U(first + 0.5)))
+                props.append((stair_model(x, y, STAIRS_UP[tsn(m)][m]), U(x + 1), 0, U(first + 0.5)))
             if m in STAIRS_DOWN.get(tsn(m), {}):
-                props.append((STAIRS_DOWN[tsn(m)][m], U(x + 1), 0, U(first + 0.5)))
+                props.append((stair_model(x, y, STAIRS_DOWN[tsn(m)][m]), U(x + 1), 0, U(first + 0.5)))
             if m in RUGS.get(tsn(m), {}):
                 t = RUGS[tsn(m)][m]
                 # the rug runs to the end of its row/column of rug metatiles

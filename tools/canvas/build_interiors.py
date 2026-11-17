@@ -32,15 +32,16 @@ LAND_BASE = 800                 # our interiors' lands (caves are 720 on)
 WALL_H, LOW_H = 24, 12          # a wall a block and a half high; a table or a machine, three quarters of a block
 
 LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low block top, warp squares
-    # (buildings: build_ship_floor draws them. stretch: the texture spans two squares, as HeartGold lays these;
+    # (buildings: build_ship_floor draws them. The Tower's area is our own, 120 (OWN_AREAS): the Sprout Tower's textures
+    # (set 77) with room models, which its own area, a dungeon's, does not take. stretch: the texture spans two squares, as HeartGold lays these;
     # slab: a lone closed square is a stone standing up - a gravestone - not a low block)
-    'tower': dict(area=77, ship=True, floor='d15_yuka01', wall='d17_wall01', cap='d15_wall01a', side='d17_wall01', low='d17_ita',
-                  lowside='d17_wall01', mat='d15_yuka03', pad='d15_yuka03', stretch=True, slab=True, wall_top=32),
+    'tower': dict(area=120, texset=77, ship=True, floor='d15_yuka01', wall='d17_wall01', cap='d15_wall01a', side='d17_wall01', low='d17_ita',
+                  lowside='d17_wall01', mat='d15_yuka03', stairs=(7, 8, 9, 10), stretch=True, slab=True, wall_top=32),
     'plant': dict(area=44, ship=True, floor='kn_c_yuka2', wall='kn_c_kabe1', cap='mpwr_r04', side='kn_c_kabe1', low='counter_g02',
-                  lowside='kn_c_kabe1', mat='kn_c_stair', pad='kn_c_stair', stretch=True, wall_top=32),
+                  lowside='kn_c_kabe1', mat='kn_c_stair', stairs=(168, 169, 171, 170), stretch=True, wall_top=32),
     'ship': dict(area=42, ship=True),         # the S.S. Anne: SHIP below
     'house': dict(area=42, ship=True, plain=('r39_kabe', 'fs_room8', 'maq_pt13'), floor='mo_yuka', wall='r39_kabe', cap='fs_room8', side='maq_pt13',
-                  low='table01', lowside='re_ki', mat='d_mat01', pad='d_mat01', wall_top=40),
+                  low='table01', lowside='re_ki', mat='d_mat01', stairs=(7, 8, 9, 10), wall_top=40),
     # outdoors (the Safari Zone): Fuchsia's set; the GBA's trees are a hedge of HeartGold's trees (a row of them
     # on each face, the canopy on top), with its tall grass and ponds
     'safari': dict(area=16, floor='grass02', wall='tree01_re', top='tree01_un', low='etc_a', mark='road01',
@@ -76,9 +77,11 @@ INTERIORS = (
      dict(gba='SSAnne_2F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_2F', look='ship', template=SS, depth=-2),
      dict(gba='SSAnne_3F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_3F', look='ship', template=SS, depth=-3),
      dict(gba='SSAnne_B1F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_B1F', look='ship', template=SS, depth=0),
-     dict(gba='SSAnne_Deck_Frlg', map='MAP_CANVAS_SSANNE_DECK', look='ship', template=SS, depth=-4),
+     # (the bow is small on the GBA: six columns and two rows of planks more)
+     dict(gba='SSAnne_Deck_Frlg', map='MAP_CANVAS_SSANNE_DECK', look='ship', template=SS, depth=-4,
+          widen=dict(cols=[(9, 3), (11, 3)], rows=[(10, 2)])),
      dict(gba='SSAnne_Kitchen_Frlg', map='MAP_CANVAS_SSANNE_KITCHEN', look='ship', template=SS, depth=-1),
-     dict(gba='SSAnne_CaptainsOffice_Frlg', map='MAP_CANVAS_SSANNE_CAPTAIN', look='ship', template=SS, depth=-2)] +
+     dict(gba='SSAnne_CaptainsOffice_Frlg', map='MAP_CANVAS_SSANNE_CAPTAIN', look='ship', template=SS, depth=-2.5)] +
     # (the cabins are 6 squares wide on the GBA, with up to four people in them: two plain columns and a row more)
     [dict(gba='SSAnne_%s_Room%d_Frlg' % (f, i), map='MAP_CANVAS_SSANNE_%s_R%d' % (f, i), look='ship', template=SS,
           widen=CABIN1 if f == '1F' else CABIN2,
@@ -133,7 +136,7 @@ def gba_ids():
 WALL_TOP = 40             # a ship wall's height
 SHIP = dict(area=42, ship=True, plain=('re_kabe', 'fs_room8', 'maq_pt13', 'maq_rs11', 'maq_pt07'), wall_top=WALL_TOP, floor='sn_h_yuka1', carpet={'1F': 'maq_rs03', '2F': 'maq_rs13', 'B1F': 'maq_rs07'}, wall='re_kabe', paper='maq_rs08',
             base='maq_pt13', line='maq_rs11', cap='fs_room8', side='maq_pt13', low='table01', lowside='re_ki', steel='maq_rm09',
-            door=('maq_pt01', 16, 0, 16, 32), porthole=('maq_pt01', 0, 0, 16, 16), mat='d_mat01', sea='maq_pt07', stairs_up=7, furniture=True)
+            door=('maq_pt01', 16, 0, 16, 32), porthole=('maq_pt01', 0, 0, 16, 16), mat='d_mat01', sea='maq_pt07', stairs=(7, 8, 9, 10), rail='maq_pt02', furniture=True)
 # GBA things -> HeartGold room models: top-left metatile -> (model, width, height in squares, squares the model is
 # moved by). The squares are closed whatever the GBA says (a bed's walkable half), like the wall furniture of rooms.
 SHIP_FURNITURE = {
@@ -143,6 +146,12 @@ SHIP_FURNITURE = {
     0x32B: (23, 1, 2, (0, 0.5)), 0x30B: (23, 1, 2, (0, 0.5)),                              # plants
 }
 SHIP_PORTHOLES = {0x282, 0x33A, 0x33B}    # GBA wall metatiles with a porthole
+# HeartGold's staircases, `stairs` in a look: (up rising right, up rising left, down to the left, down to the right);
+# each one's box about where it is placed (x0, x1, z0, z1 in units), and how far down the square's row it stands
+STAIR_BOX = {7: (-17, 16, -12, 18, 0.75), 8: (-16, 17, -12, 18, 0.75), 9: (-13, 15, -12, 18, 0.75), 10: (-15, 13, -12, 18, 0.75),
+             168: (-16, 16, -16, 16, 1), 169: (-16, 16, -16, 16, 1), 170: (-16, 16, -16, 16, 1), 171: (-16, 16, -16, 16, 1)}
+USED_MODELS = {}          # area -> the room models its maps place (ship_models lists them in the area's building set)
+OWN_AREAS = {120: (77, 40)}   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
 
 
 def ship_parts(spec):
@@ -223,7 +232,7 @@ def build_ship_floor(spec, depth_of):
     SHIP = globals()['SHIP'] if spec['look'] == 'ship' else LOOKS[spec['look']]      # (the look's textures)
     WALL_TOP = SHIP['wall_top']
     plain = set(SHIP.get('plain', ()))            # textures used for their colour: one texel of them
-    dims, pals = texdims(SHIP['area'])
+    dims, pals = texdims(SHIP.get('texset', SHIP['area']))
     pal_of = lambda t_: next(p for p in (t_ + '_pl', t_) if p in pals)
     room = spec['look'] == 'ship' and 'Room' in spec['gba']
     floor_tex = SHIP['carpet'][spec['gba'].split('_')[1]] if room else SHIP['floor']
@@ -240,11 +249,28 @@ def build_ship_floor(spec, depth_of):
             props.append((model, x + w / 2 + mx, y + h / 2 + mz))
             if model != 53:      # (a chair is sat on; and nobody the GBA stands somewhere is shut in)
                 closed |= {(x + i, y + j) for i in range(w) for j in range(h)} - P['people']
-    floor = lambda x, y: (walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in closed
-    # stairs to another deck: HeartGold's staircase, on the square that takes you there (the GBA's look the same up or down)
+    # stairs to another floor: HeartGold's staircase, where the GBA draws its own: on the two closed squares beside
+    # the square that takes you there (and the two in front of those), climbing or going down away from it; stairs
+    # down are a well in the floor
+    under, hole_sq, holes = set(), set(), []
     for (x, y), w in warps.items():
-        if w['dest_map'] in depth_of and w['dest_map'] != gm['id'] and not door(x, y) and depth_of[w['dest_map']] != spec['depth']:
-            if SHIP.get('stairs_up'): props.append((SHIP['stairs_up'], x + 0.5, y + 0.5))
+        if not (w['dest_map'] in depth_of and w['dest_map'] != gm['id'] and not door(x, y) and depth_of[w['dest_map']] != spec['depth']): continue
+        up_ = depth_of[w['dest_map']] < spec['depth']
+        left = not walk(x - 1, y) and walk(x + 1, y)          # (the closed side: left, else right)
+        ur, ul, dl, dr = SHIP['stairs']
+        model = (ul if left else ur) if up_ else (dl if left else dr)
+        cx = x - 1 if left else x + 2
+        bx0, bx1, bz0, bz1, dz = STAIR_BOX[model]
+        cz = y + dz
+        props.append((model, cx, cz))
+        block = {(cx - 1, y), (cx, y), (cx - 1, y + 1), (cx, y + 1)}
+        closed |= {s for s in block if s not in warps}
+        if up_: under |= block
+        else:
+            hole_sq |= block
+            holes.append(((cx - 1) * 16, y * 16, (cx + 1) * 16, (y + 2) * 16, cx * 16 + bx0, cz * 16 + bz0, cx * 16 + bx1, cz * 16 + bz1))
+    USED_MODELS.setdefault(SHIP['area'], set()).update(m for m, *_ in props)
+    floor = lambda x, y: ((walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in closed or (x, y) in under) and (x, y) not in hole_sq
     kind = {}
     for (x, y), w in warps.items():
         dest = w['dest_map']
@@ -294,9 +320,9 @@ def build_ship_floor(spec, depth_of):
                     if out and out[-1][0] + out[-1][1] == x: out[-1][1] += 1
                     else: out.append([x, 1])
                 return out
-            height = lambda x, y: 0 if floor(x, y) and (x, y) not in things else 0 if (x, y) in stones else 10 if (x, y) in things and (x, y) not in closed else \
+            height = lambda x, y: None if (x, y) in hole_sq else 0 if floor(x, y) and (x, y) not in things else 0 if (x, y) in stones else 10 if (x, y) in things and (x, y) not in closed else \
                 0 if (x, y) in closed else None if (x, y) in band or isvoid(x, y) or not wallish(x, y) else \
-                -4 if deck and not by_floor(x, y) else 6
+                -4 if deck and not by_floor(x, y) else 1 if deck else 6
             for y in range(Z0, Z1):
                 for x in range(X0, X1):
                     if walk(x, y) and (x, y) not in closed: perm[(y - oz) * 32 + (x - ox)] = kind.get((x, y), 0)
@@ -306,8 +332,18 @@ def build_ship_floor(spec, depth_of):
                 for x, k in row(lambda x, y: height(x, y) == 6): top(SHIP['cap'], x, k, y, 6)
                 for x, k in row(lambda x, y: height(x, y) == -4): top(SHIP['sea'], x, k, y, -4, plain=True)
                 for x, k in row(lambda x, y: kind.get((x, y)) == 0x65): top(SHIP['mat'], x, k, y, 1)
-                if not SHIP.get('stairs_up'):        # (no staircase to stand there: the square that takes you up or down is marked)
-                    for x, k in row(lambda x, y: kind.get((x, y)) in (0x3C, 0x3E) and not door(x, y)): top(SHIP['pad'], x, k, y, 1)
+                for x, k in row(lambda x, y: height(x, y) == 1): top(SHIP['cap'], x, k, y, 0)       # (the deck's edge, under its rail)
+                if deck:        # a rail along every edge of the planks (HeartGold's ship ladder on its side: two bars and posts)
+                    for x in range(X0, X1):
+                        if not floor(x, y) or (x, y) in warps: continue
+                        for n in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+                            if floor(x + n[0], y + n[1]) or (x + n[0], y + n[1]) in warps: continue
+                            if n[0] == 0:
+                                zz = U(y + (1 if n[1] > 0 else 0), oz); a, b = (U(x, ox), zz), (U(x + 1, ox), zz)
+                            else:
+                                xx = U(x + (1 if n[0] > 0 else 0), ox); a, b = (xx, U(y + 1, oz)), (xx, U(y, oz))
+                            for p0, p1, nn in ((a, b, (n[0], 0, n[1])), (b, a, (-n[0], 0, -n[1]))):
+                                M(SHIP['rail']).quad([((p0[0], 0, p0[1]), (0, 0)), ((p1[0], 0, p1[1]), (0, 32)), ((p1[0], 11, p1[1]), (22, 32)), ((p0[0], 11, p0[1]), (22, 0))], nn)
                 for x in range(X0, X1):              # a stone standing on its square
                     if (x, y) not in stones: continue
                     a0, a1, b0, b1 = U(x, ox) + 3, U(x + 1, ox) - 3, U(y, oz) + 5, U(y + 1, oz) - 4
@@ -349,6 +385,14 @@ def build_ship_floor(spec, depth_of):
                     elif any(lay.metatile(*s) in SHIP_PORTHOLES for s in sq):
                         tex, s, t_, w, h = SHIP['porthole']
                         face(tex, (U(x, ox), z + 2), (U(x + 1, ox), z + 2), 14, 30, fwd, (s, t_, s + w, t_ + h))
+            # round a staircase going down, the floor up to its well
+            for hx0, hz0, hx1, hz1, rx0, rz0, rx1, rz1 in holes:
+                if not (X0 * 16 <= hx0 < X1 * 16 and Z0 * 16 <= hz0 < Z1 * 16): continue
+                L = lambda ax, az: (ax - ox * 16 - 256, az - oz * 16 - 256)
+                for sx0, sz0, sx1, sz1 in ((hx0, hz0, hx1, rz0), (hx0, rz1, hx1, hz1), (hx0, rz0, rx0, rz1), (rx1, rz0, hx1, rz1)):
+                    if sx1 - sx0 < 0.5 or sz1 - sz0 < 0.5: continue
+                    (a0, b0), (a1, b1) = L(sx0, sz0), L(sx1, sz1)
+                    M(floor_tex).quad([((a0, 0, b1), (sx0, sz1)), ((a1, 0, b1), (sx1, sz1)), ((a1, 0, b0), (sx1, sz0)), ((a0, 0, b0), (sx0, sz0))], up)
             if not meshes:
                 top(SHIP['cap'], X0, 1, Z0, -1)
             groups = [(t_, t_, pal_of(t_), mesh, {'repeat': 3, 'size': dims[t_]}) for t_, mesh in meshes.items()]
@@ -487,25 +531,35 @@ def build_floor(spec, depth_of):
     return gm, (nx, nz), lands
 
 
-def ship_models(buildset=40):
-    """the ship's building set (area 42's) must list the room models we place, and its texture file hold theirs"""
+def ship_models():
+    """each area's building set must list the room models its maps place, and its texture file hold theirs"""
     import build_rooms as R
     from nitro import read_tex0, tex0_of, write_btx0, u16
     sets, sets_btnf = read_narc(open(R.AREA_BUILD, 'rb').read())
     atex, atex_btnf = read_narc(open(R.AREA_BUILD_TEX, 'rb').read())
+    areas, _ = read_narc(open(R.AREA_DATA, 'rb').read())
+    areas_btnf = _
     bm, _ = read_narc(open(R.BM_ROOM, 'rb').read())
-    ids = list(struct.unpack_from('<%dH' % u16(sets[buildset], 0), sets[buildset], 2))
-    ids += sorted(m for m in {f[0] for f in SHIP_FURNITURE.values()} | {SHIP['stairs_up']} if m not in ids)
-    sets[buildset] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
-    texs, pals = read_tex0(atex[buildset], tex0_of(atex[buildset]))
-    have_t, have_p = {t[0] for t in texs}, {q[0] for q in pals}
-    for mid in ids:
-        t0 = tex0_of(bm[mid])
-        if t0 is None: continue
-        mt, mp = read_tex0(bm[mid], t0)
-        texs += [t for t in mt if t[0] not in have_t]; have_t |= {t[0] for t in mt}
-        pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
-    atex[buildset] = write_btx0(texs, pals)
+    for area, (tex_area, model_area) in OWN_AREAS.items():
+        for lst in (areas, sets, atex): lst += [lst[model_area]] * max(0, area + 1 - len(lst))
+        src = u16(areas[model_area], 0)
+        sets[area], atex[area] = sets[src], atex[src]
+        areas[area] = struct.pack('<HH', area, u16(areas[tex_area], 2)) + areas[model_area][4:]
+    open(R.AREA_DATA, 'wb').write(write_narc(areas, areas_btnf))
+    for area, models in USED_MODELS.items():
+        buildset = u16(areas[area], 0)
+        ids = list(struct.unpack_from('<%dH' % u16(sets[buildset], 0), sets[buildset], 2))
+        ids += sorted(m for m in models if m not in ids)
+        sets[buildset] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
+        texs, pals = read_tex0(atex[buildset], tex0_of(atex[buildset]))
+        have_t, have_p = {t[0] for t in texs}, {q[0] for q in pals}
+        for mid in ids:
+            t0 = tex0_of(bm[mid])
+            if t0 is None: continue
+            mt, mp = read_tex0(bm[mid], t0)
+            texs += [t for t in mt if t[0] not in have_t]; have_t |= {t[0] for t in mt}
+            pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
+        atex[buildset] = write_btx0(texs, pals)
     open(R.AREA_BUILD, 'wb').write(write_narc(sets, sets_btnf))
     open(R.AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
 
