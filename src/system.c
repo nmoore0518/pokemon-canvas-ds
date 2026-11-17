@@ -121,7 +121,10 @@ void InitSystemForTheGame(void) {
     OS_InitTick();
     sub_0201A1B4();
     gSystem.mainTaskQueue = SysTaskQueue_PlacementNew(160, OS_AllocFromArenaLo(OS_ARENA_MAIN, SysTaskQueue_GetArenaSize(160), 4));
-    gSystem.vblankTaskQueue = SysTaskQueue_PlacementNew(32, OS_AllocFromArenaLo(OS_ARENA_MAIN, SysTaskQueue_GetArenaSize(32), 4));
+    // Canvas: 64 where retail has 32. The field loads the models of 44 effects as it starts, each waiting in this
+    // queue for its textures to go to VRAM; how many wait at once depends on where the frames fall while the map
+    // loads, and in some of our maps the 33rd found the queue full (an assert, and that effect drawn as noise).
+    gSystem.vblankTaskQueue = SysTaskQueue_PlacementNew(64, OS_AllocFromArenaLo(OS_ARENA_MAIN, SysTaskQueue_GetArenaSize(64), 4));
     gSystem.vwaitTaskQueue = SysTaskQueue_PlacementNew(32, OS_AllocFromArenaLo(OS_ARENA_MAIN, SysTaskQueue_GetArenaSize(32), 4));
     gSystem.printTaskQueue = SysTaskQueue_PlacementNew(4, OS_AllocFromArenaLo(OS_ARENA_MAIN, SysTaskQueue_GetArenaSize(4), 4));
     GX_DispOff();

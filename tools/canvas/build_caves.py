@@ -1,8 +1,7 @@
 """Canvas: build the GBA game's caves (Mt. Moon's three floors) as HeartGold caves.
 
 HeartGold's Mt. Moon is one small floor; the GBA game's is three, with its trainers, the Rockets and the fossils.
-Each floor is modelled from its GBA layout in HeartGold's cave look (the textures of HeartGold's Mt. Moon,
-texture set 70), the way HeartGold builds its own caves (read off its Mt. Moon with bmdview.py):
+Each floor is modelled from its GBA layout in HeartGold's cave look (HeartGold's own textures for that cave: see AREAS), the way HeartGold builds its own caves (read off its Mt. Moon with bmdview.py):
   - the floor is `droad01` (a 32-texel texture over two blocks);
   - rock rises from the floor in tiers a block high, one per ring of blocked squares, up to two: faces of
     `dwall_n/e/s/w` (named for the side of the floor they stand on: dwall_n is the wall north of you, facing
@@ -31,7 +30,12 @@ from build_rooms import texdims
 ROOT = slots.ROOT
 LAND_NARC = os.path.join(ROOT, 'files/a/0/6/5')
 CAVE_LAND_BASE = 720            # our cave lands (rooms are 690 on)
-TEXSET = 70                     # HeartGold's Mt. Moon textures (area 70)
+# Each cave has the look HeartGold gives its own: the area (its texture set has the same number, and the same
+# texture names in every one of them) of HeartGold's cave of that name. Mt. Moon and Victory Road share the grey
+# one; Rock Tunnel's is its own grey, Diglett's Cave is brown earth, Cerulean Cave purple with crystals for rocks,
+# the Seafoam Islands ice (HeartGold's lower floors; the GBA's are ice from the first).
+AREAS = {'RockTunnel': 83, 'DiglettsCave': 82, 'CeruleanCave': 73, 'SeafoamIslands': 104}
+area_of = lambda spec: next((a for k, a in AREAS.items() if spec['gba'].startswith(k)), 70)
 LADDER_UP, LADDER_DOWN = 69, 70
 FLOOR = 0x0A08                  # walkable cave floor (behaviour 0x08), as HeartGold's Mt. Moon
 TIER = 16                       # a tier of rock: a block high
@@ -149,7 +153,9 @@ def build_floor(spec, depth_of):
     # water (to surf: HeartGold's cave water, behaviour 0x15, drawn a little below the floor in its river texture)
     water = {(x, y) for y in range(H) for x in range(W) if not blocked[y][x] and lay.behavior(lay.metatile(x, y)) in WATER_MB}
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
-    dims, pals = texdims(TEXSET)
+    dims, pals = texdims(area_of(spec))
+    rock_tex = 'd_rock01' if 'd_rock01' in dims else 'd_rock01s'
+    rw_, rh_ = dims[rock_tex]
     pal_of = lambda t: next(p for p in (t + '_pl', t) if p in pals)
     # ladders and mouths
     ladders, mouths = {}, {}
@@ -176,7 +182,6 @@ def build_floor(spec, depth_of):
                 # (rock stepping down on both sides leans halfway from each)
                 behind = LV(A[0] + n[0], A[1] + n[1])
                 sc = 0.5 if behind < la else 1.0          # (rock stepping down on both sides leans half from each)
-                if la == 1 and behind <= 1: sc *= 0.5     # (a thin wall leans half as far: a flat top is left)
                 same = lambda p: LV(*p) >= la
                 ex, ey = x + (1 if n[0] > 0 else 0), y + (1 if n[1] > 0 else 0)
                 ends = []
@@ -189,6 +194,7 @@ def build_floor(spec, depth_of):
                     ends.append((e, dr))
                     vert_s[(e, lb)] = min(vert_s.get((e, lb), 1.0), sc)
                 faces.append(dict(f=(x, y), n=n, base=lb, sc=sc, ends=ends))
+    face_at = {(fc['f'], fc['n']): fc for fc in faces}
     # straight faces join into runs (fewer polygons: a land's model must stay small)
     key = lambda fc: (fc['n'], fc['base'], fc['f'][1], fc['f'][0]) if fc['n'][0] == 0 else (fc['n'], fc['base'], fc['f'][0], fc['f'][1])
     runs = []
@@ -267,12 +273,30 @@ def build_floor(spec, depth_of):
                             if LV(x + n[0], y + n[1]) < lv:
                                 behind = LV(x - n[0], y - n[1])
                                 k = 0.5 if behind < lv else 1.0
-                                if lv == 1 and behind <= 1: k *= 0.5
                                 ins[n] = k
                         a0, a1 = x + ins.get((-1, 0), 0), x + 1 - ins.get((1, 0), 0)
                         b0, b1 = y + ins.get((0, -1), 0), y + 1 - ins.get((0, 1), 0)
                         ch = lv * TIER - 0.1
-                        if a1 - a0 > 0.01 and b1 - b0 > 0.01: M('dcliff01').quad([((U(a0, ox), ch, U(b1, oz)), (a0 * 16, b1 * 16)), ((U(a1, ox), ch, U(b1, oz)), (a1 * 16, b1 * 16)),
+                        # one face across the square: the top runs from the face's lip to the far edge. The lip
+                        # slants where the face leans less at one end than the other (beside a thin wall's), and
+                        # at an inside corner it starts out past the square's side
+                        fc = face_at.get(((x + next(iter(ins))[0], y + next(iter(ins))[1]), (-next(iter(ins))[0], -next(iter(ins))[1]))) if len(ins) == 1 else None
+                        if fc:
+                            nf = fc['n']
+                            tf = (1, 0) if nf[0] == 0 else (0, 1)
+                            pt = []          # the lip's ends: (how far along the square's side, how far across)
+                            for j, (e, dr) in enumerate(fc['ends']):
+                                k = min(fc['sc'], vert_s[(e, fc['base'])])
+                                pt.append((j + (dr[0] * tf[0] + dr[1] * tf[1]) * k, k))
+                            at = lambda u: max(0.0, min(1.0, pt[0][1] + (pt[1][1] - pt[0][1]) * (u - pt[0][0]) / (pt[1][0] - pt[0][0])))
+                            (e0, _), (e1, _) = fc['ends']
+                            poly = [(e0[0] + nf[0] * at(0), e0[1] + nf[1] * at(0)), (e1[0] + nf[0] * at(1), e1[1] + nf[1] * at(1)),
+                                    (e1[0] + nf[0], e1[1] + nf[1]), (e0[0] + nf[0], e0[1] + nf[1])]
+                            area = sum(poly[i][0] * poly[(i + 1) % 4][1] - poly[(i + 1) % 4][0] * poly[i][1] for i in range(4))
+                            if area > 0: poly.reverse()
+                            if abs(area) > 0.02:
+                                M('dcliff01').quad([((U(px, ox), ch, U(pz, oz)), (px * 16, pz * 16)) for px, pz in poly], up)
+                        elif a1 - a0 > 0.01 and b1 - b0 > 0.01: M('dcliff01').quad([((U(a0, ox), ch, U(b1, oz)), (a0 * 16, b1 * 16)), ((U(a1, ox), ch, U(b1, oz)), (a1 * 16, b1 * 16)),
                                             ((U(a1, ox), ch, U(b0, oz)), (a1 * 16, b0 * 16)), ((U(a0, ox), ch, U(b0, oz)), (a0 * 16, b0 * 16))], up)
                     if (lv == 1 or (lv == 2 and D(x, y) == 2)) and not faced:     # a tier's rocky top
                         flats.setdefault(('dcliff01', lv * TIER - 0.3, None), set()).add((x, y))
@@ -284,8 +308,8 @@ def build_floor(spec, depth_of):
                             dg = next(((dx, dy) for dx in (-1, 1) for dy in (-1, 1) if D(x + dx, y + dy) < D(x, y)), (0, 1))
                             flats.setdefault(('dcliff01_r', 31.7, ('corner',) + dg), set()).add((x, y))
                     if (x, y) in boulders:      # HeartGold's rock, stood up like its crystals
-                        M('d_rock01').quad([((U(x - 0.1, ox), 0.5, U(y + 0.95, oz)), (0.5, 31.5)), ((U(x + 1.1, ox), 0.5, U(y + 0.95, oz)), (31.5, 31.5)),
-                                            ((U(x + 1.1, ox), 21, U(y - 0.45, oz)), (31.5, 0.5)), ((U(x - 0.1, ox), 21, U(y - 0.45, oz)), (0.5, 0.5))], (0, 0.6, 0.8))
+                        M(rock_tex).quad([((U(x - 0.1, ox), 0.5, U(y + 0.95, oz)), (0.5, rh_ - 0.5)), ((U(x + 1.1, ox), 0.5, U(y + 0.95, oz)), (rw_ - 0.5, rh_ - 0.5)),
+                                          ((U(x + 1.1, ox), 21, U(y - 0.45, oz)), (rw_ - 0.5, 0.5)), ((U(x - 0.1, ox), 21, U(y - 0.45, oz)), (0.5, 0.5))], (0, 0.6, 0.8))
                     if (x, y) in ladders:
                         m = ladders[(x, y)]
                         perm[i] = 0x0A3C if m == LADDER_UP else 0x0A3E
@@ -362,8 +386,10 @@ def build_floor(spec, depth_of):
                         else:
                             xx = x1 if n[0] > 0 else x0; a, b = ((xx, z0), (xx, z1)) if n[0] > 0 else ((xx, z1), (xx, z0))
                         tw_, th_ = dims['dpond_line']
-                        M('dpond_line').quad([((a[0], WATER_Y, a[1]), (0, th_)), ((b[0], WATER_Y, b[1]), (tw_, th_)),
-                                              ((b[0], 0.3, b[1]), (tw_, 0)), ((a[0], 0.3, a[1]), (0, 0))], (-n[0], 0, -n[1]))
+                        # (its wavy edges are cut out of the texture: the top one stands clear of the floor and the
+                        # bottom one is under the water, so that neither has nothing behind it)
+                        M('dpond_line').quad([((a[0], WATER_Y - 1.5, a[1]), (0, th_)), ((b[0], WATER_Y - 1.5, b[1]), (tw_, th_)),
+                                              ((b[0], 1.5, b[1]), (tw_, 0)), ((a[0], 1.5, a[1]), (0, 0))], (-n[0], 0, -n[1]))
             if not meshes:      # (a land all rock, past the cave's edge: the dark, as in HeartGold)
                 M('d_ro').quad([((-256, 32, 256), (0, 8)), ((256, 32, 256), (8, 8)), ((256, 32, -256), (8, 0)), ((-256, 32, -256), (0, 0))], up)
             groups = [(t, t, pal_of(t), mesh, {'repeat': 3, 'size': dims[t]}) for t, mesh in meshes.items()]
@@ -415,7 +441,7 @@ def main():
         ev['objects'], ev['bgs'], ev['coords'] = [], [], []
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
-        fields.update(matrixId=mat, eventsBank=evn, areaDataBank='70', **NO_SCRIPTS)     # (HeartGold's cave look, Mt. Moon's set)
+        fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(area_of(spec)), **NO_SCRIPTS)     # (HeartGold's look for that cave)
         fields['weather'] = '11' if gm.get('requires_flash') else '0'      # (dark until Flash only where the GBA's is)
         set_header(spec['map'], fields)
         set_header(spec['map'], {'matrixId': mat, 'eventsBank': evn})

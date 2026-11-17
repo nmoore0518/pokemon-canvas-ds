@@ -126,7 +126,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ROCK_TUNNEL_1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D05R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 83,
                         .moveModelBank = 15,
                         .worldMapX = 44,
                         .worldMapY = 4,
@@ -156,7 +156,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ROCK_TUNNEL_B1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D05R0102,
-                        .areaDataBank = 70,
+                        .areaDataBank = 83,
                         .moveModelBank = 15,
                         .worldMapX = 44,
                         .worldMapY = 4,
@@ -186,7 +186,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_DIGLETTS_CAVE_N - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D01R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 82,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 4,
@@ -216,7 +216,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_DIGLETTS_CAVE_B1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D01R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 82,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 4,
@@ -246,7 +246,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_DIGLETTS_CAVE_S - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D01R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 82,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 4,
@@ -366,7 +366,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CERULEAN_CAVE_1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D03R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 73,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 3,
@@ -396,7 +396,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CERULEAN_CAVE_2F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D03R0102,
-                        .areaDataBank = 70,
+                        .areaDataBank = 73,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 3,
@@ -426,7 +426,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CERULEAN_CAVE_B1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D03R0103,
-                        .areaDataBank = 70,
+                        .areaDataBank = 73,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 3,
@@ -456,7 +456,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SEAFOAM_1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D11R0101,
-                        .areaDataBank = 70,
+                        .areaDataBank = 104,
                         .moveModelBank = 15,
                         .worldMapX = 35,
                         .worldMapY = 15,
@@ -486,7 +486,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SEAFOAM_B1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D11R0102,
-                        .areaDataBank = 70,
+                        .areaDataBank = 104,
                         .moveModelBank = 15,
                         .worldMapX = 35,
                         .worldMapY = 15,
@@ -516,7 +516,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SEAFOAM_B2F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D11R0103,
-                        .areaDataBank = 70,
+                        .areaDataBank = 104,
                         .moveModelBank = 15,
                         .worldMapX = 35,
                         .worldMapY = 15,
@@ -546,7 +546,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SEAFOAM_B3F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D11R0104,
-                        .areaDataBank = 70,
+                        .areaDataBank = 104,
                         .moveModelBank = 15,
                         .worldMapX = 35,
                         .worldMapY = 15,
@@ -576,7 +576,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SEAFOAM_B4F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_D11R0105,
-                        .areaDataBank = 70,
+                        .areaDataBank = 104,
                         .moveModelBank = 15,
                         .worldMapX = 35,
                         .worldMapY = 15,
