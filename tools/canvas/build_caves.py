@@ -98,6 +98,63 @@ DIRS8_ = [(dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy]
 BANK = [(3.6, 2.0, 0.3), (0.2, 1.7, 3.3), (-1.8, -0.6, 5.6), (-2.6, -6.3, 12.1), (-4.7, -7.6, 15.6)]
 
 
+BORDER_NEED = {}            # texture set -> the corner pieces of the floor's border its caves use (border_texture)
+TEX_NARC = os.path.join(ROOT, 'files/a/0/4/4')
+
+
+def texset_of(area):
+    d = read_narc(open(os.path.join(ROOT, 'files/a/0/4/2'), 'rb').read())[0][area]
+    return struct.unpack_from('<H', d, 2)[0]
+
+
+def border_texture(straight, key):
+    """A square of the floor's border with rock on more than one side (or round a corner of rock), as 16x16
+    texel indices: each texel takes the colour HeartGold's straight piece (`straight`: rows of indices, the wall
+    at column 0, two squares long) has at its distance from the nearest rock, along that rock's edge.
+    key: (sides against rock, bits N S W E; corners of rock poking in, bits NW NE SW SE; x and y of the square, odd
+    or even: the straight piece is two squares long, and the corner keeps step with the pieces either side)"""
+    sides, pokes, px, py = key
+    out = []
+    for v in range(16):
+        for u in range(16):
+            cu, cv = u + 0.5, v + 0.5
+            near = []
+            for k, (d, along) in enumerate(((cv, cu + 16 * px), (16 - cv, cu + 16 * px), (cu, cv + 16 * py), (16 - cu, cv + 16 * py))):
+                if sides >> k & 1: near.append((d, along))
+            for k, (qx, qy) in enumerate(((0, 0), (16, 0), (0, 16), (16, 16))):
+                if pokes >> k & 1:
+                    d = ((cu - qx) ** 2 + (cv - qy) ** 2) ** 0.5
+                    # (along the corner: by the angle round it, so the band's pattern carries on from either side)
+                    ang = math.atan2(abs(cv - qy), abs(cu - qx)) / (math.pi / 2)
+                    near.append((d, (cu if qy == 0 else 16 - cu) * (1 - ang) + 16 * px + ang * (cv + 16 * py)))
+            d, along = min(near)
+            out.append(straight[int(along) % 32][min(15, int(d))])
+    return out
+
+
+def write_border_textures():
+    """Adds the border's corner pieces (border_texture) to the cave texture sets; they share the straight piece's
+    palette and format. (Pieces of an earlier run are dropped first.)"""
+    from nitro import read_tex0, tex0_of, write_btx0
+    ts, btnf = read_narc(open(TEX_NARC, 'rb').read())
+    for st, keys in BORDER_NEED.items():
+        texs, pals = read_tex0(ts[st], tex0_of(ts[st]))
+        texs = [t for t in texs if not t[0].startswith(b'cvb')]
+        nm, prm, extra, data, info = next(t for t in texs if t[0] == b'droad01_r')
+        w = 8 << ((prm >> 20) & 7)
+        assert (prm >> 26) & 7 == 3, 'a 16-colour straight piece'
+        idx = [(data[i // 2] >> (4 * (i % 2))) & 15 for i in range(len(data) * 2)]
+        straight = [idx[r * w:r * w + 16] for r in range(32)]
+        for key in sorted(keys):
+            px_ = border_texture(straight, key)
+            raw = bytes(px_[i] | (px_[i + 1] << 4) for i in range(0, 256, 2))
+            p_ = (1 << 20) | (1 << 23) | (3 << 26) | (prm & (1 << 29))
+            texs.append((('cvb%x%x%d%d' % key).encode(), p_, 16 | (16 << 11) | 0x80000000, raw, b''))
+        ts[st] = write_btx0(texs, pals)
+        print('  texture set %d: %d corner pieces of the floor\'s border' % (st, len(keys)))
+    open(TEX_NARC, 'wb').write(write_narc(ts, btnf))
+
+
 def _reachable(gm, blocked, W, H):
     """closes what cannot be got to from a ladder, a mouth or where someone stands (the GBA leaves squares open in
     its borders)"""
@@ -356,7 +413,8 @@ def floor_plan(gba):
     water = {q for q in hts if lay.behavior(lay.metatile(*q)) in WATER_MB and q not in boulders}
     warps = {(w['x'], w['y']) for w in gm.get('warp_events', [])}
     people = {(o['x'], o['y']) for o in gm.get('object_events', [])}
-    keep = {(wx + dx, wy + dy) for wx, wy in warps for dx in (-1, 0, 1) for dy in (-2, -1, 0, 1)} | people | {(px, py + 1) for px, py in people}
+    keep = {(wx + dx, wy + dy) for wx, wy in warps for dx in (-1, 0, 1) for dy in (-2, -1, 0, 1)} | people | {(px, py + 1) for px, py in people} \
+        | {(sx + dx, sy + dy) for sx, sy in foot for dx in (-2, -1, 0, 1, 2) for dy in (-2, -1, 0, 1, 2)}       # (nor by a flight of steps)
     piles, seen = [], set()
     for q in sorted(boulders):
         if q in seen: continue
@@ -399,14 +457,19 @@ def build_floor(spec, depth_of):
     water = {(x, y) for y in range(H) for x in range(W) if not blocked[y][x] and (x, y) in hts and lay.behavior(lay.metatile(x, y)) in WATER_MB}
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
     dims, pals = texdims(area_of(spec))
-    pal_of = lambda t: next(p for p in (t + '_pl', t) if p in pals)
+    texset = texset_of(area_of(spec))
+    pal_of = lambda t: pal_of('droad01_r') if t.startswith('cvb') else next(p for p in (t + '_pl', t) if p in pals)
     # ladders and mouths
-    ladders, mouths = {}, {}
+    ladders, mouths, holes = {}, {}, set()
     for w in gm.get('warp_events', []):
         x, y = w['x'], w['y']
         dest = w['dest_map']
         if dest in depth_of:
-            ladders[(x, y)] = LADDER_DOWN if depth_of[dest] > spec['depth'] else LADDER_UP
+            # (only the GBA's ladders are ladders (behaviour 0x61); its holes (0x0F) are holes you drop through; any
+            # other square that leads to another floor is where you land, falling from the floor above: floor)
+            mb = lay.behavior(lay.metatile(x, y))
+            if mb == 0x61: ladders[(x, y)] = LADDER_DOWN if depth_of[dest] > spec['depth'] else LADDER_UP
+            elif mb == 0x0F: holes.add((x, y))
         else:
             b = lambda dx, dy: not (0 <= x + dx < W and 0 <= y + dy < H) or blocked[y + dy][x + dx]
             mouths[(x, y)] = 0x6E if b(0, -1) else 0x6F if b(0, 1) else 0x6C if b(1, 0) else 0x6D
@@ -460,7 +523,9 @@ def build_floor(spec, depth_of):
     for lz in range(nz):
         for lx in range(nx):
             meshes = {}
+            bordered = set()
             M = lambda t: meshes.setdefault(t, Mesh())
+            ORDER_FIRST = ('droad01_r', 'd_ro')      # (drawn before the floor, which lies at their height: see the border)
             ox, oz = lx * 32, lz * 32
             U = lambda v, o: (v - o) * 16 - 256
             up = (0, 1, 0)
@@ -498,24 +563,37 @@ def build_floor(spec, depth_of):
                     rockq = lv is not None and (x, y) not in hts and (x, y) not in foot
                     # flat pieces are gathered here and drawn in runs below (the DS draws 2048 polygons a frame,
                     # people included: a cave drawn square by square leaves none for them)
-                    if (x, y) in hts and (x, y) not in water and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN):
-                        # the floor's darker border, HeartGold's (`droad01_r`): along every edge of it - the foot of
-                        # a wall, the lip of a cliff, the water's bank - and round a corner of rock that pokes into it
+                    if (x, y) in hts and (x, y) not in water and (x, y) not in holes and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN):
+                        # the floor's darker border, HeartGold's (`droad01_r`: its left half is the straight piece, the
+                        # foot of the wall at s=0, floor by s=16) all round the floor: along the foot of a wall, the
+                        # lip of a cliff, the water's bank. It is laid by how far a point is from the nearest rock, so
+                        # the band keeps one width all the way round. A square with one side against rock is the
+                        # straight piece whole (drawn in runs below). Any other is cut into the four triangles from
+                        # its middle to its sides: a side against rock takes the straight piece from that side (where
+                        # two meet they mitre on the diagonal); a side of floor takes it from the rock beside it, or
+                        # fans it round a corner of rock that pokes in.
                         notfloor = lambda q: (q not in hts or q in water) and q not in foot
-                        for n in DIRS4:
-                            if notfloor((x + n[0], y + n[1])):
-                                flats.setdefault(('droad01_r', lv * TIER + (0.2 if n[0] == 0 else 0.35), n), set()).add((x, y))
-                        for dx in (-1, 1):
-                            for dz in (-1, 1):
-                                if notfloor((x + dx, y + dz)) and not notfloor((x + dx, y)) and not notfloor((x, y + dz)) \
-                                        and (x + dx, y) not in foot and (x, y + dz) not in foot:
-                                    cx_, cz_ = (x1 if dx > 0 else x0), (z1 if dz > 0 else z0)
-                                    xa, xb, za, zb = min(cx_, cx_ - dx * 6.4), max(cx_, cx_ - dx * 6.4), min(cz_, cz_ - dz * 6.4), max(cz_, cz_ - dz * 6.4)
-                                    uu = lambda v: 31.6 if v == cx_ else 25.4
-                                    vv = lambda v: 31.6 if v == cz_ else 25.4
-                                    hh_ = lv * TIER + 0.5
-                                    M('droad01_r').quad([((xa, hh_, zb), (uu(xa), vv(zb))), ((xb, hh_, zb), (uu(xb), vv(zb))),
-                                                         ((xb, hh_, za), (uu(xb), vv(za))), ((xa, hh_, za), (uu(xa), vv(za)))], up)
+                        wall = {n: notfloor((x + n[0], y + n[1])) for n in DIRS4}
+                        poke = {(dx, dz) for dx in (-1, 1) for dz in (-1, 1)
+                                if notfloor((x + dx, y + dz)) and not wall[(dx, 0)] and not wall[(0, dz)]}
+                        # (at the floor's own height, as HeartGold lays it: the DS cannot tell a unit's difference in
+                        # depth from up here, and of two things at one depth the one drawn first stays - the border's
+                        # material comes before the floor's, which is drawn last)
+                        hh_ = lv * TIER
+                        sides = [n for n in DIRS4 if wall[n]]
+                        if sides or poke: bordered.add((x, y))       # (no floor under it: the border is the whole square, as in HeartGold)
+                        if len(sides) == 1 and not poke and not wall[(-sides[0][0], -sides[0][1])]:
+                            flats.setdefault(('droad01_r', hh_, sides[0]), set()).add((x, y))
+                        elif sides or poke:
+                            # (any other square: a picture of its own, drawn from HeartGold's straight piece by how far
+                            # each texel is from the nearest rock - the band mitres in a corner and rounds a corner of
+                            # rock - and laid as one square, as HeartGold lays its pieces. See border_texture.)
+                            key = (sum(1 << k for k, n in enumerate(DIRS4) if wall[n]),
+                                   sum(1 << k for k, c in enumerate(((-1, -1), (1, -1), (-1, 1), (1, 1))) if c in poke), x % 2, y % 2)
+                            name = 'cvb%x%x%d%d' % key
+                            BORDER_NEED.setdefault(texset, set()).add(key)
+                            M(name).quad([((x0, hh_, z1), (0.25, 15.75)), ((x1, hh_, z1), (15.75, 15.75)),
+                                          ((x1, hh_, z0), (15.75, 0.25)), ((x0, hh_, z0), (0.25, 0.25))], up)
                     faced = rockq and any(below((x + dx, y + dy), lv) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
                     faced4 = rockq and any(below((x + n[0], y + n[1]), lv) for n in DIRS4)
                     if rockq and faced:          # under the face, the ground it rises from (shows in any gap)
@@ -567,7 +645,22 @@ def build_floor(spec, depth_of):
                     if (x, y) in ladders:
                         m = ladders[(x, y)]
                         perm[i] = 0x0A3C if m == LADDER_UP else 0x0A3E
-                        props.append((m, U(x + 0.5, ox), HT(x, y), U(y + 0.5, oz)))
+                        # (two ladder squares side by side, as the GBA has for a wide ladder: one ladder over both)
+                        if ladders.get((x - 1, y)) != m:
+                            px = x + (1.0 if ladders.get((x + 1, y)) == m else 0.5)
+                            props.append((m, U(px, ox), HT(x, y), U(y + 0.5, oz)))
+                    if (x, y) in holes:      # a hole in the floor: dark, round, a little in from the square's sides, the floor round it
+                        perm[i] = 0x0A3E
+                        hb, cx_, cz_ = HT(x, y), x + 0.5, y + 0.5
+                        ring = [(cx_ + 0.4 * math.cos(math.pi * k / 4), cz_ + 0.4 * math.sin(math.pi * k / 4)) for k in range(8)]
+                        edge = [(cx_ + 0.5 * max(-1, min(1, math.cos(math.pi * k / 4) * 2 ** 0.5)), cz_ + 0.5 * max(-1, min(1, math.sin(math.pi * k / 4) * 2 ** 0.5))) for k in range(8)]
+                        for k in range(8):
+                            for tex_, pts in (('d_ro', [(cx_, cz_), ring[(k + 1) % 8], ring[k]]),
+                                              ('droad01', [ring[k], ring[(k + 1) % 8], edge[(k + 1) % 8], edge[k]])):
+                                vs = [((U(px, ox), hb, U(pz, oz)), (4, 4) if tex_ == 'd_ro' else (px * 16, pz * 16)) for px, pz in pts]
+                                ar = sum(vs[j][0][0] * vs[(j + 1) % len(vs)][0][2] - vs[(j + 1) % len(vs)][0][0] * vs[j][0][2] for j in range(len(vs)))
+                                if ar > 0: vs.reverse()          # (facing up)
+                                (M(tex_).quad if len(vs) == 4 else M(tex_).tri)(vs, up)
                     if (x, y) in mouths:
                         b = mouths[(x, y)]
                         perm[i] = 0x0A00 | b
@@ -603,21 +696,16 @@ def build_floor(spec, depth_of):
                     else:
                         # an edge texture: its edge (s=0) on the orient side, running along the run (t)
                         n = orient
-                        if tex == 'droad01_r':      # (the floor's border: only the strip with the border in it, so that two meet square at a corner)
-                            si = 6.8
-                            if n == (0, -1): z1 = z0 + 6.4
-                            elif n == (0, 1): z0 = z1 - 6.4
-                            elif n == (-1, 0): x1 = x0 + 6.4
-                            else: x0 = x1 - 6.4
-                        else: si = 15.6
-                        corners = {(0, -1): [((x0, z0), 0.4, x * 16), ((x1, z0), 0.4, xe * 16), ((x1, z1), si, xe * 16), ((x0, z1), si, x * 16)],
-                                   (0, 1): [((x0, z1), 0.4, x * 16), ((x1, z1), 0.4, xe * 16), ((x1, z0), si, xe * 16), ((x0, z0), si, x * 16)],
-                                   (-1, 0): [((x0, z0), 0.4, y * 16), ((x0, z1), 0.4, ye * 16), ((x1, z1), si, ye * 16), ((x1, z0), si, y * 16)],
-                                   (1, 0): [((x1, z0), 0.4, y * 16), ((x1, z1), 0.4, ye * 16), ((x0, z1), si, ye * 16), ((x0, z0), si, y * 16)]}[n]
+                        s0, si = (0.4, 15.0) if tex == 'droad01_r' else (0.4, 15.6)
+                        corners = {(0, -1): [((x0, z0), s0, x * 16), ((x1, z0), s0, xe * 16), ((x1, z1), si, xe * 16), ((x0, z1), si, x * 16)],
+                                   (0, 1): [((x0, z1), s0, x * 16), ((x1, z1), s0, xe * 16), ((x1, z0), si, xe * 16), ((x0, z0), si, x * 16)],
+                                   (-1, 0): [((x0, z0), s0, y * 16), ((x0, z1), s0, ye * 16), ((x1, z1), si, ye * 16), ((x1, z0), si, y * 16)],
+                                   (1, 0): [((x1, z0), s0, y * 16), ((x1, z1), s0, ye * 16), ((x0, z1), si, ye * 16), ((x0, z0), si, y * 16)]}[n]
                         M(tex).quad([((p[0], hh, p[1]), (sv, tv)) for p, sv, tv in corners], up)
             # the floor, in runs along each row at each height (a ladder down is a hole); boulders stand on it
             for y in range(oz, oz + 32):
-                fl = lambda x: (x, y) in hts and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN) and (x, y) not in water
+                fl = lambda x: (x, y) in hts and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN) and (x, y) not in water \
+                    and (x, y) not in bordered and (x, y) not in holes
                 for kind, tex, dy in ((fl, 'droad01', 0), (lambda x: (x, y) in water, 'driver', WATER_Y)):
                     x = ox
                     while x < ox + 32:
@@ -687,7 +775,8 @@ def build_floor(spec, depth_of):
                             M(tex).quad(quad, (-nx_, 0, 0))
             if not meshes:      # (a land all rock, past the cave's edge: the dark, as in HeartGold)
                 M('d_ro').quad([((-256, 32, 256), (0, 8)), ((256, 32, 256), (8, 8)), ((256, 32, -256), (8, 0)), ((-256, 32, -256), (0, 0))], up)
-            groups = [(t, t, pal_of(t), mesh, {'repeat': 3, 'size': dims[t]}) for t, mesh in meshes.items()]
+            order = list(meshes)
+            groups = [(t, t, pal_of(t), meshes[t], {'repeat': 3, 'size': dims.get(t, (16, 16))}) for t in order]
             model = build_model('cv_cave_%d' % (spec['depth'] * 10 + len(lands)), groups)     # (names: 16 at most)
             model += b'\0' * (-len(model) % 4)
             bld = b''.join(struct.pack('<I3i3i3i8x', m, int(px * 4096), int(py * 4096), int(pz * 4096), 0, 0, 0, 4096, 4096, 4096)
@@ -719,6 +808,7 @@ def build_floor(spec, depth_of):
             p = struct.pack('<1024H', *perm)
             lands.append(struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc)
             assert len(model) < 60000, ('model too big for a land', spec['gba'], len(lands), len(model))
+            build_floor.biggest = max(getattr(build_floor, 'biggest', 0), len(model))
     return gm, (nx, nz), lands
 
 
@@ -741,7 +831,16 @@ def main():
     lid = CAVE_LAND_BASE
     for spec in CAVES:
         tmpl = header(spec.get('template', TEMPLATE))
-        gm, (nx, nz), lands = build_floor(spec, depth_of)
+        # (a land's model has to stay under 61440 bytes, as HeartGold's do: a floor too busy for three tiers of rock
+        # round it has two)
+        global RINGS
+        for RINGS in (3, 2):
+            try:
+                gm, (nx, nz), lands = build_floor(spec, depth_of); break
+            except AssertionError as e:
+                if RINGS == 2 or 'model too big' not in str(e): raise
+                print('  (%s: two tiers of rock, not three: %s)' % (spec['gba'], e.args[0][3]))
+        RINGS = 3
         ids = list(range(lid, lid + len(lands)))
         land += [b''] * max(0, ids[-1] + 1 - len(land))
         for i, d in zip(ids, lands): land[i] = d
@@ -763,6 +862,8 @@ def main():
         set_header(spec['map'], fields)
         set_header(spec['map'], {'matrixId': mat, 'eventsBank': evn})
         print(spec['gba'], '->', spec['map'], '%dx%d lands' % (nx, nz), ids)
+    print('biggest land model: %d bytes' % build_floor.biggest)
+    write_border_textures()
     land = [d if d else land[209] for d in land]
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     # HeartGold's doors into its Mt. Moon lead into ours
