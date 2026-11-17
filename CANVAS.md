@@ -204,6 +204,13 @@ geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG
 - rock rises from the floor in tiers a block high, by rings of rock (two tiers; one where the wall is thin):
   each tier's face is HeartGold's profile (it leans back two thirds of a block while rising, then a lip back to
   the whole block), textured `dwall_n/e/s/w` by where the rock is; corners are mitred along the diagonal;
+- **a wall one or two squares thick is a ridge**: its two faces lean in until they meet at the top. (It used to
+  be a low kerb with a pale flat top, which made the GBA's mazes of thin walls look like pavements: most of what
+  read as "the scale is off".)
+- **no gaps**: where a face leans less at one end than the other (beside a thin wall's face, at an inside
+  corner), its lip slants across the square, and the top of the square is drawn from that lip, not as a
+  rectangle. `holes.py`-style check: render the lands with `landview` on a magenta ground and look for enclosed
+  magenta (a ladder down's square is one by design);
 - above the second tier, the rim (`dcliff01_r`: light at the edge, fading to the dark), then the dark; a tier's
   top and anything the faces leave open is `dcliff01`; the floor (`droad01`) has its darker edge (`droad01_r`)
   along the foot of every wall;
@@ -218,14 +225,24 @@ into ours, and HeartGold's own (with Mt. Moon Square) is left alone.
 
 The rest of Kanto's caves are built the same way (`CAVES` in `build_caves.py`): Rock Tunnel, Diglett's Cave (its
 two entrance rooms too), Victory Road, Cerulean Cave and the Seafoam Islands, each with the header of HeartGold's
-cave of that name (wild Pokemon, music) but Mt. Moon's look (area 70). Water you surf is HeartGold's cave water
-(behaviour 0x15, `driver`); a floor is dark until Flash only where the GBA's is (Rock Tunnel). HeartGold has no
+cave of that name (wild Pokemon, music) **and its look** (`AREAS`: HeartGold's caves share texture names across
+their sets, so the area is all that changes): Rock Tunnel 83, Diglett's Cave 82 (brown earth), Cerulean Cave 73
+(purple, crystals for boulders), the Seafoam Islands 104 (ice, HeartGold's lower floors), Mt. Moon and Victory
+Road 70. Water you surf is HeartGold's cave water (behaviour 0x15, `driver`), half a block below the floor with
+HeartGold's banks (`dpond_line`) on every edge; a bank's wavy edges are cut out of its texture, so it stands a
+little above the floor and reaches under the water (nothing else is behind them). A floor is dark until Flash
+only where the GBA's is (Rock Tunnel). HeartGold has no
 Route 23: its League reception gate leads into our Victory Road 1F, and Victory Road 2F's way out is the Plateau.
 Not yet: Victory Road's and Seafoam's boulder switches and currents, ledges inside a floor.
 
 **Big NARCs**: once a NARC has 1000 members, hg-engine's unpacker names them `2_0003` while its rules copy `2_003` in;
 our `engine/tools/narcpy.py` packs members by number (the newer of two wins), or the scripts come out shuffled and
 the game stops at the first map it loads.
+
+**The VBlank task queue holds 64** (`src/system.c`; retail 32). The field loads 44 effect models as it starts and
+each waits in that queue for its textures; how many wait at once depends on where the frames fall while the map
+loads, and in Diglett's Cave the 33rd found it full: an assert, and the effect drawn as noise. A constant only,
+so the code's layout is unchanged.
 
 **Cliffs outside** (Pallet's plateaus and terraces, `build_pallet.py`) use the same HeartGold profile: the face
 slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to the shore are two such tiers.
@@ -314,8 +331,48 @@ of HeartGold textures for one builder, which reads the GBA map like this:
 - a room can be widened like build_rooms' (`widen=`; the cabins are two columns and a row bigger).
 The porter then moves anyone the GBA has on open floor who lands on a closed square to the nearest open one
 (`settle`), in maps we built.
-Still rough: the Tower's stones and the low blocks are plain boxes; Silph's and the Hideout's tables are the
-same; stairs down have no hole; the deck's rails and sea are flat colour.
+More, from the pass after it:
+- **stairs** stand on the two closed squares beside the square that takes you there (as the GBA draws them),
+  rising or going down away from it, the model chosen by which side is closed; stairs down are a well in the
+  floor. A warp with open floor all round is a warp pad (`pad_model`).
+- **the deck**: a rail (`maq_pt02` on its side) along every edge of the planks, sea below; widened so the bow has
+  room.
+- **the Tower** has an area of its own (120, `OWN_AREAS`: the Sprout Tower's textures with room models; its own
+  area is a dungeon's and takes field models, which drew the staircase as a white block). Every closed square
+  inside a floor that is no wall's is a gravestone (they run in rows out from the walls: by connection they
+  would be wall).
+- **a look can carry its room's things**: `furniture` (metatile -> model), `wall_art` (a cabinet on the wall),
+  `cushions` (a texture laid on a floor square), `low_mt` (metatiles that are a low block wherever they are),
+  `floor_mt` (closed in the GBA but floor: under a plant's pot). The Safari Zone's rest houses use all five.
+- **the Game Corner and Prize Room** are the GBA's layouts in the looks of HeartGold's own (`corner`, `prize`);
+  HeartGold's rooms are left unused. The slot machines are not ported (no script).
+- **the Safari Zone** is drawn as HeartGold draws a route (`build_safari_floor`): its grass, tall grass, trees
+  (a shadow and a leaning card per 2x2), bushes for hedges, fences, ponds, and Fuchsia's house for a rest house.
+- the porter keeps people clear of doors and stairs and of each other (`clear_of`): anyone who stood three or
+  more squares from someone on the GBA stays at least a square apart here.
+Still rough: the low blocks (tables, machines) are plain boxes, and inner walls are low kerbs with a flat top
+(Silph, the Hideout, the Power Plant, the Mansion read as floor plans more than rooms); no elevator, card-key
+doors or spin tiles; the Game Corner's machines do nothing.
+
+## Where our land meets HeartGold's (the sea round Cinnabar and below Pallet)
+
+HeartGold's ground is at 16 and its sea at 7 (with a clear layer, `sea_on`, at 8, where someone surfing is). A
+land of ours beside one of theirs has to be at those levels at the edge, or there is a black line along it and
+the player sinks or jumps crossing it:
+- **Cinnabar** (`build_cinnabar.py`) is built at them: ground 16, sea 7, heights 16 and 8. Its rocks are
+  HeartGold's sea rock, a card leaning back out of the water (theirs is 32 wide on 2x2 squares; ours 24, one a
+  square). The beach slopes half a square out under the sea (`swave_un`). A sheet of sea lies just under it all
+  and out past the edges: where the corners of our squares fall along a neighbour's bigger ones, single pixels
+  show through otherwise.
+- **what the neighbours still draw of the old map** comes out of their models: `landedit.strip(land, drop)` takes
+  faces out of one of HeartGold's land models in place (the model keeps its size). Routes 20 and 21 drew the foam
+  along the shore HeartGold's own Cinnabar had at their edge.
+- **Pallet's bay** is two blocks below the town (the cliffs), so its sea was 27 below Route 21's: the last nine
+  rows of the region (sea and forest only) lean up to meet it (`tilt` in `build_pallet.py`: everything in them,
+  and the heights walked on, lifted by how far down the rows it is). From above a sea leaning ten degrees is
+  still a sea.
+The map matrix has an altitude for each cell (8 units a step: HeartGold's plain sea land is drawn one step up),
+if a whole land ever needs moving.
 
 ## The rest of Kanto (towns, routes, the rooms HeartGold has)
 
