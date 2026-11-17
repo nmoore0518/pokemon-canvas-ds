@@ -431,7 +431,147 @@ def build_ship_floor(spec, depth_of):
     return gm, (nx, nz), lands
 
 
+# ---------------------------------------------------------------- the Safari Zone: the GBA's layout as a HeartGold route
+SAFARI_ANIM = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']   # (materials the area animates, by index)
+SAFARI_HOUSE = dict(model=297, at=(1.0, -1.0), door=307, door_at=(1.12, 0.0))      # Fuchsia's house and its door, from the door's square
+
+
+def build_safari_floor(spec, depth_of):
+    """An area of the Safari Zone, drawn as HeartGold draws a route (Fuchsia's set): grass (`grass01gs`), the GBA's
+    sand as HeartGold's road, its tall grass as HeartGold's (`egrass`, behaviour 2), ponds as its pond; the GBA's
+    woods are HeartGold's trees (a shadow on the ground and the leaning tree card, one per 2x2 squares), its
+    hedges a low leafy block, its fences and posts HeartGold's fence, and a rest house is Fuchsia's house model
+    with its door on the GBA's door square."""
+    gm = gba_map.map_json(spec['gba'])
+    lay = gba_map.Layout(gm['layout'])
+    W, H = lay.w, lay.h
+    dims, pals = texdims(16)
+    pal_of = lambda t_: next(p for p in (t_ + '_pl', t_, t_.replace('gs', ''), t_.replace('gs', '') + '_pl') if p in pals)
+    warps = {(w['x'], w['y']): w for w in gm.get('warp_events', [])}
+    inb = lambda x, y: 0 <= x < W and 0 <= y < H
+    mb = lambda x, y: lay.behavior(lay.metatile(x, y))
+    colour = {}
+    def col(x, y):
+        m = lay.metatile(x, y)
+        if m not in colour:
+            px = list(lay.render_metatile(m).convert('RGB').getdata())
+            colour[m] = tuple(sum(c[i] for c in px) // len(px) for i in range(3))
+        return colour[m]
+    water = lambda x, y: inb(x, y) and mb(x, y) in WATER_MB
+    shut = lambda x, y: not inb(x, y) or (lay.collision(x, y) != 0 and (x, y) not in warps)
+    green = lambda x, y: inb(x, y) and shut(x, y) and not water(x, y) and (lambda c: c[1] > c[0] + 12 and c[1] > c[2] + 12)(col(x, y))
+    thick = lambda x, y: any(all(green(x + i + a, y + j + b) for a in (0, 1) for b in (0, 1)) for i in (-1, 0) for j in (-1, 0))
+    # buildings: closed squares that are not green, joined to a door (a warp on a closed square)
+    doors = [s for s in warps if lay.collision(*s) != 0]
+    building, todo = set(), list(doors)
+    while todo:
+        x, y = todo.pop()
+        for dx, dy in ((1, 0), (-1, 0), (0, -1), (0, 1)):
+            n = (x + dx, y + dy)
+            if n not in building and inb(*n) and shut(*n) and not green(*n) and not water(*n) and n not in warps:
+                building.add(n); todo.append(n)
+    # blocks of closed squares that are neither woods nor a house: stone (the gate)
+    plain = lambda x, y: inb(x, y) and shut(x, y) and not green(x, y) and not water(x, y) and (x, y) not in building and (x, y) not in warps
+    mass = {(x, y) for y in range(H) for x in range(W) if plain(x, y) and
+            any(all(plain(x + i + a, y + j + b) for a in (0, 1) for b in (0, 1)) for i in (-1, 0) for j in (-1, 0))}
+    # trees: one per 2x2 of woods
+    trees, covered = [], set()
+    for y in range(H):
+        for x in range(W):
+            if (x, y) in covered or not thick(x, y): continue
+            bx = x if thick(x + 1, y) else x - 1
+            by = y if thick(x, y + 1) else y - 1
+            trees.append((bx, by)); covered |= {(bx + i, by + j) for i in (0, 1) for j in (0, 1)}
+    kind = {}
+    for (x, y), w in warps.items():
+        if shut(x, y + 1) and not shut(x, y - 1) and (x, y) not in doors: kind[(x, y)] = 0x65
+        else: kind[(x, y)] = 0x3E
+    sand = lambda x, y: (lambda c: c[0] > c[2] + 40 and c[0] >= c[1] - 6)(col(x, y))
+    nx, nz = math.ceil(W / 32), math.ceil(H / 32)
+    lands = []
+    U = lambda v, o: (v - o) * 16 - 256
+    up = (0, 1, 0)
+    for lz in range(nz):
+        for lx in range(nx):
+            meshes = {}
+            M = lambda t_: meshes.setdefault(t_, Mesh())
+            ox, oz = lx * 32, lz * 32
+            X0, X1, Z0, Z1 = ox, min(ox + 32, W), oz, min(oz + 32, H)
+            perm = [0x8000] * 1024
+            props = []
+
+            def top(tex, x, k, y, h):
+                tw, th = dims[tex]
+                f = tw / 32
+                M(tex).quad([((U(x, ox), h, U(y + 1, oz)), (x * 16 * f, (y + 1) * 16 * f)), ((U(x + k, ox), h, U(y + 1, oz)), ((x + k) * 16 * f, (y + 1) * 16 * f)),
+                             ((U(x + k, ox), h, U(y, oz)), ((x + k) * 16 * f, y * 16 * f)), ((U(x, ox), h, U(y, oz)), (x * 16 * f, y * 16 * f))], up)
+
+            def runs(cells):
+                out = []
+                for x in sorted(cells):
+                    if out and out[-1][0] + out[-1][1] == x: out[-1][1] += 1
+                    else: out.append([x, 1])
+                return out
+            for y in range(Z0, Z1):
+                tex_of = {}
+                for x in range(X0, X1):
+                    i = (y - oz) * 32 + (x - ox)
+                    if water(x, y):
+                        tex_of[x] = 'pond_on'
+                        if not shut(x, y): perm[i] = 0x0010
+                    elif not shut(x, y):
+                        grass = mb(x, y) in TALL_GRASS_MB
+                        perm[i] = kind.get((x, y), 0x0002 if grass else 0x0000)
+                        tex_of[x] = 'egrass' if grass else 'road01' if sand(x, y) else 'grass01gs'
+                    else:
+                        tex_of[x] = 'grass01gs'
+                for tex in set(tex_of.values()):
+                    for x, k in runs([x for x, t_ in tex_of.items() if t_ == tex]): top(tex, x, k, y, 0)
+                for x in range(X0, X1):
+                    if not shut(x, y) or water(x, y) or (x, y) in building or (x, y) in covered: continue
+                    a0, a1, z0, z1 = U(x, ox), U(x + 1, ox), U(y, oz), U(y + 1, oz)
+                    zz = z0 + 0.85 * 16
+                    if green(x, y):          # a hedge: HeartGold's bush, standing like its trees
+                        M('tree01_re').quad([((a0 - 2, 0, zz), (0, 32)), ((a1 + 2, 0, zz), (32, 32)), ((a1 + 2, 17, zz - 0.9 * 16), (32, 0)), ((a0 - 2, 17, zz - 0.9 * 16), (0, 0))], (0, 0.6, 0.8))
+                    elif (x, y) in mass:     # a block of stone (the gate you came in by): brick sides, a flat top
+                        M('f_dodai').quad([((a0, 28, z1), (0, 16)), ((a1, 28, z1), (16, 16)), ((a1, 28, z0), (16, 0)), ((a0, 28, z0), (0, 0))], up)
+                        for n in ((0, 1), (1, 0), (-1, 0)):
+                            if (x + n[0], y + n[1]) in mass: continue
+                            if n[0] == 0: a, b = (a0, z1), (a1, z1)
+                            else:
+                                xx = a1 if n[0] > 0 else a0; a, b = ((xx, z1), (xx, z0)) if n[0] > 0 else ((xx, z0), (xx, z1))
+                            M('sek_fe01').quad([((a[0], 0, a[1]), (x * 16, 28)), ((b[0], 0, b[1]), (x * 16 + 16, 28)), ((b[0], 28, b[1]), (x * 16 + 16, 0)), ((a[0], 28, a[1]), (x * 16, 0))], (n[0], 0, n[1]))
+                    else:                    # a fence or a post: HeartGold's post fence, leaning as its own do
+                        M('fence_b').quad([((a0, 0.35, zz), (0, 20)), ((a1, 0.35, zz), (16, 20)), ((a1, 12, zz - 0.708 * 16), (16, 0)), ((a0, 12, zz - 0.708 * 16), (0, 0))], (0, 0.6, 0.8))
+            for (bx, by) in trees:
+                if not (X0 <= bx + 1 < X1 + 1 and Z0 <= by + 1 < Z1 + 1) or not (X0 <= max(bx, X0) and bx < X1 and by < Z1 and by >= Z0 - 1): continue
+                if not (ox <= bx < ox + 32 and oz <= by < oz + 32): continue
+                a0, a1, z0, z1 = U(bx, ox), U(bx + 2, ox), U(by, oz), U(by + 2, oz)
+                M('tree01_un').quad([((a0, 1, z1), (0, 32)), ((a1, 1, z1), (32, 32)), ((a1, 1, z0), (32, 0)), ((a0, 1, z0), (0, 0))], up)
+                cx, z = U(bx + 1, ox), U(by + 1.625, oz)
+                M('tree01gs').quad([((cx - 32, 0, z), (0, 64)), ((cx + 32, 0, z), (64, 64)), ((cx + 32, 49.3, z - 2.548 * 16), (64, 0)), ((cx - 32, 49.3, z - 2.548 * 16), (0, 0))], (0, 0.6, 0.8))
+            for (x, y) in doors:
+                if not (X0 <= x < X1 and Z0 <= y < Z1): continue
+                f4 = lambda v: int(round(v * 4096))
+                hx, hz = SAFARI_HOUSE['at']; dx, dz = SAFARI_HOUSE['door_at']
+                props.append(struct.pack('<I3i3i3i8x', SAFARI_HOUSE['model'], f4(U(x + hx, ox)), 0, f4(U(y + hz, oz)), 0, 0, 0, 4096, 4096, 4096))
+                props.append(struct.pack('<I3i3i3i8x', SAFARI_HOUSE['door'], f4(U(x + dx, ox)), 0, f4(U(y + dz, oz)), 0, 0, 0, 4096, 4096, 4096))
+            groups = [(t_, 'pond_on', pal_of('pond_on'), meshes.pop(t_, Mesh()) if t_ == 'pond_on' else Mesh(), {'repeat': 3, 'size': dims['pond_on']})
+                      for t_ in SAFARI_ANIM] + \
+                     [(t_, t_, pal_of(t_), mesh, {'repeat': 0 if t_ in ('tree01gs', 'tree01_re', 'fence_b') else 3, 'size': dims[t_]}) for t_, mesh in meshes.items()]
+            model = build_model('cv_in_%d' % (len(lands) + 10 * (spec['depth'] + 20)), groups)
+            model += b'\0' * (-len(model) % 4)
+            bld = b''.join(props)
+            bdhc = struct.pack('<4s6H', b'BDHC', 2, 1, 1, 1, 1, 1) + struct.pack('<2i2i', -256 * 4096, -256 * 4096, 256 * 4096, 256 * 4096) + \
+                struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
+            p = struct.pack('<1024H', *perm)
+            lands.append(struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc)
+            assert len(model) < 60000, ('model too big for a land', spec['gba'], len(lands), len(model))
+    return gm, (nx, nz), lands
+
+
 def build_floor(spec, depth_of):
+    if spec['look'] == 'safari': return build_safari_floor(spec, depth_of)
     if LOOKS[spec['look']].get('ship'): return build_ship_floor(spec, depth_of)
     gm = gba_map.map_json(spec['gba'])
     lay = gba_map.Layout(gm['layout'])
