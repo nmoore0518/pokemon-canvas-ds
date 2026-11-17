@@ -227,7 +227,14 @@ geometry, `texview.py` shows a texture set, `landview.py` renders lands to a PNG
 - above the second tier, the rim (`dcliff01_r`: light at the edge, fading to the dark), then the dark; a tier's
   top and anything the faces leave open is `dcliff01`; the floor (`droad01`) has its darker edge (`droad01_r`)
   along the foot of every wall;
-- little patches of rock out on the floor (the GBA's rock piles) are HeartGold's boulder (`d_rock01`), stood up;
+- little patches of rock out on the floor (the GBA's rock piles) are HeartGold's rocks at HeartGold's sizes (read
+  off Union Cave): the small one (half of `d_rock01s`) a square wide, the big one (`d_rock01`) over two squares
+  side by side; one to a pile's square, none on a square whose rock to the south leans over it (a card a square
+  made the ice crystals cut each other up);
+- **the floor's darker border** (`droad01_r`) runs along every edge of the floor: the foot of a wall, the lip of
+  a cliff, the water's bank, and round a corner of rock that pokes into it (only the strip with the border in
+  it is drawn, so two meet square at a corner);
+- rock that lies level with the floor beside it is floor (a plateau is floor to its edge, not a paler tile);
 - HeartGold's ladder models (69 up, 70 down) on squares of behaviour 0x3C/0x3E; cave mouths 0x6E (north), 0x6F
   (south), 0x6C/0x6D (east/west); HeartGold's cave floor (0x0A08, wild Pokemon).
 - **Polygons**: the DS draws 2048 a frame, people included; a cave drawn square by square leaves none for them
@@ -261,6 +268,11 @@ so the code's layout is unchanged.
 slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to the shore are two such tiers.
 
 ## Rules for every map we build (from Nick's review of Pallet)
+
+**Nothing stands over anything else** (Nick, from the caves: rocks over ladders): where two things overlap that
+shouldn't - a rock and a ladder, a person and furniture, a sign and a door - one of them moves. In the caves a
+rock pile by a ladder, a mouth or a person moves to open floor nearby (`floor_plan`); indoors the porter moves
+people (`settle`, `clear_of`). Check for it in every map built from now on.
 
 - cave walls and cliffs: HeartGold's own textures and profile (`dwall_*` faces that lean back with a lip, the
   `dcliff01_r` rim, `droad01_r` floor edges in caves; `wall01_g/h` outside), never flat upright walls; no black

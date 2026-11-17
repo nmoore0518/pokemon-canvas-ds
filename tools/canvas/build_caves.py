@@ -336,12 +336,61 @@ def floor_plan(gba):
     if left: print('  (%s: %d squares of wall still too thin for whole faces)' % (gba, left))
     steps = sum(1 for (x, y), h in hts.items() for n in ((x + 1, y), (x, y + 1)) if n in hts and hts[n] != h)
     if steps: print('  (%s: %d places where floors of two heights still touch)' % (gba, steps))
+    # rock that lies level with the floor beside it is floor (the row behind a cliff's lip where the wall was
+    # doubled): the plateau runs to its edge
+    ch = True
+    while ch:
+        ch = False
+        for s in list(L):
+            x, y = s
+            if not (0 <= x < W and 0 <= y < H) or s in hts: continue
+            if any(v is not None and v < L[s] for v in (get((x + dx, y + dy)) for dx, dy in DIRS8_)): continue
+            if any(hts.get((x + dx, y + dy)) == L[s] for dx, dy in DIRS4_):
+                hts[s] = fixed[s] = L[s]; blocked[y][x] = False; ch = True
+    for s in hts:
+        L.pop(s, None)
     level = dict(fixed); level.update(L)
-    return gm, lay, blocked, boulders, level, D, hts, foot
+    # rock piles: HeartGold's rocks at HeartGold's sizes, one to a pile's square (or its big rock over two side by
+    # side), none on a square whose rock to the south leans over it. Nothing stands over anything else: a pile by a
+    # ladder, a mouth or a person moves to open floor nearby (as one small rock), or goes if there is none.
+    water = {q for q in hts if lay.behavior(lay.metatile(*q)) in WATER_MB and q not in boulders}
+    warps = {(w['x'], w['y']) for w in gm.get('warp_events', [])}
+    people = {(o['x'], o['y']) for o in gm.get('object_events', [])}
+    keep = {(wx + dx, wy + dy) for wx, wy in warps for dx in (-1, 0, 1) for dy in (-2, -1, 0, 1)} | people | {(px, py + 1) for px, py in people}
+    piles, seen = [], set()
+    for q in sorted(boulders):
+        if q in seen: continue
+        comp, stack = [], [q]; seen.add(q)
+        while stack:
+            c = stack.pop(); comp.append(c)
+            for dx, dy in DIRS4_:
+                n = (c[0] + dx, c[1] + dy)
+                if n in boulders and n not in seen: seen.add(n); stack.append(n)
+        piles.append(comp)
+    for comp in piles:
+        if not any(q in keep for q in comp): continue
+        for (x, y) in comp:
+            boulders.discard((x, y)); blocked[y][x] = False
+        del comp[1:]
+        cx, cy = comp[0]
+        free = lambda q: q in hts and hts[q] == hts[(cx, cy)] and q not in water and q not in foot and q not in boulders and q not in keep
+        spot = min((q for q in hts if abs(q[0] - cx) + abs(q[1] - cy) <= 7 and free(q)
+                    and all(free((q[0] + dx, q[1] + dy)) for dx, dy in DIRS8_)), key=lambda q: (abs(q[0] - cx) + abs(q[1] - cy), q), default=None)
+        if spot is None: comp.clear(); continue
+        comp[0] = spot; boulders.add(spot); blocked[spot[1]][spot[0]] = True
+    cards = []
+    for comp in piles:
+        got = set()
+        for (x, y) in sorted(comp, key=lambda q: (-q[1], q[0])):
+            if (x, y) in got or (x, y + 1) in got: continue
+            if (x + 1, y) in comp and (x + 1, y) not in got and (x + 1, y + 1) not in got and hts[(x + 1, y)] == hts[(x, y)]:
+                cards.append(('big', x, y)); got |= {(x, y), (x + 1, y)}
+            else: cards.append(('small', x, y)); got.add((x, y))
+    return gm, lay, blocked, boulders, level, D, hts, foot, cards
 
 
 def build_floor(spec, depth_of):
-    gm, lay, blocked, boulders, level, D, hts, foot = floor_plan(spec['gba'])
+    gm, lay, blocked, boulders, level, D, hts, foot, cards = floor_plan(spec['gba'])
     W, H = lay.w, lay.h
     LV = lambda x, y: level.get((x, y))                    # (None: rock past the rim, in the dark)
     HT = lambda x, y: hts.get((x, y), 0) * TIER            # a floor square's height
@@ -350,8 +399,6 @@ def build_floor(spec, depth_of):
     water = {(x, y) for y in range(H) for x in range(W) if not blocked[y][x] and (x, y) in hts and lay.behavior(lay.metatile(x, y)) in WATER_MB}
     nx, nz = math.ceil(W / 32), math.ceil(H / 32)
     dims, pals = texdims(area_of(spec))
-    rock_tex = 'd_rock01' if 'd_rock01' in dims else 'd_rock01s'
-    rw_, rh_ = dims[rock_tex]
     pal_of = lambda t: next(p for p in (t + '_pl', t) if p in pals)
     # ladders and mouths
     ladders, mouths = {}, {}
@@ -452,10 +499,23 @@ def build_floor(spec, depth_of):
                     # flat pieces are gathered here and drawn in runs below (the DS draws 2048 polygons a frame,
                     # people included: a cave drawn square by square leaves none for them)
                     if (x, y) in hts and (x, y) not in water and not ((x, y) in ladders and ladders[(x, y)] == LADDER_DOWN):
-                        for n in DIRS4:            # the floor's darker edge along the foot of a wall
-                            nb = (x + n[0], y + n[1])
-                            if nb not in hts and nb not in foot and LV(*nb) is not None and LV(*nb) > lv:
-                                flats.setdefault(('droad01_r', lv * TIER + 0.2, n), set()).add((x, y))
+                        # the floor's darker border, HeartGold's (`droad01_r`): along every edge of it - the foot of
+                        # a wall, the lip of a cliff, the water's bank - and round a corner of rock that pokes into it
+                        notfloor = lambda q: (q not in hts or q in water) and q not in foot
+                        for n in DIRS4:
+                            if notfloor((x + n[0], y + n[1])):
+                                flats.setdefault(('droad01_r', lv * TIER + (0.2 if n[0] == 0 else 0.35), n), set()).add((x, y))
+                        for dx in (-1, 1):
+                            for dz in (-1, 1):
+                                if notfloor((x + dx, y + dz)) and not notfloor((x + dx, y)) and not notfloor((x, y + dz)) \
+                                        and (x + dx, y) not in foot and (x, y + dz) not in foot:
+                                    cx_, cz_ = (x1 if dx > 0 else x0), (z1 if dz > 0 else z0)
+                                    xa, xb, za, zb = min(cx_, cx_ - dx * 6.4), max(cx_, cx_ - dx * 6.4), min(cz_, cz_ - dz * 6.4), max(cz_, cz_ - dz * 6.4)
+                                    uu = lambda v: 31.6 if v == cx_ else 25.4
+                                    vv = lambda v: 31.6 if v == cz_ else 25.4
+                                    hh_ = lv * TIER + 0.5
+                                    M('droad01_r').quad([((xa, hh_, zb), (uu(xa), vv(zb))), ((xb, hh_, zb), (uu(xb), vv(zb))),
+                                                         ((xb, hh_, za), (uu(xb), vv(za))), ((xa, hh_, za), (uu(xa), vv(za)))], up)
                     faced = rockq and any(below((x + dx, y + dy), lv) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
                     faced4 = rockq and any(below((x + n[0], y + n[1]), lv) for n in DIRS4)
                     if rockq and faced:          # under the face, the ground it rises from (shows in any gap)
@@ -504,10 +564,6 @@ def build_floor(spec, depth_of):
                         else:
                             dg = next(((dx, dy) for dx in (-1, 1) for dy in (-1, 1) if D(x + dx, y + dy) < D(x, y)), (0, 1))
                             flats.setdefault(('dcliff01_r', lv * TIER - 0.3, ('corner',) + dg), set()).add((x, y))
-                    if (x, y) in boulders:      # HeartGold's rock, stood up like its crystals
-                        hb = HT(x, y)
-                        M(rock_tex).quad([((U(x - 0.1, ox), hb + 0.5, U(y + 0.95, oz)), (0.5, rh_ - 0.5)), ((U(x + 1.1, ox), hb + 0.5, U(y + 0.95, oz)), (rw_ - 0.5, rh_ - 0.5)),
-                                          ((U(x + 1.1, ox), hb + 21, U(y - 0.45, oz)), (rw_ - 0.5, 0.5)), ((U(x - 0.1, ox), hb + 21, U(y - 0.45, oz)), (0.5, 0.5))], (0, 0.6, 0.8))
                     if (x, y) in ladders:
                         m = ladders[(x, y)]
                         perm[i] = 0x0A3C if m == LADDER_UP else 0x0A3E
@@ -547,10 +603,17 @@ def build_floor(spec, depth_of):
                     else:
                         # an edge texture: its edge (s=0) on the orient side, running along the run (t)
                         n = orient
-                        corners = {(0, -1): [((x0, z0), 0.4, x * 16), ((x1, z0), 0.4, xe * 16), ((x1, z1), 15.6, xe * 16), ((x0, z1), 15.6, x * 16)],
-                                   (0, 1): [((x0, z1), 0.4, x * 16), ((x1, z1), 0.4, xe * 16), ((x1, z0), 15.6, xe * 16), ((x0, z0), 15.6, x * 16)],
-                                   (-1, 0): [((x0, z0), 0.4, y * 16), ((x0, z1), 0.4, ye * 16), ((x1, z1), 15.6, ye * 16), ((x1, z0), 15.6, y * 16)],
-                                   (1, 0): [((x1, z0), 0.4, y * 16), ((x1, z1), 0.4, ye * 16), ((x0, z1), 15.6, ye * 16), ((x0, z0), 15.6, y * 16)]}[n]
+                        if tex == 'droad01_r':      # (the floor's border: only the strip with the border in it, so that two meet square at a corner)
+                            si = 6.8
+                            if n == (0, -1): z1 = z0 + 6.4
+                            elif n == (0, 1): z0 = z1 - 6.4
+                            elif n == (-1, 0): x1 = x0 + 6.4
+                            else: x0 = x1 - 6.4
+                        else: si = 15.6
+                        corners = {(0, -1): [((x0, z0), 0.4, x * 16), ((x1, z0), 0.4, xe * 16), ((x1, z1), si, xe * 16), ((x0, z1), si, x * 16)],
+                                   (0, 1): [((x0, z1), 0.4, x * 16), ((x1, z1), 0.4, xe * 16), ((x1, z0), si, xe * 16), ((x0, z0), si, x * 16)],
+                                   (-1, 0): [((x0, z0), 0.4, y * 16), ((x0, z1), 0.4, ye * 16), ((x1, z1), si, ye * 16), ((x1, z0), si, y * 16)],
+                                   (1, 0): [((x1, z0), 0.4, y * 16), ((x1, z1), 0.4, ye * 16), ((x0, z1), si, ye * 16), ((x0, z0), si, y * 16)]}[n]
                         M(tex).quad([((p[0], hh, p[1]), (sv, tv)) for p, sv, tv in corners], up)
             # the floor, in runs along each row at each height (a ladder down is a hole); boulders stand on it
             for y in range(oz, oz + 32):
@@ -585,6 +648,20 @@ def build_floor(spec, depth_of):
                                 (P(b_, o1, h1), (k * tw_, v1 * th_ / 16)), (P(a_, o1, h1), (0, v1 * th_ / 16))]
                         if n in ((0, 1), (-1, 0)): quad.reverse()        # (facing up whichever side it is on)
                         M('dpond_line').quad(quad, (-n[0] * 0.5, 0.87, -n[1] * 0.5))
+            # rock piles: HeartGold's rocks as HeartGold stands them (read off Union Cave): the small one (half of
+            # `d_rock01s`) a square wide, the big one (`d_rock01`) two, leaning back
+            for kind, x, y in cards:
+                if not inland(x, y): continue
+                hb = HT(x, y)
+                if kind == 'big' and 'd_rock01' in dims:
+                    zf = U(y + 1, oz) - 4.7
+                    M('d_rock01').quad([((U(x, ox), hb + 0.7, zf), (0.6, 31.4)), ((U(x + 2, ox), hb + 0.7, zf), (31.4, 31.4)),
+                                        ((U(x + 2, ox), hb + 23.3, zf - 22.6), (31.4, 0.4)), ((U(x, ox), hb + 23.3, zf - 22.6), (0.6, 0.4))], (0, 0.7, 0.7))
+                    continue
+                for i_ in range(2 if kind == 'big' else 1):
+                    zf, u0 = U(y + 1, oz) + 1.7, 16.0 * ((x + i_ + y) % 2)
+                    M('d_rock01s').quad([((U(x + i_, ox), hb + 2.5, zf), (u0 + 0.6, 31.5)), ((U(x + i_ + 1, ox), hb + 2.5, zf), (u0 + 15.5, 31.5)),
+                                         ((U(x + i_ + 1, ox), hb + 23.6, zf - 22.5), (u0 + 15.5, 0.5)), ((U(x + i_, ox), hb + 23.6, zf - 22.5), (u0 + 0.6, 0.5))], (0, 0.7, 0.7))
             for c in caps:
                 if not inland(*c['f']): continue
                 (ex_, ey_), n, y0_ = c['e'], c['n'], c['base'] * TIER
