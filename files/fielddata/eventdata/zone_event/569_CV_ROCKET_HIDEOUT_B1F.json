@@ -143,8 +143,8 @@
         {
             "x": 12,
             "z": 2,
-            "header": "MAP_CELADON_GAME_CORNER",
-            "anchor": 1,
+            "header": "MAP_CANVAS_GAME_CORNER",
+            "anchor": 3,
             "y": 0
         },
         {

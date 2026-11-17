@@ -513,6 +513,31 @@ def _open_on_gba(mj, o):
         return False
 
 
+def clear_of(slot, x, z, o, mj, hg_warps, placed):
+    """Where someone ends up must not block a way in or crowd the people beside them, unless the GBA has it so:
+    a person the GBA keeps clear of its doors and stairs who lands on or next to one of ours, or lands beside
+    somebody they stood well apart from on the GBA, steps to the nearest open square clear of both.
+    placed: [(square here, square on the GBA)] of the people already put down."""
+    import world, auto_anchor as AA
+    outdoor = 'EVERYWHERE' in slots.header(slot)['matrixId']
+    pf = (lambda a, b: world.perm(a, b)) if outdoor else (lambda a, b: world.perm_in(slot, a, b))
+    own = (lambda a, b: world.land_at(a, b) is not None and world.land_at(a, b)[1] == AA.map_ids()[slot]) if outdoor else (lambda a, b: True)
+    ok = lambda a, b: a >= 0 and b >= 0 and own(a, b) and (lambda v: v is not None and not v & 0x8000 and (v & 0xFF) == 0)(pf(a, b))
+    g = (o['x'], o['y'])
+    d1 = lambda p, q: abs(p[0] - q[0]) + abs(p[1] - q[1])
+    g_at_door = any(d1(g, (w['x'], w['y'])) <= 1 for w in mj.get('warp_events', []))
+    doors = [] if g_at_door else hg_warps
+    crowd = [h for h, gq in placed if d1(g, gq) >= 3]                 # (people they were not beside on the GBA)
+    bad = lambda c: any(d1(c, w) <= 1 for w in doors) or any(d1(c, h) <= 1 for h in crowd) or any(c == h for h, _ in placed)
+    if not bad((x, z)): return x, z
+    for r in range(1, 5):
+        ring = sorted(((x + i, z + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r),
+                      key=lambda c: d1(c, (x, z)))
+        for c in ring:
+            if ok(*c) and not bad(c): return c
+    return x, z
+
+
 def settle(slot, x, z, taken):
     """In a map we built: someone the GBA has on open floor who lands on a closed square here (furniture of
     HeartGold's is bigger, a wall stands where the GBA drew one flat) steps to the nearest open square that is
@@ -1644,7 +1669,8 @@ def port(gba_map, g, ids, report):
     open(os.path.join(SCR, 'event_%s.h' % tag), 'w').write('\n'.join(eh))
     # ---- people and signs
     objs = []
-    _taken = set()
+    _taken, _placed = set(), []
+    _hg_warps = [(w_['x'], w_['z']) for w_ in ev.get('warps', [])]
     for i, o in enumerate(people):
         gfx = o['graphics_id'].replace('OBJ_EVENT_GFX_', '').replace('_FRLG', '')
         sm = re.match(r'SPECIES\((\w+)\)$', gfx)            # (a Pokemon: its walking sprite, or Eevee's for ones HeartGold lacks)
@@ -1661,8 +1687,12 @@ def port(gba_map, g, ids, report):
         x, z = off_furniture(slot, *at)
         if not isinstance(xy, Anchored) and '_at' not in o and kind in ('object', 'trainer') and _open_on_gba(mj, o):
             x, z = settle(slot, x, z, _taken)
+        if '_at' not in o and kind in ('object', 'trainer') and gfx not in ('ITEM_BALL', 'BOULDER') and 'TREE' not in gfx and 'ROCK' not in gfx \
+                and not (spot if False else None) and _open_on_gba(mj, o):
+            x, z = clear_of(slot, x, z, o, mj, _hg_warps, _placed)
+        _placed.append(((x, z), (o['x'], o['y'])))
         _taken.add((x, z))
-        if (x, z) != tuple(at): report.append('  %s at %s stood on something closed: now at %s' % (gfx, tuple(at), (x, z)))
+        if (x, z) != tuple(at): report.append('  %s at %s moved (off something closed, clear of a door or of the people beside): now at %s' % (gfx, tuple(at), (x, z)))
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
         lid = g.value(o['local_id']) if o.get('local_id') else i + 1
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)

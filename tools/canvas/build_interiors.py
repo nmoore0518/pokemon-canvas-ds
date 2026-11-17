@@ -36,10 +36,18 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # (set 77) with room models, which its own area, a dungeon's, does not take. stretch: the texture spans two squares, as HeartGold lays these;
     # slab: a lone closed square is a stone standing up - a gravestone - not a low block)
     'tower': dict(area=120, texset=77, ship=True, floor='d15_yuka01', wall='d17_wall01', cap='d15_wall01a', side='d17_wall01', low='d17_ita',
-                  lowside='d17_wall01', mat='d15_yuka03', stairs=(7, 8, 9, 10), stretch=True, slab=True, wall_top=32),
-    'plant': dict(area=44, ship=True, floor='kn_c_yuka2', wall='kn_c_kabe1', cap='mpwr_r04', side='kn_c_kabe1', low='counter_g02',
+                  lowside='d17_wall01', mat='d15_yuka03', stairs=(7, 8, 9, 10), stretch=True, slab='d15_genkan', wall_top=32),
+    'mansion': dict(area=120, texset=77, ship=True, floor='d15_yuka01', wall='d17_wall01', cap='d15_wall01a', side='d17_wall01', low='d17_ita',
+                    lowside='d17_wall01', mat='d15_yuka03', stairs=(7, 8, 9, 10), stretch=True, wall_top=32),
+    'plant': dict(area=44, ship=True, floor='kn_c_yuka2', wall='kn_c_kabe1', cap='mpwr_r04', side='kn_c_kabe1', low='counter_g01', pad_model=157,
                   lowside='kn_c_kabe1', mat='kn_c_stair', stairs=(168, 169, 171, 170), stretch=True, wall_top=32),
     'ship': dict(area=42, ship=True),         # the S.S. Anne: SHIP below
+    # Celadon's Game Corner and its Prize Room, in the looks of HeartGold's own (whose rooms are laid out for other
+    # games: its Game Corner is the Voltorb Flip hall, its prize room a third the size of the GBA's)
+    'corner': dict(area=66, ship=True, plain=('mgc_or10',), floor='mgc_or19', wall='mgc_or08', cap='mgc_or10', side='mgc_or13', low='mgc_or12',
+                   lowside='mgc_or15', mat='mgc_or02', stairs=(7, 8, 9, 10), wall_top=40),
+    'prize': dict(area=40, ship=True, plain=('tmc_gc08', 'tmc_gc07'), floor='tmc_gc01', wall='tmc_gc12', cap='tmc_gc08', side='tmc_gc07', low='tmc_gc08',
+                  lowside='tmc_gc07', mat='tmc_gc02', stairs=(7, 8, 9, 10), wall_top=40),
     'house': dict(area=42, ship=True, plain=('r39_kabe', 'fs_room8', 'maq_pt13'), floor='mo_yuka', wall='r39_kabe', cap='fs_room8', side='maq_pt13',
                   low='table01', lowside='re_ki', mat='d_mat01', stairs=(7, 8, 9, 10), wall_top=40),
     # outdoors (the Safari Zone): Fuchsia's set; the GBA's trees are a hedge of HeartGold's trees (a row of them
@@ -89,7 +97,7 @@ INTERIORS = (
     # the Rocket Hideout, under the Game Corner (stairs added there: ADD_WARPS). Its spin-tile mazes are plain floor
     # for now (HeartGold's slide tiles need a gym's code running), and its elevator (a GBA dynamic warp) isn't built
     [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', place='MAP_CELADON',
-          depth=i, exits={'MAP_CELADON_CITY_GAME_CORNER': ('MAP_CELADON_GAME_CORNER', 1)}) for i in range(1, 5)]
+          depth=i) for i in range(1, 5)]
 )
 # Cinnabar (our town: build_cinnabar.py draws the GBA's in place of HeartGold's ruin)
 CIN = {('MAP_CINNABAR_ISLAND', str(i)): ('MAP_CINNABAR_ISLAND', i) for i in range(5)}   # (build_cinnabar.py: the GBA's warps, in order)
@@ -100,7 +108,7 @@ INTERIORS += (
      dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND')] +
     [dict(gba='CinnabarIsland_PokemonLab_%s_Frlg' % r, map='MAP_CANVAS_CINNABAR_LAB_%s' % r.upper(), look='plant', template='MAP_SAFFRON_SILPH_CO_HQ',
           depth=0) for r in ('Lounge', 'ResearchRoom', 'ExperimentRoom')] +
-    [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='tower', template='MAP_BURNED_TOWER_1F',
+    [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='mansion', template='MAP_BURNED_TOWER_1F',
           depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN, place='MAP_CINNABAR_ISLAND') for f in ('1F', '2F', '3F', 'B1F')]
 )
 # the Safari Zone, through a door we add at the back of HeartGold's Pal Park entrance (where the GBA's is)
@@ -115,15 +123,24 @@ INTERIORS += (
           template='MAP_FUCHSIA_SOUTHWEST_HOUSE', depth=0)
      for r in ('Center_RestHouse', 'East_RestHouse', 'North_RestHouse', 'West_RestHouse', 'SecretHouse')]
 )
+# Celadon's Game Corner and Prize Room from the GBA's layouts (last, so the lands before them keep their numbers);
+# the Prize Room two columns wider
+INTERIORS += (
+    [dict(gba='CeladonCity_GameCorner_Frlg', map='MAP_CANVAS_GAME_CORNER', look='corner', template='MAP_CELADON_GAME_CORNER', depth=0,
+          place='MAP_CELADON', exits={'MAP_CELADON_CITY': ('MAP_CELADON', 3)}),
+     dict(gba='CeladonCity_GameCorner_PrizeRoom_Frlg', map='MAP_CANVAS_PRIZE_ROOM', look='prize', template='MAP_CELADON_PRIZE_CORNER', depth=0,
+          place='MAP_CELADON', exits={'MAP_CELADON_CITY': ('MAP_CELADON', 4)},
+          widen=dict(cols=[(4, 2, [(0, 0), (0, 1), (1, 2), (0, 3), (0, 4), (0, 5), (3, 6), (0, 7), (0, 8), (0, 9)])]))]
+)
 # warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
 # the room's warp list, so no other warp's number moves.
-ADD_WARPS = [('MAP_CELADON_GAME_CORNER', (12, 3), 0x3E, 'MAP_CANVAS_ROCKET_HIDEOUT_B1F', 0),    # (the GBA's hidden stairs)
-             ('MAP_FUCHSIA_PAL_PARK_ENTRANCE', (8, 4), 0x3E, 'MAP_CANVAS_SAFARI_CENTER', 1)]
+ADD_WARPS = [('MAP_FUCHSIA_PAL_PARK_ENTRANCE', (8, 4), 0x3E, 'MAP_CANVAS_SAFARI_CENTER', 1)]
 # HeartGold's doors that stood for these places -> ours: (map, its warp index) -> (our map, GBA warp index there)
 DOORS = {('MAP_LAVENDER', 6): ('MAP_CANVAS_POKEMON_TOWER_1F', 1),
          ('MAP_SAFFRON_SILPH_CO_HQ', 1): ('MAP_CANVAS_SILPH_CO_2F', 3),
          ('MAP_ROUTE_10', 1): ('MAP_CANVAS_POWER_PLANT', 1),
-         ('MAP_VERMILION', 7): ('MAP_CANVAS_SSANNE_1F', 2)}
+         ('MAP_VERMILION', 7): ('MAP_CANVAS_SSANNE_1F', 2),
+         ('MAP_CELADON', 3): ('MAP_CANVAS_GAME_CORNER', 1), ('MAP_CELADON', 4): ('MAP_CANVAS_PRIZE_ROOM', 1)}
 
 
 def gba_ids():
@@ -202,7 +219,7 @@ def ship_parts(spec):
             if (wallish(x + dx, y) or (x + dx, y) in warps) and (x + dx, y) not in band:
                 band[(x + dx, y)] = band[(x, y)]; todo.append((x + dx, y))
     # things on the floor: small patches of closed squares that are no wall
-    things, seen = set(), set()
+    things, inner, seen = set(), set(), set()
     for y in range(H):
         for x in range(W):
             if (x, y) in seen or not wallish(x, y) or (x, y) in band: continue
@@ -216,8 +233,9 @@ def ship_parts(spec):
             # (a wall has the dark beyond it somewhere; a thing stands clear of it)
             edge = any(inb(c[0] + dx, c[1] + dy) and isvoid(c[0] + dx, c[1] + dy) for c in comp for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
             if len(comp) <= 12 and not edge: things |= set(comp)
+            if not edge: inner |= set(comp)                     # (anything closed that stands inside the room)
     return dict(gm=gm, lay=lay, W=W, H=H, warps=warps, people=people, isvoid=isvoid, open=open_, door=door, walk=walk, wallish=wallish,
-                band=band, things=things)
+                band=band, things=things, inner=inner)
 
 
 def build_ship_floor(spec, depth_of):
@@ -238,7 +256,7 @@ def build_ship_floor(spec, depth_of):
     floor_tex = SHIP['carpet'][spec['gba'].split('_')[1]] if room else SHIP['floor']
     wall_tex = SHIP['paper'] if room else SHIP['wall']
     low_tex = SHIP['steel'] if 'Kitchen' in spec['gba'] else SHIP['low']
-    stones = {c for c in things if SHIP.get('slab') and not any((c[0] + dx, c[1] + dy) in things for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))}
+    stones = set(P['inner']) if SHIP.get('slab') else set()      # (the Tower: every closed square inside a room is a gravestone)
     # furniture of HeartGold's
     props, closed = [], set()
     for y in range(H):
@@ -254,6 +272,10 @@ def build_ship_floor(spec, depth_of):
     # down are a well in the floor
     under, hole_sq, holes = set(), set(), []
     for (x, y), w in warps.items():
+        if all(walk(x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            # (open floor all round: a warp pad, as in Silph Co.)
+            if SHIP.get('pad_model'): props.append((SHIP['pad_model'], x + 0.5, y + 0.5))
+            continue
         if not (w['dest_map'] in depth_of and w['dest_map'] != gm['id'] and not door(x, y) and depth_of[w['dest_map']] != spec['depth']): continue
         up_ = depth_of[w['dest_map']] < spec['depth']
         left = not walk(x - 1, y) and walk(x + 1, y)          # (the closed side: left, else right)
@@ -270,7 +292,7 @@ def build_ship_floor(spec, depth_of):
             hole_sq |= block
             holes.append(((cx - 1) * 16, y * 16, (cx + 1) * 16, (y + 2) * 16, cx * 16 + bx0, cz * 16 + bz0, cx * 16 + bx1, cz * 16 + bz1))
     USED_MODELS.setdefault(SHIP['area'], set()).update(m for m, *_ in props)
-    floor = lambda x, y: ((walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in closed or (x, y) in under) and (x, y) not in hole_sq
+    floor = lambda x, y: ((walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in stones or (x, y) in closed or (x, y) in under) and (x, y) not in hole_sq
     kind = {}
     for (x, y), w in warps.items():
         dest = w['dest_map']
@@ -346,10 +368,10 @@ def build_ship_floor(spec, depth_of):
                                 M(SHIP['rail']).quad([((p0[0], 0, p0[1]), (0, 0)), ((p1[0], 0, p1[1]), (0, 32)), ((p1[0], 11, p1[1]), (22, 32)), ((p0[0], 11, p0[1]), (22, 0))], nn)
                 for x in range(X0, X1):              # a stone standing on its square
                     if (x, y) not in stones: continue
-                    a0, a1, b0, b1 = U(x, ox) + 3, U(x + 1, ox) - 3, U(y, oz) + 5, U(y + 1, oz) - 4
-                    M(SHIP['low']).quad([((a0, 16, b1), (0, 8)), ((a1, 16, b1), (8, 8)), ((a1, 16, b0), (8, 0)), ((a0, 16, b0), (0, 0))], up)
+                    a0, a1, b0, b1 = U(x, ox) + 3, U(x + 1, ox) - 3, U(y, oz) + 6, U(y + 1, oz) - 4
+                    M(SHIP['slab']).quad([((a0, 18, b1), (3, 6)), ((a1, 18, b1), (13, 6)), ((a1, 18, b0), (13, 0)), ((a0, 18, b0), (3, 0))], up)
                     for a, b, n in (((a0, b1), (a1, b1), (0, 0, 1)), ((a1, b1), (a1, b0), (1, 0, 0)), ((a0, b0), (a0, b1), (-1, 0, 0))):
-                        M(SHIP['low']).quad([((a[0], 0, a[1]), (0, 16)), ((b[0], 0, b[1]), (10, 16)), ((b[0], 16, b[1]), (10, 0)), ((a[0], 16, a[1]), (0, 0))], n)
+                        M(SHIP['slab']).quad([((a[0], 0, a[1]), (3, 16)), ((b[0], 0, b[1]), (13, 16)), ((b[0], 18, b[1]), (13, 0)), ((a[0], 18, a[1]), (3, 0))], n)
                 # the sides of blocks and kerbs
                 for hh, tex in ((10, SHIP['lowside']), (6, SHIP['side'])):
                     for n in ((0, 1), (0, -1), (1, 0), (-1, 0)):

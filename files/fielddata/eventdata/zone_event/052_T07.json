@@ -356,15 +356,15 @@
         {
             "x": 1218,
             "z": 249,
-            "header": "MAP_CELADON_GAME_CORNER",
-            "anchor": 0,
+            "header": "MAP_CANVAS_GAME_CORNER",
+            "anchor": 1,
             "y": 0
         },
         {
             "x": 1223,
             "z": 249,
-            "header": "MAP_CELADON_PRIZE_CORNER",
-            "anchor": 0,
+            "header": "MAP_CANVAS_PRIZE_ROOM",
+            "anchor": 1,
             "y": 0
         },
         {

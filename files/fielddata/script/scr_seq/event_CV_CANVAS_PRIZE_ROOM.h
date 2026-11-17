@@ -1,0 +1,11 @@
+#ifndef SCR_SEQ_CV_CANVAS_PRIZE_ROOM_H_
+#define SCR_SEQ_CV_CANVAS_PRIZE_ROOM_H_
+
+#define _EV_CeladonCity_GameCorner_PrizeRoom_EventScript_BaldingMan 0
+#define _EV_CeladonCity_GameCorner_PrizeRoom_EventScript_OldMan 1
+#define _EV_CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons 2
+#define _EV_CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkTMs 3
+#define _EV_CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkItems 4
+
+
+#endif
