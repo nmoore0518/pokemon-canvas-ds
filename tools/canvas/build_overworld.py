@@ -54,6 +54,7 @@ CELLS = (14, 15)
 PALLET_AT = (59, 288)
 PLACED = {'CinnabarIsland_Frlg': (68, 419)}
 CUSTOM = {(1, 9), (2, 9), (3, 9), (1, 10), (2, 10), (3, 10), (2, 13)}     # (world cells drawn by build_pallet/build_cinnabar)
+OPEN_SEA = {(1, 13), (3, 13), (1, 14), (2, 14), (3, 14)}     # (round and below Cinnabar: open sea where no map is)
 
 
 def world():
@@ -148,6 +149,9 @@ def kinds(d):
     return out, doors, ledges
 
 
+SEA_FILL = set()             # (the squares no map covers that are the sea: world_kinds)
+
+
 def world_kinds(W=None, woods=False):
     """the whole world's squares: {(gx, gz): kind}, doors [(gx, gz, GBA map, x, y)], ledges, the map each square is"""
     W_, (WW, WH) = W or world()
@@ -182,7 +186,10 @@ def world_kinds(W=None, woods=False):
         ring = nxt
     for gz in range(WH):
         for gx in range(WW):
-            if (gx, gz) not in kind: kind[(gx, gz)] = 'water' if near.get((gx, gz)) else 'woods'
+            if (gx, gz) not in kind:
+                if W is None and (gx // 32, gz // 32) in OPEN_SEA: near[(gx, gz)] = True
+                kind[(gx, gz)] = 'water' if near.get((gx, gz)) else 'woods'
+                if near.get((gx, gz)): SEA_FILL.add((gx, gz))
     # the buildings: the closed squares (none of the outdoors' things) joined to each door, over the whole world;
     # each building once (a gate has a door each side)
     bldg = {}
@@ -375,8 +382,15 @@ def _gates(doors, dest, hgb, bldg, kind):
 
 def plan_world(W=None, woods=False):
     """everything the lands need, worked out once: kinds, trees, buildings and their squares, warps"""
+    SEA_FILL.clear()
     W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds(W, woods)
     orig = dict(kind)
+    # (the open sea: the water joined to the sea round the world's maps - HeartGold's sea, moving; ponds stay ponds)
+    sea, todo = set(SEA_FILL), list(SEA_FILL)
+    while todo:
+        x, y = todo.pop()
+        for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+            if n not in sea and kind.get(n) == 'water': sea.add(n); todo.append(n)
     dest = gba_dest()
     hgb = hg_buildings()
     walkable = ('grass', 'sand', 'pave', 'tall', 'flower', 'door', 'stairs')
@@ -526,7 +540,7 @@ def plan_world(W=None, woods=False):
             if orig.get(n) in walkable and kind.get(n) == 'house' and n not in door_sq: kind[n] = orig[n]
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
-    return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves,
+    return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
                 trees=trees, loose=loose, cell_map=cell_map)
 
 
@@ -535,7 +549,7 @@ def build_land(P, cx, cz):
     kind, ledges = P['kind'], P['ledges']
     K_ = lambda x, y: kind.get((x, y))
     dims, pals = texdims(TEXSET)
-    pal_of = lambda t: next(q for q in (t + '_pl', t, t.replace('gs', ''), t.replace('gs', '') + '_pl') if q in pals)
+    pal_of = lambda t: {'sea_on': 'sea_f02_pl'}.get(t) or next(q for q in (t + '_pl', t, t.replace('gs', ''), t.replace('gs', '') + '_pl') if q in pals)
     ox, oz = cx * 32, cz * 32
     X0, X1, Z0, Z1 = ox, ox + 32, oz, oz + 32
     mine = lambda x, y: X0 <= x < X1 and Z0 <= y < Z1
@@ -673,8 +687,11 @@ def build_land(P, cx, cz):
                 else: BS._card(poly, 'post', x, y)
             elif k == 'sign':
                 props.append((SIGN_MODEL, U(x + 0.5, ox), 0, U(y + 0.35, oz)))
-    for y, xs in open_water.items():         # (open water, in runs: the water as the pond's middle has it)
-        for a, b in BS._runs(sorted(xs)): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
+    for y, xs in open_water.items():         # (open water, in runs: the water as the pond's middle has it; the sea
+        sea_xs = [x for x in xs if (x, y) in P.get('sea', ())]          # HeartGold's sea, its clear layer over it)
+        for a, b in BS._runs(sorted(set(xs) - set(sea_xs))): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
+        for a, b in BS._runs(sorted(sea_xs)):
+            flat('sea_un', a, y, b, y + 1, R.WATER_Y - 1); flat('sea_on', a, y, b, y + 1, R.WATER_Y)
     for y, xs in rock_tops.items():
         for a, b in BS._runs(sorted(xs)): flat(ROCK_TOP, a, y, b, y + 1, R.TIER)
     for (what, foot, line), sqs in faces.items():
