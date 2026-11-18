@@ -307,6 +307,17 @@ slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to 
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
+**Build from a tile kit** (Nick, after the caves were rebuilt that way: all caves, and any map of ours in every
+region, new or already built a different way): before laying a map, read the pieces HeartGold builds that kind of
+place from out of its own lands (`bmdview.py`; `cave_kit.corner_pieces` reads Union Cave's), then lay the map a
+square at a time from those pieces, each chosen by what is round its square. Every piece is whole (never
+stretched, squeezed or warped) and has the same edge on every side, so any piece meets any other; where the GBA
+layout is too tight for whole pieces, widen the map rather than squeeze a piece. Use HeartGold's own piece where
+it has one, and make a piece only where it has none (from its own textures, in its own colours: the floor border's
+corner pictures are drawn from its straight piece), and only as many as the texture set has room for (56 KB).
+Before checking a map in game: hold the area's animated material slots (`anim_slots`), check the model sizes
+(61400) and the texture set's size, look for holes with `landview.py`, then look at it in game.
+
 **Nothing stands over anything else** (Nick, from the caves: rocks over ladders): where two things overlap that
 shouldn't - a rock and a ladder, a person and furniture, a sign and a door - one of them moves. In the caves a
 rock pile by a ladder, a mouth or a person moves to open floor nearby (`floor_plan`); indoors the porter moves
