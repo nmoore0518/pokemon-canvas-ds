@@ -1,0 +1,20 @@
+{
+  "key": 19969,
+  "messages": [
+    {
+      "id": "msg_0982_CV_CANVAS_UNDERGROUND_EAST_UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore",
+      "en_US": [
+        "The Department Store in Celadon\n",
+        "has a great selection.\r",
+        "Do you go there very often?"
+      ]
+    },
+    {
+      "id": "msg_0982_CV_CANVAS_UNDERGROUND_EAST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "key": 19963,
+  "messages": [
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_LectureAStudent",
+      "en_US": [
+        "Tailwind makes us faster, Trick\n",
+        "Room makes us slower is faster…\r",
+        "I’m so confused."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_TeacherMenu",
+      "en_US": "What shall we do?"
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_OptDemo",
+      "en_US": "Demo Battle"
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_OptLecture",
+      "en_US": "the Lecture"
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_OptBye",
+      "en_US": "That’s All"
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_LarkspurLecture0",
+      "en_US": [
+        "Larkspur: Speed control.\n",
+        "Welcome!"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_LarkspurLecture1",
+      "en_US": [
+        "In a double battle, four Pokémon\n",
+        "move every turn. Whoever\r",
+        "controls the turn order controls\n",
+        "the game.\r",
+        "Tailwind doubles your side’s\n",
+        "speed for four turns. Icy Wind\r",
+        "and Electroweb hit both foes and\n",
+        "slow them down."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_LarkspurLecture2",
+      "en_US": [
+        "Trick Room turns it all upside\n",
+        "down: for five turns, the\r",
+        "slowest move first. A slow,\n",
+        "strong team loves it.\r",
+        "And Fake out! It strikes first\n",
+        "and makes the target flinch, but\r",
+        "only on the turn it comes in."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_LarkspurLecture3",
+      "en_US": [
+        "Priority still matters: Extreme\n",
+        "Speed, Bullet Punch and Sucker\r",
+        "Punch. But beware Psychic\n",
+        "Terrain and Quick Guard.\r",
+        "Make the turn order yours.\n",
+        "That’s my whole lesson!"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_CamelliaLecture0",
+      "en_US": [
+        "Camellia: Setting up, with a\n",
+        "partner. Shall we begin?"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_CamelliaLecture1",
+      "en_US": [
+        "Setting up is harder with two\n",
+        "attackers aimed at you. So bring\r",
+        "a friend.\r",
+        "Follow me and Rage Powder pull\n",
+        "every single-target attack onto\r",
+        "the partner. That’s a free turn\n",
+        "for your sweeper."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_CamelliaLecture2",
+      "en_US": [
+        "Fake out stops one foe, Protect\n",
+        "dodges the other, and your\r",
+        "Dragon Dance goes off untouched.\r",
+        "Intimidate on the partner\n",
+        "softens physical attacks on both\r",
+        "of you."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_CamelliaLecture3",
+      "en_US": [
+        "Against setup? Hit the sweeper\n",
+        "with both Pokémon at once, or\r",
+        "strike past the redirection with\n",
+        "a spread move.\r",
+        "Haze and Clear Smog wipe the\n",
+        "boosts away. A setup turn is\r",
+        "only free if you make it free!"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_DemoIntro",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: A demonstration! A\n",
+        "double battle, and we both use\r",
+        "rentals, three each.\r",
+        "My team shows off the lesson.\n",
+        "Choose yours wisely!"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_DemoWon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Wonderful! Here,\n",
+        "you’ve earned it."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_RentalReturn",
+      "en_US": [
+        "Your own Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_DemoLost",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ha! Think about the\n",
+        "lesson and try again."
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0976_CV_CANVAS_ACADEMY_LECTURE_A_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

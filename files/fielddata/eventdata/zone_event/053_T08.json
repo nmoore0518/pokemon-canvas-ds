@@ -457,10 +457,24 @@
             "y": 0
         },
         {
+            "x": 1200,
+            "z": 429,
+            "header": "MAP_CANVAS_EXOTIC_SAFARI_HALL",
+            "anchor": 0,
+            "y": 0
+        },
+        {
             "x": 1185,
             "z": 439,
             "header": "MAP_FUCHSIA_POKEMART",
             "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1202,
+            "z": 440,
+            "header": "MAP_CANVAS_SAFARI_OFFICE",
+            "anchor": 1,
             "y": 0
         },
         {

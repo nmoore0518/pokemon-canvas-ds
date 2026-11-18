@@ -401,6 +401,13 @@
     ],
     "warps": [
         {
+            "x": 1214,
+            "z": 236,
+            "header": "MAP_CANVAS_UNDERGROUND_WEST",
+            "anchor": 1,
+            "y": 0
+        },
+        {
             "x": 1192,
             "z": 248,
             "header": "MAP_CELADON_CONDOMINIUMS_1F",
@@ -464,6 +471,13 @@
             "y": 0
         },
         {
+            "x": 1205,
+            "z": 265,
+            "header": "MAP_CANVAS_PIT_HALL",
+            "anchor": 0,
+            "y": 0
+        },
+        {
             "x": 1199,
             "z": 273,
             "header": "MAP_CELADON_RESTAURANT",
@@ -474,6 +488,13 @@
             "x": 1203,
             "z": 273,
             "header": "MAP_CANVAS_CELADON_HOUSE1",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1211,
+            "z": 273,
+            "header": "MAP_CANVAS_CELADON_HOTEL",
             "anchor": 1,
             "y": 0
         },

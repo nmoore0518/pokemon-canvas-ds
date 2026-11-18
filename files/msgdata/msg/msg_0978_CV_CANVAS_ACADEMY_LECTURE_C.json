@@ -1,0 +1,163 @@
+{
+  "key": 19965,
+  "messages": [
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_LectureCStudent",
+      "en_US": [
+        "Hyacinth says they’ll Protect\n",
+        "the slot I’m aiming at. But what\r",
+        "if they know I know that?"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_TeacherMenu",
+      "en_US": "What shall we do?"
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_OptDemo",
+      "en_US": "Demo Battle"
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_OptLecture",
+      "en_US": "the Lecture"
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_OptBye",
+      "en_US": "That’s All"
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_MarigoldLecture0",
+      "en_US": [
+        "Marigold: Weather and terrain.\n",
+        "Bring an umbrella!"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_MarigoldLecture1",
+      "en_US": [
+        "Weather is even stronger in\n",
+        "doubles: one setter powers up\r",
+        "both its partners.\r",
+        "Drizzle, Drought, Sand Stream\n",
+        "and Snow Warning last five\r",
+        "turns; eight with the right\n",
+        "rock."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_MarigoldLecture2",
+      "en_US": [
+        "Swift Swim, Chlorophyll, Sand\n",
+        "Rush and Slush Rush double a\r",
+        "Pokémon’s speed in their\n",
+        "weather. Rain makes Thunder and\r",
+        "Hurricane never miss.\r",
+        "The setter’s partner should be\n",
+        "the abuser. Lead with them\r",
+        "together!"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_MarigoldLecture3",
+      "en_US": [
+        "Terrains last five turns too.\n",
+        "Psychic Terrain blocks Fake out\r",
+        "and other priority. Grassy\n",
+        "Terrain weakens Earthquake.\r",
+        "Remember: the last weather set\n",
+        "wins. Keep the setter safe to\r",
+        "bring it back!"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_HyacinthLecture0",
+      "en_US": [
+        "Hyacinth: Targeting and Protect.\n",
+        "Sit down, please."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_HyacinthLecture1",
+      "en_US": [
+        "Two of you, two of them. The\n",
+        "question every turn is: who do\r",
+        "we hit?\r",
+        "Doubling up on one foe takes it\n",
+        "out fast. But if it uses\r",
+        "Protect, both your attacks are\n",
+        "wasted."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_HyacinthLecture2",
+      "en_US": [
+        "Protect is the most important\n",
+        "move in doubles. It scouts, it\r",
+        "stalls weather and Trick Room,\n",
+        "and it baits double attacks.\r",
+        "But it can fail if used twice in\n",
+        "a row. Count them!"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_HyacinthLecture3",
+      "en_US": [
+        "Watch which slot they protect,\n",
+        "who they target, which Pokémon\r",
+        "they keep in the back.\r",
+        "Spread your damage when you\n",
+        "can’t read them. Focus it when\r",
+        "you can."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_DemoIntro",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: A demonstration! A\n",
+        "double battle, and we both use\r",
+        "rentals, three each.\r",
+        "My team shows off the lesson.\n",
+        "Choose yours wisely!"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_DemoWon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Wonderful! Here,\n",
+        "you’ve earned it."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_RentalReturn",
+      "en_US": [
+        "Your own Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_DemoLost",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ha! Think about the\n",
+        "lesson and try again."
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

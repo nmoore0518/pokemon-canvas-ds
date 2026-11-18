@@ -1,0 +1,132 @@
+{
+  "key": 19957,
+  "messages": [
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Pitch",
+      "en_US": [
+        "Welcome to the Exotic Pokémon\n",
+        "Safari! We just opened!\r",
+        "Each of those doors leads to a zone\n",
+        "full of Pokémon from a faraway\f",
+        "region. Nobody in Kanto has ever\f",
+        "seen most of them!\r",
+        "Hm? Wait a second…\n",
+        "You’re Leader {STRVAR_1 3, 6, 0}!\f",
+        "From the Pallet Town Gym!\r",
+        "Listen. Once trainers see a Gym\n",
+        "Leader using exotic Pokémon,\f",
+        "they’ll All want to catch their own!\r",
+        "So for you, a one-time special:\n",
+        "an Unlimited Pass to every zone,\f",
+        "for just ¥10,000!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Offer",
+      "en_US": "Would you like an Exotic Pass?"
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Thanks",
+      "en_US": [
+        "Thank you! Here’s your pass.\n",
+        "Show those Pokémon off!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_TakeALook",
+      "en_US": [
+        "Take a look! A door for every\n",
+        "region, from Johto to Paldea!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_GoOnThrough",
+      "en_US": [
+        "The Unova, Kalos, Alola, Galar and\n",
+        "Paldea Zones are open. The rest are\f",
+        "still being built!\r",
+        "Just walk up to a door. It opens\n",
+        "for pass holders.\r",
+        "No Safari Balls here: battle and\n",
+        "catch them with your own Balls.\r",
+        "Go on through, Leader!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Enjoy",
+      "en_US": [
+        "Enjoy the Exotic Pokémon Safari,\n",
+        "Leader {STRVAR_1 3, 6, 0}!\r",
+        "Walk up to an open zone’s door\n",
+        "and it’ll open for you."
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Kiosk",
+      "en_US": [
+        "Welcome to the Safari Kiosk!\n",
+        "Stocking up for a trip?"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_EvoKiosk",
+      "en_US": [
+        "Evolution Kiosk! Anything found\n",
+        "out in the zones, we stock here."
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_NotOpenYet",
+      "en_US": [
+        "Welcome to the Exotic Pokémon\n",
+        "Safari!\r",
+        "Each of those doors leads to a zone\n",
+        "full of Pokémon from a faraway\f",
+        "region.\r",
+        "We’re not quite open yet, though.\n",
+        "The zones are still being built!\r",
+        "Please come back later!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_NoThanks",
+      "en_US": [
+        "Oh… The offer stands, if you change\n",
+        "your mind!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_NoMoney",
+      "en_US": [
+        "Oh… You don’t have enough money.\n",
+        "The offer stands, though!"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_EvoKioskEmpty",
+      "en_US": [
+        "Nothing’s come in yet, though.\r",
+        "Find an evolution item in a zone\n",
+        "and we’ll keep more of them here."
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_ExoticSafari_Hall_Text_Shut",
+      "en_US": [
+        "The door is locked.\n",
+        "“{STRVAR_1 3, 0, 0} Zone: Coming Soon!”"
+      ]
+    },
+    {
+      "id": "msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

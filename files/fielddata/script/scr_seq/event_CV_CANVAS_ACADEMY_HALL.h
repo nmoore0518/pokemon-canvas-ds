@@ -1,0 +1,19 @@
+#ifndef SCR_SEQ_CV_CANVAS_ACADEMY_HALL_H_
+#define SCR_SEQ_CV_CANVAS_ACADEMY_HALL_H_
+
+#define _EV_Academy_EventScript_Headmaster 0
+#define _EV_Academy_EventScript_Nadia 1
+#define _EV_Academy_EventScript_Reader1 2
+#define _EV_Academy_EventScript_Reader2 3
+#define _EV_Academy_EventScript_MegaDoorGuard 4
+#define _EV_LeaderAcademy_Hall_OnTransition 5
+#define _EV_Academy_EventScript_BraceletCall 6
+#define _EV_Academy_EventScript_BraceletGive 7
+
+#define LOCALID_ACADEMY_HEADMASTER 1
+#define LOCALID_ACADEMY_CANDIDATE_NADIA 2
+#define LOCALID_ACADEMY_READER_1 3
+#define LOCALID_ACADEMY_READER_2 4
+#define LOCALID_ACADEMY_MEGA_DOOR_GUARD 5
+
+#endif

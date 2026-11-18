@@ -1,0 +1,33 @@
+{
+  "key": 19967,
+  "messages": [
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaKeeperIntro",
+      "en_US": [
+        "Primrose: Welcome. I’m Primrose,\n",
+        "keeper of the Academy’s Mega\r",
+        "Stones.\r",
+        "A Mega Stone isn’t a tool, you\n",
+        "see. It’s a witness. It only\r",
+        "answers to a bond it has seen\n",
+        "proven with its own eyes.\r",
+        "So I lend it to you. Your\n",
+        "Pokémon carries it into battle\r",
+        "against my three, with nobody\n",
+        "else to lean on.\r",
+        "Win, and the stone has chosen\n",
+        "you both: it’s yours. Lose, and\r",
+        "it comes back to me, and we wait\n",
+        "until you’re ready. No shame in\r",
+        "that."
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

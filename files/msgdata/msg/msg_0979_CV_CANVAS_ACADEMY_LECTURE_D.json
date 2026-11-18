@@ -1,0 +1,169 @@
+{
+  "key": 19966,
+  "messages": [
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_LectureDStudent",
+      "en_US": [
+        "I’ve rebuilt my team in Tansy’s\n",
+        "Team Builder six times today.\r",
+        "Seven’s the charm!"
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TeamBuilderPC",
+      "en_US": "Tansy’s Team Builder booted up."
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TeacherMenu",
+      "en_US": "What shall we do?"
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_OptDemo",
+      "en_US": "Demo Battle"
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_OptLecture",
+      "en_US": "the Lecture"
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_OptBye",
+      "en_US": "That’s All"
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_YarrowLecture0",
+      "en_US": [
+        "Yarrow: Training. The numbers\n",
+        "behind the battles."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_YarrowLecture1",
+      "en_US": [
+        "Every Pokémon has 510 Effort\n",
+        "points to spend: 252 at most in\r",
+        "one stat. Put them where the\n",
+        "Pokémon needs them.\r",
+        "In doubles, bulk matters more:\n",
+        "two attackers come your way.\r",
+        "Many trainers put more into HP\n",
+        "than in singles."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_YarrowLecture2",
+      "en_US": [
+        "A nature raises one stat ten\n",
+        "percent and lowers another.\r",
+        "Mints, or my Cilantro, change\n",
+        "the nature’s effect.\r",
+        "For a Trick Room team, lower its\n",
+        "Speed on purpose: a\r",
+        "Speed-lowering nature, and Speed\n",
+        "IVs at zero."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_YarrowLecture3",
+      "en_US": [
+        "Then the item. Sitrus Berry for\n",
+        "staying power, Life Orb for raw\r",
+        "damage, Focus Sash to survive a\n",
+        "double attack, Assault Vest for\r",
+        "special bulk.\r",
+        "The carts in our Market sell all\n",
+        "of it."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TansyLecture0",
+      "en_US": [
+        "Tansy: Team building! Six\n",
+        "Pokémon, three plans."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TansyLecture1",
+      "en_US": [
+        "In doubles you lead with two.\n",
+        "Build pairs that work together:\r",
+        "Fake out with a sweeper, a\n",
+        "weather setter with its abuser.\r",
+        "Give your team a second plan for\n",
+        "when the first lead struggles."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TansyLecture2",
+      "en_US": [
+        "Check your weaknesses: if four\n",
+        "of your six fear Rock Slide,\r",
+        "that’s a problem.\r",
+        "Bring Protect on almost\n",
+        "everyone, and something to deal\r",
+        "with Trick Room and Tailwind."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TansyLecture3",
+      "en_US": [
+        "That PC next to me? I made a\n",
+        "Team Builder for it myself. Pick\r",
+        "six, choose their moves, and it\n",
+        "shows you your weaknesses and\r",
+        "coverage. It keeps up to eight\n",
+        "teams.\r",
+        "Use it whenever you like: you\n",
+        "don’t have to ask me!"
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_DemoIntro",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: A demonstration! A\n",
+        "double battle, and we both use\r",
+        "rentals, three each.\r",
+        "My team shows off the lesson.\n",
+        "Choose yours wisely!"
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_DemoWon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Wonderful! Here,\n",
+        "you’ve earned it."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_RentalReturn",
+      "en_US": [
+        "Your own Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_DemoLost",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ha! Think about the\n",
+        "lesson and try again."
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -257,6 +257,28 @@
             "y": 0
         }
     ],
-    "warps": [],
+    "warps": [
+        {
+            "x": 1332,
+            "z": 302,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1333,
+            "z": 302,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1345,
+            "z": 313,
+            "header": "MAP_CANVAS_ACADEMY_BATTLE_HALL",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
     "coords": []
 }

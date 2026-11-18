@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_ACADEMY_LECTURE_A_H_
+#define SCR_SEQ_CV_CANVAS_ACADEMY_LECTURE_A_H_
+
+#define _EV_Academy_EventScript_Larkspur 0
+#define _EV_Academy_EventScript_Camellia 1
+#define _EV_Academy_EventScript_LectureAStudent 2
+
+#define LOCALID_ACADEMY_TEACHER_LARKSPUR 1
+#define LOCALID_ACADEMY_TEACHER_CAMELLIA 2
+#define LOCALID_ACADEMY_LECTURE_A_STUDENT 3
+
+#endif

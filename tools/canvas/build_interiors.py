@@ -204,6 +204,27 @@ INTERIORS += (
 # elevator door leads in (DOORS)
 INTERIORS += [dict(gba='SilphCo_Elevator_Frlg', map='MAP_CANVAS_SILPH_ELEVATOR', look='silph', template='MAP_SAFFRON_SILPH_CO_HQ',
                    depth=0, place='MAP_SAFFRON', exits={'MAP_DYNAMIC': (4095, 256)})]
+# the GBA's other rooms HeartGold has no building for, behind the doors of the GBA-layout towns (build_overworld.py
+# lays their houses): a plain house's look; their ways out to the towns are put in by build_overworld.py
+_H = 'MAP_SAFFRON_MR_PSYCHIC_HOUSE'
+INTERIORS += [dict(gba=g, map=m, look='house', template=t, depth=0, place=pl) for g, m, t, pl in [
+    ('CeladonCity_Hotel_Frlg', 'MAP_CANVAS_CELADON_HOTEL', _H, 'MAP_CELADON'),
+    ('CeladonCity_PitHall', 'MAP_CANVAS_PIT_HALL', _H, 'MAP_CELADON'),
+    ('FuchsiaCity_SafariZone_Office_Frlg', 'MAP_CANVAS_SAFARI_OFFICE', _H, 'MAP_FUCHSIA'),
+    ('ExoticSafari_Hall', 'MAP_CANVAS_EXOTIC_SAFARI_HALL', _H, 'MAP_FUCHSIA'),
+    ('SaffronCity_PokemonTrainerFanClub_Frlg', 'MAP_CANVAS_SAFFRON_FAN_CLUB', _H, 'MAP_SAFFRON'),
+    ('VermilionCity_MedicalCenter_1F', 'MAP_CANVAS_MEDICAL_CENTER_1F', _H, 'MAP_VERMILION'),
+    ('LeaderAcademy_PokemonCenter', 'MAP_CANVAS_ACADEMY_CENTER', 'MAP_SAFFRON_POKECENTER_1F', 'MAP_SAFFRON'),
+    ('LeaderAcademy_Hall', 'MAP_CANVAS_ACADEMY_HALL', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_BattleHall', 'MAP_CANVAS_ACADEMY_BATTLE_HALL', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_LectureA', 'MAP_CANVAS_ACADEMY_LECTURE_A', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_LectureB', 'MAP_CANVAS_ACADEMY_LECTURE_B', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_LectureC', 'MAP_CANVAS_ACADEMY_LECTURE_C', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_LectureD', 'MAP_CANVAS_ACADEMY_LECTURE_D', _H, 'MAP_SAFFRON'),
+    ('LeaderAcademy_MegaRoom', 'MAP_CANVAS_ACADEMY_MEGA_ROOM', _H, 'MAP_SAFFRON'),
+    ('UndergroundPath_WestEntrance_Frlg', 'MAP_CANVAS_UNDERGROUND_WEST', 'MAP_ROUTE_5_UNDERGROUND_PATH_GATE', 'MAP_ROUTE_7'),
+    ('UndergroundPath_EastEntrance_Frlg', 'MAP_CANVAS_UNDERGROUND_EAST', 'MAP_ROUTE_5_UNDERGROUND_PATH_GATE', 'MAP_ROUTE_8'),
+    ('UndergroundPath_EastWestTunnel_Frlg', 'MAP_CANVAS_UNDERGROUND_EW', 'MAP_ROUTE_5_UNDERGROUND_PATH', 'MAP_ROUTE_7')]]
 # warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
 # the room's warp list, so no other warp's number moves.
 ADD_WARPS = [('MAP_FUCHSIA_PAL_PARK_ENTRANCE', (8, 4), 0x3E, 'MAP_CANVAS_SAFARI_CENTER', 1)]

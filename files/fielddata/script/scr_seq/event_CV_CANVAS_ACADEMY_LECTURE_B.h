@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_ACADEMY_LECTURE_B_H_
+#define SCR_SEQ_CV_CANVAS_ACADEMY_LECTURE_B_H_
+
+#define _EV_Academy_EventScript_Foxglove 0
+#define _EV_Academy_EventScript_Verbena 1
+#define _EV_Academy_EventScript_LectureBStudent 2
+
+#define LOCALID_ACADEMY_TEACHER_FOXGLOVE 1
+#define LOCALID_ACADEMY_TEACHER_VERBENA 2
+#define LOCALID_ACADEMY_LECTURE_B_STUDENT 3
+
+#endif

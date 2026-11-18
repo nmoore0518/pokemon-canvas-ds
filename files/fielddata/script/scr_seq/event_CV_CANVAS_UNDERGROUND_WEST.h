@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_UNDERGROUND_WEST_H_
+#define SCR_SEQ_CV_CANVAS_UNDERGROUND_WEST_H_
+
+#define _EV_UndergroundPath_WestEntrance_EventScript_BaldingMan 0
+
+
+#endif

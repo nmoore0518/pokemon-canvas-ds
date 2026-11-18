@@ -1,0 +1,31 @@
+{
+  "key": 19970,
+  "messages": [
+    {
+      "id": "msg_0983_CV_CANVAS_UNDERGROUND_EW_EventMons_Text_CapFound",
+      "en_US": "{STRVAR_1 3, 6, 0} found the {STRVAR_1 3, 0, 0}!"
+    },
+    {
+      "id": "msg_0983_CV_CANVAS_UNDERGROUND_EW_EventMons_Text_CapInCase",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} put the {STRVAR_1 3, 0, 0} in\n",
+        "the Cap Case."
+      ]
+    },
+    {
+      "id": "msg_0983_CV_CANVAS_UNDERGROUND_EW_EventMons_Text_CapNoCase",
+      "en_US": [
+        "There’s a little cap stuck here,\n",
+        "a Pikachu’s size. Someone must\r",
+        "have lost it…"
+      ]
+    },
+    {
+      "id": "msg_0983_CV_CANVAS_UNDERGROUND_EW_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

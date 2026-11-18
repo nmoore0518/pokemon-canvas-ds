@@ -1,0 +1,10 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFARI_OFFICE_H_
+#define SCR_SEQ_CV_CANVAS_SAFARI_OFFICE_H_
+
+#define _EV_FuchsiaCity_SafariZone_Office_EventScript_Worker2 0
+#define _EV_FuchsiaCity_SafariZone_Office_EventScript_Worker3 1
+#define _EV_FuchsiaCity_SafariZone_Office_EventScript_Worker1 2
+#define _EV_FuchsiaCity_SafariZone_Office_EventScript_Worker4 3
+
+
+#endif

@@ -1,0 +1,81 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_ACADEMY_BATTLE_HALL.h",
+    "objects": [
+        {
+            "id": "LOCALID_ACADEMY_RENTAL_CLERK",
+            "spriteId": "SPRITE_GSMAN3",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_RentalClerk + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 6,
+            "z": 5,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_CANDIDATE_BRIONY",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 17,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Briony + 1",
+            "facingDirection": 3,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1,
+            "z": 8,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_CANDIDATE_TEO",
+            "spriteId": "SPRITE_GSMAN3",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Teo + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 11,
+            "z": 8,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 5,
+            "z": 14,
+            "header": "MAP_CANVAS_LEADER_ACADEMY",
+            "anchor": 2,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "z": 0,
+            "header": "MAP_PALLET",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "bgs": [],
+    "coords": []
+}

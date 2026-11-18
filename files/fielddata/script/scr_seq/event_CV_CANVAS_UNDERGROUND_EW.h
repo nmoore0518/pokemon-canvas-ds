@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_UNDERGROUND_EW_H_
+#define SCR_SEQ_CV_CANVAS_UNDERGROUND_EW_H_
+
+#define _EV_EventMons_EventScript_Cap6 0
+#define _EV_UndergroundPath_EastWestTunnel_OnTransition 1
+
+
+#endif

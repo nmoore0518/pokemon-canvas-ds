@@ -395,6 +395,13 @@
     ],
     "warps": [
         {
+            "x": 1345,
+            "z": 322,
+            "header": "MAP_CANVAS_ACADEMY_CENTER",
+            "anchor": 0,
+            "y": 0
+        },
+        {
             "x": 1300,
             "z": 341,
             "header": "MAP_CANVAS_DIGLETTS_CAVE_S",

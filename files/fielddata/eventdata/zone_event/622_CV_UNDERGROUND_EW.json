@@ -1,0 +1,31 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_UNDERGROUND_EW.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_EventMons_EventScript_Cap6 + 1",
+            "type": 0,
+            "x": 7,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [],
+    "warps": [
+        {
+            "x": 76,
+            "z": 3,
+            "header": "MAP_CANVAS_UNDERGROUND_EAST",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 3,
+            "z": 4,
+            "header": "MAP_CANVAS_UNDERGROUND_WEST",
+            "anchor": 3,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

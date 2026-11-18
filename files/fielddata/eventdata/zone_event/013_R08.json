@@ -269,6 +269,13 @@
     ],
     "warps": [
         {
+            "x": 1292,
+            "z": 226,
+            "header": "MAP_CANVAS_UNDERGROUND_EAST",
+            "anchor": 1,
+            "y": 0
+        },
+        {
             "x": 1286,
             "z": 232,
             "header": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",

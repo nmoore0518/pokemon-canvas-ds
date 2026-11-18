@@ -1,0 +1,46 @@
+{
+  "key": 19955,
+  "messages": [
+    {
+      "id": "msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanStop",
+      "en_US": [
+        "Whoa, whoa. Where do you think\n",
+        "you’re going, kid?\r",
+        "Nobody goes down there without\n",
+        "the word. So what’s the word?"
+      ]
+    },
+    {
+      "id": "msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanRight",
+      "en_US": [
+        "…Huh. Somebody’s got a big mouth.\r",
+        "Fine. Down you go. You didn’t see\n",
+        "me, I didn’t see you.\r",
+        "And whatever you hear down there,\n",
+        "it’s just the crowd. Got it?"
+      ]
+    },
+    {
+      "id": "msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanLetIn",
+      "en_US": [
+        "Go on down. Keep your voice low\n",
+        "and your money where I can see it."
+      ]
+    },
+    {
+      "id": "msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanWrong",
+      "en_US": [
+        "…Wrong.\r",
+        "Climb back up that ladder before\n",
+        "I remember your face."
+      ]
+    },
+    {
+      "id": "msg_0968_CV_CANVAS_PIT_HALL_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

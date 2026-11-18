@@ -1,0 +1,406 @@
+#include "constants/scrcmd.h"
+#include "fielddata/script/scr_seq/event_CV_CANVAS_MEDICAL_CENTER_1F.h"
+#include "msgdata/msg/msg_0972_CV_CANVAS_MEDICAL_CENTER_1F.h"
+#include "macros/script.inc"
+
+// Pokemon Canvas: ported from the GBA game's VermilionCity_MedicalCenter_1F by tools/canvas/port/port_map.py. Edit the GBA scripts
+// or the porter, not this file.
+
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Receptionist
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Chansey
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Pharmacist
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_TriageNurse
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient0
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient1
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient2
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient3
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient4
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Patient5
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_OldMan
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Girl
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Happiny
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Woman
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Youngster
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Cabinet
+	ScrDef VermilionCity_MedicalCenter_1F_EventScript_Plaque
+	ScrDefEnd
+	
+VermilionCity_MedicalCenter_1F_EventScript_Receptionist:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Welcome
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_ReceptionistBye
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_RightAway
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	PlayFanfare SEQ_ME_ASA
+	HealParty
+	WaitFanfare
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_AllBetter
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Chansey:
+	LockAll
+	FacePlayer
+	PlayCry SPECIES_CHANSEY, 0
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chansey
+	WaitButton
+	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Pharmacist:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_gText_HowMayIServeYou
+	CanvasMart 11
+	.short ITEM_POTION
+	.short ITEM_SUPER_POTION
+	.short ITEM_HYPER_POTION
+	.short ITEM_MAX_POTION
+	.short ITEM_REVIVE
+	.short ITEM_ANTIDOTE
+	.short ITEM_PARLYZ_HEAL
+	.short ITEM_AWAKENING
+	.short ITEM_BURN_HEAL
+	.short ITEM_ICE_HEAL
+	.short ITEM_FULL_HEAL
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_gText_PleaseComeAgain
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_TriageNurse:
+	LockAll
+	FacePlayer
+	GoToIfSet 0x2228, VermilionCity_MedicalCenter_1F_EventScript_TriageThanks
+	Call VermilionCity_MedicalCenter_1F_EventScript_CountCured
+	CompareVarToValue 0x8006, 6
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_TriageReward
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageAsk
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient0:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 0
+	SetVar 0x8005, 0
+	SetVar 0x8007, SPECIES_PSYDUCK
+	GoToIfSet 0x2229, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart0
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient1:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 1
+	SetVar 0x8005, 1
+	SetVar 0x8007, SPECIES_RATTATA
+	GoToIfSet 0x222A, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart1
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient2:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 2
+	SetVar 0x8005, 2
+	SetVar 0x8007, SPECIES_PIDGEY
+	GoToIfSet 0x222B, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart2
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient3:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 3
+	SetVar 0x8005, 3
+	SetVar 0x8007, SPECIES_JIGGLYPUFF
+	GoToIfSet 0x222C, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart3
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient4:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 4
+	SetVar 0x8005, 4
+	SetVar 0x8007, SPECIES_CHARMANDER
+	GoToIfSet 0x222D, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart4
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_Patient5:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 5
+	SetVar 0x8005, 5
+	SetVar 0x8007, SPECIES_SPINDA
+	GoToIfSet 0x222E, VermilionCity_MedicalCenter_1F_EventScript_PatientCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart5
+	WaitButton
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_Treat
+	
+VermilionCity_MedicalCenter_1F_EventScript_OldMan:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_OldMan
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Girl:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Girl
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Happiny:
+	LockAll
+	FacePlayer
+	PlayCry SPECIES_HAPPINY, 0
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Happiny
+	WaitButton
+	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Woman:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Woman
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Youngster:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Youngster
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Cabinet:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Cabinet
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Plaque:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Plaque
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_ReceptionistBye:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TakeCare
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_TriageThanks:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageThanks
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_CountCured:
+	SetVar 0x8006, 0
+	CallIfSet 0x2229, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	CallIfSet 0x222A, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	CallIfSet 0x222B, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	CallIfSet 0x222C, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	CallIfSet 0x222D, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	CallIfSet 0x222E, VermilionCity_MedicalCenter_1F_EventScript_AddCured
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_TriageReward:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageDone
+	WaitButton
+	SetVar 0x8009, ITEM_LUM_BERRY
+	Call VermilionCity_MedicalCenter_1F_EventScript_GiveFive
+	SetVar 0x8009, ITEM_FULL_HEAL
+	Call VermilionCity_MedicalCenter_1F_EventScript_GiveFive
+	SetFlag 0x2228
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageUpstairs
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_PatientCured:
+	PlayCry 0x8007, 0
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_PatientHappy
+	WaitButton
+	WaitCry
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_Treat:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_GiveWhich
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_BurnHeal, 0
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Antidote, 1
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_ParlyzHeal, 2
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Awakening, 3
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_IceHeal, 4
+	ScrCmd_559 msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_PersimBerry, 5
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_4
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_TreatCancel
+	CompareVarToVar VAR_SPECIAL_RESULT, 0x8005
+	GoToIfNe VermilionCity_MedicalCenter_1F_EventScript_TreatWrong
+	CloseMsg
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry 0x8007, 0
+	WaitCry
+	Call VermilionCity_MedicalCenter_1F_EventScript_SetCured
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TreatRight
+	WaitButton
+	Call VermilionCity_MedicalCenter_1F_EventScript_CountCured
+	CompareVarToValue 0x8006, 6
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_AllTreated
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_AddCured:
+	AddVar 0x8006, 1
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_GiveFive:
+	GiveItem 0x8009, 5, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_GiveFiveDone
+	BufferItemName 1, 0x8009
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_GymHack_Text_GiftSentToPC
+	WaitButton
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_TreatCancel:
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_TreatWrong:
+	CloseMsg
+	PlaySE SEQ_SE_DP_SELECT
+	WaitSE SEQ_SE_DP_SELECT
+	PlayCry 0x8007, 0
+	WaitCry
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TreatWrong
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured:
+	CompareVarToValue 0x8004, 0
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured0
+	CompareVarToValue 0x8004, 1
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured1
+	CompareVarToValue 0x8004, 2
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured2
+	CompareVarToValue 0x8004, 3
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured3
+	CompareVarToValue 0x8004, 4
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured4
+	CompareVarToValue 0x8004, 5
+	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_SetCured5
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_AllTreated:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_AllTreated
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+VermilionCity_MedicalCenter_1F_EventScript_GiveFiveDone:
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured0:
+	SetFlag 0x2229
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured1:
+	SetFlag 0x222A
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured2:
+	SetFlag 0x222B
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured3:
+	SetFlag 0x222C
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured4:
+	SetFlag 0x222D
+	Return
+	
+VermilionCity_MedicalCenter_1F_EventScript_SetCured5:
+	SetFlag 0x222E
+	Return
+
+_cv_stop:
+	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_cv_unported
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	.balign 4, 0

@@ -230,6 +230,13 @@
             "y": 0
         },
         {
+            "x": 1266,
+            "z": 305,
+            "header": "MAP_CANVAS_MEDICAL_CENTER_1F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
             "x": 1243,
             "z": 309,
             "header": "MAP_VERMILION_POKEMON_FAN_CLUB",

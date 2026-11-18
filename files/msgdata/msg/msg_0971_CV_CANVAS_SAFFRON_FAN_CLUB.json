@@ -1,0 +1,427 @@
+{
+  "key": 19958,
+  "messages": [
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WasYourFanNotAnymore",
+      "en_US": [
+        "I’m sorry.\n",
+        "I was your fan before.\r",
+        "But now, you seem to have lost\n",
+        "the drive you had before.\r",
+        "Lately, I think {STRVAR_1 3, 0, 0} has been\n",
+        "a lot cooler."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeSabrina",
+      "en_US": [
+        "Do you know what?\n",
+        "I want to be like Sabrina!\r",
+        "I want to be a psychic girl just\n",
+        "like her!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_BrocksMyHero",
+      "en_US": [
+        "Brock’s my hero!\n",
+        "He’s a man among men!\r",
+        "Heheh, I got my mom to do\n",
+        "something for me.\r",
+        "I got her to embroider “Brock”\n",
+        "on my shorts!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_HmmAndYouAre",
+      "en_US": [
+        "Hmm…\n",
+        "And you are?\r",
+        "Were you hoping to sign up for\n",
+        "a membership in our Fan Club?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_TrainerHasBeenOnFire",
+      "en_US": [
+        "Recently, {STRVAR_1 3, 0, 0} has been on\n",
+        "fire.\r",
+        "The way he battles… It’s just \n",
+        "the way that I like it!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_LoveWayTrainerTalks",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s cool, huh?\n",
+        "I love the way he talks.\r",
+        "I’d really relish a chance to meet\n",
+        "him in person once."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WhyCantOthersSeeMastersDignity",
+      "en_US": [
+        "Master {STRVAR_1 3, 0, 0} is so dignified…\n",
+        "He is so my type.\r",
+        "Why can’t the others see the\n",
+        "dignity he simply oozes?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_OnlyMasterHasMyRespect",
+      "en_US": [
+        "Hiyah! There is but one Trainer\n",
+        "who has my respect.\r",
+        "And that is none other than my\n",
+        "Master at the Fighting Dojo.\r",
+        "You should become a fan of my\n",
+        "Master like me! Hiyah!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_PokemonJournal_Text_SpecialFeatureBruno",
+      "en_US": [
+        "Pokémon Journal\r",
+        "Special Feature:\n",
+        "Elite Four’s Bruno!\r",
+        "Bruno apparently joined the Elite\n",
+        "Four out of his burning ambition to\f",
+        "battle the best Trainers."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_HuhYou",
+      "en_US": [
+        "Huh?\n",
+        "You…"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_YourePlayerWereYourFansNow",
+      "en_US": [
+        "Are you maybe…\n",
+        "… …\r",
+        "You are!\n",
+        "You are {STRVAR_1 3, 6, 0}!\r",
+        "We were just talking about you!\r",
+        "We were talking about how an\n",
+        "incredibly good Trainer appeared.\r",
+        "And that someone is you!\n",
+        "You’re so cool!\r",
+        "So, we decided that we’ll become\n",
+        "your Fan Club!\r",
+        "We all hope you’ll keep battling\n",
+        "and show us how cool you are.\r",
+        "That way, maybe other people will\n",
+        "become fans just like me."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_TrainersCoolWhenBattling",
+      "en_US": [
+        "I think Trainers are so cool when\n",
+        "they’re battling.\r",
+        "Don’t you think so, too?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou",
+      "en_US": [
+        "I’ll always be cheering for you!\r",
+        "Go, {STRVAR_1 3, 6, 0}, go!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_EveryonesYourFanButICantBe",
+      "en_US": [
+        "Oh!\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Everyone’s been all excited about\n",
+        "you recently.\r",
+        "I can understand why.\n",
+        "I know that you’re strong.\r",
+        "But, do you know what?\r",
+        "Once I became {STRVAR_1 3, 0, 0}’s fan,\n",
+        "I can’t just stop being a fan."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_CanIBecomeCoolTrainerOneDay",
+      "en_US": [
+        "I wonder if I can become a cool\n",
+        "Trainer one day?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeYouOneDay",
+      "en_US": [
+        "It’s {STRVAR_1 3, 6, 0}!\n",
+        "It’s {STRVAR_1 3, 6, 0}!\r",
+        "I want to be like {STRVAR_1 3, 6, 0} one day!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WontStopBeingSabrinasFan",
+      "en_US": [
+        "Even if I’m the only one, I won’t\n",
+        "stop being Sabrina’s fan.\r",
+        "My dream is to be like Sabrina,\n",
+        "cute, but cool.\r",
+        "I want to be a psychic girl just\n",
+        "like her!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_BrocksLastWordOnCool",
+      "en_US": [
+        "Brock’s the last word on cool,\n",
+        "end of story!\r",
+        "Now there’s a guy who I want to\n",
+        "be like!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_CanYouAutographShorts",
+      "en_US": [
+        "Oh! It’s {STRVAR_1 3, 6, 0}!\n",
+        "Too cool!\r",
+        "Oh!\n",
+        "Oh, yeah!\r",
+        "Can you autograph something?\n",
+        "How about my shorts?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_BrocksFanToBitterEnd",
+      "en_US": [
+        "…  …\r",
+        "…  …\n",
+        "I’m Brock’s fan!\r",
+        "Even if I were his only fan,\n",
+        "I swear it on my rock-hard will,\f",
+        "and on my shorts!\r",
+        "I’ll be his fan to the bitter end!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_YoullBeTalkedAboutIfYouKeepWinning",
+      "en_US": [
+        "All of us gathered here are fans\n",
+        "of Pokémon Trainers.\r",
+        "The way they look in battle…\n",
+        "They are the picture of coolness.\r",
+        "Perhaps you will be talked about\n",
+        "here, too, if you keep winning."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_HadPleasureOfWatchingYouBattle",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0}, I’ve had the pleasure of\n",
+        "watching you battle.\r",
+        "It brings back sweet memories of\n",
+        "my own long-lost youth.\r",
+        "May you continue to find success.\n",
+        "You have a fan in me!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_YouveStillAWaysToGo",
+      "en_US": [
+        "Ah, so you are the much-\n",
+        "talked-about {STRVAR_1 3, 6, 0}.\r",
+        "You certainly do have the look of\n",
+        "a winner.\r",
+        "But for me to accept you as\n",
+        "a true Pokémon great…\r",
+        "… …\r",
+        "You’ve still a ways to go!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_AdoreWayYouBattle",
+      "en_US": [
+        "Oh, my goodness!\n",
+        "Is it really you, {STRVAR_1 3, 6, 0}?\r",
+        "I have to tell you, I adore the\n",
+        "way you battle.\r",
+        "I hope you’ll keep at it.\n",
+        "I’ll be your number one fan!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_EveryoneTalksAboutYou",
+      "en_US": [
+        "Oh, hello!\n",
+        "If it isn’t {STRVAR_1 3, 6, 0}!\r",
+        "Lately, all everyone talks about\n",
+        "is you.\r",
+        "I’m feeling lonesome because I\n",
+        "prefer {STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_TheWayYouBattleIsCool",
+      "en_US": [
+        "Oh, man, oh, man!\n",
+        "Cool! Too cool!\r",
+        "…Huh?\n",
+        "No, not you.\r",
+        "Just the way you battle.\n",
+        "That’s cool."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_ImLoneTrainerFan",
+      "en_US": [
+        "Huh, can you believe it?\n",
+        "Everyone turned into your fans.\r",
+        "So after all we’ve been through,\n",
+        "I’m the lone {STRVAR_1 3, 0, 0} fan?\r",
+        "Eh, being the one and only\n",
+        "{STRVAR_1 3, 0, 0} fan’s my style, anyway."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_YouReallyAreAmazing",
+      "en_US": [
+        "Amazing!\n",
+        "{STRVAR_1 3, 6, 0}, you really are amazing!\r",
+        "Instead of just watching, maybe\n",
+        "I should become a Trainer, too."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_BelieveInMasterWithAllMyHeart",
+      "en_US": [
+        "I believe in Master {STRVAR_1 3, 0, 0}\n",
+        "with all my heart.\r",
+        "Even if I am the only one to\n",
+        "believe in him.\r",
+        "I won’t ever feel lonesome, though.\r",
+        "Not if I keep thinking about Master\n",
+        "{STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_YourBattleStyleIsEducational",
+      "en_US": [
+        "Hiyah!\r",
+        "Your battling style is most\n",
+        "educational.\r",
+        "I hope that you will keep plugging\n",
+        "away at success, hiyah!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_NeverBeFanOfAnyoneButMaster",
+      "en_US": [
+        "Hiyah! I respect my Master at the\n",
+        "Fighting Dojo.\r",
+        "I will never become a fan of\n",
+        "anyone other than my Master!\r",
+        "I will even sneak out of the Dojo\n",
+        "to spread word of his greatness.\r",
+        "Hiyah!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_IllAlwaysBelieveInYou",
+      "en_US": [
+        "I’ll always believe in you,\n",
+        "{STRVAR_1 3, 6, 0}.\r",
+        "Please show the others what you’re\n",
+        "like when you battle seriously."
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_EveryoneButMeStoppedBeingYourFan",
+      "en_US": [
+        "Everyone stopped being {STRVAR_1 3, 6, 0}’s\n",
+        "fan…\r",
+        "But that means I can have {STRVAR_1 3, 6, 0}\n",
+        "all to myself!\r",
+        "Yay! Go for it!\n",
+        "My one and only {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_CountingOnYou",
+      "en_US": [
+        "However hot it’s been…\r",
+        "And however cold it may get…\r",
+        "I’ve always believed in, and worn,\n",
+        "shorts!\r",
+        "I’m counting on you to keep\n",
+        "winning!\r",
+        "I believe in you just as much as\n",
+        "I believe in shorts!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_NeverSeenTrainerOfYourMagnificence",
+      "en_US": [
+        "I have journeyed far and wide\n",
+        "across the lands.\r",
+        "But never have I seen a Trainer\n",
+        "of your magnificence.\r",
+        "Take courage in your abilities\n",
+        "and keep battling on!\r",
+        "Make that a promise to me,\n",
+        "my young idol!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_ImYourNumberOneFan",
+      "en_US": [
+        "Oh, my goodness!\n",
+        "If it isn’t {STRVAR_1 3, 6, 0}!\r",
+        "It’s so disappointing… I realized\n",
+        "I’m your number-one-and-only fan!\r",
+        "Well, it can’t be helped!\n",
+        "Let me cheer you on, at least!\r",
+        "Hurray, hurray, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_ImOnlyOneLeftOfYourFans",
+      "en_US": [
+        "Yo, {STRVAR_1 3, 6, 0}!\r",
+        "Looks like I’m the only one left\n",
+        "out of your fans.\r",
+        "But, you know, I like being an only\n",
+        "fan… It’s less stressful.\r",
+        "Keep up and at it!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_ImYourOnlyFan",
+      "en_US": [
+        "I’m your only fan…\n",
+        "Sigh… This is lonely…\r",
+        "Can’t you try harder and make the\n",
+        "others take notice of you?"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_WontStopBeingYourFan",
+      "en_US": [
+        "Instead of just watching others\n",
+        "battle, battle yourself!\r",
+        "…My Dojo’s Master chewed me out\n",
+        "like that…\r",
+        "But I won’t let that stop me from\n",
+        "being your fan!\r",
+        "I can’t stop being your fan!"
+      ]
+    },
+    {
+      "id": "msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

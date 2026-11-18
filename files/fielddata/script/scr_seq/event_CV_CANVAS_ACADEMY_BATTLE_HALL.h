@@ -1,0 +1,12 @@
+#ifndef SCR_SEQ_CV_CANVAS_ACADEMY_BATTLE_HALL_H_
+#define SCR_SEQ_CV_CANVAS_ACADEMY_BATTLE_HALL_H_
+
+#define _EV_Academy_EventScript_RentalClerk 0
+#define _EV_Academy_EventScript_Briony 1
+#define _EV_Academy_EventScript_Teo 2
+
+#define LOCALID_ACADEMY_RENTAL_CLERK 1
+#define LOCALID_ACADEMY_CANDIDATE_BRIONY 2
+#define LOCALID_ACADEMY_CANDIDATE_TEO 3
+
+#endif

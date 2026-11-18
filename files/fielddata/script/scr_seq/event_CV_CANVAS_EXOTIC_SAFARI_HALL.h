@@ -1,0 +1,20 @@
+#ifndef SCR_SEQ_CV_CANVAS_EXOTIC_SAFARI_HALL_H_
+#define SCR_SEQ_CV_CANVAS_EXOTIC_SAFARI_HALL_H_
+
+#define _EV_ExoticSafari_Hall_EventScript_Attendant 0
+#define _EV_ExoticSafari_Hall_EventScript_AttendantDesk 1
+#define _EV_ExoticSafari_Hall_EventScript_Kiosk 2
+#define _EV_ExoticSafari_Hall_EventScript_EvoKiosk 3
+#define _EV_ExoticSafari_Hall_EventScript_DoorJohto 4
+#define _EV_ExoticSafari_Hall_EventScript_DoorHoenn 5
+#define _EV_ExoticSafari_Hall_EventScript_DoorSinnoh 6
+#define _EV_ExoticSafari_Hall_EventScript_DoorUnova 7
+#define _EV_ExoticSafari_Hall_EventScript_DoorKalos 8
+#define _EV_ExoticSafari_Hall_EventScript_DoorAlola 9
+#define _EV_ExoticSafari_Hall_EventScript_DoorGalar 10
+#define _EV_ExoticSafari_Hall_EventScript_DoorPaldea 11
+#define _EV_ExoticSafari_Hall_OnLoad 12
+#define _EV_ExoticSafari_Hall_OnTransition 13
+
+
+#endif

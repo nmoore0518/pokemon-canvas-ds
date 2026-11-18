@@ -31,7 +31,7 @@
             "x": 3,
             "z": 8,
             "header": "MAP_FUCHSIA",
-            "anchor": 8,
+            "anchor": 10,
             "y": 0
         },
         {
@@ -45,7 +45,7 @@
             "x": 3,
             "z": 1,
             "header": "MAP_FUCHSIA",
-            "anchor": 3,
+            "anchor": 5,
             "y": 0
         }
     ],

@@ -1,0 +1,132 @@
+{
+  "key": 19961,
+  "messages": [
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_NadiaHello",
+      "en_US": [
+        "Nadia: Nimbasa City, Unova.\n",
+        "Elesa’s my idol… and my rival,\r",
+        "honestly.\r",
+        "There’s only one Electric Gym\n",
+        "there. So I’m here to get good\r",
+        "enough that Unova needs two."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Reader1",
+      "en_US": [
+        "Shh! I’m reading about speed\n",
+        "tiers. There’s a whole shelf on\r",
+        "Pokémon that move at exactly\n",
+        "100!"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Reader2",
+      "en_US": [
+        "Every Gym in every region sends\n",
+        "its battle records here. I could\r",
+        "read in this library forever."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_MegaDoorGuard",
+      "en_US": [
+        "The Mega Evolution room is only\n",
+        "for trainers who carry a Key\r",
+        "Stone.\r",
+        "The headmaster decides who’s\n",
+        "ready. Collect all eight of\r",
+        "Kanto’s Badges, and maybe she’ll\n",
+        "decide it’s you!"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_BraceletCall",
+      "en_US": [
+        "Wisteria: {STRVAR_1 3, 6, 0}! A moment, if\n",
+        "you please. Come up to my desk."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet1",
+      "en_US": [
+        "Wisteria: Eight Badges. Every\n",
+        "Gym in Kanto. I’d say you’ve\r",
+        "learned all a lecture hall can\n",
+        "teach you.\r",
+        "But there’s one more thing a Gym\n",
+        "Leader should know. Have you\r",
+        "heard of Mega Evolution?"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet2",
+      "en_US": [
+        "When the bond between a trainer\n",
+        "and a Pokémon runs deep enough,\r",
+        "a Mega Stone and a Key Stone\n",
+        "together let it change, for one\r",
+        "battle, into something far\n",
+        "stronger.\r",
+        "This is my own Mega Bracelet.\n",
+        "Its Key Stone has waited a long\r",
+        "time for a trainer worth it.\n",
+        "Take it."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet3",
+      "en_US": [
+        "The door behind me leads to the\n",
+        "Mega Evolution room. Primrose\r",
+        "keeps the Academy’s Mega Stones\n",
+        "there.\r",
+        "She doesn’t simply hand them\n",
+        "out, mind you. A stone has to\r",
+        "choose you. She’ll explain."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateAsk",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
+        "{STRVAR_1 3, 1, 0}): A practice battle,\r",
+        "for BP?"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateHealed",
+      "en_US": [
+        "Your Pokémon were patched up\n",
+        "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

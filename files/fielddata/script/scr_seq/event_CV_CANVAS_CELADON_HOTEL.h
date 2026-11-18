@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_CELADON_HOTEL_H_
+#define SCR_SEQ_CV_CANVAS_CELADON_HOTEL_H_
+
+#define _EV_CeladonCity_Hotel_EventScript_Receptionist 0
+#define _EV_CeladonCity_Hotel_EventScript_Beauty 1
+#define _EV_CeladonCity_Hotel_EventScript_BeautyBoyfriend 2
+#define _EV_CeladonCity_Hotel_EventScript_BeautyBrother 3
+#define _EV_TrainingHouse_EventScript_Rosalind 4
+#define _EV_TrainingHouse_EventScript_Percival 5
+#define _EV_PaintWorld_EventScript_Figure 6
+
+
+#endif

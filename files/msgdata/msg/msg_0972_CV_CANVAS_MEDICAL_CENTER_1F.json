@@ -1,0 +1,236 @@
+{
+  "key": 19959,
+  "messages": [
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Welcome",
+      "en_US": [
+        "Welcome to the Universal Pokémon\n",
+        "Medical Center!\r",
+        "Shall we look after your Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_RightAway",
+      "en_US": "Right away!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_AllBetter",
+      "en_US": [
+        "All better!\n",
+        "Take care of them out there!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chansey",
+      "en_US": "Chansey: Chaaan-sey!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_gText_HowMayIServeYou",
+      "en_US": [
+        "Welcome!\r",
+        "How may I serve you?"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageAsk",
+      "en_US": [
+        "We’re swamped in the Er today!\r",
+        "Could you help? Read each patient’s\n",
+        "chart and give it the right\f",
+        "medicine.\r",
+        "Don’t worry, we’ll supply the\n",
+        "medicine!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart0",
+      "en_US": [
+        "Patient Chart: Psyduck\r",
+        "Red, blistered skin. Too hot to\n",
+        "touch. Keeps holding its head."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart1",
+      "en_US": [
+        "Patient Chart: Rattata\r",
+        "Purple in the face and shivering.\n",
+        "Bitten by a Tentacool."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart2",
+      "en_US": [
+        "Patient Chart: Pidgey\r",
+        "Can’t move a feather. Little\n",
+        "sparks crackle off its wings."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart3",
+      "en_US": [
+        "Patient Chart: Jigglypuff\r",
+        "Sang itself a lullaby and won’t\n",
+        "wake up. Snoring loudly."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart4",
+      "en_US": [
+        "Patient Chart: Charmander\r",
+        "Encased in ice up to the tail.\n",
+        "Its flame is barely flickering!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Chart5",
+      "en_US": [
+        "Patient Chart: Spinda\r",
+        "Walking in circles, bumping into\n",
+        "things. More than usual, even."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_OldMan",
+      "en_US": [
+        "My Pokémon ate something off the\n",
+        "floor of the S.S. Anne again.\r",
+        "Third time this month!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Girl",
+      "en_US": [
+        "Happiny’s here to visit the\n",
+        "Chansey! It wants to be a nurse\f",
+        "when it grows up."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Happiny",
+      "en_US": "Happiny: Happi! Happi!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Woman",
+      "en_US": [
+        "The wait’s not bad at all.\n",
+        "They see you right away here!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Youngster",
+      "en_US": [
+        "I’m not sick. I just come to watch\n",
+        "the Chansey work. They’re so fast!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Cabinet",
+      "en_US": [
+        "Rows and rows of medicine.\n",
+        "Everything’s neatly labeled."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Plaque",
+      "en_US": [
+        "Universal Pokémon Medical Center\n",
+        "Reception"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TakeCare",
+      "en_US": "Take care!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageThanks",
+      "en_US": [
+        "The Er’s never run so smoothly!\n",
+        "Thanks again!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageDone",
+      "en_US": [
+        "You treated every one of them!\n",
+        "Thank you so much!\r",
+        "Please, take these."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TriageUpstairs",
+      "en_US": [
+        "The wards upstairs could use a\n",
+        "hand, too. It’s chaos up there!"
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_PatientHappy",
+      "en_US": "It’s resting happily."
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_GiveWhich",
+      "en_US": "Give it which medicine?"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_BurnHeal",
+      "en_US": "Burn Heal"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Antidote",
+      "en_US": "Antidote"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_ParlyzHeal",
+      "en_US": "Parlyz Heal"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_Awakening",
+      "en_US": "Awakening"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_IceHeal",
+      "en_US": "Ice Heal"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_PersimBerry",
+      "en_US": "Persim Berry"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TreatRight",
+      "en_US": "It looks much better!"
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_TreatWrong",
+      "en_US": [
+        "Uh-oh… That didn’t help at all!\n",
+        "Better read the chart again."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_AllTreated",
+      "en_US": [
+        "That’s every patient treated!\n",
+        "The triage nurse looks impressed."
+      ]
+    },
+    {
+      "id": "msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

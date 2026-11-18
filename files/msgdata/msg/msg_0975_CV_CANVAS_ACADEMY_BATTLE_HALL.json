@@ -1,0 +1,91 @@
+{
+  "key": 19962,
+  "messages": [
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalClerk",
+      "en_US": [
+        "Welcome to the Battle Hall! Here\n",
+        "you battle with rental Pokémon:\r",
+        "three, from a list of six.\r",
+        "I’ll hold your team while you\n",
+        "battle. Every win pays BP, and\r",
+        "more the longer your streak!"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalAsk",
+      "en_US": [
+        "Would you like to take on the\n",
+        "Battle Hall?"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_BrionyHello",
+      "en_US": [
+        "Briony: Hammerlocke, Galar.\n",
+        "Raihan’s city.\r",
+        "In Galar, Gym Leaders battle in\n",
+        "stadiums for thousands. I’ve\r",
+        "battled in front of crowds since\n",
+        "I was nine. I don’t lose."
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_TeoHello",
+      "en_US": [
+        "Teo: I’m from Levincia, in\n",
+        "Paldea. Our Gym tests have you\r",
+        "hunt for things before you can\n",
+        "battle.\r",
+        "I’d make mine about building\n",
+        "something: Steel types, solid\r",
+        "and dependable. Like me!"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallBye",
+      "en_US": "Come back anytime!"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateAsk",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
+        "{STRVAR_1 3, 1, 0}): A practice battle,\r",
+        "for BP?"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateHealed",
+      "en_US": [
+        "Your Pokémon were patched up\n",
+        "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

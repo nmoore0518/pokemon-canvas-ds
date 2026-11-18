@@ -1,0 +1,49 @@
+{
+  "key": 19956,
+  "messages": [
+    {
+      "id": "msg_0969_CV_CANVAS_SAFARI_OFFICE_FuchsiaCity_SafariZone_Office_Text_WardenIsVeryKnowledgeable",
+      "en_US": [
+        "Warden Slowpoke is very\n",
+        "knowledgeable about Pokémon.\r",
+        "He even has some fossils of rare,\n",
+        "extinct Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0969_CV_CANVAS_SAFARI_OFFICE_FuchsiaCity_SafariZone_Office_Text_CouldntUnderstandWarden",
+      "en_US": [
+        "Warden Slowpoke came in, but\n",
+        "I couldn’t understand him.\r",
+        "I think he’s got a speech problem!"
+      ]
+    },
+    {
+      "id": "msg_0969_CV_CANVAS_SAFARI_OFFICE_FuchsiaCity_SafariZone_Office_Text_NicknamedWardenSlowpoke",
+      "en_US": [
+        "We nicknamed the Warden\n",
+        "“Slowpoke.”\r",
+        "You know, he has that vacant look\n",
+        "like a Slowpoke."
+      ]
+    },
+    {
+      "id": "msg_0969_CV_CANVAS_SAFARI_OFFICE_FuchsiaCity_SafariZone_Office_Text_PrizeInSafariZone",
+      "en_US": [
+        "Warden Slowpoke is running a\n",
+        "promotion campaign right now.\r",
+        "Try to get to the farthest corner\n",
+        "of the Safari Zone.\r",
+        "If you can make it, you’ll win a\n",
+        "very convenient prize."
+      ]
+    },
+    {
+      "id": "msg_0969_CV_CANVAS_SAFARI_OFFICE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

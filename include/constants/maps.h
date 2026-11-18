@@ -646,6 +646,23 @@
 #define MAP_CANVAS_SAFFRON_HOUSE                          637
 #define MAP_CANVAS_SAFFRON_TCG_HOUSE                      638
 #define MAP_CANVAS_CELADON_HOUSE1                         639
+#define MAP_CANVAS_CELADON_HOTEL                          640
+#define MAP_CANVAS_PIT_HALL                               641
+#define MAP_CANVAS_SAFARI_OFFICE                          642
+#define MAP_CANVAS_EXOTIC_SAFARI_HALL                     643
+#define MAP_CANVAS_SAFFRON_FAN_CLUB                       644
+#define MAP_CANVAS_MEDICAL_CENTER_1F                      645
+#define MAP_CANVAS_ACADEMY_CENTER                         646
+#define MAP_CANVAS_ACADEMY_HALL                           647
+#define MAP_CANVAS_ACADEMY_BATTLE_HALL                    648
+#define MAP_CANVAS_ACADEMY_LECTURE_A                      649
+#define MAP_CANVAS_ACADEMY_LECTURE_B                      650
+#define MAP_CANVAS_ACADEMY_LECTURE_C                      651
+#define MAP_CANVAS_ACADEMY_LECTURE_D                      652
+#define MAP_CANVAS_ACADEMY_MEGA_ROOM                      653
+#define MAP_CANVAS_UNDERGROUND_WEST                       654
+#define MAP_CANVAS_UNDERGROUND_EAST                       655
+#define MAP_CANVAS_UNDERGROUND_EW                         656
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

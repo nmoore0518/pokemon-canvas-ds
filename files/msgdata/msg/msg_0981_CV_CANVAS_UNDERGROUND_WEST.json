@@ -1,0 +1,19 @@
+{
+  "key": 19968,
+  "messages": [
+    {
+      "id": "msg_0981_CV_CANVAS_UNDERGROUND_WEST_UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon",
+      "en_US": [
+        "I heard a sleepy Pokémon appeared\n",
+        "out near Celadon City, too."
+      ]
+    },
+    {
+      "id": "msg_0981_CV_CANVAS_UNDERGROUND_WEST_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

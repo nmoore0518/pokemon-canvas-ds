@@ -1,0 +1,57 @@
+{
+  "key": 19960,
+  "messages": [
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_Academy_Text_EliasHello",
+      "en_US": [
+        "Elias: Sinnoh’s mountains are\n",
+        "where I learned to battle: Mt.\r",
+        "Coronet, all the way up.\r",
+        "Roark says a Ground Gym in\n",
+        "Snowpoint would be madness.\r",
+        "That’s exactly why I want it."
+      ]
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_Academy_Text_CandidateAsk",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
+        "{STRVAR_1 3, 1, 0}): A practice battle,\r",
+        "for BP?"
+      ]
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_Academy_Text_CandidateHealed",
+      "en_US": [
+        "Your Pokémon were patched up\n",
+        "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0973_CV_CANVAS_ACADEMY_CENTER_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

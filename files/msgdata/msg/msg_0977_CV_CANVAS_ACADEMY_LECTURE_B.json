@@ -1,0 +1,162 @@
+{
+  "key": 19964,
+  "messages": [
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_LectureBStudent",
+      "en_US": [
+        "Since Foxglove’s lecture, my\n",
+        "Earthquake hasn’t hit my own\r",
+        "partner once. Well… twice."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_TeacherMenu",
+      "en_US": "What shall we do?"
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_OptDemo",
+      "en_US": "Demo Battle"
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_OptLecture",
+      "en_US": "the Lecture"
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_OptBye",
+      "en_US": "That’s All"
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_FoxgloveLecture0",
+      "en_US": [
+        "Foxglove: Spread moves. My\n",
+        "favorite subject."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_FoxgloveLecture1",
+      "en_US": [
+        "Earthquake, Rock Slide, Heat\n",
+        "Wave, Dazzling Gleam, Muddy\r",
+        "Water, Hyper Voice: they hit\n",
+        "both foes at once.\r",
+        "A spread move does three\n",
+        "quarters of its damage to each\r",
+        "target. Two hits for the price\n",
+        "of one!"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_FoxgloveLecture2",
+      "en_US": [
+        "Careful: Earthquake and Surf hit\n",
+        "your partner too. Pair them with\r",
+        "a Flying type, a Levitate user,\n",
+        "or a Pokémon that absorbs Water.\r",
+        "Or have the partner Protect on\n",
+        "the turn you fire it."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_FoxgloveLecture3",
+      "en_US": [
+        "Wide Guard blocks spread moves\n",
+        "for your whole side. And Rock\r",
+        "Slide’s flinches add up fast.\r",
+        "In doubles, the best damage is\n",
+        "damage everywhere!"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_VerbenaLecture0",
+      "en_US": [
+        "Verbena: Positioning and\n",
+        "switching. Let’s go!"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_VerbenaLecture1",
+      "en_US": [
+        "In doubles, what’s on the field\n",
+        "next to what matters as much as\r",
+        "the Pokémon themselves.\r",
+        "Parting Shot, U-Turn and Volt\n",
+        "Switch bring in the right\r",
+        "partner. Fake out can be used\n",
+        "again each time a Pokémon comes\r",
+        "back in."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_VerbenaLecture2",
+      "en_US": [
+        "Intimidate lowers both foes’\n",
+        "Attack every time its Pokémon\r",
+        "comes in. Switch it out and back\n",
+        "to do it again.\r",
+        "Regenerator heals on every\n",
+        "switch. A Pokémon in the back is\r",
+        "a Pokémon resting."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_VerbenaLecture3",
+      "en_US": [
+        "Protect buys time for a switch\n",
+        "on the other side. And watch for\r",
+        "a slot the foe is about to\n",
+        "double up on.\r",
+        "Move your pieces before they\n",
+        "move you!"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_DemoIntro",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: A demonstration! A\n",
+        "double battle, and we both use\r",
+        "rentals, three each.\r",
+        "My team shows off the lesson.\n",
+        "Choose yours wisely!"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_DemoWon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Wonderful! Here,\n",
+        "you’ve earned it."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_RentalReturn",
+      "en_US": [
+        "Your own Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_DemoLost",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ha! Think about the\n",
+        "lesson and try again."
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0977_CV_CANVAS_ACADEMY_LECTURE_B_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

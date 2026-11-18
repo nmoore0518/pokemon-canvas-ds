@@ -615,9 +615,15 @@ GBA's standing in its lands, from whichever GBA map, at their own squares; its m
 People from another GBA map get ids after the main map's (`LID_OVER`). Scripted walks need no redoing: the layout
 is the GBA's.
 
-Not yet: fly destinations and the town map still point at HeartGold's Kanto; rooms the GBA has that we haven't built
-(the Hotel, the Academy's halls...) have doors that lead nowhere; Saffron's walls and the Academy's grounds are rows of
-stones; a gate with only one door outdoors stands on one side of it.
+Fly points and the places you come back to are moved in front of each town's new Pokemon Center (`spawns`:
+sSpawnMaps in the ARM9's data, changed in place). Rooms of the GBA's that HeartGold has no building for are built from
+their layouts: the small houses by `build_rooms.py` (HeartGold's house look and furniture), the rest (the Hotel,
+the Fan Club, the Safari Office, the Medical Center, the Academy's rooms, the Underground Path's east-west way...)
+by `build_interiors.py` in a plain house look. `test/world_reach.py` checks every door can be walked up to.
+
+Not yet: the town map (Pokegear) still shows HeartGold's Kanto; the Route 21 stadium cave and the rooms further in
+(the Pit, the Medical Center's upper floors, the Exotic Safari's regions) aren't built; the open ground round the
+world is woods or sea by whichever map is nearest, which leaves straight-edged shores in places.
 `test/shots.py LIST DIR` takes a screenshot per place from one ROM (it points the new-game location in RAM);
 `test/places.py` writes the list.
 

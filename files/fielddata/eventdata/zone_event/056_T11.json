@@ -476,6 +476,13 @@
             "y": 0
         },
         {
+            "x": 1268,
+            "z": 226,
+            "header": "MAP_CANVAS_SAFFRON_FAN_CLUB",
+            "anchor": 0,
+            "y": 0
+        },
+        {
             "x": 1222,
             "z": 232,
             "header": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",

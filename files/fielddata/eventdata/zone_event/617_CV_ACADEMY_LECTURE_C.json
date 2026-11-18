@@ -1,0 +1,81 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_ACADEMY_LECTURE_C.h",
+    "objects": [
+        {
+            "id": "LOCALID_ACADEMY_TEACHER_MARIGOLD",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Marigold + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 2,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_TEACHER_HYACINTH",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Hyacinth + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 7,
+            "z": 2,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_LECTURE_C_STUDENT",
+            "spriteId": "SPRITE_GSBOY3",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_LectureCStudent + 1",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 4,
+            "z": 6,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 3,
+            "z": 7,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 5,
+            "y": 0
+        },
+        {
+            "x": 4,
+            "z": 7,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 5,
+            "y": 0
+        },
+        {
+            "x": 5,
+            "z": 7,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 5,
+            "y": 0
+        }
+    ],
+    "bgs": [],
+    "coords": []
+}
