@@ -443,9 +443,27 @@ squares with the dark beyond, little closed patches inside rooms its things), th
   imported into the look's texture set (`IMPORTS`); their maps' map-load script runs `ViridianGymInit` (the
   porter's `GYMMICK_INIT`), which the slide tiles need;
 - HeartGold's untextured polygons take the texel nearest their material's colour (`untextured`).
-**The Rocket Hideout** is HeartGold's Team Rocket HQ (area 64, cut from its B1F, land 498): grey panelled walls
-with their lights and ducts, desks with monitors (B3F's), its potted plant (23) and blue machine (77) models,
-crates for the spin mazes' partitions.
+- pieces of furniture are cut whole (`whole`: every polygon whose middle is in the box, uncut: a desk cut square by
+  square was twice the polygons); a kit can stand a thing up as a card (`each`: HeartGold's cave boulder for the
+  Power Plant's rubble) or as a stone (a block with a texture's picture on top: a gravestone);
+- a kit's furniture metatiles are furniture wherever they stand, against a wall too (`named`);
+- a land must stay under 61400 bytes and about 1500 polygons: wall tops are drawn in runs where the kit's top is
+  one flat polygon; pieces from other lands bring their texture set's textures (`IMPORTS`, palettes by the source
+  model's own binding); HeartGold's indoor camera (type 4) for every kit floor.
+The looks (each HeartGold's own place of that kind):
+- **the Rocket Hideout**: Team Rocket HQ (area 64, its B1F, land 498): grey panelled walls with their lights and
+  ducts, desks with monitors (B3F's), its potted plant (23) and blue machine (77) models, crates for the spin
+  mazes' partitions (`low_inner`: a maze's walls out in a room are low);
+- **the Pokemon Tower**: Lavender's House of Memories (area 40, land 308): its cobbled floor, panelled wall with
+  windows, its gravestone as a stone a square wide (HeartGold's stand over four squares; the GBA's rows of graves
+  are a square apart); the Sprout Tower's wooden stairs up and HeartGold's stairs down (66, 67);
+- **Silph Co. 2F-11F, Cinnabar's Lab and Mart**: Silph Co.'s own lobby (area 39, land 303): blue tiled floor, pale
+  wall, its elevator door on the GBA's elevator; the Radio Tower's desks, chairs and stairs (land 462); crates;
+- **the Power Plant and Cinnabar's Gym**: Route 10's Power Plant (area 44, land 367): stone tiles, a wall of
+  machine cabinets; the GBA's rubble as Mt. Moon's boulder card, its coils as blocks of the generator's yellow;
+- **the Pokemon Mansion**: the Burned Tower (area 78, land 449): charred plank walls (scorched now and then), its
+  wooden floor, charred blocks for its furniture, the Sprout Tower's stairs.
+Not yet: Silph Co.'s elevator and card-key doors, the Mansion's statue switches (they change walls).
 
 ### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
 

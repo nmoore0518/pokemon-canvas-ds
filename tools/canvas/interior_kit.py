@@ -24,12 +24,67 @@ def _materials(blob):
     (name, e), = read_dict(blob, mdl0 + 8)[:1]
     m = mdl0 + u32(e, 0)
     mats_o = m + u32(blob, m + 8)
+    pal = {}
+    for pn, pe in read_dict(blob, mats_o + u16(blob, mats_o + 2)):
+        lo, n = u16(pe, 0), pe[2]
+        for k in range(n): pal[blob[mats_o + lo + k]] = pn.decode()
     out = {}
-    for mn, me in read_dict(blob, mats_o + 4):
+    for i, (mn, me) in enumerate(read_dict(blob, mats_o + 4)):
         o = mats_o + u32(me, 0)
         poly, tip = u32(blob, o + 12), u32(blob, o + 20)
-        out[mn.decode()] = ((tip >> 16) & 3, (tip >> 18) & 3, (poly >> 16) & 31)
+        out[mn.decode()] = ((tip >> 16) & 3, (tip >> 18) & 3, (poly >> 16) & 31, pal.get(i))
     return out
+
+
+def _colours(blob):
+    """material name -> the mean vertex colour (or diffuse) of its polygons, for the untextured ones"""
+    from bmdview import PARAMS, u32 as U32
+    mdl0 = u32(blob, 0x10)
+    (name, e), = read_dict(blob, mdl0 + 8)[:1]
+    m = mdl0 + u32(e, 0)
+    off_sbc, off_mat, off_shp = u32(blob, m + 4), u32(blob, m + 8), u32(blob, m + 12)
+    mats_o = m + off_mat
+    mats = read_dict(blob, mats_o + 4)
+    shps_o = m + off_shp
+    shps = read_dict(blob, shps_o)
+    sbc = blob[m + off_sbc:m + off_mat]
+    pairs, cur, i = [], None, 0
+    while i < len(sbc):
+        c = sbc[i] & 0x1F
+        if c == 0x04: cur = sbc[i + 1]; i += 2
+        elif c == 0x05: pairs.append((cur, sbc[i + 1])); i += 2
+        elif c == 0x01: break
+        elif c == 0x02: i += 3
+        elif c == 0x03: i += 2
+        elif c == 0x06: i += 4
+        elif c == 0x0B: i += 1
+        elif c == 0x06 + 0x20: i += 5
+        elif c == 0x09: i += 2 + 3 * sbc[i + 2]
+        else: i += 1
+    out = {}
+    for mi, si in pairs:
+        if mi is None or mi >= len(mats): continue
+        h = shps_o + u32(shps[si][1], 0)
+        dl = blob[h + u32(blob, h + 8):h + u32(blob, h + 8) + u32(blob, h + 12)]
+        cols, j = [], 0
+        while j + 4 <= len(dl):
+            codes = dl[j:j + 4]; j += 4
+            for cd in codes:
+                n = PARAMS.get(cd, 0)
+                if cd == 0x20:
+                    v = u32(dl, j); cols.append(((v & 31) * 8, ((v >> 5) & 31) * 8, ((v >> 10) & 31) * 8))
+                j += 4 * n
+        if cols: out[mats[mi][0].decode()] = tuple(sum(c[k] for c in cols) // len(cols) for k in range(3))
+    return out
+
+
+@functools.lru_cache(None)
+def land_colours(lid):
+    l = _lands()[lid]
+    ps, bs, ms, hs, mg, ss = struct.unpack_from('<4I2H', l, 0)
+    if mg != 0x1234: ss = 0
+    o = 0x14 + ss + ps + bs
+    return _colours(l[o:o + ms])
 
 
 @functools.lru_cache(None)
@@ -43,8 +98,10 @@ def land_polys(lid):
     sc, shapes = bmdview.model(blob)
     mats = _materials(blob)
     out = []
+    cols = _colours(blob)
     for mat, tex, prims in shapes:
-        opt = mats.get(mat, (1, 0, 31))
+        opt = mats.get(mat, (1, 0, 31, None))
+        if tex == '?' and mat in cols: tex = '?%d,%d,%d' % cols[mat]
         for prim, vs in prims:
             V = [((v[0] * sc + 256) / 16, v[1] * sc, (v[2] * sc + 256) / 16, v[3], v[4]) for v in vs]
             if prim == 0: polys = [V[i:i + 3] for i in range(0, len(V) - 2, 3)]
@@ -79,14 +136,19 @@ def area_of(poly):
     return abs(a) + abs(b) / 16 + abs(c) / 16
 
 
-def cut(lid, x0, z0, x1, z1, keep=None, drop=(), ymin=-1e9, ymax=1e9):
-    """the polygons of land lid in squares x0..x1, z0..z1, clipped to that box; keep/drop: textures"""
+def cut(lid, x0, z0, x1, z1, keep=None, drop=(), ymin=-1e9, ymax=1e9, whole=False):
+    """the polygons of land lid in squares x0..x1, z0..z1, clipped to that box; keep/drop: textures. whole: a
+    thing's polygons whole (those whose middle is in the box), not cut up"""
     out = []
     for tex, opt, p in land_polys(lid):
         if keep is not None and tex not in keep: continue
-        if tex in drop: continue
+        if tex in drop or (tex.startswith('?') and '?' in drop): continue
         cy = sum(v[1] for v in p) / len(p)
         if not ymin <= cy <= ymax: continue
+        if whole:
+            cx_, cz_ = sum(v[0] for v in p) / len(p), sum(v[2] for v in p) / len(p)
+            if x0 <= cx_ < x1 and z0 <= cz_ < z1: out.append((tex, opt, [(x - x0, y, z - z0, s, t) for x, y, z, s, t in p]))
+            continue
         if max(v[0] for v in p) <= x0 or min(v[0] for v in p) >= x1 or max(v[2] for v in p) <= z0 or min(v[2] for v in p) >= z1: continue
         q = p
         for k, v, ge in ((0, x0, True), (0, x1, False), (2, z0, True), (2, z1, False)):
@@ -175,7 +237,7 @@ def build_kit_floor(spec, depth_of):
     props, closed, under, hole_sq, holes, kind = BI._furnish(P, spec, depth_of, LOOK)
     texset = LOOK.get('texset', LOOK['area'])
     dims, pals = texdims(texset)
-    pal_of = lambda t_: next(p for p in (t_ + '_pl', t_, t_.split('.')[0] + '_pl') if p in pals)
+    pal_of = lambda t_, o=None: next(p for p in ((o[3] if o and len(o) > 3 else None), t_ + '_pl', t_, t_.split('.')[0] + '_pl') if p in pals)
     # furniture of the kit's, by the GBA's metatiles: each connected patch of a rule's metatiles gets its piece
     # tiled over it (or its model at the patch's middle)
     furn, laid_things = {}, []
@@ -209,7 +271,13 @@ def build_kit_floor(spec, depth_of):
         (walk(x, y) or (x, y) in furn or (x, y) in inside or (x, y) in closed or (x, y) in under or door(x, y))
     # (a wall a square thick with floor right behind it as well as in front is a partition: HeartGold's wall face is
     # three squares tall and would hide the floor behind it, so it is a low block - the GBA draws those low too)
-    wall0 = is_wall
+    # (squares the kit names a thing for are things wherever they stand, beside a wall or not: the GBA's rubble and
+    # coils lie against the Power Plant's walls)
+    listed = set().union(*[r['mt'] for r in KIT.get('things', []) + KIT.get('each', [])]) if (KIT.get('things') or KIT.get('each')) else set()
+    named = {(x, y) for y in range(H) for x in range(W) if lay.metatile(x, y) in listed and not walk(x, y) and not isvoid(x, y)}
+    inside |= named
+    wall1 = is_wall
+    wall0 = lambda x, y: wall1(x, y) and (x, y) not in named
     thin = {(x, y) for y in range(H) for x in range(W) if wall0(x, y) and not wall0(x, y - 1) and not isvoid(x, y - 1) and 0 <= y - 1
             and (walk(x, y - 1) or (x, y - 1) in P['things']) and (walk(x, y + 1) or (x, y + 1) in P['things'])}
     thin |= {(x, y) for y in range(H) for x in range(W) if wall0(x, y) and lay.metatile(x, y) in KIT.get('low_mt', ())}
@@ -225,7 +293,7 @@ def build_kit_floor(spec, depth_of):
                 for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                     n = (q[0] + dx, q[1] + dy)
                     if n not in seen_w and wall0(*n): seen_w.add(n); comp.append(n); stack.append(n)
-            if not any(0 <= q[0] + dx < W and 0 <= q[1] + dy < H and isvoid(q[0] + dx, q[1] + dy) for q in comp for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
+            if KIT.get('low_inner') and not any(0 <= q[0] + dx < W and 0 <= q[1] + dy < H and isvoid(q[0] + dx, q[1] + dy) for q in comp for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
                 thin |= set(comp)
     inside |= thin
     is_wall = lambda x, y: wall0(x, y) and (x, y) not in thin
@@ -235,16 +303,19 @@ def build_kit_floor(spec, depth_of):
     floor_p = Piece(lid, *KIT['floor'], base=base, keep=KIT.get('floor_tex'))
     ftex, fopt, fy, fa, fb, fc, fd = flat_uv(floor_p)
     top_p = Piece(lid, *KIT['top'], base=base)
+    top_flat = flat_uv(top_p) if len(top_p.polys) == 1 and len({round(v[1], 2) for v in top_p.polys[0][2]}) == 1 else None
     face = {k: Piece(lid, *v, base=base, drop=KIT.get('face_drop', ())) for k, v in KIT['faces'].items()}     # plain, ends, art (one square each)
     things_p = {}
     for rule in KIT.get('things', []):
-        if 'piece' in rule: things_p[id(rule)] = Piece(rule.get('src', lid), *rule['piece'], base=base, drop=rule.get('drop', ()))
+        if 'piece' in rule: things_p[id(rule)] = Piece(rule.get('src', lid), *rule['piece'], base=rule.get('base', base), drop=rule.get('drop', ()), whole=True)
     # stairs: HeartGold's own (a piece of its room) in place of the room models _furnish stands there; no floor of
     # ours under them (the piece has its own)
     stairs_p, stair_at = None, []
-    if 'stairs' in KIT:
-        sx, sz, sw, sh = KIT['stairs']
-        stairs_p = Piece(lid, sx, sz, sw, sh, base=base)
+    if 'stairs' in KIT or 'stairs_src' in KIT:
+        if 'stairs' in KIT:
+            sx, sz, sw, sh = KIT['stairs']; stairs_p = Piece(lid, sx, sz, sw, sh, base=base)
+        else:
+            sl, sx, sz, sw, sh, sb = KIT['stairs_src']; stairs_p = Piece(sl, sx, sz, sw, sh, base=sb)
         keep = []
         for m, x, z in props:
             if m in LOOK.get('stairs', ()):
@@ -261,10 +332,9 @@ def build_kit_floor(spec, depth_of):
         for x in range(W):
             b = lay.behavior(lay.metatile(x, y))
             if b in KIT.get('slides', {}): slide[(x, y)] = KIT['slides'][b]
-    block_p = Piece(KIT.get('block_src', lid), *KIT['block'], base=base, keep=KIT.get('block_keep')) if 'block' in KIT else None
+    block_p = Piece(KIT.get('block_src', lid), *KIT['block'], base=KIT.get('block_base', base), keep=KIT.get('block_keep')) if 'block' in KIT else None
     bdx, bdz = KIT.get('block_at', (0, 0))
     plain = {}
-    if KIT.get('untextured'): plain['?'] = plain_texel(texset, KIT['untextured'])
     anim = build_caves.anim_slots(LOOK['area'])
     nx_, nz_ = math.ceil(W / 32), math.ceil(H / 32)
     lands = []
@@ -275,9 +345,11 @@ def build_kit_floor(spec, depth_of):
             meshes = {}
 
             def emit(tex, opt, verts):
-                if tex == '?':
-                    if '?' not in plain: return
-                    tex, s_, t_ = plain['?']; verts = [(x, y, z, s_, t_) for x, y, z, _, _ in verts]; opt = (3, 0, 31)
+                if tex.startswith('?'):         # (HeartGold's untextured polygons: the texel nearest their colour)
+                    rgb = tuple(int(v) for v in tex[1:].split(',')) if len(tex) > 1 else KIT.get('untextured')
+                    if rgb is None: return
+                    if rgb not in plain: plain[rgb] = plain_texel(texset, rgb)
+                    tex, s_, t_ = plain[rgb]; verts = [(x, y, z, s_, t_) for x, y, z, _, _ in verts]; opt = (3, 0, 31, None)
                 if tex not in dims: return
                 key = (tex, opt)
                 m = meshes.setdefault(key, Mesh())
@@ -302,13 +374,19 @@ def build_kit_floor(spec, depth_of):
                               'stop': ((0, 32), (32, 32), (32, 0), (0, 0))}[d]
                         tex = KIT['arrow'] if d != 'stop' else KIT['stop']
                         q = [(x, 1, y + 1), (x + 1, 1, y + 1), (x + 1, 1, y), (x, 1, y)]
-                        emit(tex, (3, 0, 31), [(a, b_, c, *st) for (a, b_, c), st in zip(q, uv)])
+                        emit(tex, (3, 0, 31, None), [(a, b_, c, *st) for (a, b_, c), st in zip(q, uv)])
                 # the floor, in runs (under everything that is no wall)
                 xs = [x for x in range(X0, X1) if is_floor(x, y) and not (is_wall(x, y - 1) and False)]
                 for x0_, n_ in _runs(xs):
                     run_quad(ftex, fopt, fy, x0_, x0_ + n_, y, y + 1, fa, fb, fc, fd)
+                if top_flat:      # (a flat top: in runs)
+                    tt, to, ty, ta, tb, tc, td = top_flat
+                    for x0_, n_ in _runs([x for x in range(X0, X1) if is_wall(x, y) and not is_floor(x, y + 1)]):
+                        run_quad(tt, to, ty, x0_, x0_ + n_, y, y + 1, ta, tb, tc, td)
                 # walls: the face where floor lies south, else the top
                 for x in range(X0, X1):
+                    if door(x, y) and 'door' in face and is_wall(x - 1, y) | is_wall(x + 1, y):
+                        face['door'].lay(emit, x, y); continue      # (a door in the wall: the kit's)
                     if not is_wall(x, y): continue
                     if is_floor(x, y + 1):
                         wl, wr = is_wall(x - 1, y), is_wall(x + 1, y)
@@ -316,14 +394,37 @@ def build_kit_floor(spec, depth_of):
                         if not wr and is_floor(x + 1, y) and 'end_e' in face: f = 'end_e'
                         elif not wl and is_floor(x - 1, y) and 'end_w' in face: f = 'end_w'
                         elif art and art in face: f = art
-                        elif 'lit' in face and x % KIT.get('lit_every', 6) == 3 and wl and wr: f = 'lit'
+                        elif "lit" in face and x % KIT.get("lit_every", 6) == KIT.get("lit_every", 6) // 2 and wl and wr: f = "lit"
                         else: f = 'plain'
                         face[f].lay(emit, x, y)
-                    else:
+                    elif not top_flat:
                         top_p.lay(emit, x, y)
                 # closed squares inside a room with no furniture of the kit's: its block
                 for x in range(X0, X1):
-                    if (x, y) in block and block_p: block_p.lay(emit, x + bdx, y + bdz)
+                    if (x, y) not in block: continue
+                    mt_ = lay.metatile(x, y)
+                    each = next((r for r in KIT.get('each', []) if mt_ in r['mt']), None) or KIT.get('each_default')
+                    if each and 'card' in each:     # (a thing stood up as HeartGold stands its rocks and bushes: a card leaning back)
+                        c_ = each['card']; s0, t0, s1, t1 = c_['uv']
+                        a0, a1 = x + 0.5 - c_['w'] / 2, x + 0.5 + c_['w'] / 2
+                        emit(c_['tex'], (0, 0, 31, None), [(a0, 0, y + c_['zf'], s0, t1), (a1, 0, y + c_['zf'], s1, t1), (a1, c_['h'], y + c_['zt'], s1, t0), (a0, c_['h'], y + c_['zt'], s0, t0)])
+                        continue
+                    if each and 'stone' in each or 'stone' in KIT:        # (a stone of the kit's texture: its picture on top, its edge colour round it)
+                        st_ = each['stone'] if each and 'stone' in each else KIT['stone']
+                        a0, a1 = x + 0.5 - st_['w'] / 2, x + 0.5 + st_['w'] / 2
+                        b0, b1 = y + 0.5 - st_['d'] / 2, y + 0.5 + st_['d'] / 2
+                        hh = st_['h']; s0, t0, s1, t1 = st_['top']; ss_, tt_ = st_['side']
+                        emit(st_['tex'], (3, 0, 31, None), [(a0, hh, b1, s0, t1), (a1, hh, b1, s1, t1), (a1, hh, b0, s1, t0), (a0, hh, b0, s0, t0)])
+                        for q in ([(a0, 0, b1), (a1, 0, b1), (a1, hh, b1), (a0, hh, b1)], [(a1, 0, b1), (a1, 0, b0), (a1, hh, b0), (a1, hh, b1)],
+                                  [(a0, 0, b0), (a0, 0, b1), (a0, hh, b1), (a0, hh, b0)]):
+                            emit(st_['tex'], (3, 0, 31, None), [(*v, ss_, tt_) for v in q])
+                    elif block_p: block_p.lay(emit, x + bdx, y + bdz)
+            # round a staircase going down, the floor up to its well (the model's footprint)
+            for hx0, hz0, hx1, hz1, rx0, rz0, rx1, rz1 in holes:
+                if not (X0 * 16 <= hx0 < X1 * 16 and Z0 * 16 <= hz0 < Z1 * 16) or stairs_p: continue
+                for sx0, sz0, sx1, sz1 in ((hx0, hz0, hx1, rz0), (hx0, rz1, hx1, hz1), (hx0, rz0, rx0, rz1), (rx1, rz0, hx1, rz1)):
+                    if sx1 - sx0 < 0.5 or sz1 - sz0 < 0.5: continue
+                    run_quad(ftex, fopt, fy, sx0 / 16, sx1 / 16, sz0 / 16, sz1 / 16, fa, fb, fc, fd)
             for sx_, sy_, left in stair_at:
                 if X0 <= sx_ < X1 and Z0 <= sy_ < Z1:
                     (stairs_p if left else stairs_p.mirrored()).lay(emit, sx_, sy_)
@@ -338,6 +439,8 @@ def build_kit_floor(spec, depth_of):
                 cz0 = b0 + ((b1 - b0) - nz_p * pc.h) / 2 if rule.get('center') else b0
                 for j in range(nz_p):
                     for i in range(nx_p): pc.lay(emit, cx0 + i * pc.w, cz0 + j * pc.h)
+            if not meshes:          # (a land with nothing on it still needs a model: a scrap of floor, out of sight)
+                run_quad(ftex, fopt, -64, X0, X0 + 0.1, Z0, Z0 + 0.1, fa, fb, fc, fd)
             # (the area's animated materials hold their places)
             groups = []
             for i, t_ in enumerate(anim):
@@ -346,7 +449,7 @@ def build_kit_floor(spec, depth_of):
             for (t_, o), m in meshes.items():
                 nm = t_[:16] if t_ not in names else (t_[:13] + '_%d' % len(names))
                 names[t_] = 1
-                groups.append((nm, t_, pal_of(t_), m, {'repeat': o[0], 'flip': o[1], 'alpha': o[2], 'size': dims[t_]}))
+                groups.append((nm, t_, pal_of(t_, o), m, {'repeat': o[0], 'flip': o[1], 'alpha': o[2], 'size': dims[t_]}))
             model = build_model('cv_kit_%d' % (len(lands) + 10 * (int(spec['depth']) + 20)), groups)
             model += b'\0' * (-len(model) % 4)
             f4 = lambda v: int(round(v * 4096))
@@ -358,6 +461,7 @@ def build_kit_floor(spec, depth_of):
             p = struct.pack('<1024H', *perm)
             npoly = sum(len(m.quads) + len(m.tris) for m in meshes.values())
             print('  %s land %d: %d polygons, model %d bytes' % (spec['gba'], len(lands), npoly, len(model)))
+            if len(model) >= 61400: print('  TOO BIG', {k[0]: len(m.quads) + len(m.tris) for k, m in meshes.items()})
             assert len(model) < 61400, ('model too big for a land', spec['gba'], len(lands), len(model))
             lands.append(struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc)
     BI.USED_MODELS.setdefault(LOOK['area'], set()).update(m for m, *_ in props)
