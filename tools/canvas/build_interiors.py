@@ -726,7 +726,7 @@ IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair']), (64, ['aj_box01'])],
            44: [(70, ['d_rock01'])],
            18: [(75, ['pond_on', 'pond_edge', 'pond_un', 'road05_r']),          # (Kanto's overworld: build_overworld.py;
-                (11, ['ymb_fe01', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd07']),       # its towns' own grounds)
+                (11, ['ymb_fe01', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
                 (15, ['tama_yuka', 'tama_yuka2', 'tama_fuch']), (13, ['han_fe02', 'han_fe02_r']),
                 (14, ['sio_fe02', 'sio_fe02_r', 'sek_fe03_r']), (16, ['sek_fe03'])]}
 

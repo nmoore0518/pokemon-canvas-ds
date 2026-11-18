@@ -636,6 +636,8 @@ def _world_entries():
             for k in out:
                 for i, e in enumerate(mj.get(k, [])):
                     gx, gy = gx0 + e['x'], gy0 + e['y']
+                    if k == 'bg_events' and '%d,%d' % (gx, gy) in W.get('moved', {}):      # (a sign build_overworld moved)
+                        gx, gy = W['moved']['%d,%d' % (gx, gy)]
                     if owner(gx, gy) != X: continue
                     e = dict(e, x=gx - T0[0], y=gy - T0[1],
                              _open=0 <= e['x'] < lay.w and 0 <= e['y'] < lay.h and lay.collision(e['x'], e['y']) == 0)

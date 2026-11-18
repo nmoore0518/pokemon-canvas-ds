@@ -164,12 +164,13 @@ STATUE_RAMPS = {   # darkest to lightest; stone is the pedestal's own stone
 }
 
 
-def statue_texture():
-    """32x64 4bpp texture, colour 0 transparent: rows 0..31 HeartGold's own Chansey (her front-facing overworld
-    frame, from hg-engine's a/0/8/1) recoloured as a statue; rows 34..47 the GBA game's stone pedestal"""
+def statue_texture(name=STATUE_TEX, overworld='chansey_overworld.png'):
+    """32x64 4bpp texture, colour 0 transparent: rows 0..31 HeartGold's own Pokemon (its front-facing overworld
+    frame, from hg-engine's a/0/8/1) recoloured as a statue; rows 34..47 the GBA game's stone pedestal (Chansey's
+    here; the Leader Academy's Roserade, data/roserade_overworld.png, for build_overworld.py)"""
     from PIL import Image
     im = Image.open(os.path.join(HERE, 'data', 'chansey_statue.png')).convert('RGBA')
-    ow = Image.open(os.path.join(HERE, 'data', 'chansey_overworld.png')).convert('RGBA')
+    ow = Image.open(os.path.join(HERE, 'data', overworld)).convert('RGBA')
     ramp = STATUE_RAMPS[STATUE_FINISH]
     seen = sorted({ow.getpixel((x, y))[:3] for y in range(32) for x in range(32) if ow.getpixel((x, y))[3] >= 128},
                   key=lambda c: 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2])
@@ -193,7 +194,7 @@ def statue_texture():
     data = bytes(idx[i] | (idx[i + 1] << 4) for i in range(0, len(idx), 2))
     pal = b''.join(struct.pack('<H', (r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10)) for r, g, b in cols + [(0, 0, 0)] * (16 - len(cols)))
     prm = (2 << 20) | (3 << 23) | (3 << 26) | (1 << 29)
-    return (STATUE_TEX.encode(), prm, 32 | (64 << 11) | 0x80000000, data, b''), ((STATUE_TEX + '_pl').encode(), 0, pal)
+    return (name.encode(), prm, 32 | (64 << 11) | 0x80000000, data, b''), ((name + '_pl').encode(), 0, pal)
 
 
 def sand_edge_texture(texs, pals):
@@ -253,7 +254,8 @@ def _warm(c):
 
 _it.append((b'cv_deck',) + tuple(_src[1:]))
 _ip.append((b'cv_deck_pl', _srcp[1], b''.join(struct.pack('<H', _warm(struct.unpack_from('<H', _srcp[2], i)[0])) for i in range(0, len(_srcp[2]) - 1, 2))))
-_new_t, _new_p = [_st, _et] + _it, [_sp, _ep] + _ip
+_rt, _rp = statue_texture('cv_roserade', 'roserade_overworld.png')       # (the Leader Academy's statue)
+_new_t, _new_p = [_st, _et, _rt] + _it, [_sp, _ep, _rp] + _ip
 _t = [t for t in _t if t[0] not in {e[0] for e in _new_t}] + _new_t
 _p = [p for p in _p if p[0] not in {e[0] for e in _new_p}] + _new_p
 ts_files[TEXSET] = write_btx0(_t, _p)

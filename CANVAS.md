@@ -611,11 +611,26 @@ walked into (behaviour 0x6E).
 **The towns' ground** is each HeartGold town's own (`GROUND_STYLE`, its textures brought into set 18 by
 `build_interiors.py`; what each of HeartGold's towns lays most of): Saffron paved all over (`ymb_fe02`, its grass
 too) with its grey streets (`ymb_fe01`) wherever road is a square from anything else, Celadon `tama_yuka` with
-`tama_yuka2` streets the same way, the Academy `tama_yuka`, Vermilion `kbc_rd01`, Cerulean and Pewter `han_fe02`,
+`tama_yuka2` streets the same way, the Academy `tama_yuka`, Vermilion as HeartGold's (its orange tiles `kbc_rd02`, its
+plank-brick streets `kbc_rd01` with the `kbc_rd03` curb in a strip along them, a row of `kbc_rd10` blocks along the
+water, and its grass edge `kbc_rd07` laid over the tiles: its outer half is see-through, black with nothing under it), Cerulean and Pewter `han_fe02`,
 Lavender `sio_fe02` (paved all over), Fuchsia `sek_fe03`; each with its own edge in the grass beside it (laid as
 `road01_r`: their edges share its layout). Routes and Viridian keep `road01`. **No stitching** (Nick: two edge
 pieces back to back look stitched): a strip of grass between two roads narrower than three squares is road, and so
 is a square of grass no edge piece fits; roads with the same edge are one road to the grass beside them.
+
+**The Academy's front** (`PLAZAS`; Nick: "our flowers and Roserade statue... make it look pretty") is laid anew: paved,
+raised flower beds (HeartGold's grass and flowers on Fuchsia's brick), Goldenrod's street lamps (model 95) where the
+GBA's lamps stand, and the GBA's statue as HeartGold's own Roserade (its overworld frame from hg-engine,
+`data/roserade_overworld.png`, in `STATUE_FINISH` on the GBA's pedestal: `cv_roserade`, made by `build_pallet.py` as
+the Chansey statue is) on a 2x2 pedestal.
+
+**Signs** never stand in front of a door (a real one or a look-only house's) or under a building: such a sign moves
+to the nearest open square beside (not a person's, a door's front, or a narrow way), and its words move with it
+(`moved` in `data/kanto_world.json`, which the porter applies to the GBA's sign events). Signs side by side under a
+building (Cerulean's bike shop's bicycles) are one sign, the front one. A look-only house shows no door where
+something stands in front of it. Gatehouses are one to each GBA gatehouse: two of the GBA's to one room of
+HeartGold's (Route 11's east gate and Route 12's north gate) are two (once, one gatehouse stood between them).
 
 **Maps and areas**: each land is the HeartGold map of the GBA map with most squares in it (Route 23 and the Leader
 Academy get maps of ours); each of those maps gets an area of its own (140 on: set 18's textures, a building set of

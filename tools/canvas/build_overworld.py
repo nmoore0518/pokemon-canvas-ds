@@ -293,12 +293,24 @@ GROUND_STYLE = {
     'SaffronCity_Frlg': dict(side='ymb_fe02', street='ymb_fe01', edge='ymb_fe02_r', paved=True),
     'CeladonCity_Frlg': dict(side='tama_yuka', street='tama_yuka2', edge='tama_fuch'),
     'LeaderAcademy_Campus': dict(side='tama_yuka', edge='tama_fuch'),
-    'VermilionCity_Frlg': dict(side='kbc_rd01', edge='kbc_rd07'),
+    'VermilionCity_Frlg': dict(side='kbc_rd02', street='kbc_rd01', edge='kbc_rd07', under=True, curb='kbc_rd03', quay='kbc_rd10'),
     'CeruleanCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'PewterCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'LavenderTown_Frlg': dict(side='sio_fe02', edge='sio_fe02_r', paved=True),
     'FuchsiaCity_Frlg': dict(side='sek_fe03', edge='sek_fe03_r'),
 }
+EDGE_UNDER = {st['edge']: st['side'] for st in GROUND_STYLE.values() if st.get('under')}
+
+
+# a town's square laid out anew, in its GBA map's squares (Nick: the Academy's front, "our flowers and Roserade
+# statue... make it look pretty"): paved, with raised flower beds, HeartGold's street lamps and the GBA's statue in
+# HeartGold's own Roserade (cv_roserade, build_pallet.py); a sign moved off the hall's porch (old: new)
+PLAZAS = {
+    'LeaderAcademy_Campus': dict(pave=(15, 13, 26, 19), bed=[(17, 14, 2, 1), (23, 14, 2, 1), (16, 16, 2, 2), (24, 16, 2, 2)],
+                                 statue=[(20, 16, 2, 2)], lamp=[(16, 14), (25, 14)], signs={(19, 13): (19, 15)}),
+}
+LAMP_MODEL = 95             # (Goldenrod's street lamp)
+STATUES = {'LeaderAcademy_Campus': 'cv_roserade'}
 ROCK_TOP = 'cliff01gs'
 DOOR_MB = 0x69
 CAVE_MB = 0x6E              # (HeartGold's cave mouths: walked into)
@@ -450,14 +462,23 @@ def _gates(doors, dest, hgb, bldg, kind):
     for gx, gz, d, w in doors:
         room = dest.get(w['dest_map'])
         if room and (hgb.get(room, (None,))[0] in (GATE_NS, GATE_EW) or ('GATE' in room and room not in hgb)):
-            by_room.setdefault(room, []).append((gx, gz))
+            by_room.setdefault((room, w['dest_map']), []).append((gx, gz))
     out = {}
-    for room, ds in by_room.items():
+    mid = lambda c: (sum(q[0] for q in c) / len(c), sum(q[1] for q in c) / len(c))
+    # (a gatehouse a GBA gatehouse: its faces' doors, near one another - two of the GBA's to one room of HeartGold's
+    # are two gatehouses, Route 11's east one and Route 12's north one)
+    groups = []
+    for (room, _), ds in by_room.items():
         cl = []                                  # (the doors, two squares each: a cluster a face)
         for q in sorted(ds):
             c = next((c for c in cl if any(abs(q[0] - r[0]) + abs(q[1] - r[1]) <= 1 for r in c)), None)
             (c.append(q) if c else cl.append([q]))
-        mid = lambda c: (sum(q[0] for q in c) / len(c), sum(q[1] for q in c) / len(c))
+        gs = []
+        for c in cl:
+            g = next((g for g in gs if any(math.dist(mid(c), mid(o)) <= 12 for o in g)), None)
+            (g.append(c) if g else gs.append([c]))
+        groups += [(room, g) for g in gs]
+    for room, cl in groups:
         if len(cl) >= 2:
             (ax, az), (bx_, bz) = mid(cl[0]), mid(cl[1])
             ns = abs(bz - az) >= abs(bx_ - ax)
@@ -492,7 +513,8 @@ def _gates(doors, dest, hgb, bldg, kind):
             ps.append((GATE_EW, cx, cz, 0, (sc, 1, 1)))
             closed = {(x, z) for x in range(math.floor(cx - 3.75 * sc + 0.35), math.ceil(cx + 3.75 * sc - 0.35)) for z in range(math.floor(cz - 2.75 + 0.35), math.ceil(cz + 3.0 - 0.35))}
         dq = {q for c in cl for q in c}
-        out[room] = (ps, closed - dq, dq)
+        o = out.setdefault(room, ([], set(), set()))
+        o[0].extend(ps); o[1].update(closed - dq); o[2].update(dq)
     return out
 
 
@@ -500,6 +522,21 @@ def plan_world(W=None, woods=False):
     """everything the lands need, worked out once: kinds, trees, buildings and their squares, warps"""
     SEA_FILL.clear()
     W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds(W, woods)
+    moved = {}
+    for d, spec in ([] if woods else PLAZAS.items()):       # (a town's square laid out anew: the Academy's front)
+        if d not in W_: continue
+        x0, y0 = W_[d][:2]
+        X0, Z0, X1, Z1 = spec['pave']
+        for x in range(X0, X1 + 1):
+            for z in range(Z0, Z1 + 1): kind[(x0 + x, y0 + z)] = 'pave'
+        for k_ in ('bed', 'statue'):
+            for bx_, bz_, bw_, bh_ in spec[k_]:
+                for x in range(bx_, bx_ + bw_):
+                    for z in range(bz_, bz_ + bh_): kind[(x0 + x, y0 + z)] = k_
+        for x, z in spec['lamp']: kind[(x0 + x, y0 + z)] = 'lamp'
+        for (ax, az), (bx_, bz_) in spec['signs'].items():
+            kind[(x0 + bx_, y0 + bz_)] = 'sign'
+            moved[(x0 + ax, y0 + az)] = (x0 + bx_, y0 + bz_)
     orig = dict(kind)
     # (the open sea: the water joined to the sea round the world's maps - HeartGold's sea, moving; ponds stay ponds)
     sea, todo = set(SEA_FILL), list(SEA_FILL)
@@ -514,6 +551,7 @@ def plan_world(W=None, woods=False):
     # (more than a third, to its door's row) closed. A door that leads nowhere HeartGold has a building for is a
     # warp on its square, the GBA's building squares left as stones
     props, stands, door_sq, warps, done, placed = [], set(), set(), {}, set(), {}
+    fake_doors = []         # (the doors of houses that are only to look at)
     all_warps = [(x0 + wp['x'], y0 + wp['y'], d, wp) for d, (x0, y0, w, h) in W_.items() for wp in gba_map.map_json(d).get('warp_events', [])]
     gates = {} if woods else _gates(all_warps, dest, hgb, bldg, kind)      # (a forest's ways out are its edges)
     for room, (gprops, gstands, gdoors) in gates.items():
@@ -659,6 +697,7 @@ def plan_world(W=None, woods=False):
                 for c in comp: kind[c] = 'woods'       # (no room for a house of its own: trees)
                 continue
             props += hs
+            fake_doors += [p_ for p_ in hs if model_box(p_[0])[2] < 2.5]
             for c in comp: kind[c] = 'house'; stands.add(c)
         elif len(comp) >= 6 and not housey:
             for c in comp: kind[c] = 'rock'
@@ -716,6 +755,43 @@ def plan_world(W=None, woods=False):
             for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
                 if n in street and n not in comp: comp.add(n); todo.append(n)
         if len(comp) < 12: street -= comp
+    # (no sign in front of a door or under a building: moved to the nearest open square beside, its words with it)
+    rects = [r for r in map(prop_rect, props) if r]
+    inside = lambda q, m=0.0: any(r[0] + 0.4 - m < q[0] + 0.5 < r[2] - 0.4 + m and r[1] - m < q[1] + 0.5 < r[3] - 0.2 + m for r in rects)
+    fake_sq = {(int(p_[1]), int(p_[2] + 0.5)) for p_ in fake_doors}
+    front = lambda q: (q[0], q[1] - 1) in door_sq or (q[0], q[1] - 1) in warps or (q[0], q[1] - 1) in fake_sq
+    openk = ('pave', 'sand', 'grass')
+    people = {(W_[d][0] + e['x'], W_[d][1] + e['y']) for d in W_ for e in gba_map.map_json(d).get('object_events', [])}
+    # (signs side by side - the GBA's bicycles outside Cerulean's bike shop are signs - under a building: one sign,
+    # the front one; the rest closed squares the building stands over)
+    seen_s = set()
+    for q0 in sorted(q for q, v in kind.items() if v == 'sign'):
+        if q0 in seen_s: continue
+        comp, todo = {q0}, [q0]
+        while todo:
+            q = todo.pop()
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] - 1), (q[0], q[1] + 1)):
+                if n not in comp and kind.get(n) == 'sign': comp.add(n); todo.append(n)
+        seen_s |= comp
+        keep = max(comp, key=lambda q: (q[1], -q[0]))
+        for q in comp - {keep}:
+            if inside(q, 0.6): kind[q] = 'house'
+    for q in sorted(q for q, v in kind.items() if v == 'sign'):
+        if owner.get(q) in ('PalletTown_Frlg', 'CinnabarIsland_Frlg') or q in moved.values(): continue
+        if not (front(q) or inside(q)): continue
+        cands = [(max(abs(a), abs(b)), abs(a) + abs(b), b < 0, (q[0] + a, q[1] + b)) for a in range(-3, 4) for b in range(-3, 4) if a or b]
+        new_ = None
+        for *_, n in sorted(cands):
+            if kind.get(n) not in openk or n in door_sq or n in warps or n in people or front(n) or inside(n, 0.2): continue
+            nb4 = [(n[0] + a, n[1] + b) for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+            if any(kind.get(m) == 'sign' for m in nb4) or sum(kind.get(m) in openk for m in nb4) < 3: continue
+            new_ = n; break
+        ks = [kind.get((q[0] + a, q[1] + b)) for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+        kind[q] = max(openk, key=ks.count) if not inside(q) else 'house'
+        if new_: kind[new_] = 'sign'; moved[q] = new_
+    # (a house only to look at shows no door where something stands in front of it)
+    drop = {id(p_) for p_ in fake_doors if kind.get((int(p_[1]), int(p_[2] + 0.5) + 1)) not in openk + ('flower', 'tall')}
+    props = [p_ for p_ in props if id(p_) not in drop]
     # trees: one to a 2x2 block of woods, the blocks never overlapping, the woods' edge first (build_safari)
     full = lambda x, y: all(kind.get((x + a, y + b)) == 'woods' for a in (0, 1) for b in (0, 1))
     walk = [q for q, v in kind.items() if v in walkable or v == 'water']
@@ -748,7 +824,7 @@ def plan_world(W=None, woods=False):
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
-                trees=trees, loose=loose, cell_map=cell_map, street=street)
+                trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved)
 
 
 def build_land(P, cx, cz, base=None):
@@ -787,12 +863,50 @@ def build_land(P, cx, cz, base=None):
                 poly(t_, [((x * 16 + u, base + (h if tex == 'ground' else R.TIER), y * 16 + v), (x * 16 + u, y * 16 + v)) for u, v, h, s, t in pts])
             else:
                 poly(tex, [((x * 16 + u, base + h, y * 16 + v), (s, t)) for u, v, h, s, t in pts])
+    BED_H = 5
+
+    def planter(x, y):
+        """a square of a raised flower bed: HeartGold's grass and flowers on top, Fuchsia's brick round the sides
+        that face out of the bed"""
+        X, Z = x * 16, y * 16
+        poly(GROUND, [((X, BED_H, Z + 16), (X, Z + 16)), ((X + 16, BED_H, Z + 16), (X + 16, Z + 16)), ((X + 16, BED_H, Z), (X + 16, Z)), ((X, BED_H, Z), (X, Z))])
+        poly('flower01' if (x + y) % 2 else 'flower02', [((X, BED_H + 1, Z + 16), (0, 16)), ((X + 16, BED_H + 1, Z + 16), (16, 16)), ((X + 16, BED_H + 1, Z), (16, 0)), ((X, BED_H + 1, Z), (0, 0))])
+        for dx, dz in ((0, 1), (1, 0), (-1, 0), (0, -1)):
+            if K_(x + dx, y + dz) == 'bed': continue
+            if dz: zz = Z + (16 if dz > 0 else 0); a, b = (X, zz), (X + 16, zz)
+            else: xx = X + (16 if dx > 0 else 0); a, b = (xx, Z + 16), (xx, Z)
+            if dx < 0 or dz < 0: a, b = b, a
+            poly('sek_fe01', [((a[0], 0, a[1]), (0, BED_H)), ((b[0], 0, b[1]), (16, BED_H)), ((b[0], BED_H, b[1]), (16, 0)), ((a[0], BED_H, a[1]), (0, 0))])
+
+    def statue(x, y, tex):
+        """the GBA's statue on its 2x2 squares: the stone pedestal, and the Pokemon on it in HeartGold's own
+        overworld sprite (cv_roserade: its front frame, 22 texels square at 5..27, 8..30), stood up facing the camera
+        and leaning back as HeartGold's people do"""
+        x0, x1, z0, z1 = x * 16 + 1.5, x * 16 + 30.5, y * 16 + 2.5, y * 16 + 29.5
+        yb, yt = 0, 14
+        poly(tex, [((x0, yb, z1), (3, 47)), ((x1, yb, z1), (29, 47)), ((x1, yt, z1), (29, 34)), ((x0, yt, z1), (3, 34))])
+        poly(tex, [((x0, yt, z1), (5, 37)), ((x1, yt, z1), (26, 37)), ((x1, yt, z0), (26, 35)), ((x0, yt, z0), (5, 35))])
+        side = [(7, 43), (12, 43), (12, 38), (7, 38)]
+        for pts in ([(x0, z0), (x0, z1)], [(x1, z1), (x1, z0)], [(x1, z0), (x0, z0)]):
+            (ax, az), (bx_, bz_) = pts
+            poly(tex, [((ax, yb, az), side[0]), ((bx_, yb, bz_), side[1]), ((bx_, yt, bz_), side[2]), ((ax, yt, az), side[3])])
+        SC = 1.8
+        u0, u1, v0, v1 = 5, 27, 8, 30
+        w_ = (u1 - u0) * SC
+        xc, zc = x * 16 + 16, (z0 + z1) / 2 + 4
+        hgt = (v1 - v0) * SC
+        back = hgt * 0.6
+        poly(tex, [((xc - w_ / 2, yt, zc), (u0, v1)), ((xc + w_ / 2, yt, zc), (u1, v1)), ((xc + w_ / 2, yt + hgt * 0.8, zc - back), (u1, v0)), ((xc - w_ / 2, yt + hgt * 0.8, zc - back), (u0, v0))])
+
+    owner = P['owner']
     # the ground's skin under each square: the GBA's things stand on grass, or on the road beside them
     near = lambda q: abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18
     street = P.get('street', set())
     owner = P['owner']
     gst = lambda q: GROUND_STYLE.get(owner.get(q), {})
-    skin_at = lambda q: gst(q).get('street') if q in street else gst(q).get('side', SKIN['pave'])
+    # (Vermilion's harbour: a row of HeartGold's stone blocks along the water)
+    quay = lambda q: gst(q).get('quay') and any(K_(q[0] + a, q[1] + b) == 'water' for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+    skin_at = lambda q: gst(q).get('street') if q in street else gst(q)['quay'] if quay(q) else gst(q).get('side', SKIN['pave'])
     edge_at = lambda q: gst(q).get('edge', EDGE['pave'])
     # (the roads, by the edge each lays in the grass beside it)
     roads, rskin = {}, {}
@@ -801,7 +915,7 @@ def build_land(P, cx, cz, base=None):
     for y in range(Z0 - 1, Z1 + 1):
         for x in range(X0 - 1, X1 + 1):
             k = K_(x, y)
-            if k in ('house', 'door', 'stone', 'sign', 'fence', 'hedge'):
+            if k in ('house', 'door', 'stone', 'sign', 'fence', 'hedge', 'bed', 'lamp', 'statue'):
                 nb = [(x + a, y + b) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]
                 r = [n for n in nb if n in rskin]
                 if len(r) >= 2:
@@ -856,7 +970,26 @@ def build_land(P, cx, cz, base=None):
                 perm[i] = 0x65 if K_(x, y + 1) in (None, 'house', 'woods', 'rock', 'fence', 'stone') and K_(x, y - 1) in ('grass', 'sand', 'pave') else 0x3E
             if (x, y) in edged:
                 rr, nb = edged[(x, y)]
-                BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, pts), nb, x, y)
+                if rr in EDGE_UNDER:        # (an edge HeartGold lays over its pavement - Vermilion's: the pavement under it)
+                    flat(EDGE_UNDER[rr], x, y, x + 1, y + 1, 0)
+                    lift = lambda pts: [((p_[0], p_[1] + 0.3, p_[2]), st) for p_, st in pts]
+                    BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, lift(pts)), nb, x, y)
+                else:
+                    BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, pts), nb, x, y)
+            if (x, y) in street and gst((x, y)).get('curb'):
+                # (a street's curb: a strip of HeartGold's along each side it meets the pavement)
+                cb = gst((x, y))['curb']
+                for dx, dz in ((0, 1), (1, 0), (-1, 0), (0, -1)):
+                    n_ = (x + dx, y + dz)
+                    if n_ in street or K_(*n_) not in EDGE: continue
+                    X, Z, Wc = x * 16, y * 16, 5
+                    if dz:
+                        zo = Z + (16 if dz > 0 else 0); zi = zo - dz * Wc
+                        q4 = [((X, 0.3, zi), (0, X)), ((X + 16, 0.3, zi), (0, X + 16)), ((X + 16, 0.3, zo), (16, X + 16)), ((X, 0.3, zo), (16, X))]
+                    else:
+                        xo = X + (16 if dx > 0 else 0); xi = xo - dx * Wc
+                        q4 = [((xi, 0.3, Z + 16), (0, Z + 16)), ((xo, 0.3, Z + 16), (16, Z + 16)), ((xo, 0.3, Z), (16, Z)), ((xi, 0.3, Z), (0, Z))]
+                    poly(cb, q4)
             if k == 'water':
                 # the water: its middle in runs; a bank down into it along each side it meets land (a strip of
                 # HeartGold's bank a side: laid by distance a thin channel came to thousands of polygons a land)
@@ -896,6 +1029,12 @@ def build_land(P, cx, cz, base=None):
                                    ((xa + 8, R.GRASS_Y, za), (s0 + 8, t0)), ((xa, R.GRASS_Y, za), (s0, t0))])
             if k == 'flower':
                 poly('flower01' if (x + y) % 2 else 'flower02', [((x * 16, 1, y * 16 + 16), (0, 16)), ((x * 16 + 16, 1, y * 16 + 16), (16, 16)), ((x * 16 + 16, 1, y * 16), (16, 0)), ((x * 16, 1, y * 16), (0, 0))])
+            elif k == 'bed':
+                planter(x, y)
+            elif k == 'lamp':
+                props.append((LAMP_MODEL, U(x + 0.5, ox), 0, U(y + 0.6, oz)))
+            elif k == 'statue' and K_(x - 1, y) != 'statue' and K_(x, y - 1) != 'statue':
+                statue(x, y, STATUES.get(owner.get((x, y)), 'cv_roserade'))
             if k == 'hedge' or (x, y) in P['loose']: BS._card(poly, 'bush', x, y)
             elif k == 'stone': BS._card(poly, 'stone', x, y)
             elif k == 'fence':
@@ -941,7 +1080,7 @@ def build_land(P, cx, cz, base=None):
     order = [t for t in BS.FIRST if t in meshes] + [t for t in meshes if t not in BS.FIRST and t not in BS.ANIM]
     groups = [(t, t if t in meshes else 'pond_on', pal_of(t if t in meshes else 'pond_on'), meshes.get(t, Mesh()),
                {'repeat': 3, 'size': dims[t if t in meshes else 'pond_on']}) for t in BS.ANIM] + \
-             [(t, t, pal_of(t), meshes[t], {'repeat': 0 if t in ('tree01gs', 'etc_a', 'rock01', 'fence_b') else 3, 'size': dims[t]}) for t in order]
+             [(t, t, pal_of(t), meshes[t], {'repeat': 0 if t in ('tree01gs', 'etc_a', 'rock01', 'fence_b', 'cv_roserade') else 3, 'size': dims[t]}) for t in order]
     model = build_model('cv_kanto_%d_%d' % (cx, cz), groups)
     model += b'\0' * (-len(model) % 4)
     f4 = lambda v: int(round(v * 4096))
@@ -1114,7 +1253,7 @@ def building_sets(P, hdr_of):
     atex, atex_btnf = read_narc(open(BR.AREA_BUILD_TEX, 'rb').read())
     areas, areas_btnf = read_narc(open(BR.AREA_DATA, 'rb').read())
     bm, _ = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())
-    at = [(m, px, pz) for m, px, pz, py, *_ in P['props']] + [(SIGN_MODEL, x + 0.5, y + 0.5) for (x, y), k in P['kind'].items() if k == 'sign']
+    at = [(m, px, pz) for m, px, pz, py, *_ in P['props']] + [({'sign': SIGN_MODEL, 'lamp': LAMP_MODEL}[k], x + 0.5, y + 0.5) for (x, y), k in P['kind'].items() if k in ('sign', 'lamp')]
     maps = sorted(set(hdr_of.values()))
     area_of, report = {}, []
     for n, X in enumerate(maps):
@@ -1295,7 +1434,9 @@ def main():
     json.dump({'origin': ORIGIN, 'maps': {d: [ORIGIN[0] * 32 + v[0], ORIGIN[1] * 32 + v[1], v[2], v[3]] for d, v in P['W'].items()},
                'hg': {d: hgm[d] for d in P['W']},
                'cells': {'%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]): m for c, m in hdr_of.items()},
-               'custom': ['%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]) for c in CUSTOM], 'woods': woods},
+               'custom': ['%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]) for c in CUSTOM], 'woods': woods,
+               'moved': {'%d,%d' % (ORIGIN[0] * 32 + a[0], ORIGIN[1] * 32 + a[1]): [ORIGIN[0] * 32 + b[0], ORIGIN[1] * 32 + b[1]]
+                         for a, b in P['moved'].items()}},
               open(WORLD_JSON, 'w'), indent=1, sort_keys=True)
     print('world: %d lands (%d drawn alike shared), biggest model %d bytes; building sets up to %d models, %d bytes of textures'
           % (len(seen), CELLS[0] * CELLS[1] - len(CUSTOM) - len(seen), big, max(r[2] for r in rep), max(r[3] for r in rep)))
