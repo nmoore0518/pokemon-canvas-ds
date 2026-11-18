@@ -22,6 +22,7 @@ import trainers as TR
 RIVAL_STAGES, RIVAL_TEAMS = TR.rival_stages(), TR.rival_team_ids()
 TRAINER_IDS, SIMPLE_TRAINERS = TR.trainer_ids(), TR.simple_trainers()
 import slots
+import build_cinnabar as _CN     # (Cinnabar is widened: its squares move with it)
 
 ROOT = slots.ROOT
 SCR = os.path.join(ROOT, 'files/fielddata/script/scr_seq')
@@ -323,7 +324,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'CeladonCity_Frlg': ('MAP_CELADON', Auto('MAP_CELADON')),
     'SaffronCity_Frlg': ('MAP_SAFFRON', Auto('MAP_SAFFRON')),
     'FuchsiaCity_Frlg': ('MAP_FUCHSIA', Auto('MAP_FUCHSIA')),
-    'CinnabarIsland_Frlg': ('MAP_CINNABAR_ISLAND', lambda x, y, kind='pos': (1032 + x, 480 + y)),   # (our town: build_cinnabar.py)
+    'CinnabarIsland_Frlg': ('MAP_CINNABAR_ISLAND', lambda x, y, kind='pos': _CN.to_world(x, y)),   # (our town, widened: build_cinnabar.py)
     'IndigoPlateau_Exterior_Frlg': ('MAP_INDIGO_PLATEAU', Auto('MAP_INDIGO_PLATEAU')),
     'Route5_Frlg': ('MAP_ROUTE_5', Auto('MAP_ROUTE_5')),
     'Route6_Frlg': ('MAP_ROUTE_6', Auto('MAP_ROUTE_6')),

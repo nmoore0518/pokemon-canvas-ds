@@ -308,6 +308,11 @@ face, HeartGold's rounded outside corner and `wall01_d` inside corner, odd squar
 `wall01_g`, its lip `wall01_h`, its foot the ground's (`wall01_h` on the road's sand). The terraces down to the
 shore are two such tiers. A straight face that stops against something at its top's height shows that thing's
 side above its profile (the ends of the bridge between the two gardens); against stairs, its own end.
+**Pallet's bridge** between the two north gardens is stone (Fuchsia's stonework, `sek_fe01`/`sek_fe02`, brought
+into set 18): a deck level with the gardens from wall top to wall top, an arch face each side springing from the
+walls' feet, a low parapet. The GBA's road ran both over and under it; HeartGold has no such bridge (a square has
+one height, and none of HGSS's behaviours is the DPPt walk-under bridge), so the road keeps its way under it and
+the bridge is to look at: its ends are the gardens' walls.
 **Pallet's water** is HeartGold's sea (its Pallet's and Route 21's): the clear layer (`sea_on`) half a block under
 the ground, the water (`sea_un`) a unit under that, and from the land round it the bank (`pond_line`) and the
 water's edge sloping under (`sea_line02`), laid by distance, straight sides in runs. `sea_un`, `sea_on` and
@@ -395,9 +400,19 @@ spin-tile mazes are plain floor for now. The Safari Zone's four areas are built 
 Safari Zone (below), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the
 Secret House (Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are rooms the same way.
 **Cinnabar Island** (`build_cinnabar.py`): HeartGold's is the ruin after the eruption, so its land (205) is redrawn
-from the GBA town: HeartGold's sand, grass, sea and sea rocks, the GBA's collision, and HeartGold building models
-on the GBA's doors (Center, Mart, Gym; Oak's lab model for the Lab and the Mansion). Its warps are the GBA's, in
-order; the porter places its people on the GBA's squares directly. A first pass: flat ground, no fences or trees.
+from the GBA town: HeartGold's sand, grass, sea and sea rocks, and HeartGold building models on the GBA's doors
+(Center, Mart, Gym; Oak's lab model for the Lab and the Mansion). HeartGold's buildings are wider than the GBA's
+(its Gym reached past the east shore, its Lab into the Center), so the town is **widened** to 32x26: columns of
+copied ground put in at the west and east shores and between the buildings, a beach along the top, three rows
+on the way between the Mansion and Gym and the Lab, Center and Mart; one of the three sea columns west of it left
+out (`INS_COLS`, `DROP_COLS`, `INS_ROWS`; inserted squares copy the GBA's beside them, its buildings and signs as
+open ground). A building's collision is its model's box (squares it covers more than a third of, to its door's
+row), not the GBA's block; the GBA's signs are HeartGold's sign (29) where no building stands. The ground is
+grass in the middle, a beach two squares wide round it (the south keeps the GBA's own beach running into the
+grass), and between them HeartGold's road edge with the beach's sand in place of the road's (`cv_sand_r`, built
+in set 18 by `build_pallet.py`: HeartGold has no beach-to-grass edge). Its warps are the GBA's, in order; the
+porter places its people by `build_cinnabar.to_world`. (Movements aren't remapped: the scenes that walk people
+across the town are Bill's Sevii trip, which the hack removed.)
 
 ### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
 

@@ -106,6 +106,13 @@ for y in range(0, RH, 2):
 # the GBA map's own border trees stop where its rows did: carry the outer columns down the two new rows
 trees += [(OX, y) for y in range(H0, H1, 2)] + [(OX + W0 - 2, y) for y in range(H0, H1, 2)]
 kind = lambda x, y: cells[y][x] if 0 <= x < RW and 0 <= y < RH else None
+# the stone bridge between the two north gardens, over the road: the GBA's (elevation 15, walked over and under).
+# HeartGold has no bridge you walk both over and under (a square has one height), so the road keeps its way
+# under it and the bridge stands over it; its ends are the gardens' walls, closed
+BRIDGE = (17 + OX, 23 + OX, 7, 8)          # (its end columns, its rows)
+for _y in (BRIDGE[2], BRIDGE[3]):
+    for _x in (BRIDGE[0], BRIDGE[1]):
+        coll[_y][_x] = '1'
 
 # ---------------------------------------------------------------- heights (blocks), as in the 3D mock-up
 LOW, RAISE, WATER_DROP = -2.0, 1.0, 0.5      # (the sea's clear top half a block down, its water a unit under that, as HeartGold's)
@@ -189,10 +196,51 @@ def statue_texture():
     return (STATUE_TEX.encode(), prm, 32 | (64 << 11) | 0x80000000, data, b''), ((STATUE_TEX + '_pl').encode(), 0, pal)
 
 
+def sand_edge_texture(texs, pals):
+    """HeartGold has no edge between its beach sand (beach01) and grass: its road's edge (road01_r: grass, a dark
+    rim, then the road's yellow sand) with the beach's own sand in place of the road's (cv_sand_r, 256 colours)"""
+    from texview import decode
+    tex = lambda n: next(t for t in texs if t[0] == n.encode())
+    pal = lambda n: next(q for q in pals if q[0] == n.encode())[2]
+    road = decode(tex('road01_r')[1], tex('road01_r')[3], tex('road01_r')[4], pal('road01_r')).convert('RGB')
+    beach = decode(tex('beach01')[1], tex('beach01')[3], tex('beach01')[4], pal('beach01_pl')).convert('RGB')
+    lum = lambda c: 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2]
+    sandy = lambda c: c[0] > c[2] + 30 and c[0] >= c[1] - 12 and lum(c) > 150      # (the road's sand, not its rim)
+    green = lambda c: c[1] > c[0] + 10 and c[1] > c[2]
+    # (the rim between them: the beach's own shadow, halfway to the road's rim)
+    dark = min((beach.getpixel((x, y)) for x in range(beach.width) for y in range(beach.height)), key=lum)
+    rim = lambda c: tuple((a + 2 * b) // 3 for a, b in zip(c, dark))
+    w, h = road.size
+    cols, idx = [], bytearray()
+    for y in range(h):
+        for x in range(w):
+            c = road.getpixel((x, y))
+            if sandy(c): c = beach.getpixel((x % beach.width, y % beach.height))
+            elif not green(c): c = rim(c)
+            v = (c[0] >> 3) | (c[1] >> 3) << 5 | (c[2] >> 3) << 10
+            if v not in cols: cols.append(v)
+            idx.append(cols.index(v))
+    assert len(cols) <= 256
+    prm = tex('road01_r')[1] & ~(7 << 26) & ~(1 << 29) | (4 << 26)       # (8 bits a texel)
+    return (b'cv_sand_r', prm, tex('road01_r')[2], bytes(idx), b''), \
+        (b'cv_sand_r_pl', 0, b''.join(struct.pack('<H', c) for c in cols) + b'\0' * (-2 * len(cols) % 16))
+
+
+def imported(names, from_set):
+    """textures of another of HeartGold's sets, with their palettes (the stone bridge's: Fuchsia's stonework)"""
+    t, p = read_tex0(ts_files[from_set], tex0_of(ts_files[from_set]))
+    tt = [e for e in t if e[0].decode() in names]
+    pp = [q for q in p if q[0].decode() in {n + '_pl' for n in names} | set(names)]
+    return tt, pp
+
+
 _t, _p = read_tex0(ts_files[TEXSET], tex0_of(ts_files[TEXSET]))
 _st, _sp = statue_texture()
-_t = [t for t in _t if t[0] != _st[0]] + [_st]
-_p = [p for p in _p if p[0] != _sp[0]] + [_sp]
+_et, _ep = sand_edge_texture(_t, _p)
+_it, _ip = imported(('sek_fe01', 'sek_fe02'), 16)
+_new_t, _new_p = [_st, _et] + _it, [_sp, _ep] + _ip
+_t = [t for t in _t if t[0] not in {e[0] for e in _new_t}] + _new_t
+_p = [p for p in _p if p[0] not in {e[0] for e in _new_p}] + _new_p
 ts_files[TEXSET] = write_btx0(_t, _p)
 btx = ts_files[TEXSET]
 t0 = u32(btx, 0x10)
@@ -208,7 +256,7 @@ pal_of = lambda t: PAL_NAME.get(t) or next(p for p in (t + '_pl', t, t.replace('
 # there would scroll.
 ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']
 MATS = ['sea_un', 'sea_on', 'sea_line02', 'road01_r', 'road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'wall01_d',
-        'slope', 'pond_line', 'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
+        'slope', 'pond_line', 'sek_fe01', 'sek_fe02', 'cv_sand_r', 'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
 
 # ---------------------------------------------------------------- per-land geometry
 class Land:
@@ -455,6 +503,40 @@ for y in range(RH):
             tex = 'wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'
             if x2 == x + 1: wall_x(tex, x + 1, y, min(a, other), max(a, other), 16, (1 if a > other else -1, 0, 0))
             else: wall_z(tex, x, y + 1, min(a, other), max(a, other), 16, (0, 0, 1 if a > other else -1))
+
+# ---- the stone bridge: a deck of Fuchsia's stone slabs (sek_fe02) level with the gardens, from wall top to wall
+# top; its sides an arch of stone blocks (sek_fe01) over the road, springing from the walls' feet; a low parapet
+# along each side
+def bridge():
+    x0, x1, z0, z1 = BRIDGE[0] + 1 - 0.67, BRIDGE[1] + 0.67, BRIDGE[2], BRIDGE[3] + 1
+    top, deck = Y(RAISE), Y(RAISE) - 5
+    road = Y(0.0)
+    a, b = BRIDGE[0] + 1, BRIDGE[1]                 # (the arch springs at the walls)
+    under = lambda x: deck if not a < x < b else road + (deck - road) * max(0.0, 1 - ((x - (a + b) / 2) / ((b - a) / 2)) ** 2) ** 0.5
+    poly('sek_fe02', [((x0, top, z1), (x0 * 16, z1 * 16)), ((x1, top, z1), (x1 * 16, z1 * 16)), ((x1, top, z0), (x1 * 16, z0 * 16)), ((x0, top, z0), (x0 * 16, z0 * 16))])
+    steps = 20
+    for z in (z1, z0):
+        for i in range(steps):
+            xa, xb = a + (b - a) * i / steps, a + (b - a) * (i + 1) / steps
+            ya, yb = min(top, under(xa)), min(top, under(xb))
+            q = [((xa, ya, z), (xa * 16, 32 + (top - ya))), ((xb, yb, z), (xb * 16, 32 + (top - yb))), ((xb, top, z), (xb * 16, 32)), ((xa, top, z), (xa * 16, 32))]
+            poly('sek_fe01', q); poly('sek_fe01', q[::-1])        # (seen from either side)
+        # (the soffit: under the arch, seen walking under it)
+    for i in range(steps):
+        xa, xb = a + (b - a) * i / steps, a + (b - a) * (i + 1) / steps
+        ya, yb = under(xa), under(xb)
+        poly('sek_fe01', [((xa, ya, z0), (xa * 16, z0 * 16)), ((xb, yb, z0), (xb * 16, z0 * 16)), ((xb, yb, z1), (xb * 16, z1 * 16)), ((xa, ya, z1), (xa * 16, z1 * 16))])
+    # parapets: a low wall a fifth of a square thick along each side
+    for zo, zi in ((z0, z0 + 0.2), (z1, z1 - 0.2)):
+        ph = top + 7
+        poly('sek_fe01', [((x0, ph, max(zo, zi)), (x0 * 16, 0)), ((x1, ph, max(zo, zi)), (x1 * 16, 0)), ((x1, ph, min(zo, zi)), (x1 * 16, 4)), ((x0, ph, min(zo, zi)), (x0 * 16, 4))])
+        for z in (zo, zi):
+            poly('sek_fe01', [((x0, top, z), (x0 * 16, 7)), ((x1, top, z), (x1 * 16, 7)), ((x1, ph, z), (x1 * 16, 0)), ((x0, ph, z), (x0 * 16, 0))])
+        for x in (x0, x1):
+            poly('sek_fe01', [((x, top, zo), (0, 7)), ((x, top, zi), (4, 7)), ((x, ph, zi), (4, 0)), ((x, ph, zo), (0, 0))])
+
+
+bridge()
 
 # flowers: HeartGold's decals, one to a block
 for y in range(RH):
