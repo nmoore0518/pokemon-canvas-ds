@@ -601,6 +601,10 @@ the game crashed; Celadon's, the biggest, is 50 KB.
 in by (`wire`: rooms built from the GBA's layouts by its warp numbers, HeartGold's rooms by matching their ways out
 to the doors, side by side and in order).
 
+**Viridian Forest** is laid the same way in its own lands (`WOODS`: the GBA map in the middle of HeartGold's 2x3
+lands for it; its trees are tiles of its own, so its closed squares are woods), with its own area; its warps are the
+GBA's and the gatehouses' ways in lead to them.
+
 **People** (`port_map.py`, `data/kanto_world.json`): a HeartGold map's people, signs and trigger squares are the
 GBA's standing in its lands, from whichever GBA map, at their own squares; its map scripts are its main GBA map's.
 People from another GBA map get ids after the main map's (`LID_OVER`). Scripted walks need no redoing: the layout

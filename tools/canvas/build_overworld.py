@@ -148,12 +148,13 @@ def kinds(d):
     return out, doors, ledges
 
 
-def world_kinds():
+def world_kinds(W=None, woods=False):
     """the whole world's squares: {(gx, gz): kind}, doors [(gx, gz, GBA map, x, y)], ledges, the map each square is"""
-    W_, (WW, WH) = world()
+    W_, (WW, WH) = W or world()
     kind, owner, doors, ledges = {}, {}, [], {}
     for d, (x0, y0, w, h) in W_.items():
         k, dr, lg = kinds(d)
+        if woods: k = {q: ('woods' if v == 'stone' else v) for q, v in k.items()}      # (a forest's trees are its own tiles)
         for (x, y), v in k.items():
             kind[(x0 + x, y0 + y)] = v; owner[(x0 + x, y0 + y)] = d
         doors += [(x0 + x, y0 + y, d, x, y) for x, y in dr]
@@ -168,8 +169,9 @@ def world_kinds():
             wet = [q for q in side if kind.get(q) == 'water']
             if len(wet) * 2 >= len(side) or wetness[d] >= 0.4: sea |= set(wet)
     # (our Cinnabar is an island: the sea all round it)
-    x0, y0, w, h = W_['CinnabarIsland_Frlg']
-    sea |= {(x0 + i, y0 + j) for i in range(w) for j in range(h)}
+    if 'CinnabarIsland_Frlg' in W_:
+        x0, y0, w, h = W_['CinnabarIsland_Frlg']
+        sea |= {(x0 + i, y0 + j) for i in range(w) for j in range(h)}
     ring = [q for q in kind]
     near = {q: q in sea for q in kind}
     while ring:
@@ -368,9 +370,9 @@ def _gates(doors, dest, hgb, bldg, kind):
     return out
 
 
-def plan_world():
+def plan_world(W=None, woods=False):
     """everything the lands need, worked out once: kinds, trees, buildings and their squares, warps"""
-    W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds()
+    W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds(W, woods)
     dest = gba_dest()
     hgb = hg_buildings()
     walkable = ('grass', 'sand', 'pave', 'tall', 'flower', 'door', 'stairs')
@@ -379,14 +381,14 @@ def plan_world():
     # warp on its square, the GBA's building squares left as stones
     props, stands, door_sq, warps, done = [], set(), set(), {}, set()
     all_warps = [(x0 + wp['x'], y0 + wp['y'], d, wp) for d, (x0, y0, w, h) in W_.items() for wp in gba_map.map_json(d).get('warp_events', [])]
-    gates = _gates(all_warps, dest, hgb, bldg, kind)
+    gates = {} if woods else _gates(all_warps, dest, hgb, bldg, kind)      # (a forest's ways out are its edges)
     for room, (gprops, gstands, gdoors) in gates.items():
         props += gprops; stands |= gstands; door_sq |= gdoors
         done |= {(bldg.get(q), room) for q in gdoors}
     # (a way in the GBA draws in a rock face that HeartGold has a building for - the Pokemon Tower, the Power Plant -
     # is that building's door)
     is_door = {(gx, gz) for gx, gz, *_ in doors}
-    doors = doors + [(gx, gz, d, wp['x'], wp['y']) for gx, gz, d, wp in all_warps if (gx, gz) not in is_door
+    doors = doors + [(gx, gz, d, wp['x'], wp['y']) for gx, gz, d, wp in all_warps if (gx, gz) not in is_door and not woods
                      and hgb.get(dest.get(wp['dest_map'])) and dest.get(wp['dest_map']) not in gates and 'VICTORY' not in dest.get(wp['dest_map'])]
     for gx, gz, d, x, y in doors:
         gm = gba_map.map_json(d)
@@ -926,6 +928,75 @@ def spawns(hdr_of):
     return n
 
 
+# GBA maps of the outdoors kind that are rooms of their own (a matrix of their own): laid as the world is, the map
+# in the middle of its lands. GBA map: (HeartGold map, its corner in our lands, the lands across and down)
+WOODS = {'ViridianForest_Frlg': ('MAP_VIRIDIAN_FOREST', (5, 13), (2, 3))}
+WOODS_AREA = 199
+
+
+def build_woods(land):
+    """Viridian Forest on the GBA's layout: its lands (appended to `land`), its matrix, an area with the buildings it
+    stands up (the gatehouse at each end), its warps the GBA's, the gatehouses' ways in leading to them"""
+    from nitro import read_narc, write_narc, read_tex0, tex0_of, write_btx0, u16
+    import build_rooms as BR
+    dest = gba_dest()
+    out = {}
+    for gba, (m, (ox, oz), (nx, nz)) in WOODS.items():
+        lay = gba_map.Layout(gba_map.map_json(gba)['layout'])
+        P = plan_world(({gba: (ox, oz, lay.w, lay.h)}, (nx * 32, nz * 32)), woods=True)
+        lids = []
+        for cz in range(nz):
+            for cx in range(nx):
+                data, n, sz = build_land(P, cx, cz)
+                assert sz < 61400, (gba, cx, cz, sz)
+                lids.append(len(land)); land.append(data)
+        mpath = os.path.join(slots.MATRIX_DIR, slots.matrix_file(m))
+        d = bytearray(open(mpath, 'rb').read())
+        w, h, hh, ha, nl = d[:5]
+        assert (w, h) == (nx, nz), (m, w, h)
+        p = 5 + nl + (2 * w * h if hh else 0) + (w * h if ha else 0)
+        struct.pack_into('<%dH' % (w * h), d, p, *lids)
+        open(mpath, 'wb').write(bytes(d))
+        # its area: Pallet's look, a building set of its own
+        sets, sets_btnf = read_narc(open(BR.AREA_BUILD, 'rb').read())
+        atex, atex_btnf = read_narc(open(BR.AREA_BUILD_TEX, 'rb').read())
+        areas, areas_btnf = read_narc(open(BR.AREA_DATA, 'rb').read())
+        bm, _ = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())
+        k = WOODS_AREA
+        for lst in (sets, atex, areas): lst += [lst[BUILD_SET if lst is not areas else int(AREA)]] * max(0, k + 1 - len(lst))
+        areas[k] = struct.pack('<H', k) + areas[int(AREA)][2:]
+        ids = sorted({mm for mm, *_ in P['props']} | ({SIGN_MODEL} if any(v == 'sign' for v in P['kind'].values()) else set()))
+        sets[k] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
+        texs, pals, ht, hp = [], [], set(), set()
+        for mid in ids:
+            t0 = tex0_of(bm[mid])
+            if t0 is None: continue
+            mt, mp = read_tex0(bm[mid], t0)
+            texs += [t for t in mt if t[0] not in ht]; ht |= {t[0] for t in mt}
+            pals += [q for q in mp if q[0] not in hp]; hp |= {q[0] for q in mp}
+        atex[k] = write_btx0(texs, pals)
+        open(BR.AREA_BUILD, 'wb').write(write_narc(sets, sets_btnf))
+        open(BR.AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
+        open(BR.AREA_DATA, 'wb').write(write_narc(areas, areas_btnf))
+        slots.set_header(m, {'areaDataBank': str(k)})
+        # its warps: the GBA's, in order; each gatehouse's way in leads to the first of the doors facing it
+        path_of = lambda mm: os.path.join(slots.EVENT_DIR, slots.events_file(mm))
+        ev = json.load(open(path_of(m)))
+        gws = gba_map.map_json(gba)['warp_events']
+        ev['warps'] = [{'x': ox + w_['x'], 'z': oz + w_['y'], 'header': dest[w_['dest_map']], 'anchor': 0, 'y': 0} for w_ in gws]
+        for room in {dest[w_['dest_map']] for w_ in gws}:
+            mine = [i for i, w_ in enumerate(gws) if dest[w_['dest_map']] == room]
+            rev = json.load(open(path_of(room)))
+            back = [j for j, rw in enumerate(rev['warps']) if rw['header'] == m]
+            for i in mine: ev['warps'][i]['anchor'] = back[0] if back else 0
+            for j in back: rev['warps'][j]['anchor'] = mine[0]
+            json.dump(rev, open(path_of(room), 'w'), indent=4); open(path_of(room), 'a').write('\n')
+        json.dump(ev, open(path_of(m), 'w'), indent=4); open(path_of(m), 'a').write('\n')
+        out[gba] = [m, ox, oz]
+        print('%s: lands %s, %d buildings' % (gba, lids, len(P['props'])))
+    return out
+
+
 def main():
     from nitro import read_narc, write_narc
     new_maps()
@@ -949,6 +1020,7 @@ def main():
             if data not in seen:
                 seen[data] = len(land); land.append(data)
             cells[mc] = (seen[data], ids[hdr_of[(cx, cz)]], WORLD_ALT)
+    woods = build_woods(land)
     land = [d if d else land[209] for d in land]
     open(BS.LAND_NARC, 'wb').write(write_narc(land, land_btnf))
     write_matrix(cells)
@@ -962,7 +1034,7 @@ def main():
     json.dump({'origin': ORIGIN, 'maps': {d: [ORIGIN[0] * 32 + v[0], ORIGIN[1] * 32 + v[1], v[2], v[3]] for d, v in P['W'].items()},
                'hg': {d: hgm[d] for d in P['W']},
                'cells': {'%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]): m for c, m in hdr_of.items()},
-               'custom': ['%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]) for c in CUSTOM]},
+               'custom': ['%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]) for c in CUSTOM], 'woods': woods},
               open(WORLD_JSON, 'w'), indent=1, sort_keys=True)
     print('world: %d lands (%d drawn alike shared), biggest model %d bytes; building sets up to %d models, %d bytes of textures'
           % (len(seen), CELLS[0] * CELLS[1] - len(CUSTOM) - len(seen), big, max(r[2] for r in rep), max(r[3] for r in rep)))

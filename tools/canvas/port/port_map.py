@@ -643,6 +643,8 @@ def _world_entries():
 MAPS_HG = dict(MAPS)        # (the outdoor maps' own HeartGold maps, as build_overworld.py reads them)
 if WORLD:
     _world_entries()
+    for _d, (_m, _ox, _oz) in WORLD.get('woods', {}).items():      # (Viridian Forest: the GBA's, in its own lands)
+        MAPS[_d] = (_m, (lambda ox, oz: lambda x, y, kind='pos': (ox + x, oz + y))(_ox, _oz))
     INSERTS_DROP = ('PewterCity_EventScript_GymGuideTrigger',)     # (walks fitted to HeartGold's Pewter)
 
 

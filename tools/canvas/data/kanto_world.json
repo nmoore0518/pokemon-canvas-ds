@@ -493,5 +493,12 @@
  "origin": [
   30,
   2
- ]
+ ],
+ "woods": {
+  "ViridianForest_Frlg": [
+   "MAP_VIRIDIAN_FOREST",
+   5,
+   13
+  ]
+ }
 }

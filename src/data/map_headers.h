@@ -4425,7 +4425,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_VIRIDIAN_FOREST] = {
                         .wildEncounterBank = ENCDATA_D46R0101,
-                        .areaDataBank = 103,
+                        .areaDataBank = 199,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 5,
