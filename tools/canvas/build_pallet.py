@@ -14,6 +14,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from nitro import read_narc, write_narc, read_dict, patricia, read_tex0, tex0_of, write_btx0, u16, u32
 from g3d import Mesh, build_model
+import cave_kit as K
+import route_kit as R
+import build_safari as BS
 
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 F = lambda p: os.path.join(ROOT, p)
@@ -105,7 +108,8 @@ trees += [(OX, y) for y in range(H0, H1, 2)] + [(OX + W0 - 2, y) for y in range(
 kind = lambda x, y: cells[y][x] if 0 <= x < RW and 0 <= y < RH else None
 
 # ---------------------------------------------------------------- heights (blocks), as in the 3D mock-up
-LOW, RAISE, WATER_DROP = -2.0, 1.0, 0.25
+LOW, RAISE, WATER_DROP = -2.0, 1.0, 0.5      # (the sea's clear top half a block down, its water a unit under that, as HeartGold's)
+SEA_UN = 1 / 16
 topH = [[LOW if y >= 43 else 0.0 for x in range(RW)] for y in range(RH)]
 ramp = [[None] * RW for _ in range(RH)]
 rocky = [[False] * RW for _ in range(RH)]
@@ -197,13 +201,14 @@ for nm, e in read_dict(btx, t0 + u16(btx, t0 + 0xE)):
     prm = u32(e, 0)
     TEXDIMS[nm.decode()] = (8 << ((prm >> 20) & 7), 8 << ((prm >> 23) & 7))
 PALS = {nm.decode() for nm, _ in read_dict(btx, t0 + u32(btx, t0 + 0x34))}
-pal_of = lambda t: next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in PALS)
+PAL_NAME = {'sea_on': 'sea_f02_pl'}      # (HeartGold's own pairing)
+pal_of = lambda t: PAL_NAME.get(t) or next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in PALS)
 # HeartGold animates Pallet's map materials by index (area animation 0: pond_on, swave_p, pond_edge, sea_line02,
 # sea_un, sea_on, river, river_r), so those eight slots come first and only sea_un's is used; anything else put
 # there would scroll.
 ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']
-MATS = ['sea_un', 'road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'slope', 'pond_line',
-        'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
+MATS = ['sea_un', 'sea_on', 'sea_line02', 'road01_r', 'road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'wall01_d',
+        'slope', 'pond_line', 'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
 
 # ---------------------------------------------------------------- per-land geometry
 class Land:
@@ -266,6 +271,31 @@ def rim(x, y):
     return any(lower_by_tier(x, y, x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
 
 
+def rimsq(x, y):
+    """a square of cliff: not walkable, a tier above a square round it (the 8): one of HeartGold's pieces"""
+    return bool(lower_of(x, y))
+
+
+def lower_of(x, y):
+    """the squares round a closed square (dx, dz) a tier below it (the ground under the sea, for the sea)"""
+    if not (0 <= x < RW and 0 <= y < RH) or coll[y][x] != '1' or ramp[y][x] or kind(x, y) == 'W': return []
+    out = []
+    for dx in (-1, 0, 1):
+        for dz in (-1, 0, 1):
+            x2, y2 = x + dx, y + dz
+            if (dx or dz) and 0 <= x2 < RW and 0 <= y2 < RH and not (ramp[y2][x2] and ramp[y2][x2][2] == 'stairs') \
+                    and abs(topH[y][x] - topH[y2][x2] - 1.0) < 0.01:
+                out.append((dx, dz))
+    return out
+
+
+def road_nb(x, y):
+    """the road squares round a square of grass level with it (its edge lies in the grass)"""
+    if kind(x, y) in ('P', 'W', 'S') or ramp[y][x] or rimsq(x, y) or rocky[y][x]: return []
+    return [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and kind(x + dx, y + dz) == 'P'
+            and not ramp[y + dz][x + dx] and abs(topH[y + dz][x + dx] - topH[y][x]) < 0.01 and not rimsq(x + dx, y + dz)]
+
+
 def lower_by_tier(x, y, x2, y2):
     s2 = solid(x2, y2)
     return s2 is not None and not ramp[y2][x2] and abs(topH[y][x] - s2 - 1.0) < 0.01
@@ -290,8 +320,11 @@ for y in range(RH):
             quad('slope', [(x, Y(r[1]), y + 1), (x + 1, Y(r[1]), y + 1), (x + 1, Y(r[0]), y), (x, Y(r[0]), y)],
                  [(0, v), (32, v), (32, 0), (0, 0)], (0, 0.7, 0.7), owner)
             continue
-        if is_water(x, y): top_quad('sea_un', x, y, topH[y][x] - WATER_DROP, topH[y][x] - WATER_DROP); continue
-        if rim(x, y): continue                     # (its slope is the face: see below)
+        if is_water(x, y):
+            top_quad('sea_on', x, y, topH[y][x] - WATER_DROP, topH[y][x] - WATER_DROP)
+            top_quad('sea_un', x, y, topH[y][x] - WATER_DROP - SEA_UN, topH[y][x] - WATER_DROP - SEA_UN); continue
+        if rimsq(x, y): continue                   # (a piece of cliff: see below)
+        if road_nb(x, y): continue                 # (the road's edge: see below)
         top_quad(ground_tex(x, y), x, y, topH[y][x], topH[y][x])
 
 
@@ -317,72 +350,111 @@ def emit_flat():
 emit_flat()
 
 
-def face(hi, lo):
-    if is_water(*lo) and not is_water(*hi): return 'pond_line', 25.6
-    return ('wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'), 16
+def poly(tex, pts):
+    """a polygon in the region: pts [((x, y, z) in blocks, units, blocks, (s, t))]; owned by the land its middle is in"""
+    cx, cz = sum(p[0][0] for p in pts) / len(pts), sum(p[0][2] for p in pts) / len(pts)
+    ld = lands[(min(BW - 1, max(0, int(cx) // 32)), min(BH - 1, max(0, int(cz) // 32)))]
+    vs = [((ld.local(x, z)[0], y, ld.local(x, z)[1]), st) for (x, y, z), st in pts]
+    if len(vs) == 4: ld.mesh[tex].quad(vs, UP)
+    elif len(vs) == 3: ld.mesh[tex].tri(vs, UP)
+    else:
+        for i in range(1, len(vs) - 1): ld.mesh[tex].tri([vs[0], vs[i], vs[i + 1]], UP)
 
 
-# HeartGold's cliff profile (read off its own maps: the same in caves and outside): (back in blocks, height up, row)
-CLIFF = [(0, 0, 15.75), (0.21, 0.1, 13), (0.67, 1.0, 4), (1.0, 1.0, 0.25)]
-SLANTED = set()
-
-
-def slanted_face(lo, n):
-    """the face from ground square lo up into the rim square lo+n, leaning back across it; corners mitred"""
-    (x, y) = lo
-    hi = (x + n[0], y + n[1])
-    t = (1, 0) if n[0] == 0 else (0, 1)
-    top = topH[hi[1]][hi[0]]
-    # (the plateau goes on there: its own ground, or stairs that climb to it - the face runs straight up to them)
-    same = lambda xx, yy: 0 <= xx < RW and 0 <= yy < RH and (max(ramp[yy][xx][:2]) >= top - 0.01 if ramp[yy][xx] else topH[yy][xx] >= top - 0.01)
-    ex, ey = x + (1 if n[0] > 0 else 0), y + (1 if n[1] > 0 else 0)
-    ends, dirs = [], []
-    for j, sgn in ((0, -1), (1, 1)):
-        side, diag = (x + sgn * t[0], y + sgn * t[1]), (x + sgn * t[0] + n[0], y + sgn * t[1] + n[1])
-        on_ramp = lambda xx, yy: 0 <= xx < RW and 0 <= yy < RH and ramp[yy][xx]
-        if same(*side): d = (n[0] + sgn * t[0], n[1] + sgn * t[1])          # (an inside corner)
-        elif same(*diag) or on_ramp(*diag): d = n                            # (straight on: stairs or falls beside
-                                                                             # it have their own side wall)
-        else: d = (n[0] - sgn * t[0], n[1] - sgn * t[1])                     # (an outside corner)
-        ends.append((ex + t[0] * j, ey + t[1] * j)); dirs.append(d)
-    tex = 'wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'
-    base = solid(x, y)
-    u = [(e[0] if n[0] == 0 else e[1]) * 16 for e in ends]
-    nrm = (-n[0] * 0.6, 0.8, -n[1] * 0.6)
-    P = lambda k, d, h: (ends[k][0] + dirs[k][0] * d, Y(base + h), ends[k][1] + dirs[k][1] * d)
-    # where the face ends against walkable ground of the plateau, close the end of its slope (or the dark
-    # beneath shows through as a triangle)
-    for k, sgn in ((0, -1), (1, 1)):
-        diag = (x + sgn * t[0] + n[0], y + sgn * t[1] + n[1])
-        if dirs[k] == n and 0 <= diag[0] < RW and 0 <= diag[1] < RH and not ramp[diag[1]][diag[0]] and not rim(*diag) \
-                and topH[diag[1]][diag[0]] >= top - 0.01:
-            quad(tex, [P(k, 0, 0), P(k, 0, 1.0), P(k, 1.0, 1.0), P(k, 0.67, 1.0)], [(u[k], 15.75), (u[k] + 16, 0.25), (u[k] + 16, 0.25), (u[k] + 8, 4)],
-                 (t[0] * sgn, 0, t[1] * sgn), lands[(hi[0] // 32, hi[1] // 32)])
-    for (d0, h0, v0), (d1, h1, v1) in zip(CLIFF, CLIFF[1:]):
-        quad(tex, [P(0, d0, h0), P(1, d0, h0), P(1, d1, h1), P(0, d1, h1)], [(u[0], v0), (u[1], v0), (u[1], v1), (u[0], v1)],
-             nrm, lands[(hi[0] // 32, hi[1] // 32)])
-
-
+# ---- cliffs: a piece of HeartGold's to every square of cliff, chosen by which squares round it are lower
+# (route_kit: its straight face, its own rounded outside corner and wall01_d inside corner, odd squares laid by
+# distance). A plateau's face is wall01_g, its lip on top the rock's (wall01_h); its foot the ground's
 for y in range(RH):
     for x in range(RW):
-        for n in ((0, -1), (0, 1), (-1, 0), (1, 0)):
-            if rim(x + n[0], y + n[1]) and lower_by_tier(x + n[0], y + n[1], x, y) and coll[y][x] is not None:
-                slanted_face((x, y), n)
-                SLANTED.add(((x, y), (x + n[0], y + n[1])))
+        low = lower_of(x, y)
+        if not low: continue
+        n0 = next((n for n in R.SIDE if n in low), low[0])
+        foot_k = kind(x + n0[0], y + n0[1])
+        look = dict(foot='wall01_h' if foot_k == 'P' else 'wall01_g', face='wall01_g', lip='wall01_h')
+        foot = topH[y][x] - 1.0
+        under = 'road01' if foot_k == 'P' else 'grass01gs'
+        for tex, pts in R.rock_piece(low, x, y, LAND_NARC, look):
+            if tex == 'ground':
+                poly(under, [((x + u / 16, Y(foot) + h, y + v / 16), (x * 16 + u, y * 16 + v)) for u, v, h, s, t in pts])
+            elif tex == 'top':
+                poly(ground_tex(x, y), [((x + u / 16, Y(topH[y][x]), y + v / 16), (x * 16 + u, y * 16 + v)) for u, v, h, s, t in pts])
+            else:
+                poly(tex, [((x + u / 16, Y(foot) + h, y + v / 16), (s, t)) for u, v, h, s, t in pts])
+        # (a straight face stopping against what stands at its top's height - stairs, the end of the bridge -
+        # shows its end: the profile, closed down to its foot)
+        kd = K.classify(low)
+        if kd[0] == 'straight':
+            n = kd[1]
+            tdir = (1, 0) if n[0] == 0 else (0, 1)
+            for sg in (-1, 1):
+                ax, ay = x + sg * tdir[0], y + sg * tdir[1]
+                if not (0 <= ax < RW and 0 <= ay < RH) or rimsq(ax, ay) or topH[ay][ax] < topH[y][x] - 0.01 and not ramp[ay][ax]: continue
+                pts = []
+                # (beside stairs the face's own end shows, above the ramp: its profile down to the foot. Beside
+                # ground at the top's height - the end of the bridge - that ground's side shows above the profile)
+                prof = R.PROFILE + [(1.0, 0.0, 15.6)] if ramp[ay][ax] else R.PROFILE + [(0.0, 16.0, 0.5)]
+                for d, h, t in prof:
+                    # d across from the lower side, at the end sg along
+                    cx_ = (x + (0.5 + sg * 0.5) if n[0] == 0 else x + (d if n[0] < 0 else 1 - d))
+                    cz_ = (y + (d if n[1] < 0 else 1 - d) if n[0] == 0 else y + (0.5 + sg * 0.5))
+                    pts.append(((cx_, Y(foot) + h, cz_), (d * 16, t)))
+                poly('wall01_g', pts)
 
+# ---- the road's edge, in the grass beside it (HeartGold's road01_r: build_safari's sand edge)
+for y in range(RH):
+    for x in range(RW):
+        nb = road_nb(x, y)
+        if not nb: continue
+        h = Y(topH[y][x])
+        BS._sand_edge(lambda tex, pts: poly('grass01gs' if tex == BS.GROUND else tex, [((X / 16, h, Z / 16), st) for (X, _, Z), st in pts]), nb, x, y)
+
+# ---- the sea's shore: HeartGold's (its Pallet and Route 21): the bank (pond_line) inside the water's squares from
+# the land, the water's edge (sea_line02) sloping under, laid by distance from the land round it (straight sides
+# in runs); the sea's two layers lie under all of it
+SEA_EDGE = [(0.16, -1.5, 40.0), (0.22, -6.2, 47.6), (0.55, -9.6, 64.0)]
+water_like = lambda x, y: not (0 <= x < RW and 0 <= y < RH) or is_water(x, y) or (ramp[y][x] and ramp[y][x][2] == 'water')
+shore_runs = {}
+for y in range(RH):
+    for x in range(RW):
+        if not is_water(x, y): continue
+        land = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and not water_like(x + dx, y + dz)]
+        if not land: continue
+        g = Y(topH[y][x])
+        kd = K.classify(land)
+        if kd[0] == 'straight':
+            n = kd[1]
+            shore_runs.setdefault((n, y if n[0] == 0 else x, g), set()).add(x if n[0] == 0 else y)
+            continue
+        along = lambda part, u, v: (y * 16 + v * 16) if part[0] == 'x' else (x * 16 + u * 16)
+        for tex, prof in (('pond_line', R.BANK), ('sea_line02', SEA_EDGE)):
+            for part, rng, f, pl in K.laid(land, prof):
+                poly(tex, [((x + u, g + K.along_profile(prof, f(u, v))[0], y + v), (along(part, u, v), K.along_profile(prof, f(u, v))[1])) for u, v in pl])
+for (n, line, g), al in shore_runs.items():
+    dx, dz = n
+    for a, b in BS._runs(sorted(al)):
+        def P(d, at, h):
+            if dz: return (at, g + h, line + (d if dz < 0 else 1 - d))
+            return (line + (d if dx < 0 else 1 - d), g + h, at)
+        for tex, prof in (('pond_line', R.BANK), ('sea_line02', SEA_EDGE)):
+            for (d0, h0, t0), (d1, h1, t1) in zip(prof, prof[1:]):
+                poly(tex, [(P(d0, a, h0), (a * 16, t0)), (P(d0, b, h0), (b * 16, t0)), (P(d1, b, h1), (b * 16, t1)), (P(d1, a, h1), (a * 16, t1))])
+
+# ---- what the pieces leave: a face beside stairs or the falls (their sides), and a drop of more than a tier
 for y in range(RH):
     for x in range(RW):
         a, right, down = solid(x, y), solid(x + 1, y), solid(x, y + 1)
-        slanted = lambda p, q: (p, q) in SLANTED or (q, p) in SLANTED
-        if right is not None and abs(a - right) > 0.01 and not slanted((x, y), (x + 1, y)):
-            hi, lo = ((x, y), (x + 1, y)) if a > right else ((x + 1, y), (x, y))
-            t, vs = face(hi, lo)
-            wall_x(t, x + 1, y, min(a, right), max(a, right), vs, (1 if a > right else -1, 0, 0))
-        falls = lambda xx, yy: 0 <= yy < RH and ramp[yy][xx] and ramp[yy][xx][2] == 'water'
-        if down is not None and abs(a - down) > 0.01 and not (falls(x, y) and falls(x, y + 1)) and not slanted((x, y), (x, y + 1)):
-            hi, lo = ((x, y), (x, y + 1)) if a > down else ((x, y + 1), (x, y))
-            t, vs = face(hi, lo)
-            wall_z(t, x, y + 1, min(a, down), max(a, down), vs, (0, 0, 1 if a > down else -1))
+        for (x2, y2), other in (((x + 1, y), right), ((x, y + 1), down)):
+            if other is None or abs(a - other) < 0.01: continue
+            hi, lo = ((x, y), (x2, y2)) if a > other else ((x2, y2), (x, y))
+            rp = lambda q: ramp[q[1]][q[0]]
+            if not rp(hi) and not rp(lo):
+                if water_like(*lo) and water_like(*hi): continue
+                if water_like(*lo) and abs(topH[lo[1]][lo[0]] - topH[hi[1]][hi[0]]) < 0.01: continue     # (the shore)
+                if abs(topH[hi[1]][hi[0]] - topH[lo[1]][lo[0]] - 1.0) < 0.01 and rimsq(*hi): continue      # (a piece)
+            if rp(hi) and rp(lo) and rp(hi)[2] == 'water' and rp(lo)[2] == 'water': continue
+            tex = 'wall01_h' if rocky[hi[1]][hi[0]] else 'wall01_g'
+            if x2 == x + 1: wall_x(tex, x + 1, y, min(a, other), max(a, other), 16, (1 if a > other else -1, 0, 0))
+            else: wall_z(tex, x, y + 1, min(a, other), max(a, other), 16, (0, 0, 1 if a > other else -1))
 
 # flowers: HeartGold's decals, one to a block
 for y in range(RH):
@@ -534,7 +606,7 @@ def perm(ld):
 # to meet it: everything in them, sea, ground, trees and the heights walked on, is lifted by how far down the rows
 # it is. From above a sea leaning ten degrees is still a sea, and someone surfing down it comes out level with
 # Route 21's instead of under it.
-TILT_ROW, TILT_BY = 55, 27.0
+TILT_ROW, TILT_BY = 55, 32.0
 tilt_at = lambda ld, z: max(0.0, z - ((TILT_ROW - 32 * ld.by) * 16 - 256)) * TILT_BY / ((RH - TILT_ROW) * 16) if ld.by == BH - 1 else 0.0
 
 
@@ -568,7 +640,7 @@ def tilt(ld):
     ld.props = [(model, x, y + tilt_at(ld, z), z, sc) for model, x, y, z, sc in ld.props]
     # (a strip of sea just under the bottom edge and out past it, for the single pixels that show through where
     # the corners of our squares fall along the edge of Route 21's bigger ones)
-    h = Y(LOW - WATER_DROP) + TILT_BY - 0.3
+    h = Y(LOW - WATER_DROP - SEA_UN) + TILT_BY - 0.3
     ld.mesh['sea_un'].quad([((-256, h, 264), (0, 520)), ((256, h, 264), (512, 520)), ((256, h, 250), (512, 506)), ((-256, h, 250), (0, 506))], (0, 1, 0))
 
 
@@ -627,9 +699,10 @@ def land_file(ld):
     tilt(ld)
     groups = []
     for i, slot in enumerate(ANIM_SLOTS):
-        mesh = ld.mesh['sea_un'] if slot == 'sea_un' else Mesh()
-        groups.append((slot, 'sea_un', pal_of('sea_un'), mesh, {'repeat': 3, 'flip': 0, 'size': TEXDIMS['sea_un']}))
-    for m in MATS[1:]:
+        own = slot in ('sea_un', 'sea_on', 'sea_line02')      # (the area's animation moves these three: HeartGold's sea)
+        t_ = slot if own else 'sea_un'
+        groups.append((slot, t_, pal_of(t_), ld.mesh[slot] if own else Mesh(), {'repeat': 3, 'flip': 0, 'size': TEXDIMS[t_]}))
+    for m in MATS[3:]:
         opts = {'repeat': 3, 'flip': 0, 'size': TEXDIMS[m]}
         if m in ('tree01gs', 'tree01_un', 'flower01', 'flower02', STATUE_TEX): opts['repeat'] = 0
         groups.append((m, m, pal_of(m), ld.mesh[m], opts))

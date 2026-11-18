@@ -17,6 +17,8 @@ sys.path.insert(0, HERE)
 from nitro import read_narc, write_narc
 from g3d import Mesh, build_model
 import gba_map, slots, landedit
+import cave_kit as K
+import build_safari as BS
 from build_rooms import texdims
 
 LAND_NARC = os.path.join(slots.ROOT, 'files/a/0/6/5')
@@ -28,7 +30,6 @@ TEXSET = 18
 ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']   # (see build_pallet.py)
 GROUND, SEA, BED = 16, 7, 7          # HeartGold's own levels, as the routes round the island have them
 SURF = 8                          # (where someone surfing is: HeartGold's sea has a second, clear layer there)
-ROCK_W = 24                       # a rock's card for one square (HeartGold's big rock is 32 wide, on 2x2 squares)
 WATER_MB = {16, 17, 18, 19, 20, 21, 24, 26, 44, 45}
 # by the GBA door they stand on: HeartGold model, its door model, door offset from the model (units), door centre x
 BUILDINGS = {
@@ -51,7 +52,7 @@ def main():
     lay = gba_map.Layout(gm['layout'])
     W, H = lay.w, lay.h
     dims, pals = texdims(TEXSET)
-    pal_of = lambda t: next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
+    pal_of = lambda t: {'sea_on': 'sea_f02_pl'}.get(t) or next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
     doors = {(w['x'], w['y']): w for w in gm['warp_events']}
 
     def at(lx, lz):
@@ -84,6 +85,7 @@ def main():
             i = lz * 32 + lx
             if k in ('sea', 'rock'):
                 perm[i] = 0x0015 if k == 'sea' else 0x8000; tex, h = 'sea_un', SEA
+                rows.setdefault(('sea_on', SURF, lz), []).append(lx)       # (HeartGold's clear layer over it)
             elif k == 'ground':
                 perm[i] = 0x0000; tex, h = ground_tex(lx, lz), GROUND
             else:
@@ -104,42 +106,51 @@ def main():
     e = 264
     M('sea_un').quad([((-e, SEA - 0.25, e), (-e + 256, e + 256)), ((e, SEA - 0.25, e), (e + 256, e + 256)),
                       ((e, SEA - 0.25, -e), (e + 256, -e + 256)), ((-e, SEA - 0.25, -e), (-e + 256, -e + 256))], up)
-    # rocks in the sea: HeartGold's rock, a card leaning back out of the water as its routes have them, one a square
-    s = ROCK_W / 32.0
+    # rocks in the sea: HeartGold's (its Route 21's): its big rock standing over a 2x2 block of rock squares, the
+    # blocks never overlapping (HeartGold's stand two squares apart), its small one on a square left over
+    rocky = {(lx, lz) for lz in range(32) for lx in range(32) if at(lx, lz) == 'rock'}
+    big, covered = [], set()
     for lz in range(32):
         for lx in range(32):
-            if at(lx, lz) != 'rock': continue
-            cx, cz = U(lx) + 8, U(lz) + 8
-            x0, x1, zf, zb = cx - ROCK_W / 2.0, cx + ROCK_W / 2.0, cz + 11.3 * s, cz - 11.3 * s
-            yb, yt = SEA + 1.7, SEA + 1.7 + 22.6 * s
-            M('sea_rock').quad([((x0, yb, zf), (0, 32)), ((x1, yb, zf), (32, 32)), ((x1, yt, zb), (32, 0)), ((x0, yt, zb), (0, 0))],
-                               (0, 0.7, 0.7))
-    # the shore: HeartGold's sand sloping out under the sea from every edge of the ground (half a square, so that
-    # someone surfing along it is clear of it)
+            blk = {(lx + a_, lz + b_) for a_ in (0, 1) for b_ in (0, 1)}
+            if blk <= rocky and not blk & covered: big.append((lx, lz)); covered |= blk
+    for lx, lz in big:
+        x0, x1, zf, zb = U(lx), U(lx + 2), U(lz + 1.71), U(lz + 0.29)
+        M('sea_rock').quad([((x0, SEA + 1.7, zf), (0, 32)), ((x1, SEA + 1.7, zf), (32, 32)), ((x1, SEA + 24.3, zb), (32, 0)), ((x0, SEA + 24.3, zb), (0, 0))], up)
+    for lx, lz in sorted(rocky - covered):
+        x0, x1, zf, zb = U(lx), U(lx + 1), U(lz + 0.85), U(lz + 0.30)
+        M('sea_rock_m').quad([((x0, SEA + 3.3, zf), (0, 16)), ((x1, SEA + 3.3, zf), (16, 16)), ((x1, SEA + 16.8, zb), (16, 0)), ((x0, SEA + 16.8, zb), (0, 0))], up)
+    # the shore: HeartGold's beach (its Route 21's): the sand slopes from the ground's edge down under the sea across
+    # the whole of the sea's square beside it (swave_un), its foam a unit over it (swave_p, which the area's animation
+    # washes up and down); laid by distance from the land, straight sides in runs
     land = lambda lx, lz: 0 <= lx < 32 and 0 <= lz < 32 and at(lx, lz) in ('ground', 'block')
-    V0, V1 = 0.4, 15.6
+    SLOPES = (('swave_un', [(0.0, GROUND, -15.6), (1.0, SEA, -0.4)]), ('swave_p', [(0.0, GROUND + 1, -31.6), (1.0, SURF, -14.4)]))
+    runs_ = {}
     for lz in range(32):
         for lx in range(32):
-            if not land(lx, lz): continue
-            for n in ((0, 1), (0, -1), (1, 0), (-1, 0)):
-                if land(lx + n[0], lz + n[1]): continue
-                if n[0] == 0:
-                    z = U(lz + (1 if n[1] > 0 else 0)); a, b = (U(lx), z), (U(lx + 1), z)
-                    if n[1] < 0: a, b = b, a
-                else:
-                    x = U(lx + (1 if n[0] > 0 else 0)); a, b = (x, U(lz + 1)), (x, U(lz))
-                    if n[0] < 0: a, b = b, a
-                o = (n[0] * 8, n[1] * 8)
-                M('swave_un').quad([((a[0] + o[0], BED, a[1] + o[1]), (0, V1)), ((b[0] + o[0], BED, b[1] + o[1]), (16, V1)),
-                                    ((b[0], GROUND, b[1]), (16, V0)), ((a[0], GROUND, a[1]), (0, V0))], (n[0] * 0.5, 0.87, n[1] * 0.5))
-            # (and round the ground's outer corners)
-            for dx, dz in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
-                if land(lx + dx, lz) or land(lx, lz + dz) or land(lx + dx, lz + dz): continue
-                c = (U(lx + (1 if dx > 0 else 0)), U(lz + (1 if dz > 0 else 0)))
-                q = [((c[0] + dx * 8, BED, c[1]), (0, V1)), ((c[0] + dx * 8, BED, c[1] + dz * 8), (8, V1)),
-                     ((c[0], BED, c[1] + dz * 8), (16, V1)), ((c[0], GROUND, c[1]), (8, V0))]
-                if dx * dz > 0: q = [q[2], q[1], q[0], q[3]]
-                M('swave_un').quad(q, (dx * 0.4, 0.87, dz * 0.4))
+            if land(lx, lz): continue
+            nb = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and land(lx + dx, lz + dz)]
+            if not nb: continue
+            kd = K.classify(nb)
+            if kd[0] == 'straight':
+                n = kd[1]
+                runs_.setdefault((n, lz if n[0] == 0 else lx), set()).add(lx if n[0] == 0 else lz)
+                continue
+            for tex, prof in SLOPES:
+                for part, rng, fd, pl in K.laid(nb, prof):
+                    along = lambda u, v: ((lz + v) * 16) if part[0] == 'x' else ((lx + u) * 16)
+                    vs = [((U(lx + u), K.along_profile(prof, fd(u, v))[0], U(lz + v)), (along(u, v), K.along_profile(prof, fd(u, v))[1])) for u, v in pl]
+                    (M(tex).quad if len(vs) == 4 else M(tex).tri)(vs, up) if len(vs) in (3, 4) else \
+                        [M(tex).tri([vs[0], vs[i], vs[i + 1]], up) for i in range(1, len(vs) - 1)]
+    for (n, line), al in runs_.items():
+        dx, dz = n
+        for a_, b_ in BS._runs(sorted(al)):
+            def P(d, at_, h):
+                if dz: return (U(at_), h, U(line + (d if dz < 0 else 1 - d)))
+                return (U(line + (d if dx < 0 else 1 - d)), h, U(at_))
+            for tex, prof in SLOPES:
+                (d0, h0, t0), (d1, h1, t1) = prof
+                M(tex).quad([(P(d0, a_, h0), (a_ * 16, t0)), (P(d0, b_, h0), (b_ * 16, t0)), (P(d1, b_, h1), (b_ * 16, t1)), (P(d1, a_, h1), (a_ * 16, t1))], up)
     # buildings on the GBA's doors; door squares are HeartGold doors (blocked, behaviour 0x69: walk into them)
     props = []
     f = lambda v: int(round(v * 4096))
@@ -152,9 +163,10 @@ def main():
         props.append(struct.pack('<I3i3i3i8x', model, f(ox - 256), f(GROUND), f(oz - 256), 0, 0, 0, 4096, 4096, 4096))
         props.append(struct.pack('<I3i3i3i8x', door, f(ox + off[0] - 256), f(GROUND + off[1]), f(oz + off[2] - 256), 0, 0, 0, 4096, 4096, 4096))
     # (HeartGold animates this area's first eight materials by index: they hold their places, sea_un's is the sea)
-    groups = [(t, 'sea_un', pal_of('sea_un'), meshes[t] if t == 'sea_un' else Mesh(), {'repeat': 3, 'flip': 0, 'size': dims['sea_un']})
-              for t in ANIM_SLOTS] + \
-             [(t, t, pal_of(t), m, {'repeat': 0 if t == 'sea_rock' else 3, 'size': dims[t]}) for t, m in meshes.items() if t not in ANIM_SLOTS]
+    own = ('sea_un', 'sea_on', 'swave_p')
+    groups = [(t, t if t in own else 'sea_un', pal_of(t if t in own else 'sea_un'), meshes[t] if t in own else Mesh(),
+               {'repeat': 3, 'flip': 0, 'size': dims[t if t in own else 'sea_un']}) for t in ANIM_SLOTS] + \
+             [(t, t, pal_of(t), m, {'repeat': 0 if t in ('sea_rock', 'sea_rock_m') else 3, 'size': dims[t]}) for t, m in meshes.items() if t not in ANIM_SLOTS]
     model = build_model('cv_cinnabar', groups)
     model += b'\0' * (-len(model) % 4)
     assert len(model) < 60000, len(model)

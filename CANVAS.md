@@ -302,8 +302,17 @@ each waits in that queue for its textures; how many wait at once depends on wher
 loads, and in Diglett's Cave the 33rd found it full: an assert, and the effect drawn as noise. A constant only,
 so the code's layout is unchanged.
 
-**Cliffs outside** (Pallet's plateaus and terraces, `build_pallet.py`) use the same HeartGold profile: the face
-slopes back across the rim square (`wall01_g`/`wall01_h`); the terraces down to the shore are two such tiers.
+**Cliffs outside** (Pallet's plateaus and terraces, `build_pallet.py`) are the tile kit's (`route_kit`, as the
+Safari Zone's): a piece to each square of cliff by which of the 8 squares round it are a tier lower - the straight
+face, HeartGold's rounded outside corner and `wall01_d` inside corner, odd squares laid by distance; the face
+`wall01_g`, its lip `wall01_h`, its foot the ground's (`wall01_h` on the road's sand). The terraces down to the
+shore are two such tiers. A straight face that stops against something at its top's height shows that thing's
+side above its profile (the ends of the bridge between the two gardens); against stairs, its own end.
+**Pallet's water** is HeartGold's sea (its Pallet's and Route 21's): the clear layer (`sea_on`) half a block under
+the ground, the water (`sea_un`) a unit under that, and from the land round it the bank (`pond_line`) and the
+water's edge sloping under (`sea_line02`), laid by distance, straight sides in runs. `sea_un`, `sea_on` and
+`sea_line02` sit in the area animation's places (4, 5, 3). Its road (`P`) has HeartGold's edge (`road01_r`) in the
+grass beside it, as the Safari Zone's sand.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
@@ -466,14 +475,17 @@ HeartGold's ground is at 16 and its sea at 7 (with a clear layer, `sea_on`, at 8
 land of ours beside one of theirs has to be at those levels at the edge, or there is a black line along it and
 the player sinks or jumps crossing it:
 - **Cinnabar** (`build_cinnabar.py`) is built at them: ground 16, sea 7, heights 16 and 8. Its rocks are
-  HeartGold's sea rock, a card leaning back out of the water (theirs is 32 wide on 2x2 squares; ours 24, one a
-  square). The beach slopes half a square out under the sea (`swave_un`). A sheet of sea lies just under it all
+  HeartGold's sea rocks as Route 21 stands them: the big one (`sea_rock`) over a 2x2 block of rock squares, the
+  blocks never overlapping, the small one (`sea_rock_m`) on a square left over. The beach is HeartGold's: the sand
+  slopes from the ground's edge down across the whole sea square beside it (`swave_un`, 16 to 7), its foam a unit
+  over it (`swave_p`, animated), laid by distance, straight sides in runs; the sea has its clear layer (`sea_on`,
+  8) over the water (7). A sheet of sea lies just under it all
   and out past the edges: where the corners of our squares fall along a neighbour's bigger ones, single pixels
   show through otherwise.
 - **what the neighbours still draw of the old map** comes out of their models: `landedit.strip(land, drop)` takes
   faces out of one of HeartGold's land models in place (the model keeps its size). Routes 20 and 21 drew the foam
   along the shore HeartGold's own Cinnabar had at their edge.
-- **Pallet's bay** is two blocks below the town (the cliffs), so its sea was 27 below Route 21's: the last nine
+- **Pallet's bay** is two blocks below the town (the cliffs), so its sea was 32 below Route 21's: the last nine
   rows of the region (sea and forest only) lean up to meet it (`tilt` in `build_pallet.py`: everything in them,
   and the heights walked on, lifted by how far down the rows it is). From above a sea leaning ten degrees is
   still a sea.
