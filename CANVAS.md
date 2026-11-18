@@ -309,13 +309,16 @@ face, HeartGold's rounded outside corner and `wall01_d` inside corner, odd squar
 shore are two such tiers. A straight face that stops against something at its top's height shows that thing's
 side above its profile (the ends of the bridge between the two gardens); against stairs, its own end.
 **Pallet's bridge** between the two north gardens is the town's gateway, in brick and dressed stone (Fuchsia's,
-`sek_fe01`/`sek_fe02`, brought into set 18; its deck the paving in a warm grey, `cv_deck`): each face an arch over
-the road with a ring of voussoirs and a keystone standing out of the brick, a string course along the deck, a
-parapet with a coping and a post every square, and a pier at each end above the parapet, capped, with a stone
+`sek_fe01`/`sek_fe02`, brought into set 18; its deck the paving in a warm grey, `cv_deck`). Its deck is a block
+above the gardens, with a flight of steps (four risers, brick side walls with a sloping coping) down into each:
+level with the gardens, someone walking the road under it stood through the deck. Each face an arch over the road
+springing from the piers high enough to clear them (27 over the road), a ring of voussoirs and a keystone standing
+out of the brick, a string course along the deck, a parapet with a coping and a post every square, and a pier at
+each end on the walls' line, with an impost under the springing, rising above the parapet, capped, with a stone
 lantern's globe (`nib_stone`, set 17). Its faces lean back as HeartGold's cliffs do: from its camera a face
 standing straight up is a line. The GBA's road ran both over and under it; HeartGold has no such bridge (a square
 has one height, and none of HGSS's behaviours is the DPPt walk-under bridge), so the road keeps its way under it
-and the bridge is to look at: its ends are the gardens' walls.
+and the bridge is to look at: its ends and its steps (a square of each garden) are closed.
 **Pallet's water** is HeartGold's sea (its Pallet's and Route 21's): the clear layer (`sea_on`) half a block under
 the ground, the water (`sea_un`) a unit under that, and from the land round it the bank (`pond_line`) and the
 water's edge sloping under (`sea_line02`), laid by distance, straight sides in runs. `sea_un`, `sea_on` and

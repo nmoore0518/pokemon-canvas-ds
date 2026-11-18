@@ -111,7 +111,7 @@ kind = lambda x, y: cells[y][x] if 0 <= x < RW and 0 <= y < RH else None
 # under it and the bridge stands over it; its ends are the gardens' walls, closed
 BRIDGE = (17 + OX, 23 + OX, 7, 8)          # (its end columns, its rows)
 for _y in (BRIDGE[2], BRIDGE[3]):
-    for _x in (BRIDGE[0], BRIDGE[1]):
+    for _x in (BRIDGE[0] - 1, BRIDGE[0], BRIDGE[1], BRIDGE[1] + 1):     # (its ends, and its steps in the gardens)
         coll[_y][_x] = '1'
 
 # ---------------------------------------------------------------- heights (blocks), as in the 3D mock-up
@@ -520,28 +520,34 @@ for y in range(RH):
             else: wall_z(tex, x, y + 1, min(a, other), max(a, other), 16, (0, 0, 1 if a > other else -1))
 
 # ---- the stone bridge, the town's gateway between its two north gardens: brick (Fuchsia's, sek_fe01) and dressed
-# stone (its paving, sek_fe02, a slab to a block). Each face an arch over the road - a ring of voussoirs with a
-# keystone, proud of the brickwork -, a string course along the deck, a parapet with a coping; a pier at each end
-# where it meets the gardens' walls, standing above the parapet, capped, with a stone lantern's globe (nib_stone)
+# stone (its paving, sek_fe02, a slab to a block). Its deck a block above the gardens (under one at their height
+# someone walking the road would stand through it), a flight of steps down to each garden; each face an arch over
+# the road - a ring of voussoirs with a keystone, proud of the brickwork, springing from the piers high enough to
+# clear someone walking under it -, a string course along the deck, a parapet with a coping and posts; a pier at
+# each end on the walls' line, standing above the parapet, capped, with a stone lantern's globe (nib_stone)
 def bridge():
-    a, b = BRIDGE[0] + 1, BRIDGE[1]                 # (the walls' faces: the arch springs from them)
+    a, b = BRIDGE[0] + 1, BRIDGE[1]                 # (the walls' faces: the piers stand on them)
     z0, z1 = BRIDGE[2], BRIDGE[3] + 1
-    top, road = Y(RAISE), Y(0.0)
-    cx, rx, ry, ring = (a + b) / 2, (b - a) / 2, 8.0, 3.5      # (the arch: span, rise; the ring's depth, units)
+    garden, top, road = Y(RAISE), Y(RAISE + 1), Y(0.0)
+    pw = 0.5                                        # (the piers' width, squares)
+    sa, sb = a + pw / 2, b - pw / 2                 # (the opening, between the piers)
+    spring, rise, ring = road + 27, 6.0, 3.5         # (the arch: where it springs, its rise; the ring's depth, units)
+    cx, rx = (sa + sb) / 2, (sb - sa) / 2
     course = (top - 2.5, top + 0.5)                 # (the string course)
     par, cope = top + 8, top + 10                   # (the parapet, its coping)
     pier_top, cap_top = top + 14, top + 16.5
-    pw = 0.45                                       # (the piers' width, squares)
+    run = 1.33                                      # (the steps' run, squares)
     U16 = lambda v: v * 16
+
+    def both(tex, vs): poly(tex, vs); poly(tex, vs[::-1])
 
     def box(tex, x0, x1, y0, y1, za, zb):
         """a block: its top and four sides (s, t in units), each seen from either side"""
-        def both(vs): poly(tex, vs); poly(tex, vs[::-1])
-        both([((x0, y1, zb), (U16(x0), U16(zb))), ((x1, y1, zb), (U16(x1), U16(zb))), ((x1, y1, za), (U16(x1), U16(za))), ((x0, y1, za), (U16(x0), U16(za)))])
+        both(tex, [((x0, y1, zb), (U16(x0), U16(zb))), ((x1, y1, zb), (U16(x1), U16(zb))), ((x1, y1, za), (U16(x1), U16(za))), ((x0, y1, za), (U16(x0), U16(za)))])
         for z in (zb, za):
-            both([((x0, y0, z), (U16(x0), 64 - y0)), ((x1, y0, z), (U16(x1), 64 - y0)), ((x1, y1, z), (U16(x1), 64 - y1)), ((x0, y1, z), (U16(x0), 64 - y1))])
+            both(tex, [((x0, y0, z), (U16(x0), 64 - y0)), ((x1, y0, z), (U16(x1), 64 - y0)), ((x1, y1, z), (U16(x1), 64 - y1)), ((x0, y1, z), (U16(x0), 64 - y1))])
         for x in (x1, x0):
-            both([((x, y0, zb), (U16(zb), 64 - y0)), ((x, y0, za), (U16(za), 64 - y0)), ((x, y1, za), (U16(za), 64 - y1)), ((x, y1, zb), (U16(zb), 64 - y1))])
+            both(tex, [((x, y0, zb), (U16(zb), 64 - y0)), ((x, y0, za), (U16(za), 64 - y0)), ((x, y1, za), (U16(za), 64 - y1)), ((x, y1, zb), (U16(zb), 64 - y1))])
 
     # the faces lean back as HeartGold's cliffs do (seen from above, a face standing straight up is a line): the foot
     # a third of a square out over the road, the top a third back; the deck between their tops
@@ -551,17 +557,15 @@ def bridge():
     zt0, zt1 = Zf[-1](top), Zf[1](top)
     x0, x1 = a - 0.67, b + 0.67
     poly('cv_deck', [((x0, top, zt1), (x0 * 16, zt1 * 16)), ((x1, top, zt1), (x1 * 16, zt1 * 16)), ((x1, top, zt0), (x1 * 16, zt0 * 16)), ((x0, top, zt0), (x0 * 16, zt0 * 16))])
-    ell = lambda r_x, r_y, x: road + r_y * max(0.0, 1 - ((x - cx) / r_x) ** 2) ** 0.5 if abs(x - cx) < r_x else road
+    arch = lambda r_x, r_y, x: spring + r_y * max(0.0, 1 - ((x - cx) / r_x) ** 2) ** 0.5 if abs(x - cx) < r_x else spring
     N = 20
-    xs = [a + (b - a) * i / N for i in range(N + 1)]
-
-    def both(tex, vs): poly(tex, vs); poly(tex, vs[::-1])
+    xs = [sa + (sb - sa) * i / N for i in range(N + 1)]
     for out in (1, -1):
         Z = Zf[out]
         P = lambda x, y, d=0.0: (x, y, Z(y) + out * d)          # (a point on the face; d out from it)
         # brickwork: from the ring's back up to the string course
         for xa, xb in zip(xs, xs[1:]):
-            ya, yb = ell(rx + ring / 16, ry + ring, xa), ell(rx + ring / 16, ry + ring, xb)
+            ya, yb = arch(rx + ring / 16, rise + ring, xa), arch(rx + ring / 16, rise + ring, xb)
             both('sek_fe01', [(P(xa, ya), (xa * 16, 64 - ya)), (P(xb, yb), (xb * 16, 64 - yb)), (P(xb, course[0]), (xb * 16, 64 - course[0])), (P(xa, course[0]), (xa * 16, 64 - course[0]))])
         # the ring: eleven voussoirs, a slab of dressed stone each, the middle one the keystone (taller, further out),
         # each standing out of the brick with its outer edge showing
@@ -571,29 +575,49 @@ def bridge():
             key = k == V // 2
             dd = ring + (3.0 if key else 0)
             d = 0.07 if key else 0.04
-            pi = [(cx + rx * math.cos(t), road + ry * math.sin(t)) for t in (t0, t1)]
-            po = [(cx + (rx + dd / 16) * math.cos(t), road + (ry + dd) * math.sin(t)) for t in (t0, t1)]
+            pi = [(cx + rx * math.cos(t), spring + rise * math.sin(t)) for t in (t0, t1)]
+            po = [(cx + (rx + dd / 16) * math.cos(t), spring + (rise + dd) * math.sin(t)) for t in (t0, t1)]
             sx = 16 * (k % 4)
             both('sek_fe02', [(P(*pi[0], d), (sx, 16)), (P(*pi[1], d), (sx + 16, 16)), (P(*po[1], d), (sx + 16, 0)), (P(*po[0], d), (sx, 0))])
             both('sek_fe02', [(P(*po[0], d), (sx, 0)), (P(*po[1], d), (sx + 16, 0)), (P(*po[1]), (sx + 16, 3)), (P(*po[0]), (sx, 3))])
         # the string course, standing out along the deck's edge
         za, zb = sorted((Z(top) - out * 0.02, Z(top) + out * 0.1))
-        box('sek_fe02', a, b, course[0], course[1], za, zb)
+        box('sek_fe02', x0, x1, course[0], course[1], za, zb)
         # the parapet: brick, a fifth of a square thick; its coping a slab wider; a post of dressed stone every square
         pz = sorted((Z(top), Z(top) - out * 0.22))
-        box('sek_fe01', a + pw / 2, b - pw / 2, course[1], par, *pz)
-        box('sek_fe02', a + pw / 2, b - pw / 2, par, cope, pz[0] - 0.05, pz[1] + 0.05)
+        box('sek_fe01', sa, sb, course[1], par, *pz)
+        box('sek_fe02', sa, sb, par, cope, pz[0] - 0.05, pz[1] + 0.05)
         for k in range(1, int(b - a)):
             box('sek_fe02', a + k - 0.12, a + k + 0.12, par, cope + 2.5, pz[0] - 0.07, pz[1] + 0.07)
-    # the arch's soffit, seen walking under it
+        # the steps' side walls, down to the gardens: brick, the parapet's height over the steps, a sloping coping
+        for e, o in ((x0, -1), (x1, 1)):
+            f = e + o * run                         # (the steps' foot, in the garden)
+            for z in pz:
+                both('sek_fe01', [((f, garden, z), (f * 16, 64 - garden)), ((e, garden, z), (e * 16, 64 - garden)), ((e, par, z), (e * 16, 64 - par)), ((f, garden + 8, z), (f * 16, 64 - garden - 8))])
+            both('sek_fe02', [((f, garden + 8, pz[0] - 0.05), (0, 0)), ((e, par, pz[0] - 0.05), (16 * run, 0)), ((e, par + 2, pz[0] - 0.05), (16 * run, 2)), ((f, garden + 10, pz[0] - 0.05), (0, 2))])
+            both('sek_fe02', [((f, garden + 10, pz[0] - 0.05), (0, 0)), ((e, par + 2, pz[0] - 0.05), (16 * run, 0)), ((e, par + 2, pz[1] + 0.05), (16 * run, 4)), ((f, garden + 10, pz[1] + 0.05), (0, 4))])
+            both('sek_fe02', [((f, garden + 8, pz[1] + 0.05), (0, 0)), ((e, par, pz[1] + 0.05), (16 * run, 0)), ((e, par + 2, pz[1] + 0.05), (16 * run, 2)), ((f, garden + 10, pz[1] + 0.05), (0, 2))])
+            both('sek_fe01', [((f, garden, pz[0]), (0, 8)), ((f, garden, pz[1]), (4, 8)), ((f, garden + 8, pz[1]), (4, 0)), ((f, garden + 8, pz[0]), (0, 0))])
+    # the steps down to each garden: four risers of four units, the treads dressed stone
+    for e, o in ((x0, -1), (x1, 1)):
+        n = 4
+        za, zb = zt0 + 0.22, zt1 - 0.22
+        for k in range(n):
+            h = top - 4 * (k + 1)                   # (the tread under the k-th riser)
+            xa, xb = e + o * run * k / n, e + o * run * (k + 1) / n
+            both('sek_fe02', [((xa, h + 4, za), (0, 0)), ((xa, h + 4, zb), (0, 16 * (zb - za))), ((xa, h, zb), (4, 16 * (zb - za))), ((xa, h, za), (4, 0))])
+            if k < n - 1:
+                both('sek_fe02', [((xa, h, zb), (U16(xa), U16(zb))), ((xb, h, zb), (U16(xb), U16(zb))), ((xb, h, za), (U16(xb), U16(za))), ((xa, h, za), (U16(xa), U16(za)))])
+    # the arch's soffit, seen walking under it, and the piers' faces under the springing (the piers are blocks)
     for xa, xb in zip(xs, xs[1:]):
-        ya, yb = ell(rx, ry, xa), ell(rx, ry, xb)
+        ya, yb = arch(rx, rise, xa), arch(rx, rise, xb)
         poly('sek_fe01', [((xa, ya, Zf[-1](ya)), (xa * 16, z0 * 16)), ((xb, yb, Zf[-1](yb)), (xb * 16, z0 * 16)), ((xb, yb, Zf[1](yb)), (xb * 16, z1 * 16)), ((xa, ya, Zf[1](ya)), (xa * 16, z1 * 16))])
     # the piers, on the walls' line, the bridge's depth and a little more; capped; a lantern's globe on each end
     for px in (a, b):
         pa, pb = px - pw / 2, px + pw / 2
         za, zb = z0 - LEAN[0] - 0.1, z1 + LEAN[0] + 0.1
         box('sek_fe01', pa, pb, road, pier_top, za, zb)
+        box('sek_fe02', pa - 0.07, pb + 0.07, spring - 2, spring, za - 0.05, zb + 0.05)       # (the impost the arch springs from)
         box('sek_fe02', pa - 0.07, pb + 0.07, pier_top, pier_top + 1.5, za - 0.07, zb + 0.07)
         box('sek_fe02', pa + 0.03, pb - 0.03, pier_top + 1.5, cap_top, za + 0.05, zb - 0.05)
         for gz in (zb - 0.1, za + 0.45):
