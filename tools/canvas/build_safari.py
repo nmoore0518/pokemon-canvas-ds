@@ -91,16 +91,17 @@ def kinds(gm, lay, added=()):
                 k = 'tall' if mb(x, y) in TALL_GRASS_MB else 'sand' if sandy(x, y) else 'grass'
             elif (x, y) in building: k = 'house'
             elif (x, y) in signs: k = 'sign'
-            elif m in SIGN_MT: k = 'grass'          # (a sign's square copied into a row we added)
+            elif m in SIGN_MT: k = 'blank'          # (a sign's square copied into a row we added)
             elif m in FENCE_MT: k = 'fence'
             elif m in HEDGE_MT: k = 'hedge'
             elif m in CLIFF_MT: k = 'cliff' if near_top(x, y) else 'boulder'
+            elif sandy(x, y) and not near_top(x, y): k = 'sand'       # (a way out's path, past its warp)
             elif green(x, y): k = 'woods'
-            elif sandy(x, y) and not near_top(x, y): k = 'sand'       # (sand closed off at the map's edge)
             elif near_top(x, y): k = 'cliff'
             elif 0x2B7 <= m <= 0x2E1: k = 'gate'
             else: k = 'boulder'
-            out[(x, y)] = k
+            if y in added and k in ('fence', 'hedge', 'sign'): k = 'blank'     # (a fence copied into a row we added
+            out[(x, y)] = k                                                  # would be a fence two deep: grass, closed)
     # the gate building's roof, below the way out at the bottom of the Center: HeartGold's ways out of an area are
     # a path between the trees, so the path carries on down from the way out and the rest of the roof is trees
     ways = {x for (x, y) in warps if (x, y) not in doors}
@@ -164,18 +165,29 @@ def build_safari_floor(spec, depth_of):
     tall = {q for q, v in kind.items() if v == 'tall'}
     sand = {q for q, v in kind.items() if v == 'sand'}
     water = {q for q, v in kind.items() if v == 'water'}
-    # trees: one to a 2x2 block of woods
-    thick = lambda x, y: any(all(K_(x + i + a, y + j + b) == 'woods' for a in (0, 1) for b in (0, 1)) for i in (-1, 0) for j in (-1, 0))
+    # trees: HeartGold's, one to a 2x2 block of woods, the blocks never overlapping (HeartGold's trees stand two
+    # squares apart; one to every block that fits stood them a square apart, a thicket)
+    # (the edge of the woods first, so it is trees all along the open ground; a square the blocks leave over is
+    # deep in the woods, or one of HeartGold's round bushes where it meets the open ground)
+    full = lambda x, y: all(K_(x + a, y + b) == 'woods' for a in (0, 1) for b in (0, 1))
+    walk = {q for q, v in kind.items() if v in ('grass', 'sand', 'tall', 'top', 'door', 'stairs', 'water')}
+    dist, ring = {q: 0 for q in walk}, list(walk)
+    while ring:
+        nxt = []
+        for (x, y) in ring:
+            for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if n in kind and n not in dist: dist[n] = dist[(x, y)] + 1; nxt.append(n)
+        ring = nxt
+    blocks = sorted(((min(dist.get((x + a, y + b), 99) for a in (0, 1) for b in (0, 1)), y, x)
+                     for (x, y) in kind if full(x, y)))
     trees, covered = [], set()
-    for y in range(H):
-        for x in range(W):
-            if (x, y) in covered or K_(x, y) != 'woods' or not thick(x, y): continue
-            bx = x if thick(x + 1, y) else x - 1
-            by = y if thick(x, y + 1) else y - 1
-            trees.append((bx, by)); covered |= {(bx + i, by + j) for i in (0, 1) for j in (0, 1)}
+    for _, y, x in blocks:
+        if not any((x + a, y + b) in covered for a in (0, 1) for b in (0, 1)):
+            trees.append((x, y)); covered |= {(x + a, y + b) for a in (0, 1) for b in (0, 1)}
+    loose = {q for q, v in kind.items() if v == 'woods' and q not in covered and dist.get(q, 99) <= 1}
     # warps: a way out at the foot of the trees (open north of it, closed south) is HeartGold's exit mat, any other
     # (the ways between the areas, the doors) a warp you step on
-    shut = lambda x, y: K_(x, y) in (None, 'cliff', 'house', 'sign', 'fence', 'hedge', 'woods', 'boulder')
+    shut = lambda x, y: K_(x, y) in (None, 'cliff', 'house', 'sign', 'fence', 'hedge', 'woods', 'boulder', 'blank')
     warp_beh = {}
     for w in gm.get('warp_events', []):
         x, y = w['x'], w['y']
@@ -280,7 +292,7 @@ def build_safari_floor(spec, depth_of):
                                 xa, za = x * 16 + u0, y * 16 + v0
                                 poly(tex, [((xa, R.GRASS_Y, za + 8), (s0, t0 + 8)), ((xa + 8, R.GRASS_Y, za + 8), (s0 + 8, t0 + 8)),
                                            ((xa + 8, R.GRASS_Y, za), (s0 + 8, t0)), ((xa, R.GRASS_Y, za), (s0, t0))])
-                    if k == 'hedge': _card(poly, 'bush', x, y)
+                    if k == 'hedge' or (x, y) in loose: _card(poly, 'bush', x, y)
                     elif k == 'boulder':
                         if K_(x + 1, y) == 'boulder' and K_(x - 1, y) != 'boulder': _card(poly, 'rock', x, y)
                         elif K_(x - 1, y) != 'boulder': _card(poly, 'stone', x, y)
@@ -358,7 +370,7 @@ def _sand_edge(poly, sand_nb, x, y):
         gx, gz = what
         pts = []
         for u, v in corners:
-            e = ((16 - u) if gx < 0 else u) / 16 if gx else ((16 - v) if gz < 0 else v) / 16
+            e = (u if gx < 0 else 16 - u) / 16 if gx else (v if gz < 0 else 16 - v) / 16      # (0 at the sand)
             pts.append(((X + u, 0, Z + v), (15.6 - 15.2 * e, (Z + v) if gx else (X + u))))
         poly('road01_r', pts)
     elif kind in ('outside', 'inside'):

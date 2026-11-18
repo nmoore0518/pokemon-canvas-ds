@@ -432,9 +432,15 @@ More, from the pass after it:
   - tall grass: `egrass` two units up, with HeartGold's bushy edge in the quarters of the squares round it
     (`egrass_u` along a row, `egrass_v` down a column, `egrass_ro`/`egrass_ri` round corners), merged into runs;
   - sand: `road01`, its edge (`road01_r`) in the grass squares round it - HeartGold puts it inside the road, which
-    left the GBA's small patches nearly all edge - by the straight piece or a corner quadrant, else laid by distance;
+    left the GBA's small patches nearly all edge - by the straight piece (its sand side, s=16, against the sand)
+    or a corner quadrant, else laid by distance;
   - ponds: `pond_line` bank, `pond_edge`, `pond_on` (materials 0 and 2: the area's animation moves them), laid by
     distance from the land, straight sides in runs (a pond drawn by distance everywhere was 80 KB a land);
+  - trees stand two squares apart, as HeartGold's do: one to a 2x2 block of woods, the blocks never overlapping,
+    taken from the woods' edge inwards (one to every block that fits made a thicket); a square of woods left over
+    at the edge is a round bush;
+  - ways out stay open: a way out's path past its warp is the GBA's sand (closed) and drawn as sand, never woods;
+    a fence, hedge or sign copied into a row we added becomes closed grass (or the fence is two deep);
   - cards as HeartGold stands them (`CARDS`): trees over 2x2 blocks with their shadow, `etc_a`'s round bush for a
     hedge, `rock01` for the boulder, `fence_b` along a row and as posts down a column, its sign model (29) on the
     GBA's signs only (not on a sign copied into an added row);
