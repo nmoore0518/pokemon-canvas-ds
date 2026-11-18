@@ -698,7 +698,8 @@ def ship_models():
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair']), (64, ['aj_box01'])],
-           44: [(70, ['d_rock01'])]}
+           44: [(70, ['d_rock01'])],
+           18: [(75, ['pond_on', 'pond_edge', 'pond_un', 'road05_r'])]}       # (Kanto's overworld: build_overworld.py)
 
 
 def import_textures():
