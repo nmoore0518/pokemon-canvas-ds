@@ -161,11 +161,12 @@ def world_kinds():
     # (squares no map covers: the sea where the nearest square of a map is water - round Cinnabar - else woods)
     # (only open sea: water along a side of a map that is half water or more; a pond at a map's edge is no sea)
     sea = set()
+    wetness = {d: sum(kind.get((x0 + i, y0 + j)) == 'water' for i in range(w) for j in range(h)) / (w * h) for d, (x0, y0, w, h) in W_.items()}
     for d, (x0, y0, w, h) in W_.items():
         for side in ([(x0 + i, y0) for i in range(w)], [(x0 + i, y0 + h - 1) for i in range(w)],
                      [(x0, y0 + j) for j in range(h)], [(x0 + w - 1, y0 + j) for j in range(h)]):
             wet = [q for q in side if kind.get(q) == 'water']
-            if len(wet) * 2 >= len(side): sea |= set(wet)
+            if len(wet) * 2 >= len(side) or wetness[d] >= 0.4: sea |= set(wet)
     # (our Cinnabar is an island: the sea all round it)
     x0, y0, w, h = W_['CinnabarIsland_Frlg']
     sea |= {(x0 + i, y0 + j) for i in range(w) for j in range(h)}
@@ -441,22 +442,32 @@ def plan_world():
             if q != (dx, dz) and kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge'): kind[q] = 'house'
     # (a block of closed squares with no door: in a town a building - HeartGold's houses, as many as fit; on a route
     # a crag, its rock)
+    # (and a building of the GBA's whose door leads to a room another building's door also reached - joined to it
+    # by the walls between them - once that one is up: what's left of it, if it stands apart)
     seen = set()
-    for q0, v0 in list(kind.items()):
-        if v0 != 'stone' or q0 in seen or q0 in bldg: continue
+    _fs = lambda q: q not in stands and q not in door_sq and kind.get(q) == 'stone' and q not in bldg
+    # (only squares in a 2x2 of them: a wall along a block is a wall, not part of it)
+    in2 = lambda f: lambda q: f(q) and any(all(f((q[0] + a + i, q[1] + b + j)) for i in (0, 1) for j in (0, 1)) for a in (-1, 0) for b in (-1, 0))
+    free_stone = in2(_fs)
+    free_house = in2(lambda q: q not in stands and q not in door_sq and kind.get(q) == 'house')
+    for free, q0 in [(free_stone, q) for q in list(kind)] + [(free_house, q) for q in list(kind)]:
+        if q0 in seen or not free(q0): continue
         comp, i = [q0], 0
         seen.add(q0)
         while i < len(comp):
             x, y = comp[i]; i += 1
             for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                if n not in seen and kind.get(n) == 'stone' and n not in bldg: seen.add(n); comp.append(n)
+                if n not in seen and free(n): seen.add(n); comp.append(n)
         xs, ys = [c[0] for c in comp], [c[1] for c in comp]
         bw, bh = max(xs) - min(xs) + 1, max(ys) - min(ys) + 1
+        housey = any(kind[c] == 'house' for c in comp)
         if bw < 2 or bh < 2 or len(comp) < 0.6 * bw * bh: continue
+        if housey and (bw < 3 or bh < 3 or len(comp) < 0.7 * bw * bh or
+                       any((c[0] + a, c[1] + b) in stands for c in comp for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1)))): continue
         if any(t in owner.get(q0, '') for t in TOWNISH):
             props += _houses(min(xs), min(ys), bw, bh)
             for c in comp: kind[c] = 'house'; stands.add(c)
-        elif len(comp) >= 6:
+        elif len(comp) >= 6 and not housey:
             for c in comp: kind[c] = 'rock'
     # (stones in a line - a town's wall - are a fence)
     snap = dict(kind)
