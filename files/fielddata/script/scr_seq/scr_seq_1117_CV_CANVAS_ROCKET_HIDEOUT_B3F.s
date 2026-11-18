@@ -9,6 +9,7 @@
 	ScrDef RocketHideout_B3F_EventScript_ItemRareCandy
 	ScrDef RocketHideout_B3F_EventScript_ItemTM21
 	ScrDef RocketHideout_B3F_EventScript_ItemBlackGlasses
+	ScrDef RocketHideout_B3F_Frlg_cv_OnTransition
 	ScrDefEnd
 	
 RocketHideout_B3F_EventScript_ItemRareCandy:
@@ -30,6 +31,10 @@ RocketHideout_B3F_EventScript_ItemBlackGlasses:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+RocketHideout_B3F_Frlg_cv_OnTransition:
+	ViridianGymInit
 	End
 
 _cv_stop:

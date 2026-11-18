@@ -10,6 +10,7 @@
 	ScrDef RocketHideout_B2F_EventScript_ItemMoonStone
 	ScrDef RocketHideout_B2F_EventScript_ItemTM12
 	ScrDef RocketHideout_B2F_EventScript_ItemSuperPotion
+	ScrDef RocketHideout_B2F_Frlg_cv_OnTransition
 	ScrDefEnd
 	
 RocketHideout_B2F_EventScript_ItemXSpeed:
@@ -38,6 +39,10 @@ RocketHideout_B2F_EventScript_ItemSuperPotion:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+RocketHideout_B2F_Frlg_cv_OnTransition:
+	ViridianGymInit
 	End
 
 _cv_stop:

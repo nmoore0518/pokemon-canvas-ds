@@ -401,8 +401,8 @@ pads drawn in `mark`. A way out at the foot of a wall is an exit mat (0x65); sta
 HeartGold's doors stand in for them: Lavender's Radio Tower is the Pokemon Tower, Silph Co.'s elevator door goes to
 our 2F, Route 10's Power Plant is ours, and Vermilion's ferry building boards the S.S. Anne (its dock outside is
 left out). Not yet: Silph Co.'s elevator (a GBA dynamic warp), its card-key doors, the GBA furniture.
-The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden ones are: `ADD_WARPS`); its
-spin-tile mazes are plain floor for now. The Safari Zone's four areas are built from a tile kit of HeartGold's own
+The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden ones are: `ADD_WARPS`), built
+from the interior tile kit (below), its spin tiles working. The Safari Zone's four areas are built from a tile kit of HeartGold's own
 Safari Zone (below), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the
 Secret House (Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are rooms the same way.
 **Cinnabar Island** (`build_cinnabar.py`): HeartGold's is the ruin after the eruption, so its land (205) is redrawn
@@ -421,6 +421,31 @@ grass), and between them HeartGold's road edge with the beach's sand in place of
 in set 18 by `build_pallet.py`: HeartGold has no beach-to-grass edge). Its warps are the GBA's, in order; the
 porter places its people by `build_cinnabar.to_world`. (Movements aren't remapped: the scenes that walk people
 across the town are Bill's Sevii trip, which the hack removed.)
+
+### The interior tile kit (`interior_kit.py`: a look with a `kit`)
+
+Big interiors are laid from **pieces of HeartGold's own rooms** (Nick: the tile kit, indoors too). A piece is every
+polygon of a HeartGold land in a box of squares, clipped to the box (texture coordinates carried along, with its
+material's repeat, flip and alpha), laid elsewhere unchanged; a kit names the land it cuts from (`src`) and its
+floor height (`base`). The GBA map is read as `ship_parts` reads it (floor what can be reached, walls the closed
+squares with the dark beyond, little closed patches inside rooms its things), then, ground first:
+- floor under every square that is no wall, in runs (its texture mapping read off the kit's floor square);
+- a wall square with floor south of it is HeartGold's wall face (its end piece where the wall stops beside floor;
+  the GBA's wall art where the GBA has it - a vent is HeartGold's duct -, else its lights every `lit_every` squares);
+  any other wall square is HeartGold's wall top. HeartGold's wall face stands three squares tall, so **a wall with
+  floor right behind it** (a partition a square thick, or a maze's walls out in a room with no dark beside them)
+  would hide that floor: those are low blocks (the kit's `block`), as the GBA draws them low;
+- furniture by the GBA's metatiles (`things`: a piece of a HeartGold room, centred on the GBA's patch, or a model at
+  its middle); anything else closed inside a room is the kit's `block`;
+- stairs are HeartGold's own (a piece of its room, mirrored for the other side) in place of room models;
+- the GBA's spin tiles are HeartGold's slide tiles (0x40-0x43, stop 0x4D, floor flags 0x0600 on the walkable
+  squares) with the Viridian Gym's arrow (`to_j_i1`, turned by its texture coordinates; `to_j_mark` the stop),
+  imported into the look's texture set (`IMPORTS`); their maps' map-load script runs `ViridianGymInit` (the
+  porter's `GYMMICK_INIT`), which the slide tiles need;
+- HeartGold's untextured polygons take the texel nearest their material's colour (`untextured`).
+**The Rocket Hideout** is HeartGold's Team Rocket HQ (area 64, cut from its B1F, land 498): grey panelled walls
+with their lights and ducts, desks with monitors (B3F's), its potted plant (23) and blue machine (77) models,
+crates for the spin mazes' partitions.
 
 ### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
 

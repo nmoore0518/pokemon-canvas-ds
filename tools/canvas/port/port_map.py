@@ -691,6 +691,8 @@ def new_game(p):
     return out + ['SetFlag %s' % p.flag('CV_NEW_GAME_SET_UP'), done + ':']
 
 
+# maps of ours with the GBA's spin tiles (HeartGold's slide tiles): their map-load script starts the Viridian gymmick
+GYMMICK_INIT = {'RocketHideout_B2F_Frlg', 'RocketHideout_B3F_Frlg'}
 INSERTS = {
     'PewterCity_EventScript_GymGuideTrigger': ('call_if_eq', pewter_gym_guide_lane4),
     'PalletTown_OnTransition': (None, new_game),
@@ -1219,6 +1221,7 @@ class Port:
             if cmd == 'end':
                 self.emit(*close, 'End'); open_msg = False
             elif cmd == 'return': self.emit('Return')
+            elif cmd == 'cv_raw': self.emit(*a)
             elif cmd in ('lock', 'lockall'): self.emit('LockAll')
             elif cmd in ('release', 'releaseall'): self.emit(*close, 'ReleaseAll'); open_msg = False
             elif cmd == 'faceplayer': self.emit('FacePlayer')
@@ -1597,6 +1600,14 @@ def port(gba_map, g, ids, report):
                 if c2 == 'map_script_2':
                     on.setdefault('frame', []).append(a2)
                     if a2[2] not in entries: entries.append(a2[2])
+    if gba_map in GYMMICK_INIT:       # (HeartGold's slide tiles need its Viridian Gym's gymmick running)
+        if 'MAP_SCRIPT_ON_TRANSITION' in on:
+            INSERTS[on['MAP_SCRIPT_ON_TRANSITION']] = (None, lambda p_: ['ViridianGymInit'])
+        else:
+            lbl = gdir + '_cv_OnTransition'
+            g.labels[lbl] = [('cv_raw', ['ViridianGymInit']), ('end', [])]
+            on['MAP_SCRIPT_ON_TRANSITION'] = lbl
+            entries.append(lbl)
     mapscript_entries = set(on.get(k) for k in ('MAP_SCRIPT_ON_TRANSITION', 'MAP_SCRIPT_ON_LOAD', 'MAP_SCRIPT_ON_RESUME'))
     for e in mapscript_entries:
         if e: p.mapscript_labels |= reachable(p, e)

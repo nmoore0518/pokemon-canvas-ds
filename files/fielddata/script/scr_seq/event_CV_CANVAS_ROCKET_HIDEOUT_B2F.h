@@ -5,6 +5,7 @@
 #define _EV_RocketHideout_B2F_EventScript_ItemMoonStone 1
 #define _EV_RocketHideout_B2F_EventScript_ItemTM12 2
 #define _EV_RocketHideout_B2F_EventScript_ItemSuperPotion 3
+#define _EV_RocketHideout_B2F_Frlg_cv_OnTransition 4
 
 
 #endif

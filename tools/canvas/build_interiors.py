@@ -41,6 +41,25 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
                     lowside='d17_wall01', mat='d15_yuka03', stairs=(7, 8, 9, 10), stretch=True, wall_top=32),
     'plant': dict(area=44, ship=True, floor='kn_c_yuka2', wall='kn_c_kabe1', cap='mpwr_r04', side='kn_c_kabe1', low='counter_g01', pad_model=157,
                   lowside='kn_c_kabe1', mat='kn_c_stair', stairs=(168, 169, 171, 170), stretch=True, wall_top=32),
+    # (kit looks: interior_kit.build_kit_floor lays them from pieces of HeartGold's own rooms. src: the land cut
+    # from; base: its floor's height; floor, top: a square of its floor, of its wall's top; faces: a square of its
+    # wall face (plain, its ends, its art), (x, z[, w, h]); art: GBA wall metatile -> face; things: furniture by the
+    # GBA's metatiles - a piece cut from a room (src, box) or a model; block: anything else closed inside a room)
+    # the Rocket Hideout in HeartGold's Team Rocket HQ (area 64, its B1F land 498): grey panelled walls, their
+    # lights and ducts, crates, desks with monitors, its potted plants
+    'rocket': dict(area=64, stairs=(7, 8, 9, 10), pad_model=157, kit=dict(
+        src=498, base=14, floor=(13, 5), floor_tex={'aj_fl01'}, top=(5, 5),
+        faces={'plain': (13, 2), 'end_e': (22, 9), 'end_w': (25, 9), 'lit': (15, 2, 2, 1), 'duct': (19, 2, 2, 1)},
+        art={0x28A: 'duct', 0x2A7: 'duct'}, lit_every=6,
+        things=[dict(mt={0x2B8, 0x2B9, 0x2BA, 0x2BB, 0x2B7, 0x2C0, 0x2C1, 0x2C2, 0x2BC, 0x316, 0x317, 0x31E, 0x31F, 0x326, 0x327, 0x32E, 0x32F,
+                         0x313, 0x314, 0x315, 0x31B, 0x31D, 0x323, 0x324, 0x325},
+                     src=503, piece=(6, 13, 2, 2), center=True),
+                dict(mt={0x300, 0x301, 0x302, 0x308, 0x309}, model=23),
+                dict(mt={0x2BD, 0x2BE, 0x2BF, 0x2C3, 0x2C4}, model=77)],
+        stairs=(8, 28, 2, 2),
+        slides={0x54: (0x40, 'right'), 0x55: (0x41, 'left'), 0x56: (0x42, 'up'), 0x57: (0x43, 'down'), 0x58: (0x4D, 'stop')},
+        arrow='to_j_i1', stop='to_j_mark',
+        block=(19, 9, 1, 2), block_src=499, block_keep={'aj_box01', 'h_kage'}, block_at=(0, -0.56), untextured=(64, 80, 104))),
     'ship': dict(area=42, ship=True),         # the S.S. Anne: SHIP below
     # Celadon's Game Corner and its Prize Room, in the looks of HeartGold's own (whose rooms are laid out for other
     # games: its Game Corner is the Voltorb Flip hall, its prize room a third the size of the GBA's)
@@ -108,7 +127,7 @@ INTERIORS = (
           depth={'1F': -1, '2F': -2, 'B1F': 0}[f]) for f, n in (('1F', 7), ('2F', 6), ('B1F', 5)) for i in range(1, n + 1)] +
     # the Rocket Hideout, under the Game Corner (stairs added there: ADD_WARPS). Its spin-tile mazes are plain floor
     # for now (HeartGold's slide tiles need a gym's code running), and its elevator (a GBA dynamic warp) isn't built
-    [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='plant', template='MAP_SAFFRON_SILPH_CO_HQ', place='MAP_CELADON',
+    [dict(gba='RocketHideout_B%dF_Frlg' % i, map='MAP_CANVAS_ROCKET_HIDEOUT_B%dF' % i, look='rocket', template='MAP_TEAM_ROCKET_HEADQUARTERS_B1F', place='MAP_CELADON',
           depth=i) for i in range(1, 5)]
 )
 # Cinnabar (our town: build_cinnabar.py draws the GBA's in place of HeartGold's ruin)
@@ -258,25 +277,12 @@ def ship_parts(spec):
                 band=band, things=things, inner=inner, deep=deep)
 
 
-def build_ship_floor(spec, depth_of):
-    """A floor of the S.S. Anne: the GBA's layout, square for square, in HeartGold's ship look. Walkable squares are
-    floor (planks; carpet in the cabins); the wall above each stretch of floor stands at its far edge, white with
-    a blue foot and a yellow line (the cabins' papered), with HeartGold's door where the GBA has one and its
-    porthole where the GBA has one; the walls at the sides and the near edge are a low kerb, so they hide nothing;
-    the GBA's furniture is HeartGold's (SHIP_FURNITURE), or a low block."""
-    P = ship_parts(spec)
-    gm, lay, W, H, warps, band, things = P['gm'], P['lay'], P['W'], P['H'], P['warps'], P['band'], P['things']
-    walk, door, wallish, isvoid = P['walk'], P['door'], P['wallish'], P['isvoid']
-    SHIP = globals()['SHIP'] if spec['look'] == 'ship' else LOOKS[spec['look']]      # (the look's textures)
-    WALL_TOP = SHIP['wall_top']
-    plain = set(SHIP.get('plain', ()))            # textures used for their colour: one texel of them
-    dims, pals = texdims(SHIP.get('texset', SHIP['area']))
-    pal_of = lambda t_: next(p for p in (t_ + '_pl', t_) if p in pals)
-    room = spec['look'] == 'ship' and 'Room' in spec['gba']
-    floor_tex = SHIP['carpet'][spec['gba'].split('_')[1]] if room else SHIP['floor']
-    wall_tex = SHIP['paper'] if room else SHIP['wall']
-    low_tex = SHIP['steel'] if 'Kitchen' in spec['gba'] else SHIP['low']
-    stones = set(P['inner']) | set(P['deep']) if SHIP.get('slab') else set()      # (the Tower: every closed square inside a room is a gravestone)
+def _furnish(P, spec, depth_of, SHIP):
+    """HeartGold's furniture on the GBA's (SHIP_FURNITURE), its stairs between floors where the GBA has them, warp
+    pads, and what each warp square is -> (props, closed squares, squares under stairs up, squares of stairs-down
+    wells, the wells, warp square -> behaviour)"""
+    gm, lay, W, H, warps = P['gm'], P['lay'], P['W'], P['H'], P['warps']
+    walk, door = P['walk'], P['door']
     # furniture of HeartGold's
     props, closed = [], set()
     for y in range(H):
@@ -312,7 +318,6 @@ def build_ship_floor(spec, depth_of):
             hole_sq |= block
             holes.append(((cx - 1) * 16, y * 16, (cx + 1) * 16, (y + 2) * 16, cx * 16 + bx0, cz * 16 + bz0, cx * 16 + bx1, cz * 16 + bz1))
     USED_MODELS.setdefault(SHIP['area'], set()).update(m for m, *_ in props)
-    floor = lambda x, y: ((walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in stones or (x, y) in closed or (x, y) in under) and (x, y) not in hole_sq
     kind = {}
     for (x, y), w in warps.items():
         dest = w['dest_map']
@@ -322,6 +327,30 @@ def build_ship_floor(spec, depth_of):
             kind[(x, y)] = 0x65             # (a way out at the foot of the wall: walk on into it)
         else:
             kind[(x, y)] = 0x3E
+    return props, closed, under, hole_sq, holes, kind
+
+
+def build_ship_floor(spec, depth_of):
+    """A floor of the S.S. Anne: the GBA's layout, square for square, in HeartGold's ship look. Walkable squares are
+    floor (planks; carpet in the cabins); the wall above each stretch of floor stands at its far edge, white with
+    a blue foot and a yellow line (the cabins' papered), with HeartGold's door where the GBA has one and its
+    porthole where the GBA has one; the walls at the sides and the near edge are a low kerb, so they hide nothing;
+    the GBA's furniture is HeartGold's (SHIP_FURNITURE), or a low block."""
+    P = ship_parts(spec)
+    gm, lay, W, H, warps, band, things = P['gm'], P['lay'], P['W'], P['H'], P['warps'], P['band'], P['things']
+    walk, door, wallish, isvoid = P['walk'], P['door'], P['wallish'], P['isvoid']
+    SHIP = globals()['SHIP'] if spec['look'] == 'ship' else LOOKS[spec['look']]      # (the look's textures)
+    WALL_TOP = SHIP['wall_top']
+    plain = set(SHIP.get('plain', ()))            # textures used for their colour: one texel of them
+    dims, pals = texdims(SHIP.get('texset', SHIP['area']))
+    pal_of = lambda t_: next(p for p in (t_ + '_pl', t_) if p in pals)
+    room = spec['look'] == 'ship' and 'Room' in spec['gba']
+    floor_tex = SHIP['carpet'][spec['gba'].split('_')[1]] if room else SHIP['floor']
+    wall_tex = SHIP['paper'] if room else SHIP['wall']
+    low_tex = SHIP['steel'] if 'Kitchen' in spec['gba'] else SHIP['low']
+    stones = set(P['inner']) | set(P['deep']) if SHIP.get('slab') else set()      # (the Tower: every closed square inside a room is a gravestone)
+    props, closed, under, hole_sq, holes, kind = _furnish(P, spec, depth_of, SHIP)
+    floor = lambda x, y: ((walk(x, y) and (x, y) not in band) or (x, y) in things or (x, y) in stones or (x, y) in closed or (x, y) in under) and (x, y) not in hole_sq
     # out on deck, what is closed and not beside the planks is the sea
     deck = spec['look'] == 'ship' and 'Deck' in spec['gba']
     by_floor = lambda x, y: any(floor(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
@@ -470,6 +499,9 @@ for _s in INTERIORS:        # (a row more where a plateau's north face needs a s
 
 def build_floor(spec, depth_of):
     if spec['look'] == 'safari': return build_safari_floor(spec, depth_of)
+    if LOOKS[spec['look']].get('kit'):
+        import interior_kit
+        return interior_kit.build_kit_floor(spec, depth_of)
     if LOOKS[spec['look']].get('ship'): return build_ship_floor(spec, depth_of)
     gm = gba_map.map_json(spec['gba'])
     lay = gba_map.Layout(gm['layout'])
@@ -624,7 +656,30 @@ def ship_models():
     open(R.AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
 
 
+# textures a kit look needs from another of HeartGold's sets: texset -> [(from set, [names])] (the Hideout's spin
+# tiles are the Viridian Gym's slide tiles)
+IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])]}
+
+
+def import_textures():
+    from nitro import read_tex0, tex0_of, write_btx0
+    path = os.path.join(ROOT, 'files/a/0/4/4')
+    ts, btnf = read_narc(open(path, 'rb').read())
+    for dst, srcs in IMPORTS.items():
+        t, p = read_tex0(ts[dst], tex0_of(ts[dst]))
+        for src, names in srcs:
+            st, sp = read_tex0(ts[src], tex0_of(ts[src]))
+            nt = [e for e in st if e[0].decode() in names]
+            np_ = [q for q in sp if q[0].decode() in names or q[0].decode()[:-3] in names]
+            t = [e for e in t if e[0] not in {x[0] for x in nt}] + nt
+            p = [q for q in p if q[0] not in {x[0] for x in np_}] + np_
+        ts[dst] = write_btx0(t, p)
+        assert len(ts[dst]) < 56 * 1024, (dst, len(ts[dst]))
+    open(path, 'wb').write(write_narc(ts, btnf))
+
+
 def main():
+    import_textures()
     ids = gba_ids()
     for g, m in ids.items():
         SLOTS[m] = next(c['map'] for c in INTERIORS if c['gba'] == g)

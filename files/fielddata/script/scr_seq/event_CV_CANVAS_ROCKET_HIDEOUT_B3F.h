@@ -4,6 +4,7 @@
 #define _EV_RocketHideout_B3F_EventScript_ItemRareCandy 0
 #define _EV_RocketHideout_B3F_EventScript_ItemTM21 1
 #define _EV_RocketHideout_B3F_EventScript_ItemBlackGlasses 2
+#define _EV_RocketHideout_B3F_Frlg_cv_OnTransition 3
 
 
 #endif
