@@ -387,4 +387,5 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0385_CV_HOUSE_1F_OPEN.bin',
     'map_matrix_0386_CV_GAME_CORNER.bin',
     'map_matrix_0387_CV_PRIZE_ROOM.bin',
+    'map_matrix_0388_CV_SILPH_ELEVATOR.bin',
 ))

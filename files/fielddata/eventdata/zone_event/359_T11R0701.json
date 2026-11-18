@@ -57,8 +57,8 @@
         {
             "x": 3,
             "z": 2,
-            "header": "MAP_CANVAS_SILPH_CO_2F",
-            "anchor": 3,
+            "header": "MAP_CANVAS_SILPH_ELEVATOR",
+            "anchor": 0,
             "y": 0
         }
     ],

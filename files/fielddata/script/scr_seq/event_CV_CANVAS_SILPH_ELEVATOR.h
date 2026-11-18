@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_SILPH_ELEVATOR_H_
+#define SCR_SEQ_CV_CANVAS_SILPH_ELEVATOR_H_
+
+#define _EV_SilphCo_Elevator_EventScript_FloorSelect 0
+
+
+#endif

@@ -638,6 +638,7 @@ scr_seq_event_headers = files(
     'event_CV_CANVAS_PRIZE_ROOM.h',
     'event_CV_CANVAS_LEADER_ACADEMY.h',
     'event_CV_CANVAS_ROUTE_23.h',
+    'event_CV_CANVAS_SILPH_ELEVATOR.h',
 )
 
 scr_seq_asm = files(
@@ -1812,4 +1813,6 @@ scr_seq_asm = files(
     'scr_seq_1168_CV_CANVAS_LEADER_ACADEMY_hdr.s',
     'scr_seq_1169_CV_CANVAS_ROUTE_23.s',
     'scr_seq_1170_CV_CANVAS_ROUTE_23_hdr.s',
+    'scr_seq_1171_CV_CANVAS_SILPH_ELEVATOR.s',
+    'scr_seq_1172_CV_CANVAS_SILPH_ELEVATOR_hdr.s',
 )

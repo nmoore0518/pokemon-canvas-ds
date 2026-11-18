@@ -401,7 +401,7 @@ block and a half high round it, little blocked patches (tables, machines, graves
 pads drawn in `mark`. A way out at the foot of a wall is an exit mat (0x65); stairs and pads are step-on warps.
 HeartGold's doors stand in for them: Lavender's Radio Tower is the Pokemon Tower, Silph Co.'s elevator door goes to
 our 2F, Route 10's Power Plant is ours, and Vermilion's ferry building boards the S.S. Anne (its dock outside is
-left out). Not yet: Silph Co.'s elevator (a GBA dynamic warp), its card-key doors, the GBA furniture.
+left out). Not yet: Silph Co.'s card-key doors, the GBA furniture.
 The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden ones are: `ADD_WARPS`), built
 from the interior tile kit (below), its spin tiles working. The Safari Zone's four areas are built from a tile kit of HeartGold's own
 Safari Zone (below), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the
@@ -469,8 +469,13 @@ The looks (each HeartGold's own place of that kind):
 **Low walls**: a wall three or more squares deep with walkable floor along its north side (the S.S. Anne's block of
 cabins, walked round on every side) would stand HeartGold's wall over that walkway: it is a low wall instead, the
 kit's top a little off the floor with its faces round it.
-Not yet: Silph Co.'s elevator and card-key doors (its doors stand open: the GBA's map scripts close them), the
-Mansion's statue switches (they change walls).
+Silph Co.'s elevator is its own small room (last in `INTERIORS`); the porter turns the GBA's floor list
+(`SCROLL_LISTS`) into a HeartGold menu and `setdynamicwarp` into HeartGold's `SetDynamicWarp` to that floor's
+elevator door (`dynamic_warp`); the room's way out is HeartGold's dynamic warp (header 4095, anchor 256: the floor
+chosen, or back where you came in). HeartGold's 1F's elevator door leads in. The Celadon Department Store's
+elevator keeps HeartGold's own script (its floors are HeartGold's).
+Not yet: Silph Co.'s card-key doors (they stand open: the GBA's map scripts close them), the Mansion's statue
+switches (they change walls).
 
 ### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
 

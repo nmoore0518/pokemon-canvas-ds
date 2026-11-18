@@ -1,0 +1,24 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_SILPH_ELEVATOR.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_SilphCo_Elevator_EventScript_FloorSelect + 1",
+            "type": 0,
+            "x": 0,
+            "z": 2,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [],
+    "warps": [
+        {
+            "x": 2,
+            "z": 5,
+            "header": 4095,
+            "anchor": 256,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

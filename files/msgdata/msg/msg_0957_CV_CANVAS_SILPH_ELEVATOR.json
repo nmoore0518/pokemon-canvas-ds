@@ -1,0 +1,68 @@
+{
+  "key": 19944,
+  "messages": [
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_gText_WantWhichFloor",
+      "en_US": "Which floor do you want?"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_0",
+      "en_US": "11F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_1",
+      "en_US": "10F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_2",
+      "en_US": "9F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_3",
+      "en_US": "8F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_4",
+      "en_US": "7F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_5",
+      "en_US": "6F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_6",
+      "en_US": "5F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_7",
+      "en_US": "4F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_8",
+      "en_US": "3F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_9",
+      "en_US": "2F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_10",
+      "en_US": "1F"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_sm_silphco_floors_11",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_more",
+      "en_US": "More…"
+    },
+    {
+      "id": "msg_0957_CV_CANVAS_SILPH_ELEVATOR_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

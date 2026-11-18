@@ -595,4 +595,5 @@ zone_event_json = files(
     '593_CV_PRIZE_ROOM.json',
     '594_CV_CANVAS_ROUTE_23.json',
     '595_CV_CANVAS_LEADER_ACADEMY.json',
+    '596_CV_SILPH_ELEVATOR.json',
 )

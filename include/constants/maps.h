@@ -636,6 +636,7 @@
 #define MAP_CANVAS_PRIZE_ROOM                             627
 #define MAP_CANVAS_ROUTE_23                               628
 #define MAP_CANVAS_LEADER_ACADEMY                         629
+#define MAP_CANVAS_SILPH_ELEVATOR                         630
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

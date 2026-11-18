@@ -207,6 +207,12 @@ def pallet_mart(port, ret):
 
 
 SPECIALS = {
+    # elevators: the floor windows aren't drawn; the ride is HeartGold's elevator shake (ElevatorAnim: up or down
+    # by VAR_0x8004, floors by VAR_0x8005 - set from the GBA's floor vars just before)
+    'DrawElevatorCurrentFloorWindow': lambda p, r: [], 'CloseElevatorCurrentFloorWindow': lambda p, r: [],
+    'GetElevatorFloor': lambda p, r: [],
+    'InitElevatorFloorSelectMenuPos': lambda p, r: ['SetVar %s, 0' % r] if r else [],
+    'AnimateElevator': lambda p, r: ['ElevatorAnim 1, 2'],
     # Bill's cell separator: the camera stays with the player, the machine's own animation isn't there yet
     'SpawnCameraObject': lambda p, r: [], 'RemoveCameraObject': lambda p, r: [],
     'AnimateTeleporterHousing': lambda p, r: ['PlaySE SEQ_SE_DP_KI_GASYAN', 'WaitSE SEQ_SE_DP_KI_GASYAN'],

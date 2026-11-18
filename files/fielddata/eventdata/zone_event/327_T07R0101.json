@@ -12,8 +12,8 @@
         {
             "scriptId": "_EV_CeladonCity_DepartmentStore_1F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 8,
-            "z": 3,
+            "x": 10,
+            "z": 6,
             "y": 0,
             "dir": 4
         }
@@ -32,8 +32,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 10,
-            "z": 10,
+            "x": 11,
+            "z": 9,
             "y": 0
         }
     ],

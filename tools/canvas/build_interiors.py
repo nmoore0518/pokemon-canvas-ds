@@ -199,12 +199,17 @@ INTERIORS += (
           place='MAP_CELADON', exits={'MAP_CELADON_CITY': ('MAP_CELADON', 4)},
           widen=dict(cols=[(4, 2, [(0, 0), (0, 1), (1, 2), (0, 3), (0, 4), (0, 5), (3, 6), (0, 7), (0, 8), (0, 9)])]))]
 )
+# Silph Co.'s elevator (last: the lands before it keep their numbers). Its way out is HeartGold's dynamic warp
+# (header 4095, anchor 256: where the floor chosen last put it, or back where you came in); HeartGold's 1F's
+# elevator door leads in (DOORS)
+INTERIORS += [dict(gba='SilphCo_Elevator_Frlg', map='MAP_CANVAS_SILPH_ELEVATOR', look='silph', template='MAP_SAFFRON_SILPH_CO_HQ',
+                   depth=0, place='MAP_SAFFRON', exits={'MAP_DYNAMIC': (4095, 256)})]
 # warps we add to HeartGold's rooms: (map, square, its behaviour, our map, GBA warp index there). Each goes last in
 # the room's warp list, so no other warp's number moves.
 ADD_WARPS = [('MAP_FUCHSIA_PAL_PARK_ENTRANCE', (8, 4), 0x3E, 'MAP_CANVAS_SAFARI_CENTER', 1)]
 # HeartGold's doors that stood for these places -> ours: (map, its warp index) -> (our map, GBA warp index there)
 DOORS = {('MAP_LAVENDER', 6): ('MAP_CANVAS_POKEMON_TOWER_1F', 1),
-         ('MAP_SAFFRON_SILPH_CO_HQ', 1): ('MAP_CANVAS_SILPH_CO_2F', 3),
+         ('MAP_SAFFRON_SILPH_CO_HQ', 1): ('MAP_CANVAS_SILPH_ELEVATOR', 0),
          ('MAP_ROUTE_10', 1): ('MAP_CANVAS_POWER_PLANT', 1),
          ('MAP_VERMILION', 7): ('MAP_CANVAS_SSANNE_1F', 2),
          ('MAP_CELADON', 3): ('MAP_CANVAS_GAME_CORNER', 1), ('MAP_CELADON', 4): ('MAP_CANVAS_PRIZE_ROOM', 1)}
@@ -770,6 +775,7 @@ def main():
         json.dump(ev, open(path, 'w'), indent=4); open(path, 'a').write('\n')
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     for (m, i), (to, anchor) in DOORS.items():
+        if 'EVERYWHERE' in header(m)['matrixId']: continue     # (the towns' doors: build_overworld.py's, on the GBA's layouts)
         path = os.path.join(slots.EVENT_DIR, events_file(m))
         ev = json.load(open(path))
         ev['warps'][i].update(header=to, anchor=anchor)

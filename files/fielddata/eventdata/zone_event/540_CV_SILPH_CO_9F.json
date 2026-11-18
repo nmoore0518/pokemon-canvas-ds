@@ -255,9 +255,9 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 24,
+            "z": 3,
+            "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,
             "y": 0
         }

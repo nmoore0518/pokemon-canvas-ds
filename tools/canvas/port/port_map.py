@@ -374,7 +374,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'CeladonCity_DepartmentStore_4F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_4F', Auto('MAP_CELADON_DEPARTMENT_STORE_4F')),
     'CeladonCity_DepartmentStore_5F_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_5F', Auto('MAP_CELADON_DEPARTMENT_STORE_5F')),
     'CeladonCity_DepartmentStore_Roof_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_ROOF', Auto('MAP_CELADON_DEPARTMENT_STORE_ROOF')),
-    'CeladonCity_DepartmentStore_Elevator_Frlg': ('MAP_CELADON_DEPARTMENT_STORE_ELEVATOR', Auto('MAP_CELADON_DEPARTMENT_STORE_ELEVATOR')),
+    # (the Department Store's elevator keeps HeartGold's own script: its floors are HeartGold's)
     'CeladonCity_Condominiums_1F_Frlg': ('MAP_CELADON_CONDOMINIUMS_1F', Auto('MAP_CELADON_CONDOMINIUMS_1F')),
     'CeladonCity_Condominiums_2F_Frlg': ('MAP_CELADON_CONDOMINIUMS_2F', Auto('MAP_CELADON_CONDOMINIUMS_2F')),
     'CeladonCity_Condominiums_3F_Frlg': ('MAP_CELADON_CONDOMINIUMS_3F', Auto('MAP_CELADON_CONDOMINIUMS_3F')),
@@ -1349,7 +1349,21 @@ class Port:
             elif re.match(r'^(goto|call)_if_(eq|ne|lt|gt|le|ge)$', cmd):
                 kind = cmd.split('_')[-1].capitalize()
                 self.cond(kind, a[0], a[1], a[2], call=cmd.startswith('call'))
-            elif cmd == 'setvar': self.emit('SetVar %s, %s' % (self.var(a[0]), self.val(a[1])))
+            elif cmd == 'setvar':
+                if a[0] == 'VAR_0x8004': self.v8004 = a[1]          # (a scrollable list's id, for ShowScrollableMultichoice)
+                self.emit('SetVar %s, %s' % (self.var(a[0]), self.val(a[1])))
+            elif cmd == 'special' and a[0] == 'ShowScrollableMultichoice' and getattr(self, 'v8004', None) in SCROLL_LISTS:
+                items = []
+                for i, t in enumerate(SCROLL_LISTS[self.v8004]):
+                    key = 'cv_sm_%s_%d' % (self.v8004[13:].lower(), i)
+                    if key not in self.msgs: self.msgs[key] = text(t); self.msg_order.append(key)
+                    items.append((key, str(i)))
+                self.menu(items, '0', '0')
+            elif cmd == 'setdynamicwarp':
+                to = dynamic_warp(a[0], int(self.val(a[2])), int(self.val(a[3])))
+                if to is None:
+                    self.emit('// TODO(gba) setdynamicwarp %s' % a[0]); self.todo.append('setdynamicwarp %s (%s)' % (a[0], label))
+                else: self.emit('SetDynamicWarp %s, %d, %d, %d, 1' % to)
             elif cmd == 'addvar': self.emit('AddVar %s, %s' % (self.var(a[0]), self.val(a[1])))
             elif cmd == 'subvar': self.emit('SubVar %s, %s' % (self.var(a[0]), self.val(a[1])))
             elif cmd == 'copyvar': self.emit('CopyVar %s, %s' % (self.var(a[0]), self.var(a[1])))
@@ -1841,6 +1855,26 @@ def merged_json(name):
                 mj.setdefault(k, []).append(e)
         dy += gba_map.Layout(m2['layout']).h
     return mj
+
+
+SCROLL_LISTS = {      # the GBA's scrollable lists (src/scrollable_multichoice: its texts), in the order it gives
+    'SCROLL_MULTI_SILPHCO_FLOORS': ['11F', '10F', '9F', '8F', '7F', '6F', '5F', '4F', '3F', '2F', '1F', 'EXIT'],
+}
+
+
+def dynamic_warp(gba_const, x, y):
+    """an elevator's way out to a floor (the GBA's setdynamicwarp: map, square) -> (our map, the warp there that is
+    the elevator's door, its square): HeartGold puts you at that warp"""
+    d = next((k for k in MAPS if '#' not in k and '+' not in k and G.map_json(k).get('id') == gba_const), None)
+    if d is None: return None
+    slot, xy = MAPS[d][:2]
+    ev = json.load(open(os.path.join(slots.EVENT_DIR, slots.events_file(slot))))
+    want = xy(x, y) if xy else (x, y)
+    ws = ev.get('warps', [])
+    if not ws: return None
+    i = min(range(len(ws)), key=lambda i: abs(ws[i]['x'] - want[0]) + abs(ws[i]['z'] - want[1]) +
+            (0 if 'ELEVATOR' in str(ws[i]['header']) else 100))
+    return slot, i, ws[i]['x'], ws[i]['z']
 
 
 def reachable(p, e):
