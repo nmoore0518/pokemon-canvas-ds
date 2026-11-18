@@ -4,32 +4,32 @@
         {
             "scriptId": "_EV_LavenderTown_EventScript_SilphScopeNotice + 1",
             "type": 0,
-            "x": 1421,
-            "z": 235,
+            "x": 1363,
+            "z": 226,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_LavenderTown_EventScript_TownSign + 1",
             "type": 0,
-            "x": 1417,
-            "z": 242,
+            "x": 1366,
+            "z": 233,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_LavenderTown_EventScript_PokemonTowerSign + 1",
             "type": 0,
-            "x": 1430,
-            "z": 236,
+            "x": 1372,
+            "z": 229,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_LavenderTown_EventScript_VolunteerHouseSign + 1",
             "type": 0,
-            "x": 1426,
-            "z": 246,
+            "x": 1358,
+            "z": 233,
             "y": 0,
             "dir": 4
         }
@@ -48,8 +48,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 1,
-            "x": 1425,
-            "z": 237,
+            "x": 1370,
+            "z": 232,
             "y": 0
         },
         {
@@ -65,8 +65,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1421,
-            "z": 243,
+            "x": 1363,
+            "z": 234,
             "y": 0
         },
         {
@@ -82,8 +82,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1420,
-            "z": 236,
+            "x": 1361,
+            "z": 229,
             "y": 0
         },
         {
@@ -99,59 +99,52 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1422,
-            "z": 237,
+            "x": 1364,
+            "z": 230,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1418,
-            "z": 234,
+            "x": 1357,
+            "z": 227,
             "header": "MAP_LAVENDER_POKECENTER_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1419,
-            "z": 242,
+            "x": 1369,
+            "z": 228,
+            "header": "MAP_CANVAS_POKEMON_TOWER_1F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1361,
+            "z": 233,
             "header": "MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1414,
-            "z": 249,
-            "header": "MAP_LAVENDER_SOUTHWEST_HOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1419,
-            "z": 249,
-            "header": "MAP_LAVENDER_NAME_RATER",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1412,
-            "z": 234,
+            "x": 1371,
+            "z": 237,
             "header": "MAP_LAVENDER_POKEMART",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1431,
-            "z": 246,
-            "header": "MAP_LAVENDER_HOUSE_OF_MEMORIES",
+            "x": 1356,
+            "z": 238,
+            "header": "MAP_LAVENDER_SOUTHWEST_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1429,
-            "z": 234,
-            "header": "MAP_CANVAS_POKEMON_TOWER_1F",
-            "anchor": 1,
+            "x": 1361,
+            "z": 238,
+            "header": "MAP_LAVENDER_NAME_RATER",
+            "anchor": 0,
             "y": 0
         }
     ],

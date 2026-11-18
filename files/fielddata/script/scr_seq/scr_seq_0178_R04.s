@@ -3,21 +3,43 @@
 #include "msgdata/msg/msg_0328_R04.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route4_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route4_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
+	ScrDef Route4_EventScript_Woman
 	ScrDef Route4_EventScript_ItemTM05
+	ScrDef Route4_EventScript_Boy
 	ScrDef Route4_EventScript_MegaPunchTutor
 	ScrDef Route4_EventScript_MegaKickTutor
 	ScrDef BerryField_EventScript_FindPoison
+	ScrDef Route4_EventScript_MtMoonSign
 	ScrDef Route4_EventScript_RouteSign
 	ScrDefEnd
+	
+Route4_EventScript_Woman:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0328_R04_Route4_Text_TrippedOverGeodude
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 	
 Route4_EventScript_ItemTM05:
 	SetVar 0x8004, ITEM_TM05
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route4_EventScript_Boy:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0328_R04_Route4_Text_PeopleLikeAndRespectBrock
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 Route4_EventScript_MegaPunchTutor:
@@ -45,6 +67,15 @@ BerryField_EventScript_FindPoison:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route4_EventScript_MtMoonSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0328_R04_Route4_Text_MtMoonEntrance
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 Route4_EventScript_RouteSign:

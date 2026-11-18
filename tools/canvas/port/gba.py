@@ -61,7 +61,27 @@ class Gba:
         cur = None
         macro = None               # (a .macro in a map's scripts: its lines, expanded where it's used; no arguments)
         local_macros = {}
-        for raw in open(f, errors='ignore'):
+        pmacro, pmacros = None, {}   # (a .macro with arguments: its lines as text, the arguments put in where used)
+        queue = list(open(f, errors='ignore'))
+        while queue:
+            raw = queue.pop(0)
+            if pmacro is not None:
+                if raw.strip() == '.endm': pmacro = None
+                else: pmacro[1].append(raw)
+                continue
+            mm = re.match(r'^\s*\.macro\s+(\w+)\s+(.+)$', raw.split('@')[0])
+            if mm:
+                pmacro = pmacros[mm.group(1)] = ([a.split(':')[0].strip() for a in mm.group(2).split(',')], []); continue
+            mm = re.match(r'^\s*(\w+)\s+(.*)$', raw.split('@')[0])
+            if mm and mm.group(1) in pmacros:
+                names, body = pmacros[mm.group(1)]
+                vals = [v.strip() for v in mm.group(2).split(',')]
+                out = []
+                for b in body:
+                    for n_, v_ in zip(names, vals): b = b.replace('\\' + n_, v_)
+                    out.append(b.replace('\\()', ''))
+                queue[0:0] = out
+                continue
             line = raw.split('@')[0].rstrip() if '"' not in raw else raw.rstrip('\n')
             if '"' in line:
                 # keep strings intact; drop a trailing @ comment after the closing quote

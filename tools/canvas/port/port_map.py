@@ -504,6 +504,7 @@ _lay = {}
 
 def _open_on_gba(mj, o):
     """is the GBA square this person stands on open floor? (a clerk behind a counter, a statue: no)"""
+    if '_open' in o: return o['_open']
     try:
         if mj['layout'] not in _lay:
             import gba_map
@@ -581,7 +582,76 @@ DEST_EXTRA = {
     'MAP_VICTORY_ROAD_1F': 'MAP_VICTORY_ROAD_1F', 'MAP_CERULEAN_CAVE_1F': 'MAP_CERULEAN_CAVE_1F', 'MAP_ROUTE21_SOUTH': 'MAP_ROUTE_21',
     'MAP_ROUTE21_NORTH': 'MAP_ROUTE_21', 'MAP_ROUTE23': 'MAP_VICTORY_ROAD_1F', 'MAP_SILPH_CO_1F': 'MAP_SAFFRON_SILPH_CO_HQ',
 }
-PRIMARIES = set(v[0] for k, v in MAPS.items() if '#' not in k)
+
+# ---------------------------------------------------------------- Kanto on the GBA's layouts (build_overworld.py)
+# The towns and routes are the GBA's own maps laid side by side (data/kanto_world.json: each GBA map's corner in
+# HeartGold's squares, the HeartGold map each land is). A HeartGold map's people, signs and trigger squares are the
+# GBA's that stand in its lands, whichever GBA map they come from, at their own squares; its map scripts are its
+# main GBA map's (the one with most squares there). People from other GBA maps get ids after the main map's.
+WORLD_FILE = os.path.join(os.path.dirname(HERE), 'data', 'kanto_world.json')
+WORLD = json.load(open(WORLD_FILE)) if os.path.exists(WORLD_FILE) else None
+WORLD_EVENTS = {}           # MAPS key -> the GBA events it ports (in its main map's squares)
+LID_OVER = {}               # a GBA local id -> its id in the HeartGold map it ended up in
+
+
+def _world_entries():
+    W = WORLD
+    cells = {tuple(int(v) for v in k.split(',')): m for k, m in W['cells'].items()}
+    owner = lambda gx, gz: cells.get((gx // 32, gz // 32))
+    outdoor = set(W['maps'])
+    for k in [k for k in MAPS if any(p_ in outdoor for p_ in k.split('#')[0].split('+'))]:
+        if k not in ('PalletTown_Frlg', 'CinnabarIsland_Frlg'): del MAPS[k]
+    by_map = {}
+    for d, (x0, y0, w, h) in W['maps'].items():
+        for gz in range(y0, y0 + h):
+            for gx in range(x0, x0 + w):
+                X = owner(gx, gz)
+                if X: by_map.setdefault(X, {}); by_map[X][d] = by_map[X].get(d, 0) + 1
+    for X, counts in sorted(by_map.items()):
+        if X == 'MAP_CINNABAR_ISLAND': continue           # (our widened town: its own squares, build_cinnabar.py)
+        if X == 'MAP_PALLET': prim, key = 'PalletTown_Frlg', 'PalletTown_Frlg'
+        else:
+            prim = max(counts, key=lambda d: (W['hg'][d] == X, counts[d]))
+            key = prim + '#world'
+            ox, oy = W['maps'][prim][:2]
+            MAPS[key] = (X, (lambda ox, oy: lambda x, y, kind='pos': (ox + x, oy + y))(ox, oy))
+        T0 = W['maps'][prim][:2]
+        base = json.loads(json.dumps(G.map_json(prim)))
+        out = {k: [] for k in ('object_events', 'bg_events', 'coord_events')}
+        nxt = len(base.get('object_events', [])) + 1
+        for d in [prim] + sorted(d for d in counts if d != prim):
+            gx0, gy0 = W['maps'][d][:2]
+            mj = G.map_json(d)
+            import gba_map as _gm
+            lay = _gm.Layout(mj['layout'])
+            for k in out:
+                for i, e in enumerate(mj.get(k, [])):
+                    gx, gy = gx0 + e['x'], gy0 + e['y']
+                    if owner(gx, gy) != X: continue
+                    e = dict(e, x=gx - T0[0], y=gy - T0[1],
+                             _open=0 <= e['x'] < lay.w and 0 <= e['y'] < lay.h and lay.collision(e['x'], e['y']) == 0)
+                    if k == 'object_events':
+                        if d == prim: e['_lid'] = i + 1
+                        else:
+                            e['_lid'] = nxt; nxt += 1
+                            if e.get('local_id'): LID_OVER[e['local_id']] = e['_lid']
+                    out[k].append(e)
+        base.update(out)
+        WORLD_EVENTS[key] = base
+
+
+MAPS_HG = dict(MAPS)        # (the outdoor maps' own HeartGold maps, as build_overworld.py reads them)
+if WORLD:
+    _world_entries()
+    INSERTS_DROP = ('PewterCity_EventScript_GymGuideTrigger',)     # (walks fitted to HeartGold's Pewter)
+
+
+def events_json(gba_map):
+    """the GBA events a MAPS entry ports"""
+    return WORLD_EVENTS.get(gba_map) or merged_json(gba_map.split('#')[0])
+
+
+PRIMARIES = set(v[0] for k, v in MAPS.items() if '#' not in k) | (set(WORLD['hg'].values()) if WORLD else set())
 
 
 def _dest():
@@ -591,6 +661,8 @@ def _dest():
         try: out[G.map_json(d)['id']] = v[0]
         except Exception: pass
     for k, v in DEST_EXTRA.items(): out.setdefault(k, v)
+    if WORLD:
+        for d, m in WORLD['hg'].items(): out[G.map_json(d)['id']] = m
     return out
 
 
@@ -701,6 +773,8 @@ INSERTS = {
         'FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'NameRival VAR_SPECIAL_RESULT', 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade',
         'SetFlag {flag[CV_RIVAL_NAMED]}', '_cv_rival_named:']),
 }
+if WORLD:
+    for _k in INSERTS_DROP: INSERTS.pop(_k, None)
 
 
 def map_safe(line):
@@ -945,7 +1019,7 @@ class Port:
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
         self.flag_of = {}             # a person's local id -> their flag
-        for o in merged_json(gba_map.split('#')[0]).get('object_events', []):
+        for o in events_json(gba_map).get('object_events', []):
             if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
                 self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
                 self.flag_of[self.localid(o['local_id'])] = o['flag']
@@ -1014,6 +1088,7 @@ class Port:
     def localid(self, a):
         if a in ('OBJ_EVENT_ID_PLAYER', 'LOCALID_PLAYER', '255'): return 'obj_player'
         a = self.alias(a)
+        if a in LID_OVER: return str(LID_OVER[a])
         if a.startswith('VAR_'): return self.var(a)
         v = self.g.value(a)
         if v is None and re.search(r'[-+*/()]', a):         # (an expression of GBA constants: work it out)
@@ -1561,7 +1636,7 @@ def port(gba_map, g, ids, report):
         xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
         xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
         xy.warps = [(w['x'], w['z']) for w in ev.get('warps', [])]
-    mj = merged_json(gba_map.split('#')[0])
+    mj = events_json(gba_map)
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
     entries = []
@@ -1675,7 +1750,7 @@ def port(gba_map, g, ids, report):
     for i, e in enumerate(entries): eh.append('#define _EV_%s %d' % (e, i))
     eh.append('')
     for o in people:
-        if o.get('local_id'): eh.append('#define %s %d' % (o['local_id'], g.value(o['local_id'])))
+        if o.get('local_id'): eh.append('#define %s %d' % (o['local_id'], LID_OVER.get(o['local_id'], g.value(o['local_id']))))
     # (HeartGold's own code that names this map's people, such as a gym's moving gates: their ids stay defined,
     # as nobody's, so it still builds)
     for k, n in enumerate(sorted(n for n in c_object_refs() if n.startswith('obj_%s_' % tag))):
@@ -1709,7 +1784,7 @@ def port(gba_map, g, ids, report):
         _taken.add((x, z))
         if (x, z) != tuple(at): report.append('  %s at %s moved (off something closed, clear of a door or of the people beside): now at %s' % (gfx, tuple(at), (x, z)))
         spot = xy.last_spot if isinstance(xy, Anchored) and kind == 'trainer' else None
-        lid = g.value(o['local_id']) if o.get('local_id') else i + 1
+        lid = o.get('_lid') or (g.value(o['local_id']) if o.get('local_id') else i + 1)
         m = re.match(r'VAR_(\d|[0-9A-F])$', gfx)
         spr = SPRITE.get(gfx, 'GSMAN1')
         objs.append({'id': o.get('local_id') or str(lid), 'spriteId': (str(101 + int(m.group(1), 16)) if m else spr[1:] if spr.startswith('#') else 'SPRITE_' + spr),

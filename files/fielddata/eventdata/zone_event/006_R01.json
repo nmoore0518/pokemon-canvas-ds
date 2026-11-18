@@ -4,8 +4,8 @@
         {
             "scriptId": "_EV_Route1_EventScript_RouteSign + 1",
             "type": 0,
-            "x": 1037,
-            "z": 338,
+            "x": 1036,
+            "z": 343,
             "y": 0,
             "dir": 4
         }
@@ -25,7 +25,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 1033,
-            "z": 336,
+            "z": 340,
             "y": 0
         },
         {
@@ -41,8 +41,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 3,
-            "x": 1047,
-            "z": 315,
+            "x": 1046,
+            "z": 328,
             "y": 0
         },
         {
@@ -58,8 +58,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1049,
-            "z": 326,
+            "x": 1048,
+            "z": 337,
             "y": 0
         },
         {
@@ -75,26 +75,11 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1034,
-            "z": 318,
+            "x": 1035,
+            "z": 330,
             "y": 0
         }
     ],
-    "warps": [
-        {
-            "x": 1036,
-            "z": 288,
-            "header": "MAP_VIRIDIAN_ROUTE_1_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1037,
-            "z": 288,
-            "header": "MAP_VIRIDIAN_ROUTE_1_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        }
-    ],
+    "warps": [],
     "coords": []
 }

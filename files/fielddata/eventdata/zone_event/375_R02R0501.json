@@ -64,8 +64,8 @@
         {
             "x": 5,
             "z": 2,
-            "header": "MAP_ROUTE_2_EAST",
-            "anchor": 0,
+            "header": "MAP_ROUTE_2",
+            "anchor": 1,
             "y": 0
         }
     ],

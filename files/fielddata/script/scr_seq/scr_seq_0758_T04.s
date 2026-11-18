@@ -3,24 +3,19 @@
 #include "msgdata/msg/msg_0467_T04.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's CeruleanCity_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's CeruleanCity_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef CeruleanCity_EventScript_Policeman
 	ScrDef CeruleanCity_EventScript_Grunt
 	ScrDef CeruleanCity_EventScript_LittleBoy
 	ScrDef CeruleanCity_EventScript_BaldingMan
-	ScrDef CeruleanCity_EventScript_Slowbro
-	ScrDef CeruleanCity_EventScript_Lass
 	ScrDef CeruleanCity_EventScript_Youngster
-	ScrDef CeruleanCity_EventScript_Woman
 	ScrDef CeruleanCity_EventScript_CeruleanCaveGuard
 	ScrDef TypeTutor_EventScript_Water
 	ScrDef TypeTutor_EventScript_Ice
 	ScrDef CeruleanCity_EventScript_CitySign
 	ScrDef CeruleanCity_EventScript_GymSign
-	ScrDef CeruleanCity_EventScript_BikeShopSign
-	ScrDef CeruleanCity_EventScript_TrainerTips
 	ScrDef CeruleanCity_BikeShop_EventScript_Bicycle
 	ScrDef CeruleanCity_EventScript_RivalTriggerLeft
 	ScrDef CeruleanCity_EventScript_RivalTriggerMid
@@ -87,45 +82,6 @@ CeruleanCity_EventScript_BaldingMan:
 	ReleaseAll
 	End
 	
-CeruleanCity_EventScript_Slowbro:
-	LockAll
-	Random VAR_SPECIAL_RESULT, 4
-	CopyVar 0x8008, VAR_SPECIAL_RESULT
-	CompareVarToValue 0x8008, 0
-	CallIfEq CeruleanCity_EventScript_SlowbroText1
-	CompareVarToValue 0x8008, 1
-	CallIfEq CeruleanCity_EventScript_SlowbroText2
-	CompareVarToValue 0x8008, 2
-	CallIfEq CeruleanCity_EventScript_SlowbroText3
-	CompareVarToValue 0x8008, 3
-	CallIfEq CeruleanCity_EventScript_SlowbroText4
-	ReleaseAll
-	End
-	
-CeruleanCity_EventScript_Lass:
-	LockAll
-	Random VAR_SPECIAL_RESULT, 3
-	CopyVar 0x8008, VAR_SPECIAL_RESULT
-	CompareVarToValue 0x8008, 0
-	CallIfEq CeruleanCity_EventScript_SlowbroCommand1
-	CompareVarToValue 0x8008, 1
-	CallIfEq CeruleanCity_EventScript_SlowbroCommand2
-	CompareVarToValue 0x8008, 2
-	CallIfEq CeruleanCity_EventScript_SlowbroCommand3
-	Wait 40, VAR_SPECIAL_RESULT
-	PlaySE SEQ_SE_DP_SELECT
-	ApplyMovement 5, Common_Movement_QuestionMark
-	WaitMovement
-	Wait 30, VAR_SPECIAL_RESULT
-	CompareVarToValue 0x8008, 0
-	CallIfEq CeruleanCity_EventScript_SlowbroFailed1
-	CompareVarToValue 0x8008, 1
-	CallIfEq CeruleanCity_EventScript_SlowbroFailed2
-	CompareVarToValue 0x8008, 2
-	CallIfEq CeruleanCity_EventScript_SlowbroFailed3
-	ReleaseAll
-	End
-	
 CeruleanCity_EventScript_Youngster:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
@@ -133,17 +89,6 @@ CeruleanCity_EventScript_Youngster:
 	NPCMsg msg_0467_T04_CeruleanCity_Text_TrainerLifeIsToughIsntIt
 	WaitButton
 	CloseMsg
-	ReleaseAll
-	End
-	
-CeruleanCity_EventScript_Woman:
-	LockAll
-	FacePlayer
-	NPCMsg msg_0467_T04_CeruleanCity_Text_WantBrightRedBicycle
-	WaitButton
-	CloseMsg
-	ApplyMovement 11, Common_Movement_FaceOriginalDirection
-	WaitMovement
 	ReleaseAll
 	End
 	
@@ -186,24 +131,6 @@ CeruleanCity_EventScript_GymSign:
 	ReleaseAll
 	End
 	
-CeruleanCity_EventScript_BikeShopSign:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0467_T04_CeruleanCity_Text_BikeShopSign
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-CeruleanCity_EventScript_TrainerTips:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0467_T04_CeruleanCity_Text_TrainerTipsHeldItems
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
 CeruleanCity_BikeShop_EventScript_Bicycle:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
@@ -222,14 +149,14 @@ CeruleanCity_EventScript_RivalTriggerLeft:
 CeruleanCity_EventScript_RivalTriggerMid:
 	LockAll
 	SetVar 0x4001, 1
-	MovePerson 8, 1324, 97
+	MovePerson 8, 1254, 132
 	GoTo CeruleanCity_EventScript_Rival
 	End
 	
 CeruleanCity_EventScript_RivalTriggerRight:
 	LockAll
 	SetVar 0x4001, 2
-	MovePerson 8, 1325, 97
+	MovePerson 8, 1255, 132
 	GoTo CeruleanCity_EventScript_Rival
 	End
 	
@@ -291,53 +218,6 @@ CeruleanCity_EventScript_LittleBoySlowbroMoved:
 	CloseMsg
 	ReleaseAll
 	End
-	
-CeruleanCity_EventScript_SlowbroText1:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroTookSnooze
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroText2:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroLoafingAround
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroText3:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroTurnedAway
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroText4:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroIgnoredOrders
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroCommand1:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroUseSonicboom
-	Return
-	
-CeruleanCity_EventScript_SlowbroCommand2:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroPunch
-	Return
-	
-CeruleanCity_EventScript_SlowbroCommand3:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroWithdraw
-	Return
-	
-CeruleanCity_EventScript_SlowbroFailed1:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_SlowbroPayAttention
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroFailed2:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_NoYouBlewItAgain
-	WaitButton
-	Return
-	
-CeruleanCity_EventScript_SlowbroFailed3:
-	NPCMsg msg_0467_T04_CeruleanCity_Text_HardToControlMonsObedience
-	WaitButton
-	Return
 	
 TypeTutor_EventScript_Talk:
 	CopyVar 0x8008, 0x8004
@@ -426,9 +306,9 @@ _cv_beaten_5:
 	End
 	
 CeruleanCity_EventScript_BlockExits:
-	MovePerson 1, 1319, 124
-	MovePerson 5, 1308, 145
-	MovePerson 6, 1308, 145
+	MovePerson 1, 1261, 144
+	MovePerson 3, 1257, 163
+	MovePerson 4, 1258, 163
 	Return
 	
 CeruleanCity_EventScript_OpenCave:
@@ -754,11 +634,6 @@ _cv_stop:
 
 	.balign 4, 0
 Common_Movement_FaceOriginalDirection:
-	EndMovement
-
-	.balign 4, 0
-Common_Movement_QuestionMark:
-	EmoteQuestionMark
 	EndMovement
 
 	.balign 4, 0

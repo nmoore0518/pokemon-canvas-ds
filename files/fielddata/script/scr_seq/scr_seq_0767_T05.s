@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0475_T05.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's LavenderTown_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's LavenderTown_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef LavenderTown_EventScript_LittleGirl

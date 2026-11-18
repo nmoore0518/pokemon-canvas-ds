@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 5,
-            "z": 7,
+            "x": 6,
+            "z": 6,
             "y": 0
         },
         {
@@ -31,8 +31,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 6,
+            "x": 9,
+            "z": 7,
             "y": 0
         }
     ],
@@ -40,8 +40,8 @@
         {
             "x": 5,
             "z": 9,
-            "header": "MAP_ROUTE_5",
-            "anchor": 2,
+            "header": "MAP_SAFFRON",
+            "anchor": 1,
             "y": 0
         },
         {

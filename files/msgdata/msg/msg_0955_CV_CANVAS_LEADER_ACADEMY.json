@@ -1,0 +1,246 @@
+{
+  "key": 19942,
+  "messages": [
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_KojiHello",
+      "en_US": [
+        "Koji: I’m from Cianwood, in\n",
+        "Johto. Chuck trained me himself…\r",
+        "mostly by throwing me into the\n",
+        "sea.\r",
+        "He says when I can beat him\n",
+        "without shouting, the Gym is\r",
+        "mine. I’m working on the quiet\n",
+        "part."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarenHello",
+      "en_US": [
+        "Maren: I grew up on a boat\n",
+        "between Slateport and Lilycove.\r",
+        "Hoenn is mostly ocean, you know.\r",
+        "Pacifidlog has never had a Gym.\n",
+        "I want to be its first Leader!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_ReneHello",
+      "en_US": [
+        "Rene: Bonjour! I’m from Laverre\n",
+        "City, in Kalos. Valerie taught\r",
+        "me that a battle can be\n",
+        "beautiful.\r",
+        "I want a Gym where Fairy types\n",
+        "are taken seriously.\r",
+        "Underestimate them at your\n",
+        "peril."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Student1",
+      "en_US": [
+        "I came all the way from Sinnoh\n",
+        "for Yarrow’s lecture. I took\r",
+        "notes on everything. Everything!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketTMsA",
+      "en_US": [
+        "TMs! Fighting, Poison, Ground,\n",
+        "Flying, Bug and Rock moves!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_gText_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketTMsB",
+      "en_US": [
+        "Fire, Water, Grass, Electric and\n",
+        "Ice TMs! What’ll it be?"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketTMsC",
+      "en_US": [
+        "Psychic, Ghost, Dragon, Dark,\n",
+        "Steel and Fairy TMs!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketCeladon",
+      "en_US": [
+        "Celadon Dept. Store TMs, right\n",
+        "here at the Academy!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketHeld",
+      "en_US": [
+        "Held items for serious battlers.\n",
+        "Choose wisely!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketHerbs",
+      "en_US": [
+        "Herbs, orbs, weather rocks and\n",
+        "berries. Have a look!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketNature",
+      "en_US": [
+        "Mints, Bottle Caps and Ability\n",
+        "items. Change anything!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MarketTraining",
+      "en_US": [
+        "Vitamins, power items and Ev\n",
+        "berries. Train it right!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_HallSign",
+      "en_US": [
+        "Leader Academy · Main Hall The\n",
+        "library, and lecture halls A to\r",
+        "D."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MastersBoard",
+      "en_US": [
+        "Type Masters’ Board: {STRVAR_1 3, 6, 0} has\n",
+        "passed {STRVAR_1 3, 0, 0} of the 19 trials."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_BattleSign",
+      "en_US": [
+        "Battle Hall Rental battles. Win\n",
+        "streaks pay BP."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Statue",
+      "en_US": [
+        "A statue of Roserade, the\n",
+        "Academy’s emblem.\r",
+        "The plaque reads: “Grace.\n",
+        "Thorns. Victory.”"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Welcome1",
+      "en_US": [
+        "Wisteria: Ah, {STRVAR_1 3, 0, 0}. And\n",
+        "you must be {STRVAR_1 3, 6, 0}.\r",
+        "Welcome to the Leader Academy. I\n",
+        "am Wisteria, its Headmaster.\r",
+        "Our candidates come from every\n",
+        "region, all chasing the same\r",
+        "dream you are: a Gym of their\n",
+        "own.\r",
+        "My type masters have been\n",
+        "sending me reports on you.\r",
+        "Good ones."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Welcome2",
+      "en_US": [
+        "The main hall, just ahead, is\n",
+        "our library. Its lecture halls\r",
+        "are where our Instructors teach:\n",
+        "each has a lesson in tournament\r",
+        "strategy… and a demonstration\n",
+        "battle.\r",
+        "In the Battle Hall, you can\n",
+        "battle with rental teams. Every\r",
+        "win pays Battle Points, or BP."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Welcome3",
+      "en_US": [
+        "Spend BP at our Market, behind\n",
+        "the fence to the west: TMs, held\r",
+        "items, Mints, and the like.\r",
+        "But know this: BP is never the\n",
+        "only way! Every cart there takes\r",
+        "ordinary money, too. Just tell\n",
+        "the cashier at the gate how\r",
+        "you’ll pay."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Welcome4",
+      "en_US": [
+        "The other candidates love a\n",
+        "practice battle. Challenge them\r",
+        "as often as you like. They pay\n",
+        "BP as well.\r",
+        "And there’s a Pokémon Center, of\n",
+        "course. Make yourself at home,\r",
+        "{STRVAR_1 3, 6, 0}."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MentorBye",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: That’s my cue.\n",
+        "Learn everything you can here,\r",
+        "{STRVAR_1 3, 6, 0}.\r",
+        "The next time we battle, I want\n",
+        "to be surprised!"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_CandidateAsk",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
+        "{STRVAR_1 3, 1, 0}): A practice battle,\r",
+        "for BP?"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_CandidateHealed",
+      "en_US": [
+        "Your Pokémon were patched up\n",
+        "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0955_CV_CANVAS_LEADER_ACADEMY_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

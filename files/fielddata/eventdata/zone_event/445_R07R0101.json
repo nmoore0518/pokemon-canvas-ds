@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 6,
-            "z": 6,
+            "x": 1,
+            "z": 4,
             "y": 0
         }
     ],
@@ -24,14 +24,14 @@
             "x": 10,
             "z": 7,
             "header": "MAP_SAFFRON",
-            "anchor": 15,
+            "anchor": 11,
             "y": 0
         },
         {
             "x": 1,
             "z": 7,
-            "header": "MAP_ROUTE_7",
-            "anchor": 0,
+            "header": "MAP_SAFFRON",
+            "anchor": 10,
             "y": 0
         }
     ],
@@ -39,7 +39,7 @@
     "coords": [
         {
             "scriptId": "_EV_Route7_EastEntrance_EventScript_GuardTriggerTop + 1",
-            "x": 6,
+            "x": 1,
             "z": 6,
             "w": 1,
             "h": 1,
@@ -49,7 +49,7 @@
         },
         {
             "scriptId": "_EV_Route7_EastEntrance_EventScript_GuardTriggerMid + 1",
-            "x": 6,
+            "x": 1,
             "z": 6,
             "w": 1,
             "h": 1,
@@ -59,8 +59,8 @@
         },
         {
             "scriptId": "_EV_Route7_EastEntrance_EventScript_GuardTriggerBottom + 1",
-            "x": 6,
-            "z": 7,
+            "x": 1,
+            "z": 6,
             "w": 1,
             "h": 1,
             "y": 0,

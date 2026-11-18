@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0346_R11.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route11_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route11_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route11_EventScript_Bernie
@@ -12,10 +12,16 @@
 	ScrDef Route11_EventScript_ItemAwakening
 	ScrDef Academy_EventScript_GateGuard
 	ScrDef Academy_EventScript_Nothing
+	ScrDef Academy_EventScript_Keola
+	ScrDef Academy_EventScript_Student2
+	ScrDef Market_EventScript_Cashier
 	ScrDef Route11_EventScript_DiglettsCaveSign
+	ScrDef Academy_EventScript_CenterSign
+	ScrDef Academy_EventScript_MarketSign
+	ScrDef Academy_EventScript_GateSign
 	ScrDef Route11_OnTransition
-	ScrDef _cv_unported_8
-	ScrDef _cv_unported_9
+	ScrDef _cv_unported_14
+	ScrDef _cv_unported_15
 	ScrDefEnd
 	
 Route11_EventScript_Bernie:
@@ -77,10 +83,68 @@ Academy_EventScript_GateGuard:
 Academy_EventScript_Nothing:
 	End
 	
+Academy_EventScript_Keola:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0346_R11_Academy_Text_KeolaHello
+	WaitButton
+	SetVar 0x8004, 5
+	GoTo Academy_EventScript_CandidateBattle
+	// TODO(gba) .global Academy_EventScript_Briony
+	GoTo _cv_stop
+	End
+	
+Academy_EventScript_Student2:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0346_R11_Academy_Text_Student2
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Market_EventScript_Cashier:
+	LockAll
+	FacePlayer
+	// TODO(gba) special Market_GetPayMode
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Market_EventScript_CashierAskBP
+	NPCMsg msg_0346_R11_Academy_Text_MarketAskMoney
+	GoTo Market_EventScript_CashierChoose
+	
 Route11_EventScript_DiglettsCaveSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0346_R11_Route11_Text_DiglettsCave
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_CenterSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0346_R11_Academy_Text_CenterSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_MarketSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0346_R11_Academy_Text_MarketSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_GateSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0346_R11_Academy_Text_GateSign
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -104,9 +168,8 @@ Academy_EventScript_Invite:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	SetVar 0x502F, 2
-	Warp MAP_ROUTE_11, 0, 1380, 299, DIR_SOUTH
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
+	// TODO(gba) warpsilent MAP_ROUTE11, 38, 4
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	
@@ -179,6 +242,64 @@ _cv_yn_4:
 	ReleaseAll
 	End
 	
+Academy_EventScript_CandidateBattle:
+	// TODO(gba) special Academy_SetupCandidate
+	GoTo _cv_stop
+	NPCMsg msg_0346_R11_Academy_Text_CandidateAsk
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_5
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_6
+_cv_yes_5:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Academy_EventScript_CandidateLater
+	CopyVar 0x8008, 0x8005
+	HealParty
+	NPCMsg msg_0346_R11_gGymChallengeIntroText
+	WaitButton
+	CloseMsg
+	Call Academy_EventScript_Battle
+	CopyVar 0x8009, VAR_SPECIAL_RESULT
+	HealParty
+	CompareVarToValue 0x8009, 1
+	GoToIfNe Academy_EventScript_CandidateBeatPlayer
+	CopyVar 0x8004, 0x8008
+	Call Academy_EventScript_EarnBP
+	NPCMsg msg_0346_R11_Academy_Text_CandidateHealed
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Market_EventScript_CashierAskBP:
+	NPCMsg msg_0346_R11_Academy_Text_MarketAskBP
+	End
+	
+Market_EventScript_CashierChoose:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 0, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0346_R11_Academy_Text_OptMoney, 0
+	ScrCmd_559 msg_0346_R11_Academy_Text_OptPayBP, 1
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_8
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_8:
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	// TODO(gba) special Market_SetPayMode
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Market_EventScript_CashierBP
+	NPCMsg msg_0346_R11_Academy_Text_MarketPayMoney
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 Academy_EventScript_Route11Transition:
 	SetFlag 0x2103
 	CompareVarToValue 0x502F, 2
@@ -203,6 +324,71 @@ GymCandidate_EventScript_RecruitDeclined:
 	ReleaseAll
 	End
 	
+Academy_EventScript_CandidateLater:
+	NPCMsg msg_0346_R11_Academy_Text_CandidateLater
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_Battle:
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_9
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_10
+	WhiteOut
+	End
+_cv_won_10:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_9:
+	ClearFlag 0x2036
+	// TODO(gba) special GymChallenge_EndPractice
+	GoTo _cv_stop
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_11
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_11:
+	Return
+	
+Academy_EventScript_CandidateBeatPlayer:
+	NPCMsg msg_0346_R11_gGymChallengeWinText
+	WaitButton
+	NPCMsg msg_0346_R11_Academy_Text_CandidateHealed
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_EarnBP:
+	// TODO(gba) special Academy_AddBP
+	GoTo _cv_stop
+	PlayFanfare SEQ_ME_LVUP
+	BufferPlayersName 6
+	NPCMsg msg_0346_R11_Academy_Text_EarnedBP
+	WaitFanfare
+	WaitButton
+	Return
+	// TODO(gba) .global Academy_EventScript_Koji
+	GoTo _cv_stop
+	End
+	
+Market_EventScript_CashierBP:
+	NPCMsg msg_0346_R11_Academy_Text_MarketPayBP
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	// TODO(gba) .global Market_EventScript_TMsA
+	GoTo _cv_stop
+	End
+	
 Academy_EventScript_Route11ShowMentor:
 	// TODO(gba) special Academy_PrepareMentor
 	ClearFlag 0x2103
@@ -212,7 +398,7 @@ Academy_EventScript_SetInvite:
 	SetVar 0x502F, 1
 	Return
 
-_cv_unported_8:
+_cv_unported_14:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0346_R11_cv_unported
@@ -221,7 +407,7 @@ _cv_unported_8:
 	ReleaseAll
 	End
 
-_cv_unported_9:
+_cv_unported_15:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0346_R11_cv_unported

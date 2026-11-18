@@ -634,6 +634,8 @@
 #define MAP_CANVAS_SAFARI_SECRETHOUSE                     625
 #define MAP_CANVAS_GAME_CORNER                            626
 #define MAP_CANVAS_PRIZE_ROOM                             627
+#define MAP_CANVAS_ROUTE_23                               628
+#define MAP_CANVAS_LEADER_ACADEMY                         629
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

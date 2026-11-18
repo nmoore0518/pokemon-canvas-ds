@@ -1,0 +1,63 @@
+{
+  "key": 19943,
+  "messages": [
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Route23_Text_VictoryRoadGateSign",
+      "en_US": [
+        "Victory Road Gate -\n",
+        "Pokémon League"
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Text_OnlyPassWithBadgeOhGoAhead",
+      "en_US": [
+        "You can pass here only if you have\n",
+        "the {STRVAR_1 3, 0, 0}.\r",
+        "Oh! That is the {STRVAR_1 3, 0, 0}!\r",
+        "Okay, then.\n",
+        "Please, go right ahead."
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Text_OhThatsBadgeGoRightAhead",
+      "en_US": [
+        "Oh! That is the {STRVAR_1 3, 0, 0}!\n",
+        "Go right ahead."
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Text_OnlySkilledTrainersAllowedThrough",
+      "en_US": [
+        "Only truly skilled Trainers are\n",
+        "allowed through.\r",
+        "You don’t have the {STRVAR_1 3, 0, 0}\n",
+        "yet!"
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Text_CantLetYouPass",
+      "en_US": [
+        "Rules are rules.\n",
+        "I can’t let you pass."
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_Text_OnlyPassWithBadgeDontHaveYet",
+      "en_US": [
+        "You can pass here only if you have\n",
+        "the {STRVAR_1 3, 0, 0}.\r",
+        "You don’t have the {STRVAR_1 3, 0, 0}\n",
+        "yet.\r",
+        "You have to have it to get to\n",
+        "the Pokémon League."
+      ]
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

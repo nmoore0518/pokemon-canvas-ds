@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 10,
-            "z": 4,
+            "x": 6,
+            "z": 6,
             "y": 0
         }
     ],
@@ -23,7 +23,7 @@
         {
             "x": 1,
             "z": 7,
-            "header": "MAP_FUCHSIA",
+            "header": "MAP_ROUTE_15",
             "anchor": 0,
             "y": 0
         },
@@ -31,7 +31,7 @@
             "x": 10,
             "z": 7,
             "header": "MAP_ROUTE_15",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         }
     ],

@@ -4,9 +4,10 @@
 #define _EV_Route13_EventScript_Perry 0
 #define _EV_Route13_EventScript_Jared 1
 #define _EV_BerryField_EventScript_FindFlying 2
-#define _EV_Route13_EventScript_RouteSign 3
-#define _EV_Route13_EventScript_TrainerTips2 4
-#define _EV_Route13_EventScript_TrainerTips1 5
+#define _EV_Route12_EventScript_ItemChillDrive 3
+#define _EV_Route13_EventScript_RouteSign 4
+#define _EV_Route13_EventScript_TrainerTips2 5
+#define _EV_Route13_EventScript_TrainerTips1 6
 
 
 #endif

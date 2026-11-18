@@ -2,6 +2,24 @@
   "key": 18191,
   "messages": [
     {
+      "id": "msg_0328_R04_Route4_Text_TrippedOverGeodude",
+      "en_US": [
+        "Ouch! I tripped over a rocky\n",
+        "Pokémon, Geodude!"
+      ]
+    },
+    {
+      "id": "msg_0328_R04_Route4_Text_PeopleLikeAndRespectBrock",
+      "en_US": [
+        "Oh, wow, that’s the Boulderbadge!\n",
+        "You got it from Brock, didn’t you?\r",
+        "Brock is cool. He’s not just tough.\n",
+        "People like and respect him.\r",
+        "I want to become a Gym Leader\n",
+        "like him."
+      ]
+    },
+    {
       "id": "msg_0328_R04_Route4_Text_MegaPunchTutor_Retired",
       "en_US": [
         "I used to teach Mega Punch.\n",
@@ -19,6 +37,13 @@
         "teach it now. Look for the\n",
         "Normal master in Pallet\r",
         "Town."
+      ]
+    },
+    {
+      "id": "msg_0328_R04_Route4_Text_MtMoonEntrance",
+      "en_US": [
+        "Mt. Moon\n",
+        "Tunnel Entrance"
       ]
     },
     {

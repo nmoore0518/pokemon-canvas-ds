@@ -133,8 +133,8 @@
         {
             "x": 11,
             "z": 26,
-            "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
-            "anchor": 1,
+            "header": "MAP_CANVAS_ROUTE_23",
+            "anchor": 0,
             "y": 0
         }
     ],

@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0743_W21.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route21_North_Frlg+Route21_South_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route21_North_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDefEnd

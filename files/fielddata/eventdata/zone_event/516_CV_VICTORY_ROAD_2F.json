@@ -304,8 +304,8 @@
         {
             "x": 57,
             "z": 16,
-            "header": "MAP_INDIGO_PLATEAU",
-            "anchor": 0,
+            "header": "MAP_CANVAS_ROUTE_23",
+            "anchor": 1,
             "y": 0
         },
         {

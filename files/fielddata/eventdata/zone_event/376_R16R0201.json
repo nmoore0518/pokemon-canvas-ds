@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 2,
-            "z": 6,
+            "x": 6,
+            "z": 7,
             "y": 0
         },
         {
@@ -31,7 +31,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 2,
+            "x": 9,
             "z": 4,
             "y": 0
         }
@@ -40,23 +40,23 @@
         {
             "x": 10,
             "z": 7,
-            "header": "MAP_ROUTE_16_EAST",
-            "anchor": 0,
+            "header": "MAP_ROUTE_16",
+            "anchor": 1,
             "y": 0
         },
         {
             "x": 1,
             "z": 7,
             "header": "MAP_ROUTE_16",
-            "anchor": 0,
+            "anchor": 4,
             "y": 0
         }
     ],
     "coords": [
         {
             "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
-            "x": 5,
-            "z": 8,
+            "x": 10,
+            "z": 10,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -65,7 +65,7 @@
         },
         {
             "scriptId": "_EV_EventScript_SetEnteringCyclingRoad + 1",
-            "x": 1,
+            "x": 2,
             "z": 10,
             "w": 1,
             "h": 1,
@@ -75,8 +75,8 @@
         },
         {
             "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerTop + 1",
-            "x": 1,
-            "z": 9,
+            "x": 6,
+            "z": 8,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -85,8 +85,8 @@
         },
         {
             "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMidTop + 1",
-            "x": 1,
-            "z": 10,
+            "x": 6,
+            "z": 8,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -115,8 +115,8 @@
         },
         {
             "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
-            "x": 6,
-            "z": 8,
+            "x": 10,
+            "z": 10,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -125,7 +125,7 @@
         },
         {
             "scriptId": "_EV_EventScript_SetExitingCyclingRoad + 1",
-            "x": 9,
+            "x": 10,
             "z": 10,
             "w": 1,
             "h": 1,
@@ -135,8 +135,8 @@
         },
         {
             "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMid + 1",
-            "x": 1,
-            "z": 10,
+            "x": 6,
+            "z": 8,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -145,7 +145,7 @@
         },
         {
             "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerMidBottom + 1",
-            "x": 1,
+            "x": 9,
             "z": 10,
             "w": 1,
             "h": 1,
@@ -155,7 +155,7 @@
         },
         {
             "scriptId": "_EV_Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerBottom + 1",
-            "x": 1,
+            "x": 9,
             "z": 10,
             "w": 1,
             "h": 1,

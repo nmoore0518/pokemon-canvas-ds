@@ -1,0 +1,29 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROUTE_23_H_
+#define SCR_SEQ_CV_CANVAS_ROUTE_23_H_
+
+#define _EV_Route23_EventScript_CascadeBadgeGuard 0
+#define _EV_Route23_EventScript_ThunderBadgeGuard 1
+#define _EV_Route23_EventScript_RainbowBadgeGuard 2
+#define _EV_Route23_EventScript_SoulBadgeGuard 3
+#define _EV_Route23_EventScript_MarshBadgeGuard 4
+#define _EV_Route23_EventScript_VolcanoBadgeGuard 5
+#define _EV_Route23_EventScript_EarthBadgeGuard 6
+#define _EV_Route23_EventScript_VictoryRoadGateSign 7
+#define _EV_Route23_EventScript_CascadeBadgeGuardTrigger 8
+#define _EV_Route23_EventScript_ThunderBadgeGuardTrigger 9
+#define _EV_Route23_EventScript_RainbowBadgeGuardTrigger 10
+#define _EV_Route23_EventScript_SoulBadgeGuardTrigger 11
+#define _EV_Route23_EventScript_MarshBadgeGuardTrigger 12
+#define _EV_Route23_EventScript_VolcanoBadgeGuardTrigger 13
+#define _EV_Route23_EventScript_EarthBadgeGuardTrigger 14
+#define _EV_Route23_OnTransition 15
+
+#define LOCALID_CASCADE_BADGE_GUARD 1
+#define LOCALID_THUNDER_BADGE_GUARD 2
+#define LOCALID_RAINBOW_BADGE_GUARD 3
+#define LOCALID_SOUL_BADGE_GUARD 4
+#define LOCALID_MARSH_BADGE_GUARD 5
+#define LOCALID_VOLCANO_BADGE_GUARD 6
+#define LOCALID_EARTH_BADGE_GUARD 7
+
+#endif

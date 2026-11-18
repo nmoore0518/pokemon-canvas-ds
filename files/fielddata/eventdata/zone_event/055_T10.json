@@ -1,26 +1,10 @@
 {
     "header": "fielddata/script/scr_seq/event_T10.h",
-    "bgs": [
-        {
-            "scriptId": "std_hiddenitem_t10_rare_candy",
-            "type": 2,
-            "x": 910,
-            "z": 209,
-            "y": 0,
-            "dir": 4
-        }
-    ],
+    "bgs": [],
     "warps": [
         {
-            "x": 912,
-            "z": 218,
-            "header": "MAP_CANVAS_VICTORY_ROAD_2F",
-            "anchor": 5,
-            "y": 0
-        },
-        {
-            "x": 912,
-            "z": 200,
+            "x": 978,
+            "z": 108,
             "header": "MAP_POKEMON_LEAGUE_ENTRANCE",
             "anchor": 0,
             "y": 0
@@ -40,8 +24,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 911,
-            "z": 201,
+            "x": 978,
+            "z": 108,
             "y": 0
         },
         {
@@ -57,8 +41,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 913,
-            "z": 201,
+            "x": 978,
+            "z": 108,
             "y": 0
         }
     ],

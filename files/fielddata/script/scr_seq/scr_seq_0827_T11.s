@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0529_T11.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's SaffronCity_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's SaffronCity_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef SaffronCity_EventScript_RocketGrunt1
@@ -21,6 +21,7 @@
 	ScrDef SaffronCity_EventScript_Pidgeot
 	ScrDef SaffronCity_EventScript_Lass
 	ScrDef SaffronCity_EventScript_BattleGirl
+	ScrDef PaintWorld_EventScript_Figure
 	ScrDef SaffronCity_EventScript_CitySign
 	ScrDef SaffronCity_EventScript_DojoSign
 	ScrDef SaffronCity_EventScript_SilphProductSign
@@ -30,8 +31,9 @@
 	ScrDef SaffronCity_EventScript_GymSign
 	ScrDef SaffronCity_EventScript_MrPsychicsHouseSign
 	ScrDef SaffronCity_EventScript_TrainerFanClubSign
+	ScrDef Route5_EventScript_UndergroundPathSign
 	ScrDef SaffronCity_OnTransition
-	ScrDef _cv_unported_25
+	ScrDef _cv_unported_27
 	ScrDefEnd
 	
 SaffronCity_EventScript_RocketGrunt1:
@@ -186,6 +188,17 @@ SaffronCity_EventScript_BattleGirl:
 	ReleaseAll
 	End
 	
+PaintWorld_EventScript_Figure:
+	LockAll
+	FacePlayer
+	CompareVarToValue 0x5020, 2
+	GoToIfEq PaintWorld_EventScript_FigureSketch
+	CompareVarToValue 0x5020, 3
+	GoToIfEq PaintWorld_EventScript_FigureMega
+	NPCMsg msg_0529_T11_PaintWorld_Text_FigureFirst
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
 SaffronCity_EventScript_CitySign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
@@ -266,6 +279,15 @@ SaffronCity_EventScript_TrainerFanClubSign:
 	ReleaseAll
 	End
 	
+Route5_EventScript_UndergroundPathSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0529_T11_Route5_Text_UndergroundPathSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 SaffronCity_OnTransition:
 	SetFlag 0x2089
 	SetVar 0x4014, 2
@@ -288,8 +310,55 @@ SaffronCity_EventScript_DoorGuardAsleep:
 	ReleaseAll
 	End
 	
+PaintWorld_EventScript_FigureSketch:
+	NPCMsg msg_0529_T11_PaintWorld_Text_FigureSketch
+	WaitButton
+	GoTo PaintWorld_EventScript_FigureBattle
+	
+PaintWorld_EventScript_FigureMega:
+	NPCMsg msg_0529_T11_PaintWorld_Text_FigureMega
+	WaitButton
+	End
+	
+PaintWorld_EventScript_FigureBattle:
+	CloseMsg
+	// TODO(gba) special Painter_SetupFigure
+	GoTo _cv_stop
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CheckTrainerFlag 1442
+	GoToIf TRUE, _cv_beaten_1
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_2
+	WhiteOut
+	End
+_cv_won_2:
+	SetTrainerFlag 1442
+	ReleaseAll
+	End
+_cv_beaten_1:
+	ClearFlag 0x2036
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq _cv_won_3
+	SetVar VAR_SPECIAL_RESULT, 2
+_cv_won_3:
+	// TODO(gba) special Painter_RecordBattle
+	GoTo _cv_stop
+	NPCMsg msg_0529_T11_PaintWorld_Text_Dissolve
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_WHITE
+	WaitFade
+	// TODO(gba) warpsilent MAP_PEWTER_CITY_PAINTER_LOFT, 8, 4
+	GoTo _cv_stop
+	ReleaseAll
+	End
+	
 SaffronCity_EventScript_MoveDoorGuardGrunt:
-	MovePerson 6, 1308, 230
+	MovePerson 6, 1254, 236
 	Return
 	
 MoveExtractor_EventScript_Visit:
@@ -300,9 +369,9 @@ MoveExtractor_EventScript_Visit:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq MoveExtractor_EventScript_VisitNoRoom
 	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1273
+	AddVar 0x401E, 1221
 	CopyVar 0x401F, 0x8006
-	AddVar 0x401F, 201
+	AddVar 0x401F, 205
 	MovePerson 0x800A, 0x401E, 0x401F
 	ClearFlag 0x2089
 	ShowPerson 0x800A
@@ -360,7 +429,7 @@ GymHack_EventScript_GiveStatItem:
 GymHack_EventScript_GiveStatItemDone:
 	Return
 
-_cv_unported_25:
+_cv_unported_27:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0529_T11_cv_unported

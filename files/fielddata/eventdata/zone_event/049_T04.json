@@ -4,64 +4,40 @@
         {
             "scriptId": "_EV_CeruleanCity_EventScript_CitySign + 1",
             "type": 0,
-            "x": 1309,
-            "z": 137,
+            "x": 1251,
+            "z": 157,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeruleanCity_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1321,
-            "z": 135,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_CeruleanCity_EventScript_BikeShopSign + 1",
-            "type": 0,
-            "x": 1295,
-            "z": 144,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_CeruleanCity_EventScript_TrainerTips + 1",
-            "type": 0,
-            "x": 1317,
-            "z": 123,
+            "x": 1258,
+            "z": 153,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeruleanCity_BikeShop_EventScript_Bicycle + 1",
             "type": 0,
-            "x": 1324,
-            "z": 106,
+            "x": 1242,
+            "z": 157,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeruleanCity_BikeShop_EventScript_Bicycle + 1",
             "type": 0,
-            "x": 1296,
-            "z": 142,
+            "x": 1242,
+            "z": 159,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeruleanCity_BikeShop_EventScript_Bicycle + 1",
             "type": 0,
-            "x": 1296,
-            "z": 140,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_t04_nugget",
-            "type": 2,
-            "x": 1298,
-            "z": 110,
+            "x": 1242,
+            "z": 158,
             "y": 0,
             "dir": 4
         }
@@ -80,8 +56,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1320,
-            "z": 124,
+            "x": 1262,
+            "z": 144,
             "y": 0
         },
         {
@@ -97,8 +73,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1323,
-            "z": 115,
+            "x": 1264,
+            "z": 138,
             "y": 0
         },
         {
@@ -114,8 +90,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 3,
-            "x": 1304,
-            "z": 133,
+            "x": 1247,
+            "z": 153,
             "y": 0
         },
         {
@@ -131,42 +107,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1296,
-            "z": 133,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_CERULEAN_SLOWBRO",
-            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SLOWBRO",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_CeruleanCity_EventScript_Slowbro + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1313,
-            "z": 145,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_CERULEAN_LASS",
-            "spriteId": "SPRITE_GSGIRL2",
-            "movement": 16,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_CeruleanCity_EventScript_Lass + 1",
-            "facingDirection": 2,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1316,
-            "z": 142,
+            "x": 1240,
+            "z": 155,
             "y": 0
         },
         {
@@ -182,8 +124,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1320,
-            "z": 135,
+            "x": 1265,
+            "z": 154,
             "y": 0
         },
         {
@@ -199,25 +141,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1323,
-            "z": 97,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_CERULEAN_WOMAN",
-            "spriteId": "SPRITE_GSWOMAN1",
-            "movement": 14,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_CeruleanCity_EventScript_Woman + 1",
-            "facingDirection": 0,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1297,
-            "z": 145,
+            "x": 1253,
+            "z": 132,
             "y": 0
         },
         {
@@ -233,12 +158,12 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1292,
-            "z": 110,
+            "x": 1232,
+            "z": 145,
             "y": 0
         },
         {
-            "id": "12",
+            "id": "13",
             "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 15,
             "type": 0,
@@ -250,12 +175,12 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1320,
-            "z": 104,
+            "x": 1258,
+            "z": 137,
             "y": 0
         },
         {
-            "id": "13",
+            "id": "15",
             "spriteId": "SPRITE_GSMIDDLEMAN1",
             "movement": 14,
             "type": 0,
@@ -267,65 +192,72 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1290,
-            "z": 127,
+            "x": 1236,
+            "z": 154,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1305,
-            "z": 116,
+            "x": 1241,
+            "z": 140,
             "header": "MAP_CERULEAN_NORTH_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1319,
-            "z": 123,
+            "x": 1262,
+            "z": 140,
             "header": "MAP_CERULEAN_EAST_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1304,
-            "z": 131,
+            "x": 1262,
+            "z": 141,
+            "header": "MAP_CERULEAN_EAST_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1241,
+            "z": 143,
+            "header": "MAP_CERULEAN_NORTH_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1261,
+            "z": 143,
+            "header": "MAP_CERULEAN_EAST_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1232,
+            "z": 144,
+            "header": "MAP_CANVAS_CERULEAN_CAVE_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1246,
+            "z": 149,
             "header": "MAP_CERULEAN_WEST_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1309,
-            "z": 131,
+            "x": 1253,
+            "z": 151,
             "header": "MAP_CERULEAN_POKECENTER_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1318,
-            "z": 134,
+            "x": 1262,
+            "z": 153,
             "header": "MAP_CERULEAN_GYM",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1308,
-            "z": 144,
-            "header": "MAP_CERULEAN_POKEMART",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1298,
-            "z": 144,
-            "header": "MAP_CERULEAN_BIKE_MANIAC_HOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1290,
-            "z": 107,
-            "header": "MAP_CANVAS_CERULEAN_CAVE_1F",
             "anchor": 0,
             "y": 0
         }
@@ -333,18 +265,8 @@
     "coords": [
         {
             "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerLeft + 1",
-            "x": 1323,
-            "z": 102,
-            "w": 1,
-            "h": 1,
-            "y": 0,
-            "val": 0,
-            "var": "0x500F"
-        },
-        {
-            "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerLeft + 1",
-            "x": 1322,
-            "z": 102,
+            "x": 1253,
+            "z": 138,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -353,8 +275,8 @@
         },
         {
             "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerMid + 1",
-            "x": 1324,
-            "z": 102,
+            "x": 1254,
+            "z": 138,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -363,28 +285,8 @@
         },
         {
             "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerRight + 1",
-            "x": 1325,
-            "z": 102,
-            "w": 1,
-            "h": 1,
-            "y": 0,
-            "val": 0,
-            "var": "0x500F"
-        },
-        {
-            "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerRight + 1",
-            "x": 1326,
-            "z": 102,
-            "w": 1,
-            "h": 1,
-            "y": 0,
-            "val": 0,
-            "var": "0x500F"
-        },
-        {
-            "scriptId": "_EV_CeruleanCity_EventScript_RivalTriggerRight + 1",
-            "x": 1327,
-            "z": 102,
+            "x": 1255,
+            "z": 138,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -393,8 +295,8 @@
         },
         {
             "scriptId": "_EV_CeruleanCity_EventScript_GruntTriggerTop + 1",
-            "x": 1323,
-            "z": 114,
+            "x": 1264,
+            "z": 137,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -403,8 +305,8 @@
         },
         {
             "scriptId": "_EV_CeruleanCity_EventScript_GruntTriggerBottom + 1",
-            "x": 1323,
-            "z": 116,
+            "x": 1264,
+            "z": 139,
             "w": 1,
             "h": 1,
             "y": 0,

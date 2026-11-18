@@ -2,10 +2,18 @@
     "header": "fielddata/script/scr_seq/event_R05.h",
     "bgs": [
         {
-            "scriptId": "_EV_Route5_EventScript_UndergroundPathSign + 1",
+            "scriptId": "_EV_CeruleanCity_EventScript_BikeShopSign + 1",
             "type": 0,
-            "x": 1308,
-            "z": 186,
+            "x": 1242,
+            "z": 160,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_CeruleanCity_EventScript_TrainerTips + 1",
+            "type": 0,
+            "x": 1250,
+            "z": 164,
             "y": 0,
             "dir": 4
         }
@@ -24,54 +32,98 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1296,
-            "z": 168,
+            "x": 1251,
+            "z": 190,
             "y": 0
         },
         {
-            "id": "2",
-            "spriteId": "SPRITE_GSMAN2",
-            "movement": 2,
+            "id": "LOCALID_CERULEAN_SLOWBRO",
+            "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SLOWBRO",
+            "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_PaintWorld_EventScript_Figure + 1",
+            "scriptId": "_EV_CeruleanCity_EventScript_Slowbro + 1",
             "facingDirection": 1,
             "param0": 0,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1302,
-            "z": 185,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1263,
+            "z": 161,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CERULEAN_LASS",
+            "spriteId": "SPRITE_GSGIRL2",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_CeruleanCity_EventScript_Lass + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1264,
+            "z": 161,
+            "y": 0
+        },
+        {
+            "id": "5",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "19",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1257,
+            "z": 164,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_CERULEAN_WOMAN",
+            "spriteId": "SPRITE_GSWOMAN1",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_CeruleanCity_EventScript_Woman + 1",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1243,
+            "z": 162,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1300,
-            "z": 189,
-            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1301,
-            "z": 189,
-            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1306,
-            "z": 185,
-            "header": "MAP_ROUTE_5_UNDERGROUND_PATH_GATE",
+            "x": 1244,
+            "z": 160,
+            "header": "MAP_CERULEAN_BIKE_MANIAC_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1297,
-            "z": 171,
-            "header": "MAP_ROUTE_5_HOUSE",
+            "x": 1245,
+            "z": 160,
+            "header": "MAP_CERULEAN_BIKE_MANIAC_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1260,
+            "z": 160,
+            "header": "MAP_CERULEAN_POKEMART",
             "anchor": 0,
             "y": 0
         }

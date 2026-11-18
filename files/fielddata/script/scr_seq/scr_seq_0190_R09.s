@@ -3,13 +3,12 @@
 #include "msgdata/msg/msg_0340_R09.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route9_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route9_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route9_EventScript_Alicia
 	ScrDef Route9_EventScript_Drew
 	ScrDef Route9_EventScript_ItemTM40
-	ScrDef Route9_EventScript_ItemBurnHeal
 	ScrDef Route9_EventScript_RouteSign
 	ScrDef EventMons_EventScript_Cap3
 	ScrDefEnd
@@ -68,13 +67,6 @@ _cv_beaten_3:
 	
 Route9_EventScript_ItemTM40:
 	SetVar 0x8004, ITEM_TM40
-	SetVar 0x8005, 1
-	CallStd std_obtain_item_verbose
-	HidePerson VAR_SPECIAL_LAST_TALKED
-	End
-	
-Route9_EventScript_ItemBurnHeal:
-	SetVar 0x8004, ITEM_BURN_HEAL
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED

@@ -1,31 +1,37 @@
 #ifndef SCR_SEQ_T02_H_
 #define SCR_SEQ_T02_H_
 
-#define _EV_ViridianCity_EventScript_DreamEaterTutor 0
-#define _EV_ViridianCity_EventScript_OldMan 1
-#define _EV_ViridianCity_EventScript_TutorialOldMan 2
-#define _EV_ViridianCity_EventScript_Woman 3
-#define _EV_ViridianCity_EventScript_Youngster 4
-#define _EV_ViridianCity_EventScript_Boy 5
-#define _EV_ViridianCity_EventScript_ItemPotion 6
-#define _EV_TypeTutor_EventScript_Ground 7
-#define _EV_TypeTutor_EventScript_Bug 8
+#define _EV_ViridianCity_EventScript_OldMan 0
+#define _EV_ViridianCity_EventScript_TutorialOldMan 1
+#define _EV_ViridianCity_EventScript_Woman 2
+#define _EV_ViridianCity_EventScript_Youngster 3
+#define _EV_ViridianCity_EventScript_Boy 4
+#define _EV_ViridianCity_EventScript_ItemPotion 5
+#define _EV_TypeTutor_EventScript_Ground 6
+#define _EV_TypeTutor_EventScript_Bug 7
+#define _EV_Route2_EventScript_ItemParalyzeHeal 8
 #define _EV_ViridianCity_EventScript_TrainerTips1 9
 #define _EV_ViridianCity_EventScript_GymSign 10
 #define _EV_ViridianCity_EventScript_TrainerTips2 11
 #define _EV_ViridianCity_EventScript_CitySign 12
 #define _EV_ViridianCity_EventScript_GymDoor 13
-#define _EV_ViridianCity_EventScript_RoadBlocked 14
-#define _EV_ViridianCity_EventScript_GymDoorLocked 15
-#define _EV_ViridianCity_EventScript_TutorialTriggerLeft 16
-#define _EV_ViridianCity_EventScript_TutorialTriggerRight 17
-#define _EV_ViridianCity_OnTransition 18
-#define _EV_MoveExtractor_EventScript_ViridianVisit 19
+#define _EV_Route2_EventScript_RouteSign 14
+#define _EV_ViridianCity_EventScript_RoadBlocked 15
+#define _EV_ViridianCity_EventScript_GymDoorLocked 16
+#define _EV_ViridianCity_EventScript_TutorialTriggerLeft 17
+#define _EV_ViridianCity_EventScript_TutorialTriggerRight 18
+#define _EV_Route22_EventScript_EarlyRivalTriggerTop 19
+#define _EV_Route22_EventScript_EarlyRivalTriggerMid 20
+#define _EV_Route22_EventScript_LateRivalTriggerTop 21
+#define _EV_Route22_EventScript_LateRivalTriggerMid 22
+#define _EV_ViridianCity_OnTransition 23
+#define _EV_MoveExtractor_EventScript_ViridianVisit 24
 
 #define LOCALID_VIRIDIAN_OLD_MAN 3
 #define LOCALID_TUTORIAL_MAN 4
 #define LOCALID_VIRIDIAN_WOMAN 5
 #define LOCALID_VIRIDIAN_BORDER_TREE 8
 #define LOCALID_VIRIDIAN_EXTRACTOR_GRUNT 10
+#define LOCALID_ROUTE22_RIVAL 15
 
 #endif

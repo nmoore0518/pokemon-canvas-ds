@@ -2,10 +2,10 @@
     "header": "fielddata/script/scr_seq/event_R02.h",
     "bgs": [
         {
-            "scriptId": "_EV_Route2_EventScript_RouteSign + 1",
+            "scriptId": "_EV_Route2_EventScript_DiglettsCaveSign + 1",
             "type": 0,
-            "x": 1029,
-            "z": 218,
+            "x": 1041,
+            "z": 204,
             "y": 0,
             "dir": 4
         }
@@ -24,16 +24,16 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1041,
-            "z": 200,
+            "x": 1043,
+            "z": 254,
             "y": 0
         },
         {
-            "id": "2",
+            "id": "3",
             "spriteId": "SPRITE_TREE",
             "movement": 15,
             "type": 0,
-            "eventFlag": "19",
+            "eventFlag": "21",
             "scriptId": "std_field_cut",
             "facingDirection": 1,
             "param0": 0,
@@ -41,12 +41,29 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1041,
-            "z": 210,
+            "x": 1038,
+            "z": 205,
             "y": 0
         },
         {
-            "id": "3",
+            "id": "4",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "22",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1045,
+            "z": 218,
+            "y": 0
+        },
+        {
+            "id": "5",
             "spriteId": "SPRITE_MONSTARBALL",
             "movement": 15,
             "type": 0,
@@ -58,55 +75,80 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1045,
-            "z": 212,
-            "y": 0
-        },
-        {
-            "id": "4",
-            "spriteId": "SPRITE_MONSTARBALL",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "0x20A5",
-            "scriptId": "_EV_Route2_EventScript_ItemParalyzeHeal + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1045,
-            "z": 204,
+            "x": 1044,
+            "z": 246,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1034,
-            "z": 192,
-            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+            "x": 1044,
+            "z": 203,
+            "header": "MAP_CANVAS_DIGLETTS_CAVE_N",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1032,
+            "z": 205,
+            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1033,
+            "z": 205,
+            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1044,
+            "z": 214,
+            "header": "MAP_ROUTE_2_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1035,
-            "z": 192,
-            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+            "x": 1045,
+            "z": 233,
+            "header": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1050,
-            "z": 192,
+            "x": 1046,
+            "z": 233,
+            "header": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1045,
+            "z": 238,
             "header": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1051,
-            "z": 192,
+            "x": 1046,
+            "z": 238,
             "header": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
             "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1032,
+            "z": 243,
+            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1033,
+            "z": 243,
+            "header": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+            "anchor": 0,
             "y": 0
         }
     ],

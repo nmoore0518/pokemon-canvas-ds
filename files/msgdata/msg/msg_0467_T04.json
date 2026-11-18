@@ -49,14 +49,6 @@
       ]
     },
     {
-      "id": "msg_0467_T04_CeruleanCity_Text_WantBrightRedBicycle",
-      "en_US": [
-        "I want a bright red bicycle.\r",
-        "I’ll keep it at home, so it won’t\n",
-        "get dirty."
-      ]
-    },
-    {
       "id": "msg_0467_T04_CeruleanCity_Text_ThisIsCeruleanCave",
       "en_US": [
         "This is Cerulean Cave.\r",
@@ -85,23 +77,6 @@
         "Cerulean City Pokémon Gym\n",
         "Leader: Misty\f",
         "The Tomboyish Mermaid!"
-      ]
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_BikeShopSign",
-      "en_US": [
-        "Grass and caves handled easily!\n",
-        "Bike Shop"
-      ]
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_TrainerTipsHeldItems",
-      "en_US": [
-        "Trainer Tips\r",
-        "A Pokémon can be made to hold\n",
-        "an item.\r",
-        "Some items can even be used by\n",
-        "the holding Pokémon in battle."
       ]
     },
     {
@@ -138,57 +113,6 @@
         "the shop can be Cut down.\r",
         "I think there’s a way around it,\n",
         "though."
-      ]
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroTookSnooze",
-      "en_US": "Slowbro took a snooze…"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroLoafingAround",
-      "en_US": "Slowbro is loafing around…"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroTurnedAway",
-      "en_US": "Slowbro turned away…"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroIgnoredOrders",
-      "en_US": "Slowbro ignored orders…"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroUseSonicboom",
-      "en_US": [
-        "Okay! Slowbro!\n",
-        "Use Sonicboom!"
-      ]
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroPunch",
-      "en_US": "Slowbro, punch!"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroWithdraw",
-      "en_US": "Slowbro, Withdraw!"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_SlowbroPayAttention",
-      "en_US": "Come on, Slowbro, pay attention!"
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_NoYouBlewItAgain",
-      "en_US": [
-        "No!\n",
-        "You blew it again!"
-      ]
-    },
-    {
-      "id": "msg_0467_T04_CeruleanCity_Text_HardToControlMonsObedience",
-      "en_US": [
-        "No! That’s wrong!\n",
-        "It’s so hard to control Pokémon!\r",
-        "Your Pokémon’s obedience depends\n",
-        "on your abilities as a Trainer."
       ]
     },
     {

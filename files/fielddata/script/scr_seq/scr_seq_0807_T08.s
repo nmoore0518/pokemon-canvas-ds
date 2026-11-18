@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0512_T08.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's FuchsiaCity_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's FuchsiaCity_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef FuchsiaCity_EventScript_Erik
@@ -13,7 +13,6 @@
 	ScrDef FuchsiaCity_EventScript_SubstituteTutor
 	ScrDef FuchsiaCity_EventScript_Lass
 	ScrDef TypeTutor_EventScript_Poison
-	ScrDef TypeTutor_EventScript_Flying
 	ScrDef FuchsiaCity_EventScript_CitySign
 	ScrDef FuchsiaCity_EventScript_SafariZoneSign
 	ScrDef FuchsiaCity_EventScript_GymSign
@@ -26,6 +25,7 @@
 	ScrDef FuchsiaCity_EventScript_LaprasSign
 	ScrDef FuchsiaCity_EventScript_SafariGameSign
 	ScrDef FuchsiaCity_EventScript_ExoticSafariSign
+	ScrDef Route19_EventScript_RouteSign
 	ScrDef FuchsiaCity_OnTransition
 	ScrDefEnd
 	
@@ -92,12 +92,6 @@ TypeTutor_EventScript_Poison:
 	LockAll
 	FacePlayer
 	SetVar 0x8004, 15
-	GoTo TypeTutor_EventScript_Talk
-	
-TypeTutor_EventScript_Flying:
-	LockAll
-	FacePlayer
-	SetVar 0x8004, 16
 	GoTo TypeTutor_EventScript_Talk
 	
 FuchsiaCity_EventScript_CitySign:
@@ -203,6 +197,15 @@ FuchsiaCity_EventScript_ExoticSafariSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_ExoticSafariSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route19_EventScript_RouteSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0512_T08_Route19_Text_RouteSign
 	WaitButton
 	CloseMsg
 	ReleaseAll

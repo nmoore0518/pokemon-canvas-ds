@@ -20,8 +20,59 @@
       ]
     },
     {
+      "id": "msg_0346_R11_Academy_Text_KeolaHello",
+      "en_US": [
+        "Keola: Alola! I’m from Akala\n",
+        "Island. We don’t have Gyms back\r",
+        "home, just trials and captains.\r",
+        "But I want to be Alola’s first\n",
+        "real Gym Leader! Fire types,\r",
+        "obviously. Look at this tan!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_Student2",
+      "en_US": [
+        "I’m saving my BP for a Choice\n",
+        "Scarf. Or I could just buy one…\r",
+        "Hmm. Money’s tight, though!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_MarketAskMoney",
+      "en_US": [
+        "Welcome to the Academy Market!\n",
+        "Our carts take money or BP.\r",
+        "You’re paying with money right\n",
+        "now. How will you pay today?"
+      ]
+    },
+    {
       "id": "msg_0346_R11_Route11_Text_DiglettsCave",
       "en_US": "Diglett’s Cave"
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_CenterSign",
+      "en_US": [
+        "Pokémon Center Candidates heal\n",
+        "free of charge."
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_MarketSign",
+      "en_US": [
+        "Academy Market\n",
+        "TMs, held items, Mints and more.\r",
+        "Pay in ¥ or BP: ask the cashier!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_GateSign",
+      "en_US": [
+        "Leader Academy Est. by the Gym\n",
+        "Leader Convention. Candidates of\r",
+        "every region welcome."
+      ]
     },
     {
       "id": "msg_0346_R11_Academy_Text_InviteCall",
@@ -72,10 +123,75 @@
       ]
     },
     {
+      "id": "msg_0346_R11_Academy_Text_CandidateAsk",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
+        "{STRVAR_1 3, 1, 0}): A practice battle,\r",
+        "for BP?"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_CandidateHealed",
+      "en_US": [
+        "Your Pokémon were patched up\n",
+        "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_MarketAskBP",
+      "en_US": [
+        "Welcome to the Academy Market!\n",
+        "Our carts take money or BP.\r",
+        "You’re paying with BP right now.\n",
+        "How will you pay today?"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_OptMoney",
+      "en_US": "Money"
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_OptPayBP",
+      "en_US": "BP"
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_MarketPayMoney",
+      "en_US": [
+        "Money it is! The carts will\n",
+        "charge you in ¥ from now on."
+      ]
+    },
+    {
       "id": "msg_0346_R11_GymCandidate_Text_RecruitDeclined",
       "en_US": [
         "Oh… OK. If you change your mind,\n",
         "I’ll be right here!"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
+    },
+    {
+      "id": "msg_0346_R11_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_EarnedBP",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
+        "(Total: {STRVAR_1 3, 1, 0} BP)"
+      ]
+    },
+    {
+      "id": "msg_0346_R11_Academy_Text_MarketPayBP",
+      "en_US": [
+        "BP it is! The carts will take\n",
+        "your BP from now on."
       ]
     },
     {

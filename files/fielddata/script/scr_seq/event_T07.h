@@ -15,18 +15,21 @@
 #define _EV_CeladonCity_EventScript_SilphCoScientist 11
 #define _EV_BerryField_EventScript_FindFairy 12
 #define _EV_TypeTutor_EventScript_Grass 13
-#define _EV_CeladonCity_EventScript_TrainerTips2 14
-#define _EV_CeladonCity_EventScript_PrizeExchangeSign 15
-#define _EV_CeladonCity_EventScript_GameCornerSign 16
-#define _EV_CeladonCity_EventScript_CitySign 17
-#define _EV_CeladonCity_EventScript_MansionSign 18
-#define _EV_CeladonCity_EventScript_TrainerTips1 19
-#define _EV_CeladonCity_EventScript_DeptStoreSign 20
-#define _EV_CeladonCity_EventScript_GymSign 21
-#define _EV_CeladonCity_OnTransition 22
+#define _EV_BerryField_EventScript_FindElectric 14
+#define _EV_CeladonCity_EventScript_TrainerTips2 15
+#define _EV_CeladonCity_EventScript_PrizeExchangeSign 16
+#define _EV_CeladonCity_EventScript_GameCornerSign 17
+#define _EV_CeladonCity_EventScript_CitySign 18
+#define _EV_CeladonCity_EventScript_MansionSign 19
+#define _EV_CeladonCity_EventScript_TrainerTips1 20
+#define _EV_CeladonCity_EventScript_DeptStoreSign 21
+#define _EV_CeladonCity_EventScript_GymSign 22
+#define _EV_Route7_EventScript_UndergroundPathSign 23
+#define _EV_CeladonCity_OnTransition 24
 
 #define LOCALID_CELADON_FAT_MAN 2
 #define LOCALID_CELADON_POLIWRATH 3
 #define LOCALID_CELADON_BORDER_TREE 10
+#define LOCALID_ROUTE16_CUT_TREE 19
 
 #endif

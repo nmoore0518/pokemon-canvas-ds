@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0483_T06.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's VermilionCity_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's VermilionCity_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef VermilionCity_EventScript_Woman
@@ -478,9 +478,8 @@ VermilionCity_EventScript_ForemanBuilt:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	Wait 30, VAR_SPECIAL_RESULT
-	Warp MAP_VERMILION, 0, 1318, 305, DIR_SOUTH
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
+	// TODO(gba) warpsilent MAP_VERMILION_CITY, 35, 14
+	GoTo _cv_stop
 	ReleaseAll
 	End
 	

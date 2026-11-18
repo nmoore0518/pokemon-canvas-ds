@@ -2,10 +2,47 @@
   "key": 17159,
   "messages": [
     {
+      "id": "msg_0354_R16_Text_WantToUsePokeFlute",
+      "en_US": "Want to use the Poké Flute?"
+    },
+    {
       "id": "msg_0354_R16_Route16_Text_RouteSign",
       "en_US": [
         "Route 16\n",
         "Celadon City - Fuchsia City"
+      ]
+    },
+    {
+      "id": "msg_0354_R16_Route16_Text_CyclingRoadSign",
+      "en_US": [
+        "Enjoy the slope!\n",
+        "Cycling Road"
+      ]
+    },
+    {
+      "id": "msg_0354_R16_Route16_Text_MonSprawledOutInSlumber",
+      "en_US": [
+        "A Pokémon is sprawled out in\n",
+        "a deep and comfortable slumber."
+      ]
+    },
+    {
+      "id": "msg_0354_R16_Text_PlayedPokeFlute",
+      "en_US": "{STRVAR_1 3, 6, 0} played the Poké Flute."
+    },
+    {
+      "id": "msg_0354_R16_Text_SnorlaxWokeUp",
+      "en_US": [
+        "Snorlax woke up!\r",
+        "It attacked in a grumpy rage!"
+      ]
+    },
+    {
+      "id": "msg_0354_R16_Text_SnorlaxReturnedToMountains",
+      "en_US": [
+        "Snorlax calmed down.\n",
+        "It gave a huge yawn…\f",
+        "And returned to the mountains."
       ]
     },
     {

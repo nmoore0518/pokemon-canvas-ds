@@ -3,12 +3,13 @@
 #include "msgdata/msg/msg_0350_R13.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route13_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route13_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route13_EventScript_Perry
 	ScrDef Route13_EventScript_Jared
 	ScrDef BerryField_EventScript_FindFlying
+	ScrDef Route12_EventScript_ItemChillDrive
 	ScrDef Route13_EventScript_RouteSign
 	ScrDef Route13_EventScript_TrainerTips2
 	ScrDef Route13_EventScript_TrainerTips1
@@ -68,6 +69,13 @@ _cv_beaten_3:
 	
 BerryField_EventScript_FindFlying:
 	SetVar 0x8004, ITEM_COBA_BERRY
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+Route12_EventScript_ItemChillDrive:
+	SetVar 0x8004, 119
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED

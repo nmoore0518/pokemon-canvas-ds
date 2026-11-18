@@ -3,14 +3,22 @@
 #include "msgdata/msg/msg_0341_R10.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route10_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route10_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
+	ScrDef Route9_EventScript_ItemBurnHeal
 	ScrDef Route10_EventScript_SouthRockTunnelSign
 	ScrDef Route10_EventScript_PowerPlantSign
 	ScrDef Route10_EventScript_NorthRockTunnelSign
 	ScrDef EventMons_EventScript_Cap4
 	ScrDefEnd
+	
+Route9_EventScript_ItemBurnHeal:
+	SetVar 0x8004, ITEM_BURN_HEAL
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
 	
 Route10_EventScript_SouthRockTunnelSign:
 	PlaySE SEQ_SE_DP_SELECT

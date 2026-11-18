@@ -69,21 +69,18 @@
       "en_US": "Viridian Gym’s doors are locked…"
     },
     {
+      "id": "msg_0452_T02_Route2_Text_RouteSign",
+      "en_US": [
+        "Route 2\n",
+        "Viridian City - Pewter City"
+      ]
+    },
+    {
       "id": "msg_0452_T02_ViridianCity_Text_ThisIsPrivateProperty",
       "en_US": [
         "I absolutely forbid you from\n",
         "going through here!\r",
         "This is private property!"
-      ]
-    },
-    {
-      "id": "msg_0452_T02_Text_DreamEaterTutor_Retired",
-      "en_US": [
-        "I used to teach Dream Eater.\n",
-        "The Leader Academy’s masters\r",
-        "teach it now. Look for the\n",
-        "Psychic master in Saffron\r",
-        "City."
       ]
     },
     {
@@ -180,6 +177,60 @@
         "understand, watch that.\r",
         "It will teach you about the basics\n",
         "of being a Pokémon Trainer."
+      ]
+    },
+    {
+      "id": "msg_0452_T02_Route22_Text_EarlyRivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: Hey! {STRVAR_1 3, 6, 0}!\r",
+        "You’re off to the Pokémon League?\n",
+        "Forget about it!\r",
+        "You probably don’t have any\n",
+        "Badges, do you?\r",
+        "The guard won’t let you through\n",
+        "without them.\r",
+        "By the way, did your Pokémon get\n",
+        "any stronger?"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_Route22_Text_EarlyRivalPostBattle",
+      "en_US": [
+        "I heard the Pokémon League is\n",
+        "crawling with tough Trainers.\r",
+        "I have to figure out how to get\n",
+        "past them.\r",
+        "You should quit dawdling and get a\n",
+        "move on!\r",
+        "And forget about the Pallet Gym.\n",
+        "That one’s Mine!"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_Route22_Text_LateRivalIntro",
+      "en_US": [
+        "{STRVAR_1 3, 7, 0}: What? {STRVAR_1 3, 6, 0}!\n",
+        "What a surprise to see you here!\r",
+        "So you’re going to the Pokémon\n",
+        "League?\r",
+        "You collected all the Badges, too?\n",
+        "And all the approvals? That’s cool!\r",
+        "But only one of us gets the Pallet\n",
+        "Gym.\r",
+        "Then I’ll whip you, {STRVAR_1 3, 6, 0}, as a\n",
+        "warm-up for the Pokémon League!\r",
+        "Come on!"
+      ]
+    },
+    {
+      "id": "msg_0452_T02_Route22_Text_LateRivalPostBattle",
+      "en_US": [
+        "That loosened me up.\n",
+        "I’m ready for the Pokémon League!\r",
+        "{STRVAR_1 3, 6, 0}, you need more practice.\r",
+        "Only one of us is coming home as\n",
+        "a Leader. And it’s gonna be me!\r",
+        "I’m out of here. Smell ya!"
       ]
     },
     {

@@ -3,7 +3,18 @@
 
 #define _EV_Route3_EventScript_Youngster 0
 #define _EV_BerryField_EventScript_FindFighting 1
-#define _EV_Route3_EventScript_RouteSign 2
+#define _EV_PewterCity_EventScript_GymGuide 2
+#define _EV_PewterCity_EventScript_RunningShoesAide 3
+#define _EV_Route3_EventScript_RouteSign 4
+#define _EV_PewterCity_EventScript_GymGuideTriggerTop 5
+#define _EV_PewterCity_EventScript_GymGuideTriggerMid 6
+#define _EV_PewterCity_EventScript_GymGuideTriggerBottom 7
+#define _EV_PewterCity_EventScript_GymGuideTriggerRight 8
+#define _EV_PewterCity_EventScript_RunningShoesAideTriggerTop 9
+#define _EV_PewterCity_EventScript_RunningShoesAideTriggerMid 10
+#define _EV_PewterCity_EventScript_RunningShoesAideTriggerBottom 11
 
+#define LOCALID_PEWTER_GYM_GUIDE 11
+#define LOCALID_PEWTER_AIDE 12
 
 #endif

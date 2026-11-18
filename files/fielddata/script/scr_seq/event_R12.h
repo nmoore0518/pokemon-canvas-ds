@@ -6,10 +6,9 @@
 #define _EV_Route12_EventScript_Luca 2
 #define _EV_Route12_EventScript_ItemTM48 3
 #define _EV_Route12_EventScript_ItemIron 4
-#define _EV_Route12_EventScript_ItemChillDrive 5
-#define _EV_Route12_EventScript_RouteSign 6
-#define _EV_Route12_EventScript_FishingSign 7
-#define _EV_Route12_OnResume 8
+#define _EV_Route12_EventScript_RouteSign 5
+#define _EV_Route12_EventScript_FishingSign 6
+#define _EV_Route12_OnResume 7
 
 
 #endif

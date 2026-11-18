@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0363_R25.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route25_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route25_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route25_EventScript_ItemTM43

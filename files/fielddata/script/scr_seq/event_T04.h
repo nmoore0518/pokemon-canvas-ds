@@ -5,31 +5,23 @@
 #define _EV_CeruleanCity_EventScript_Grunt 1
 #define _EV_CeruleanCity_EventScript_LittleBoy 2
 #define _EV_CeruleanCity_EventScript_BaldingMan 3
-#define _EV_CeruleanCity_EventScript_Slowbro 4
-#define _EV_CeruleanCity_EventScript_Lass 5
-#define _EV_CeruleanCity_EventScript_Youngster 6
-#define _EV_CeruleanCity_EventScript_Woman 7
-#define _EV_CeruleanCity_EventScript_CeruleanCaveGuard 8
-#define _EV_TypeTutor_EventScript_Water 9
-#define _EV_TypeTutor_EventScript_Ice 10
-#define _EV_CeruleanCity_EventScript_CitySign 11
-#define _EV_CeruleanCity_EventScript_GymSign 12
-#define _EV_CeruleanCity_EventScript_BikeShopSign 13
-#define _EV_CeruleanCity_EventScript_TrainerTips 14
-#define _EV_CeruleanCity_BikeShop_EventScript_Bicycle 15
-#define _EV_CeruleanCity_EventScript_RivalTriggerLeft 16
-#define _EV_CeruleanCity_EventScript_RivalTriggerMid 17
-#define _EV_CeruleanCity_EventScript_RivalTriggerRight 18
-#define _EV_CeruleanCity_EventScript_GruntTriggerTop 19
-#define _EV_CeruleanCity_EventScript_GruntTriggerBottom 20
-#define _EV_CeruleanCity_OnTransition 21
+#define _EV_CeruleanCity_EventScript_Youngster 4
+#define _EV_CeruleanCity_EventScript_CeruleanCaveGuard 5
+#define _EV_TypeTutor_EventScript_Water 6
+#define _EV_TypeTutor_EventScript_Ice 7
+#define _EV_CeruleanCity_EventScript_CitySign 8
+#define _EV_CeruleanCity_EventScript_GymSign 9
+#define _EV_CeruleanCity_BikeShop_EventScript_Bicycle 10
+#define _EV_CeruleanCity_EventScript_RivalTriggerLeft 11
+#define _EV_CeruleanCity_EventScript_RivalTriggerMid 12
+#define _EV_CeruleanCity_EventScript_RivalTriggerRight 13
+#define _EV_CeruleanCity_EventScript_GruntTriggerTop 14
+#define _EV_CeruleanCity_EventScript_GruntTriggerBottom 15
+#define _EV_CeruleanCity_OnTransition 16
 
 #define LOCALID_CERULEAN_POLICEMAN 1
 #define LOCALID_CERULEAN_GRUNT 2
-#define LOCALID_CERULEAN_SLOWBRO 5
-#define LOCALID_CERULEAN_LASS 6
 #define LOCALID_CERULEAN_RIVAL 8
-#define LOCALID_CERULEAN_WOMAN 11
 #define LOCALID_CERULEAN_CAVE_GUARD 12
 
 #endif

@@ -1,121 +1,38 @@
 {
     "header": "fielddata/script/scr_seq/event_W19.h",
-    "bgs": [
-        {
-            "scriptId": "_EV_Route19_EventScript_RouteSign + 1",
-            "type": 0,
-            "x": 1208,
-            "z": 453,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_w19_big_pearl",
-            "type": 2,
-            "x": 1210,
-            "z": 505,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_w19_pearl_2",
-            "type": 2,
-            "x": 1198,
-            "z": 468,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_w19_pearl",
-            "type": 2,
-            "x": 1207,
-            "z": 467,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_w19_revive",
-            "type": 2,
-            "x": 1210,
-            "z": 456,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_w19_max_elixir",
-            "type": 2,
-            "x": 1209,
-            "z": 460,
-            "y": 0,
-            "dir": 4
-        }
-    ],
+    "bgs": [],
     "objects": [
         {
-            "id": "1",
+            "id": "3",
             "spriteId": "SPRITE_GSSWIMMERM",
             "movement": 2,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(982)",
-            "facingDirection": 1,
-            "param0": 4,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 6,
-            "yRange": 3,
-            "x": 1198,
-            "z": 474,
-            "y": 0
-        },
-        {
-            "id": "2",
-            "spriteId": "SPRITE_GSSWIMMERM",
-            "movement": 20,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(981)",
+            "scriptId": "std_trainer(986)",
             "facingDirection": 1,
             "param0": 3,
             "param1": 0,
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1194,
-            "z": 485,
-            "y": 0
-        },
-        {
-            "id": "3",
-            "spriteId": "SPRITE_GSSWIMMERM",
-            "movement": 20,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(986)",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1200,
-            "z": 497,
+            "x": 1198,
+            "z": 481,
             "y": 0
         },
         {
             "id": "4",
             "spriteId": "SPRITE_GSSWIMMERM",
-            "movement": 16,
+            "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
             "scriptId": "std_trainer(983)",
-            "facingDirection": 2,
-            "param0": 0,
+            "facingDirection": 1,
+            "param0": 1,
             "param1": 0,
             "param2": 0,
             "xRange": 5,
             "yRange": 3,
-            "x": 1201,
+            "x": 1204,
             "z": 497,
             "y": 0
         },
@@ -132,8 +49,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 1192,
-            "z": 466,
+            "x": 1194,
+            "z": 491,
             "y": 0
         },
         {
@@ -149,8 +66,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1199,
-            "z": 465,
+            "x": 1202,
+            "z": 486,
             "y": 0
         },
         {
@@ -166,8 +83,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1195,
-            "z": 486,
+            "x": 1197,
+            "z": 511,
             "y": 0
         },
         {
@@ -183,8 +100,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1198,
-            "z": 487,
+            "x": 1200,
+            "z": 512,
             "y": 0
         },
         {
@@ -200,8 +117,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1196,
-            "z": 488,
+            "x": 1198,
+            "z": 513,
             "y": 0
         },
         {
@@ -217,8 +134,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1193,
-            "z": 487,
+            "x": 1195,
+            "z": 512,
             "y": 0
         },
         {
@@ -234,8 +151,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1192,
-            "z": 480,
+            "x": 1194,
+            "z": 505,
             "y": 0
         },
         {
@@ -251,26 +168,11 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1193,
-            "z": 480,
+            "x": 1195,
+            "z": 505,
             "y": 0
         }
     ],
-    "warps": [
-        {
-            "x": 1203,
-            "z": 453,
-            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1204,
-            "z": 453,
-            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        }
-    ],
+    "warps": [],
     "coords": []
 }

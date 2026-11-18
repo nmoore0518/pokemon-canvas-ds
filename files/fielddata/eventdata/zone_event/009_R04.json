@@ -2,26 +2,18 @@
     "header": "fielddata/script/scr_seq/event_R04.h",
     "bgs": [
         {
+            "scriptId": "_EV_Route4_EventScript_MtMoonSign + 1",
+            "type": 0,
+            "x": 1141,
+            "z": 149,
+            "y": 0,
+            "dir": 4
+        },
+        {
             "scriptId": "_EV_Route4_EventScript_RouteSign + 1",
             "type": 0,
-            "x": 1197,
-            "z": 114,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_r04_ultra_ball",
-            "type": 2,
-            "x": 1219,
-            "z": 109,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_r04_big_mushroom",
-            "type": 2,
-            "x": 1251,
-            "z": 123,
+            "x": 1157,
+            "z": 149,
             "y": 0,
             "dir": 4
         }
@@ -29,23 +21,40 @@
     "objects": [
         {
             "id": "1",
-            "spriteId": "SPRITE_GSGIRL2",
-            "movement": 0,
-            "type": 1,
+            "spriteId": "SPRITE_GSWOMAN1",
+            "movement": 3,
+            "type": 0,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(875)",
-            "facingDirection": 3,
-            "param0": 5,
+            "scriptId": "_EV_Route4_EventScript_Woman + 1",
+            "facingDirection": 1,
+            "param0": 0,
             "param1": 0,
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1250,
-            "z": 112,
+            "x": 1132,
+            "z": 150,
             "y": 0
         },
         {
             "id": "2",
+            "spriteId": "SPRITE_GSGIRL2",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(875)",
+            "facingDirection": 3,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1198,
+            "z": 145,
+            "y": 0
+        },
+        {
+            "id": "3",
             "spriteId": "SPRITE_MONSTARBALL",
             "movement": 15,
             "type": 0,
@@ -57,12 +66,29 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1254,
-            "z": 107,
+            "x": 1190,
+            "z": 147,
             "y": 0
         },
         {
-            "id": "3",
+            "id": "4",
+            "spriteId": "SPRITE_GSBOY1",
+            "movement": 5,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route4_EventScript_Boy + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1138,
+            "z": 156,
+            "y": 0
+        },
+        {
+            "id": "5",
             "spriteId": "SPRITE_GSFIGHTER",
             "movement": 17,
             "type": 0,
@@ -74,12 +100,12 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1213,
-            "z": 108,
+            "x": 1170,
+            "z": 145,
             "y": 0
         },
         {
-            "id": "4",
+            "id": "6",
             "spriteId": "SPRITE_GSFIGHTER",
             "movement": 16,
             "type": 0,
@@ -91,12 +117,12 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1217,
-            "z": 108,
+            "x": 1173,
+            "z": 145,
             "y": 0
         },
         {
-            "id": "5",
+            "id": "8",
             "spriteId": "SPRITE_MONSTARBALL",
             "movement": 15,
             "type": 0,
@@ -108,15 +134,29 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1232,
-            "z": 108,
+            "x": 1186,
+            "z": 144,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1195,
-            "z": 112,
+            "x": 1135,
+            "z": 147,
+            "header": "MAP_ROUTE_3_POKECENTER_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1142,
+            "z": 147,
+            "header": "MAP_CANVAS_MT_MOON_1F",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 1155,
+            "z": 147,
             "header": "MAP_CANVAS_MT_MOON_B1F",
             "anchor": 7,
             "y": 0

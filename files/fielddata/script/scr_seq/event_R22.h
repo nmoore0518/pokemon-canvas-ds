@@ -1,14 +1,10 @@
 #ifndef SCR_SEQ_R22_H_
 #define SCR_SEQ_R22_H_
 
-#define _EV_Route22_EventScript_LeagueGateSign 0
-#define _EV_Route22_EventScript_EarlyRivalTriggerTop 1
-#define _EV_Route22_EventScript_EarlyRivalTriggerMid 2
-#define _EV_Route22_EventScript_EarlyRivalTriggerBottom 3
-#define _EV_Route22_EventScript_LateRivalTriggerTop 4
-#define _EV_Route22_EventScript_LateRivalTriggerMid 5
-#define _EV_Route22_EventScript_LateRivalTriggerBottom 6
+#define _EV_ViridianCity_EventScript_DreamEaterTutor 0
+#define _EV_Route22_EventScript_LeagueGateSign 1
+#define _EV_Route22_EventScript_EarlyRivalTriggerBottom 2
+#define _EV_Route22_EventScript_LateRivalTriggerBottom 3
 
-#define LOCALID_ROUTE22_RIVAL 1
 
 #endif

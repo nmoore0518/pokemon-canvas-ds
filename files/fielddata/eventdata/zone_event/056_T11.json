@@ -4,72 +4,80 @@
         {
             "scriptId": "_EV_SaffronCity_EventScript_CitySign + 1",
             "type": 0,
-            "x": 1303,
-            "z": 210,
+            "x": 1250,
+            "z": 219,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_DojoSign + 1",
             "type": 0,
-            "x": 1323,
-            "z": 208,
+            "x": 1263,
+            "z": 219,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_SilphProductSign + 1",
             "type": 0,
-            "x": 1306,
-            "z": 234,
+            "x": 1234,
+            "z": 230,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerTips2 + 1",
             "type": 0,
-            "x": 1292,
-            "z": 210,
+            "x": 1239,
+            "z": 235,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_SilphCoSign + 1",
             "type": 0,
-            "x": 1321,
-            "z": 242,
+            "x": 1250,
+            "z": 236,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerTips1 + 1",
             "type": 0,
-            "x": 1330,
-            "z": 208,
+            "x": 1275,
+            "z": 230,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1329,
-            "z": 209,
+            "x": 1271,
+            "z": 219,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_MrPsychicsHouseSign + 1",
             "type": 0,
-            "x": 1317,
-            "z": 242,
+            "x": 1261,
+            "z": 243,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerFanClubSign + 1",
             "type": 0,
-            "x": 1326,
-            "z": 222,
+            "x": 1270,
+            "z": 227,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route5_EventScript_UndergroundPathSign + 1",
+            "type": 0,
+            "x": 1263,
+            "z": 204,
             "y": 0,
             "dir": 4
         }
@@ -88,8 +96,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1296,
-            "z": 219,
+            "x": 1243,
+            "z": 220,
             "y": 0
         },
         {
@@ -105,8 +113,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1300,
-            "z": 219,
+            "x": 1247,
+            "z": 221,
             "y": 0
         },
         {
@@ -122,8 +130,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1327,
-            "z": 205,
+            "x": 1267,
+            "z": 218,
             "y": 0
         },
         {
@@ -139,8 +147,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1301,
-            "z": 222,
+            "x": 1248,
+            "z": 227,
             "y": 0
         },
         {
@@ -156,8 +164,8 @@
             "param2": 0,
             "xRange": 7,
             "yRange": 1,
-            "x": 1297,
-            "z": 236,
+            "x": 1246,
+            "z": 238,
             "y": 0
         },
         {
@@ -173,8 +181,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1309,
-            "z": 231,
+            "x": 1255,
+            "z": 236,
             "y": 0
         },
         {
@@ -190,8 +198,8 @@
             "param2": 0,
             "xRange": 5,
             "yRange": 1,
-            "x": 1301,
-            "z": 243,
+            "x": 1251,
+            "z": 244,
             "y": 0
         },
         {
@@ -207,8 +215,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1325,
-            "z": 224,
+            "x": 1269,
+            "z": 229,
             "y": 0
         },
         {
@@ -224,8 +232,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1312,
-            "z": 233,
+            "x": 1258,
+            "z": 237,
             "y": 0
         },
         {
@@ -241,8 +249,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1295,
-            "z": 225,
+            "x": 1242,
+            "z": 228,
             "y": 0
         },
         {
@@ -258,8 +266,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1317,
-            "z": 211,
+            "x": 1260,
+            "z": 221,
             "y": 0
         },
         {
@@ -275,8 +283,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1321,
-            "z": 220,
+            "x": 1265,
+            "z": 227,
             "y": 0
         },
         {
@@ -292,8 +300,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1322,
-            "z": 220,
+            "x": 1266,
+            "z": 227,
             "y": 0
         },
         {
@@ -309,8 +317,8 @@
             "param2": 0,
             "xRange": 5,
             "yRange": 1,
-            "x": 1302,
-            "z": 243,
+            "x": 1253,
+            "z": 244,
             "y": 0
         },
         {
@@ -326,8 +334,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1324,
-            "z": 224,
+            "x": 1268,
+            "z": 229,
             "y": 0
         },
         {
@@ -343,129 +351,170 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1283,
-            "z": 201,
+            "x": 1221,
+            "z": 205,
+            "y": 0
+        },
+        {
+            "id": "17",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PaintWorld_EventScript_Figure + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 1259,
+            "z": 202,
+            "y": 0
+        },
+        {
+            "id": "18",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_PaintWorld_EventScript_Figure + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 1218,
+            "z": 236,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1300,
-            "z": 253,
-            "header": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1301,
-            "z": 253,
-            "header": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1337,
-            "z": 240,
-            "header": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1337,
-            "z": 241,
-            "header": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1300,
+            "x": 1254,
             "z": 197,
-            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "header": "MAP_ROUTE_5_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1301,
-            "z": 197,
-            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "x": 1262,
+            "z": 203,
+            "header": "MAP_ROUTE_5_UNDERGROUND_PATH_GATE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1290,
-            "z": 208,
-            "header": "MAP_SAFFRON_MAGNET_TRAIN_STATION_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1297,
-            "z": 218,
-            "header": "MAP_SAFFRON_COPYCAT_HOUSE_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1308,
-            "z": 229,
-            "header": "MAP_SAFFRON_SILPH_CO_HQ",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1309,
-            "z": 229,
-            "header": "MAP_SAFFRON_SILPH_CO_HQ",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1321,
+            "x": 1255,
             "z": 204,
+            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1256,
+            "z": 204,
+            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1255,
+            "z": 210,
+            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1256,
+            "z": 210,
+            "header": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1261,
+            "z": 217,
             "header": "MAP_SAFFRON_FIGHTING_DOJO",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1328,
-            "z": 204,
+            "x": 1267,
+            "z": 217,
             "header": "MAP_SAFFRON_GYM",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1318,
-            "z": 218,
+            "x": 1243,
+            "z": 219,
+            "header": "MAP_SAFFRON_COPYCAT_HOUSE_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1261,
+            "z": 226,
             "header": "MAP_SAFFRON_POKEMART",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1294,
-            "z": 242,
+            "x": 1222,
+            "z": 232,
+            "header": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1229,
+            "z": 232,
+            "header": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1279,
+            "z": 232,
+            "header": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1254,
+            "z": 235,
+            "header": "MAP_SAFFRON_SILPH_CO_HQ",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1245,
+            "z": 243,
             "header": "MAP_SAFFRON_POKECENTER_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1323,
-            "z": 242,
+            "x": 1264,
+            "z": 243,
             "header": "MAP_SAFFRON_MR_PSYCHIC_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1280,
-            "z": 240,
-            "header": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
-            "anchor": 0,
+            "x": 1255,
+            "z": 251,
+            "header": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
+            "anchor": 1,
             "y": 0
         },
         {
-            "x": 1280,
-            "z": 241,
-            "header": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
-            "anchor": 0,
+            "x": 1256,
+            "z": 251,
+            "header": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
+            "anchor": 1,
             "y": 0
         }
     ],

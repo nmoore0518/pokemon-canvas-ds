@@ -140,6 +140,13 @@
       ]
     },
     {
+      "id": "msg_0512_T08_Route19_Text_RouteSign",
+      "en_US": [
+        "Sea Route 19\n",
+        "Fuchsia City - Seafoam Islands"
+      ]
+    },
+    {
       "id": "msg_0512_T08_FuchsiaCity_Text_OmanyteSign",
       "en_US": [
         "Name: Omanyte\n",

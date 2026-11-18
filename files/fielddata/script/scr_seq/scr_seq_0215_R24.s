@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0362_R24.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route24_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route24_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route24_EventScript_Rocket
@@ -140,8 +140,8 @@ DadStory_EventScript_RivalSendsHome:
 	CompareVarToValue 0x5008, 3
 	GoToIfGe DadStory_EventScript_ReleaseAll
 	GetPlayerCoords 0x8004, 0x8005
-	SubVar 0x8004, 1316
-	SubVar 0x8005, 40
+	SubVar 0x8004, 1243
+	SubVar 0x8005, 92
 	ClearFlag 0x20E3
 	GoToIfUnset 0x20E3, _cv_show_5
 	ClearFlag 0x20E3

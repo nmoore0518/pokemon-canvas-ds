@@ -4,104 +4,104 @@
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_CitySign + 1",
             "type": 0,
-            "x": 1208,
-            "z": 424,
+            "x": 1205,
+            "z": 442,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_SafariZoneSign + 1",
             "type": 0,
-            "x": 1220,
-            "z": 435,
+            "x": 1200,
+            "z": 442,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1193,
-            "z": 441,
+            "x": 1179,
+            "z": 456,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_WardensHomeSign + 1",
             "type": 0,
-            "x": 1213,
-            "z": 405,
+            "x": 1205,
+            "z": 455,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_VoltorbSign + 1",
             "type": 0,
-            "x": 1225,
-            "z": 412,
+            "x": 1209,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_SlowpokeSign + 1",
             "type": 0,
-            "x": 1230,
-            "z": 418,
+            "x": 1212,
+            "z": 440,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_ChanseySign + 1",
             "type": 0,
-            "x": 1233,
-            "z": 412,
+            "x": 1215,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_KangaskhanSign + 1",
             "type": 0,
-            "x": 1205,
-            "z": 411,
+            "x": 1191,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_FossilMonSign + 1",
             "type": 0,
-            "x": 1197,
-            "z": 412,
+            "x": 1185,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_LaprasSign + 1",
             "type": 0,
-            "x": 1204,
-            "z": 421,
+            "x": 1191,
+            "z": 442,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_SafariGameSign + 1",
             "type": 0,
-            "x": 1212,
-            "z": 406,
+            "x": 1196,
+            "z": 431,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_ExoticSafariSign + 1",
             "type": 0,
-            "x": 1217,
-            "z": 405,
+            "x": 1201,
+            "z": 430,
             "y": 0,
             "dir": 4
         },
         {
-            "scriptId": "std_hiddenitem_t08_nugget",
-            "type": 2,
-            "x": 1232,
-            "z": 413,
+            "scriptId": "_EV_Route19_EventScript_RouteSign + 1",
+            "type": 0,
+            "x": 1201,
+            "z": 476,
             "y": 0,
             "dir": 4
         }
@@ -120,8 +120,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1229,
-            "z": 421,
+            "x": 1211,
+            "z": 441,
             "y": 0
         },
         {
@@ -137,8 +137,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1227,
-            "z": 416,
+            "x": 1210,
+            "z": 439,
             "y": 0
         },
         {
@@ -154,8 +154,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1223,
-            "z": 409,
+            "x": 1207,
+            "z": 432,
             "y": 0
         },
         {
@@ -171,8 +171,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1222,
-            "z": 413,
+            "x": 1207,
+            "z": 435,
             "y": 0
         },
         {
@@ -188,8 +188,8 @@
             "param2": 0,
             "xRange": 3,
             "yRange": 1,
-            "x": 1230,
-            "z": 409,
+            "x": 1213,
+            "z": 432,
             "y": 0
         },
         {
@@ -205,8 +205,8 @@
             "param2": 0,
             "xRange": 3,
             "yRange": 1,
-            "x": 1200,
-            "z": 417,
+            "x": 1188,
+            "z": 440,
             "y": 0
         },
         {
@@ -222,8 +222,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 1,
-            "x": 1198,
-            "z": 425,
+            "x": 1186,
+            "z": 444,
             "y": 0
         },
         {
@@ -239,25 +239,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1227,
-            "z": 423,
-            "y": 0
-        },
-        {
-            "id": "9",
-            "spriteId": "101",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "0",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1194,
-            "z": 411,
+            "x": 1210,
+            "z": 444,
             "y": 0
         },
         {
@@ -273,8 +256,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1203,
-            "z": 410,
+            "x": 1190,
+            "z": 433,
             "y": 0
         },
         {
@@ -290,8 +273,59 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1211,
-            "z": 424,
+            "x": 1204,
+            "z": 434,
+            "y": 0
+        },
+        {
+            "id": "12",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "19",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1195,
+            "z": 437,
+            "y": 0
+        },
+        {
+            "id": "13",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "20",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1206,
+            "z": 440,
+            "y": 0
+        },
+        {
+            "id": "14",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "21",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1198,
+            "z": 446,
             "y": 0
         },
         {
@@ -307,8 +341,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1202,
-            "z": 413,
+            "x": 1189,
+            "z": 435,
             "y": 0
         },
         {
@@ -324,8 +358,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1231,
-            "z": 408,
+            "x": 1214,
+            "z": 430,
             "y": 0
         },
         {
@@ -341,103 +375,119 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1212,
-            "z": 417,
+            "x": 1198,
+            "z": 439,
             "y": 0
         },
         {
-            "id": "18",
-            "spriteId": "SPRITE_GSMIDDLEMAN1",
-            "movement": 15,
-            "type": 0,
+            "id": "21",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 16,
+            "type": 1,
             "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_TypeTutor_EventScript_Flying + 1",
-            "facingDirection": 1,
-            "param0": 0,
+            "scriptId": "std_trainer(1054)",
+            "facingDirection": 2,
+            "param0": 4,
             "param1": 0,
             "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1186,
-            "z": 425,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1160,
+            "z": 448,
+            "y": 0
+        },
+        {
+            "id": "22",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1053)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1155,
+            "z": 449,
+            "y": 0
+        },
+        {
+            "id": "23",
+            "spriteId": "SPRITE_GSSWIMMERM",
+            "movement": 16,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(982)",
+            "facingDirection": 2,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 6,
+            "yRange": 3,
+            "x": 1201,
+            "z": 474,
+            "y": 0
+        },
+        {
+            "id": "24",
+            "spriteId": "SPRITE_GSSWIMMERM",
+            "movement": 17,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(981)",
+            "facingDirection": 3,
+            "param0": 3,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1194,
+            "z": 474,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1241,
-            "z": 422,
-            "header": "MAP_ROUTE_15_FUCHSIA_GATEHOUSE",
+            "x": 1198,
+            "z": 429,
+            "header": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1241,
-            "z": 423,
-            "header": "MAP_ROUTE_15_FUCHSIA_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1203,
-            "z": 445,
-            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1204,
-            "z": 445,
-            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1197,
-            "z": 416,
+            "x": 1185,
+            "z": 439,
             "header": "MAP_FUCHSIA_POKEMART",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1214,
-            "z": 403,
-            "header": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1215,
-            "z": 403,
-            "header": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1195,
-            "z": 439,
-            "header": "MAP_FUCHSIA_GYM",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1200,
-            "z": 439,
+            "x": 1188,
+            "z": 455,
             "header": "MAP_FUCHSIA_SOUTHWEST_HOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1209,
-            "z": 439,
+            "x": 1199,
+            "z": 455,
             "header": "MAP_FUCHSIA_POKECENTER_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1222,
-            "z": 435,
+            "x": 1207,
+            "z": 455,
             "header": "MAP_FUCHSIA_SAFARI_ZONE_WARDEN_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1183,
+            "z": 456,
+            "header": "MAP_FUCHSIA_GYM",
             "anchor": 0,
             "y": 0
         }

@@ -221,8 +221,8 @@
         {
             "x": 19,
             "z": 44,
-            "header": "MAP_ROUTE_10_SOUTH",
-            "anchor": 0,
+            "header": "MAP_ROUTE_10",
+            "anchor": 4,
             "y": 0
         }
     ],

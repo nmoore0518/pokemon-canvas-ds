@@ -9,6 +9,16 @@
       ]
     },
     {
+      "id": "msg_0360_R22_Text_DreamEaterTutor_Retired",
+      "en_US": [
+        "I used to teach Dream Eater.\n",
+        "The Leader Academy’s masters\r",
+        "teach it now. Look for the\n",
+        "Psychic master in Saffron\r",
+        "City."
+      ]
+    },
+    {
       "id": "msg_0360_R22_Route22_Text_EarlyRivalIntro",
       "en_US": [
         "{STRVAR_1 3, 7, 0}: Hey! {STRVAR_1 3, 6, 0}!\r",

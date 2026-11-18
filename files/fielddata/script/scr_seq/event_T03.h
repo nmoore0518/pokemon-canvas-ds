@@ -5,25 +5,14 @@
 #define _EV_PewterCity_EventScript_MuseumGuide 1
 #define _EV_PewterCity_EventScript_FatMan 2
 #define _EV_PewterCity_EventScript_BugCatcher 3
-#define _EV_PewterCity_EventScript_GymGuide 4
-#define _EV_PewterCity_EventScript_RunningShoesAide 5
-#define _EV_TypeTutor_EventScript_Rock 6
-#define _EV_PewterCity_EventScript_MuseumSign 7
-#define _EV_PewterCity_EventScript_PoliceNotice 8
-#define _EV_PewterCity_EventScript_GymSign 9
-#define _EV_PewterCity_EventScript_TrainerTips 10
-#define _EV_PewterCity_EventScript_CitySign 11
-#define _EV_PewterCity_EventScript_GymGuideTriggerTop 12
-#define _EV_PewterCity_EventScript_GymGuideTriggerMid 13
-#define _EV_PewterCity_EventScript_GymGuideTriggerBottom 14
-#define _EV_PewterCity_EventScript_GymGuideTriggerRight 15
-#define _EV_PewterCity_EventScript_RunningShoesAideTriggerTop 16
-#define _EV_PewterCity_EventScript_RunningShoesAideTriggerMid 17
-#define _EV_PewterCity_EventScript_RunningShoesAideTriggerBottom 18
-#define _EV_PewterCity_OnTransition 19
+#define _EV_TypeTutor_EventScript_Rock 4
+#define _EV_PewterCity_EventScript_MuseumSign 5
+#define _EV_PewterCity_EventScript_PoliceNotice 6
+#define _EV_PewterCity_EventScript_GymSign 7
+#define _EV_PewterCity_EventScript_TrainerTips 8
+#define _EV_PewterCity_EventScript_CitySign 9
+#define _EV_PewterCity_OnTransition 10
 
 #define LOCALID_PEWTER_MUSEUM_GUIDE 2
-#define LOCALID_PEWTER_GYM_GUIDE 5
-#define LOCALID_PEWTER_AIDE 7
 
 #endif

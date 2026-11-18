@@ -1,0 +1,35 @@
+#ifndef SCR_SEQ_CV_CANVAS_LEADER_ACADEMY_H_
+#define SCR_SEQ_CV_CANVAS_LEADER_ACADEMY_H_
+
+#define _EV_Academy_EventScript_Koji 0
+#define _EV_Academy_EventScript_Maren 1
+#define _EV_Academy_EventScript_Rene 2
+#define _EV_Academy_EventScript_Student1 3
+#define _EV_Market_EventScript_TMsA 4
+#define _EV_Market_EventScript_TMsB 5
+#define _EV_Market_EventScript_TMsC 6
+#define _EV_Market_EventScript_Celadon 7
+#define _EV_Market_EventScript_Held 8
+#define _EV_Market_EventScript_Herbs 9
+#define _EV_Market_EventScript_Nature 10
+#define _EV_Market_EventScript_Training 11
+#define _EV_Academy_EventScript_HallSign 12
+#define _EV_Academy_EventScript_BattleSign 13
+#define _EV_Academy_EventScript_Statue 14
+#define _EV_LeaderAcademy_Campus_OnTransition 15
+#define _EV_Academy_EventScript_Welcome 16
+
+#define LOCALID_ACADEMY_CANDIDATE_KOJI 3
+#define LOCALID_ACADEMY_CANDIDATE_MAREN 4
+#define LOCALID_ACADEMY_CANDIDATE_RENE 6
+#define LOCALID_ACADEMY_STUDENT_1 7
+#define LOCALID_ACADEMY_MARKET_TM_A 9
+#define LOCALID_ACADEMY_MARKET_TM_B 10
+#define LOCALID_ACADEMY_MARKET_TM_C 11
+#define LOCALID_ACADEMY_MARKET_CELADON 12
+#define LOCALID_ACADEMY_MARKET_HELD 13
+#define LOCALID_ACADEMY_MARKET_HERBS 14
+#define LOCALID_ACADEMY_MARKET_NATURE 15
+#define LOCALID_ACADEMY_MARKET_TRAINING 16
+
+#endif

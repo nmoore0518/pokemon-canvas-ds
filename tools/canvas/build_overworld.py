@@ -159,8 +159,18 @@ def world_kinds():
         doors += [(x0 + x, y0 + y, d, x, y) for x, y in dr]
         ledges.update({(x0 + x, y0 + y): v for (x, y), v in lg.items()})
     # (squares no map covers: the sea where the nearest square of a map is water - round Cinnabar - else woods)
+    # (only open sea: water along a side of a map that is half water or more; a pond at a map's edge is no sea)
+    sea = set()
+    for d, (x0, y0, w, h) in W_.items():
+        for side in ([(x0 + i, y0) for i in range(w)], [(x0 + i, y0 + h - 1) for i in range(w)],
+                     [(x0, y0 + j) for j in range(h)], [(x0 + w - 1, y0 + j) for j in range(h)]):
+            wet = [q for q in side if kind.get(q) == 'water']
+            if len(wet) * 2 >= len(side): sea |= set(wet)
+    # (our Cinnabar is an island: the sea all round it)
+    x0, y0, w, h = W_['CinnabarIsland_Frlg']
+    sea |= {(x0 + i, y0 + j) for i in range(w) for j in range(h)}
     ring = [q for q in kind]
-    near = {q: kind[q] == 'water' for q in kind}
+    near = {q: q in sea for q in kind}
     while ring:
         nxt = []
         for (x, y) in ring:
@@ -188,10 +198,28 @@ def world_kinds():
 
 
 # ---------------------------------------------------------------- HeartGold's buildings for the GBA's doors
+HGB_JSON = os.path.join(HERE, 'data', 'hg_buildings.json')
+HG_REV = '7eef3ae8'        # (a commit with HeartGold's own Kanto in the matrix and its towns' warps: read once, kept)
+
+
 def hg_buildings():
     """-> {HeartGold room map: (building model, (dx, dz) of the model from the door square's middle, door model or
-    None, its (dx, dz), the model's box)} read off HeartGold's own towns: each of their warps' nearest building
-    model, and the small door model at it"""
+    None, its (dx, dz), the model's box)} read off HeartGold's own towns (as they were: HG_REV), kept in
+    data/hg_buildings.json"""
+    if os.path.exists(HGB_JSON):
+        return {k: (v[0], tuple(v[1]), v[2], tuple(v[3]) if v[3] else None, v[4]) for k, v in json.load(open(HGB_JSON)).items()}
+    out = _hg_buildings()
+    json.dump(out, open(HGB_JSON, 'w'), indent=0, sort_keys=True)
+    return out
+
+
+def _git(path):
+    import subprocess
+    return subprocess.run(['git', 'show', '%s:%s' % (HG_REV, os.path.relpath(path, slots.ROOT))], cwd=slots.ROOT,
+                          capture_output=True, check=True).stdout
+
+
+def _hg_buildings():
     import interior_kit as IK
     from nitro import read_narc
     bm = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())[0]
@@ -203,7 +231,9 @@ def hg_buildings():
         m = off + struct.unpack_from('<I', d, ent + 4)[0]
         bx = [v / 4096 for v in struct.unpack_from('<6h', d, m + 0x2C)]; bs = struct.unpack_from('<i', d, m + 0x38)[0] / 4096
         return [v * bs for v in bx]
-    w, h, hdr, alt, ls = hgworld.matrix()
+    d = _git(os.path.join(slots.MATRIX_DIR, 'map_matrix_0000_EVERYWHERE.bin'))
+    w, h, hh, ha, nl = d[:5]
+    hdr = struct.unpack_from('<%dH' % (w * h), d, 5 + nl); ls = struct.unpack_from('<%dH' % (w * h), d, 5 + nl + 3 * w * h)
     L = hgworld.lands()
     props = []
     for cz in range(h):
@@ -224,7 +254,7 @@ def hg_buildings():
         if m: names[int(m.group(2))] = m.group(1)
     towns = {names[v] for v in set(hdr) if v and v in names}
     for town in towns:
-        try: ev = json.load(open(os.path.join(slots.EVENT_DIR, slots.events_file(town))))
+        try: ev = json.loads(_git(os.path.join(slots.EVENT_DIR, slots.events_file(town))))
         except Exception: continue
         for wp in ev.get('warps', []):
             room = wp['header']
@@ -249,6 +279,8 @@ EDGE = {'sand': 'road01_r', 'pave': 'road01_r'}     # (HeartGold's road and its 
                                                     # towns' streets are the same road as its routes')
 ROCK_TOP = 'cliff01gs'
 DOOR_MB = 0x69
+CAVE_MB = 0x6E              # (HeartGold's cave mouths: walked into)
+CAVE_MOUTH = json.load(open(os.path.join(HERE, 'data', 'cave_mouth.json')))     # (its arch, off Route 11's land)
 SIGN_MODEL = 29
 
 
@@ -261,6 +293,60 @@ def gba_dest():
     return port_map.DEST
 
 
+GATE_NS, GATE_EW = 246, 247     # HeartGold's gatehouses: doors on the north and south faces, or the west and east
+
+
+def _gates(doors, dest, hgb, bldg, kind):
+    """The gatehouses (a room HeartGold has a gatehouse for, or one the GBA's doors face each other into): HeartGold's
+    gatehouse model, its doors on the GBA's - stretched or squeezed between them where the GBA has both (its two
+    faces 8 squares apart north to south, 7 west to east). -> {room: (props, closed squares, door squares)}"""
+    by_room = {}
+    for gx, gz, d, w in doors:
+        room = dest.get(w['dest_map'])
+        if room and (hgb.get(room, (None,))[0] in (GATE_NS, GATE_EW) or ('GATE' in room and room not in hgb)):
+            by_room.setdefault(room, []).append((gx, gz))
+    out = {}
+    for room, ds in by_room.items():
+        cl = []                                  # (the doors, two squares each: a cluster a face)
+        for q in sorted(ds):
+            c = next((c for c in cl if any(abs(q[0] - r[0]) + abs(q[1] - r[1]) <= 1 for r in c)), None)
+            (c.append(q) if c else cl.append([q]))
+        mid = lambda c: (sum(q[0] for q in c) / len(c), sum(q[1] for q in c) / len(c))
+        if len(cl) >= 2:
+            (ax, az), (bx_, bz) = mid(cl[0]), mid(cl[1])
+            ns = abs(bz - az) >= abs(bx_ - ax)
+        else:
+            (ax, az) = mid(cl[0])
+            comp = [q for q, b in bldg.items() if b == bldg.get(cl[0][0]) and kind.get(q) == 'house']
+            if not comp: comp = [(ax, az - 1)]
+            cx_, cz_ = mid(comp)
+            ns = abs(cz_ - az) >= abs(cx_ - ax)
+        ps, closed = [], set()
+        if ns:
+            if len(cl) >= 2:
+                zn, zs = sorted([mid(c)[1] for c in cl[:2]])
+                sc = max(0.6, min(1.3, (zs - zn) / 8)); cz = zn + 0.5 + 5.5 * sc
+            else:
+                sc = 1.0
+                cz = az + 0.5 - 2.5 if cz_ < az else az + 0.5 + 5.5
+            cx = (sum(mid(c)[0] for c in cl) / len(cl)) + 0.5
+            ps.append((GATE_NS, cx, cz, 0, (1, 1, sc)))
+            closed = {(x, z) for x in range(math.floor(cx - 3 + 0.35), math.ceil(cx + 3.25 - 0.35)) for z in range(math.floor(cz - 4.25 * sc + 0.35), math.ceil(cz + 3.5 * sc - 0.35))}
+        else:
+            if len(cl) >= 2:
+                xw, xe = sorted([mid(c)[0] for c in cl[:2]])
+                sc = max(0.6, min(1.3, (xe - xw) / 7)); cx = xw + 0.5 + 3.5 * sc
+            else:
+                sc = 1.0
+                cx = ax + 0.5 + 3.5 if cx_ > ax else ax + 0.5 - 3.5
+            cz = (sum(mid(c)[1] for c in cl) / len(cl)) + 0.5
+            ps.append((GATE_EW, cx, cz, 0, (sc, 1, 1)))
+            closed = {(x, z) for x in range(math.floor(cx - 3.75 * sc + 0.35), math.ceil(cx + 3.75 * sc - 0.35)) for z in range(math.floor(cz - 2.75 + 0.35), math.ceil(cz + 3.0 - 0.35))}
+        dq = {q for c in cl for q in c}
+        out[room] = (ps, closed - dq, dq)
+    return out
+
+
 def plan_world():
     """everything the lands need, worked out once: kinds, trees, buildings and their squares, warps"""
     W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds()
@@ -271,19 +357,24 @@ def plan_world():
     # (more than a third, to its door's row) closed. A door that leads nowhere HeartGold has a building for is a
     # warp on its square, the GBA's building squares left as stones
     props, stands, door_sq, warps, done = [], set(), set(), {}, set()
+    all_warps = [(x0 + wp['x'], y0 + wp['y'], d, wp) for d, (x0, y0, w, h) in W_.items() for wp in gba_map.map_json(d).get('warp_events', [])]
+    gates = _gates(all_warps, dest, hgb, bldg, kind)
+    for room, (gprops, gstands, gdoors) in gates.items():
+        props += gprops; stands |= gstands; door_sq |= gdoors
+        done |= {(bldg.get(q), room) for q in gdoors}
     for gx, gz, d, x, y in doors:
         gm = gba_map.map_json(d)
         w = next(w for w in gm['warp_events'] if (w['x'], w['y']) == (x, y))
         room = dest.get(w['dest_map'])
         b = hgb.get(room)
         warps[(gx, gz)] = (d, w)
-        if not b:
+        if not b or room in gates:
             continue
         mdl, (mdx, mdz), dmdl, dd, bx = b
         if dmdl is not None: props.append((dmdl, gx + 0.5 + dd[0], gz + 0.5 + dd[1], 0))
         door_sq.add((gx, gz))
-        if bldg.get((gx, gz)) in done: continue            # (its building is up already: a gate's other door)
-        done.add(bldg.get((gx, gz)))
+        if (bldg.get((gx, gz)), room) in done: continue      # (up already: a gate's other door, to the same room)
+        done.add((bldg.get((gx, gz)), room))
         cx, cz = gx + 0.5 + mdx, gz + 0.5 + mdz
         props.append((mdl, cx, cz, 0))
         x0, x1 = cx + bx[0] / 16, cx + (bx[0] + bx[3]) / 16
@@ -297,7 +388,7 @@ def plan_world():
         if kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge') and q not in door_sq: kind[q] = 'house'
     # (the GBA's building squares HeartGold's building leaves are open ground, as the road or grass round them; a
     # building HeartGold has none for is a house of Fuchsia's over its squares, centred - as the Safari Zone's)
-    have = {bldg[q] for q in door_sq if q in bldg}
+    have = {b for b, _ in done}
     by_b = {}
     for q, b in bldg.items(): by_b.setdefault(b, []).append(q)
     for b, sq in by_b.items():
@@ -347,7 +438,9 @@ def plan_world():
                 for gx in range(cx * 32, cx * 32 + 32):
                     if (gx, gz) in owner: c[owner[(gx, gz)]] = c.get(owner[(gx, gz)], 0) + 1
             cell_map[(cx, cz)] = max(c, key=c.get) if c else None
-    return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps,
+    # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
+    caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
+    return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves,
                 trees=trees, loose=loose, cell_map=cell_map)
 
 
@@ -427,7 +520,7 @@ def build_land(P, cx, cz):
             while e < X1 and (e, y) in tall: e += 1
             flat('egrass', x, y, e, y + 1, R.GRASS_Y)
             x = e
-    bands_u, bands_v, pond_runs, rock_tops, open_water = {}, {}, {}, {}, {}
+    bands_u, bands_v, pond_runs, rock_tops, open_water, faces = {}, {}, {}, {}, {}, {}
     for y in range(Z0, Z1):
         for x in range(X0, X1):
             k = K_(x, y)
@@ -439,6 +532,10 @@ def build_land(P, cx, cz):
                 dx, dz = ledges[(x, y)]
                 perm[i] = {(1, 0): 0x38, (-1, 0): 0x39, (0, -1): 0x3A, (0, 1): 0x3B}[(dx, dz)]
             if (x, y) in P['door_sq']: perm[i] = DOOR_MB | 0x8000
+            elif (x, y) in P['caves']:
+                perm[i] = CAVE_MB
+                for tex, pts in CAVE_MOUTH:        # (HeartGold's arch: 29 high in its cliffs, ours are 16)
+                    poly(tex, [((x * 16 + 16 * dx, y_ * 0.53, y * 16 + 16 * dz), (s_, t_)) for dx, y_, dz, s_, t_ in pts])
             elif (x, y) in P['warps'] and k not in ('house',):
                 perm[i] = 0x65 if K_(x, y + 1) in (None, 'house', 'woods', 'rock', 'fence', 'stone') and K_(x, y - 1) in ('grass', 'sand', 'pave') else 0x3E
             if (x, y) in edged:
@@ -462,7 +559,11 @@ def build_land(P, cx, cz):
                     rr = road_of(x + n0[0], y + n0[1])
                     ground = SKIN[rr] if rr else GROUND
                     look = dict(R.LOOK, foot='wall01_h' if rr else 'wall01_g')
-                    piece(x, y, R.rock_piece(lower, x, y, BS.LAND_NARC, look), 0, ground)
+                    ck, what = K.classify(lower)
+                    if ck == 'straight':        # (straight faces in runs along their row or column: a quad a band)
+                        faces.setdefault((what, look['foot'], y if what[1] else x), []).append((x, y))
+                    else:
+                        piece(x, y, R.rock_piece(lower, x, y, BS.LAND_NARC, look), 0, ground)
             if (x, y) in ledges:          # (a ledge: a lip of rock along its way down)
                 dx, dz = ledges[(x, y)]
                 X, Z = x * 16, y * 16
@@ -490,6 +591,17 @@ def build_land(P, cx, cz):
         for a, b in BS._runs(sorted(xs)): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
     for y, xs in rock_tops.items():
         for a, b in BS._runs(sorted(xs)): flat(ROCK_TOP, a, y, b, y + 1, R.TIER)
+    for (what, foot, line), sqs in faces.items():
+        along = 0 if what[1] else 1
+        pos = sorted(q[along] for q in sqs)
+        look = dict(R.LOOK, foot=foot)
+        for a, b in BS._runs(pos):
+            qa = (a, line) if along == 0 else (line, a)
+            qb = (b - 1, line) if along == 0 else (line, b - 1)
+            A, B = R.straight(what, qa[0], qa[1], look), R.straight(what, qb[0], qb[1], look)
+            for (tex, pa), (_, pb) in zip(A, B):
+                w = lambda q, v: ((q[0] * 16 + v[0], v[2], q[1] * 16 + v[1]), (v[3], v[4]))
+                poly(tex, [w(qa, pa[0]), w(qb, pb[1]), w(qb, pb[2]), w(qa, pa[3])])
     for (n, line), along in pond_runs.items():
         for a, b in BS._runs(sorted(along)):
             BS._pond_run(poly, n, line, a, b)
@@ -505,8 +617,8 @@ def build_land(P, cx, cz):
         if not mine(bx, by): continue
         poly('tree01_un', [((bx * 16, 0, by * 16 + 32), (0, 32)), ((bx * 16 + 32, 0, by * 16 + 32), (32, 32)), ((bx * 16 + 32, 0, by * 16), (32, 0)), ((bx * 16, 0, by * 16), (0, 0))])
         BS._card(poly, 'tree', bx, by)
-    for mdl, px, pz, py in P['props']:
-        if mine(int(px), int(pz)): props.append((mdl, U(px, ox), py, U(pz, oz)))
+    for mdl, px, pz, py, *sc in P['props']:
+        if mine(int(px), int(pz)): props.append((mdl, U(px, ox), py, U(pz, oz)) + tuple(sc))
     order = [t for t in BS.FIRST if t in meshes] + [t for t in meshes if t not in BS.FIRST and t not in BS.ANIM]
     groups = [(t, t if t in meshes else 'pond_on', pal_of(t if t in meshes else 'pond_on'), meshes.get(t, Mesh()),
                {'repeat': 3, 'size': dims[t if t in meshes else 'pond_on']}) for t in BS.ANIM] + \
@@ -514,7 +626,8 @@ def build_land(P, cx, cz):
     model = build_model('cv_kanto_%d_%d' % (cx, cz), groups)
     model += b'\0' * (-len(model) % 4)
     f4 = lambda v: int(round(v * 4096))
-    bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(px), f4(py), f4(pz), 0, 0, 0, 4096, 4096, 4096) for m, px, py, pz in props)
+    bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(px), f4(py), f4(pz), 0, 0, 0, *[f4(v) for v in (sc[0] if sc else (1, 1, 1))])
+                   for m, px, py, pz, *sc in props)
     KS = lambda x, y: {'rock': 'cliff', 'water': 'water'}.get(K_(x, y), 'grass')
     bdhc = BS._bdhc(KS, ox, oz, U)
     pm = struct.pack('<1024H', *perm)
@@ -537,7 +650,7 @@ def hg_map_of():
     sys.path.insert(0, os.path.join(HERE, 'port'))
     import port_map
     out = {}
-    for k, v in port_map.MAPS.items():
+    for k, v in port_map.MAPS_HG.items():
         if '#' in k: continue
         for part in k.split('+'): out.setdefault(part, v[0])
     for k, (m, _) in NEW_MAPS.items(): out[k] = m
@@ -595,7 +708,7 @@ def wire(P, hdr_of, hgm):
     door it was come in by"""
     from nitro import read_narc
     dest = gba_dest()
-    world_maps = set(hgm.values())
+    world_maps = {hgm[d] for d in P['W']}
     is_outdoor = lambda m: m in world_maps or 'EVERYWHERE' in slots.header(m)['matrixId']
     per, by_room, skipped = {m: [] for m in set(hdr_of.values())}, {}, []
     for (wx, wz), (d, w) in sorted(P['warps'].items(), key=lambda kv: (kv[0][1], kv[0][0])):
@@ -657,28 +770,55 @@ def _clusters(items):
     return out
 
 
-def building_set(P):
-    """building set 17 (Pallet's area) lists every model the world stands up, its texture file their textures"""
+WORLD_AREA_BASE = 140       # each map's area: set 18's textures, a building set of the models in and around its lands
+
+
+def building_sets(P, hdr_of):
+    """Each map of the world gets an area of its own (WORLD_AREA_BASE on: Pallet's area with a building set of its
+    own) whose building set lists the models stood up in its lands and the lands round them, its texture file their
+    textures; Pallet's own set (17: Pallet and Cinnabar) gets those round them. (All of them in one set came to
+    100 KB of textures: the game crashes)"""
     from nitro import read_narc, write_narc, read_tex0, tex0_of, write_btx0, u16
     import build_rooms as BR
     sets, sets_btnf = read_narc(open(BR.AREA_BUILD, 'rb').read())
     atex, atex_btnf = read_narc(open(BR.AREA_BUILD_TEX, 'rb').read())
+    areas, areas_btnf = read_narc(open(BR.AREA_DATA, 'rb').read())
     bm, _ = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())
-    ids = list(struct.unpack_from('<%dH' % u16(sets[BUILD_SET], 0), sets[BUILD_SET], 2))
-    ids += sorted({m for m, *_ in P['props']} | {SIGN_MODEL} - set(ids))
-    sets[BUILD_SET] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
-    texs, pals = read_tex0(atex[BUILD_SET], tex0_of(atex[BUILD_SET]))
-    have_t, have_p = {t[0] for t in texs}, {q[0] for q in pals}
-    for mid in ids:
-        t0 = tex0_of(bm[mid])
-        if t0 is None: continue
-        mt, mp = read_tex0(bm[mid], t0)
-        texs += [t for t in mt if t[0] not in have_t]; have_t |= {t[0] for t in mt}
-        pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
-    atex[BUILD_SET] = write_btx0(texs, pals)
+    in_cell = {}
+    for m, px, pz, py, *_ in P['props']: in_cell.setdefault((int(px) // 32, int(pz) // 32), set()).add(m)
+    for (x, y), k in P['kind'].items():
+        if k == 'sign': in_cell.setdefault((x // 32, y // 32), set()).add(SIGN_MODEL)
+    maps = sorted(set(hdr_of.values()))
+    area_of, report = {}, []
+    for n, X in enumerate(maps):
+        mine = [c for c, m in hdr_of.items() if m == X]
+        near = {(c[0] + a, c[1] + b) for c in mine for a in (-1, 0, 1) for b in (-1, 0, 1)}
+        models = set().union(*[in_cell.get(c, set()) for c in near])
+        if X in ('MAP_PALLET', 'MAP_CINNABAR_ISLAND'):
+            k = BUILD_SET
+        else:
+            k = WORLD_AREA_BASE + n
+            for lst in (sets, atex, areas): lst += [lst[BUILD_SET if lst is not areas else int(AREA)]] * max(0, k + 1 - len(lst))
+            areas[k] = struct.pack('<H', k) + areas[int(AREA)][2:]
+            sets[k], atex[k] = struct.pack('<H', 0), atex[BUILD_SET]
+            area_of[X] = k
+        ids = list(struct.unpack_from('<%dH' % u16(sets[k], 0), sets[k], 2)) if k == BUILD_SET else []
+        ids += sorted(models - set(ids))
+        sets[k] = struct.pack('<H%dH' % len(ids), len(ids), *ids)
+        texs, pals = (read_tex0(atex[k], tex0_of(atex[k])) if k == BUILD_SET else ([], []))
+        have_t, have_p = {t[0] for t in texs}, {q[0] for q in pals}
+        for mid in ids:
+            t0 = tex0_of(bm[mid])
+            if t0 is None: continue
+            mt, mp = read_tex0(bm[mid], t0)
+            texs += [t for t in mt if t[0] not in have_t]; have_t |= {t[0] for t in mt}
+            pals += [q for q in mp if q[0] not in have_p]; have_p |= {q[0] for q in mp}
+        atex[k] = write_btx0(texs, pals)
+        report.append((X, k, len(ids), len(atex[k])))
     open(BR.AREA_BUILD, 'wb').write(write_narc(sets, sets_btnf))
     open(BR.AREA_BUILD_TEX, 'wb').write(write_narc(atex, atex_btnf))
-    return len(ids), len(atex[BUILD_SET])
+    open(BR.AREA_DATA, 'wb').write(write_narc(areas, areas_btnf))
+    return area_of, report
 
 
 def write_matrix(cells):
@@ -725,9 +865,9 @@ def main():
     open(BS.LAND_NARC, 'wb').write(write_narc(land, land_btnf))
     write_matrix(cells)
     # the maps: Pallet's area, the world's look
-    for m in sorted(set(hdr_of.values()) - {'MAP_PALLET', 'MAP_CINNABAR_ISLAND'}):
-        slots.set_header(m, {'areaDataBank': AREA})
-    nb, tb = building_set(P)
+    area_of, rep = building_sets(P, hdr_of)
+    for m, k in area_of.items():
+        slots.set_header(m, {'areaDataBank': str(k)})
     skipped = wire(P, hdr_of, hgm)
     # what the porter needs: each GBA map's corner in HeartGold's squares, the map each land is
     json.dump({'origin': ORIGIN, 'maps': {d: [ORIGIN[0] * 32 + v[0], ORIGIN[1] * 32 + v[1], v[2], v[3]] for d, v in P['W'].items()},
@@ -735,8 +875,9 @@ def main():
                'cells': {'%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]): m for c, m in hdr_of.items()},
                'custom': ['%d,%d' % (ORIGIN[0] + c[0], ORIGIN[1] + c[1]) for c in CUSTOM]},
               open(WORLD_JSON, 'w'), indent=1, sort_keys=True)
-    print('world: %d lands (%d drawn alike shared), biggest model %d bytes; building set %d models, %d bytes of textures'
-          % (len(seen), CELLS[0] * CELLS[1] - len(CUSTOM) - len(seen), big, nb, tb))
+    print('world: %d lands (%d drawn alike shared), biggest model %d bytes; building sets up to %d models, %d bytes of textures'
+          % (len(seen), CELLS[0] * CELLS[1] - len(CUSTOM) - len(seen), big, max(r[2] for r in rep), max(r[3] for r in rep)))
+    for r in sorted(rep, key=lambda r: -r[3])[:6]: print('  ', r)
     for s_ in sorted(set(skipped)): print('  no door:', s_)
 
 

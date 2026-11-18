@@ -4,23 +4,52 @@
         {
             "scriptId": "_EV_Route16_EventScript_RouteSign + 1",
             "type": 0,
-            "x": 1132,
-            "z": 283,
+            "x": 1120,
+            "z": 271,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route16_EventScript_CyclingRoadSign + 1",
+            "type": 0,
+            "x": 1147,
+            "z": 265,
             "y": 0,
             "dir": 4
         }
     ],
     "warps": [
         {
-            "x": 1151,
-            "z": 276,
+            "x": 1124,
+            "z": 259,
+            "header": "MAP_ROUTE_16_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1134,
+            "z": 260,
+            "header": "MAP_ROUTE_16_GATEHOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1141,
+            "z": 260,
             "header": "MAP_ROUTE_16_GATEHOUSE",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1151,
-            "z": 277,
+            "x": 1134,
+            "z": 267,
+            "header": "MAP_ROUTE_16_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1141,
+            "z": 267,
             "header": "MAP_ROUTE_16_GATEHOUSE",
             "anchor": 1,
             "y": 0
@@ -40,8 +69,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1142,
-            "z": 279,
+            "x": 1130,
+            "z": 266,
             "y": 0
         },
         {
@@ -57,8 +86,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1142,
-            "z": 281,
+            "x": 1128,
+            "z": 268,
             "y": 0
         },
         {
@@ -74,8 +103,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1140,
-            "z": 279,
+            "x": 1126,
+            "z": 266,
             "y": 0
         },
         {
@@ -91,8 +120,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1138,
-            "z": 280,
+            "x": 1122,
+            "z": 266,
             "y": 0
         },
         {
@@ -108,8 +137,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1140,
-            "z": 282,
+            "x": 1124,
+            "z": 268,
             "y": 0
         },
         {
@@ -125,8 +154,59 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1136,
-            "z": 282,
+            "x": 1120,
+            "z": 268,
+            "y": 0
+        },
+        {
+            "id": "8",
+            "spriteId": "SPRITE_GSWOMAN3",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1202)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1144,
+            "z": 259,
+            "y": 0
+        },
+        {
+            "id": "9",
+            "spriteId": "SPRITE_GSMAN1",
+            "movement": 15,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1202)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1145,
+            "z": 259,
+            "y": 0
+        },
+        {
+            "id": "10",
+            "spriteId": "2643",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2120",
+            "scriptId": "_EV_Route16_EventScript_Snorlax + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1145,
+            "z": 267,
             "y": 0
         }
     ],

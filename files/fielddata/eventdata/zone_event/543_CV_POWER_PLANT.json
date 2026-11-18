@@ -168,7 +168,7 @@
             "x": 5,
             "z": 38,
             "header": "MAP_ROUTE_10",
-            "anchor": 1,
+            "anchor": 3,
             "y": 0
         },
         {
@@ -182,7 +182,7 @@
             "x": 1,
             "z": 11,
             "header": "MAP_ROUTE_10",
-            "anchor": 1,
+            "anchor": 2,
             "y": 0
         },
         {

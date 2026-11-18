@@ -3,12 +3,15 @@
 #include "msgdata/msg/msg_0329_R05.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route5_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route5_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef BerryField_EventScript_FindPsychic
-	ScrDef PaintWorld_EventScript_Figure
-	ScrDef Route5_EventScript_UndergroundPathSign
+	ScrDef CeruleanCity_EventScript_Slowbro
+	ScrDef CeruleanCity_EventScript_Lass
+	ScrDef CeruleanCity_EventScript_Woman
+	ScrDef CeruleanCity_EventScript_BikeShopSign
+	ScrDef CeruleanCity_EventScript_TrainerTips
 	ScrDefEnd
 	
 BerryField_EventScript_FindPsychic:
@@ -18,72 +21,120 @@ BerryField_EventScript_FindPsychic:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	End
 	
-PaintWorld_EventScript_Figure:
+CeruleanCity_EventScript_Slowbro:
+	LockAll
+	Random VAR_SPECIAL_RESULT, 4
+	CopyVar 0x8008, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x8008, 0
+	CallIfEq CeruleanCity_EventScript_SlowbroText1
+	CompareVarToValue 0x8008, 1
+	CallIfEq CeruleanCity_EventScript_SlowbroText2
+	CompareVarToValue 0x8008, 2
+	CallIfEq CeruleanCity_EventScript_SlowbroText3
+	CompareVarToValue 0x8008, 3
+	CallIfEq CeruleanCity_EventScript_SlowbroText4
+	ReleaseAll
+	End
+	
+CeruleanCity_EventScript_Lass:
+	LockAll
+	Random VAR_SPECIAL_RESULT, 3
+	CopyVar 0x8008, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x8008, 0
+	CallIfEq CeruleanCity_EventScript_SlowbroCommand1
+	CompareVarToValue 0x8008, 1
+	CallIfEq CeruleanCity_EventScript_SlowbroCommand2
+	CompareVarToValue 0x8008, 2
+	CallIfEq CeruleanCity_EventScript_SlowbroCommand3
+	Wait 40, VAR_SPECIAL_RESULT
+	PlaySE SEQ_SE_DP_SELECT
+	ApplyMovement 3, Common_Movement_QuestionMark
+	WaitMovement
+	Wait 30, VAR_SPECIAL_RESULT
+	CompareVarToValue 0x8008, 0
+	CallIfEq CeruleanCity_EventScript_SlowbroFailed1
+	CompareVarToValue 0x8008, 1
+	CallIfEq CeruleanCity_EventScript_SlowbroFailed2
+	CompareVarToValue 0x8008, 2
+	CallIfEq CeruleanCity_EventScript_SlowbroFailed3
+	ReleaseAll
+	End
+	
+CeruleanCity_EventScript_Woman:
 	LockAll
 	FacePlayer
-	CompareVarToValue 0x5020, 2
-	GoToIfEq PaintWorld_EventScript_FigureSketch
-	CompareVarToValue 0x5020, 3
-	GoToIfEq PaintWorld_EventScript_FigureMega
-	NPCMsg msg_0329_R05_PaintWorld_Text_FigureFirst
+	NPCMsg msg_0329_R05_CeruleanCity_Text_WantBrightRedBicycle
 	WaitButton
-	GoTo PaintWorld_EventScript_FigureBattle
+	CloseMsg
+	ApplyMovement 6, Common_Movement_FaceOriginalDirection
+	WaitMovement
+	ReleaseAll
+	End
 	
-Route5_EventScript_UndergroundPathSign:
+CeruleanCity_EventScript_BikeShopSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0329_R05_Route5_Text_UndergroundPathSign
+	NPCMsg msg_0329_R05_CeruleanCity_Text_BikeShopSign
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 	
-PaintWorld_EventScript_FigureSketch:
-	NPCMsg msg_0329_R05_PaintWorld_Text_FigureSketch
-	WaitButton
-	GoTo PaintWorld_EventScript_FigureBattle
-	
-PaintWorld_EventScript_FigureMega:
-	NPCMsg msg_0329_R05_PaintWorld_Text_FigureMega
-	WaitButton
-	End
-	
-PaintWorld_EventScript_FigureBattle:
-	CloseMsg
-	// TODO(gba) special Painter_SetupFigure
-	GoTo _cv_stop
-	ClearTrainerFlag 1442
-	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_1
-	TrainerBattle 1442, 0, 0, 0
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_2
-	WhiteOut
-	End
-_cv_won_2:
-	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_1:
-	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
-	// TODO(gba) special Painter_RecordBattle
-	GoTo _cv_stop
-	NPCMsg msg_0329_R05_PaintWorld_Text_Dissolve
+CeruleanCity_EventScript_TrainerTips:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0329_R05_CeruleanCity_Text_TrainerTipsHeldItems
 	WaitButton
 	CloseMsg
-	FadeScreen 6, 1, 0, RGB_WHITE
-	WaitFade
-	// TODO(gba) warpsilent MAP_PEWTER_CITY_PAINTER_LOFT, 8, 4
-	GoTo _cv_stop
 	ReleaseAll
 	End
+	
+CeruleanCity_EventScript_SlowbroText1:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroTookSnooze
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroText2:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroLoafingAround
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroText3:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroTurnedAway
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroText4:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroIgnoredOrders
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroCommand1:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroUseSonicboom
+	Return
+	
+CeruleanCity_EventScript_SlowbroCommand2:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroPunch
+	Return
+	
+CeruleanCity_EventScript_SlowbroCommand3:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroWithdraw
+	Return
+	
+CeruleanCity_EventScript_SlowbroFailed1:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_SlowbroPayAttention
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroFailed2:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_NoYouBlewItAgain
+	WaitButton
+	Return
+	
+CeruleanCity_EventScript_SlowbroFailed3:
+	NPCMsg msg_0329_R05_CeruleanCity_Text_HardToControlMonsObedience
+	WaitButton
+	Return
 
 _cv_stop:
 	NPCMsg msg_0329_R05_cv_unported
@@ -91,4 +142,13 @@ _cv_stop:
 	CloseMsg
 	ReleaseAll
 	End
+
+	.balign 4, 0
+Common_Movement_QuestionMark:
+	EmoteQuestionMark
+	EndMovement
+
+	.balign 4, 0
+Common_Movement_FaceOriginalDirection:
+	EndMovement
 	.balign 4, 0

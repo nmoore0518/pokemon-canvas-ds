@@ -1,0 +1,179 @@
+{
+    "header": "fielddata/script/scr_seq/event_CV_CANVAS_ROUTE_23.h",
+    "bgs": [
+        {
+            "scriptId": "_EV_Route23_EventScript_VictoryRoadGateSign + 1",
+            "type": 0,
+            "x": 970,
+            "z": 153,
+            "y": 0,
+            "dir": 4
+        }
+    ],
+    "objects": [
+        {
+            "id": "LOCALID_CASCADE_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 982,
+            "z": 271,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_THUNDER_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_ThunderBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 975,
+            "z": 262,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_RAINBOW_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_RainbowBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 981,
+            "z": 245,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOUL_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 983,
+            "z": 234,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_MARSH_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 977,
+            "z": 216,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_VOLCANO_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_VolcanoBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 981,
+            "z": 183,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_EARTH_BADGE_GUARD",
+            "spriteId": "SPRITE_POLICEMAN",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuard + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 973,
+            "z": 157,
+            "y": 0
+        }
+    ],
+    "warps": [
+        {
+            "x": 972,
+            "z": 150,
+            "header": "MAP_CANVAS_VICTORY_ROAD_1F",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 985,
+            "z": 150,
+            "header": "MAP_CANVAS_VICTORY_ROAD_2F",
+            "anchor": 6,
+            "y": 0
+        },
+        {
+            "x": 975,
+            "z": 275,
+            "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+            "anchor": 2,
+            "y": 0
+        },
+        {
+            "x": 976,
+            "z": 276,
+            "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 975,
+            "z": 287,
+            "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 976,
+            "z": 287,
+            "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+            "anchor": 0,
+            "y": 0
+        }
+    ],
+    "coords": []
+}

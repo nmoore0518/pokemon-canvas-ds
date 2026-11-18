@@ -3,17 +3,18 @@
 #include "msgdata/msg/msg_0360_R22.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route22_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route22_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
+	ScrDef ViridianCity_EventScript_DreamEaterTutor
 	ScrDef Route22_EventScript_LeagueGateSign
-	ScrDef Route22_EventScript_EarlyRivalTriggerTop
-	ScrDef Route22_EventScript_EarlyRivalTriggerMid
 	ScrDef Route22_EventScript_EarlyRivalTriggerBottom
-	ScrDef Route22_EventScript_LateRivalTriggerTop
-	ScrDef Route22_EventScript_LateRivalTriggerMid
 	ScrDef Route22_EventScript_LateRivalTriggerBottom
 	ScrDefEnd
+	
+ViridianCity_EventScript_DreamEaterTutor:
+	GoTo EventScript_DreamEaterTutor
+	End
 	
 Route22_EventScript_LeagueGateSign:
 	PlaySE SEQ_SE_DP_SELECT
@@ -24,56 +25,33 @@ Route22_EventScript_LeagueGateSign:
 	ReleaseAll
 	End
 	
-Route22_EventScript_EarlyRivalTriggerTop:
-	LockAll
-	SetVar 0x4001, 0
-	GoTo Route22_EventScript_EarlyRival
-	End
-	
-Route22_EventScript_EarlyRivalTriggerMid:
-	LockAll
-	SetVar 0x4001, 1
-	MovePerson 1, 960, 263
-	GoTo Route22_EventScript_EarlyRival
-	End
-	
 Route22_EventScript_EarlyRivalTriggerBottom:
 	LockAll
 	SetVar 0x4001, 2
-	MovePerson 1, 960, 263
+	MovePerson 15, 992, 287
 	GoTo Route22_EventScript_EarlyRival
-	End
-	
-Route22_EventScript_LateRivalTriggerTop:
-	LockAll
-	SetVar 0x4001, 0
-	GoTo Route22_EventScript_LateRival
-	End
-	
-Route22_EventScript_LateRivalTriggerMid:
-	LockAll
-	SetVar 0x4001, 1
-	MovePerson 1, 960, 263
-	GoTo Route22_EventScript_LateRival
 	End
 	
 Route22_EventScript_LateRivalTriggerBottom:
 	LockAll
 	SetVar 0x4001, 2
-	MovePerson 1, 960, 263
+	MovePerson 15, 992, 287
 	GoTo Route22_EventScript_LateRival
+	End
+	
+EventScript_DreamEaterTutor:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0360_R22_Text_DreamEaterTutor_Retired
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 Route22_EventScript_EarlyRival:
 	PlayBGM SEQ_GS_E_RIVAL1
-	GoToIfUnset 0x2063, _cv_show_1
-	ClearFlag 0x2063
-	ShowPerson 1
-	SetFlag 0x2063
-	GoTo _cv_shown_2
-_cv_show_1:
-	ShowPerson 1
-_cv_shown_2:
+	ShowPerson 15
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route22_EventScript_EarlyRivalApproach
 	CompareVarToValue 0x4001, 1
@@ -103,22 +81,14 @@ _cv_shown_2:
 	CompareVarToValue 0x4001, 2
 	CallIfEq Route22_EventScript_EarlyRivalExitBottom
 	ResetBGM
-	HidePerson 1
-	SetFlag 0x2063
+	HidePerson 15
 	SetVar 0x5013, 2
 	ReleaseAll
 	End
 	
 Route22_EventScript_LateRival:
 	PlayBGM SEQ_GS_E_RIVAL1
-	GoToIfUnset 0x2063, _cv_show_3
-	ClearFlag 0x2063
-	ShowPerson 1
-	SetFlag 0x2063
-	GoTo _cv_shown_4
-_cv_show_3:
-	ShowPerson 1
-_cv_shown_4:
+	ShowPerson 15
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route22_EventScript_LateRivalApproach
 	CompareVarToValue 0x4001, 1
@@ -142,458 +112,457 @@ _cv_shown_4:
 	CloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
-	ApplyMovement 1, Route22_Movement_LateRivalExit
+	ApplyMovement 15, Route22_Movement_LateRivalExit
 	WaitMovement
 	ResetBGM
-	HidePerson 1
-	SetFlag 0x2063
+	HidePerson 15
 	SetVar 0x5013, 4
 	ReleaseAll
 	End
 	
 Route22_EventScript_EarlyRivalApproach:
-	ApplyMovement 1, Route22_Movement_RivalApproach
+	ApplyMovement 15, Route22_Movement_RivalApproach
 	WaitMovement
 	Return
 	
 Route22_EventScript_EarlyRivalApproachBottom:
-	ApplyMovement 1, Route22_Movement_RivalApproachBottom
+	ApplyMovement 15, Route22_Movement_RivalApproachBottom
 	ApplyMovement obj_player, Route22_Movement_PlayerFaceRival
 	WaitMovement
 	Return
 	
 Route22_EventScript_EarlyRivalSquirtle:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_6
+	GoToIfNe _cv_next_2
 	TrainerBattle 754, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_6:
+	GoTo _cv_battle_1
+_cv_next_2:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_7
+	GoToIfNe _cv_next_3
 	TrainerBattle 758, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_7:
+	GoTo _cv_battle_1
+_cv_next_3:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_8
+	GoToIfNe _cv_next_4
 	TrainerBattle 752, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_8:
+	GoTo _cv_battle_1
+_cv_next_4:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_9
+	GoToIfNe _cv_next_5
 	TrainerBattle 750, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_9:
+	GoTo _cv_battle_1
+_cv_next_5:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_10
+	GoToIfNe _cv_next_6
 	TrainerBattle 760, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_10:
+	GoTo _cv_battle_1
+_cv_next_6:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_11
+	GoToIfNe _cv_next_7
 	TrainerBattle 755, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_11:
+	GoTo _cv_battle_1
+_cv_next_7:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_12
+	GoToIfNe _cv_next_8
 	TrainerBattle 757, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_12:
+	GoTo _cv_battle_1
+_cv_next_8:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_13
+	GoToIfNe _cv_next_9
 	TrainerBattle 759, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_13:
+	GoTo _cv_battle_1
+_cv_next_9:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_14
+	GoToIfNe _cv_next_10
 	TrainerBattle 753, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_14:
+	GoTo _cv_battle_1
+_cv_next_10:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_15
+	GoToIfNe _cv_next_11
 	TrainerBattle 761, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_15:
+	GoTo _cv_battle_1
+_cv_next_11:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_16
+	GoToIfNe _cv_next_12
 	TrainerBattle 756, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_16:
+	GoTo _cv_battle_1
+_cv_next_12:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_17
+	GoToIfNe _cv_next_13
 	TrainerBattle 751, 0, 1, 0
-	GoTo _cv_battle_5
-_cv_next_17:
+	GoTo _cv_battle_1
+_cv_next_13:
 	TrainerBattle 750, 0, 1, 0
-_cv_battle_5:
+_cv_battle_1:
 	SetFlag 0x20AD
 	Return
 	
 Route22_EventScript_EarlyRivalBulbasaur:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_19
+	GoToIfNe _cv_next_15
 	TrainerBattle 754, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_19:
+	GoTo _cv_battle_14
+_cv_next_15:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_20
+	GoToIfNe _cv_next_16
 	TrainerBattle 758, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_20:
+	GoTo _cv_battle_14
+_cv_next_16:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_21
+	GoToIfNe _cv_next_17
 	TrainerBattle 752, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_21:
+	GoTo _cv_battle_14
+_cv_next_17:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_22
+	GoToIfNe _cv_next_18
 	TrainerBattle 750, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_22:
+	GoTo _cv_battle_14
+_cv_next_18:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_23
+	GoToIfNe _cv_next_19
 	TrainerBattle 760, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_23:
+	GoTo _cv_battle_14
+_cv_next_19:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_24
+	GoToIfNe _cv_next_20
 	TrainerBattle 755, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_24:
+	GoTo _cv_battle_14
+_cv_next_20:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_25
+	GoToIfNe _cv_next_21
 	TrainerBattle 757, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_25:
+	GoTo _cv_battle_14
+_cv_next_21:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_26
+	GoToIfNe _cv_next_22
 	TrainerBattle 759, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_26:
+	GoTo _cv_battle_14
+_cv_next_22:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_27
+	GoToIfNe _cv_next_23
 	TrainerBattle 753, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_27:
+	GoTo _cv_battle_14
+_cv_next_23:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_28
+	GoToIfNe _cv_next_24
 	TrainerBattle 761, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_28:
+	GoTo _cv_battle_14
+_cv_next_24:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_29
+	GoToIfNe _cv_next_25
 	TrainerBattle 756, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_29:
+	GoTo _cv_battle_14
+_cv_next_25:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_30
+	GoToIfNe _cv_next_26
 	TrainerBattle 751, 0, 1, 0
-	GoTo _cv_battle_18
-_cv_next_30:
+	GoTo _cv_battle_14
+_cv_next_26:
 	TrainerBattle 750, 0, 1, 0
-_cv_battle_18:
+_cv_battle_14:
 	SetFlag 0x20AE
 	Return
 	
 Route22_EventScript_EarlyRivalCharmander:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_32
+	GoToIfNe _cv_next_28
 	TrainerBattle 754, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_32:
+	GoTo _cv_battle_27
+_cv_next_28:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_33
+	GoToIfNe _cv_next_29
 	TrainerBattle 758, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_33:
+	GoTo _cv_battle_27
+_cv_next_29:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_34
+	GoToIfNe _cv_next_30
 	TrainerBattle 752, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_34:
+	GoTo _cv_battle_27
+_cv_next_30:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_35
+	GoToIfNe _cv_next_31
 	TrainerBattle 750, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_35:
+	GoTo _cv_battle_27
+_cv_next_31:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_36
+	GoToIfNe _cv_next_32
 	TrainerBattle 760, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_36:
+	GoTo _cv_battle_27
+_cv_next_32:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_37
+	GoToIfNe _cv_next_33
 	TrainerBattle 755, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_37:
+	GoTo _cv_battle_27
+_cv_next_33:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_38
+	GoToIfNe _cv_next_34
 	TrainerBattle 757, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_38:
+	GoTo _cv_battle_27
+_cv_next_34:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_39
+	GoToIfNe _cv_next_35
 	TrainerBattle 759, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_39:
+	GoTo _cv_battle_27
+_cv_next_35:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_40
+	GoToIfNe _cv_next_36
 	TrainerBattle 753, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_40:
+	GoTo _cv_battle_27
+_cv_next_36:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_41
+	GoToIfNe _cv_next_37
 	TrainerBattle 761, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_41:
+	GoTo _cv_battle_27
+_cv_next_37:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_42
+	GoToIfNe _cv_next_38
 	TrainerBattle 756, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_42:
+	GoTo _cv_battle_27
+_cv_next_38:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_43
+	GoToIfNe _cv_next_39
 	TrainerBattle 751, 0, 1, 0
-	GoTo _cv_battle_31
-_cv_next_43:
+	GoTo _cv_battle_27
+_cv_next_39:
 	TrainerBattle 750, 0, 1, 0
-_cv_battle_31:
+_cv_battle_27:
 	SetFlag 0x20AF
 	Return
 	
 Route22_EventScript_EarlyRivalExit:
-	ApplyMovement 1, Route22_Movement_EarlyRivalExit
+	ApplyMovement 15, Route22_Movement_EarlyRivalExit
 	WaitMovement
 	Return
 	
 Route22_EventScript_EarlyRivalExitBottom:
-	ApplyMovement 1, Route22_Movement_EarlyRivalExitBottom
+	ApplyMovement 15, Route22_Movement_EarlyRivalExitBottom
 	WaitMovement
 	Return
 	
 Route22_EventScript_LateRivalApproach:
-	ApplyMovement 1, Route22_Movement_RivalApproach
+	ApplyMovement 15, Route22_Movement_RivalApproach
 	WaitMovement
 	Return
 	
 Route22_EventScript_LateRivalApproachBottom:
-	ApplyMovement 1, Route22_Movement_RivalApproachBottom
+	ApplyMovement 15, Route22_Movement_RivalApproachBottom
 	ApplyMovement obj_player, Route22_Movement_PlayerFaceRival
 	WaitMovement
 	Return
 	
 Route22_EventScript_LateRivalSquirtle:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_45
+	GoToIfNe _cv_next_41
 	TrainerBattle 814, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_45:
+	GoTo _cv_battle_40
+_cv_next_41:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_46
+	GoToIfNe _cv_next_42
 	TrainerBattle 818, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_46:
+	GoTo _cv_battle_40
+_cv_next_42:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_47
+	GoToIfNe _cv_next_43
 	TrainerBattle 812, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_47:
+	GoTo _cv_battle_40
+_cv_next_43:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_48
+	GoToIfNe _cv_next_44
 	TrainerBattle 810, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_48:
+	GoTo _cv_battle_40
+_cv_next_44:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_49
+	GoToIfNe _cv_next_45
 	TrainerBattle 820, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_49:
+	GoTo _cv_battle_40
+_cv_next_45:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_50
+	GoToIfNe _cv_next_46
 	TrainerBattle 815, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_50:
+	GoTo _cv_battle_40
+_cv_next_46:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_51
+	GoToIfNe _cv_next_47
 	TrainerBattle 817, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_51:
+	GoTo _cv_battle_40
+_cv_next_47:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_52
+	GoToIfNe _cv_next_48
 	TrainerBattle 819, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_52:
+	GoTo _cv_battle_40
+_cv_next_48:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_53
+	GoToIfNe _cv_next_49
 	TrainerBattle 813, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_53:
+	GoTo _cv_battle_40
+_cv_next_49:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_54
+	GoToIfNe _cv_next_50
 	TrainerBattle 821, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_54:
+	GoTo _cv_battle_40
+_cv_next_50:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_55
+	GoToIfNe _cv_next_51
 	TrainerBattle 816, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_55:
+	GoTo _cv_battle_40
+_cv_next_51:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_56
+	GoToIfNe _cv_next_52
 	TrainerBattle 811, 0, 0, 0
-	GoTo _cv_battle_44
-_cv_next_56:
+	GoTo _cv_battle_40
+_cv_next_52:
 	TrainerBattle 810, 0, 0, 0
-_cv_battle_44:
+_cv_battle_40:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_57
+	GoToIfNe _cv_won_53
 	WhiteOut
 	End
-_cv_won_57:
+_cv_won_53:
 	SetFlag 0x20B0
 	Return
 	
 Route22_EventScript_LateRivalBulbasaur:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_59
+	GoToIfNe _cv_next_55
 	TrainerBattle 814, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_59:
+	GoTo _cv_battle_54
+_cv_next_55:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_60
+	GoToIfNe _cv_next_56
 	TrainerBattle 818, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_60:
+	GoTo _cv_battle_54
+_cv_next_56:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_61
+	GoToIfNe _cv_next_57
 	TrainerBattle 812, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_61:
+	GoTo _cv_battle_54
+_cv_next_57:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_62
+	GoToIfNe _cv_next_58
 	TrainerBattle 810, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_62:
+	GoTo _cv_battle_54
+_cv_next_58:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_63
+	GoToIfNe _cv_next_59
 	TrainerBattle 820, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_63:
+	GoTo _cv_battle_54
+_cv_next_59:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_64
+	GoToIfNe _cv_next_60
 	TrainerBattle 815, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_64:
+	GoTo _cv_battle_54
+_cv_next_60:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_65
+	GoToIfNe _cv_next_61
 	TrainerBattle 817, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_65:
+	GoTo _cv_battle_54
+_cv_next_61:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_66
+	GoToIfNe _cv_next_62
 	TrainerBattle 819, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_66:
+	GoTo _cv_battle_54
+_cv_next_62:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_67
+	GoToIfNe _cv_next_63
 	TrainerBattle 813, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_67:
+	GoTo _cv_battle_54
+_cv_next_63:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_68
+	GoToIfNe _cv_next_64
 	TrainerBattle 821, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_68:
+	GoTo _cv_battle_54
+_cv_next_64:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_69
+	GoToIfNe _cv_next_65
 	TrainerBattle 816, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_69:
+	GoTo _cv_battle_54
+_cv_next_65:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_70
+	GoToIfNe _cv_next_66
 	TrainerBattle 811, 0, 0, 0
-	GoTo _cv_battle_58
-_cv_next_70:
+	GoTo _cv_battle_54
+_cv_next_66:
 	TrainerBattle 810, 0, 0, 0
-_cv_battle_58:
+_cv_battle_54:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_71
+	GoToIfNe _cv_won_67
 	WhiteOut
 	End
-_cv_won_71:
+_cv_won_67:
 	SetFlag 0x20B1
 	Return
 	
 Route22_EventScript_LateRivalCharmander:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_73
+	GoToIfNe _cv_next_69
 	TrainerBattle 814, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_73:
+	GoTo _cv_battle_68
+_cv_next_69:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_74
+	GoToIfNe _cv_next_70
 	TrainerBattle 818, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_74:
+	GoTo _cv_battle_68
+_cv_next_70:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_75
+	GoToIfNe _cv_next_71
 	TrainerBattle 812, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_75:
+	GoTo _cv_battle_68
+_cv_next_71:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_76
+	GoToIfNe _cv_next_72
 	TrainerBattle 810, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_76:
+	GoTo _cv_battle_68
+_cv_next_72:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_77
+	GoToIfNe _cv_next_73
 	TrainerBattle 820, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_77:
+	GoTo _cv_battle_68
+_cv_next_73:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_78
+	GoToIfNe _cv_next_74
 	TrainerBattle 815, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_78:
+	GoTo _cv_battle_68
+_cv_next_74:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_79
+	GoToIfNe _cv_next_75
 	TrainerBattle 817, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_79:
+	GoTo _cv_battle_68
+_cv_next_75:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_80
+	GoToIfNe _cv_next_76
 	TrainerBattle 819, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_80:
+	GoTo _cv_battle_68
+_cv_next_76:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_81
+	GoToIfNe _cv_next_77
 	TrainerBattle 813, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_81:
+	GoTo _cv_battle_68
+_cv_next_77:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_82
+	GoToIfNe _cv_next_78
 	TrainerBattle 821, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_82:
+	GoTo _cv_battle_68
+_cv_next_78:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_83
+	GoToIfNe _cv_next_79
 	TrainerBattle 816, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_83:
+	GoTo _cv_battle_68
+_cv_next_79:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_84
+	GoToIfNe _cv_next_80
 	TrainerBattle 811, 0, 0, 0
-	GoTo _cv_battle_72
-_cv_next_84:
+	GoTo _cv_battle_68
+_cv_next_80:
 	TrainerBattle 810, 0, 0, 0
-_cv_battle_72:
+_cv_battle_68:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_85
+	GoToIfNe _cv_won_81
 	WhiteOut
 	End
-_cv_won_85:
+_cv_won_81:
 	SetFlag 0x20B2
 	Return
 

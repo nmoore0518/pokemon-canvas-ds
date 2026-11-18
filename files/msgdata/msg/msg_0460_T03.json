@@ -55,21 +55,6 @@
       ]
     },
     {
-      "id": "msg_0460_T03_PewterCity_Text_BrocksLookingForChallengersFollowMe",
-      "en_US": [
-        "You’re a Trainer, right?\r",
-        "Brock’s looking for new\n",
-        "challengers. Follow me!"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_GoTakeOnBrock",
-      "en_US": [
-        "If you have the right stuff,\n",
-        "go take on Brock!"
-      ]
-    },
-    {
       "id": "msg_0460_T03_PewterCity_Text_MuseumOfScience",
       "en_US": "Pewter Museum of Science"
     },
@@ -118,60 +103,6 @@
       "en_US": [
         "That’s right!\n",
         "It’s hard work!"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_OhPlayer",
-      "en_US": "Oh, {STRVAR_1 3, 6, 0}!"
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_AskedToDeliverThis",
-      "en_US": [
-        "I’m glad I caught up to you.\n",
-        "I’m Prof. Oak’s Aide.\r",
-        "I’ve been asked to deliver this,\n",
-        "so here you go."
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_ReceivedRunningShoesFromAide",
-      "en_US": [
-        "{STRVAR_1 3, 6, 0} received the\n",
-        "Running Shoes from the Aide."
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_SwitchedShoesWithRunningShoes",
-      "en_US": [
-        "{STRVAR_1 3, 6, 0} switched shoes with the\n",
-        "Running Shoes."
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_ExplainRunningShoes",
-      "en_US": [
-        "Press the B Button to run.\n",
-        "But only where there’s room to run!"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_MustBeGoingBackToLab",
-      "en_US": [
-        "Well, I must be going back to\n",
-        "the Lab.\r",
-        "Bye-bye!"
-      ]
-    },
-    {
-      "id": "msg_0460_T03_PewterCity_Text_RunningShoesLetterFromMom",
-      "en_US": [
-        "There’s a letter attached…\r",
-        "Dear {STRVAR_1 3, 6, 0},\r",
-        "Here is a pair of Running Shoes\n",
-        "for my beloved challenger.\r",
-        "Remember, I’ll always cheer for\n",
-        "you! Don’t ever give up!\r",
-        "From Mom"
       ]
     },
     {

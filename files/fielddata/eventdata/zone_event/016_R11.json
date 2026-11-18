@@ -4,16 +4,32 @@
         {
             "scriptId": "_EV_Route11_EventScript_DiglettsCaveSign + 1",
             "type": 0,
-            "x": 1352,
-            "z": 303,
+            "x": 1297,
+            "z": 341,
             "y": 0,
             "dir": 4
         },
         {
-            "scriptId": "std_hiddenitem_r11_revive",
-            "type": 2,
-            "x": 1371,
-            "z": 292,
+            "scriptId": "_EV_Academy_EventScript_CenterSign + 1",
+            "type": 0,
+            "x": 1342,
+            "z": 322,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Academy_EventScript_MarketSign + 1",
+            "type": 0,
+            "x": 1326,
+            "z": 322,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Academy_EventScript_GateSign + 1",
+            "type": 0,
+            "x": 1334,
+            "z": 322,
             "y": 0,
             "dir": 4
         }
@@ -22,69 +38,69 @@
         {
             "id": "1",
             "spriteId": "SPRITE_GSBOY2",
-            "movement": 9,
+            "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
             "scriptId": "std_trainer(854)",
-            "facingDirection": 3,
-            "param0": 3,
+            "facingDirection": 1,
+            "param0": 4,
             "param1": 0,
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1363,
-            "z": 300,
+            "x": 1313,
+            "z": 342,
             "y": 0
         },
         {
             "id": "2",
             "spriteId": "SPRITE_GSOLDMAN1",
-            "movement": 4,
+            "movement": 2,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
             "scriptId": "std_trainer(1004)",
-            "facingDirection": 0,
-            "param0": 3,
+            "facingDirection": 1,
+            "param0": 1,
             "param1": 0,
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1372,
-            "z": 302,
+            "x": 1310,
+            "z": 351,
             "y": 0
         },
         {
             "id": "3",
             "spriteId": "SPRITE_GSBOY2",
-            "movement": 44,
+            "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
             "scriptId": "std_trainer(855)",
             "facingDirection": 1,
-            "param0": 2,
+            "param0": 4,
             "param1": 0,
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1380,
-            "z": 301,
+            "x": 1325,
+            "z": 342,
             "y": 0
         },
         {
             "id": "4",
             "spriteId": "SPRITE_GSBOY2",
-            "movement": 20,
+            "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
             "scriptId": "std_trainer(857)",
-            "facingDirection": 3,
+            "facingDirection": 1,
             "param0": 1,
             "param1": 0,
             "param2": 0,
             "xRange": 8,
             "yRange": 4,
-            "x": 1372,
-            "z": 295,
+            "x": 1322,
+            "z": 344,
             "y": 0
         },
         {
@@ -100,8 +116,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1379,
-            "z": 310,
+            "x": 1332,
+            "z": 349,
             "y": 0
         },
         {
@@ -117,8 +133,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1391,
-            "z": 299,
+            "x": 1344,
+            "z": 338,
             "y": 0
         },
         {
@@ -134,8 +150,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1384,
-            "z": 303,
+            "x": 1336,
+            "z": 342,
             "y": 0
         },
         {
@@ -151,8 +167,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 4,
-            "x": 1392,
-            "z": 309,
+            "x": 1344,
+            "z": 348,
             "y": 0
         },
         {
@@ -168,8 +184,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1398,
-            "z": 309,
+            "x": 1351,
+            "z": 350,
             "y": 0
         },
         {
@@ -185,8 +201,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1375,
-            "z": 310,
+            "x": 1326,
+            "z": 352,
             "y": 0
         },
         {
@@ -202,8 +218,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1393,
-            "z": 292,
+            "x": 1336,
+            "z": 346,
             "y": 0
         },
         {
@@ -219,8 +235,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1401,
-            "z": 309,
+            "x": 1357,
+            "z": 347,
             "y": 0
         },
         {
@@ -236,8 +252,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1360,
-            "z": 298,
+            "x": 1307,
+            "z": 337,
             "y": 0
         },
         {
@@ -253,8 +269,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1380,
-            "z": 296,
+            "x": 1332,
+            "z": 335,
             "y": 0
         },
         {
@@ -270,8 +286,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1381,
-            "z": 296,
+            "x": 1333,
+            "z": 335,
             "y": 0
         },
         {
@@ -287,31 +303,116 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1381,
-            "z": 299,
+            "x": 1333,
+            "z": 338,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_WELCOME_HEADMASTER",
+            "spriteId": "SPRITE_GSOLDWOMAN1",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x221A",
+            "scriptId": "_EV_Academy_EventScript_Nothing + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1333,
+            "z": 323,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_WELCOME_MENTOR",
+            "spriteId": "101",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "0x2103",
+            "scriptId": "_EV_Academy_EventScript_Nothing + 1",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1332,
+            "z": 327,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_CANDIDATE_KEOLA",
+            "spriteId": "SPRITE_CAMPBOY_2",
+            "movement": 3,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Keola + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 2,
+            "yRange": 2,
+            "x": 1342,
+            "z": 324,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_STUDENT_2",
+            "spriteId": "SPRITE_GSBOY2",
+            "movement": 2,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Academy_EventScript_Student2 + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1320,
+            "z": 323,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_ACADEMY_MARKET_CASHIER",
+            "spriteId": "SPRITE_SHOPM1_2",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Market_EventScript_Cashier + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1330,
+            "z": 320,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1401,
-            "z": 305,
-            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1401,
-            "z": 306,
-            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1354,
-            "z": 302,
+            "x": 1300,
+            "z": 341,
             "header": "MAP_CANVAS_DIGLETTS_CAVE_S",
             "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1352,
+            "z": 344,
+            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1359,
+            "z": 344,
+            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
+            "anchor": 1,
             "y": 0
         }
     ],

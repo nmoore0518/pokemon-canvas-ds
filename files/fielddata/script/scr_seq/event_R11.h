@@ -7,13 +7,24 @@
 #define _EV_Route11_EventScript_ItemAwakening 3
 #define _EV_Academy_EventScript_GateGuard 4
 #define _EV_Academy_EventScript_Nothing 5
-#define _EV_Route11_EventScript_DiglettsCaveSign 6
-#define _EV_Route11_OnTransition 7
-#define _EV_Academy_EventScript_Invite 8
-#define _EV_Academy_EventScript_Escort 9
+#define _EV_Academy_EventScript_Keola 6
+#define _EV_Academy_EventScript_Student2 7
+#define _EV_Market_EventScript_Cashier 8
+#define _EV_Route11_EventScript_DiglettsCaveSign 9
+#define _EV_Academy_EventScript_CenterSign 10
+#define _EV_Academy_EventScript_MarketSign 11
+#define _EV_Academy_EventScript_GateSign 12
+#define _EV_Route11_OnTransition 13
+#define _EV_Academy_EventScript_Invite 14
+#define _EV_Academy_EventScript_Escort 15
 
 #define LOCALID_ROUTE11_ACADEMY_GUARD_L 14
 #define LOCALID_ROUTE11_ACADEMY_GUARD_R 15
 #define LOCALID_ROUTE11_ACADEMY_MENTOR 16
+#define LOCALID_ACADEMY_WELCOME_HEADMASTER 17
+#define LOCALID_ACADEMY_WELCOME_MENTOR 18
+#define LOCALID_ACADEMY_CANDIDATE_KEOLA 19
+#define LOCALID_ACADEMY_STUDENT_2 20
+#define LOCALID_ACADEMY_MARKET_CASHIER 21
 
 #endif

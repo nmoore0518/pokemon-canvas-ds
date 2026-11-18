@@ -3,12 +3,11 @@
 #include "msgdata/msg/msg_0320_R02.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route2_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route2_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route2_EventScript_ItemEther
-	ScrDef Route2_EventScript_ItemParalyzeHeal
-	ScrDef Route2_EventScript_RouteSign
+	ScrDef Route2_EventScript_DiglettsCaveSign
 	ScrDefEnd
 	
 Route2_EventScript_ItemEther:
@@ -18,17 +17,10 @@ Route2_EventScript_ItemEther:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	End
 	
-Route2_EventScript_ItemParalyzeHeal:
-	SetVar 0x8004, ITEM_PARLYZ_HEAL
-	SetVar 0x8005, 1
-	CallStd std_obtain_item_verbose
-	HidePerson VAR_SPECIAL_LAST_TALKED
-	End
-	
-Route2_EventScript_RouteSign:
+Route2_EventScript_DiglettsCaveSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
-	NPCMsg msg_0320_R02_Route2_Text_RouteSign
+	NPCMsg msg_0320_R02_Route2_Text_DiglettsCave
 	WaitButton
 	CloseMsg
 	ReleaseAll

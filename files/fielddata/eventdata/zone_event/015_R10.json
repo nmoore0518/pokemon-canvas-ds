@@ -4,40 +4,32 @@
         {
             "scriptId": "_EV_Route10_EventScript_SouthRockTunnelSign + 1",
             "type": 0,
-            "x": 1421,
-            "z": 185,
+            "x": 1366,
+            "z": 201,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Route10_EventScript_PowerPlantSign + 1",
             "type": 0,
-            "x": 1422,
-            "z": 164,
+            "x": 1357,
+            "z": 184,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Route10_EventScript_NorthRockTunnelSign + 1",
             "type": 0,
-            "x": 1420,
-            "z": 162,
+            "x": 1358,
+            "z": 163,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_EventMons_EventScript_Cap4 + 1",
             "type": 0,
-            "x": 1423,
-            "z": 162,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "std_hiddenitem_r10_carbos",
-            "type": 2,
-            "x": 1418,
-            "z": 183,
+            "x": 1361,
+            "z": 161,
             "y": 0,
             "dir": 4
         }
@@ -56,8 +48,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1409,
-            "z": 187,
+            "x": 1358,
+            "z": 202,
             "y": 0
         },
         {
@@ -73,8 +65,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1409,
-            "z": 185,
+            "x": 1355,
+            "z": 204,
             "y": 0
         },
         {
@@ -90,8 +82,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 1,
-            "x": 1426,
-            "z": 187,
+            "x": 1366,
+            "z": 212,
             "y": 0
         },
         {
@@ -107,8 +99,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1408,
-            "z": 187,
+            "x": 1355,
+            "z": 210,
             "y": 0
         },
         {
@@ -124,8 +116,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1426,
-            "z": 180,
+            "x": 1364,
+            "z": 186,
             "y": 0
         },
         {
@@ -141,31 +133,130 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1426,
+            "x": 1360,
+            "z": 169,
+            "y": 0
+        },
+        {
+            "id": "7",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "18",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1361,
+            "z": 162,
+            "y": 0
+        },
+        {
+            "id": "8",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "19",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1361,
+            "z": 164,
+            "y": 0
+        },
+        {
+            "id": "9",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "20",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1361,
             "z": 166,
+            "y": 0
+        },
+        {
+            "id": "10",
+            "spriteId": "SPRITE_TREE",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "21",
+            "scriptId": "std_field_cut",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1361,
+            "z": 168,
+            "y": 0
+        },
+        {
+            "id": "11",
+            "spriteId": "SPRITE_MONSTARBALL",
+            "movement": 15,
+            "type": 0,
+            "eventFlag": "0x2100",
+            "scriptId": "_EV_Route9_EventScript_ItemBurnHeal + 1",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1344,
+            "z": 159,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1419,
-            "z": 163,
+            "x": 1359,
+            "z": 161,
             "header": "MAP_CANVAS_ROCK_TUNNEL_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1423,
-            "z": 184,
+            "x": 1364,
+            "z": 162,
+            "header": "MAP_ROUTE_10_POKECENTER_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1353,
+            "z": 179,
+            "header": "MAP_CANVAS_POWER_PLANT",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 1358,
+            "z": 182,
             "header": "MAP_CANVAS_POWER_PLANT",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1426,
-            "z": 163,
-            "header": "MAP_ROUTE_10_POKECENTER_1F",
-            "anchor": 0,
+            "x": 1359,
+            "z": 199,
+            "header": "MAP_CANVAS_ROCK_TUNNEL_1F",
+            "anchor": 5,
             "y": 0
         }
     ],

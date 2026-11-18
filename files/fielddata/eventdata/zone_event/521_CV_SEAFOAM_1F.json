@@ -114,14 +114,14 @@
             "x": 7,
             "z": 24,
             "header": "MAP_ROUTE_20",
-            "anchor": 1,
+            "anchor": 0,
             "y": 0
         },
         {
             "x": 38,
             "z": 24,
             "header": "MAP_ROUTE_20",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         },
         {

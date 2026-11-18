@@ -14,6 +14,7 @@ python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold ro
 python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon, Rock Tunnel, ...)
 python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Pokemon Tower, Silph Co., S.S. Anne, ...)
 python3 tools/canvas/build_cinnabar.py   # then our Cinnabar Island (the GBA town in place of HeartGold's ruin)
+python3 tools/canvas/build_overworld.py  # then the rest of Kanto's towns and routes on the GBA's layouts
 python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
@@ -564,17 +565,50 @@ the player sinks or jumps crossing it:
 The map matrix has an altitude for each cell (8 units a step: HeartGold's plain sea land is drawn one step up),
 if a whole land ever needs moving.
 
-## The rest of Kanto (towns, routes, the rooms HeartGold has)
+## The rest of Kanto: the GBA's towns and routes (`build_overworld.py`)
 
-Maps that keep HeartGold's layout get the GBA game's people by landmarks worked out in `port/auto_anchor.py`: a
-GBA warp to a room pairs with HeartGold's warp to that room's HeartGold map (`DEST` in `port_map.py`), and each GBA
-connection pairs the middle of the open GBA edge with the middle of HeartGold's open border to that map. `Auto`
-maps keep their people on their own part of the world; a GBA route HeartGold splits in two (Route 10, Route 16)
-ports into both halves (`on_map`). Pokemon Centers and Marts share one set of landmarks (`center`, `mart`). Cut
-trees go where HeartGold has its own; one HeartGold has no place for is left out (it could close a road).
-Places HeartGold has no building for (the GBA's Pokemon Tower, Silph Co.'s upper floors, the S.S. Anne, the Rocket
-Hideout, Cinnabar's Gym, Lab and Mansion, the Hotel, the hack's own halls...) aren't reachable yet; their doors
-pair with the nearest HeartGold building for placing people.
+Every town and route is the GBA's own layout (Nick: "the towns and routes rebuilt to GBA's layout"). The GBA's
+outdoor maps meet one another by their connections; `world()` walks them from Pallet Town, nearest first (the GBA's
+maps don't quite close their loops, so the far side of a loop gives), and lays them out as one world of 14 x 15 of
+HeartGold's lands, its corner at matrix cell (30, 2): Pallet lands on our Pallet's own lands (cells 31..33, 11..12),
+Cinnabar on our Cinnabar's (32, 15; the town is widened, so its GBA map is put where that land draws it). Those
+seven lands stay `build_pallet.py`'s and `build_cinnabar.py`'s. The rest of HeartGold's Kanto in the matrix (and
+the west end of its Route 22) is emptied; Johto is untouched. Saffron's town map is bigger than the map its routes
+meet (`SaffronCity_Connection`): it sits over the routes' ends, its gatehouses on theirs.
+
+Each square of each GBA map is read as one kind (`kinds`: grass, tall grass, road, sand, water, woods, rock, ledges,
+fences, hedges, signs, flowers, stairs, the closed squares round a door: a building); squares no map covers are the
+sea where the nearest square of a map is open sea (water along a side of a map that is half water or more), else
+woods. The lands are laid from HeartGold's pieces a square at a time (as the Safari Zone: ground runs, the road and its
+edge, tall grass and its bushy edge, rock tiers with HeartGold's cliff pieces - straight faces in runs - ledges, the
+pond's water and banks, trees one to a 2x2 block of woods at HG density, cards for bushes, fences and stones), at
+ground 0 with the matrix's altitude 2 (HeartGold's 16, so they meet Pallet's and Cinnabar's lands). Lands must stay
+under 61,400 bytes of model (`build_land` prints the biggest).
+
+**Buildings** are HeartGold's own: for each GBA door, the building HeartGold's town has for that room
+(`hg_buildings`: read once off HeartGold's Kanto as it was, kept in `data/hg_buildings.json`), its door model, and
+the squares its box covers closed. Gatehouses are HeartGold's two (doors north and south: 246; west and east: 247),
+stretched or squeezed between the GBA's two doors. A room HeartGold has no building for gets a house of Fuchsia's.
+A cave's mouth (a warp at the foot of a rock face) is HeartGold's arch off Route 11 (`data/cave_mouth.json`),
+walked into (behaviour 0x6E).
+
+**Maps and areas**: each land is the HeartGold map of the GBA map with most squares in it (Route 23 and the Leader
+Academy get maps of ours); each of those maps gets an area of its own (140 on: set 18's textures, a building set of
+the models in its lands and the lands round them). One building set with every model came to 100 KB of textures and
+the game crashed; Celadon's, the biggest, is 50 KB.
+
+**Doors**: a map's warps are the GBA's doors in its lands; each room's way out leads back to the door it was come
+in by (`wire`: rooms built from the GBA's layouts by its warp numbers, HeartGold's rooms by matching their ways out
+to the doors, side by side and in order).
+
+**People** (`port_map.py`, `data/kanto_world.json`): a HeartGold map's people, signs and trigger squares are the
+GBA's standing in its lands, from whichever GBA map, at their own squares; its map scripts are its main GBA map's.
+People from another GBA map get ids after the main map's (`LID_OVER`). Scripted walks need no redoing: the layout
+is the GBA's.
+
+Not yet: fly destinations and the town map still point at HeartGold's Kanto; rooms the GBA has that we haven't built
+(the Hotel, the Academy's halls...) have doors that lead nowhere; Saffron's walls and the Academy's grounds are rows of
+stones; a gate with only one door outdoors stands on one side of it.
 `test/shots.py LIST DIR` takes a screenshot per place from one ROM (it points the new-game location in RAM);
 `test/places.py` writes the list.
 

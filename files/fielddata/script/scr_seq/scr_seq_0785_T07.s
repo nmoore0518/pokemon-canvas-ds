@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0491_T07.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's CeladonCity_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's CeladonCity_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef CeladonCity_EventScript_RocketGrunt1
@@ -20,6 +20,7 @@
 	ScrDef CeladonCity_EventScript_SilphCoScientist
 	ScrDef BerryField_EventScript_FindFairy
 	ScrDef TypeTutor_EventScript_Grass
+	ScrDef BerryField_EventScript_FindElectric
 	ScrDef CeladonCity_EventScript_TrainerTips2
 	ScrDef CeladonCity_EventScript_PrizeExchangeSign
 	ScrDef CeladonCity_EventScript_GameCornerSign
@@ -28,6 +29,7 @@
 	ScrDef CeladonCity_EventScript_TrainerTips1
 	ScrDef CeladonCity_EventScript_DeptStoreSign
 	ScrDef CeladonCity_EventScript_GymSign
+	ScrDef Route7_EventScript_UndergroundPathSign
 	ScrDef CeladonCity_OnTransition
 	ScrDefEnd
 	
@@ -158,6 +160,13 @@ TypeTutor_EventScript_Grass:
 	SetVar 0x8004, 11
 	GoTo TypeTutor_EventScript_Talk
 	
+BerryField_EventScript_FindElectric:
+	SetVar 0x8004, ITEM_WACAN_BERRY
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
 CeladonCity_EventScript_TrainerTips2:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
@@ -224,6 +233,15 @@ CeladonCity_EventScript_DeptStoreSign:
 CeladonCity_EventScript_GymSign:
 	LockAll
 	NPCMsg msg_0491_T07_CeladonCity_Text_GymSign
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route7_EventScript_UndergroundPathSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0491_T07_Route7_Text_UndergroundPathSign
 	WaitButton
 	CloseMsg
 	ReleaseAll

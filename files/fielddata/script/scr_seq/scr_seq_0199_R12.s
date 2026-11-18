@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0348_R12.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route12_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route12_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route12_EventScript_Ned
@@ -11,7 +11,6 @@
 	ScrDef Route12_EventScript_Luca
 	ScrDef Route12_EventScript_ItemTM48
 	ScrDef Route12_EventScript_ItemIron
-	ScrDef Route12_EventScript_ItemChillDrive
 	ScrDef Route12_EventScript_RouteSign
 	ScrDef Route12_EventScript_FishingSign
 	ScrDef Route12_OnResume
@@ -121,13 +120,6 @@ Route12_EventScript_ItemTM48:
 	
 Route12_EventScript_ItemIron:
 	SetVar 0x8004, ITEM_IRON
-	SetVar 0x8005, 1
-	CallStd std_obtain_item_verbose
-	HidePerson VAR_SPECIAL_LAST_TALKED
-	End
-	
-Route12_EventScript_ItemChillDrive:
-	SetVar 0x8004, 119
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
