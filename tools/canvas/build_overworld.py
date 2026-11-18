@@ -340,10 +340,13 @@ def _gates(doors, dest, hgb, bldg, kind):
             ns = abs(bz - az) >= abs(bx_ - ax)
         else:
             (ax, az) = mid(cl[0])
-            comp = [q for q, b in bldg.items() if b == bldg.get(cl[0][0]) and kind.get(q) == 'house']
-            if not comp: comp = [(ax, az - 1)]
-            cx_, cz_ = mid(comp)
-            ns = abs(cz_ - az) >= abs(cx_ - ax)
+            # (which side of the door the gatehouse is: the side the GBA has closed)
+            shut = lambda q: kind.get(q) in ('house', 'stone', 'door', 'fence', 'rock')
+            side = {d: sum(shut((q[0] + d[0] * k, q[1] + d[1] * k)) for q in cl[0] for k in (1, 2, 3))
+                    for d in ((0, -1), (0, 1), (-1, 0), (1, 0))}
+            d = max(side, key=side.get)
+            cx_, cz_ = ax + d[0] * 3, az + d[1] * 3
+            ns = d[1] != 0
         ps, closed = [], set()
         if ns:
             if len(cl) >= 2:
@@ -373,6 +376,7 @@ def _gates(doors, dest, hgb, bldg, kind):
 def plan_world(W=None, woods=False):
     """everything the lands need, worked out once: kinds, trees, buildings and their squares, warps"""
     W_, (WW, WH), kind, owner, doors, ledges, bldg = world_kinds(W, woods)
+    orig = dict(kind)
     dest = gba_dest()
     hgb = hg_buildings()
     walkable = ('grass', 'sand', 'pave', 'tall', 'flower', 'door', 'stairs')
@@ -403,11 +407,23 @@ def plan_world(W=None, woods=False):
         door_sq.add((gx, gz))
         if (bldg.get((gx, gz)), room) in done: continue      # (up already: a gate's other door, to the same room)
         done.add((bldg.get((gx, gz)), room))
-        cx, cz = gx + 0.5 + mdx, gz + 0.5 + mdz
-        props.append((mdl, cx, cz, 0))
-        x0, x1 = cx + bx[0] / 16, cx + (bx[0] + bx[3]) / 16
-        z0 = cz + bx[2] / 16
+        # (HeartGold's building fitted to the GBA's: squeezed or stretched a little to the closed squares round the
+        # door - up the door's column, along the row above it - its door kept on the GBA's)
+        shut = lambda q: orig.get(q) not in walkable and orig.get(q) not in (None, 'water', 'woods', 'tall')
+        top = gz
+        while shut((gx, top - 1)) and gz - top < 12: top -= 1
+        lx = rx = gx
+        while shut((lx - 1, gz - 1)) and gx - lx < 12: lx -= 1
+        while shut((rx + 1, gz - 1)) and rx - gx < 12: rx += 1
+        gw, gh = rx - lx + 1, gz - top + 1
+        sx = max(0.75, min(1.1, gw / (bx[3] / 16))) if gw >= 3 else 1.0
+        sz = max(0.75, min(1.1, gh / (bx[5] / 16))) if gh >= 3 else 1.0
+        cx, cz = gx + 0.5 + mdx * sx, gz + 0.5 + mdz * sz
+        props.append((mdl, cx, cz, 0, (sx, min(sx, sz), sz)))
+        x0, x1 = cx + bx[0] / 16 * sx, cx + (bx[0] + bx[3]) / 16 * sx
+        z0 = cz + bx[2] / 16 * sz
         st = {(qx, qz) for qx in range(math.floor(x0 + 0.35), math.ceil(x1 - 0.35)) for qz in range(math.floor(z0 + 0.35), gz + 1)}
+        st = {q for q in st if not (orig.get(q) in walkable and q not in door_sq and q != (gx, gz))}    # (the GBA's open squares stay open)
         stands |= st
         door_sq.add((gx, gz))
         if (gx, gz) not in is_door:
@@ -505,6 +521,10 @@ def plan_world(W=None, woods=False):
                 for gx in range(cx * 32, cx * 32 + 32):
                     if (gx, gz) in owner: c[owner[(gx, gz)]] = c.get(owner[(gx, gz)], 0) + 1
             cell_map[(cx, cz)] = max(c, key=c.get) if c else None
+    # (every door can be walked up to: the GBA's open squares beside it stay open, whatever building stands there)
+    for q in set(door_sq) | set(warps):
+        for n in ((q[0], q[1] + 1), (q[0], q[1] - 1), (q[0] + 1, q[1]), (q[0] - 1, q[1])):
+            if orig.get(n) in walkable and kind.get(n) == 'house' and n not in door_sq: kind[n] = orig[n]
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves,
