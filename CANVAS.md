@@ -269,9 +269,10 @@ those squares are lower (`classify`):
   by index (its river, river_r, sea_line02, sea_un, sea_on: `anim_slots` reads them from `a/1/4/0`), so those
   places are held by empty materials. Anything put there slides (the atlases there drew the wrong pieces, half a
   square out: the ice caves' pale blocks).
-- **under it all**, the floor again, well below everything, in a few rectangles over the squares the cave draws:
+- **under it all**, the floor again, well below everything, in a few rectangles under the floor and the water:
   where pieces meet at a point along another's side the DS leaves a pixel open now and then, and the dark showed
-  through as black dots. Dropped first (before a tier of rock) when a land is too big (Victory Road 1F).
+  through as black dots. Not under rock: the rim's dark is open, and through it at a slant the floor underneath
+  showed (Diglett's Cave). Dropped first (before a tier of rock) when a land is too big (Victory Road 1F).
 - a land's model must stay under 61400 bytes (`CAVE_LIMIT`): a land too busy goes without the floor under it all,
   then with fewer tiers of rock (`RINGS` 3, 2, 1).
 - ladders are behaviour 0x61 only; a hole (0x0F) is cut into its square (dark `d_ro` with floor round it);

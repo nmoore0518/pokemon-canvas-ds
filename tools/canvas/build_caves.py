@@ -852,8 +852,9 @@ def build_floor(spec, depth_of):
                         x = e
             # under it all, the floor again, well down: where two of the pieces above meet at a point along another's
             # side (a run's long edge, say) the DS leaves a pixel open now and then, and through it the dark would show.
-            # (Laid in a few rectangles over the squares the cave draws; the dark past the rim stays dark.)
-            under = {(x, y) for x in range(ox, ox + 32) for y in range(oz, oz + 32) if LV(x, y) is not None}
+            # (Laid in a few rectangles under the floor and the water only: the rim's dark is open, and looking
+            # through it at a slant the floor under rock showed, a tier or three down.)
+            under = {(x, y) for x in range(ox, ox + 32) for y in range(oz, oz + 32) if (x, y) in hts or (x, y) in water}
             if under and UNDER:
                 hb = min([HT(x, y) for (x, y) in under if (x, y) in hts] or [0]) + WATER_Y - 8
                 for (x, y) in sorted(under, key=lambda c: (c[1], c[0])):
