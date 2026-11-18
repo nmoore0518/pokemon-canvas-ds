@@ -1,0 +1,70 @@
+{
+  "key": 19947,
+  "messages": [
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_DoYouLikeToFish",
+      "en_US": [
+        "I’m the Fishing Guru’s older\n",
+        "brother.\r",
+        "I simply looove fishing!\n",
+        "I can’t bear to go without.\r",
+        "Tell me, do you like to fish?"
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_OhThatsDisappointing",
+      "en_US": [
+        "Oh…\n",
+        "That’s so disappointing…"
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_HowAreTheFishBiting",
+      "en_US": [
+        "Hello there, {STRVAR_1 3, 6, 0}!\r",
+        "How are the fish biting?"
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_LikeYourStyleTakeThis",
+      "en_US": [
+        "Grand! I like your style.\n",
+        "I think we can be friends.\r",
+        "Take this and fish, young friend!"
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_ReceivedGoodRod",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received a Good Rod from\n",
+        "the Fishing Guru’s brother."
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons",
+      "en_US": [
+        "Fishing is a way of life!\n",
+        "It is like the finest poetry.\r",
+        "A crummy Old Rod could only catch\n",
+        "Magikarp, yes?\r",
+        "But with a Good Rod, you can\n",
+        "catch much better Pokémon."
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_FuchsiaCity_House2_Text_YouHaveNoRoomForGift",
+      "en_US": [
+        "Oh, no!\r",
+        "I had a gift for you, but you have\n",
+        "no room for it!"
+      ]
+    },
+    {
+      "id": "msg_0960_CV_CANVAS_FUCHSIA_HOUSE2_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

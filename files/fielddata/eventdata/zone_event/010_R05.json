@@ -121,6 +121,13 @@
             "y": 0
         },
         {
+            "x": 1254,
+            "z": 160,
+            "header": "MAP_CANVAS_CERULEAN_HOUSE4",
+            "anchor": 0,
+            "y": 0
+        },
+        {
             "x": 1260,
             "z": 160,
             "header": "MAP_CERULEAN_POKEMART",

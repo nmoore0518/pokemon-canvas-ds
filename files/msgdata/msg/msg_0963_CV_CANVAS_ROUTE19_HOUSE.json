@@ -1,0 +1,62 @@
+{
+  "key": 19950,
+  "messages": [
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_WhoaASurfer",
+      "en_US": [
+        "Whoa! That Pikachu of yours…\n",
+        "it’s got a surfboard!\r",
+        "Dude, the surf’s up! Want to take it\n",
+        "out on the waves?"
+      ]
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_Pikachu",
+      "en_US": "Pikachu: Pika pika!"
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_NoSurfer",
+      "en_US": [
+        "Yo! Welcome to Pikachu’s Beach!\r",
+        "Out there are the gnarliest waves in\n",
+        "Kanto. But only a Pikachu that knows\f",
+        "how to surf can ride ’em.\r",
+        "Find a Pikachu like that, dude, and\n",
+        "bring it here!"
+      ]
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_Again",
+      "en_US": [
+        "Back for more waves, dude?\n",
+        "Your best is {STRVAR_1 3, 0, 0} points.\r",
+        "Want to go again?"
+      ]
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_HangTen",
+      "en_US": [
+        "Radical! Use the + Control Pad to\n",
+        "flip in the air. Land it right!"
+      ]
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_After",
+      "en_US": [
+        "Tubular, dude!\n",
+        "Your best is {STRVAR_1 3, 0, 0} points."
+      ]
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_NotToday",
+      "en_US": "No sweat. The waves’ll be here."
+    },
+    {
+      "id": "msg_0963_CV_CANVAS_ROUTE19_HOUSE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

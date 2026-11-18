@@ -1,0 +1,88 @@
+{
+  "key": 19948,
+  "messages": [
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_WouldYouLikeToForgetMove",
+      "en_US": [
+        "Uh…\n",
+        "Oh, yes, I’m the Move Deleter.\r",
+        "I can make Pokémon forget their\n",
+        "moves.\r",
+        "Would you like me to do that?"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_TrainingHouse_Text_AugustusIntro",
+      "en_US": [
+        "Ho ho! A Champion in my house?\n",
+        "Let’s see your new team!\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_WhichMonShouldForgetMove",
+      "en_US": [
+        "Which Pokémon should forget a\n",
+        "move?"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_WhichMoveShouldBeForgotten",
+      "en_US": "Which move should be forgotten?"
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_MonsMoveShouldBeForgotten",
+      "en_US": [
+        "Hm! {STRVAR_1 3, 0, 0}’s {STRVAR_1 3, 1, 0}?\n",
+        "That move should be forgotten?"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_ComeAgainToForgetOtherMoves",
+      "en_US": [
+        "Come again if there are other\n",
+        "moves to be forgotten."
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_NoEggShouldKnowMoves",
+      "en_US": [
+        "What?\n",
+        "No Egg should know any moves."
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_MonOnlyKnowsOneMove",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} seems to know only one\n",
+        "move…"
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_MonHasForgottenMoveCompletely",
+      "en_US": [
+        "It worked to perfection!\r",
+        "{STRVAR_1 3, 0, 0} has forgotten\n",
+        "{STRVAR_1 3, 1, 0} completely."
+      ]
+    },
+    {
+      "id": "msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

@@ -24,14 +24,14 @@
             "x": 10,
             "z": 7,
             "header": "MAP_SAFFRON",
-            "anchor": 11,
+            "anchor": 13,
             "y": 0
         },
         {
             "x": 1,
             "z": 7,
             "header": "MAP_SAFFRON",
-            "anchor": 10,
+            "anchor": 12,
             "y": 0
         }
     ],

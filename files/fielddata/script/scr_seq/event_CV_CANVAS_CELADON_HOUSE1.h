@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_CELADON_HOUSE1_H_
+#define SCR_SEQ_CV_CANVAS_CELADON_HOUSE1_H_
+
+#define _EV_CeladonCity_House1_EventScript_RocketChief 0
+#define _EV_CeladonCity_House1_EventScript_Rocket1 1
+#define _EV_CeladonCity_House1_EventScript_Rocket2 2
+
+
+#endif

@@ -443,21 +443,20 @@ def plan_world(W=None, woods=False):
         if kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge', 'rock') and q not in door_sq: kind[q] = 'house'
     # (the GBA's building squares HeartGold's building leaves are open ground, as the road or grass round them; a
     # building HeartGold has none for is a house of Fuchsia's over its squares, centred - as the Safari Zone's)
-    have = {b for b, _ in done}
-    by_b = {}
-    for q, b in bldg.items(): by_b.setdefault(b, []).append(q)
-    for b, sq in by_b.items():
-        if b in have: continue
-        dr = [q for q in sq if q in warps]
-        if not dr: continue
-        dx, dz = dr[0]
-        ox, oz = dx + 1.0, dz - 1.0                     # (its door on the GBA's: HeartGold's Fuchsia house's offsets)
+    # (a door no building of HeartGold's stands at - its room has none - gets a house of Fuchsia's, its door on the
+    # GBA's; one for doors side by side)
+    for gx, gz, d, x, y in doors:
+        if (gx, gz) in door_sq or (gx, gz) not in is_door: continue
+        if any((gx + a, gz) in door_sq for a in (-1, 1)): door_sq.add((gx, gz)); continue
+        dx, dz = gx, gz
+        ox, oz = dx + 1.0, dz - 1.0                     # (HeartGold's Fuchsia house's offsets from its door)
         props.append((HOUSE, ox, oz, 0)); props.append((HOUSE_DOOR, ox + 0.125, oz + 1.0, 0))
         st = {(qx, qz) for qx in range(math.floor(ox - 2.25 + 0.35), math.ceil(ox + 2.5 - 0.35)) for qz in range(math.floor(oz - 2.625 + 0.35), dz + 1)}
+        st = {q for q in st if not (orig.get(q) in walkable and q != (dx, dz))}
         stands |= st
         door_sq.add((dx, dz))
         for q in st:
-            if q != (dx, dz) and kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge'): kind[q] = 'house'
+            if q != (dx, dz) and kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge', 'rock'): kind[q] = 'house'
     # (a block of closed squares with no door: in a town a building - HeartGold's houses, as many as fit; on a route
     # a crag, its rock)
     # (and a building of the GBA's whose door leads to a room another building's door also reached - joined to it
@@ -809,6 +808,8 @@ def wire(P, hdr_of, hgm):
         per[X].append({'x': G[0], 'z': G[1], 'header': room, 'anchor': 0, 'y': 0})
         by_room.setdefault(room, []).append((X, len(per[X]) - 1, G, w))
     gba_built = set(slots.ROOM_SLOTS.values())
+    gdirs = gba_dirs()
+    import port_map
     path_of = lambda m: os.path.join(slots.EVENT_DIR, slots.events_file(m))
     for room, outs in by_room.items():
         ev = json.load(open(path_of(room)))
@@ -819,6 +820,11 @@ def wire(P, hdr_of, hgm):
                 if j >= len(Rw): skipped.append((room, 'warp %d' % j)); continue
                 per[X][i]['anchor'] = j
                 Rw[j].update(header=X, anchor=i)
+                if (Rw[j]['x'], Rw[j]['z']) == (0, 0):      # (a way out the room's builder left unplaced: the GBA's square)
+                    gd = gdirs.get(w['dest_map'])
+                    if gd:
+                        gw = gba_map.map_json(gd)['warp_events'][j]
+                        Rw[j]['x'], Rw[j]['z'] = port_map.room_xy(gd)(gw['x'], gw['y'])
         else:
             exits = [j for j, rw in enumerate(Rw) if is_outdoor(rw['header'])]
             if not exits: skipped.append((room, 'no way out')); continue

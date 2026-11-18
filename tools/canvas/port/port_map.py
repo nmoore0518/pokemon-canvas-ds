@@ -276,6 +276,15 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'ViridianCity_Mart_Frlg': ('MAP_VIRIDIAN_POKEMART', VIRIDIAN_MART),
     'PalletTown_Mart_Frlg': ('MAP_FIGHT_AREA_UNUSED_3', PALLET_MART),     # (our copy of HeartGold's Viridian Mart)
     'ViridianCity_PennysHouse_Frlg': ('MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE', None),      # (a bigger room: build_rooms.py)
+    'CeruleanCity_House4_Frlg': ('MAP_CANVAS_CERULEAN_HOUSE4', None),
+    'CeruleanCity_House5_Frlg': ('MAP_CANVAS_CERULEAN_HOUSE5', None),
+    'FuchsiaCity_House2_Frlg': ('MAP_CANVAS_FUCHSIA_HOUSE2', None),
+    'FuchsiaCity_House3_Frlg': ('MAP_CANVAS_FUCHSIA_HOUSE3', None),
+    'PewterCity_PainterLoft_Frlg': ('MAP_CANVAS_PEWTER_PAINTER_LOFT', None),
+    'Route19_UnusedHouse_Frlg': ('MAP_CANVAS_ROUTE19_HOUSE', None),
+    'SaffronCity_House_Frlg': ('MAP_CANVAS_SAFFRON_HOUSE', None),
+    'SaffronCity_TcgHouse_Frlg': ('MAP_CANVAS_SAFFRON_TCG_HOUSE', None),
+    'CeladonCity_House1_Frlg': ('MAP_CANVAS_CELADON_HOUSE1', None),
     'PewterCity_Frlg': ('MAP_PEWTER', PEWTER),
     'PewterCity_Gym_Frlg': ('MAP_PEWTER_GYM', PEWTER_GYM),
     'Route3_Frlg': ('MAP_ROUTE_3', ROUTE3),

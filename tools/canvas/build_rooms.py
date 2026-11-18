@@ -145,6 +145,16 @@ ROOMS = [   # GBA map, its GBA map constant (SLOTS gives the HeartGold slot), lo
     dict(gba='PalletTown_Gym_BackRoom', map='MAP_PALLET_TOWN_GYM_BACK_ROOM+150', gba_look=dict(tag='gB', floor=0x281, skip=(0x2A1, 0x2AB, 0x2AC), pc_script='GymDecor_EventScript_GymPC', walls=dict(face=0x299, cap=0x291), things=[]), widen=dict(cols=[(4, 2), (12, 2)], rows=[(6, 2)]), **GYM),
     dict(gba='PalletTown_Gym_LeftRoom', map='MAP_PALLET_TOWN_GYM_LEFT_ROOM+250', gba_look=dict(tag='gL', floor=0x281, skip=(0x2A1, 0x2AB, 0x2AC), pc_script='GymDecor_EventScript_GymPC', walls=dict(face=0x299, cap=0x291), things=[]), widen=dict(cols=[(4, 2), (12, 2)], rows=[(4, 2)]), **GYM),
     dict(gba='PalletTown_Gym_RightRoom', map='MAP_PALLET_TOWN_GYM_RIGHT_ROOM+350', gba_look=dict(tag='gR', floor=0x281, skip=(0x2A1, 0x2AB, 0x2AC), pc_script='GymDecor_EventScript_GymPC', walls=dict(face=0x299, cap=0x291), things=[]), widen=dict(cols=[(4, 2), (12, 2)], rows=[(4, 2)]), **GYM),
+    # houses of the GBA's that HeartGold has none for (their doors in the GBA-layout towns: build_overworld.py)
+    dict(gba='CeruleanCity_House4_Frlg', map='MAP_CERULEAN_CITY_HOUSE4', keep_people=False, template='MAP_CERULEAN_NORTH_HOUSE', **HOUSE),
+    dict(gba='CeruleanCity_House5_Frlg', map='MAP_CERULEAN_CITY_HOUSE5', keep_people=False, template='MAP_CERULEAN_NORTH_HOUSE', **HOUSE),
+    dict(gba='FuchsiaCity_House2_Frlg', map='MAP_FUCHSIA_CITY_HOUSE2', keep_people=False, template='MAP_FUCHSIA_SOUTHWEST_HOUSE', **HOUSE),
+    dict(gba='FuchsiaCity_House3_Frlg', map='MAP_FUCHSIA_CITY_HOUSE3', keep_people=False, template='MAP_FUCHSIA_SOUTHWEST_HOUSE', **HOUSE),
+    dict(gba='PewterCity_PainterLoft_Frlg', map='MAP_PEWTER_CITY_PAINTER_LOFT', keep_people=False, template='MAP_PEWTER_NORTHEAST_HOUSE', **HOUSE),
+    dict(gba='Route19_UnusedHouse_Frlg', map='MAP_ROUTE19_UNUSED_HOUSE', keep_people=False, template='MAP_FUCHSIA_SOUTHWEST_HOUSE', **HOUSE),
+    dict(gba='SaffronCity_House_Frlg', map='MAP_SAFFRON_CITY_HOUSE', keep_people=False, template='MAP_SAFFRON_MR_PSYCHIC_HOUSE', **HOUSE),
+    dict(gba='SaffronCity_TcgHouse_Frlg', map='MAP_SAFFRON_CITY_TCG_HOUSE', keep_people=False, template='MAP_SAFFRON_MR_PSYCHIC_HOUSE', **HOUSE),
+    dict(gba='CeladonCity_House1_Frlg', map='MAP_CELADON_CITY_HOUSE1', keep_people=False, template='MAP_CELADON_CONDOMINIUMS_1F', **HOUSE),
 ]
 
 

@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_CERULEAN_HOUSE5_H_
+#define SCR_SEQ_CV_CANVAS_CERULEAN_HOUSE5_H_
+
+#define _EV_CeruleanCity_House5_EventScript_BerryPowderMan 0
+#define _EV_CeruleanCity_House5_EventScript_BerryCrushRankings 1
+
+
+#endif

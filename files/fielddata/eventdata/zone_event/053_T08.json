@@ -464,9 +464,30 @@
             "y": 0
         },
         {
+            "x": 1213,
+            "z": 452,
+            "header": "MAP_CANVAS_FUCHSIA_HOUSE2",
+            "anchor": 3,
+            "y": 0
+        },
+        {
+            "x": 1213,
+            "z": 453,
+            "header": "MAP_CANVAS_FUCHSIA_HOUSE2",
+            "anchor": 3,
+            "y": 0
+        },
+        {
             "x": 1188,
             "z": 455,
             "header": "MAP_FUCHSIA_SOUTHWEST_HOUSE",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1193,
+            "z": 455,
+            "header": "MAP_CANVAS_FUCHSIA_HOUSE3",
             "anchor": 0,
             "y": 0
         },
@@ -485,9 +506,23 @@
             "y": 0
         },
         {
+            "x": 1212,
+            "z": 455,
+            "header": "MAP_CANVAS_FUCHSIA_HOUSE2",
+            "anchor": 1,
+            "y": 0
+        },
+        {
             "x": 1183,
             "z": 456,
             "header": "MAP_FUCHSIA_GYM",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1197,
+            "z": 476,
+            "header": "MAP_CANVAS_ROUTE19_HOUSE",
             "anchor": 0,
             "y": 0
         }

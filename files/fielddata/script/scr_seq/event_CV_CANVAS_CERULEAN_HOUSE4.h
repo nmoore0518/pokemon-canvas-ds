@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_CERULEAN_HOUSE4_H_
+#define SCR_SEQ_CV_CANVAS_CERULEAN_HOUSE4_H_
+
+#define _EV_CeruleanCity_House4_EventScript_WonderNewsBerryMan 0
+#define _EV_TrainingHouse_EventScript_Edmund 1
+
+#define LOCALID_WONDER_NEWS_BERRY_MAN 1
+
+#endif

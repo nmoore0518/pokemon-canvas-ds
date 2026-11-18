@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_ROUTE19_HOUSE_H_
+#define SCR_SEQ_CV_CANVAS_ROUTE19_HOUSE_H_
+
+#define _EV_Route19_BeachHouse_EventScript_SurfinDude 0
+#define _EV_Route19_BeachHouse_EventScript_Pikachu 1
+
+
+#endif

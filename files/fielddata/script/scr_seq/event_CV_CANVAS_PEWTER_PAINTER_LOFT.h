@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_PEWTER_PAINTER_LOFT_H_
+#define SCR_SEQ_CV_CANVAS_PEWTER_PAINTER_LOFT_H_
+
+#define _EV_PainterLoft_EventScript_Painter 0
+#define _EV_PainterLoft_EventScript_Smeargle 1
+#define _EV_PainterLoft_EventScript_Easel 2
+#define _EV_PainterLoft_EventScript_Canvases 3
+#define _EV_PainterLoft_EventScript_Paint 4
+#define _EV_PainterLoft_EventScript_PaintPot 5
+#define _EV_PainterLoft_EventScript_Returned 6
+
+
+#endif

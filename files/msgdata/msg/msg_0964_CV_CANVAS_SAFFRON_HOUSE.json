@@ -1,0 +1,100 @@
+{
+  "key": 19951,
+  "messages": [
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_SaffronCity_House_Text_Pidgey",
+      "en_US": "Pidgey: Kurukkoo!"
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_SaffronCity_House_Text_DontLookAtMyLetter",
+      "en_US": [
+        "…Thank you for writing.\n",
+        "I hope to see you soon!\r",
+        "…Hey!\n",
+        "Don’t look at my letter!"
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_SaffronCity_House_Text_GettingCopycatPokeDoll",
+      "en_US": [
+        "The Copycat is cute!\n",
+        "I’m getting her a Poké Doll."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_CelesteIntro",
+      "en_US": [
+        "Saffron trainers are the best\n",
+        "in Kanto. Shall I prove it?\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_GenevieveIntro",
+      "en_US": [
+        "My sister and I take turns\n",
+        "training visitors.\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_PaintWorld_Text_FigureFirst",
+      "en_US": [
+        "… … …\r",
+        "A figure made of paint turns to\n",
+        "face you. It raises a brush."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_SaffronCity_House_Text_ExplainPPUp",
+      "en_US": [
+        "I was given a PP Up as a gift.\r",
+        "It’s used to increase the PP of\n",
+        "a Pokémon’s move.\r",
+        "I should use it on a powerful move\n",
+        "with only a few PP."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_PaintWorld_Text_FigureSketch",
+      "en_US": [
+        "… … …\r",
+        "The figure’s colors swirl.\n",
+        "It’s waiting for you."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_PaintWorld_Text_FigureMega",
+      "en_US": [
+        "… … …\r",
+        "The figure is holding a stone that\n",
+        "shines in every color."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_PaintWorld_Text_Dissolve",
+      "en_US": [
+        "The figure runs like wet paint…\n",
+        "The world around it does too."
+      ]
+    },
+    {
+      "id": "msg_0964_CV_CANVAS_SAFFRON_HOUSE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

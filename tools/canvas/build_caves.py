@@ -1057,6 +1057,7 @@ def main():
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     # HeartGold's doors into its Mt. Moon lead into ours
     for (m, i), (to, anchor) in DOORS.items():
+        if 'EVERYWHERE' in header(m)['matrixId']: continue     # (the towns' doors: build_overworld.py's, on the GBA's layouts)
         path = os.path.join(slots.EVENT_DIR, events_file(m))
         ev = json.load(open(path))
         ev['warps'][i].update(header=to, anchor=anchor)

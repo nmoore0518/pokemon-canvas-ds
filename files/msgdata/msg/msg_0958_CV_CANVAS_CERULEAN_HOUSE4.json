@@ -1,0 +1,117 @@
+{
+  "key": 19945,
+  "messages": [
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_TrainingHouse_Text_EdmundIntro",
+      "en_US": [
+        "I keep my team in shape by\n",
+        "battling young trainers.\r",
+        "Want to battle?"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_TrainingHouse_Text_After",
+      "en_US": [
+        "Come back any time you want\n",
+        "to battle again!"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_NothingEntertaining",
+      "en_US": [
+        "Sigh…\n",
+        "Too much time, too little to do…\r",
+        "Is nothing entertaining happening\n",
+        "anywhere?"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_NewNewsInformativeHaveThis",
+      "en_US": [
+        "Ah!\n",
+        "A new news report!\r",
+        "Hmm…\r",
+        "I see!\n",
+        "That was quite informative!\r",
+        "I applaud you for taking interest\n",
+        "in the news at your young age.\r",
+        "As my thanks for sharing the news\n",
+        "with me, I want you to have this."
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_IncredibleNewsHaveBerries",
+      "en_US": [
+        "Oh, oh!\n",
+        "Th-this news report!\r",
+        "Hmm…\r",
+        "Amazing!\n",
+        "What an incredible piece of news!\r",
+        "I haven’t seen a news story this\n",
+        "incredible in too long a time!\r",
+        "Thanks for sharing this fantastic\n",
+        "news. Have a bunch of Berries!"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_WishCouldShareNewsWithOthers",
+      "en_US": [
+        "It seems such a shame to not share\n",
+        "this news with other folks…\r",
+        "I wish I could tell someone…\n",
+        "Let others know the news…"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_ThanksForSpreadingNewsTakeThis",
+      "en_US": [
+        "Ah, you’ve spread the news for me?\r",
+        "Good news becomes worthwhile when\n",
+        "all sorts of people share it.\r",
+        "As my thanks for your spreading\n",
+        "the news, take this!"
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_MagnificentNewsSpreadHaveBerries",
+      "en_US": [
+        "You’ve spread the news some more?\n",
+        "Magnificent!\r",
+        "That piece of news must be\n",
+        "delighted to be passed around so.\r",
+        "Yes, indeed!\r",
+        "Consider this a show of\n",
+        "appreciation from me and the news.\r",
+        "I’ll give you more Berries than\n",
+        "I usually do."
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_EnjoyingMyselfWithAllSortsOfNews",
+      "en_US": [
+        "I’m quite enjoying myself with all\n",
+        "sorts of news.\r",
+        "Yes, I am satisfied!\n",
+        "I won’t be bored for a while."
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_TrainingHouse_Text_Declined",
+      "en_US": "Whenever you’re ready, then."
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_YourBerryPouchIsFull",
+      "en_US": [
+        "Hm? Your Berry Pouch is full.\n",
+        "My gift remains ungiven, then."
+      ]
+    },
+    {
+      "id": "msg_0958_CV_CANVAS_CERULEAN_HOUSE4_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

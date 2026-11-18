@@ -1,0 +1,13 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFFRON_HOUSE_H_
+#define SCR_SEQ_CV_CANVAS_SAFFRON_HOUSE_H_
+
+#define _EV_SaffronCity_House_EventScript_Pidgey 0
+#define _EV_SaffronCity_House_EventScript_Lass 1
+#define _EV_SaffronCity_House_EventScript_Youngster 2
+#define _EV_TrainingHouse_EventScript_Celeste 3
+#define _EV_TrainingHouse_EventScript_Genevieve 4
+#define _EV_PaintWorld_EventScript_Figure 5
+#define _EV_SaffronCity_House_EventScript_Letter 6
+
+
+#endif

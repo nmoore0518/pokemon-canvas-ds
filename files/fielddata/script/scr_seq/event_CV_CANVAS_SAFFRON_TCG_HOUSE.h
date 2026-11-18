@@ -1,0 +1,9 @@
+#ifndef SCR_SEQ_CV_CANVAS_SAFFRON_TCG_HOUSE_H_
+#define SCR_SEQ_CV_CANVAS_SAFFRON_TCG_HOUSE_H_
+
+#define _EV_SaffronCity_TcgHouse_EventScript_Rod 0
+#define _EV_SaffronCity_TcgHouse_OnTransition 1
+#define _EV_SaffronCity_TcgHouse_OnResume 2
+
+
+#endif

@@ -19,6 +19,84 @@
   "first": 2,
   "squares": []
  },
+ "MAP_CANVAS_CELADON_HOUSE1": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_CERULEAN_HOUSE4": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_CERULEAN_HOUSE5": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_FUCHSIA_HOUSE2": {
+  "first": 1,
+  "squares": []
+ },
+ "MAP_CANVAS_FUCHSIA_HOUSE3": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_PEWTER_PAINTER_LOFT": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ROUTE19_HOUSE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFFRON_HOUSE": {
+  "first": 2,
+  "squares": []
+ },
+ "MAP_CANVAS_SAFFRON_TCG_HOUSE": {
+  "first": 2,
+  "squares": []
+ },
  "MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE": {
   "first": 2,
   "squares": [

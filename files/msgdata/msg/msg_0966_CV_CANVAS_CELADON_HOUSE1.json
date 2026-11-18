@@ -1,0 +1,37 @@
+{
+  "key": 19953,
+  "messages": [
+    {
+      "id": "msg_0966_CV_CANVAS_CELADON_HOUSE1_CeladonCity_House1_Text_SlotsReelInTheDough",
+      "en_US": [
+        "Hehehe!\r",
+        "The slots just reel in the dough,\n",
+        "big-time!"
+      ]
+    },
+    {
+      "id": "msg_0966_CV_CANVAS_CELADON_HOUSE1_CeladonCity_House1_Text_ShippedMonsAsSlotPrizes",
+      "en_US": [
+        "Chief!\r",
+        "We just shipped two thousand\n",
+        "more Pokémon as slot prizes\f",
+        "again today!"
+      ]
+    },
+    {
+      "id": "msg_0966_CV_CANVAS_CELADON_HOUSE1_CeladonCity_House1_Text_DontTouchGameCornerPoster",
+      "en_US": [
+        "Don’t touch the poster at the Game\n",
+        "Corner!\r",
+        "There’s no secret switch behind it!"
+      ]
+    },
+    {
+      "id": "msg_0966_CV_CANVAS_CELADON_HOUSE1_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

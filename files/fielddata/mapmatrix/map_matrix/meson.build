@@ -388,4 +388,13 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0386_CV_GAME_CORNER.bin',
     'map_matrix_0387_CV_PRIZE_ROOM.bin',
     'map_matrix_0388_CV_SILPH_ELEVATOR.bin',
+    'map_matrix_0389_CV_CANVAS_CERULEAN_HOUSE4.bin',
+    'map_matrix_0390_CV_CANVAS_CERULEAN_HOUSE5.bin',
+    'map_matrix_0391_CV_CANVAS_FUCHSIA_HOUSE2.bin',
+    'map_matrix_0392_CV_CANVAS_FUCHSIA_HOUSE3.bin',
+    'map_matrix_0393_CV_CANVAS_PEWTER_PAINTER_LOFT.bin',
+    'map_matrix_0394_CV_CANVAS_ROUTE19_HOUSE.bin',
+    'map_matrix_0395_CV_CANVAS_SAFFRON_HOUSE.bin',
+    'map_matrix_0396_CV_CANVAS_SAFFRON_TCG_HOUSE.bin',
+    'map_matrix_0397_CV_CANVAS_CELADON_HOUSE1.bin',
 ))

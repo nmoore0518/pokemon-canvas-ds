@@ -637,6 +637,15 @@
 #define MAP_CANVAS_ROUTE_23                               628
 #define MAP_CANVAS_LEADER_ACADEMY                         629
 #define MAP_CANVAS_SILPH_ELEVATOR                         630
+#define MAP_CANVAS_CERULEAN_HOUSE4                        631
+#define MAP_CANVAS_CERULEAN_HOUSE5                        632
+#define MAP_CANVAS_FUCHSIA_HOUSE2                         633
+#define MAP_CANVAS_FUCHSIA_HOUSE3                         634
+#define MAP_CANVAS_PEWTER_PAINTER_LOFT                    635
+#define MAP_CANVAS_ROUTE19_HOUSE                          636
+#define MAP_CANVAS_SAFFRON_HOUSE                          637
+#define MAP_CANVAS_SAFFRON_TCG_HOUSE                      638
+#define MAP_CANVAS_CELADON_HOUSE1                         639
 // canvas maps: end
 
 #endif // POKEHEARTGOLD_CONSTANTS_MAPS_H

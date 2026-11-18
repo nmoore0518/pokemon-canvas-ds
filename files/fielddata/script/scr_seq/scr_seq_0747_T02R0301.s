@@ -158,8 +158,9 @@ _cv_won_9:
 	CloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
-	// TODO(gba) warpsilent MAP_PEWTER_CITY_PAINTER_LOFT, 8, 4
-	GoTo _cv_stop
+	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	

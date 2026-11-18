@@ -1,0 +1,7 @@
+#ifndef SCR_SEQ_CV_CANVAS_FUCHSIA_HOUSE2_H_
+#define SCR_SEQ_CV_CANVAS_FUCHSIA_HOUSE2_H_
+
+#define _EV_FuchsiaCity_House2_EventScript_FishingGurusBrother 0
+
+
+#endif

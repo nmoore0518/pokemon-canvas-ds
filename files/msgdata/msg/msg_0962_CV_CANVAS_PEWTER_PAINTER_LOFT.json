@@ -1,0 +1,385 @@
+{
+  "key": 19949,
+  "messages": [
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Nothing",
+      "en_US": [
+        "Smeargle needs something new to see.\r",
+        "Win another Badge, then come back.\n",
+        "New places, new paintings."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Smeargle",
+      "en_US": "Smeargle: Smea…"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_EaselAsk",
+      "en_US": [
+        "The paint on the canvas is moving…\n",
+        "Step into the painting?"
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SteppingIn",
+      "en_US": "{STRVAR_1 3, 6, 0} stepped into the painting!"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Canvases",
+      "en_US": [
+        "Canvases, stacked against the wall.\n",
+        "Every one is a different place."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Paint",
+      "en_US": "Spilled paint. It’s still wet."
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_PaintPot",
+      "en_US": "A pot of paint, with a brush in it."
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_CameBackEarly",
+      "en_US": [
+        "Back already? The painting will be\n",
+        "there whenever you want to go in."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Ready",
+      "en_US": [
+        "The canvas is ready. Step up to the\n",
+        "easel whenever you like."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_NoBadge",
+      "en_US": [
+        "Oh! A visitor. Mind the wet paint.\r",
+        "I paint trainers. Well, I paint the\n",
+        "places trainers battle in.\r",
+        "You don’t have a Badge yet, do you?\n",
+        "Come back once you’ve won one.\r",
+        "I might have something for you."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstIntro",
+      "en_US": [
+        "A Badge! Then you’ve battled a Gym\n",
+        "Leader. Good. Look at my Smeargle.\r",
+        "Its tail’s bare. It’s never painted\n",
+        "in a color of its own.\r",
+        "A Smeargle learns by watching, and\n",
+        "it’s only ever watched me paint.\f",
+        "It needs to see a real trainer\f",
+        "battle. Up close. From the inside.\r",
+        "My paintings are… a little more than\n",
+        "paint. Step into one with Smeargle.\f",
+        "Someone in there will battle you."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstAsk",
+      "en_US": "Will you take Smeargle in with you?"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstGo",
+      "en_US": [
+        "Wonderful! I’ll set a fresh canvas on\n",
+        "the easel. Touch it when you’re ready.\r",
+        "Smeargle goes in first. Let it watch\n",
+        "how you do things."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_NeedSmeargle",
+      "en_US": [
+        "Where’s Smeargle? Bring it along;\n",
+        "it’s the one doing the learning."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SketchIntro",
+      "en_US": [
+        "Another Badge! Smeargle’s been\n",
+        "watching you. It’s itching to learn.\r",
+        "I’ll paint Quick Sketch onto it. In\n",
+        "the painting, it can copy any one\f",
+        "move the figure knows. Win, and the\f",
+        "move is its own. Lose, and the\f",
+        "paint washes off."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SketchAsk",
+      "en_US": "Shall we paint a new move?"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaIntro",
+      "en_US": [
+        "The Pokémon League! You’ve seen\n",
+        "everything a trainer can see.\r",
+        "There’s one painting I’ve never let\n",
+        "anyone into. Someone in it carries\f",
+        "a stone in every color there is."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaAsk",
+      "en_US": "Want to go and win it?"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_BothAsk",
+      "en_US": "What shall we paint today?"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_ANewMove",
+      "en_US": "A New Move"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_TheMega",
+      "en_US": "the Stone"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_EaselBlank",
+      "en_US": [
+        "A canvas on an easel. The paint is\n",
+        "still wet."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_NoRoom",
+      "en_US": [
+        "Your party’s full. Make room for\n",
+        "Smeargle first. A PC will do."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_TooFew",
+      "en_US": [
+        "It’s a double battle in there.\n",
+        "Bring another Pokémon along too."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Lend",
+      "en_US": "Here, Smeargle. Go with them."
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Borrowed",
+      "en_US": "{STRVAR_1 3, 6, 0} borrowed Smeargle!"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstWon",
+      "en_US": [
+        "You won! And look at Smeargle’s tail!\r",
+        "It’s found its color… and it’s yours.\n",
+        "It was watching you, not the battle.\r",
+        "Then it should stay with you. Take\n",
+        "it. Take good care of my Smeargle."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_ReceivedSmeargle",
+      "en_US": "{STRVAR_1 3, 6, 0} received Smeargle!"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstExplain",
+      "en_US": [
+        "It knows Masterstroke: it paints\n",
+        "with its own color, your type.\r",
+        "After every Badge, come back. I’ll\n",
+        "paint Quick Sketch onto it, and it\f",
+        "can learn something new in a\f",
+        "painting."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_FirstLost",
+      "en_US": [
+        "Oh dear. That figure paints hard.\r",
+        "Smeargle still saw plenty, though.\n",
+        "Rest up and try again."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Sketched",
+      "en_US": [
+        "Smeargle kept {STRVAR_1 3, 0, 0}!\n",
+        "It’s in its colors for good now."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_NoSketch",
+      "en_US": [
+        "You won, but Smeargle didn’t sketch\n",
+        "a thing! The old move’s back.\f",
+        "Try again whenever you like."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SketchLost",
+      "en_US": [
+        "The paint washed off. Its old move’s\n",
+        "back. Try again whenever you like."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaWon",
+      "en_US": [
+        "You brought it back! The stone in\n",
+        "every color. Here, it’s yours."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaExplain",
+      "en_US": [
+        "Let Smeargle hold it, and it can\n",
+        "Mega Evolve, like with any Mega\f",
+        "Stone."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaLost",
+      "en_US": [
+        "That one’s hard to paint over. Rest\n",
+        "up. The painting’s still there."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Later",
+      "en_US": "No hurry. The paint will keep."
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_WhichType",
+      "en_US": "What kind of move?"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Normal",
+      "en_US": "Normal"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Fire",
+      "en_US": "Fire"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Water",
+      "en_US": "Water"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Grass",
+      "en_US": "Grass"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Electric",
+      "en_US": "Electric"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Ice",
+      "en_US": "Ice"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_cv_more",
+      "en_US": "More…"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Fighting",
+      "en_US": "Fighting"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Poison",
+      "en_US": "Poison"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Ground",
+      "en_US": "Ground"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Flying",
+      "en_US": "Flying"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Psychic",
+      "en_US": "Psychic"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Bug",
+      "en_US": "Bug"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Rock",
+      "en_US": "Rock"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Ghost",
+      "en_US": "Ghost"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Dragon",
+      "en_US": "Dragon"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Dark",
+      "en_US": "Dark"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Steel",
+      "en_US": "Steel"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_Fairy",
+      "en_US": "Fairy"
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_WhichSlot",
+      "en_US": [
+        "Which move should Quick Sketch be\n",
+        "painted over?"
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_ConfirmSlot",
+      "en_US": [
+        "Quick Sketch goes over {STRVAR_1 3, 0, 0}’s\n",
+        "{STRVAR_1 3, 1, 0}. If it doesn’t keep a\f",
+        "new move, {STRVAR_1 3, 1, 0} comes back.\f",
+        "All right?"
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaGo",
+      "en_US": [
+        "It’s on the easel. Take Smeargle.\n",
+        "It should see this."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_GiftNoRoom",
+      "en_US": [
+        "Oh, there’s no room at all. Make\n",
+        "some, and I’ll have it ready."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_GiftToPC",
+      "en_US": "Smeargle was sent to the PC."
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SketchGo",
+      "en_US": [
+        "Done. The canvas is on the easel.\n",
+        "Use Quick Sketch on the figure and\f",
+        "pick whichever of its moves you like."
+      ]
+    },
+    {
+      "id": "msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

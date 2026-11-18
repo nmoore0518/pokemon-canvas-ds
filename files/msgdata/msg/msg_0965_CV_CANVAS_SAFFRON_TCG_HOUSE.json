@@ -1,0 +1,134 @@
+{
+  "key": 19952,
+  "messages": [
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_Intro",
+      "en_US": [
+        "…Hm? A visitor.\r",
+        "Most people walk right past this\n",
+        "house. Their loss.\r",
+        "The name’s Rod. Grandmaster of the\n",
+        "Pokémon Trading Card Game.\r",
+        "You battle with real Pokémon, right?\n",
+        "Cute. I respect it.\r",
+        "But out here on the table, it’s all\n",
+        "you. Sixty cards. Six Prizes.\f",
+        "Every draw is a choice you own.\r",
+        "No luck in the world beats a deck\n",
+        "that’s built with heart.\r",
+        "…Sorry. I get carried away.\n",
+        "This game is kind of my whole life."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_WantToDuel",
+      "en_US": [
+        "So. Think you can take a Prize card\n",
+        "off me? Want to duel?"
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_WantToDuelAgain",
+      "en_US": [
+        "Rod: Back for more?\n",
+        "Good. The cards remember you.\r",
+        "Want to duel?"
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_ChooseDeck",
+      "en_US": [
+        "Pick a deck from my collection.\n",
+        "Every one of them is a classic.\r",
+        "And if you want out, press B at\n",
+        "the duel menu to give up. It counts\f",
+        "as a loss, though."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckGrass",
+      "en_US": "Flower Power"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckFire",
+      "en_US": "Fire Charge"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckWater",
+      "en_US": "Go Go Rain Dance"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckLightning",
+      "en_US": "Zapping Selfdestruct"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckPsychic",
+      "en_US": "Strange Psyshock"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckFighting",
+      "en_US": "First-Strike"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_cv_more",
+      "en_US": "More…"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_DeckColorless",
+      "en_US": "Colorless"
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_LetsDuel",
+      "en_US": [
+        "Nice pick. Shuffle up.\r",
+        "I’ll be playing my Legendary\n",
+        "Dragonite deck. Don’t hold back!"
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_YouWon",
+      "en_US": [
+        "Rod: …Heh. You actually did it.\r",
+        "Haven’t had a duel like that in a\n",
+        "long time. That was fun. Seriously.\r",
+        "Here. A winner keeps one of the\n",
+        "deck’s Energy cards. House rule."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_AboutEnergy",
+      "en_US": [
+        "Those Energy cards aren’t just\n",
+        "paper, either.\r",
+        "Use one on a Pokémon and it powers\n",
+        "up one of its moves for good.\r",
+        "Win again, and I’ll hand over\n",
+        "another. I’m always up for a duel."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_Declined",
+      "en_US": [
+        "Rod: No rush.\n",
+        "The table’s not going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_YouLost",
+      "en_US": [
+        "Rod: Good game. Really.\r",
+        "You’ve got the instincts. Now just\n",
+        "learn to trust your deck.\r",
+        "Come back whenever you want a\n",
+        "rematch. I’ll be right here."
+      ]
+    },
+    {
+      "id": "msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_cv_unported",
+      "en_US": [
+        "(Canvas DS: this part of the game\n",
+        "isn’t ported yet.)"
+      ]
+    }
+  ]
+}

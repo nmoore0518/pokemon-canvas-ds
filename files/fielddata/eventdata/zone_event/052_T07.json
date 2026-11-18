@@ -471,6 +471,13 @@
             "y": 0
         },
         {
+            "x": 1203,
+            "z": 273,
+            "header": "MAP_CANVAS_CELADON_HOUSE1",
+            "anchor": 1,
+            "y": 0
+        },
+        {
             "x": 1173,
             "z": 274,
             "header": "MAP_CELADON_GYM",

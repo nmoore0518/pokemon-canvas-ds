@@ -1,0 +1,8 @@
+#ifndef SCR_SEQ_CV_CANVAS_FUCHSIA_HOUSE3_H_
+#define SCR_SEQ_CV_CANVAS_FUCHSIA_HOUSE3_H_
+
+#define _EV_FuchsiaCity_House3_EventScript_MoveDeleter 0
+#define _EV_TrainingHouse_EventScript_Augustus 1
+
+
+#endif
