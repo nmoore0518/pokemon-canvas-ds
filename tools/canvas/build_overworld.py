@@ -293,6 +293,26 @@ def gba_dest():
     return port_map.DEST
 
 
+TOWNISH = ('City', 'Town', 'Academy', 'Plateau', 'Island')
+HOUSE, HOUSE_DOOR, HOUSE_SIZE = 297, 307, 4.75     # (Fuchsia's house, its door; 4.75 squares a side)
+
+
+def _houses(x0, z0, w, h):
+    """HeartGold houses filling a block w x h squares at x0, z0: as many as fit, each squeezed or stretched a little
+    to share it out"""
+    nx, nz = max(1, round(w / HOUSE_SIZE)), max(1, round(h / HOUSE_SIZE))
+    sx, sz = w / nx / HOUSE_SIZE, h / nz / HOUSE_SIZE
+    out = []
+    for i in range(nx):
+        for j in range(nz):
+            # (the model's box: 2.25 west of it to 2.5 east, 2.625 north to 2.125 south; its door 1 south of it)
+            cx, cz = x0 + i * w / nx + 2.25 * sx, z0 + (j + 1) * h / nz - 2.125 * sz
+            sc = (sx, min(sx, sz), sz)
+            out.append((HOUSE, cx, cz, 0, sc))
+            out.append((HOUSE_DOOR, cx + 0.125 * sx, cz + 1.0 * sz, 0, sc))
+    return out
+
+
 GATE_NS, GATE_EW = 246, 247     # HeartGold's gatehouses: doors on the north and south faces, or the west and east
 
 
@@ -362,6 +382,11 @@ def plan_world():
     for room, (gprops, gstands, gdoors) in gates.items():
         props += gprops; stands |= gstands; door_sq |= gdoors
         done |= {(bldg.get(q), room) for q in gdoors}
+    # (a way in the GBA draws in a rock face that HeartGold has a building for - the Pokemon Tower, the Power Plant -
+    # is that building's door)
+    is_door = {(gx, gz) for gx, gz, *_ in doors}
+    doors = doors + [(gx, gz, d, wp['x'], wp['y']) for gx, gz, d, wp in all_warps if (gx, gz) not in is_door
+                     and hgb.get(dest.get(wp['dest_map'])) and dest.get(wp['dest_map']) not in gates and 'VICTORY' not in dest.get(wp['dest_map'])]
     for gx, gz, d, x, y in doors:
         gm = gba_map.map_json(d)
         w = next(w for w in gm['warp_events'] if (w['x'], w['y']) == (x, y))
@@ -379,13 +404,24 @@ def plan_world():
         props.append((mdl, cx, cz, 0))
         x0, x1 = cx + bx[0] / 16, cx + (bx[0] + bx[3]) / 16
         z0 = cz + bx[2] / 16
-        stands |= {(qx, qz) for qx in range(math.floor(x0 + 0.35), math.ceil(x1 - 0.35)) for qz in range(math.floor(z0 + 0.35), gz + 1)}
+        st = {(qx, qz) for qx in range(math.floor(x0 + 0.35), math.ceil(x1 - 0.35)) for qz in range(math.floor(z0 + 0.35), gz + 1)}
+        stands |= st
         door_sq.add((gx, gz))
+        if (gx, gz) not in is_door:
+            # (the rock the GBA drew it in - the Tower's walls - is ground round it, if it's no mountain: a small patch)
+            comp = {q for q in st if kind.get(q) == 'rock'}
+            todo = list(comp)
+            while todo and len(comp) <= 160:
+                q = todo.pop()
+                for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
+                    if n not in comp and kind.get(n) == 'rock': comp.add(n); todo.append(n)
+            if len(comp) <= 160:
+                for q in comp - st: kind[q] = 'grass'
     for d, (x0, y0, w, h) in W_.items():
         for wp in gba_map.map_json(d).get('warp_events', []):
             warps.setdefault((x0 + wp['x'], y0 + wp['y']), (d, wp))
     for q in stands:
-        if kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge') and q not in door_sq: kind[q] = 'house'
+        if kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge', 'rock') and q not in door_sq: kind[q] = 'house'
     # (the GBA's building squares HeartGold's building leaves are open ground, as the road or grass round them; a
     # building HeartGold has none for is a house of Fuchsia's over its squares, centred - as the Safari Zone's)
     have = {b for b, _ in done}
@@ -395,19 +431,37 @@ def plan_world():
         if b in have: continue
         dr = [q for q in sq if q in warps]
         if not dr: continue
-        x0, x1 = min(q[0] for q in sq), max(q[0] for q in sq)
         dx, dz = dr[0]
-        hx = (x0 + x1 + 1) / 2
-        props.append((297, hx, dz - 0.12, 0)); props.append((307, hx + 0.12, dz + 0.88, 0))
-        stands |= {(qx, qz) for qx in range(math.floor(hx - 2.2), math.ceil(hx + 2.2)) for qz in range(dz - 4, dz + 1)}
-        door_sq.add((int(hx + 0.12), dz)); warps[(int(hx + 0.12), dz)] = warps.pop((dx, dz))
-        for q in sq:
-            if q not in stands: continue
-            kind[q] = 'house'
+        ox, oz = dx + 1.0, dz - 1.0                     # (its door on the GBA's: HeartGold's Fuchsia house's offsets)
+        props.append((HOUSE, ox, oz, 0)); props.append((HOUSE_DOOR, ox + 0.125, oz + 1.0, 0))
+        st = {(qx, qz) for qx in range(math.floor(ox - 2.25 + 0.35), math.ceil(ox + 2.5 - 0.35)) for qz in range(math.floor(oz - 2.625 + 0.35), dz + 1)}
+        stands |= st
+        door_sq.add((dx, dz))
+        for q in st:
+            if q != (dx, dz) and kind.get(q) in ('house', 'stone', 'grass', 'sand', 'pave', 'flower', 'fence', 'hedge'): kind[q] = 'house'
+    # (a block of closed squares with no door: in a town a building - HeartGold's houses, as many as fit; on a route
+    # a crag, its rock)
+    seen = set()
+    for q0, v0 in list(kind.items()):
+        if v0 != 'stone' or q0 in seen or q0 in bldg: continue
+        comp, i = [q0], 0
+        seen.add(q0)
+        while i < len(comp):
+            x, y = comp[i]; i += 1
+            for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if n not in seen and kind.get(n) == 'stone' and n not in bldg: seen.add(n); comp.append(n)
+        xs, ys = [c[0] for c in comp], [c[1] for c in comp]
+        bw, bh = max(xs) - min(xs) + 1, max(ys) - min(ys) + 1
+        if bw < 2 or bh < 2 or len(comp) < 0.6 * bw * bh: continue
+        if any(t in owner.get(q0, '') for t in TOWNISH):
+            props += _houses(min(xs), min(ys), bw, bh)
+            for c in comp: kind[c] = 'house'; stands.add(c)
+        elif len(comp) >= 6:
+            for c in comp: kind[c] = 'rock'
     # (stones in a line - a town's wall - are a fence)
-    for (x, y), v in list(kind.items()):
-        if v == 'stone' and ((kind.get((x - 1, y)) == 'stone' and kind.get((x + 1, y)) == 'stone') or
-                             (kind.get((x, y - 1)) == 'stone' and kind.get((x, y + 1)) == 'stone')) and (x, y) not in bldg:
+    snap = dict(kind)
+    for (x, y), v in snap.items():
+        if v == 'stone' and (x, y) not in bldg and any(snap.get(n) in ('stone', 'fence') for n in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1))):
             kind[(x, y)] = 'fence'
     for q, v in list(kind.items()):
         if v == 'house' and q not in stands:
@@ -838,6 +892,29 @@ def write_matrix(cells):
     open(path, 'wb').write(bytes(d))
 
 
+SPAWNS = os.path.join(slots.ROOT, 'asm', 'unk_0203BA5C.s')
+
+
+def spawns(hdr_of):
+    """the fly points and the places you come back to (sSpawnMaps, in the ARM9's data: changed in place): in front
+    of each town's Pokemon Center door in our world"""
+    import re
+    door = {}
+    for X in set(hdr_of.values()):
+        if X in ('MAP_PALLET', 'MAP_CINNABAR_ISLAND'): continue
+        for w in json.load(open(os.path.join(slots.EVENT_DIR, slots.events_file(X))))['warps']:
+            door.setdefault(w['header'], (X, w['x'], w['z'] + 1))
+    lines, n = open(SPAWNS).read().split('\n'), 0
+    for i, l in enumerate(lines):
+        m = re.match(r'(\tspawn \w+, \d, \d, )(MAP_\w+)(, \d+, \d+, )(MAP_\w+), (\w+), (\w+), (MAP_\w+), (\w+), (\w+)$', l)
+        if not m or m.group(2) not in door: continue
+        X, x, z = door[m.group(2)]
+        lines[i] = '%s%s%s%s, 0x%04X, 0x%04X, %s, 0x%04X, 0x%04X' % (m.group(1), m.group(2), m.group(3), X, x, z, X, x, z)
+        n += 1
+    open(SPAWNS, 'w').write('\n'.join(lines))
+    return n
+
+
 def main():
     from nitro import read_narc, write_narc
     new_maps()
@@ -869,6 +946,7 @@ def main():
     for m, k in area_of.items():
         slots.set_header(m, {'areaDataBank': str(k)})
     skipped = wire(P, hdr_of, hgm)
+    print('fly points moved:', spawns(hdr_of))
     # what the porter needs: each GBA map's corner in HeartGold's squares, the map each land is
     json.dump({'origin': ORIGIN, 'maps': {d: [ORIGIN[0] * 32 + v[0], ORIGIN[1] * 32 + v[1], v[2], v[3]] for d, v in P['W'].items()},
                'hg': {d: hgm[d] for d in P['W']},
