@@ -544,8 +544,9 @@ def plan_world(W=None, woods=False):
                 trees=trees, loose=loose, cell_map=cell_map)
 
 
-def build_land(P, cx, cz):
+def build_land(P, cx, cz, base=None):
     """one land: the world's squares cx*32.., cz*32.."""
+    if base is None: base = WORLD_BASE
     kind, ledges = P['kind'], P['ledges']
     K_ = lambda x, y: kind.get((x, y))
     dims, pals = texdims(TEXSET)
@@ -562,7 +563,7 @@ def build_land(P, cx, cz):
         # (texture coordinates brought near zero by whole textures: the world's are past what the DS can hold)
         tw, th = dims[tex]
         s0 = math.floor(min(st[0] for _, st in pts) / tw) * tw; t0 = math.floor(min(st[1] for _, st in pts) / th) * th
-        vs = [((x_ - ox * 16 - 256, y_, z_ - oz * 16 - 256), (st[0] - s0, st[1] - t0)) for (x_, y_, z_), st in pts]
+        vs = [((x_ - ox * 16 - 256, y_ + base, z_ - oz * 16 - 256), (st[0] - s0, st[1] - t0)) for (x_, y_, z_), st in pts]
         if len(vs) == 4: M(tex).quad(vs, up)
         elif len(vs) == 3: M(tex).tri(vs, up)
         else:
@@ -729,10 +730,10 @@ def build_land(P, cx, cz):
     model = build_model('cv_kanto_%d_%d' % (cx, cz), groups)
     model += b'\0' * (-len(model) % 4)
     f4 = lambda v: int(round(v * 4096))
-    bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(px), f4(py), f4(pz), 0, 0, 0, *[f4(v) for v in (sc[0] if sc else (1, 1, 1))])
+    bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(px), f4(py + base), f4(pz), 0, 0, 0, *[f4(v) for v in (sc[0] if sc else (1, 1, 1))])
                    for m, px, py, pz, *sc in props)
     KS = lambda x, y: {'rock': 'cliff', 'water': 'water'}.get(K_(x, y), 'grass')
-    bdhc = BS._bdhc(KS, ox, oz, U)
+    bdhc = BS._bdhc(KS, ox, oz, U, base)
     pm = struct.pack('<1024H', *perm)
     npoly = sum(len(m.quads) + len(m.tris) for m in meshes.values())
     return struct.pack('<4I2H', len(pm), len(bld), len(model), len(bdhc), 0x1234, 0) + pm + bld + model + bdhc, npoly, len(model)
@@ -740,7 +741,8 @@ def build_land(P, cx, cz):
 
 # ---------------------------------------------------------------- into the game
 WORLD_LAND_BASE = 1000      # our world's lands (interiors are 800 on); lands drawn the same are one land
-WORLD_ALT = 2               # (the matrix's altitude, 8 a step: our ground at 0 is HeartGold's at 16, as Pallet's)
+WORLD_ALT = 0               # (the matrix's altitude moves a land's model but not the heights people stand at: ours are
+WORLD_BASE = 16             # built at HeartGold's ground, 16, as Pallet's and Cinnabar's are)
 AREA = '18'                 # Pallet's area: set 18's textures, building set 17 (every building the world uses added)
 BUILD_SET = 17
 NEW_MAPS = {'Route23_Frlg': ('MAP_CANVAS_ROUTE_23', 'MAP_ROUTE_22'),          # (GBA maps HeartGold has no map for:
@@ -990,7 +992,7 @@ def build_woods(land):
         lids = []
         for cz in range(nz):
             for cx in range(nx):
-                data, n, sz = build_land(P, cx, cz)
+                data, n, sz = build_land(P, cx, cz, 0)
                 assert sz < 61400, (gba, cx, cz, sz)
                 lids.append(len(land)); land.append(data)
         mpath = os.path.join(slots.MATRIX_DIR, slots.matrix_file(m))

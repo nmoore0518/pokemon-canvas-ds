@@ -486,7 +486,7 @@ def _card(poly, what, x, y):
                ((b, ht, (y + zt) * 16), (s1, t0)), ((a, ht, (y + zt) * 16), (s0, t0))])
 
 
-def _bdhc(K_, ox, oz, U):
+def _bdhc(K_, ox, oz, U, base=0):
     """the heights walked on: the ground, the plateaus a tier up, the stairs sloping up north; a plate a run"""
     fx = lambda v: int(round(v * 4096))
     pts, nrm, cst, plates, strips, access = [], [], [], [], [], []
@@ -499,9 +499,9 @@ def _bdhc(K_, ox, oz, U):
             key, e = hkey(x, y), x + 1
             while e < ox + 32 and hkey(e, y) == key: e += 1
             z0, z1 = U(y, oz), U(y + 1, oz)
-            if key[0] == 'flat': nv, dv = (0, 4096, 0), -fx(key[1])
+            if key[0] == 'flat': nv, dv = (0, 4096, 0), -fx(key[1] + base)
             else:
-                yb, sl = R.TIER, -1.0
+                yb, sl = R.TIER + base, -1.0
                 ln = (1 + sl * sl) ** 0.5
                 nv, dv = (0, fx(1 / ln), fx(-sl / ln)), fx(-(yb - sl * z0) / ln)
             plates.append((idx(pts, (fx(U(x, ox)), fx(z0))), idx(pts, (fx(U(e, ox)), fx(z1))), idx(nrm, nv), idx(cst, dv)))

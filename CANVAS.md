@@ -587,7 +587,7 @@ sea where the nearest square of a map is open sea (water along a side of a map t
 woods. The lands are laid from HeartGold's pieces a square at a time (as the Safari Zone: ground runs, the road and its
 edge, tall grass and its bushy edge, rock tiers with HeartGold's cliff pieces - straight faces in runs - ledges, the
 pond's water and banks, trees one to a 2x2 block of woods at HG density, cards for bushes, fences and stones), at
-ground 0 with the matrix's altitude 2 (HeartGold's 16, so they meet Pallet's and Cinnabar's lands). Lands must stay
+HeartGold's ground height, 16 (as Pallet's and Cinnabar's lands: the matrix's altitude moves a land's model but not the heights people stand at, so it stays 0). Lands must stay
 under 61,400 bytes of model (`build_land` prints the biggest).
 
 **Buildings** are HeartGold's own: for each GBA door, the building HeartGold's town has for that room
