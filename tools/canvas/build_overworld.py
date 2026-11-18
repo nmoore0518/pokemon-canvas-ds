@@ -287,6 +287,18 @@ GROUND = 'grass01gs'
 SKIN = {'grass': GROUND, 'flower': GROUND, 'sand': 'road01', 'pave': 'road01', 'door': None}
 EDGE = {'sand': 'road01_r', 'pave': 'road01_r'}     # (HeartGold's road and its edge in the grass beside it: its Kanto
                                                     # towns' streets are the same road as its routes')
+# each town's own ground (HeartGold's own, its towns' own textures: what each lays most of): its pavement, its streets
+# (Saffron, Celadon), the pavement's edge in the grass beside it (laid as the route's road01_r)
+GROUND_STYLE = {
+    'SaffronCity_Frlg': dict(side='ymb_fe02', street='ymb_fe01', edge='ymb_fe02_r', paved=True),
+    'CeladonCity_Frlg': dict(side='tama_yuka', street='tama_yuka2', edge='tama_fuch'),
+    'LeaderAcademy_Campus': dict(side='tama_yuka', edge='tama_fuch'),
+    'VermilionCity_Frlg': dict(side='kbc_rd01', edge='kbc_rd07'),
+    'CeruleanCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
+    'PewterCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
+    'LavenderTown_Frlg': dict(side='sio_fe02', edge='sio_fe02_r', paved=True),
+    'FuchsiaCity_Frlg': dict(side='sek_fe03', edge='sek_fe03_r'),
+}
 ROCK_TOP = 'cliff01gs'
 DOOR_MB = 0x69
 CAVE_MB = 0x6E              # (HeartGold's cave mouths: walked into)
@@ -307,20 +319,124 @@ TOWNISH = ('City', 'Town', 'Academy', 'Plateau', 'Island')
 HOUSE, HOUSE_DOOR, HOUSE_SIZE = 297, 307, 4.75     # (Fuchsia's house, its door; 4.75 squares a side)
 
 
-def _houses(x0, z0, w, h):
-    """HeartGold houses filling a block w x h squares at x0, z0: as many as fit, each squeezed or stretched a little
-    to share it out"""
-    nx, nz = max(1, round(w / HOUSE_SIZE)), max(1, round(h / HOUSE_SIZE))
-    sx, sz = w / nx / HOUSE_SIZE, h / nz / HOUSE_SIZE
+_BOX = {}
+
+
+def model_box(mid):
+    """a building model's box, in squares from its origin: (x0, z0, w, d)"""
+    if mid not in _BOX:
+        from nitro import read_narc
+        if 'bm' not in _BOX: _BOX['bm'] = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())[0]
+        d = _BOX['bm'][mid]
+        off = struct.unpack_from('<I', d, 0x10)[0]; dic = off + 8
+        ent = dic + struct.unpack_from('<H', d, dic + 6)[0]
+        m = off + struct.unpack_from('<I', d, ent + 4)[0]
+        bx = [v / 4096 for v in struct.unpack_from('<6h', d, m + 0x2C)]; bs = struct.unpack_from('<i', d, m + 0x38)[0] / 4096
+        _BOX[mid] = (bx[0] * bs / 16, bx[2] * bs / 16, bx[3] * bs / 16, bx[5] * bs / 16)
+    return _BOX[mid]
+
+
+# Each town's own HeartGold buildings (Nick: the right asset in the right place; HeartGold's towns' own ones): for a
+# door whose room HeartGold has no building for, for a block of the GBA's buildings with no door, apartment blocks
+# where a block is deep, the Academy's school and its market's stalls
+STYLE = {
+    'SaffronCity_Frlg': dict(houses=[251, 252, 253], tall=[254], tall_h=4, dm=259),
+    'CeladonCity_Frlg': dict(houses=[236, 237], tall=[244, 238], tall_h=4, dm=15),
+    'VermilionCity_Frlg': dict(houses=[215, 216], dm=221),
+    'CeruleanCity_Frlg': dict(houses=[276, 277], dm=286),
+    'PewterCity_Frlg': dict(houses=[292], dm=301),
+    'LavenderTown_Frlg': dict(houses=[280], dm=288),
+    'FuchsiaCity_Frlg': dict(houses=[297, 298, 299], dm=307),
+    'ViridianCity_Frlg': dict(houses=[315, 316], dm=94),
+    'LeaderAcademy_Campus': dict(houses=[58], dm=60, stalls=[173, 174, 175, 176], big=True),
+}
+STYLE_DEFAULT = dict(houses=[297, 298, 299], dm=307)
+ROOM_LIKE = [('POKEMON_CENTER', 'MAP_VIRIDIAN_POKECENTER_1F'), ('POKECENTER', 'MAP_VIRIDIAN_POKECENTER_1F'), ('_MART', 'MAP_VIRIDIAN_POKEMART')]
+
+
+def _fit(pool, w, h, k=0):
+    """the model of a pool nearest a w x h footprint (squares), and how many of it across and down; models the same
+    size taken in turn"""
+    def err(m):
+        _, _, mw, md = model_box(m)
+        nx, nz = max(1, round(w / mw)), max(1, round(h / md))
+        return abs(math.log(w / nx / mw)) + abs(math.log(h / nz / md)), nx, nz
+    best = min(err(m)[0] for m in pool)
+    same = [m for m in pool if err(m)[0] <= best + 0.3]      # (near enough: the town's houses in turn)
+    m = same[k % len(same)]
+    return m, err(m)[1], err(m)[2]
+
+
+def style_door(gba_room, owner_map, hgb, w=0, h=0, k=0):
+    """the building for a door whose room HeartGold has none for: a Center or Mart's own, else the town's house (or
+    apartment block) nearest the GBA's building's size, with the town's door -> (an entry as hgb's, the most it may
+    be scaled, whether it is the town's)"""
+    for key, like in ROOM_LIKE:
+        if key in (gba_room or ''): return hgb[like], 1.1, False
+    st = STYLE.get(owner_map, STYLE_DEFAULT)
+    pool = st['houses'] + st.get('tall', [])
+    m = _fit(pool, w, h, k)[0] if w >= 3 and h >= 3 else st['houses'][k % len(st['houses'])]
+    door = {v[0]: v for v in hgb.values()}
+    if m in door: e = door[m]
+    else:       # (a model HeartGold's towns have no door in: the town's door at its front's middle)
+        bx0, bz0, mw, md = model_box(m)
+        e = (m, (-(bx0 + mw / 2), 0.75 - (bz0 + md)), st["dm"], (0.0, -0.3), [bx0 * 16, 0, bz0 * 16, mw * 16, 0, md * 16])
+    return e, (1.6 if st.get('big') else 1.2), True
+
+
+def _houses(x0, z0, w, h, owner_map, hgb):
+    """the town's own HeartGold buildings filling a block w x h squares at x0, z0: the ones nearest its size, as
+    many as fit (apartments where the block is deep; the Academy's stalls where it is small)"""
+    st = STYLE.get(owner_map, STYLE_DEFAULT)
+    door = {v[0]: v for v in hgb.values()}
+    stalls = st.get('stalls') and (w * h <= 12 or h <= 3)
+    if stalls: pool = st['stalls']
+    elif st.get('tall') and h >= st.get('tall_h', 5): pool = st['tall']
+    else: pool = st['houses']
+    k = x0 * 7 + z0 * 3
     out = []
+    if stalls:      # (a market's tent over a cart's squares: as wide as the cart, a little taller than its scale)
+        m_ = pool[k % len(pool)]
+        bx0, bz0, mw, md = model_box(m_)
+        sc = max(0.4, min(1.0, (w + 0.6) / mw))
+        cx, cz = x0 + w / 2 - (bx0 + mw / 2) * sc, z0 + h - (bz0 + md) * sc
+        return [(m_, cx, cz, 0, (sc, max(sc, 0.6), sc))]
+    m0, nx, nz = _fit(pool, w, h, k)
+    hi = 1.6 if st.get('big') else 1.25
+    if st.get('big'):       # (the Academy's school: one, as big as the block, to half again its own size)
+        nx, nz = max(1, math.ceil(w / (model_box(m0)[2] * hi))), max(1, math.ceil(h / (model_box(m0)[3] * hi)))
+    cw, ch = w / nx, h / nz
     for i in range(nx):
         for j in range(nz):
-            # (the model's box: 2.25 west of it to 2.5 east, 2.625 north to 2.125 south; its door 1 south of it)
-            cx, cz = x0 + i * w / nx + 2.25 * sx, z0 + (j + 1) * h / nz - 2.125 * sz
-            sc = (sx, min(sx, sz), sz)
-            out.append((HOUSE, cx, cz, 0, sc))
-            out.append((HOUSE_DOOR, cx + 0.125 * sx, cz + 1.0 * sz, 0, sc))
+            m_ = _fit(pool, cw, ch, k + i + j)[0]
+            bx0, bz0, mw, md = model_box(m_)
+            sx = max(0.85, min(hi, cw / mw)); sz = max(0.85, min(hi, ch / md)); sc = min(sx, sz)
+            cx = x0 + i * cw + cw / 2 - (bx0 + mw / 2) * sx
+            cz = z0 + j * ch + ch - (bz0 + md) * sz           # (its front on the block's front)
+            out.append((m_, cx, cz, 0, (sx, sc, sz)))
+            if m_ in door and door[m_][2] is not None:       # (its door, for the look: HeartGold's offsets from it)
+                v = door[m_]
+                out.append((v[2], cx + (v[3][0] - v[1][0]) * sx, cz + (v[3][1] - v[1][1]) * sz, 0, (sc, sc, sc)))
     return out
+
+
+def prop_rect(p):
+    """a building's box on the ground, in squares: (x0, z0, x1, z1); None for a door or a sign"""
+    sc = p[4] if len(p) > 4 else (1, 1, 1)
+    bx0, bz0, mw, md = model_box(p[0])
+    if mw < 2.5: return None
+    return (p[1] + bx0 * sc[0], p[2] + bz0 * sc[2], p[1] + (bx0 + mw) * sc[0], p[2] + (bz0 + md) * sc[2])
+
+
+def room_between(x0, x1, z0, z1, mid, rects):
+    """the room left, along a row, between the buildings up already beside a box x0..x1, z0..z1 (mid: a point it must
+    keep): (left, right)"""
+    L, R = -1e9, 1e9
+    for r in rects:
+        if r is None or min(z1, r[3]) - max(z0, r[1]) <= 0.3: continue
+        if (r[0] + r[2]) / 2 < mid: L = max(L, r[2])
+        else: R = min(R, r[0])
+    return L, R
 
 
 GATE_NS, GATE_EW = 246, 247     # HeartGold's gatehouses: doors on the north and south faces, or the west and east
@@ -397,7 +513,7 @@ def plan_world(W=None, woods=False):
     # buildings: HeartGold's for the room each door leads to, its door on the GBA's door; the squares its box covers
     # (more than a third, to its door's row) closed. A door that leads nowhere HeartGold has a building for is a
     # warp on its square, the GBA's building squares left as stones
-    props, stands, door_sq, warps, done = [], set(), set(), {}, set()
+    props, stands, door_sq, warps, done, placed = [], set(), set(), {}, set(), {}
     all_warps = [(x0 + wp['x'], y0 + wp['y'], d, wp) for d, (x0, y0, w, h) in W_.items() for wp in gba_map.map_json(d).get('warp_events', [])]
     gates = {} if woods else _gates(all_warps, dest, hgb, bldg, kind)      # (a forest's ways out are its edges)
     for room, (gprops, gstands, gdoors) in gates.items():
@@ -408,31 +524,68 @@ def plan_world(W=None, woods=False):
     is_door = {(gx, gz) for gx, gz, *_ in doors}
     doors = doors + [(gx, gz, d, wp['x'], wp['y']) for gx, gz, d, wp in all_warps if (gx, gz) not in is_door and not woods
                      and hgb.get(dest.get(wp['dest_map'])) and dest.get(wp['dest_map']) not in gates and 'VICTORY' not in dest.get(wp['dest_map'])]
+    # (and a way in at the foot of a building in a town, on a square the GBA draws as open ground - the Academy's
+    # halls: a door, the town's building over it)
+    extra = {(gx, gz) for gx, gz, d, wp in all_warps if (gx, gz) not in is_door and not woods and any(t in d for t in TOWNISH)
+             and orig.get((gx, gz - 1)) in ('house', 'stone') and orig.get((gx, gz)) in walkable and not hgb.get(dest.get(wp['dest_map']))}
+    is_door |= extra
+    doors = doors + [(gx, gz, d, wp['x'], wp['y']) for gx, gz, d, wp in all_warps if (gx, gz) in extra]
     for gx, gz, d, x, y in doors:
         gm = gba_map.map_json(d)
         w = next(w for w in gm['warp_events'] if (w['x'], w['y']) == (x, y))
         room = dest.get(w['dest_map'])
         b = hgb.get(room)
         warps[(gx, gz)] = (d, w)
-        if not b or room in gates:
-            continue
-        mdl, (mdx, mdz), dmdl, dd, bx = b
-        if dmdl is not None: props.append((dmdl, gx + 0.5 + dd[0], gz + 0.5 + dd[1], 0))
-        door_sq.add((gx, gz))
-        if (bldg.get((gx, gz)), room) in done: continue      # (up already: a gate's other door, to the same room)
-        done.add((bldg.get((gx, gz)), room))
+        if room in gates: continue
+        if (gx, gz) in extra and ((gx, gz - 1) in stands or any(r == w['dest_map'] for _, r in done)): continue
         # (HeartGold's building fitted to the GBA's: squeezed or stretched a little to the closed squares round the
         # door - up the door's column, along the row above it - its door kept on the GBA's)
         shut = lambda q: orig.get(q) not in walkable and orig.get(q) not in (None, 'water', 'woods', 'tall')
         top = gz
-        while shut((gx, top - 1)) and gz - top < 12: top -= 1
+        while shut((gx, top - 1)) and gz - top < 16: top -= 1
         lx = rx = gx
-        while shut((lx - 1, gz - 1)) and gx - lx < 12: lx -= 1
-        while shut((rx + 1, gz - 1)) and rx - gx < 12: rx += 1
+        # (to halfway to the next building's door along the row: buildings side by side share their row)
+        nb = [q[0] for q in is_door if abs(q[1] - gz) <= 1 and q[0] != gx and abs(q[0] - gx) > 1 and (warps.get(q, (0, {}))[1].get('dest_map') if q in warps else None) != w['dest_map']]
+        lim_l = max([(q + gx) // 2 + 1 for q in nb if q < gx] + [gx - 16])
+        lim_r = min([(q + gx + 1) // 2 - 1 for q in nb if q > gx] + [gx + 16])
+        while shut((lx - 1, gz - 1)) and lx > lim_l: lx -= 1
+        while shut((rx + 1, gz - 1)) and rx < lim_r: rx += 1
         gw, gh = rx - lx + 1, gz - top + 1
-        sx = max(0.75, min(1.1, gw / (bx[3] / 16))) if gw >= 3 else 1.0
-        sz = max(0.75, min(1.1, gh / (bx[5] / 16))) if gh >= 3 else 1.0
+        hi, town = 1.1, False
+        if not b:
+            if (gx, gz) not in is_door or any((gx + a, gz) in door_sq for a in (-1, 1)): continue
+            o = owner.get((gx, gz))
+            if o not in STYLE:      # (a house on a route: the nearest town's)
+                cen = lambda r: (r[0] + r[2] / 2, r[1] + r[3] / 2)
+                o = min((t for t in STYLE if t in W_), key=lambda t: math.dist(cen(W_[t]), (gx, gz)))
+            b, hi, town = style_door(w['dest_map'], o, hgb, gw, gh, gx + gz)
+        mdl, (mdx, mdz), dmdl, dd, bx = b
+        if dmdl is not None: props.append((dmdl, gx + 0.5 + dd[0], gz + 0.5 + dd[1], 0))
+        door_sq.add((gx, gz))
+        if (bldg.get((gx, gz)), room or w['dest_map']) in done: continue      # (up already: a gate's other door, to the same room)
+        if room and any(abs(gx - q[0]) + abs(gz - q[1]) < 16 for q in placed.get(room, ())): continue     # (its back door)
+        done.add((bldg.get((gx, gz)), room or w['dest_map']))
+        if room: placed.setdefault(room, []).append((gx, gz))
+        rects = [prop_rect(p) for p in props]
+        if any(r and r[0] - 0.2 <= gx + 0.5 <= r[2] + 0.2 and r[1] <= gz + 0.5 <= r[3] + 1.5 for r in rects):
+            continue        # (a second door of a building up already - the Safari Zone's, a museum's back door: its door)
+        lo = 0.85 if town else 0.75
+        sx = max(lo, min(hi, gw / (bx[3] / 16))) if gw >= 3 else 1.0
+        sz = max(lo, min(hi, gh / (bx[5] / 16))) if gh >= 3 else 1.0
         cx, cz = gx + 0.5 + mdx * sx, gz + 0.5 + mdz * sz
+        if town and gw >= 3:        # (the town's own house: over the GBA's building, its door on the GBA's door)
+            cx = (lx + rx + 1) / 2 - (bx[0] + bx[3] / 2) / 16 * sx
+            cx = min(max(cx, gx + 1 - (bx[0] + bx[3]) / 16 * sx + 0.3), gx - bx[0] / 16 * sx - 0.3)
+        # (no building over another: one beside another up already kept to the room between them, its door kept)
+        x0, x1 = cx + bx[0] / 16 * sx, cx + (bx[0] + bx[3]) / 16 * sx
+        Lb, Rb = room_between(x0, x1, cz + bx[2] / 16 * sz, cz + (bx[2] + bx[5]) / 16 * sz, gx + 0.5, rects)
+        if x0 < Lb or x1 > Rb:
+            wd = min(x1 - x0, Rb - Lb)
+            if wd >= 0.6 * bx[3] / 16 and Lb <= gx + 0.2 and Rb >= gx + 0.8:
+                sx = wd / (bx[3] / 16)
+                nx0 = min(max(x0, Lb), Rb - wd)
+                nx0 = min(max(nx0, gx + 0.8 - wd), gx + 0.2)
+                cx = nx0 - bx[0] / 16 * sx
         props.append((mdl, cx, cz, 0, (sx, min(sx, sz), sz)))
         x0, x1 = cx + bx[0] / 16 * sx, cx + (bx[0] + bx[3]) / 16 * sx
         z0 = cz + bx[2] / 16 * sz
@@ -496,7 +649,16 @@ def plan_world(W=None, woods=False):
         if housey and (bw < 3 or bh < 3 or len(comp) < 0.7 * bw * bh or
                        any((c[0] + a, c[1] + b) in stands for c in comp for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1)))): continue
         if any(t in owner.get(q0, '') for t in TOWNISH):
-            props += _houses(min(xs), min(ys), bw, bh)
+            if any((c[0] + a, c[1] + b) in stands for c in comp for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                for c in comp: kind[c] = 'house'      # (what's left of a building another stands over: its ground)
+                continue
+            rects = [prop_rect(p) for p in props]
+            hs = _houses(min(xs), min(ys), bw, bh, owner.get(q0), hgb)
+            if any(min(a[2], r[2]) - max(a[0], r[0]) > 0.3 and min(a[3], r[3]) - max(a[1], r[1]) > 0.3
+                   for a in map(prop_rect, hs) if a for r in rects if r):
+                for c in comp: kind[c] = 'woods'       # (no room for a house of its own: trees)
+                continue
+            props += hs
             for c in comp: kind[c] = 'house'; stands.add(c)
         elif len(comp) >= 6 and not housey:
             for c in comp: kind[c] = 'rock'
@@ -509,6 +671,51 @@ def plan_world(W=None, woods=False):
         if v == 'house' and q not in stands:
             nb = [kind.get((q[0] + a, q[1] + b)) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]
             kind[q] = next((r for r in ('pave', 'sand') if nb.count(r) >= 1), 'grass')
+    # (a town paved all over - Saffron: its grass is its pavement)
+    for q, v in list(kind.items()):
+        if v == 'grass' and GROUND_STYLE.get(owner.get(q), {}).get('paved'): kind[q] = 'pave'
+    # (no strip of grass between two roads narrower than three squares: HeartGold's edge of the road takes a square
+    # of grass, two back to back look stitched - the strip is road)
+    roadk = ('sand', 'pave')
+    while True:
+        fill = {}
+        for q, v in kind.items():
+            if v != 'grass' or q in fill: continue
+            for dx, dz in ((1, 0), (0, 1)):
+                a_, b_ = q, q
+                while kind.get((a_[0] - dx, a_[1] - dz)) == 'grass' and (q[0] - a_[0]) + (q[1] - a_[1]) < 2: a_ = (a_[0] - dx, a_[1] - dz)
+                while kind.get((b_[0] + dx, b_[1] + dz)) == 'grass' and (b_[0] - a_[0]) + (b_[1] - a_[1]) < 2: b_ = (b_[0] + dx, b_[1] + dz)
+                ra, rb = kind.get((a_[0] - dx, a_[1] - dz)), kind.get((b_[0] + dx, b_[1] + dz))
+                if (b_[0] - a_[0]) + (b_[1] - a_[1]) < 2 and ra in roadk and rb in roadk:
+                    n = a_
+                    while True:
+                        fill[n] = ra
+                        if n == b_: break
+                        n = (n[0] + dx, n[1] + dz)
+        for q, v in kind.items():      # (and a square of grass no piece of the edge fits - road round it every which way)
+            if v != 'grass' or q in fill: continue
+            nb = [(a, b) for a in (-1, 0, 1) for b in (-1, 0, 1) if (a or b) and kind.get((q[0] + a, q[1] + b)) in roadk]
+            if nb and R.sand_piece(nb, *q)[0] == 'laid':
+                ks = [kind[(q[0] + a, q[1] + b)] for a, b in nb]
+                fill[q] = max(roadk, key=ks.count)
+        if not fill: break
+        kind.update(fill)
+    # (a city's streets: its road a square or more from anything but road, in blocks of 2x2 or more, the rest
+    # its pavement - HeartGold's Saffron and Celadon)
+    street = set()
+    for q, v in kind.items():
+        if v in roadk and GROUND_STYLE.get(owner.get(q), {}).get('street') and \
+                all(kind.get((q[0] + a, q[1] + b)) in roadk for a in (-1, 0, 1) for b in (-1, 0, 1)) and q not in door_sq and q not in warps:
+            street.add(q)
+    street = {q for q in street if any(all((q[0] + a + i, q[1] + b + j) in street for i in (0, 1) for j in (0, 1)) for a in (-1, 0) for b in (-1, 0))}
+    for q0 in list(street):         # (a street is a street: no patches of it under a dozen squares)
+        if q0 not in street: continue
+        comp, todo = {q0}, [q0]
+        while todo:
+            q = todo.pop()
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
+                if n in street and n not in comp: comp.add(n); todo.append(n)
+        if len(comp) < 12: street -= comp
     # trees: one to a 2x2 block of woods, the blocks never overlapping, the woods' edge first (build_safari)
     full = lambda x, y: all(kind.get((x + a, y + b)) == 'woods' for a in (0, 1) for b in (0, 1))
     walk = [q for q, v in kind.items() if v in walkable or v == 'water']
@@ -541,7 +748,7 @@ def plan_world(W=None, woods=False):
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
-                trees=trees, loose=loose, cell_map=cell_map)
+                trees=trees, loose=loose, cell_map=cell_map, street=street)
 
 
 def build_land(P, cx, cz, base=None):
@@ -581,17 +788,25 @@ def build_land(P, cx, cz, base=None):
             else:
                 poly(tex, [((x * 16 + u, base + h, y * 16 + v), (s, t)) for u, v, h, s, t in pts])
     # the ground's skin under each square: the GBA's things stand on grass, or on the road beside them
-    skin_k = lambda x, y: K_(x, y) if K_(x, y) in SKIN else 'grass'
-    roads = {k: {q for q, v in kind.items() if v == k and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18} for k in EDGE}
-    under = {}
+    near = lambda q: abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18
+    street = P.get('street', set())
+    owner = P['owner']
+    gst = lambda q: GROUND_STYLE.get(owner.get(q), {})
+    skin_at = lambda q: gst(q).get('street') if q in street else gst(q).get('side', SKIN['pave'])
+    edge_at = lambda q: gst(q).get('edge', EDGE['pave'])
+    # (the roads, by the edge each lays in the grass beside it)
+    roads, rskin = {}, {}
+    for q, v in kind.items():
+        if v in EDGE and near(q): roads.setdefault(edge_at(q), set()).add(q); rskin[q] = skin_at(q)
     for y in range(Z0 - 1, Z1 + 1):
         for x in range(X0 - 1, X1 + 1):
             k = K_(x, y)
             if k in ('house', 'door', 'stone', 'sign', 'fence', 'hedge'):
-                nb = [K_(x + a, y + b) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]
-                r = next((v for v in ('pave', 'sand') if nb.count(v) >= 2), None)
-                if r: roads[r].add((x, y)); under[(x, y)] = r
-    road_of = lambda x, y: under.get((x, y)) or (K_(x, y) if K_(x, y) in EDGE else None)
+                nb = [(x + a, y + b) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]
+                r = [n for n in nb if n in rskin]
+                if len(r) >= 2:
+                    roads.setdefault(edge_at(r[0]), set()).add((x, y)); rskin[(x, y)] = gst(r[0]).get('side', SKIN['pave'])
+    road_of = lambda x, y: rskin.get((x, y))
     tall = {q for q, v in kind.items() if v == 'tall' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
     water = {q for q, v in kind.items() if v == 'water' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
     level = lambda x, y: 1 if K_(x, y) == 'rock' else 0
@@ -604,9 +819,9 @@ def build_land(P, cx, cz, base=None):
             k = K_(x, y)
             r = road_of(x, y)
             if k in ('water', 'rock'): tex = None
-            elif r: tex = SKIN[r]
+            elif r: tex = r
             else:
-                nb = {rr: BS._sand_nb(roads[rr], x, y) for rr in EDGE}
+                nb = {rr: BS._sand_nb(sq, x, y) for rr, sq in roads.items()}
                 e = next(((rr, v) for rr, v in nb.items() if v), None)
                 if e: edged[(x, y)] = e; tex = None
                 else: tex = GROUND
@@ -641,7 +856,7 @@ def build_land(P, cx, cz, base=None):
                 perm[i] = 0x65 if K_(x, y + 1) in (None, 'house', 'woods', 'rock', 'fence', 'stone') and K_(x, y - 1) in ('grass', 'sand', 'pave') else 0x3E
             if (x, y) in edged:
                 rr, nb = edged[(x, y)]
-                BS._sand_edge(lambda tex, pts, rr=rr: poly(EDGE[rr] if tex == 'road01_r' else tex, pts), nb, x, y)
+                BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, pts), nb, x, y)
             if k == 'water':
                 # the water: its middle in runs; a bank down into it along each side it meets land (a strip of
                 # HeartGold's bank a side: laid by distance a thin channel came to thousands of polygons a land)
@@ -658,7 +873,7 @@ def build_land(P, cx, cz, base=None):
                 else:
                     n0 = next((n for n in R.SIDE if n in lower), lower[0])
                     rr = road_of(x + n0[0], y + n0[1])
-                    ground = SKIN[rr] if rr else GROUND
+                    ground = rr or GROUND
                     look = dict(R.LOOK, foot='wall01_h' if rr else 'wall01_g')
                     ck, what = K.classify(lower)
                     if ck == 'straight':        # (straight faces in runs along their row or column: a quad a band)
@@ -885,6 +1100,9 @@ def _clusters(items):
 WORLD_AREA_BASE = 140       # each map's area: set 18's textures, a building set of the models in and around its lands
 
 
+SEEN = 14
+
+
 def building_sets(P, hdr_of):
     """Each map of the world gets an area of its own (WORLD_AREA_BASE on: Pallet's area with a building set of its
     own) whose building set lists the models stood up in its lands and the lands round them, its texture file their
@@ -896,16 +1114,14 @@ def building_sets(P, hdr_of):
     atex, atex_btnf = read_narc(open(BR.AREA_BUILD_TEX, 'rb').read())
     areas, areas_btnf = read_narc(open(BR.AREA_DATA, 'rb').read())
     bm, _ = read_narc(open(os.path.join(slots.ROOT, 'files/a/0/4/0'), 'rb').read())
-    in_cell = {}
-    for m, px, pz, py, *_ in P['props']: in_cell.setdefault((int(px) // 32, int(pz) // 32), set()).add(m)
-    for (x, y), k in P['kind'].items():
-        if k == 'sign': in_cell.setdefault((x // 32, y // 32), set()).add(SIGN_MODEL)
+    at = [(m, px, pz) for m, px, pz, py, *_ in P['props']] + [(SIGN_MODEL, x + 0.5, y + 0.5) for (x, y), k in P['kind'].items() if k == 'sign']
     maps = sorted(set(hdr_of.values()))
     area_of, report = {}, []
     for n, X in enumerate(maps):
         mine = [c for c, m in hdr_of.items() if m == X]
-        near = {(c[0] + a, c[1] + b) for c in mine for a in (-1, 0, 1) for b in (-1, 0, 1)}
-        models = set().union(*[in_cell.get(c, set()) for c in near])
+        # (the models in its lands and those in the lands round them near enough to be seen from it - SEEN squares:
+        # one the set lacks the game draws as model 0, an empty box, so 0 is in every set)
+        models = {0} | {m for m, px, pz in at if any(c[0] * 32 - SEEN <= px < c[0] * 32 + 32 + SEEN and c[1] * 32 - SEEN <= pz < c[1] * 32 + 32 + SEEN for c in mine)}
         if X in ('MAP_PALLET', 'MAP_CINNABAR_ISLAND'):
             k = BUILD_SET
         else:

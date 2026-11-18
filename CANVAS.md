@@ -593,14 +593,36 @@ under 61,400 bytes of model (`build_land` prints the biggest).
 **Buildings** are HeartGold's own: for each GBA door, the building HeartGold's town has for that room
 (`hg_buildings`: read once off HeartGold's Kanto as it was, kept in `data/hg_buildings.json`), its door model, and
 the squares its box covers closed. Gatehouses are HeartGold's two (doors north and south: 246; west and east: 247),
-stretched or squeezed between the GBA's two doors. A room HeartGold has no building for gets a house of Fuchsia's.
+stretched or squeezed between the GBA's two doors. A room HeartGold has no building for gets **its own town's**
+(Nick: no generic red-roofed house shrunk to fit; the right asset in the right place - `STYLE`): of that town's
+HeartGold houses and apartment blocks, the one nearest the GBA building's size (Saffron's `ybc_` houses and yellow
+apartments, Celadon's `ta_` houses, hotel and condominiums, the Academy's school - Violet's, up to half again its
+size so the main hall is one building - and so on; a house on a route is the nearest town's), centred on the GBA's
+building with the town's door on the GBA's door, never shrunk below 0.85. A block of the GBA's closed squares
+with no door is filled the same way (apartments where it is 4 deep or more in Saffron and Celadon); the Academy's
+market carts are HeartGold's market tents (`msg_tn01..04`). A building never stands over another: one beside
+another up already keeps to the room between them (buildings in a row share it, halfway between their doors), a
+second door of a building up already (a back door) is only its door, and a block with no room for a house of its
+own is trees. A warp at the foot of a building in a town on a square the GBA draws open (the Academy's halls) is a
+door too.
 A cave's mouth (a warp at the foot of a rock face) is HeartGold's arch off Route 11 (`data/cave_mouth.json`),
 walked into (behaviour 0x6E).
 
+**The towns' ground** is each HeartGold town's own (`GROUND_STYLE`, its textures brought into set 18 by
+`build_interiors.py`; what each of HeartGold's towns lays most of): Saffron paved all over (`ymb_fe02`, its grass
+too) with its grey streets (`ymb_fe01`) wherever road is a square from anything else, Celadon `tama_yuka` with
+`tama_yuka2` streets the same way, the Academy `tama_yuka`, Vermilion `kbc_rd01`, Cerulean and Pewter `han_fe02`,
+Lavender `sio_fe02` (paved all over), Fuchsia `sek_fe03`; each with its own edge in the grass beside it (laid as
+`road01_r`: their edges share its layout). Routes and Viridian keep `road01`. **No stitching** (Nick: two edge
+pieces back to back look stitched): a strip of grass between two roads narrower than three squares is road, and so
+is a square of grass no edge piece fits; roads with the same edge are one road to the grass beside them.
+
 **Maps and areas**: each land is the HeartGold map of the GBA map with most squares in it (Route 23 and the Leader
 Academy get maps of ours); each of those maps gets an area of its own (140 on: set 18's textures, a building set of
-the models in its lands and the lands round them). One building set with every model came to 100 KB of textures and
-the game crashed; Celadon's, the biggest, is 50 KB.
+the models in its lands and those in the lands round it within 14 squares, `SEEN`: a model a set lacks is drawn as
+model 0, an empty box, so 0 is in every set). One building set with every model came to 100 KB of textures and
+the game crashed, and so did Saffron's at 63 KB once set 18 was 48 KB: the two together must stay near 100 KB
+(the biggest set is now 41 KB).
 
 **Doors**: a map's warps are the GBA's doors in its lands; each room's way out leads back to the door it was come
 in by (`wire`: rooms built from the GBA's layouts by its warp numbers, HeartGold's rooms by matching their ways out
