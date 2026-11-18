@@ -63,7 +63,7 @@ def textures(blob):
             pal = pals and blob  # placeholder
             texs2, pals2 = texs, pals
         # (our corner pieces of a cave floor's border share the straight piece's palette: see build_caves)
-        out[n] = (prm, data, comp, pd.get(n + '_pl') or pd.get(n) or (pd.get('droad01_r_pl') if n == 'cv_border' else pd.get('dcliff01_r_pl') if n == 'cv_rim' else None) or b'')
+        out[n] = (prm, data, comp, pd.get(n + '_pl') or pd.get(n) or pd.get(n.replace('gs', '') + '_pl') or pd.get(n.replace('gs', '')) or (pd.get('droad01_r_pl') if n == 'cv_border' else pd.get('dcliff01_r_pl') if n == 'cv_rim' else None) or b'')
     return out
 
 

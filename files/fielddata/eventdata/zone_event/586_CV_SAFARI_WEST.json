@@ -45,21 +45,21 @@
         },
         {
             "x": 40,
-            "z": 26,
+            "z": 29,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 6,
             "y": 0
         },
         {
             "x": 40,
-            "z": 27,
+            "z": 30,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 7,
             "y": 0
         },
         {
             "x": 40,
-            "z": 28,
+            "z": 31,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 8,
             "y": 0
@@ -72,8 +72,8 @@
             "y": 0
         },
         {
-            "x": 19,
-            "z": 18,
+            "x": 20,
+            "z": 19,
             "header": "MAP_CANVAS_SAFARI_WEST_REST",
             "anchor": 1,
             "y": 0
@@ -94,7 +94,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 28,
-            "z": 14,
+            "z": 15,
             "y": 0
         },
         {
@@ -111,7 +111,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 17,
-            "z": 13,
+            "z": 14,
             "y": 0
         },
         {
@@ -128,7 +128,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 16,
-            "z": 27,
+            "z": 30,
             "y": 0
         },
         {
@@ -145,7 +145,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 27,
-            "z": 24,
+            "z": 27,
             "y": 0
         }
     ],
@@ -170,7 +170,7 @@
             "scriptId": "_EV_SafariZone_West_EventScript_AreaSign + 1",
             "type": 0,
             "x": 35,
-            "z": 26,
+            "z": 29,
             "y": 0,
             "dir": 4
         },
@@ -178,7 +178,7 @@
             "scriptId": "_EV_SafariZone_West_EventScript_RestHouseSign + 1",
             "type": 0,
             "x": 22,
-            "z": 19,
+            "z": 20,
             "y": 0,
             "dir": 4
         }

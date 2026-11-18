@@ -12,8 +12,9 @@ from texview import textures, decode
 
 
 def tris(land, ox, oz):
-    ps, bs, ms, hs = struct.unpack_from('<4I', land, 0)
-    sc, shapes = bmdview.model(land[0x14 + ps + bs:0x14 + ps + bs + ms])
+    ps, bs, ms, hs, _, ss = struct.unpack_from('<4I2H', land, 0)      # (ss: a header of HeartGold's some lands have)
+    o = 0x14 + ss + ps + bs
+    sc, shapes = bmdview.model(land[o:o + ms])
     out = []
     for mat, tex, prims in shapes:
         for prim, vs in prims:

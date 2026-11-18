@@ -3,90 +3,90 @@
     "warps": [
         {
             "x": 10,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 0,
             "y": 0
         },
         {
             "x": 11,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 1,
             "y": 0
         },
         {
             "x": 12,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 2,
             "y": 0
         },
         {
             "x": 20,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 3,
             "y": 0
         },
         {
             "x": 21,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 4,
             "y": 0
         },
         {
             "x": 22,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_WEST",
             "anchor": 5,
             "y": 0
         },
         {
             "x": 48,
-            "z": 31,
+            "z": 34,
             "header": "MAP_CANVAS_SAFARI_EAST",
             "anchor": 0,
             "y": 0
         },
         {
             "x": 48,
-            "z": 32,
+            "z": 35,
             "header": "MAP_CANVAS_SAFARI_EAST",
             "anchor": 1,
             "y": 0
         },
         {
             "x": 48,
-            "z": 33,
+            "z": 36,
             "header": "MAP_CANVAS_SAFARI_EAST",
             "anchor": 2,
             "y": 0
         },
         {
             "x": 30,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 3,
             "y": 0
         },
         {
             "x": 31,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 4,
             "y": 0
         },
         {
             "x": 32,
-            "z": 34,
+            "z": 37,
             "header": "MAP_CANVAS_SAFARI_CENTER",
             "anchor": 5,
             "y": 0
         },
         {
-            "x": 43,
+            "x": 44,
             "z": 8,
             "header": "MAP_CANVAS_SAFARI_NORTH_REST",
             "anchor": 1,
@@ -142,7 +142,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 29,
-            "z": 17,
+            "z": 18,
             "y": 0
         }
     ],
@@ -151,7 +151,7 @@
             "scriptId": "_EV_SafariZone_North_EventScript_TrainerTips1 + 1",
             "type": 0,
             "x": 13,
-            "z": 27,
+            "z": 30,
             "y": 0,
             "dir": 4
         },
@@ -159,7 +159,7 @@
             "scriptId": "_EV_SafariZone_North_EventScript_AreaSign + 1",
             "type": 0,
             "x": 23,
-            "z": 31,
+            "z": 34,
             "y": 0,
             "dir": 4
         },
@@ -167,7 +167,7 @@
             "scriptId": "_EV_SafariZone_North_EventScript_TrainerTips2 + 1",
             "type": 0,
             "x": 29,
-            "z": 32,
+            "z": 35,
             "y": 0,
             "dir": 4
         },
@@ -175,7 +175,7 @@
             "scriptId": "_EV_SafariZone_North_EventScript_TrainerTips3 + 1",
             "type": 0,
             "x": 34,
-            "z": 28,
+            "z": 31,
             "y": 0,
             "dir": 4
         },

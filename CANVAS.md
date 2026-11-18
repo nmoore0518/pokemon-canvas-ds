@@ -378,10 +378,9 @@ HeartGold's doors stand in for them: Lavender's Radio Tower is the Pokemon Tower
 our 2F, Route 10's Power Plant is ours, and Vermilion's ferry building boards the S.S. Anne (its dock outside is
 left out). Not yet: Silph Co.'s elevator (a GBA dynamic warp), its card-key doors, the GBA furniture.
 The Rocket Hideout is under the Game Corner (stairs added where the GBA's hidden ones are: `ADD_WARPS`); its
-spin-tile mazes are plain floor for now. The Safari Zone's four areas are built the same way outdoors (`safari`
-look, Fuchsia's set: the GBA's trees a hedge of HeartGold's, tall grass `egrass` with HeartGold's grass behaviour,
-ponds), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the Secret House
-(Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are rooms the same way.
+spin-tile mazes are plain floor for now. The Safari Zone's four areas are built from a tile kit of HeartGold's own
+Safari Zone (below), behind a door added at the back of HeartGold's Pal Park entrance; its rest houses and the
+Secret House (Surf) are rooms (`house`). Cinnabar's Gym, Lab, Mart and the Pokemon Mansion are rooms the same way.
 **Cinnabar Island** (`build_cinnabar.py`): HeartGold's is the ruin after the eruption, so its land (205) is redrawn
 from the GBA town: HeartGold's sand, grass, sea and sea rocks, the GBA's collision, and HeartGold building models
 on the GBA's doors (Center, Mart, Gym; Oak's lab model for the Lab and the Mansion). Its warps are the GBA's, in
@@ -420,8 +419,29 @@ More, from the pass after it:
   `floor_mt` (closed in the GBA but floor: under a plant's pot). The Safari Zone's rest houses use all five.
 - **the Game Corner and Prize Room** are the GBA's layouts in the looks of HeartGold's own (`corner`, `prize`);
   HeartGold's rooms are left unused. The slot machines are not ported (no script).
-- **the Safari Zone** is drawn as HeartGold draws a route (`build_safari_floor`): its grass, tall grass, trees
-  (a shadow and a leaning card per 2x2), bushes for hedges, fences, ponds, and Fuchsia's house for a rest house.
+- **the Safari Zone** (`build_safari.py`, pieces in `route_kit.py`): HeartGold's own Safari Zone's look - its
+  texture set 75 in an area of ours (121: those textures with Fuchsia's buildings, `OWN_AREAS`) - laid a square at a
+  time from pieces read off its Plains (land 652), each chosen by the 8 squares round it:
+  - a square's kind comes from the GBA metatile where colour would lie (`SAND_MT`, `CLIFF_MT`, `FENCE_MT`,
+    `HEDGE_MT`, `STAIR_MT`; the GBA's sand edges are half grass, its boulder is cliff metatiles on their own);
+  - plateaus (elevation 4) are a tier up, sand on top; their cliff squares are HeartGold's ledge pieces: the straight
+    face (foot / face / lip: the lip `wall01_h`, sand; the foot `wall01_g` on grass, `wall01_h` on sand), its rounded
+    outside corner and `wall01_d` inside corner copied from the Plains, odd squares laid by distance. The GBA draws a
+    plateau's north edge inside its top row, so a row is added there for the face (`plan`, as caves are widened;
+    the porter moves people with it). A face beside stairs gets its side (`_cap`); stairs are Pallet's ramp and rails;
+  - tall grass: `egrass` two units up, with HeartGold's bushy edge in the quarters of the squares round it
+    (`egrass_u` along a row, `egrass_v` down a column, `egrass_ro`/`egrass_ri` round corners), merged into runs;
+  - sand: `road01`, its edge (`road01_r`) in the grass squares round it - HeartGold puts it inside the road, which
+    left the GBA's small patches nearly all edge - by the straight piece or a corner quadrant, else laid by distance;
+  - ponds: `pond_line` bank, `pond_edge`, `pond_on` (materials 0 and 2: the area's animation moves them), laid by
+    distance from the land, straight sides in runs (a pond drawn by distance everywhere was 80 KB a land);
+  - cards as HeartGold stands them (`CARDS`): trees over 2x2 blocks with their shadow, `etc_a`'s round bush for a
+    hedge, `rock01` for the boulder, `fence_b` along a row and as posts down a column, its sign model (29) on the
+    GBA's signs only (not on a sign copied into an added row);
+  - a rest house is Fuchsia's house (297, 5 squares to the GBA's 4) centred on the GBA's, its door (307) where the
+    model has it, the warp moved to it; bushes and fences under its roof go. Only warps on house metatiles are
+    doors (the ways between the areas are not). The Center's way out below the gate's roof is a path between
+    trees, as HeartGold's areas' ways out are.
 - the porter keeps people clear of doors and stairs and of each other (`clear_of`): anyone who stood three or
   more squares from someone on the GBA stays at least a square apart here.
 Still rough: the low blocks (tables, machines) are plain boxes, and inner walls are low kerbs with a flat top
