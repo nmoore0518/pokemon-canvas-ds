@@ -163,7 +163,9 @@ def build_safari_floor(spec, depth_of):
             bad = [(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1) if K_(x + dx, y + dy) is not None and not level(x + dx, y + dy)]
             assert not bad, ('a plateau with no cliff between it and the ground', spec['gba'], (x, y), bad)
     tall = {q for q, v in kind.items() if v == 'tall'}
-    sand = {q for q, v in kind.items() if v == 'sand'}
+    # the ground first, then what stands on it: under a fence, a sign, a bush or a house the ground is the GBA's
+    # (its metatile's bottom layer), so a path runs on under them and ends with its edge as it does elsewhere
+    sand = {q for q, v in kind.items() if v == 'sand' or (v in OBJECTS and _sand_under(lay, lay.metatile(*q)))}
     water = {q for q, v in kind.items() if v == 'water'}
     # trees: HeartGold's, one to a 2x2 block of woods, the blocks never overlapping (HeartGold's trees stand two
     # squares apart; one to every block that fits stood them a square apart, a thicket)
@@ -235,8 +237,8 @@ def build_safari_floor(spec, depth_of):
                     k = K_(x, y)
                     if k in ('water', 'cliff', 'stairs', 'gate'): tex = None
                     elif k == 'top': tex = (TOP, R.TIER)
-                    elif k == 'sand': tex = (SAND, 0)
-                    elif k == 'grass' and _sand_nb(sand, x, y): tex = None
+                    elif (x, y) in sand: tex = (SAND, 0)
+                    elif k in ON_GROUND and _sand_nb(sand, x, y): tex = None
                     else: tex = (GROUND, 0)
                     if runs and runs[-1][0] == tex and runs[-1][2] == x: runs[-1][2] = x + 1
                     else: runs.append([tex, x, x + 1])
@@ -260,7 +262,7 @@ def build_safari_floor(spec, depth_of):
                     elif k == 'water': perm[i] = 0x0010
                     elif k == 'stairs': perm[i] = 0x0000
                     if (x, y) in warp_beh: perm[i] = warp_beh[(x, y)]
-                    if k == 'grass' and _sand_nb(sand, x, y):
+                    if k in ON_GROUND and (x, y) not in sand and _sand_nb(sand, x, y):
                         _sand_edge(poly, _sand_nb(sand, x, y), x, y)
                     elif k == 'water':
                         land = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and (x + dx, y + dz) not in water]
@@ -275,7 +277,7 @@ def build_safari_floor(spec, depth_of):
                             flat(TOP, x, y, x + 1, y + 1, R.TIER)
                         else:
                             n0 = next((n for n in R.SIDE if n in lower), lower[0])
-                            ground = SAND if K_(x + n0[0], y + n0[1]) == 'sand' else GROUND
+                            ground = SAND if (x + n0[0], y + n0[1]) in sand else GROUND
                             look = dict(R.LOOK, foot='wall01_h' if ground == SAND else 'wall01_g')
                             piece(x, y, R.rock_piece(lower, x, y, LAND_NARC, look), 0, ground)
                             # the face's end against stairs: its side, down to the ground
@@ -348,6 +350,19 @@ def _runs(xs):
         if out and out[-1][1] == x: out[-1][1] = x + 1
         else: out.append([x, x + 1])
     return out
+
+
+OBJECTS = ('fence', 'sign', 'hedge', 'boulder', 'blank', 'woods', 'house', 'door')     # (things standing on the ground)
+ON_GROUND = ('grass', 'tall') + OBJECTS
+_under = {}
+
+
+def _sand_under(lay, m):
+    """is the ground under a GBA metatile's things sand (its bottom layer mostly sand)"""
+    if m not in _under:
+        px = [c for c in lay.render_metatile(m, layers=(0,)).convert('RGBA').getdata() if c[3]]
+        _under[m] = bool(px) and sum(1 for c in px if c[0] > c[2] + 40 and c[0] >= c[1] - 10) >= len(px) / 2
+    return _under[m]
 
 
 def _sand_nb(sand, x, y):

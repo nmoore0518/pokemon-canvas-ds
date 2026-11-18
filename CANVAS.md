@@ -315,6 +315,10 @@ stretched, squeezed or warped) and has the same edge on every side, so any piece
 layout is too tight for whole pieces, widen the map rather than squeeze a piece. Use HeartGold's own piece where
 it has one, and make a piece only where it has none (from its own textures, in its own colours: the floor border's
 corner pictures are drawn from its straight piece), and only as many as the texture set has room for (56 KB).
+**Ground first, then what stands on it** (Nick, from the Safari Zone's paths): a square's ground is laid as the
+GBA's ground under it (the bottom layer of its metatile: sand under a sign, a fence, a bush, a house), and its
+things (signs, fences, bushes, trees, buildings) stand on that. A path never stops square at a thing standing on
+it: it runs on underneath and ends with its own edge, as it does in the open.
 Before checking a map in game: hold the area's animated material slots (`anim_slots`), check the model sizes
 (61400) and the texture set's size, look for holes with `landview.py`, then look at it in game.
 
@@ -439,6 +443,8 @@ More, from the pass after it:
   - trees stand two squares apart, as HeartGold's do: one to a 2x2 block of woods, the blocks never overlapping,
     taken from the woods' edge inwards (one to every block that fits made a thicket); a square of woods left over
     at the edge is a round bush;
+  - the ground under fences, signs, bushes, trees and houses is the GBA metatile's bottom layer (`_sand_under`),
+    so the sand runs on under them and its edge lies round them as anywhere else (`OBJECTS`, `ON_GROUND`);
   - ways out stay open: a way out's path past its warp is the GBA's sand (closed) and drawn as sand, never woods;
     a fence, hedge or sign copied into a row we added becomes closed grass (or the fence is two deep);
   - cards as HeartGold stands them (`CARDS`): trees over 2x2 blocks with their shadow, `etc_a`'s round bush for a
