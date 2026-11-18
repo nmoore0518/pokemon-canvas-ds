@@ -1,7 +1,7 @@
 """Canvas: Cinnabar Island as the GBA game has it, in place of HeartGold's (the ruin after the eruption, with only
 its Pokemon Center).
 
-The GBA town (24x20), widened to 32x26 (INS_COLS, INS_ROWS: HeartGold's buildings are bigger than the GBA's,
+The GBA town (24x20), widened to 28x26 (INS_COLS, INS_ROWS: HeartGold's buildings are bigger than the GBA's,
 and its island was cramped), is drawn into HeartGold's Cinnabar land (205, matrix cell 32,15) at its east and north
 edges, where the GBA's Route 20 and Route 21 meet it; the rest of the land is sea. The ground is grass in the middle
 with a beach two squares wide all round it (in the south the GBA's own sand and grass), HeartGold's road edge in
@@ -51,13 +51,14 @@ ROOMS = {   # GBA room -> our map (HeartGold's Center for the Center)
     'MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F': 'MAP_CINNABAR_ISLAND_POKECENTER_1F',
 }
 # the GBA's island is small for HeartGold's buildings (they stood wall to wall): it is widened. Columns put in
-# before the GBA's columns 5 (the west shore), 12 (between the Lab and the Center), 17 (between the Center and
-# the Mart, and the Gym and the grass) and 23 (the east shore); rows on top (a sea row and a beach behind the
-# Mansion and the Gym) and before its row 6 (the way between the Mansion and Gym and the Lab, Center and Mart).
-# What is put in copies a GBA column (row) beside it, its buildings and signs as open ground
-# (HeartGold's buildings are wider than the GBA's: its Gym reaches past the GBA's east shore, its Lab into its
-# Center.) One of the GBA's three columns of sea west of the island is left out, for room
-INS_COLS = {5: (2, 5), 12: (2, 12), 17: (1, 17), 23: (4, 22)}     # before column: (how many, copying column)
+# before the GBA's columns 5 (the west shore), 12 (between the Lab and the Center) and 23 (one, so the east shore
+# runs straight down past the Gym's east wall, as the GBA's - its Missingno. coast: the Center and Mart stand side
+# by side as the GBA's, and HeartGold's Mart, wider, meets that shore too); rows on top (a sea row and a beach
+# behind the Mansion and the Gym) and before its row 6 (the way between the Mansion and Gym and the Lab, Center
+# and Mart). What is put in copies a GBA column (row) beside it, its buildings and signs as open ground.
+# (HeartGold's buildings are wider than the GBA's: its Lab reached into its Center.) One of the GBA's three columns
+# of sea west of the island is left out, for room
+INS_COLS = {5: (2, 5), 12: (2, 12), 23: (1, 22)}     # before column: (how many, copying column)
 DROP_COLS = {3}
 TOP, INS_ROWS = 3, {6: 3}
 nx = lambda x: x - sum(1 for d in DROP_COLS if d < x) + sum(n for c, (n, _) in INS_COLS.items() if c <= x)
@@ -301,6 +302,19 @@ def main():
     for lid, edge in ((NORTH, lambda v: v[2] >= 246), (EAST, lambda v: v[0] <= -239)):
         land[lid], n = landedit.strip(land[lid], foam(edge))
         if n: print('Cinnabar: %d faces of the old shore out of land %d' % (n, lid))
+    # Route 20's crag just off the town's east shore (HeartGold's, a piece of its volcano): out, its squares sea, so
+    # the shore runs straight down the east as the GBA's (its Missingno. coast). (Its heights are the sea's already)
+    lo, hi = lambda a: a * 16 - 256 - 0.5, lambda a: a * 16 - 256 + 0.5
+    crag = lambda tex, vs: tex in ('cliff01gs', 'wall01_d', 'pond_line', 'sea_line02') and \
+        all(v[0] <= hi(5) and lo(11.5) <= v[2] <= hi(17) for v in vs)
+    land[EAST], n = landedit.strip(land[EAST], crag)
+    if n: print('Cinnabar: %d faces of the crag off its east shore out of land %d' % (n, EAST))
+    ss = struct.unpack_from('<4I2H', land[EAST], 0)[5]
+    e = bytearray(land[EAST])
+    for z in range(12, 17):
+        for x in range(0, 5):
+            if struct.unpack_from('<H', e, 0x14 + ss + 2 * (z * 32 + x))[0] == 0x8000: struct.pack_into('<H', e, 0x14 + ss + 2 * (z * 32 + x), 0x0015)
+    land[EAST] = bytes(e)
     land[LAND] = struct.pack('<4I2H', len(p), len(bld), len(model), len(bdhc), 0x1234, 0) + p + bld + model + bdhc
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     # the town's warps: the GBA's, in its order

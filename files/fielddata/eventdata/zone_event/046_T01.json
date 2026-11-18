@@ -4,48 +4,48 @@
         {
             "scriptId": "_EV_PalletTown_EventScript_OaksLabSign + 1",
             "type": 0,
-            "x": 1053,
-            "z": 380,
+            "x": 1042,
+            "z": 365,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PalletTown_EventScript_PlayersHouseSign + 1",
             "type": 0,
-            "x": 1023,
-            "z": 400,
+            "x": 1036,
+            "z": 379,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PalletTown_EventScript_RivalsHouseSign + 1",
             "type": 0,
-            "x": 1048,
-            "z": 360,
+            "x": 1053,
+            "z": 380,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PalletTown_EventScript_NeighborsHouseSign + 1",
             "type": 0,
-            "x": 1027,
-            "z": 360,
+            "x": 1044,
+            "z": 379,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PalletTown_EventScript_House2Sign + 1",
             "type": 0,
-            "x": 1024,
-            "z": 373,
+            "x": 1067,
+            "z": 378,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PalletTown_EventScript_TownSign + 1",
             "type": 0,
-            "x": 1042,
-            "z": 365,
+            "x": 1036,
+            "z": 401,
             "y": 0,
             "dir": 4
         },
@@ -312,8 +312,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 1026,
-            "z": 376,
+            "x": 1050,
+            "z": 366,
             "y": 0
         },
         {
@@ -329,8 +329,8 @@
             "param2": 0,
             "xRange": 3,
             "yRange": 2,
-            "x": 1065,
-            "z": 364,
+            "x": 1059,
+            "z": 383,
             "y": 0
         },
         {
@@ -346,8 +346,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1040,
-            "z": 365,
+            "x": 1031,
+            "z": 383,
             "y": 0
         },
         {

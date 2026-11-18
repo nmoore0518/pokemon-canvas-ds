@@ -87,7 +87,7 @@ _cv_yn_2:
 	ClearFlag 0x2067
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	Warp MAP_CINNABAR_ISLAND, 0, 1041, 497, DIR_SOUTH
+	Warp MAP_CINNABAR_ISLAND, 0, 1045, 497, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll

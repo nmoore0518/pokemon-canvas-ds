@@ -9,7 +9,7 @@ Writes, idempotently:
   files/fielddata/build_model/bm_field.narc (+ matshp)      recoloured houses as models 340..342
   files/fielddata/eventdata/zone_event/046_T01.json         warps, signs and people at our positions
 """
-import colorsys, json, os, struct, sys
+import colorsys, json, math, os, struct, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from nitro import read_narc, write_narc, read_dict, patricia, read_tex0, tex0_of, write_btx0, u16, u32
@@ -238,6 +238,21 @@ _t, _p = read_tex0(ts_files[TEXSET], tex0_of(ts_files[TEXSET]))
 _st, _sp = statue_texture()
 _et, _ep = sand_edge_texture(_t, _p)
 _it, _ip = imported(('sek_fe01', 'sek_fe02'), 16)
+_it2, _ip2 = imported(('nib_stone',), 17)       # (the stone lanterns' globes on the bridge's piers)
+_it, _ip = _it + _it2, _ip + _ip2
+# (the bridge's deck: the paving in a warm grey, darker than its dressed stone trim, cv_deck)
+_src = next(t for t in _it if t[0] == b'sek_fe02'); _srcp = next(q for q in _ip if q[0] in (b'sek_fe02_pl', b'sek_fe02'))
+
+
+def _warm(c):
+    r, g, b = c & 31, (c >> 5) & 31, (c >> 10) & 31
+    l = (r * 30 + g * 59 + b * 11) / 100
+    r, g, b = [max(0, min(31, int(round(v)))) for v in (l * 0.80 + 2.2, l * 0.76 + 1.6, l * 0.70 + 0.8)]
+    return r | g << 5 | b << 10
+
+
+_it.append((b'cv_deck',) + tuple(_src[1:]))
+_ip.append((b'cv_deck_pl', _srcp[1], b''.join(struct.pack('<H', _warm(struct.unpack_from('<H', _srcp[2], i)[0])) for i in range(0, len(_srcp[2]) - 1, 2))))
 _new_t, _new_p = [_st, _et] + _it, [_sp, _ep] + _ip
 _t = [t for t in _t if t[0] not in {e[0] for e in _new_t}] + _new_t
 _p = [p for p in _p if p[0] not in {e[0] for e in _new_p}] + _new_p
@@ -256,7 +271,7 @@ pal_of = lambda t: PAL_NAME.get(t) or next(p for p in (t + '_pl', t, t.replace('
 # there would scroll.
 ANIM_SLOTS = ['pond_on', 'swave_p', 'pond_edge', 'sea_line02', 'sea_un', 'sea_on', 'river', 'river_r']
 MATS = ['sea_un', 'sea_on', 'sea_line02', 'road01_r', 'road01', 'road05', 'grass01gs', 'cliff01gs', 'wall01_g', 'wall01_h', 'wall01_d',
-        'slope', 'pond_line', 'sek_fe01', 'sek_fe02', 'cv_sand_r', 'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
+        'slope', 'pond_line', 'sek_fe01', 'sek_fe02', 'cv_deck', 'nib_stone', 'cv_sand_r', 'flower01', 'flower02', 'tree01_un', 'fence_a', 'tree01gs', STATUE_TEX]
 
 # ---------------------------------------------------------------- per-land geometry
 class Land:
@@ -504,37 +519,86 @@ for y in range(RH):
             if x2 == x + 1: wall_x(tex, x + 1, y, min(a, other), max(a, other), 16, (1 if a > other else -1, 0, 0))
             else: wall_z(tex, x, y + 1, min(a, other), max(a, other), 16, (0, 0, 1 if a > other else -1))
 
-# ---- the stone bridge: a deck of Fuchsia's stone slabs (sek_fe02) level with the gardens, from wall top to wall
-# top; its sides an arch of stone blocks (sek_fe01) over the road, springing from the walls' feet; a low parapet
-# along each side
+# ---- the stone bridge, the town's gateway between its two north gardens: brick (Fuchsia's, sek_fe01) and dressed
+# stone (its paving, sek_fe02, a slab to a block). Each face an arch over the road - a ring of voussoirs with a
+# keystone, proud of the brickwork -, a string course along the deck, a parapet with a coping; a pier at each end
+# where it meets the gardens' walls, standing above the parapet, capped, with a stone lantern's globe (nib_stone)
 def bridge():
-    x0, x1, z0, z1 = BRIDGE[0] + 1 - 0.67, BRIDGE[1] + 0.67, BRIDGE[2], BRIDGE[3] + 1
-    top, deck = Y(RAISE), Y(RAISE) - 5
-    road = Y(0.0)
-    a, b = BRIDGE[0] + 1, BRIDGE[1]                 # (the arch springs at the walls)
-    under = lambda x: deck if not a < x < b else road + (deck - road) * max(0.0, 1 - ((x - (a + b) / 2) / ((b - a) / 2)) ** 2) ** 0.5
-    poly('sek_fe02', [((x0, top, z1), (x0 * 16, z1 * 16)), ((x1, top, z1), (x1 * 16, z1 * 16)), ((x1, top, z0), (x1 * 16, z0 * 16)), ((x0, top, z0), (x0 * 16, z0 * 16))])
-    steps = 20
-    for z in (z1, z0):
-        for i in range(steps):
-            xa, xb = a + (b - a) * i / steps, a + (b - a) * (i + 1) / steps
-            ya, yb = min(top, under(xa)), min(top, under(xb))
-            q = [((xa, ya, z), (xa * 16, 32 + (top - ya))), ((xb, yb, z), (xb * 16, 32 + (top - yb))), ((xb, top, z), (xb * 16, 32)), ((xa, top, z), (xa * 16, 32))]
-            poly('sek_fe01', q); poly('sek_fe01', q[::-1])        # (seen from either side)
-        # (the soffit: under the arch, seen walking under it)
-    for i in range(steps):
-        xa, xb = a + (b - a) * i / steps, a + (b - a) * (i + 1) / steps
-        ya, yb = under(xa), under(xb)
-        poly('sek_fe01', [((xa, ya, z0), (xa * 16, z0 * 16)), ((xb, yb, z0), (xb * 16, z0 * 16)), ((xb, yb, z1), (xb * 16, z1 * 16)), ((xa, ya, z1), (xa * 16, z1 * 16))])
-    # parapets: a low wall a fifth of a square thick along each side
-    for zo, zi in ((z0, z0 + 0.2), (z1, z1 - 0.2)):
-        ph = top + 7
-        poly('sek_fe01', [((x0, ph, max(zo, zi)), (x0 * 16, 0)), ((x1, ph, max(zo, zi)), (x1 * 16, 0)), ((x1, ph, min(zo, zi)), (x1 * 16, 4)), ((x0, ph, min(zo, zi)), (x0 * 16, 4))])
-        for z in (zo, zi):
-            poly('sek_fe01', [((x0, top, z), (x0 * 16, 7)), ((x1, top, z), (x1 * 16, 7)), ((x1, ph, z), (x1 * 16, 0)), ((x0, ph, z), (x0 * 16, 0))])
-        for x in (x0, x1):
-            poly('sek_fe01', [((x, top, zo), (0, 7)), ((x, top, zi), (4, 7)), ((x, ph, zi), (4, 0)), ((x, ph, zo), (0, 0))])
+    a, b = BRIDGE[0] + 1, BRIDGE[1]                 # (the walls' faces: the arch springs from them)
+    z0, z1 = BRIDGE[2], BRIDGE[3] + 1
+    top, road = Y(RAISE), Y(0.0)
+    cx, rx, ry, ring = (a + b) / 2, (b - a) / 2, 8.0, 3.5      # (the arch: span, rise; the ring's depth, units)
+    course = (top - 2.5, top + 0.5)                 # (the string course)
+    par, cope = top + 8, top + 10                   # (the parapet, its coping)
+    pier_top, cap_top = top + 14, top + 16.5
+    pw = 0.45                                       # (the piers' width, squares)
+    U16 = lambda v: v * 16
 
+    def box(tex, x0, x1, y0, y1, za, zb):
+        """a block: its top and four sides (s, t in units), each seen from either side"""
+        def both(vs): poly(tex, vs); poly(tex, vs[::-1])
+        both([((x0, y1, zb), (U16(x0), U16(zb))), ((x1, y1, zb), (U16(x1), U16(zb))), ((x1, y1, za), (U16(x1), U16(za))), ((x0, y1, za), (U16(x0), U16(za)))])
+        for z in (zb, za):
+            both([((x0, y0, z), (U16(x0), 64 - y0)), ((x1, y0, z), (U16(x1), 64 - y0)), ((x1, y1, z), (U16(x1), 64 - y1)), ((x0, y1, z), (U16(x0), 64 - y1))])
+        for x in (x1, x0):
+            both([((x, y0, zb), (U16(zb), 64 - y0)), ((x, y0, za), (U16(za), 64 - y0)), ((x, y1, za), (U16(za), 64 - y1)), ((x, y1, zb), (U16(zb), 64 - y1))])
+
+    # the faces lean back as HeartGold's cliffs do (seen from above, a face standing straight up is a line): the foot
+    # a third of a square out over the road, the top a third back; the deck between their tops
+    LEAN = (0.35, 0.3)
+    Zf = {1: lambda y: z1 + LEAN[0] - sum(LEAN) * (min(y, top) - road) / (top - road),
+          -1: lambda y: z0 - LEAN[0] + sum(LEAN) * (min(y, top) - road) / (top - road)}
+    zt0, zt1 = Zf[-1](top), Zf[1](top)
+    x0, x1 = a - 0.67, b + 0.67
+    poly('cv_deck', [((x0, top, zt1), (x0 * 16, zt1 * 16)), ((x1, top, zt1), (x1 * 16, zt1 * 16)), ((x1, top, zt0), (x1 * 16, zt0 * 16)), ((x0, top, zt0), (x0 * 16, zt0 * 16))])
+    ell = lambda r_x, r_y, x: road + r_y * max(0.0, 1 - ((x - cx) / r_x) ** 2) ** 0.5 if abs(x - cx) < r_x else road
+    N = 20
+    xs = [a + (b - a) * i / N for i in range(N + 1)]
+
+    def both(tex, vs): poly(tex, vs); poly(tex, vs[::-1])
+    for out in (1, -1):
+        Z = Zf[out]
+        P = lambda x, y, d=0.0: (x, y, Z(y) + out * d)          # (a point on the face; d out from it)
+        # brickwork: from the ring's back up to the string course
+        for xa, xb in zip(xs, xs[1:]):
+            ya, yb = ell(rx + ring / 16, ry + ring, xa), ell(rx + ring / 16, ry + ring, xb)
+            both('sek_fe01', [(P(xa, ya), (xa * 16, 64 - ya)), (P(xb, yb), (xb * 16, 64 - yb)), (P(xb, course[0]), (xb * 16, 64 - course[0])), (P(xa, course[0]), (xa * 16, 64 - course[0]))])
+        # the ring: eleven voussoirs, a slab of dressed stone each, the middle one the keystone (taller, further out),
+        # each standing out of the brick with its outer edge showing
+        V = 11
+        for k in range(V):
+            t0, t1 = math.pi * (1 - k / V), math.pi * (1 - (k + 1) / V)
+            key = k == V // 2
+            dd = ring + (3.0 if key else 0)
+            d = 0.07 if key else 0.04
+            pi = [(cx + rx * math.cos(t), road + ry * math.sin(t)) for t in (t0, t1)]
+            po = [(cx + (rx + dd / 16) * math.cos(t), road + (ry + dd) * math.sin(t)) for t in (t0, t1)]
+            sx = 16 * (k % 4)
+            both('sek_fe02', [(P(*pi[0], d), (sx, 16)), (P(*pi[1], d), (sx + 16, 16)), (P(*po[1], d), (sx + 16, 0)), (P(*po[0], d), (sx, 0))])
+            both('sek_fe02', [(P(*po[0], d), (sx, 0)), (P(*po[1], d), (sx + 16, 0)), (P(*po[1]), (sx + 16, 3)), (P(*po[0]), (sx, 3))])
+        # the string course, standing out along the deck's edge
+        za, zb = sorted((Z(top) - out * 0.02, Z(top) + out * 0.1))
+        box('sek_fe02', a, b, course[0], course[1], za, zb)
+        # the parapet: brick, a fifth of a square thick; its coping a slab wider; a post of dressed stone every square
+        pz = sorted((Z(top), Z(top) - out * 0.22))
+        box('sek_fe01', a + pw / 2, b - pw / 2, course[1], par, *pz)
+        box('sek_fe02', a + pw / 2, b - pw / 2, par, cope, pz[0] - 0.05, pz[1] + 0.05)
+        for k in range(1, int(b - a)):
+            box('sek_fe02', a + k - 0.12, a + k + 0.12, par, cope + 2.5, pz[0] - 0.07, pz[1] + 0.07)
+    # the arch's soffit, seen walking under it
+    for xa, xb in zip(xs, xs[1:]):
+        ya, yb = ell(rx, ry, xa), ell(rx, ry, xb)
+        poly('sek_fe01', [((xa, ya, Zf[-1](ya)), (xa * 16, z0 * 16)), ((xb, yb, Zf[-1](yb)), (xb * 16, z0 * 16)), ((xb, yb, Zf[1](yb)), (xb * 16, z1 * 16)), ((xa, ya, Zf[1](ya)), (xa * 16, z1 * 16))])
+    # the piers, on the walls' line, the bridge's depth and a little more; capped; a lantern's globe on each end
+    for px in (a, b):
+        pa, pb = px - pw / 2, px + pw / 2
+        za, zb = z0 - LEAN[0] - 0.1, z1 + LEAN[0] + 0.1
+        box('sek_fe01', pa, pb, road, pier_top, za, zb)
+        box('sek_fe02', pa - 0.07, pb + 0.07, pier_top, pier_top + 1.5, za - 0.07, zb + 0.07)
+        box('sek_fe02', pa + 0.03, pb - 0.03, pier_top + 1.5, cap_top, za + 0.05, zb - 0.05)
+        for gz in (zb - 0.1, za + 0.45):
+            g0, g1, h = px - 0.4, px + 0.4, 15.0
+            both('nib_stone', [((g0, cap_top - 0.5, gz + 0.1), (6, 29)), ((g1, cap_top - 0.5, gz + 0.1), (26, 29)), ((g1, cap_top + h, gz - 0.3), (26, 5)), ((g0, cap_top + h, gz - 0.3), (6, 5))])
 
 bridge()
 
