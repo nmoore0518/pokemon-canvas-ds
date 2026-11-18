@@ -463,7 +463,13 @@ The looks (each HeartGold's own place of that kind):
   machine cabinets; the GBA's rubble as Mt. Moon's boulder card, its coils as blocks of the generator's yellow;
 - **the Pokemon Mansion**: the Burned Tower (area 78, land 449): charred plank walls (scorched now and then), its
   wooden floor, charred blocks for its furniture, the Sprout Tower's stairs.
-Not yet: Silph Co.'s elevator and card-key doors, the Mansion's statue switches (they change walls).
+- **the S.S. Anne inside** (not its deck): HeartGold's S.S. Aqua (area 42, land 643): its patterned carpet, cream
+  walls with portholes, its cabin doors, HeartGold's ship furniture; a mat before each cabin's way in.
+**Low walls**: a wall three or more squares deep with walkable floor along its north side (the S.S. Anne's block of
+cabins, walked round on every side) would stand HeartGold's wall over that walkway: it is a low wall instead, the
+kit's top a little off the floor with its faces round it.
+Not yet: Silph Co.'s elevator and card-key doors (its doors stand open: the GBA's map scripts close them), the
+Mansion's statue switches (they change walls).
 
 ### How a big interior is drawn now (`build_ship_floor`, from the S.S. Anne redo)
 

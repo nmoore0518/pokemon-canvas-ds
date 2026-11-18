@@ -296,7 +296,19 @@ def build_kit_floor(spec, depth_of):
             if KIT.get('low_inner') and not any(0 <= q[0] + dx < W and 0 <= q[1] + dy < H and isvoid(q[0] + dx, q[1] + dy) for q in comp for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
                 thin |= set(comp)
     inside |= thin
-    is_wall = lambda x, y: wall0(x, y) and (x, y) not in thin
+    # (a thick wall - a block of rooms the GBA has walkways all round, as the S.S. Anne's cabins - with walkable floor
+    # along its north side: HeartGold's tall wall would stand over that walkway; it is a low wall, the kit's top
+    # at a low height with its faces round it)
+    lowwall = set()
+    for x in range(W):
+        y = 0
+        while y < H:
+            if not (wall0(x, y) and (x, y) not in thin): y += 1; continue
+            y0 = y
+            while y < H and wall0(x, y) and (x, y) not in thin: y += 1
+            if y - y0 >= 3 and walk(x, y0 - 1): lowwall |= {(x, k) for k in range(y0, y)}
+    LOW_H = KIT.get('low_h', 10)
+    is_wall = lambda x, y: wall0(x, y) and (x, y) not in thin and (x, y) not in lowwall
     block = {s for s in inside if s not in furn and s not in closed}      # (closed, inside a room, no furniture of ours: the kit's block)
     base = KIT['base']
     lid = KIT['src']
@@ -399,6 +411,24 @@ def build_kit_floor(spec, depth_of):
                         face[f].lay(emit, x, y)
                     elif not top_flat:
                         top_p.lay(emit, x, y)
+                # a way in through a low wall (the S.S. Anne's cabins, entered going south): a mat before it
+                if KIT.get('mat'):
+                    for x in range(X0, X1):
+                        if (x, y) in warps and (x, y + 1) in lowwall:
+                            mt_, mw, mh = KIT['mat']
+                            emit(mt_, (0, 0, 31, None), [(x + 0.1, 0.5, y + 0.9, 0, mh), (x + 0.9, 0.5, y + 0.9, mw, mh), (x + 0.9, 0.5, y + 0.1, mw, 0), (x + 0.1, 0.5, y + 0.1, 0, 0)])
+                # low walls: the kit's top at a low height, its plain face's texture down each side by floor
+                if top_flat:
+                    tt, to, ty, ta, tb, tc, td = top_flat
+                    for x0_, n_ in _runs([x for x in range(X0, X1) if (x, y) in lowwall]):
+                        run_quad(tt, to, LOW_H, x0_, x0_ + n_, y, y + 1, ta, tb, tc, td)
+                    for x in range(X0, X1):
+                        if (x, y) not in lowwall: continue
+                        for dx, dy in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+                            if (x + dx, y + dy) in lowwall or not is_floor(x + dx, y + dy): continue
+                            if dy: zz = y + (1 if dy > 0 else 0); a_, b_ = (x, zz), (x + 1, zz)
+                            else: xx = x + (1 if dx > 0 else 0); a_, b_ = (xx, y), (xx, y + 1)
+                            emit(tt, to, [(a_[0], 0, a_[1], 0, 16), (b_[0], 0, b_[1], 16, 16), (b_[0], LOW_H, b_[1], 16, 0), (a_[0], LOW_H, a_[1], 0, 0)])
                 # closed squares inside a room with no furniture of the kit's: its block
                 for x in range(X0, X1):
                     if (x, y) not in block: continue

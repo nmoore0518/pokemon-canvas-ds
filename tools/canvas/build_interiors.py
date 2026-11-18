@@ -91,6 +91,11 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
         slides={0x54: (0x40, 'right'), 0x55: (0x41, 'left'), 0x56: (0x42, 'up'), 0x57: (0x43, 'down'), 0x58: (0x4D, 'stop')},
         arrow='to_j_i1', stop='to_j_mark', low_inner=True,
         block=(19, 9, 1, 2), block_src=499, block_keep={'aj_box01', 'h_kage'}, block_at=(0, -0.56), untextured=(64, 80, 104))),
+    # the S.S. Anne inside (not its deck) in HeartGold's S.S. Aqua (area 42, its 1F, land 643): its patterned carpet,
+    # cream walls with portholes, its cabin doors, the hull's top; HeartGold's ship furniture (SHIP_FURNITURE)
+    'shipkit': dict(area=42, stairs=(7, 8, 9, 10), furniture=True, kit=dict(
+        src=643, base=-2, floor=(14, 12), floor_tex={'maq_rm03'}, top=(10, 6),
+        faces={'plain': (15, 8), 'door': (13, 8), 'lit': (4, 2)}, lit_every=3, face_drop={'h_kage'}, mat=('d_mat01', 32, 16))),
     'ship': dict(area=42, ship=True),         # the S.S. Anne: SHIP below
     # Celadon's Game Corner and its Prize Room, in the looks of HeartGold's own (whose rooms are laid out for other
     # games: its Game Corner is the Voltorb Flip hall, its prize room a third the size of the GBA's)
@@ -142,18 +147,18 @@ INTERIORS = (
     [dict(gba='PowerPlant_Frlg', map='MAP_CANVAS_POWER_PLANT', look='plant', template='MAP_ROUTE_10_POWER_PLANT_REPAIRED',
           depth=0, exits={'MAP_ROUTE10': ('MAP_ROUTE_10', 1)})] +
     # the S.S. Anne: HeartGold's ferry building at Vermilion's dock leads aboard (the GBA's dock outside is left out)
-    [dict(gba='SSAnne_1F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_1F', look='ship', template=SS, depth=-1,
+    [dict(gba='SSAnne_1F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_1F', look='shipkit', template=SS, depth=-1,
           exits={'MAP_SSANNE_EXTERIOR': ('MAP_VERMILION', 7)}),
-     dict(gba='SSAnne_2F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_2F', look='ship', template=SS, depth=-2),
-     dict(gba='SSAnne_3F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_3F', look='ship', template=SS, depth=-3),
-     dict(gba='SSAnne_B1F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_B1F', look='ship', template=SS, depth=0),
+     dict(gba='SSAnne_2F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_2F', look='shipkit', template=SS, depth=-2),
+     dict(gba='SSAnne_3F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_3F', look='shipkit', template=SS, depth=-3),
+     dict(gba='SSAnne_B1F_Corridor_Frlg', map='MAP_CANVAS_SSANNE_B1F', look='shipkit', template=SS, depth=0),
      # (the bow is small on the GBA: six columns and two rows of planks more)
      dict(gba='SSAnne_Deck_Frlg', map='MAP_CANVAS_SSANNE_DECK', look='ship', template=SS, depth=-4,
           widen=dict(cols=[(9, 3), (11, 3)], rows=[(10, 2)])),
-     dict(gba='SSAnne_Kitchen_Frlg', map='MAP_CANVAS_SSANNE_KITCHEN', look='ship', template=SS, depth=-1),
-     dict(gba='SSAnne_CaptainsOffice_Frlg', map='MAP_CANVAS_SSANNE_CAPTAIN', look='ship', template=SS, depth=-2.5)] +
+     dict(gba='SSAnne_Kitchen_Frlg', map='MAP_CANVAS_SSANNE_KITCHEN', look='shipkit', template=SS, depth=-1),
+     dict(gba='SSAnne_CaptainsOffice_Frlg', map='MAP_CANVAS_SSANNE_CAPTAIN', look='shipkit', template=SS, depth=-2.5)] +
     # (the cabins are 6 squares wide on the GBA, with up to four people in them: two plain columns and a row more)
-    [dict(gba='SSAnne_%s_Room%d_Frlg' % (f, i), map='MAP_CANVAS_SSANNE_%s_R%d' % (f, i), look='ship', template=SS,
+    [dict(gba='SSAnne_%s_Room%d_Frlg' % (f, i), map='MAP_CANVAS_SSANNE_%s_R%d' % (f, i), look='shipkit', template=SS,
           widen=CABIN1 if f == '1F' else CABIN2,
           depth={'1F': -1, '2F': -2, 'B1F': 0}[f]) for f, n in (('1F', 7), ('2F', 6), ('B1F', 5)) for i in range(1, n + 1)] +
     # the Rocket Hideout, under the Game Corner (stairs added there: ADD_WARPS). Its spin-tile mazes are plain floor
