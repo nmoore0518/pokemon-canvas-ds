@@ -614,10 +614,27 @@ too) with its grey streets (`ymb_fe01`) wherever road is a square from anything 
 `tama_yuka2` streets the same way, the Academy `tama_yuka`, Vermilion as HeartGold's (its orange tiles `kbc_rd02`, its
 plank-brick streets `kbc_rd01` with the `kbc_rd03` curb in a strip along them, a row of `kbc_rd10` blocks along the
 water, and its grass edge `kbc_rd07` laid over the tiles: its outer half is see-through, black with nothing under it), Cerulean and Pewter `han_fe02`,
-Lavender `sio_fe02` (paved all over), Fuchsia `sek_fe03`; each with its own edge in the grass beside it (laid as
-`road01_r`: their edges share its layout). Routes and Viridian keep `road01`. **No stitching** (Nick: two edge
+Lavender `sio_fe02` (paved all over); each with its own edge in the grass beside it (laid as
+`road01_r`: their edges share its layout). Routes, Viridian and Fuchsia keep `road01` (Nick: not Fuchsia's dark red,
+`sek_fe03`). The GBA's pale short grass (Fuchsia's walks, Route 2's) is HeartGold's lighter plaza grass, `grass02`,
+with its own edge `grass02_r`. **No stitching** (Nick: two edge
 pieces back to back look stitched): a strip of grass between two roads narrower than three squares is road, and so
 is a square of grass no edge piece fits; roads with the same edge are one road to the grass beside them.
+
+**Check every map against HeartGold's own** (Nick: "verify with the HeartGold maps when you make a route/town and
+make sure it matches (for everything)"): `hgland.py`-style renders of HeartGold's map as it was (HG_REV), and the
+ground textures it lays most against ours, map by map; whatever HeartGold builds a thing of (a bridge, a pen, a quay)
+is what ours is built of. **`hg_kit.py`** reads HeartGold's own pieces out of its lands into `data/kit_*.json`:
+- a *kit*: each square of a thing (polygons cut at the square's sides, so a square's piece is its own), keyed by
+  which of the 24 squares round it are that thing too; ours take the piece whose surroundings are most like theirs
+  (and of their class: a boardwalk's platforms or its planks). The GBA's wooden walkways (`BRIDGE_MT`, by tileset)
+  are HeartGold's: Route 12 and 13's boardwalks and Vermilion's planks Route 12's (its Silence Bridge), Route 24's
+  Nugget Bridge Route 24's, their decks just above the ground, the sea under them (the sea goes on under a walkway).
+- a *stamp*: every polygon over a block, fitted to the GBA's: Fuchsia's hedged pens (`PENS`: HeartGold's three, with a
+  pond, a raised flower bed, flowers - the GBA's water ones its pond's walls round the GBA's water), only the faces the
+  camera can see (a land must stay under 61,400 bytes: six pens fill one). The pens' Pokemon stand inside them.
+A house (narrower than 5.5 squares) is centred on the GBA's building, its door model on the GBA's door; HeartGold's
+own buildings go up before the town's houses.
 
 **The Academy's front** (`PLAZAS`; Nick: "our flowers and Roserade statue... make it look pretty") is laid anew: paved,
 raised flower beds (HeartGold's grass and flowers on Fuchsia's brick), Goldenrod's street lamps (model 95) where the

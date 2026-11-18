@@ -726,9 +726,12 @@ IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair']), (64, ['aj_box01'])],
            44: [(70, ['d_rock01'])],
            18: [(75, ['pond_on', 'pond_edge', 'pond_un', 'road05_r']),          # (Kanto's overworld: build_overworld.py;
-                (11, ['ymb_fe01', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
+                (11, ['ymb_fe01', 'ymb_fe01_r', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
                 (15, ['tama_yuka', 'tama_yuka2', 'tama_fuch']), (13, ['han_fe02', 'han_fe02_r']),
-                (14, ['sio_fe02', 'sio_fe02_r', 'sek_fe03_r']), (16, ['sek_fe03'])]}
+                (14, ['sio_fe02', 'sio_fe02_r', 'bridge_a', 'bridge_b', 'bridge_c', 'sio_board']),   # (Route 12's boardwalk)
+                (13, ['a12_gbb1', 'a12_gbb2', 'a12_gbb3', 'a12_gbb4']),                              # (the Nugget Bridge)
+                (16, ['f_dodai', 'f_dodai_a', 'flower_sp1', 'sek_teien', 'sek_flower', 'grass02_a'])]}  # (Fuchsia's pens)
+DROP = {18: ['sek_fe03', 'sek_fe03_r']}     # (no longer laid: Fuchsia's dark red ground)
 
 
 def import_textures():
@@ -738,6 +741,8 @@ def import_textures():
     pals_extra = PALS_EXTRA
     for dst, srcs in IMPORTS.items():
         t, p = read_tex0(ts[dst], tex0_of(ts[dst]))
+        gone = {n.encode() for n in DROP.get(dst, ())} | {(n + '_pl').encode() for n in DROP.get(dst, ())}
+        t, p = [e for e in t if e[0] not in gone], [q for q in p if q[0] not in gone]
         for src, names in srcs:
             st, sp = read_tex0(ts[src], tex0_of(ts[src]))
             nt = [e for e in st if e[0].decode() in names]

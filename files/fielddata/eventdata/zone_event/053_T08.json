@@ -36,8 +36,8 @@
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_VoltorbSign + 1",
             "type": 0,
-            "x": 1208,
-            "z": 435,
+            "x": 1209,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
@@ -68,8 +68,8 @@
         {
             "scriptId": "_EV_FuchsiaCity_EventScript_FossilMonSign + 1",
             "type": 0,
-            "x": 1184,
-            "z": 435,
+            "x": 1185,
+            "z": 434,
             "y": 0,
             "dir": 4
         },
