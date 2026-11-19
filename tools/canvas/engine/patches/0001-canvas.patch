@@ -2431,6 +2431,353 @@ E0G&juL;wH)
 literal 0
 HcmV?d00001
 
+diff --git a/data/graphics/overworlds/custom/0016-cv_chef.pal b/data/graphics/overworlds/custom/0016-cv_chef.pal
+new file mode 100644
+index 00000000..34f8e1e5
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0016-cv_chef.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 213 180
++197 197 213
++246 189 148
++205 172 98
++222 148 115
++139 139 148
++230 106 74
++123 115 65
++123 65 65
++148 57 41
++74 74 90
++57 57 24
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0016.json b/data/graphics/overworlds/custom/0016.json
+new file mode 100644
+index 00000000..f5e2c2c9
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0016.json
+@@ -0,0 +1,284 @@
++{
++	"frames": {
++		"cv_chef.1": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 581,
++			"unkBlockUnk1": 267,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.10": {
++			"frame": 1,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 61,
++			"unkBlockUnk1": 3,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.11": {
++			"frame": 2,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 1083,
++			"unkBlockUnk1": 3594,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.12": {
++			"frame": 3,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 1338,
++			"unkBlockUnk1": 2567,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.13": {
++			"frame": 4,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 569,
++			"unkBlockUnk1": 2054,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.14": {
++			"frame": 5,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 1336,
++			"unkBlockUnk1": 2310,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.15": {
++			"frame": 4,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 2105,
++			"unkBlockUnk1": 3081,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.16": {
++			"frame": 6,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 1080,
++			"unkBlockUnk1": 2824,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.2": {
++			"frame": 7,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 1848,
++			"unkBlockUnk1": 3337,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.3": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 824,
++			"unkBlockUnk1": 3850,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.4": {
++			"frame": 8,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 3138,
++			"unkBlockUnk1": 1295,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.5": {
++			"frame": 9,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 3393,
++			"unkBlockUnk1": 782,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.6": {
++			"frame": 10,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 320,
++			"unkBlockUnk1": 525,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.7": {
++			"frame": 9,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 3136,
++			"unkBlockUnk1": 1038,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.8": {
++			"frame": 11,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 4161,
++			"unkBlockUnk1": 1807,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		},
++		"cv_chef.9": {
++			"frame": 2,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 2880,
++			"unkBlockUnk1": 1552,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_chef": {
++			"offset": 0,
++			"unk0": 46,
++			"unk1": 1,
++			"fileName": "cv_chef.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0016.png b/data/graphics/overworlds/custom/0016.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..252a481260a6ac759466fa93d3e3fe5de9b50fc9
+GIT binary patch
+literal 1096
+zcmV-O1h@N%P)<h;3K|Lk000e1NJLTq001BW00Dpm0{{R3K0ke(0000mP)t-s{{a90
+z|NsBhw8h2M_PvzNtYY4jbBl|V=4wiNb3uDSL6kWuN=jNeIT!!{00000t)Boz000Bi
+zNkl<ZcwX(9T}TvB6o8Mj%W66eUQ8ttu}w_TwbcP7{K-TsBqD;Oz=zGGmq-jTGAb4f
+zvYrAT%mu}VvWKiF(}#pm)-obgT8XF#{}NVh5TR8|*O+@|cJ9~@5vVzKSeEhZy?5@t
+z=ey_Ja|Bqo5`;4ku7LR)%p!s-3CXNr6mCKY$)*bK=Zodj2#M&TznSTGb1(EjD1D@F
+z5%x^v!NLhXF3=(_!37B?wJtNx2{Twi<Oa$Z@ca}k;QMe4TT>U9qilgO7KS1VfVk;<
+z>BJg?T!gs7-v!24a@bv9vP^4J-(Mq&iB;Mvgi(3wxkG^#Gh-Y;TrQmluC}nuYTZ}B
+zERN$k;Vx~UiUjh<@UnuyKtA*+`-i(8)ML)e4rg|~zTX9j$&3Qtd)gt7DzFRZE6o~I
+zdQ(Mc3HUcvGN!zr2bQyFIph=~kJ<b12|Gp%n38rP$*Aycb$(SQhFxr<kbHQNv9&bO
+z>fTKOQbdp>ZxgEk0Lg%SY)BmJpyGhS6Sp|U5(F@sb%db-U^sSEPlM3Vq-y{mEyKl_
+zvN3>3)%y=S%w9!vqW`cQ4%?xa7sJ}2=&lAXopB%DCP~kO5uJw`)mP^J@w;$>;;kbj
+zvxq*Tqc>Y>bMCPRd3(;|C<g`$_1ZJfSu+^LOtb^clZ<WQ<AK6~0j33CS(CPyrW>Of
+zOb+&V_lenr4LA_lma0GgLhf*^UgK?8<}U;ThL;~@jr_+N0fWNlk}X9s3_-JB9s#^&
+zpbK+UcZ^|U<x*1|79T&uZl6IN$a2{be0WrcqVUm@7SqY{0g!&XSm$A;UWu8{HsS?!
+z75P|+gqPn%6W+~ojzdrOlcO}@)ttc)CcGuGhQc3uX72!)GCHrQU3>@6J7I2|h6lwv
+z_=<t6V;qW^1Bg#Nr)?HrFJ@yzQo3;5>3m(jYtZ}Z3i^*#;RCQB(kfeyURm0a4}U;m
+z0lUj(>Y$exy4se(ZYRuLqq#ToF)j0vq|qQuRT3gzWX}@s7ONFN6cLPgBl%Zwz<GEt
+zhr?20sb+`q@{!c>a{4zW5-BMkM)GrV<daIRzcB2K&kqqaOWlciDoK;w7XmmeIWE0y
+ze4(q4fyV~A`dHS(ZEaW|L+O<ZW-JbTy{O`V1pTj%t#Lv1Z-Kdqz))kODTChD!eYXM
+z05D}TF#V!dF7;7htc-VX%fPVdNUumpChIPk_@Wf<{K>blkf(|<>mlpiq4<%H>lz<E
+znU6Pk>g6xL_*r%+G`=7~R`A%qRjIXIxzr`|f&WcF;r}GQd^-M%jQ2apx7TGl#$r$a
+O0000<MNUMnLSTX=kO2Jv
+
+literal 0
+HcmV?d00001
+
 diff --git a/data/graphics/sprites/appariteon/female/back.png b/data/graphics/sprites/appariteon/female/back.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..92851ca88f638c04cf6bf647adeed4030311e566
@@ -11210,7 +11557,7 @@ index cf38c7e5..42a77c8c 100644
      {
          rnd_tmp = 120;
 diff --git a/src/field/overworld_table.c b/src/field/overworld_table.c
-index e0101f32..4387a5d7 100644
+index e0101f32..40c44157 100644
 --- a/src/field/overworld_table.c
 +++ b/src/field/overworld_table.c
 @@ -23,7 +23,7 @@
@@ -11218,11 +11565,11 @@ index e0101f32..4387a5d7 100644
  
  // adjust this depending on the amount of new npc's that you have added
 -#define MON_OVERWORLD_GFX_START (297)
-+#define MON_OVERWORLD_GFX_START (313)   // Pokemon Canvas: our own overworlds (the fossil, the barriers)
++#define MON_OVERWORLD_GFX_START (314)   // Pokemon Canvas: our own overworlds (the fossil, the barriers, people)
  
  #define MON_FOLLOWER_ENTRY(species, cbparams) \
      { .tag = MON_OVERWORLD_TAG_START + species, .gfx = MON_OVERWORLD_GFX_START + species, .callback_params = cbparams },
-@@ -370,6 +370,24 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -370,6 +370,25 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          { .tag = 1048, .gfx = MON_OVERWORLD_GFX_START + SPECIES_TYPHLOSION, .callback_params = OVERWORLD_SIZE_SMALL },
          { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
  
@@ -11243,11 +11590,12 @@ index e0101f32..4387a5d7 100644
 +        { .tag = NEW_NPC_TAG_START + 13, .gfx = NEW_NPC_GFX_START + 13, .callback_params = 0x0024 },   // a barrier (barriers.py)
 +        { .tag = NEW_NPC_TAG_START + 14, .gfx = NEW_NPC_GFX_START + 14, .callback_params = 0x0024 },   // a barrier (barriers.py)
 +        { .tag = NEW_NPC_TAG_START + 15, .gfx = NEW_NPC_GFX_START + 15, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 16, .gfx = NEW_NPC_GFX_START + 16, .callback_params = 0x0000 },   // a person: CHEF (barriers.py PEOPLE)
 +
          // pokémon follower specific overworlds start here... left off on gfx 1451 - galarian stunfisk which was inserted after all the others
  
          MON_FOLLOWER_ENTRY(SPECIES_BULBASAUR, OVERWORLD_SIZE_SMALL)
-@@ -1693,6 +1711,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -1693,6 +1712,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          MON_FOLLOWER_ENTRY(SPECIES_IRON_CROWN, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_TERAPAGOS, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_PECHARUNT, OVERWORLD_SIZE_SMALL)

@@ -5,7 +5,7 @@
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
             "x": 12,
-            "z": 11,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
@@ -13,7 +13,7 @@
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
             "x": 13,
-            "z": 11,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
@@ -21,7 +21,7 @@
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
             "x": 12,
-            "z": 12,
+            "z": 13,
             "y": 0,
             "dir": 4
         },
@@ -29,7 +29,7 @@
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
             "x": 13,
-            "z": 12,
+            "z": 13,
             "y": 0,
             "dir": 4
         },
@@ -57,7 +57,7 @@
             "xRange": 2,
             "yRange": 2,
             "x": 2,
-            "z": 7,
+            "z": 8,
             "y": 0
         },
         {
@@ -74,7 +74,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 10,
-            "z": 17,
+            "z": 19,
             "y": 0
         },
         {
@@ -91,7 +91,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 0,
-            "z": 13,
+            "z": 15,
             "y": 0
         },
         {
@@ -108,7 +108,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 5,
-            "z": 15,
+            "z": 17,
             "y": 0
         },
         {
@@ -125,7 +125,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 2,
-            "z": 15,
+            "z": 17,
             "y": 0
         },
         {
@@ -142,7 +142,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 3,
-            "z": 17,
+            "z": 19,
             "y": 0
         },
         {
@@ -159,7 +159,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 12,
-            "z": 11,
+            "z": 12,
             "y": 0
         },
         {
@@ -176,7 +176,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 13,
-            "z": 11,
+            "z": 12,
             "y": 0
         },
         {
@@ -193,7 +193,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 12,
-            "z": 12,
+            "z": 13,
             "y": 0
         },
         {
@@ -210,7 +210,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 13,
-            "z": 12,
+            "z": 13,
             "y": 0
         }
     ],
@@ -224,14 +224,14 @@
         },
         {
             "x": 10,
-            "z": 14,
+            "z": 16,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 3,
             "y": 0
         },
         {
             "x": 14,
-            "z": 9,
+            "z": 10,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 5,
             "y": 0
@@ -245,7 +245,7 @@
         },
         {
             "x": 14,
-            "z": 17,
+            "z": 19,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 4,
             "y": 0

@@ -38,7 +38,7 @@
         },
         {
             "id": "2",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -72,7 +72,7 @@
         },
         {
             "id": "4",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -89,7 +89,7 @@
         },
         {
             "id": "5",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 17,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -123,7 +123,7 @@
         },
         {
             "id": "7",
-            "spriteId": "SPRITE_GSLEADER11",
+            "spriteId": "SPRITE_GSLEADER12",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

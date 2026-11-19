@@ -4,16 +4,8 @@
         {
             "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
             "type": 0,
-            "x": 5,
-            "z": 16,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
-            "type": 0,
-            "x": 5,
-            "z": 17,
+            "x": 6,
+            "z": 18,
             "y": 0,
             "dir": 4
         },
@@ -21,22 +13,30 @@
             "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
             "type": 0,
             "x": 6,
-            "z": 16,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
             "type": 0,
-            "x": 6,
-            "z": 17,
+            "x": 7,
+            "z": 18,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_11F_EventScript_Door + 1",
+            "type": 0,
+            "x": 7,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_11F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 8,
+            "x": 9,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -56,8 +56,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 6,
-            "z": 11,
+            "x": 7,
+            "z": 13,
             "y": 0
         },
         {
@@ -73,8 +73,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 16,
-            "z": 12,
+            "x": 18,
+            "z": 14,
             "y": 0
         },
         {
@@ -90,8 +90,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 16,
-            "z": 18,
+            "x": 18,
+            "z": 21,
             "y": 0
         },
         {
@@ -108,7 +108,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 2,
-            "z": 19,
+            "z": 22,
             "y": 0
         },
         {
@@ -124,8 +124,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 18,
+            "x": 8,
+            "z": 21,
             "y": 0
         },
         {
@@ -141,8 +141,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 6,
-            "z": 18,
+            "x": 7,
+            "z": 21,
             "y": 0
         },
         {
@@ -158,8 +158,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 5,
-            "z": 16,
+            "x": 6,
+            "z": 18,
             "y": 0
         },
         {
@@ -175,8 +175,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 6,
-            "z": 16,
+            "x": 7,
+            "z": 18,
             "y": 0
         },
         {
@@ -192,8 +192,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 5,
-            "z": 17,
+            "x": 6,
+            "z": 19,
             "y": 0
         },
         {
@@ -209,14 +209,14 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 6,
-            "z": 17,
+            "x": 7,
+            "z": 19,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 7,
+            "x": 8,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_10F",
             "anchor": 0,
@@ -230,7 +230,7 @@
             "y": 0
         },
         {
-            "x": 13,
+            "x": 14,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

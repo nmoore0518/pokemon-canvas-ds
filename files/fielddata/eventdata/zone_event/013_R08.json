@@ -234,7 +234,7 @@
         },
         {
             "id": "14",
-            "spriteId": "SPRITE_CYCLEM",
+            "spriteId": "SPRITE_BADMAN",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -251,7 +251,7 @@
         },
         {
             "id": "15",
-            "spriteId": "SPRITE_CYCLEM",
+            "spriteId": "SPRITE_BADMAN",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",

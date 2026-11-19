@@ -434,7 +434,13 @@ def build_room(spec, land_id):
     fz = []                 # (model, x, y off, z) in squares
     fz_close, fz_rugs, fz_wins, claimed = set(), [], [], set()
     if not look:
+        people = {(o['x'], o['y']) for o in gm.get('object_events', [])}
         for name, kind, comp in furnish.patches(lay, tsn):
+            if comp & people and kind[0] in ('model', 'cols', 'table') and kind[1:2] != (furnish.CHAIR,):
+                if name == 'sofa':      # (people sit on the GBA's sofas: HeartGold's stands taller than them; its low seats)
+                    kind = ('each', furnish.CHAIR_B)
+                else:
+                    print('  (someone stands on a', name, 'in', spec['gba'], sorted(comp & people), ')')
             pr, cl, rg, wn = furnish.place(kind, comp, first, blocked)
             fz += [(m, x, yo, z) for m, x, z, yo in pr]
             fz_close |= {c for c in cl if c not in warp_sq}

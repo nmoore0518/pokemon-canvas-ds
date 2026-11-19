@@ -936,22 +936,26 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'PROF_OAK': 'OOKIDO', 'MOM': 'GSMAMA', 'BLUE': 'GSLEADER16', 'DAISY': 'NANAMI', 'GIOVANNI': 'SAKAKI',
     'ROCKET_M': 'ROCKETM', 'ROCKET_F': 'ROCKETW', 'POLICEMAN': 'POLICEMAN', 'SAILOR': 'SEAMAN_2', 'FISHERMAN': 'FISHING_2',
     'HIKER': 'MOUNT_2', 'SWIMMER_M': 'GSSWIMMERM', 'SWIMMER_F': 'GSSWIMMERW', 'BLACK_BELT': 'GSFIGHTER',
-    'CAMPER': 'CAMPBOY_2', 'PICNICKER': 'PICNICGIRL_2', 'BEAUTY': 'GSWOMAN3', 'COOLTRAINER_M': 'GSMAN3',
+    'CAMPER': 'CAMPBOY_2', 'PICNICKER': 'PICNICGIRL_2', 'BEAUTY': 'WOMAN2', 'COOLTRAINER_M': 'GSMAN3',
     'COOLTRAINER_F': 'GSWOMAN3', 'POKE_MANIAC': 'MANIA', 'ITEM_BALL': 'MONSTARBALL', 'PUSHABLE_BOULDER': 'ROCK',
     'BREAKABLE_ROCK': 'BREAKROCK', 'CUTTABLE_TREE': 'TREE', 'WORKER_M': 'WORKMAN', 'BALDING_MAN': 'GSMIDDLEMAN1',
-    'GYM_GUY': 'SUNGLASSES', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'CYCLEM', 'EXPERT_M': 'GSOLDMAN1',
+    'GYM_GUY': 'SUNGLASSES', 'CHANNELER': 'ITAKO', 'ROCKER': 'GSMAN2', 'BIKER': 'BADMAN', 'EXPERT_M': 'GSOLDMAN1',
     'EXPERT_F': 'GSOLDWOMAN1', 'POKEFAN_M': 'GSMIDDLEMAN1', 'POKEFAN_F': 'MIDDLEWOMAN1_2', 'TWIN': 'GSGIRL1',
     'WORKER_F': 'GSWOMAN1', 'LEADER_AIDE': 'GSASSISTANTM', 'POKEDEX': 'SCROLL', 'TOWN_MAP': 'SCROLL',
     'CEREMONY_PODIUM': 'GTOROPHY', 'OLD_MAN_LYING_DOWN': 'GSOLDMAN1', 'GAUNTLET_PENNY': 'GSWOMAN1',
-    'LT_SURGE': 'GSLEADER9', 'SABRINA': 'GSLEADER10', 'ERIKA': 'GSLEADER11', 'KOGA': 'GSBIGFOUR2', 'BLAINE': 'GSLEADER13',
+    'LT_SURGE': 'GSLEADER9', 'SABRINA': 'GSLEADER10', 'ERIKA': 'GSLEADER12', 'KOGA': 'GSBIGFOUR2', 'BLAINE': 'GSLEADER15',
     'LORELEI': 'GSBIGFOUR4', 'BRUNO': 'GSBIGFOUR3', 'AGATHA': 'GSOLDWOMAN1', 'LANCE': 'WATARU', 'MR_FUJI': 'GSOLDMAN1',
     'FISHER': 'FISHING_2', 'OLD_MAN_2': 'OLDMAN1', 'TUBER_M_WATER': 'GSSWIMMERM', 'SWIMMER_M_LAND': 'GSSWIMMERM', 'SWIMMER_F_LAND': 'GSSWIMMERW',
     'CRUSH_GIRL': 'GSGIRL3', 'CHEF': 'GSMAN3', 'GAUNTLET_ARCHER': 'GSMAN2',
     **{'TYPE_TUTOR_' + t: 'GSMIDDLEMAN1' for t in ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'ELECTRIC', 'ICE', 'FIGHTING', 'POISON', 'GROUND',
                                                    'FLYING', 'PSYCHIC', 'BUG', 'ROCK', 'GHOST', 'DRAGON', 'DARK', 'STEEL', 'FAIRY')},
     'SNORLAX': 'KABIGON',        # (HeartGold's own sleeping Snorlax, lying across the way: its Route 11's)
-    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL', 'BILL': 'MASAKI', 'SWIMMER_M_WATER': 'GSSWIMMERM', 'SWIMMER_F_WATER': 'GSSWIMMERW',
+    'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER11', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL', 'BILL': 'MASAKI', 'SWIMMER_M_WATER': 'GSSWIMMERM', 'SWIMMER_F_WATER': 'GSSWIMMERW',
 }
+# people HeartGold has no one like: our own overworlds from the GBA's pictures (port/barriers.py PEOPLE)
+_cp = os.path.join(os.path.dirname(HERE), 'data', 'custom_people.json')
+if os.path.exists(_cp):
+    SPRITE.update({k: '#%d' % v for k, v in json.load(open(_cp)).items()})
 # Pokemon in the overworld: HeartGold's standing sprite of that species where it has one (FOLLOWER_MON_STATIC_*),
 # else hg-engine's walking sprite (its tag is 2500 + the species: hg-engine has none of HeartGold's own follower
 # tags, SPRITE_FOLLOWER_MON_X without STATIC, and the game stops on them)

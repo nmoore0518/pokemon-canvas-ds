@@ -55,7 +55,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_GSLEADER15",
+            "spriteId": "SPRITE_GSLEADER11",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

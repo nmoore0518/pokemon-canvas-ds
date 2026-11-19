@@ -176,6 +176,48 @@ def write_overworld(n, im, name):
            open(os.path.join(CUSTOM, '%04d.json' % n), 'w'), indent='\t')
 
 
+# people of the GBA's that HeartGold has no one like (Nick: the right sprite for every person): the GBA's own
+# pictures (graphics/object_events/pics/people), each 16x32 frame stood in a 32x32 one, in HeartGold's order for a
+# person (its waiter's: the same 16 frame names, so its walking works as theirs). GBA graphics id -> picture
+PEOPLE = {'CHEF': 'chef.png'}
+PEOPLE_DATA = os.path.join(ROOT, 'tools/canvas/data/custom_people.json')
+# a person's frames in HeartGold (12 pictures): up, left x3 (walk, stand, walk), right x3 (stand, walk, walk), up walk
+# x2, down, down walk x2 -> the GBA's (0 down, 1 up, 2 left, 3-4 down walking, 5-6 up walking, 7-8 left walking;
+# right is left turned over)
+HG_FRAMES = [(1, 0), (7, 0), (2, 0), (8, 0), (2, 1), (7, 1), (8, 1), (5, 0), (6, 0), (0, 0), (3, 0), (4, 0)]
+
+
+def write_person(n, png, name):
+    from PIL import Image
+    import json as J, gba as G
+    src = Image.open(G.P('graphics/object_events/pics/people', png))
+    src.info['transparency'] = 0
+    src = src.convert('RGBA')
+    sheet = Image.new('RGBA', (32, 32 * len(HG_FRAMES)))
+    for i, (f, flip) in enumerate(HG_FRAMES):
+        fr = src.crop((f * 16, 0, f * 16 + 16, 32))
+        if flip: fr = fr.transpose(Image.FLIP_LEFT_RIGHT)
+        sheet.paste(fr, (8, i * 32), fr)
+    q = sheet.convert('RGB').quantize(15, method=Image.Quantize.MEDIANCUT)
+    qp = q.getpalette() + [0] * 45
+    pal = [(255, 0, 255)] + [tuple(qp[i * 3:i * 3 + 3]) for i in range(15)]
+    px = Image.new('P', sheet.size, 0)
+    px.putpalette([c for rgb in pal for c in rgb])
+    qd, ad, out = q.load(), sheet.split()[3].load(), px.load()
+    for y in range(sheet.height):
+        for x in range(32):
+            if ad[x, y] >= 128: out[x, y] = qd[x, y] + 1
+    for f in os.listdir(CUSTOM):
+        if f.startswith('%04d' % n): os.remove(os.path.join(CUSTOM, f))
+    px.save(os.path.join(CUSTOM, '%04d.png' % n), bits=4)
+    open(os.path.join(CUSTOM, '%04d-%s.pal' % (n, name)), 'w').write(
+        'JASC-PAL\r\n0100\r\n16\r\n' + ''.join('%d %d %d\r\n' % c for c in pal))
+    tmpl = J.load(open(os.path.join(os.path.dirname(CUSTOM), '0029.json')))       # (HeartGold's waiter)
+    frames = {k.replace('waiter', name): v for k, v in tmpl['frames'].items()}
+    J.dump({'frames': frames, 'palettes': {name: dict(tmpl['palettes']['waiter'], fileName=name + '.pal')}},
+           open(os.path.join(CUSTOM, '%04d.json' % n), 'w'), indent='\t')
+
+
 def main():
     import json as J, glob
     import gba as G
@@ -204,17 +246,27 @@ def main():
     for n, im in sorted(pics.values(), key=lambda t: t[0]):
         write_overworld(n, im, 'cv_bar%d' % n)
     last = FIRST + len(pics)
+    # people HeartGold has no sprite for (PEOPLE): after the barriers
+    people = {}
+    for k, (key, png) in enumerate(sorted(PEOPLE.items())):
+        n = last + 1 + k
+        write_person(n, png, 'cv_' + key.lower())
+        people[key] = TAG0 + n
+    J.dump(people, open(PEOPLE_DATA, 'w'), indent=1, sort_keys=True)
+    last_bar, last = last, last + len(people)
     for f in os.listdir(CUSTOM):         # (pictures no longer used)
         m = re.match(r'(\d{4})', f)
         if m and int(m.group(1)) > last: os.remove(os.path.join(CUSTOM, f))
     # the engine's overworld table: the fossil, then ours (still pictures, no shadow: a scroll's settings)
     src = open(TABLE).read()
     src = re.sub(r'#define MON_OVERWORLD_GFX_START \(\d+\)[^\n]*',
-                 '#define MON_OVERWORLD_GFX_START (%d)   // Pokemon Canvas: our own overworlds (the fossil, the barriers)' % (297 + last + 1), src)
+                 '#define MON_OVERWORLD_GFX_START (%d)   // Pokemon Canvas: our own overworlds (the fossil, the barriers, people)' % (297 + last + 1), src)
     src = re.sub(r'\n {8}\{ \.tag = NEW_NPC_TAG_START \+ (?!0,)\d+,[^\n]*', '', src)
     entries = ''.join('\n        { .tag = NEW_NPC_TAG_START + %d, .gfx = NEW_NPC_GFX_START + %d, .callback_params = 0x0024 },   // %s'
                       % (n, n, 'a barrier: nothing to see (barriers.py)' if n == FIRST else 'a barrier (barriers.py)')
-                      for n in range(FIRST, last + 1))
+                      for n in range(FIRST, last_bar + 1))
+    entries += ''.join('\n        { .tag = NEW_NPC_TAG_START + %d, .gfx = NEW_NPC_GFX_START + %d, .callback_params = 0x0000 },   // a person: %s (barriers.py PEOPLE)'
+                       % (t - TAG0, t - TAG0, k) for k, t in sorted(people.items(), key=lambda kv: kv[1]))
     src = re.sub(r'(\{ \.tag = NEW_NPC_TAG_START \+ 0,[^\n]*)', lambda m: m.group(1) + entries, src, count=1)
     open(TABLE, 'w').write(src)
     print('%d maps, %d squares, %d pictures; now run tools/canvas/engine/make_patch.sh' %

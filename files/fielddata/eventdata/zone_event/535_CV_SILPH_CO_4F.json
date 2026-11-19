@@ -5,7 +5,7 @@
             "scriptId": "_EV_SilphCo_4F_EventScript_Door1 + 1",
             "type": 0,
             "x": 3,
-            "z": 16,
+            "z": 17,
             "y": 0,
             "dir": 4
         },
@@ -13,7 +13,7 @@
             "scriptId": "_EV_SilphCo_4F_EventScript_Door1 + 1",
             "type": 0,
             "x": 4,
-            "z": 16,
+            "z": 17,
             "y": 0,
             "dir": 4
         },
@@ -21,7 +21,7 @@
             "scriptId": "_EV_SilphCo_4F_EventScript_Door1 + 1",
             "type": 0,
             "x": 3,
-            "z": 17,
+            "z": 18,
             "y": 0,
             "dir": 4
         },
@@ -29,7 +29,15 @@
             "scriptId": "_EV_SilphCo_4F_EventScript_Door1 + 1",
             "type": 0,
             "x": 4,
-            "z": 17,
+            "z": 18,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_4F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 16,
+            "z": 11,
             "y": 0,
             "dir": 4
         },
@@ -44,15 +52,7 @@
         {
             "scriptId": "_EV_SilphCo_4F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 14,
-            "z": 11,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_4F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 14,
+            "x": 15,
             "z": 12,
             "y": 0,
             "dir": 4
@@ -60,7 +60,7 @@
         {
             "scriptId": "_EV_SilphCo_4F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 15,
+            "x": 16,
             "z": 12,
             "y": 0,
             "dir": 4
@@ -68,7 +68,7 @@
         {
             "scriptId": "_EV_SilphCo_4F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 29,
+            "x": 31,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -88,8 +88,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 33,
-            "z": 16,
+            "x": 35,
+            "z": 17,
             "y": 0
         },
         {
@@ -106,7 +106,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 10,
-            "z": 19,
+            "z": 20,
             "y": 0
         },
         {
@@ -122,7 +122,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 14,
+            "x": 15,
             "z": 8,
             "y": 0
         },
@@ -207,8 +207,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 30,
-            "z": 18,
+            "x": 32,
+            "z": 19,
             "y": 0
         },
         {
@@ -224,7 +224,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 14,
+            "x": 15,
             "z": 11,
             "y": 0
         },
@@ -241,7 +241,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 15,
+            "x": 16,
             "z": 11,
             "y": 0
         },
@@ -258,7 +258,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 14,
+            "x": 15,
             "z": 12,
             "y": 0
         },
@@ -275,7 +275,7 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 15,
+            "x": 16,
             "z": 12,
             "y": 0
         },
@@ -293,7 +293,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 3,
-            "z": 16,
+            "z": 17,
             "y": 0
         },
         {
@@ -310,7 +310,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 4,
-            "z": 16,
+            "z": 17,
             "y": 0
         },
         {
@@ -327,7 +327,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 3,
-            "z": 17,
+            "z": 18,
             "y": 0
         },
         {
@@ -344,34 +344,34 @@
             "xRange": 0,
             "yRange": 0,
             "x": 4,
-            "z": 17,
+            "z": 18,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 28,
+            "x": 30,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_5F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 18,
+            "x": 19,
             "z": 6,
             "header": "MAP_CANVAS_SILPH_CO_6F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 30,
+            "x": 32,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 12,
+            "x": 13,
             "z": 9,
             "header": "MAP_CANVAS_SILPH_CO_10F",
             "anchor": 1,
@@ -379,20 +379,20 @@
         },
         {
             "x": 2,
-            "z": 20,
+            "z": 21,
             "header": "MAP_CANVAS_SILPH_CO_10F",
             "anchor": 4,
             "y": 0
         },
         {
-            "x": 18,
+            "x": 19,
             "z": 14,
             "header": "MAP_CANVAS_SILPH_CO_10F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 22,
+            "x": 23,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

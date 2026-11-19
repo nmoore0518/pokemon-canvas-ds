@@ -80,7 +80,7 @@
         },
         {
             "id": "4",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -97,7 +97,7 @@
         },
         {
             "id": "5",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 1,
             "eventFlag": "FLAG_NOTHING",
@@ -182,7 +182,7 @@
         },
         {
             "id": "10",
-            "spriteId": "SPRITE_CYCLEM",
+            "spriteId": "SPRITE_BADMAN",
             "movement": 2,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

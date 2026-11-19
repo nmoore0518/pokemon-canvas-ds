@@ -4,8 +4,48 @@
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 8,
-            "z": 9,
+            "x": 9,
+            "z": 10,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 9,
+            "z": 11,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 9,
+            "z": 19,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 9,
+            "z": 20,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 14,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 15,
             "y": 0,
             "dir": 4
         },
@@ -18,10 +58,18 @@
             "dir": 4
         },
         {
+            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 8,
+            "z": 11,
+            "y": 0,
+            "dir": 4
+        },
+        {
             "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
             "type": 0,
             "x": 8,
-            "z": 18,
+            "z": 20,
             "y": 0,
             "dir": 4
         },
@@ -36,95 +84,47 @@
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 19,
-            "z": 13,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 19,
+            "x": 21,
             "z": 14,
             "y": 0,
             "dir": 4
         },
         {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
-            "type": 0,
-            "x": 7,
-            "z": 9,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door1 + 1",
-            "type": 0,
-            "x": 7,
-            "z": 10,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 7,
-            "z": 19,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 7,
-            "z": 18,
-            "y": 0,
-            "dir": 4
-        },
-        {
             "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 18,
-            "z": 13,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_5F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 18,
-            "z": 14,
+            "x": 21,
+            "z": 15,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport3 + 1",
             "type": 0,
-            "x": 28,
-            "z": 11,
+            "x": 32,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport2 + 1",
             "type": 0,
-            "x": 30,
-            "z": 13,
+            "x": 34,
+            "z": 14,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_PokemonReport1 + 1",
             "type": 0,
-            "x": 25,
-            "z": 15,
+            "x": 29,
+            "z": 16,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_5F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 29,
+            "x": 33,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -144,8 +144,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 35,
-            "z": 7,
+            "x": 40,
+            "z": 8,
             "y": 0
         },
         {
@@ -161,8 +161,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 23,
-            "z": 13,
+            "x": 27,
+            "z": 14,
             "y": 0
         },
         {
@@ -178,8 +178,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 16,
-            "z": 13,
+            "x": 19,
+            "z": 14,
             "y": 0
         },
         {
@@ -195,7 +195,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 11,
+            "x": 13,
             "z": 6,
             "y": 0
         },
@@ -212,8 +212,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 9,
-            "z": 21,
+            "x": 11,
+            "z": 23,
             "y": 0
         },
         {
@@ -230,7 +230,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 4,
-            "z": 9,
+            "z": 10,
             "y": 0
         },
         {
@@ -247,7 +247,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 1,
-            "z": 18,
+            "z": 19,
             "y": 0
         },
         {
@@ -263,8 +263,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 22,
-            "z": 21,
+            "x": 26,
+            "z": 23,
             "y": 0
         },
         {
@@ -281,7 +281,7 @@
             "xRange": 2,
             "yRange": 1,
             "x": 2,
-            "z": 7,
+            "z": 8,
             "y": 0
         },
         {
@@ -297,8 +297,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 9,
+            "x": 8,
+            "z": 10,
             "y": 0
         },
         {
@@ -314,8 +314,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
-            "z": 9,
+            "x": 9,
+            "z": 10,
             "y": 0
         },
         {
@@ -331,8 +331,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 10,
+            "x": 8,
+            "z": 11,
             "y": 0
         },
         {
@@ -348,8 +348,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
-            "z": 10,
+            "x": 9,
+            "z": 11,
             "y": 0
         },
         {
@@ -365,8 +365,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 18,
-            "z": 13,
+            "x": 21,
+            "z": 14,
             "y": 0
         },
         {
@@ -382,8 +382,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 19,
-            "z": 13,
+            "x": 22,
+            "z": 14,
             "y": 0
         },
         {
@@ -399,8 +399,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 18,
-            "z": 14,
+            "x": 21,
+            "z": 15,
             "y": 0
         },
         {
@@ -416,8 +416,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 19,
-            "z": 14,
+            "x": 22,
+            "z": 15,
             "y": 0
         },
         {
@@ -433,8 +433,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 18,
+            "x": 8,
+            "z": 19,
             "y": 0
         },
         {
@@ -450,8 +450,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
-            "z": 18,
+            "x": 9,
+            "z": 19,
             "y": 0
         },
         {
@@ -467,8 +467,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 7,
-            "z": 19,
+            "x": 8,
+            "z": 20,
             "y": 0
         },
         {
@@ -484,56 +484,56 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 8,
-            "z": 19,
+            "x": 9,
+            "z": 20,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 28,
+            "x": 32,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 15,
-            "z": 7,
+            "x": 18,
+            "z": 8,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 30,
+            "x": 34,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_6F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 10,
-            "z": 20,
+            "x": 12,
+            "z": 21,
             "header": "MAP_CANVAS_SILPH_CO_9F",
             "anchor": 1,
             "y": 0
         },
         {
             "x": 2,
-            "z": 20,
+            "z": 21,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 5,
             "y": 0
         },
         {
-            "x": 33,
+            "x": 38,
             "z": 5,
             "header": "MAP_CANVAS_SILPH_CO_7F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 22,
+            "x": 26,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

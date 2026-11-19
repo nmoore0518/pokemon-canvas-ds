@@ -568,6 +568,81 @@ for _s in INTERIORS:        # (a row more where a plateau's north face needs a s
     if _s['look'] == 'safari' and safari_plan(_s['gba']): _s['widen'] = safari_plan(_s['gba'])
 
 
+# Silph Co.'s floors a row longer under each of its walls: HeartGold's offices are roomier than the GBA's (Nick: "a
+# little cramped"; widths at HeartGold's, err bigger). The new row goes between a wall's face and the floor in front
+# of it; each column's square in it is a copy of the floor below (the corridor gets longer) or, where that is a
+# thing (a desk, a plant, stairs, a pad), of the wall above (the wall gets deeper behind it). A row is not put in
+# where neither will do in some column, where it would split a card-key door, or across a scripted walk
+# (SILPH_SCENES). Everything below moves down with its square (the porter: room_xy).
+SILPH_SCENES = {'SilphCo_7F_Frlg': dict(rows=(2, 9), cols=(0, 7)), 'SilphCo_11F_Frlg': dict(rows=(10, 16))}   # where a scripted walk goes
+
+
+def silph_widen(gba):
+    """-> widen(rows=, cols=) for a floor: rows under its walls, columns beside its partitions"""
+    import gba_map, furnish
+    gm = gba_map.map_json(gba); lay = gba_map.Layout(gm['layout'])
+    W, H = lay.w, lay.h
+    warps = {(e['x'], e['y']) for e in gm.get('warp_events', [])}
+    bars = {(b['x'], b['y']) for b in json.load(open(os.path.join(HERE, 'data', 'barriers.json'))).get(gba, {}).get('squares', [])}
+    walk = lambda x, y: lay.collision(x, y) == 0
+    # the things (one id each): HeartGold's furniture patches, the desks, the stairs (round each warp that isn't a pad)
+    thing = {}
+    L_ = gba_map.layouts()[gm['layout']]
+    tsn = lambda m: L_['primary_tileset'] if m < lay.n_prim else L_['secondary_tileset']
+    for k, (rule, comp) in enumerate(furnish.patches(lay, tsn, rules=furnish.KIT, full=True)):
+        for c in comp: thing[c] = k
+    desk = LOOKS['silph']['kit']['things'][0]['mt']
+    for (x, y) in [(x, y) for y in range(H) for x in range(W) if lay.metatile(x, y) in desk]:
+        thing[(x, y)] = 'desk%d' % x            # (a desk's squares in a column are one)
+    for (x, y) in warps:
+        if lay.metatile(x, y) != 0x390:
+            for dx in (-2, -1, 0, 1, 2):
+                for dy in (-2, -1, 0, 1, 2): thing[(x + dx, y + dy)] = 'stairs%d_%d' % (x, y)
+    plain_floor = next((x, y) for y in range(H) for x in range(W) if walk(x, y) and lay.metatile(x, y) == 0x334)
+    free_floor = lambda q: walk(*q) and q not in warps and q not in thing and q not in bars
+    wall = lambda q: not walk(*q) and q not in thing and q not in bars and q not in warps
+    out = {}
+    for axis in ('rows', 'cols'):
+        # along rows: a line is a row (index v), its squares by x (u); along columns the other way
+        N, M = (H, W) if axis == 'rows' else (W, H)
+        sq = (lambda u, v: (u, v)) if axis == 'rows' else (lambda u, v: (v, u))
+        lo, hi = SILPH_SCENES.get(gba, {}).get(axis, (-1, -1))
+
+        def plan(r):
+            """the new line's squares (one per square across) put in between lines r-1 and r, or None"""
+            if lo <= r <= hi + 1 or r < 3: return None
+            src = []
+            for u in range(M):
+                a, b = sq(u, r - 1), sq(u, r)
+                if a in thing and thing.get(b) == thing[a]: return None      # (it would split a thing)
+                if a in bars and b in bars: return None                      # (or a card-key door)
+                if wall(a) and wall(b): src.append(b)                         # (a wall: deeper)
+                elif free_floor(b): src.append(b)                             # (a floor: longer)
+                elif free_floor(a): src.append(a)
+                elif walk(*a) or walk(*b): src.append(plain_floor)            # (between two things: floor)
+                elif wall(b): src.append(b)
+                elif wall(a): src.append(a)
+                else: return None
+            return src
+        lines, last = [], -9
+        for f in range(2, N):
+            # beside a wall (floor this side, wall the other, in a run of five or more), or the first line after
+            # it that takes a new one (past the plants and terminals that stand against the wall)
+            if sum(walk(*sq(u, f)) and not walk(*sq(u, f - 1)) for u in range(M)) < 5: continue
+            for r in range(f, min(N, f + 5)):
+                if r - last < 3: break
+                src = plan(r)
+                if src: lines.append((r, 1, src)); last = r; break
+        if lines: out[axis] = lines
+    return out
+
+
+for _s in INTERIORS:
+    if _s['look'] == 'silph' and 'Elevator' not in _s['gba']:
+        _w = silph_widen(_s['gba'])
+        if _w: _s['widen'] = _w
+
+
 ROOM_AREA_BASE = 200
 ROOM_AREAS = {}           # area of ours -> the room models its room places
 ROOM_OWN = {}             # area of ours -> its room's own textures (build_rooms.gba_art)

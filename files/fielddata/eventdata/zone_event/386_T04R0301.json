@@ -37,7 +37,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 16,
             "type": 0,
             "eventFlag": "0x203C",

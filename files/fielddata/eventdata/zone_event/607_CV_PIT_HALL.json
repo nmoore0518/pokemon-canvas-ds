@@ -3,7 +3,7 @@
     "objects": [
         {
             "id": "LOCALID_PIT_DOORMAN",
-            "spriteId": "SPRITE_CYCLEM",
+            "spriteId": "SPRITE_BADMAN",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

@@ -20,7 +20,7 @@
         },
         {
             "id": "LOCALID_ACADEMY_TEACHER_CAMELLIA",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

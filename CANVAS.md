@@ -84,6 +84,9 @@ solid from its picture: a profile says which rows are top surface (laid flat) an
 tall since the camera looks down), with sides in the face's edge colours and a soft shadow underneath. The room
 gets its own texture set and area entry so no other room pays for its textures.
 
+**People on the furniture**: the GBA seats people on its sofas (the Fan Club); HeartGold's sofa stands taller than
+a person, so a sofa someone sits on is HeartGold's low seats instead.
+
 **Real assets first; draw only what HeartGold has nothing for** (Nick, the interior pass: rooms looked flat and
 unfinished, the Celadon old man's house empty). Every room built as a house (`build_rooms.build_room`: the small
 houses, and the rooms `build_interiors.py` builds in the `room` / `labroom` looks, each with an area of its own from
@@ -202,6 +205,15 @@ What else it does:
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
   table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
   screen through Oak, the lab, the type choice and the rival battle.
+
+## People's sprites
+
+`SPRITE` in `port/port_map.py` gives each of the GBA's people HeartGold's nearest person (checked side by side
+with HeartGold's own pictures: Misty is HeartGold's `GSLEADER11`, Erika `GSLEADER12`, Blaine `GSLEADER15`; a Biker
+its bald biker, `BADMAN`; a Beauty its blonde `WOMAN2`). Where HeartGold has no one like them (a chef), the GBA's own
+picture is an overworld of ours (`port/barriers.py PEOPLE`, written after the barriers': each 16x32 frame stood in a
+32x32 one, in HeartGold's person layout - its waiter's frame names, so the walking works as theirs), and the porter
+reads its tag from `data/custom_people.json`.
 
 ## Squares the scripts change (`port/barriers.py`, the porter, `engine/src/canvas_boulders.c`)
 
@@ -532,6 +544,12 @@ The looks (each HeartGold's own place of that kind):
   (land 303) elevator door; the GBA's dark partition strips are walls wherever they stand (`wall_mt`); its plants,
   terminals, glass cabinets, meeting tables, pictures, crates and beds as HeartGold's models (`furnish.KIT`).
   (Cinnabar's Lab and Mart are rooms now: the `labroom` look.)
+  **Roomier than the GBA's** (Nick: a little cramped; widths at HeartGold's, err bigger): each floor gets a row
+  more under its walls and a column more beside its partitions (`silph_widen`, the porter moves everything with its
+  square). A new line goes in just past a wall, or the first line after it that can take one; each square in it is
+  a copy of the floor beyond (the corridor longer) or of the wall (the wall deeper), plain floor between two things,
+  and none goes through a thing (a desk, a plant, a terminal, stairs), a card-key door or a scripted walk
+  (`SILPH_SCENES`: the 7F rival's, 11F Giovanni's).
 - **the Power Plant and Cinnabar's Gym**: Route 10's Power Plant (area 44, land 367): stone tiles, a wall of
   machine cabinets; the GBA's rubble as Mt. Moon's boulder card, its coils as blocks of the generator's yellow;
 - **the Pokemon Mansion**: the Burned Tower (area 78, land 449): charred plank walls (scorched now and then), its

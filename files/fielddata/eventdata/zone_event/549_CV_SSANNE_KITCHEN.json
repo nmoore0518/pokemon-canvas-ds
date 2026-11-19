@@ -3,7 +3,7 @@
     "objects": [
         {
             "id": "1",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 4,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -20,7 +20,7 @@
         },
         {
             "id": "2",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 4,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -37,7 +37,7 @@
         },
         {
             "id": "3",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -54,7 +54,7 @@
         },
         {
             "id": "4",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 14,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -71,7 +71,7 @@
         },
         {
             "id": "5",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 14,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -88,7 +88,7 @@
         },
         {
             "id": "6",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -105,7 +105,7 @@
         },
         {
             "id": "7",
-            "spriteId": "SPRITE_GSMAN3",
+            "spriteId": "7016",
             "movement": 14,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",

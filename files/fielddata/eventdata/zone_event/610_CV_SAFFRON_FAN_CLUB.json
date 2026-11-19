@@ -105,7 +105,7 @@
         },
         {
             "id": "LOCALID_TRAINER_FAN_CLUB_BEAUTY",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 14,
             "type": 0,
             "eventFlag": "0x206E",

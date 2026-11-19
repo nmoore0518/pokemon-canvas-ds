@@ -71,7 +71,7 @@
         },
         {
             "id": "LOCALID_ACADEMY_CANDIDATE_RENE",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 16,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
@@ -173,7 +173,7 @@
         },
         {
             "id": "LOCALID_ACADEMY_MARKET_HELD",
-            "spriteId": "SPRITE_GSWOMAN3",
+            "spriteId": "SPRITE_WOMAN2",
             "movement": 15,
             "type": 0,
             "eventFlag": "FLAG_NOTHING",
