@@ -152,7 +152,7 @@
             "scriptId": "_EV_SaffronCity_PokemonTrainerFanClub_EventScript_PokemonJournalBruno + 1",
             "type": 0,
             "x": 2,
-            "z": 1,
+            "z": 2,
             "y": 0,
             "dir": 4
         },
@@ -160,7 +160,7 @@
             "scriptId": "_EV_SaffronCity_PokemonTrainerFanClub_EventScript_PokemonJournalBruno + 1",
             "type": 0,
             "x": 3,
-            "z": 1,
+            "z": 2,
             "y": 0,
             "dir": 4
         }

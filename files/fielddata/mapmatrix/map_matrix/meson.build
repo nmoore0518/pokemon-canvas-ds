@@ -400,7 +400,6 @@ map_matrix_bin = copy_gen.process(files(
     'map_matrix_0398_CV_CELADON_HOTEL.bin',
     'map_matrix_0399_CV_PIT_HALL.bin',
     'map_matrix_0400_CV_SAFARI_OFFICE.bin',
-    'map_matrix_0401_CV_EXOTIC_SAFARI_HALL.bin',
     'map_matrix_0402_CV_SAFFRON_FAN_CLUB.bin',
     'map_matrix_0403_CV_MEDICAL_CENTER_1F.bin',
     'map_matrix_0404_CV_ACADEMY_CENTER.bin',

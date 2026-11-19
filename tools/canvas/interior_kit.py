@@ -254,6 +254,21 @@ def build_kit_floor(spec, depth_of):
             for c in comp: furn[c] = ri
             xs, ys = [c[0] for c in comp], [c[1] for c in comp]
             laid_things.append((rule, min(xs), min(ys), max(xs) + 1, max(ys) + 1))
+    # HeartGold's room models by the GBA's things (furnish.py KIT rules, by tileset): a patch's rows from `up` on are
+    # floor (under the model); those above it stay the wall it stands against or hangs on
+    kit_close = set()
+    if KIT.get('furnish'):
+        import furnish, gba_map
+        L_ = gba_map.layouts()[gm['layout']]
+        tsn = lambda m: L_['primary_tileset'] if m < lay.n_prim else L_['secondary_tileset']
+        for rule_, comp in furnish.patches(lay, tsn, rules=furnish.KIT, full=True):
+            up = rule_[4] if len(rule_) > 4 else 0
+            first_ = min(c[1] for c in comp) + up
+            pr, cl, rg, wn = furnish.place(rule_[2], comp, first_, lambda x_, y_: not walk(x_, y_))
+            props.extend((m_, x_, z_, yo) for m_, x_, z_, yo in pr)
+            kit_close |= set(cl)
+            for c in comp:
+                if c[1] >= first_ and not walk(*c): furn[c] = -1
     # (things: the little closed patches inside a room; one on the map's edge is a wall's end)
     inside = set()
     for c in P['things']:
@@ -265,6 +280,8 @@ def build_kit_floor(spec, depth_of):
                 n = (q[0] + dx, q[1] + dy)
                 if n in P['things'] and n not in comp: comp.add(n); stack.append(n)
         if not any(q[0] in (0, W - 1) or q[1] in (0, H - 1) for q in comp): inside |= comp
+    # (the GBA's walls seen from above - a partition drawn as a dark strip - are walls wherever they stand)
+    inside -= {q for q in inside if lay.metatile(*q) in KIT.get('wall_mt', ())}
     is_wall = lambda x, y: 0 <= x < W and 0 <= y < H and wallish(x, y) and not isvoid(x, y) and (x, y) not in furn and \
         (x, y) not in inside and (x, y) not in closed and (x, y) not in under and (x, y) not in hole_sq and not door(x, y)
     is_floor = lambda x, y: 0 <= x < W and 0 <= y < H and not isvoid(x, y) and not is_wall(x, y) and (x, y) not in hole_sq and \
@@ -306,7 +323,7 @@ def build_kit_floor(spec, depth_of):
             if not (wall0(x, y) and (x, y) not in thin): y += 1; continue
             y0 = y
             while y < H and wall0(x, y) and (x, y) not in thin: y += 1
-            if y - y0 >= 3 and walk(x, y0 - 1): lowwall |= {(x, k) for k in range(y0, y)}
+            if y - y0 >= 3 and walk(x, y0 - 1) and not KIT.get("tall_walls"): lowwall |= {(x, k) for k in range(y0, y)}
     LOW_H = KIT.get('low_h', 10)
     is_wall = lambda x, y: wall0(x, y) and (x, y) not in thin and (x, y) not in lowwall
     block = {s for s in inside if s not in furn and s not in closed}      # (closed, inside a room, no furniture of ours: the kit's block)
@@ -316,7 +333,12 @@ def build_kit_floor(spec, depth_of):
     ftex, fopt, fy, fa, fb, fc, fd = flat_uv(floor_p)
     top_p = Piece(lid, *KIT['top'], base=base)
     top_flat = flat_uv(top_p) if len(top_p.polys) == 1 and len({round(v[1], 2) for v in top_p.polys[0][2]}) == 1 else None
-    face = {k: Piece(lid, *v, base=base, drop=KIT.get('face_drop', ())) for k, v in KIT['faces'].items()}     # plain, ends, art (one square each)
+    if top_flat and KIT.get('top_solid'):       # (a top HeartGold paints one colour - a texel or two of its texture - stays so however long the run)
+        vs = top_p.polys[0][2]
+        top_flat = top_flat[:3] + (0, sum(v[3] for v in vs) / len(vs), 0, sum(v[4] for v in vs) / len(vs))
+    # plain, ends, art (one square each; a dict: from another land, {src, at, base})
+    face = {k: Piece(v['src'], *v['at'], base=v['base'], drop=KIT.get('face_drop', ())) if isinstance(v, dict) else
+            Piece(lid, *v, base=base, drop=KIT.get('face_drop', ())) for k, v in KIT['faces'].items()}
     things_p = {}
     for rule in KIT.get('things', []):
         if 'piece' in rule: things_p[id(rule)] = Piece(rule.get('src', lid), *rule['piece'], base=rule.get('base', base), drop=rule.get('drop', ()), whole=True)
@@ -329,14 +351,14 @@ def build_kit_floor(spec, depth_of):
         else:
             sl, sx, sz, sw, sh, sb = KIT['stairs_src']; stairs_p = Piece(sl, sx, sz, sw, sh, base=sb)
         keep = []
-        for m, x, z in props:
+        for m, x, z, *_ in props:
             if m in LOOK.get('stairs', ()):
                 y = round(z - BI.STAIR_BOX[m][4])
                 left = m in (LOOK['stairs'][1], LOOK['stairs'][2])         # (the closed side is left of the warp)
                 stair_at.append((x - 1, y, left))
                 for i in (0, 1):
                     for j in (0, 1): hole_sq.add((x - 1 + i, y + j))
-            else: keep.append((m, x, z))
+            else: keep.append((m, x, z, *_))
         props[:] = keep
     # the GBA's spin tiles: HeartGold's slide tiles (behaviour), its arrow (Viridian Gym's) on the floor
     slide = {}
@@ -377,7 +399,7 @@ def build_kit_floor(spec, depth_of):
             perm = [0x8000] * 1024
             for y in range(Z0, Z1):
                 for x in range(X0, X1):
-                    if walk(x, y) and (x, y) not in closed and (x, y) not in furn and (x, y) not in block:
+                    if walk(x, y) and (x, y) not in closed and (x, y) not in furn and (x, y) not in block and (x, y) not in kit_close:
                         perm[(y - oz) * 32 + (x - ox)] = kind.get((x, y), slide[(x, y)][0] if (x, y) in slide else 0) | (0x0600 if slide else 0)
                     if (x, y) in slide:       # (the arrow, a unit over the floor, turned the way it sends you)
                         d = slide[(x, y)][1]
@@ -484,8 +506,8 @@ def build_kit_floor(spec, depth_of):
             model += b'\0' * (-len(model) % 4)
             f4 = lambda v: int(round(v * 4096))
             U = lambda v, o: (v - o) * 16 - 256
-            bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(U(x, ox)), 0, f4(U(z_, oz)), 0, 0, 0, 4096, 4096, 4096)
-                           for m, x, z_ in props if X0 <= x < X1 and Z0 <= z_ < Z1)
+            bld = b''.join(struct.pack('<I3i3i3i8x', m, f4(U(x, ox)), f4(yo[0] if yo else 0), f4(U(z_, oz)), 0, 0, 0, 4096, 4096, 4096)
+                           for m, x, z_, *yo in props if X0 <= x < X1 and Z0 <= z_ < Z1)
             bdhc = struct.pack('<4s6H', b'BDHC', 2, 1, 1, 1, 1, 1) + struct.pack('<2i2i', -256 * 4096, -256 * 4096, 256 * 4096, 256 * 4096) + \
                 struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
             p = struct.pack('<1024H', *perm)

@@ -90,14 +90,6 @@
             "dir": 4
         },
         {
-            "scriptId": "_EV_FuchsiaCity_EventScript_ExoticSafariSign + 1",
-            "type": 0,
-            "x": 1186,
-            "z": 398,
-            "y": 0,
-            "dir": 4
-        },
-        {
             "scriptId": "_EV_Route19_EventScript_RouteSign + 1",
             "type": 0,
             "x": 1186,
@@ -454,13 +446,6 @@
             "z": 397,
             "header": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
             "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1185,
-            "z": 397,
-            "header": "MAP_CANVAS_EXOTIC_SAFARI_HALL",
-            "anchor": 1,
             "y": 0
         },
         {

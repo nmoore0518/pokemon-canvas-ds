@@ -25,7 +25,6 @@
 	ScrDef FuchsiaCity_EventScript_FossilMonSign
 	ScrDef FuchsiaCity_EventScript_LaprasSign
 	ScrDef FuchsiaCity_EventScript_SafariGameSign
-	ScrDef FuchsiaCity_EventScript_ExoticSafariSign
 	ScrDef Route19_EventScript_RouteSign
 	ScrDef FuchsiaCity_OnTransition
 	ScrDefEnd
@@ -195,15 +194,6 @@ FuchsiaCity_EventScript_SafariGameSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_SafariGameSign
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-FuchsiaCity_EventScript_ExoticSafariSign:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0512_T08_FuchsiaCity_Text_ExoticSafariSign
 	WaitButton
 	CloseMsg
 	ReleaseAll

@@ -649,7 +649,6 @@
 #define MAP_CANVAS_CELADON_HOTEL                          640
 #define MAP_CANVAS_PIT_HALL                               641
 #define MAP_CANVAS_SAFARI_OFFICE                          642
-#define MAP_CANVAS_EXOTIC_SAFARI_HALL                     643
 #define MAP_CANVAS_SAFFRON_FAN_CLUB                       644
 #define MAP_CANVAS_MEDICAL_CENTER_1F                      645
 #define MAP_CANVAS_ACADEMY_CENTER                         646

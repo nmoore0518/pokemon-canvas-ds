@@ -6,7 +6,7 @@
 static const MapHeader sCanvasMapHeaders[] = {
     [MAP_CANVAS_VIRIDIAN_PENNYS_HOUSE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 114,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -2046,7 +2046,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CINNABAR_MART - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 39,
+                        .areaDataBank = 200,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 7,
@@ -2076,7 +2076,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CINNABAR_LAB - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 39,
+                        .areaDataBank = 201,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 7,
@@ -2106,7 +2106,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CINNABAR_LAB_LOUNGE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 39,
+                        .areaDataBank = 202,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 7,
@@ -2136,7 +2136,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CINNABAR_LAB_RESEARCHROOM - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 39,
+                        .areaDataBank = 203,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 7,
@@ -2166,7 +2166,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CINNABAR_LAB_EXPERIMENTROOM - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 39,
+                        .areaDataBank = 204,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 7,
@@ -2436,7 +2436,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_CENTER_REST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 205,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2466,7 +2466,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_EAST_REST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 206,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2496,7 +2496,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_NORTH_REST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 207,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2526,7 +2526,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_WEST_REST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 208,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2556,7 +2556,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_SECRETHOUSE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 209,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2766,7 +2766,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CERULEAN_HOUSE5 - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 123,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 3,
@@ -2796,7 +2796,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_FUCHSIA_HOUSE2 - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 124,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2856,7 +2856,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_PEWTER_PAINTER_LOFT - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 125,
                         .moveModelBank = 15,
                         .worldMapX = 32,
                         .worldMapY = 3,
@@ -2886,7 +2886,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ROUTE19_HOUSE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 126,
                         .moveModelBank = 15,
                         .worldMapX = 37,
                         .worldMapY = 13,
@@ -2946,7 +2946,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFFRON_TCG_HOUSE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 43,
+                        .areaDataBank = 127,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3006,7 +3006,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_CELADON_HOTEL - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 210,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3066,7 +3066,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_SAFARI_OFFICE - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 211,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3094,39 +3094,9 @@ static const MapHeader sCanvasMapHeaders[] = {
                         .incomingCalls = TRUE,
                         .radioSignal = TRUE,
                         },
-    [MAP_CANVAS_EXOTIC_SAFARI_HALL - MAP_CANVAS_FIRST] = {
-                        .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
-                        .moveModelBank = 15,
-                        .worldMapX = 41,
-                        .worldMapY = 7,
-                        .matrixId = NARC_map_matrix_map_matrix_0401_CV_EXOTIC_SAFARI_HALL_bin,
-                        .scriptsBank = scr_seq_1197_CV_CANVAS_EXOTIC_SAFARI_HALL_bin,
-                        .scriptHeaderBank = scr_seq_1198_CV_CANVAS_EXOTIC_SAFARI_HALL_hdr_bin,
-                        .msgBank = msg_0970_CV_CANVAS_EXOTIC_SAFARI_HALL,
-                        .dayMusicId = SEQ_GS_C_YAMABUKI,
-                        .nightMusicId = SEQ_GS_C_YAMABUKI,
-                        .eventsBank = NARC_zone_event_609_CV_EXOTIC_SAFARI_HALL_bin,
-                        .mapsec = MAPSEC_FUCHSIA_CITY,
-                        .areaIcon = 9,
-                        .momCallIntroParam = 12,
-                        .regionNo = MAP_REGION_KANTO,
-                        .weather = 0,
-                        .mapType = MAP_TYPE_INTERIOR,
-                        .cameraType = 4,
-                        .followMode = MAP_FOLLOWMODE_HEIGHT_RESTRICT,
-                        .battleBg = BATTLE_BG_BUILDING_1,
-                        .bikeAllowed = FALSE,
-                        .runningAllowed_Unused = TRUE,
-                        .escapeRopeAllowed = FALSE,
-                        .flyAllowed = FALSE,
-                        .outgoingCalls = TRUE,
-                        .incomingCalls = TRUE,
-                        .radioSignal = TRUE,
-                        },
     [MAP_CANVAS_SAFFRON_FAN_CLUB - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 212,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3156,7 +3126,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_MEDICAL_CENTER_1F - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 213,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3186,7 +3156,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_CENTER - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 214,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 7,
@@ -3216,7 +3186,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_HALL - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 215,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3246,7 +3216,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_BATTLE_HALL - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 216,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3276,7 +3246,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_LECTURE_A - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 217,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3306,7 +3276,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_LECTURE_B - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 218,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3336,7 +3306,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_LECTURE_C - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 219,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3366,7 +3336,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_LECTURE_D - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 220,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3396,7 +3366,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_ACADEMY_MEGA_ROOM - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 221,
                         .moveModelBank = 15,
                         .worldMapX = 41,
                         .worldMapY = 7,
@@ -3426,7 +3396,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_UNDERGROUND_WEST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 222,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 5,
@@ -3456,7 +3426,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_UNDERGROUND_EAST - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 223,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 5,

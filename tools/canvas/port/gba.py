@@ -3,7 +3,7 @@ files they keep text and movements in), as commands, strings or movement steps.
 
     from port import gba; g = gba.Gba(); g.labels['PalletTown_EventScript_FatMan']   -> [('msgbox', [...]), ...]
 """
-import glob, json, os, re
+import glob, json, os, re, sys
 
 GBA = os.environ.get('GBA_REPO', '/home/claude/gym-trainer-hack')
 P = lambda *a: os.path.join(GBA, *a)
@@ -62,7 +62,9 @@ class Gba:
         macro = None               # (a .macro in a map's scripts: its lines, expanded where it's used; no arguments)
         local_macros = {}
         pmacro, pmacros = None, {}   # (a .macro with arguments: its lines as text, the arguments put in where used)
-        queue = list(open(f, errors='ignore'))
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+        import scrapped        # (less what the port leaves out: scrapped.py)
+        queue = scrapped.edit_source(f, open(f, errors='ignore').read()).splitlines(True)
         while queue:
             raw = queue.pop(0)
             if pmacro is not None:
@@ -146,7 +148,9 @@ class Gba:
 
 
 def map_json(name):
-    return json.load(open(P('data/maps', name, 'map.json')))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import scrapped        # (without what the port leaves out: scrapped.py)
+    return scrapped.clean(json.load(open(P('data/maps', name, 'map.json'))))
 
 
 _MAP_DIRS = None

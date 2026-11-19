@@ -586,10 +586,6 @@
       "en_US": "Convention"
     },
     {
-      "id": "msg_0451_T01R0301_LeaderAide_Text_OptSafari",
-      "en_US": "Exotic Safari"
-    },
-    {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon",
       "en_US": "New Pokémon"
     },
@@ -602,12 +598,12 @@
       "en_US": "Gym Rooms"
     },
     {
-      "id": "msg_0451_T01R0301_cv_more",
-      "en_US": "More…"
-    },
-    {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptLegends",
       "en_US": "Legendaries"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_more",
+      "en_US": "More…"
     },
     {
       "id": "msg_0451_T01R0301_LeaderAide_Text_OptPenny",
@@ -1136,25 +1132,6 @@
       ]
     },
     {
-      "id": "msg_0451_T01R0301_LeaderAide_Text_Safari",
-      "en_US": [
-        "The Exotic Pokémon Safari is the\n",
-        "second door of Fuchsia City’s\f",
-        "Safari Zone building.\r",
-        "Its attendant sells Gym Leaders an\n",
-        "Exotic Pass. It’s ¥10,000, and you\f",
-        "only need the one.\r",
-        "Every region has its own zone,\n",
-        "from Johto to Paldea. Battles there\f",
-        "are normal ones: use your own\f",
-        "Poké Balls.\r",
-        "The kiosks sell supplies, and the\n",
-        "evolution items you’ve found.\r",
-        "And some zones have legendaries,\n",
-        "hidden behind puzzles!"
-      ]
-    },
-    {
       "id": "msg_0451_T01R0301_LeaderAide_Text_NewPokemon",
       "en_US": [
         "Until now, Pokémon from far-off\n",
@@ -1162,10 +1139,6 @@
         "But a Gym Leader can go anywhere!\n",
         "Every Pokémon there is can be\f",
         "yours now.\r",
-        "Johto’s live on the routes around\n",
-        "the Convention, and every region’s\f",
-        "live in the Exotic Safari in\f",
-        "Fuchsia City.\r",
         "Try to catch them all!"
       ]
     },

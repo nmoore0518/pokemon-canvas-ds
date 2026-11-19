@@ -19,25 +19,368 @@
   "first": 2,
   "squares": []
  },
- "MAP_CANVAS_CELADON_HOUSE1": {
+ "MAP_CANVAS_ACADEMY_BATTLE_HALL": {
+  "first": 3,
+  "squares": []
+ },
+ "MAP_CANVAS_ACADEMY_CENTER": {
+  "first": 0,
+  "squares": []
+ },
+ "MAP_CANVAS_ACADEMY_HALL": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    14,
+    2
+   ],
+   [
+    19,
+    2
+   ],
+   [
+    23,
+    2
+   ],
+   [
+    24,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ACADEMY_LECTURE_A": {
+  "first": 2,
+  "squares": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ACADEMY_LECTURE_B": {
+  "first": 2,
+  "squares": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ACADEMY_LECTURE_C": {
+  "first": 2,
+  "squares": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ACADEMY_LECTURE_D": {
+  "first": 2,
+  "squares": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_ACADEMY_MEGA_ROOM": {
+  "first": 2,
+  "squares": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_CELADON_HOTEL": {
   "first": 2,
   "squares": []
+ },
+ "MAP_CANVAS_CELADON_HOUSE1": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
  },
  "MAP_CANVAS_CERULEAN_HOUSE4": {
   "first": 2,
-  "squares": []
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
  },
  "MAP_CANVAS_CERULEAN_HOUSE5": {
   "first": 2,
-  "squares": []
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ]
+  ]
  },
- "MAP_CANVAS_FUCHSIA_HOUSE2": {
+ "MAP_CANVAS_CINNABAR_LAB": {
   "first": 1,
   "squares": []
  },
- "MAP_CANVAS_FUCHSIA_HOUSE3": {
+ "MAP_CANVAS_CINNABAR_LAB_EXPERIMENTROOM": {
   "first": 2,
   "squares": []
+ },
+ "MAP_CANVAS_CINNABAR_LAB_LOUNGE": {
+  "first": 2,
+  "squares": [
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ],
+   [
+    13,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_CINNABAR_LAB_RESEARCHROOM": {
+  "first": 2,
+  "squares": [
+   [
+    3,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ],
+   [
+    13,
+    2
+   ],
+   [
+    14,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_CINNABAR_MART": {
+  "first": 2,
+  "squares": [
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_FUCHSIA_HOUSE2": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_FUCHSIA_HOUSE3": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_MEDICAL_CENTER_1F": {
+  "first": 2,
+  "squares": [
+   [
+    1,
+    2
+   ],
+   [
+    12,
+    2
+   ],
+   [
+    13,
+    2
+   ],
+   [
+    15,
+    2
+   ],
+   [
+    16,
+    2
+   ]
+  ]
  },
  "MAP_CANVAS_PEWTER_PAINTER_LOFT": {
   "first": 2,
@@ -89,11 +432,304 @@
    ]
   ]
  },
+ "MAP_CANVAS_SAFARI_CENTER_REST": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFARI_EAST_REST": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFARI_NORTH_REST": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFARI_OFFICE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFARI_SECRETHOUSE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFARI_WEST_REST": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    10,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    12,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFFRON_FAN_CLUB": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ]
+ },
  "MAP_CANVAS_SAFFRON_HOUSE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_SAFFRON_TCG_HOUSE": {
+  "first": 2,
+  "squares": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    5,
+    2
+   ]
+  ]
+ },
+ "MAP_CANVAS_UNDERGROUND_EAST": {
   "first": 2,
   "squares": []
  },
- "MAP_CANVAS_SAFFRON_TCG_HOUSE": {
+ "MAP_CANVAS_UNDERGROUND_WEST": {
   "first": 2,
   "squares": []
  },

@@ -70,6 +70,9 @@ class Layout:
         data = open(P(L['blockdata_filepath']), 'rb').read()
         b = struct.unpack('<%dH' % (len(data) // 2), data)
         self.blocks = [[b[y * self.w + x] for x in range(self.w)] for y in range(self.h)]
+        import scrapped        # (squares of what the port leaves out, drawn as the ground round them)
+        for x, y, mt, coll in scrapped.LAYOUT_EDITS.get(layout_id, ()):
+            self.blocks[y][x] = (self.blocks[y][x] & 0xF000) | mt | (coll << 10)
         if not raw:         # (squares a script opens and closes are built open: port/barriers.py)
             for sq in _barriers().get(layout_id, []):
                 if sq['base']: self.blocks[sq['y']][sq['x']] = sq['open'] | (self.blocks[sq['y']][sq['x']] & 0xF000)
@@ -141,7 +144,8 @@ def _barriers():
 
 
 def map_json(map_dir):
-    return json.load(open(P('data/maps', map_dir, 'map.json')))
+    import scrapped        # (without what the port leaves out: scrapped.py)
+    return scrapped.clean(json.load(open(P('data/maps', map_dir, 'map.json'))))
 
 
 if __name__ == '__main__':

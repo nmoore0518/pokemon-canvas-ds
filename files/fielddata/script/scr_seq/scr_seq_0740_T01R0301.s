@@ -861,10 +861,10 @@ _cv_page_49:
 	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
 	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptChallengers, 0
 	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptConvention, 1
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptSafari, 2
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon, 3
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptMastery, 4
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptRooms, 5
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptNewPokemon, 2
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptMastery, 3
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptRooms, 4
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptLegends, 5
 	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
 	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
@@ -872,11 +872,10 @@ _cv_page_49:
 	GoTo _cv_page_50_end
 _cv_page_50:
 	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptLegends, 6
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptPenny, 7
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptCostumes, 8
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptTutors, 9
-	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptDone, 10
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptPenny, 6
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptCostumes, 7
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptTutors, 8
+	ScrCmd_559 msg_0451_T01R0301_LeaderAide_Text_OptDone, 9
 	ScrCmd_559 msg_0451_T01R0301_cv_more, 254
 	ScrCmd_067
 	CompareVarToValue VAR_SPECIAL_RESULT, 254
@@ -892,20 +891,18 @@ _cv_menu_51:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq LeaderAide_EventScript_Convention
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq LeaderAide_EventScript_Safari
-	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	GoToIfEq LeaderAide_EventScript_NewPokemon
-	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	GoToIfEq LeaderAide_EventScript_Mastery
-	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfEq LeaderAide_EventScript_Rooms
-	CompareVarToValue VAR_SPECIAL_RESULT, 6
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq LeaderAide_EventScript_Legends
-	CompareVarToValue VAR_SPECIAL_RESULT, 7
+	CompareVarToValue VAR_SPECIAL_RESULT, 6
 	GoToIfEq LeaderAide_EventScript_Penny
-	CompareVarToValue VAR_SPECIAL_RESULT, 8
+	CompareVarToValue VAR_SPECIAL_RESULT, 7
 	GoToIfEq LeaderAide_EventScript_Costumes
-	CompareVarToValue VAR_SPECIAL_RESULT, 9
+	CompareVarToValue VAR_SPECIAL_RESULT, 8
 	GoToIfEq LeaderAide_EventScript_Tutors
 	NPCMsg msg_0451_T01R0301_LeaderAide_Text_Bye
 	WaitButton
@@ -2126,11 +2123,6 @@ LeaderAide_EventScript_Challengers:
 	
 LeaderAide_EventScript_Convention:
 	NPCMsg msg_0451_T01R0301_LeaderAide_Text_Convention
-	WaitButton
-	GoTo LeaderAide_EventScript_Menu
-	
-LeaderAide_EventScript_Safari:
-	NPCMsg msg_0451_T01R0301_LeaderAide_Text_Safari
 	WaitButton
 	GoTo LeaderAide_EventScript_Menu
 	

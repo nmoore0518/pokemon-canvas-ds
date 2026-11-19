@@ -608,7 +608,6 @@ zone_event_json = files(
     '606_CV_CELADON_HOTEL.json',
     '607_CV_PIT_HALL.json',
     '608_CV_SAFARI_OFFICE.json',
-    '609_CV_EXOTIC_SAFARI_HALL.json',
     '610_CV_SAFFRON_FAN_CLUB.json',
     '611_CV_MEDICAL_CENTER_1F.json',
     '612_CV_ACADEMY_CENTER.json',

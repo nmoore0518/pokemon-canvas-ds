@@ -15,7 +15,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 2,
-            "z": 2,
+            "z": 3,
             "y": 0
         },
         {
@@ -75,21 +75,21 @@
             "x": 5,
             "z": 9,
             "header": "MAP_FUCHSIA",
-            "anchor": 3,
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 6,
             "z": 9,
             "header": "MAP_FUCHSIA",
-            "anchor": 3,
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 7,
             "z": 9,
             "header": "MAP_FUCHSIA",
-            "anchor": 3,
+            "anchor": 2,
             "y": 0
         }
     ],

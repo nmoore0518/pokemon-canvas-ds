@@ -20,9 +20,8 @@
 #define _EV_FuchsiaCity_EventScript_FossilMonSign 16
 #define _EV_FuchsiaCity_EventScript_LaprasSign 17
 #define _EV_FuchsiaCity_EventScript_SafariGameSign 18
-#define _EV_FuchsiaCity_EventScript_ExoticSafariSign 19
-#define _EV_Route19_EventScript_RouteSign 20
-#define _EV_FuchsiaCity_OnTransition 21
+#define _EV_Route19_EventScript_RouteSign 19
+#define _EV_FuchsiaCity_OnTransition 20
 
 
 #endif

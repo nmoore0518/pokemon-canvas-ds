@@ -43,17 +43,16 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
         faces={'plain': (1, 2), 'lit': (6, 2)}, lit_every=4,
         face_drop={'table01', 'h_kage', 'so_hachi', 'so_hana2', 'so_hana3', 'so_kuki', '?'},
         stone=dict(tex='so_tomb02', top=(2, 1, 22, 26), side=(28, 19), w=0.78, d=0.72, h=13))),
-    # Silph Co.'s upper floors in HeartGold's own Silph Co. (its headquarters' lobby, area 39, land 303): its blue
-    # tiled floor, its pale wall with a pillar now and then, its brown top; desks with monitors and chairs from the
-    # Radio Tower's offices (land 462, imported), Team Rocket HQ's crates for its boxes, its potted plant
+    # Silph Co.'s upper floors as HeartGold's offices (the Radio Tower's, land 462, its textures imported into the
+    # Silph Co. set, area 39): its grey zigzag floor, its cream wall with a window now and then, its dark top, its
+    # desks with monitors; the lobby's (land 303) door; HeartGold's room models for the rest (furnish.KIT: plants,
+    # terminals, glass cabinets, meeting tables, pictures, crates, beds); Team Rocket HQ's crates for anything else
     'silph': dict(area=39, stairs=(7, 8, 9, 10), pad_model=157, kit=dict(
-        src=303, base=29, floor=(10, 4), floor_tex={'slf01_01'}, top=(27, 5),
-        faces={'plain': (10, 2), 'door': (3, 2)},
-        things=[dict(mt={0x2B8, 0x2B9, 0x2BA, 0x2BB, 0x3A2, 0x3A4, 0x3A8, 0x3EF, 0x2C3, 0x2C4, 0x374, 0x37B, 0x37C, 0x385, 0x387, 0x391,
-                         0x388, 0x389, 0x397, 0x398},
-                     src=462, piece=(3, 7, 2, 3), center=True, base=-2, drop={'ryuka_b'}),
-                dict(mt={0x34F, 0x355, 0x356}, model=23)],
-        stairs_src=(462, 1, 4, 2, 3, -2),
+        src=462, base=-2, floor=(5, 8), floor_tex={'ryuka_b'}, top=(28, 2), top_solid=True,
+        faces={'plain': (5, 4), 'lit': (3, 4, 2, 1), 'door': dict(src=303, at=(3, 2), base=29)}, lit_every=5,
+        things=[dict(mt={0x36D, 0x36E, 0x36F, 0x391, 0x31C, 0x31D, 0x323, 0x324, 0x325, 0x388, 0x389, 0x3A8, 0x3EF, 0x374},
+                     src=462, piece=(3, 7, 2, 3), center=True, base=-2, drop={'ryuka_b'})],
+        furnish=True, stairs_src=(462, 1, 4, 2, 3, -2), wall_mt={0x288, 0x28C, 0x290, 0x294, 0x298, 0x29C, 0x331, 0x33E, 0x33F, 0x346, 0x347},
         block=(19, 9, 1, 2), block_src=499, block_keep={'aj_box01', 'h_kage'}, block_at=(0, -0.56), block_base=14)),
     # the Pokemon Mansion, burnt out, in HeartGold's Burned Tower (area 78, its 1F, land 449): charred plank walls,
     # their scorched pieces now and then, its wooden floor, its fallen rubble for the GBA's rubble and anything
@@ -61,7 +60,7 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     'mansion': dict(area=78, stairs=(66, 66, 67, 67), kit=dict(
         src=449, base=0, floor=(13, 23), floor_tex={'d18_yuka01'}, top=(10, 2),
         faces={'plain': (7, 5), 'lit': (8, 5)}, lit_every=5, face_drop={'d182f_wall01', 'd182f_wall02', 'd18_yuka02'},
-        things=[dict(mt={0x324}, model=23)],
+        things=[dict(mt={0x324}, model=23)], furnish=True, tall_walls=True,
         stone=dict(tex='d181f_wall01', top=(0, 0, 16, 12), side=(8, 20), w=0.9, d=0.8, h=12))),
     # the Power Plant in HeartGold's own (Route 10's, area 44, land 367): its stone-tiled floor, its wall of machine
     # cabinets, its dark top; the GBA's rubble as HeartGold's cave boulder (Mt. Moon's set, imported) stood up as its
@@ -95,7 +94,7 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # cream walls with portholes, its cabin doors, the hull's top; HeartGold's ship furniture (SHIP_FURNITURE)
     'shipkit': dict(area=42, stairs=(7, 8, 9, 10), furniture=True, kit=dict(
         src=643, base=-2, floor=(14, 12), floor_tex={'maq_rm03'}, top=(10, 6),
-        faces={'plain': (15, 8), 'door': (13, 8), 'lit': (4, 2)}, lit_every=3, face_drop={'h_kage'}, mat=('d_mat01', 32, 16))),
+        faces={'plain': (15, 8), 'door': (13, 8), 'lit': (4, 2)}, lit_every=3, face_drop={'h_kage'}, mat=('d_mat01', 32, 16), furnish=True)),
     'ship': dict(area=42, ship=True),         # the S.S. Anne: SHIP below
     # Celadon's Game Corner and its Prize Room, in the looks of HeartGold's own (whose rooms are laid out for other
     # games: its Game Corner is the Voltorb Flip hall, its prize room a third the size of the GBA's)
@@ -117,6 +116,12 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
                       furniture={0x28E: (23, 1, 2, (0, 0.5))}, wall_art={0x2A8: ('maq_pt04', 0, 0, 32, 32, 6, 38, 2)},
                       cushions={0x291: 'week_hu02'},
                       floor_mt={0x296}, low_mt={0x2B6, 0x2A5, 0x2BB, 0x29C, 0x2A4, 0x2AF, 0x2BA, 0x29F, 0x2A6, 0x2A7, 0x2C4, 0x2C5, 0x2AD, 0x2AE, 0x2B5}),
+    # rooms the GBA draws as a house's (a back wall in rows along the top, floor below): built as build_rooms.py
+    # builds the houses - HeartGold's room walls with their windows, its furniture models by the GBA's metatiles
+    # (build_rooms.FURNITURE) - in HeartGold's house textures, or its lab's. Each has an area of its own
+    # (ROOM_AREA_BASE on), whose building set holds only its furniture
+    'room': dict(area=43, room='house'),
+    'labroom': dict(area=43, room='lab'),
     # outdoors (the Safari Zone): build_safari.py, from HeartGold's own Safari Zone (area 121: its textures, set 75,
     # with Fuchsia's buildings)
     'safari': dict(area=121, floor='grass02', wall='tree01_re', top='tree01_un', low='etc_a', mark='road01',
@@ -171,9 +176,9 @@ CIN = {('MAP_CINNABAR_ISLAND', str(i)): ('MAP_CINNABAR_ISLAND', i) for i in rang
 INTERIORS += (
     [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='plant', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN,
           place='MAP_CINNABAR_ISLAND'),
-     dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='silph', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND'),
-     dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='silph', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND')] +
-    [dict(gba='CinnabarIsland_PokemonLab_%s_Frlg' % r, map='MAP_CANVAS_CINNABAR_LAB_%s' % r.upper(), look='silph', template='MAP_SAFFRON_SILPH_CO_HQ',
+     dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='labroom', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND'),
+     dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='labroom', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND')] +
+    [dict(gba='CinnabarIsland_PokemonLab_%s_Frlg' % r, map='MAP_CANVAS_CINNABAR_LAB_%s' % r.upper(), look='labroom', template='MAP_SAFFRON_SILPH_CO_HQ',
           depth=0) for r in ('Lounge', 'ResearchRoom', 'ExperimentRoom')] +
     [dict(gba='PokemonMansion_%s_Frlg' % f, map='MAP_CANVAS_POKEMON_MANSION_%s' % f, look='mansion', template='MAP_BURNED_TOWER_1F',
           depth={'1F': -1, '2F': -2, '3F': -3, 'B1F': 0}[f], exits=CIN, place='MAP_CINNABAR_ISLAND') for f in ('1F', '2F', '3F', 'B1F')]
@@ -186,7 +191,7 @@ INTERIORS += (
      dict(gba='SafariZone_East_Frlg', map='MAP_CANVAS_SAFARI_EAST', look='safari', template=SZ, depth=0),
      dict(gba='SafariZone_North_Frlg', map='MAP_CANVAS_SAFARI_NORTH', look='safari', template=SZ, depth=0),
      dict(gba='SafariZone_West_Frlg', map='MAP_CANVAS_SAFARI_WEST', look='safari', template=SZ, depth=0)] +
-    [dict(gba='SafariZone_%s_Frlg' % r, map='MAP_CANVAS_SAFARI_%s' % r.upper().replace('_RESTHOUSE', '_REST'), look='resthouse',
+    [dict(gba='SafariZone_%s_Frlg' % r, map='MAP_CANVAS_SAFARI_%s' % r.upper().replace('_RESTHOUSE', '_REST'), look='room',
           template='MAP_FUCHSIA_SOUTHWEST_HOUSE', depth=0)
      for r in ('Center_RestHouse', 'East_RestHouse', 'North_RestHouse', 'West_RestHouse', 'SecretHouse')]
 )
@@ -207,11 +212,14 @@ INTERIORS += [dict(gba='SilphCo_Elevator_Frlg', map='MAP_CANVAS_SILPH_ELEVATOR',
 # the GBA's other rooms HeartGold has no building for, behind the doors of the GBA-layout towns (build_overworld.py
 # lays their houses): a plain house's look; their ways out to the towns are put in by build_overworld.py
 _H = 'MAP_SAFFRON_MR_PSYCHIC_HOUSE'
-INTERIORS += [dict(gba=g, map=m, look='house', template=t, depth=0, place=pl) for g, m, t, pl in [
+ROOM_LOOK = {'VermilionCity_MedicalCenter_1F': 'labroom', 'LeaderAcademy_PokemonCenter': 'labroom', 'LeaderAcademy_LectureA': 'labroom',
+             'LeaderAcademy_LectureB': 'labroom', 'LeaderAcademy_LectureC': 'labroom', 'LeaderAcademy_LectureD': 'labroom',
+             'UndergroundPath_WestEntrance_Frlg': 'labroom', 'UndergroundPath_EastEntrance_Frlg': 'labroom',
+             'CeladonCity_PitHall': 'house', 'UndergroundPath_EastWestTunnel_Frlg': 'house'}
+INTERIORS += [dict(gba=g, map=m, look=ROOM_LOOK.get(g, 'room'), template=t, depth=0, place=pl) for g, m, t, pl in [
     ('CeladonCity_Hotel_Frlg', 'MAP_CANVAS_CELADON_HOTEL', _H, 'MAP_CELADON'),
     ('CeladonCity_PitHall', 'MAP_CANVAS_PIT_HALL', _H, 'MAP_CELADON'),
     ('FuchsiaCity_SafariZone_Office_Frlg', 'MAP_CANVAS_SAFARI_OFFICE', _H, 'MAP_FUCHSIA'),
-    ('ExoticSafari_Hall', 'MAP_CANVAS_EXOTIC_SAFARI_HALL', _H, 'MAP_FUCHSIA'),
     ('SaffronCity_PokemonTrainerFanClub_Frlg', 'MAP_CANVAS_SAFFRON_FAN_CLUB', _H, 'MAP_SAFFRON'),
     ('VermilionCity_MedicalCenter_1F', 'MAP_CANVAS_MEDICAL_CENTER_1F', _H, 'MAP_VERMILION'),
     ('LeaderAcademy_PokemonCenter', 'MAP_CANVAS_ACADEMY_CENTER', 'MAP_SAFFRON_POKECENTER_1F', 'MAP_SAFFRON'),
@@ -560,8 +568,28 @@ for _s in INTERIORS:        # (a row more where a plateau's north face needs a s
     if _s['look'] == 'safari' and safari_plan(_s['gba']): _s['widen'] = safari_plan(_s['gba'])
 
 
+ROOM_AREA_BASE = 200
+ROOM_AREAS = {}           # area of ours -> the room models its room places
+ROOM_OWN = {}             # area of ours -> its room's own textures (build_rooms.gba_art)
+
+
+def build_room_floor(spec):
+    """a room built as build_rooms.py builds the houses (a look with `room`) -> as build_floor"""
+    import build_rooms as BR
+    base = BR.HOUSE if LOOKS[spec['look']]['room'] == 'house' else BR.LAB
+    SLOTS[spec['map']] = spec['map']
+    rs = dict(base, **{k: v for k, v in spec.items() if k in ('gba', 'map', 'widen')})
+    data, props, gm, own = BR.build_room(rs, spec.get('_lid', 0))
+    area = spec.get('_area') or ROOM_AREA_BASE + len(ROOM_AREAS)
+    ROOM_AREAS[area] = {m for m, *_ in props}
+    ROOM_OWN[area] = own          # (the GBA's own art for what HeartGold has nothing for: a texture set of its own)
+    spec['_area'] = area
+    return gm, (1, 1), [data]
+
+
 def build_floor(spec, depth_of):
     if spec['look'] == 'safari': return build_safari_floor(spec, depth_of)
+    if LOOKS[spec['look']].get('room'): return build_room_floor(spec)
     if LOOKS[spec['look']].get('kit'):
         import interior_kit
         return interior_kit.build_kit_floor(spec, depth_of)
@@ -700,7 +728,23 @@ def ship_models():
         src = u16(areas[model_area], 0)
         sets[area], atex[area] = sets[src], atex[src]
         areas[area] = struct.pack('<HH', area, u16(areas[tex_area], 2)) + areas[model_area][4:]
+    tpath = os.path.join(ROOT, 'files/a/0/4/4')
+    texsets, tbtnf = read_narc(open(tpath, 'rb').read())
+    for area, models in ROOM_AREAS.items():      # (a room of ours: an area of its own, its building set its furniture)
+        for lst in (areas, sets, atex): lst += [lst[43]] * max(0, area + 1 - len(lst))
+        ts_ = u16(areas[43], 2)
+        if ROOM_OWN.get(area):      # (its texture set: HeartGold's house set and the room's own art, at the area's number)
+            texsets += [min(texsets, key=len)] * max(0, area + 1 - len(texsets))
+            bt, bp = read_tex0(texsets[ts_], tex0_of(texsets[ts_]))
+            own = ROOM_OWN[area]
+            texsets[area] = write_btx0(bt + [t for t, _ in own], bp + [q for _, q in own])
+            ts_ = area
+        areas[area] = struct.pack('<HH', area, ts_) + areas[43][4:]
+        sets[area] = struct.pack('<H', 0)
+        USED_MODELS.setdefault(area, set()).update(models)
+        atex[area] = write_btx0([], [])
     open(R.AREA_DATA, 'wb').write(write_narc(areas, areas_btnf))
+    open(tpath, 'wb').write(write_narc(texsets, tbtnf))
     for area, models in USED_MODELS.items():
         buildset = u16(areas[area], 0)
         ids = list(struct.unpack_from('<%dH' % u16(sets[buildset], 0), sets[buildset], 2))
@@ -723,7 +767,7 @@ def ship_models():
 # tiles are the Viridian Gym's slide tiles)
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
-           39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair']), (64, ['aj_box01'])],
+           39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01'])],
            44: [(70, ['d_rock01'])],
            18: [(75, ['pond_on', 'pond_edge', 'pond_un']),          # (Kanto's overworld: build_overworld.py;
                 (11, ['ymb_fe01', 'ymb_fe01_r', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
@@ -804,6 +848,7 @@ def main():
     lid = LAND_BASE
     for spec in INTERIORS:
         tmpl = header(spec['template'])
+        spec['_lid'] = lid
         gm, (nx, nz), lands = build_floor(spec, depth_of)
         lids = list(range(lid, lid + len(lands)))
         land += [b''] * max(0, lids[-1] + 1 - len(land))
@@ -821,7 +866,7 @@ def main():
         ev['objects'], ev['bgs'], ev['coords'] = [], [], []
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
-        fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(LOOKS[spec['look']]['area']), weather='0', **NO_SCRIPTS)
+        fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(spec.get('_area', LOOKS[spec['look']]['area'])), weather='0', **NO_SCRIPTS)
         if LOOKS[spec['look']].get('kit'): fields['cameraType'] = '4'      # (HeartGold's indoor camera, as its own rooms of these looks have)
         if spec.get('place'):       # (the name shown on entering: the town's, where the template is elsewhere)
             fields['mapsec'] = header(spec['place'])['mapsec']
@@ -831,6 +876,12 @@ def main():
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
     import build_safari
     json.dump(build_safari.MOVED, open(build_safari.MOVED_FILE, 'w'), indent=1, sort_keys=True)
+    import build_rooms as BR       # (where our rooms' wall furniture stands: the porter moves people off it)
+    if BR.STANDS:
+        sf = os.path.join(HERE, 'data', 'room_furniture.json')
+        st = json.load(open(sf)) if os.path.exists(sf) else {}
+        st.update(BR.STANDS)
+        json.dump(st, open(sf, 'w'), indent=1, sort_keys=True)
     ship_models()
     import world
     for m, (x, z), beh, to, anchor in ADD_WARPS:

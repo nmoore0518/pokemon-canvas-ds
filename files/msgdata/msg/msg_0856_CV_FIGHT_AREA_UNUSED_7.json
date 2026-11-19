@@ -330,11 +330,6 @@
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Being a Leader opens a\n",
         "lot of doors, you know.\r",
-        "Gym Leaders can get a pass to the\n",
-        "Exotic Pokémon Safari in Fuchsia.\r",
-        "Pokémon from every region live\n",
-        "there. Hoenn, Sinnoh, all the way\f",
-        "to Paldea!\r",
         "Keep a streak going here, and\n",
         "you’ll master your type. Then Oak\f",
         "will let you take on a new one.\r",
@@ -661,11 +656,7 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_LeaderPerksByMail",
       "en_US": [
         "There’s a note at the bottom…\r",
-        "“Gym Leaders may now buy a pass to\n",
-        "the Exotic Pokémon Safari in\f",
-        "Fuchsia City, home to Pokémon from\f",
-        "every region.\r",
-        "For everything else a Leader can\n",
+        "“For everything a Leader can\n",
         "do, see Prof. Oak’s Aide.”"
       ]
     },
@@ -1424,15 +1415,7 @@
       "en_US": [
         "And that’s every type there is!\n",
         "{STRVAR_1 3, 6, 0}, you’ve mastered them All!\r",
-        "I never thought I’d see the day…\r",
-        "Oh! That reminds me. The Exotic\n",
-        "Safari’s staff told me a story.\r",
-        "Deep in its Paldea Crater, they\n",
-        "say, sleeps a Pokémon that holds\f",
-        "the power of every type.\r",
-        "It only shows itself to a trainer\n",
-        "who has mastered them all.\r",
-        "Sounds like someone I know!"
+        "I never thought I’d see the day…"
       ]
     },
     {

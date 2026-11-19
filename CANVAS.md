@@ -60,6 +60,14 @@ the set's shared texture file (`a/0/7/0`). Things learned the hard way:
   third half-word is the animation (a member of `a/1/4/0`, 0xFFFF none); every builder must hold those slots
   (the caves' areas scroll 0..4, the Safari Zone's 0..7)
 
+## Left out for good (`tools/canvas/scrapped.py`)
+
+The Exotic Pokemon Safari (STORY.md) is not in the port at all, and the GBA hack gets no more work (Nick), so it is
+cut on the way in: the GBA's maps are read without the way into it and its sign (`clean`: Fuchsia's door, the last
+of its warps, so no other warp moves), Fuchsia's sign square is ground (`LAYOUT_EDITS`), and its scripts as the
+porter reads them lose what points at it (`SOURCE_EDITS`: the AIDE's EXOTIC SAFARI topic, the lines about it in the
+Johto letter and Oak's every-type speech). Its hall, its flags and its map id are gone.
+
 ## Interiors
 
 `tools/canvas/slots.py` says which HeartGold map slot each GBA map lives in. Rooms with a matching HeartGold slot
@@ -75,6 +83,27 @@ wall rows on the wall, the plain floor tile on the floor, floor marks as flat de
 solid from its picture: a profile says which rows are top surface (laid flat) and which are faces (stood up, 1.3x
 tall since the camera looks down), with sides in the face's edge colours and a soft shadow underneath. The room
 gets its own texture set and area entry so no other room pays for its textures.
+
+**Real assets first; draw only what HeartGold has nothing for** (Nick, the interior pass: rooms looked flat and
+unfinished, the Celadon old man's house empty). Every room built as a house (`build_rooms.build_room`: the small
+houses, and the rooms `build_interiors.py` builds in the `room` / `labroom` looks, each with an area of its own from
+200 and, when it has GBA art, a texture set at the same number) is furnished in three steps:
+- **HeartGold's room models by patch** (`furnish.py RULES`, by GBA tileset): a rule names the metatiles one kind of
+  thing is drawn with; each connected patch of them is one thing, sized to the patch - a GBA table 3x2 is
+  HeartGold's `table02_3` (tables 1-4 by 1-3, tiled for bigger), a row of bookcases one every so many squares, a row
+  of pot plants a plant over each pot, chairs and crates one a square. A patch reaching into the wall rows stands
+  against the wall in the first floor row (those squares closed; the porter moves people off them). Rugs are
+  HeartGold's rug textures over the patch, windows its window on the wall, pictures and maps hung on it. The older
+  `FURNITURE` table (by top-left metatile) still serves Pallet's rooms.
+- **the GBA's own art where no rule has a model** (`build_rooms.gba_art`): a closed patch out on the floor is its
+  picture folded into a solid (a top, then a face standing up: the Medical Center's curtains, the Fan Club's fish
+  tanks, a wheelchair); a picture in the wall rows that isn't plain wall (a sign, a poster, a door, a blackboard) is
+  laid on HeartGold's wall at its height there; a walkable patch in metatiles of its own whose colour isn't the
+  floor's (a battle mat, a carpet; not the floor's own darker boards) is laid flat on the floor.
+- a door in a house look's back wall (a warp square up in the wall rows) doesn't make that row floor: the wall's art
+  shows it.
+Kit looks take the same rules (`furnish.KIT`, with `up` = how many of a patch's top rows are the GBA's wall) when
+their kit says `furnish`.
 
 ## The Pallet Gym
 
@@ -497,14 +526,20 @@ The looks (each HeartGold's own place of that kind):
 - **the Pokemon Tower**: Lavender's House of Memories (area 40, land 308): its cobbled floor, panelled wall with
   windows, its gravestone as a stone a square wide (HeartGold's stand over four squares; the GBA's rows of graves
   are a square apart); the Sprout Tower's wooden stairs up and HeartGold's stairs down (66, 67);
-- **Silph Co. 2F-11F, Cinnabar's Lab and Mart**: Silph Co.'s own lobby (area 39, land 303): blue tiled floor, pale
-  wall, its elevator door on the GBA's elevator; the Radio Tower's desks, chairs and stairs (land 462); crates;
+- **Silph Co. 2F-11F**: HeartGold's offices, the Radio Tower's (land 462, its textures imported into Silph Co.'s
+  set, area 39): its grey zigzag floor, cream wall with a window every few squares, its dark top (`top_solid`: one
+  texel, however long the run; stretched, the top ran into the texture's grey), its desks and stairs; the lobby's
+  (land 303) elevator door; the GBA's dark partition strips are walls wherever they stand (`wall_mt`); its plants,
+  terminals, glass cabinets, meeting tables, pictures, crates and beds as HeartGold's models (`furnish.KIT`).
+  (Cinnabar's Lab and Mart are rooms now: the `labroom` look.)
 - **the Power Plant and Cinnabar's Gym**: Route 10's Power Plant (area 44, land 367): stone tiles, a wall of
   machine cabinets; the GBA's rubble as Mt. Moon's boulder card, its coils as blocks of the generator's yellow;
 - **the Pokemon Mansion**: the Burned Tower (area 78, land 449): charred plank walls (scorched now and then), its
-  wooden floor, charred blocks for its furniture, the Sprout Tower's stairs.
+  wooden floor, charred blocks for its rubble, the Sprout Tower's stairs; HeartGold's tables, plants and statue for
+  the GBA's (`furnish.KIT`). Its walls are walls however deep (`tall_walls`: as low walls they lay flat on the floor).
 - **the S.S. Anne inside** (not its deck): HeartGold's S.S. Aqua (area 42, land 643): its patterned carpet, cream
-  walls with portholes, its cabin doors, HeartGold's ship furniture; a mat before each cabin's way in.
+  walls with portholes, its cabin doors, HeartGold's ship furniture; a mat before each cabin's way in; the galley's
+  counters as tables, its bins, the captain's bookcase, picture and chairs (`furnish.KIT`).
 **Low walls**: a wall three or more squares deep with walkable floor along its north side (the S.S. Anne's block of
 cabins, walked round on every side) would stand HeartGold's wall over that walkway: it is a low wall instead, the
 kit's top a little off the floor with its faces round it.
@@ -750,7 +785,7 @@ Rockets, the S.S. Anne rival, the Pallet ceremony. Not yet: the Elite Four (thei
 specials and the League's lighting; the Hall of Fame isn't ported).
 
 Not yet: the town map (Pokegear) still shows HeartGold's Kanto; the Route 21 stadium cave and the rooms further in
-(the Pit, the Medical Center's upper floors, the Exotic Safari's regions) aren't built; the open ground round the
+(the Pit, the Medical Center's upper floors) aren't built; the open ground round the
 world is woods or sea by whichever map is nearest, which leaves straight-edged shores in places.
 `test/shots.py LIST DIR` takes a screenshot per place from one ROM (it points the new-game location in RAM);
 `test/places.py` writes the list.

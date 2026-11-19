@@ -12,6 +12,7 @@ from nitro import read_narc, write_narc, read_dict, read_tex0, tex0_of, write_bt
 from g3d import Mesh, build_model
 import gba_map
 import cards
+import furnish
 from PIL import Image
 from slots import SLOTS, ROOM_SLOTS, new_map, NO_SCRIPTS, matrix_file, events_file, gba_warps, header, set_header, new_events_file, new_matrix_file
 
@@ -195,6 +196,115 @@ def box(mesh, px, py, pw, ph, profile):
         row -= n
 
 
+def gba_art(lay, spec, first, last, x0, x1, wall_z, blocked, mid, tsn, claimed, warp_sq, M, add, dims, U):
+    """What the GBA draws in a room that HeartGold has no model for (no FURNITURE, no furnish.py rule): its own art.
+    A closed patch out on the floor is its picture folded into a solid (box: a top, then a face standing up); a
+    picture on the back wall (a sign, a door, a blackboard) is laid on HeartGold's wall at its height there (the
+    GBA's lowest wall row at the floor). Drawing only where HeartGold has nothing (Nick)."""
+    from collections import Counter
+    W, H = lay.w, lay.h
+    covered = set(claimed)
+    for y in range(H):
+        for x in range(W):
+            m = mid(x, y)
+            f = FURNITURE.get(tsn(m), {}).get(m)
+            if f: covered |= {(x + i, y + j) for i in range(f[2]) for j in range(f[3])}
+            if m in WINDOWS.get(tsn(m), {}): covered |= {(x + i, y) for i in range(WINDOWS[tsn(m)][m])}
+            if m in WINDOWS.get(tsn(m), {}): covered |= {(x + i, y + 1) for i in range(WINDOWS[tsn(m)][m])}   # (and its sill)
+            if m in STAIRS_UP.get(tsn(m), {}) or m in STAIRS_DOWN.get(tsn(m), {}):
+                covered |= {(x + i, y + j) for i in range(-1, 3) for j in range(-3, 3)}
+            if m in RUGS.get(tsn(m), {}):          # (HeartGold's rug: as build_room lays it)
+                rw = 1
+                while x + rw < W and mid(x + rw - 1, y) != 0x46: rw += 1
+                rh = 1
+                while y + rh < H and mid(x, y + rh - 1) != 0x5B: rh += 1
+                covered |= {(x + i, y + j) for i in range(rw) for j in range(rh)}
+    full = lay.render()
+    _dark = {}
+
+    def dark(m):            # (the black beyond the room)
+        if m not in _dark: _dark[m] = sum(sum(px[:3]) for px in lay.render_metatile(m).convert('RGB').getdata()) / 256 < 60
+        return _dark[m]
+    floor_cnt = Counter(mid(x, y) for y in range(first, last + 1) for x in range(x0, x1) if not blocked(x, y))
+    if not floor_cnt: return
+    floor_mt = floor_cnt.most_common(1)[0][0]
+    floor_im = lay.render_metatile(floor_mt)
+    n = [0]
+    dbg = os.environ.get('CV_ART_DEBUG')
+
+    def mean(im):
+        px = [p_ for p_ in im.convert('RGBA').getdata() if p_[3]]
+        return tuple(sum(p_[k] for p_ in px) / max(1, len(px)) for k in range(3))
+
+    def comps(sq):
+        out, sq = [], set(sq)
+        while sq:
+            c = sq.pop(); comp, st = {c}, [c]
+            while st:
+                q = st.pop()
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    nb = (q[0] + dx, q[1] + dy)
+                    if nb in sq: sq.discard(nb); comp.add(nb); st.append(nb)
+            out.append(comp)
+        return out
+    # out on the floor
+    for comp in comps({(x, y) for y in range(first, last + 1) for x in range(x0, x1)
+                       if blocked(x, y) and (x, y) not in covered and (x, y) not in warp_sq and not dark(mid(x, y))}):
+        xs = [c[0] for c in comp]; ys = [c[1] for c in comp]
+        a, b, c0, c1 = min(xs), max(xs) + 1, min(ys), max(ys) + 1
+        if c0 - 1 >= first and all(not blocked(x, c0 - 1) and mid(x, c0 - 1) != floor_mt and (x, c0 - 1) not in covered for x in range(a, b)):
+            c0 -= 1                # (its top, over the square behind it)
+        px, py, pw, ph = a * 16, c0 * 16, (b - a) * 16, (c1 - c0) * 16
+        im = cards.cut_out(full.crop((px, py, px + pw, py + ph)), floor_im, (px, py))
+        if sum(1 for p_ in im.getdata() if p_[3]) < pw * ph * 0.08: continue
+        name = 'cv_t%d' % n[0]; n[0] += 1
+        if dbg: print('   art', spec['gba'], name, (a, c0), sorted({'%x' % mid(*c) for c in comp}))
+        add(name, im, 15)
+        top = 6 if ph <= 16 else 8
+        box(M(name), px, py, pw, ph, [('h', top), ('v', ph - top)])
+    # mats and carpets: a patch of walkable squares in metatiles of their own (three kinds at least: edges and
+    # corners), laid on the floor in the GBA's art (HeartGold's floor is plain where the GBA's has its battle mat)
+    fm = mean(floor_im)
+    hue = lambda c: tuple(v / max(1, sum(c)) for v in c)
+    # (unlike the floor in colour, not just its shading: a mat, not the floor's darker boards)
+    unlike = {m for m in floor_cnt if m != floor_mt and sum(abs(p_ - q_) for p_, q_ in zip(hue(mean(lay.render_metatile(m))), hue(fm))) >= 0.08}
+    for comp in comps({(x, y) for y in range(first, last + 1) for x in range(x0, x1)
+                       if not blocked(x, y) and (x, y) not in covered and (x, y) not in warp_sq and mid(x, y) in unlike}):
+        if len(comp) < 4 or len({mid(*c) for c in comp}) < 3: continue
+        xs = [c[0] for c in comp]; ys = [c[1] for c in comp]
+        a, b, c0, c1 = min(xs), max(xs) + 1, min(ys), max(ys) + 1
+        px, py, pw, ph = a * 16, c0 * 16, (b - a) * 16, (c1 - c0) * 16
+        im = full.crop((px, py, px + pw, py + ph)).convert('RGBA')
+        for x in range(a, b):            # (only its own squares)
+            for y in range(c0, c1):
+                if (x, y) not in comp: im.paste((0, 0, 0, 0), ((x - a) * 16, (y - c0) * 16, (x - a + 1) * 16, (y - c0 + 1) * 16))
+        name = 'cv_f%d' % n[0]; n[0] += 1
+        add(name, im, 15)
+        M(name).quad([((U(a), 1, U(c1)), (0, ph)), ((U(b), 1, U(c1)), (pw, ph)), ((U(b), 1, U(c0)), (pw, 0)), ((U(a), 1, U(c0)), (0, 0))], (0, 1, 0))
+    # on the back wall
+    wall_sq = [(x, y) for y in range(first) for x in range(x0, x1)]
+    cnt = Counter(mid(x, y) for x, y in wall_sq)
+    row_plain = {y: Counter(mid(x, y) for x in range(x0, x1)).most_common(1)[0][0] for y in range(first)}
+    plain = {m for m, k in cnt.items() if k >= 4} | set(row_plain.values())
+    zz = U(wall_z) + 0.5
+    for comp in comps({(x, y) for x, y in wall_sq if mid(x, y) not in plain and (x, y) not in covered and not dark(mid(x, y))}):
+        xs = [c[0] for c in comp]; ys = [c[1] for c in comp]
+        a, b, c0, c1 = min(xs), max(xs) + 1, min(ys), max(ys) + 1
+        px, py, pw, ph = a * 16, c0 * 16, (b - a) * 16, (c1 - c0) * 16
+        im = full.crop((px, py, px + pw, py + ph)).convert('RGBA')
+        bg = Image.new('RGBA', (pw, ph))
+        for y in range(c0, c1):
+            for x in range(a, b):
+                bg.paste(lay.render_metatile(row_plain[y]).convert('RGBA'), ((x - a) * 16, (y - c0) * 16))
+        im = cards.cut_out(im, bg)
+        if sum(1 for p_ in im.getdata() if p_[3]) < pw * ph * 0.08: continue
+        name = 'cv_w%d' % n[0]; n[0] += 1
+        if dbg: print('   art', spec['gba'], name, (a, c0), sorted({'%x' % mid(*c) for c in comp}))
+        add(name, im, 15)
+        ylo, yhi = (first - c1) * 16, min(48, (first - c0) * 16)
+        M(name).quad([((U(a), ylo, zz), (0, ph)), ((U(b), ylo, zz), (pw, ph)), ((U(b), yhi, zz), (pw, ph - (yhi - ylo))), ((U(a), yhi, zz), (0, ph - (yhi - ylo)))], (0, 0, 1))
+
+
 def widen(gm, lay, cols=(), rows=()):
     """A bigger copy of a GBA room: before each (old column, n) of `cols`, n more copies of that column (likewise
     `rows`); its events move with the squares they stand on"""
@@ -282,12 +392,13 @@ def build_room(spec, land_id):
     own = []                      # (texture entry, palette entry) made from the GBA art for this room
     look = spec.get('gba_look')
     extra_props = []
+
+    def add(name, im, colours=255):
+        t, p_, wh = cards.texture(name, im, colours)
+        own.append((t, p_)); dims[name] = wh; pals.add(name + '_pl')
+        return wh
     if look:
         tag = look['tag']
-        def add(name, im, colours=255):
-            t, p_, wh = cards.texture(name, im, colours)
-            own.append((t, p_)); dims[name] = wh; pals.add(name + '_pl')
-            return wh
         floor_im = lay.render_metatile(look['floor'])
         spec = dict(spec, floor='cv_%s_floor' % tag, wall='cv_%s_wall' % tag)
         add(spec['floor'], floor_im, 15)
@@ -296,7 +407,10 @@ def build_room(spec, land_id):
     mid = lambda x, y: lay.metatile(x, y)
     blocked = lambda x, y: lay.collision(x, y) != 0
     # the first floor row: the first row with a walkable square
-    first = next(y for y in range(H) if any(not blocked(x, y) for x in range(W)))
+    # (in a house look a door in the back wall - a warp square up in the wall rows - doesn't count: the wall's art
+    # shows it, and it is walked into, north)
+    wsq = set() if look else {(w['x'], w['y']) for w in gm.get('warp_events', [])}
+    first = next(y for y in range(H) if any(not blocked(x, y) and ((x, y) not in wsq or y == H - 1 or not blocked(x, y - 1) and (x, y - 1) not in wsq) for x in range(W)))
     wall_z = first - 0.5
     meshes = {}
     M = lambda t: meshes.setdefault(t, Mesh())
@@ -316,6 +430,16 @@ def build_room(spec, land_id):
         elif x >= x1: doors[(x, y)] = 0x62       # east
         elif y < first: doors[(x, y)] = 0x64     # north
     fw, fh = dims[spec['floor']]
+    # the GBA's furniture by patches (furnish.py): HeartGold's models sized to the GBA's things
+    fz = []                 # (model, x, y off, z) in squares
+    fz_close, fz_rugs, fz_wins, claimed = set(), [], [], set()
+    if not look:
+        for name, kind, comp in furnish.patches(lay, tsn):
+            pr, cl, rg, wn = furnish.place(kind, comp, first, blocked)
+            fz += [(m, x, yo, z) for m, x, z, yo in pr]
+            fz_close |= {c for c in cl if c not in warp_sq}
+            fz_rugs += rg; fz_wins += wn
+            claimed |= comp
 
     def stair_model(x, y, model):
         """HeartGold's staircases come both ways round (7 up to the right, 8 up to the left; 9 down to the left, 10 down
@@ -517,13 +641,28 @@ def build_room(spec, land_id):
     if spec.get('floor_flags'):    # (HeartGold's slide tiles only carry you over squares with these flags set)
         perm = [v if v & 0x8000 else v | spec['floor_flags'] for v in perm]
     stands = []
+    for (x, y) in fz_close:
+        perm[y * 32 + x] = 0x8000
+        stands.append((x, y))
+    for m, x, yo, z in fz:
+        props.append((m, U(x), yo, U(z)))
+    for t, ax, ay, bx, by in fz_rugs:
+        tw, th = dims[t]
+        M(t).quad([((U(ax), 1, U(by)), (0, th)), ((U(bx), 1, U(by)), (tw, th)), ((U(bx), 1, U(ay)), (tw, 0)), ((U(ax), 1, U(ay)), (0, 0))], up)
+    for x in fz_wins:
+        a, b = U(x + 0.1), U(x + 0.9)
+        zz = U(wall_z) + 1
+        M('red_h_mado').quad([((a, 17, zz), (0, 16)), ((b, 17, zz), (16, 16)), ((b, 40, zz), (16, 0)), ((a, 40, zz), (0, 0))], fwd)
+    if not look:
+        gba_art(lay, spec, first, last, x0, x1, wall_z, blocked, mid, tsn, claimed | {(x, y) for x, y in doors}, warp_sq, M, add, dims, U)
     for y in range(H):
         for x in range(W):
             m = mid(x, y)
             fur = FURNITURE.get(tsn(m), {})
+            if (x, y) in claimed: continue
             if m in fur:
                 name, model, w, h, where, yoff = fur[m]
-                if where == 'floorif' and y > 0 and mid(x, y - 1) == 0x2D: continue
+                if where == 'floorif' and y > 0 and mid(x, y - 1) in (0x2D, 0xAA): continue
                 cx = x + w / 2
                 if where == 'wall': cz = first + 0.4
                 elif where == 'wallhang': cz = wall_z + 0.1
