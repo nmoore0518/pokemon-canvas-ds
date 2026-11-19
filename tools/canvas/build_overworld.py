@@ -310,9 +310,8 @@ GROUND_STYLE = {
     'CeruleanCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'PewterCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'LavenderTown_Frlg': dict(side='sio_fe02', edge='sio_fe02_r', paved=True),
-    # (Viridian: HeartGold's mixes its paving with the route's road - the GBA's paving is its, the GBA's sand the road;
-    # its paving meets the grass at a brick curb, no edge in the grass)
-    'ViridianCity_Frlg': dict(kinds=('pave',), side='tok_fe01', edge=None, border='tok_fe01_r', border_s=(5, 0)),
+    # (Viridian: HeartGold's paving, with an edge in the grass made of it - build_interiors' cv_tok_r)
+    'ViridianCity_Frlg': dict(side='tok_fe01', edge='cv_tok_r'),
     'Route14_Frlg': dict(side='road02', edge='road02_r'),        # (HeartGold's Route 14: its grey road)
 }
 EDGE_UNDER = {st['edge']: st['side'] for st in GROUND_STYLE.values() if st.get('under')}
@@ -566,18 +565,30 @@ def plan_world(W=None, woods=False):
     on_bridge = {q for q, v in kind.items() if v == 'sign' and sum(kind.get(n) == 'bridge' for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1))) >= 2}
     lt = lambda q: gba_map.layouts()[gba_map.map_json(owner[q])['layout']]['secondary_tileset'] if q in owner else None
     B = lambda q: kind.get(q) == 'bridge' or q in on_bridge
-    for d in ((0, 1), (1, 0)):
-        add = set()
-        for q in [q for q, v in kind.items() if v == 'bridge' or q in on_bridge]:
-            if BRIDGE_KIT.get(lt(q), 'boardwalk') != 'boardwalk': continue
-            n = lambda k: (q[0] + d[0] * k, q[1] + d[1] * k)
-            if not (B(n(1)) and not B(n(-1)) and not B(n(2))): continue
-            if kind.get(n(2)) == 'water' and kind.get(n(3)) == 'water' and n(3) not in add: add.add(n(2))
-            elif kind.get(n(-1)) == 'water' and kind.get(n(-2)) == 'water' and n(-2) not in add: add.add(n(-1))
-        for q in add: kind[q] = 'bridge'
+    # (every walkway grown by one square the same way - east and south - so its crossings stay square: the GBA's two
+    # across and its 2 x 2 crossings become HeartGold's three and its 3 x 3 platforms)
+    bw = [q for q, v in kind.items() if (v == 'bridge' or q in on_bridge) and BRIDGE_KIT.get(lt(q), 'boardwalk') == 'boardwalk']
+    bws = set(bw)
+    brun = lambda q, dx, dz: next((k for k in range(1, 9) if (q[0] + dx * k, q[1] + dz * k) not in bws), 9) - 1
+    crossings = {(q[0] + a, q[1] + b) for q in bw if brun(q, 1, 0) + brun(q, -1, 0) >= 2 and brun(q, 0, 1) + brun(q, 0, -1) >= 2
+                 for a in (0, 1) for b in (0, 1)}
+    for q in bw:
+        for d in ((1, 0), (0, 1), (1, 1)):
+            n = (q[0] + d[0], q[1] + d[1])
+            if kind.get(n) == 'water': kind[n] = 'bridge'
     for q in [q for q, v in kind.items() if v == 'bridge' and BRIDGE_KIT.get(lt(q)) == 'nugget']:
         for a in (-1, 1):
             if kind.get((q[0] + a, q[1])) == 'stone': kind[(q[0] + a, q[1])] = 'bridge'; bridge_closed.add((q[0] + a, q[1]))
+    # (and it spans water, as HeartGold's: a strip of grass between it and a fence or the water is the river)
+    for q in sorted(bridge_closed):
+        for a in (-1, 1):
+            strip = []
+            for k_ in range(1, 6):
+                n = (q[0] + a * k_, q[1])
+                if kind.get(n) in ('grass', 'fence', 'lawn', 'flower'): strip.append(n)
+                else: break
+            if strip and len(strip) <= 4 and kind.get((q[0] + a * (len(strip) + 1), q[1])) in ('water', 'rock', None):
+                for n in strip: kind[n] = 'water'
     pens, pen_open = [], set()
     for d, lst in ([] if woods else PENS.items()):      # (Fuchsia's pens: HeartGold's own, hg_kit's stamps)
         if d not in W_: continue
@@ -796,6 +807,20 @@ def plan_world(W=None, woods=False):
                 fill[q] = max(roadk, key=ks.count)
         if not fill: break
         kind.update(fill)
+    # (a patch of the pale grass against a road - a strip by a door - is the road: two edges can't meet there)
+    seen_l = set()
+    for q0 in [q for q, v in kind.items() if v == 'lawn']:
+        if q0 in seen_l: continue
+        comp, todo = {q0}, [q0]
+        while todo:
+            q = todo.pop()
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
+                if n not in comp and kind.get(n) == 'lawn': comp.add(n); todo.append(n)
+        seen_l |= comp
+        nb = [kind.get((q[0] + a, q[1] + b)) for q in comp for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+        rd = [k for k in nb if k in ('sand', 'pave')]
+        if len(comp) < 8 and rd:
+            for q in comp: kind[q] = max(('sand', 'pave'), key=rd.count)
     # (a city's streets: its road a square or more from anything but road, in blocks of 2x2 or more, the rest
     # its pavement - HeartGold's Saffron and Celadon)
     street = set()
@@ -857,31 +882,27 @@ def plan_world(W=None, woods=False):
         ts_ = gba_map.layouts()[lay.id]['secondary_tileset']
         bridge_kit[q] = BRIDGE_KIT.get(ts_, 'boardwalk')
         m_ = lay.metatile(q[0] - W_[owner[q]][0], q[1] - W_[owner[q]][1])
-        # (a crossing: where walkways run both ways - HeartGold's crate platforms)
-        run = lambda dx, dz: sum(1 for k_ in range(1, 6) if all(kind.get((q[0] + dx * j, q[1] + dz * j)) == 'bridge' for j in range(1, k_ + 1)))
-        cross = run(1, 0) + run(-1, 0) + 1 >= 4 and run(0, 1) + run(0, -1) + 1 >= 4
-        bridge_cls[q] = 'crate' if bridge_kit[q] == 'boardwalk' and cross else 'plank'
-    # (HeartGold's crossings are whole platforms: each crossing of ours filled out to the box round it, over the water,
-    # and laid as HeartGold's 3 x 3 - its corners, its sides, its middle)
+        bridge_cls[q] = 'crate' if bridge_kit[q] == 'boardwalk' and q in crossings and kind.get(q) == 'bridge' else 'plank'
+    # (two crossings a square apart: one platform, no stub of planks between)
+    for _ in range(2):
+        for q, c in list(bridge_cls.items()):
+            if c != 'crate' and any(bridge_cls.get((q[0] - dx, q[1] - dz)) == 'crate' and bridge_cls.get((q[0] + dx, q[1] + dz)) == 'crate'
+                                    for dx, dz in ((1, 0), (0, 1))):
+                bridge_cls[q] = 'crate'
+    # (HeartGold's crossings are whole platforms: laid as its 3 x 3 - its corners, its sides, its middle - over each)
     bridge_pos, seen_c = {}, set()
     for q0 in sorted(q for q, c in bridge_cls.items() if c == 'crate'):
         if q0 in seen_c: continue
         comp, todo = {q0}, [q0]
         while todo:
             q = todo.pop()
-            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1),
-                      (q[0] + 2, q[1]), (q[0] - 2, q[1]), (q[0], q[1] + 2), (q[0], q[1] - 2)):      # (a square between: one crossing)
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
                 if n not in comp and bridge_cls.get(n) == 'crate': comp.add(n); todo.append(n)
         seen_c |= comp
-        xa, xb = min(q[0] for q in comp), max(q[0] for q in comp)
-        za, zb = min(q[1] for q in comp), max(q[1] for q in comp)
-        if xb - xa < 1 or zb - za < 1: continue
-        box = [(x, z) for x in range(xa, xb + 1) for z in range(za, zb + 1)]
-        if not all(kind.get(b) in ('bridge', 'water') or b in on_bridge for b in box): continue
-        for b in box:
-            if kind.get(b) == 'water': kind[b] = 'bridge'; bridge_kit[b] = bridge_kit[q0]
-            bridge_cls[b] = 'crate'
-            bridge_pos[b] = (0 if b[0] == xa else 2 if b[0] == xb else 1) + 3 * (0 if b[1] == za else 2 if b[1] == zb else 1)
+        cr = lambda q: bridge_cls.get(q) == 'crate'
+        for b in comp:      # (by its own neighbours: an edge where the platform ends, a corner where two edges meet)
+            bridge_pos[b] = (0 if not cr((b[0] - 1, b[1])) else 2 if not cr((b[0] + 1, b[1])) else 1) + \
+                3 * (0 if not cr((b[0], b[1] - 1)) else 2 if not cr((b[0], b[1] + 1)) else 1)
     for q, c in bridge_cls.items():
         if c == 'crate' and q not in bridge_pos: bridge_cls[q] = 'plank'
     # trees: one to a 2x2 block of woods, the blocks never overlapping, the woods' edge first (build_safari)

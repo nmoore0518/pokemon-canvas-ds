@@ -632,12 +632,16 @@ is what ours is built of. **`hg_kit.py`** reads HeartGold's own pieces out of it
   Nugget Bridge Route 24's, their decks just above the ground, the sea under them (the sea goes on under a walkway).
   **Widths are HeartGold's** (Nick: things come out too narrow - check the width against HeartGold's own, and err
   bigger): its boardwalks are three squares across (the GBA's two: widened over the water on the side with room),
-  its Nugget Bridge six (the GBA's three take in their railings: five). A boardwalk's planks are laid square by
+  its Nugget Bridge six (the GBA's three take in their railings: five, and the grass strip beside it is the river,
+  as HeartGold's spans water). Every boardwalk square grows by one east and south, so the GBA's two-wide ways and
+  2 x 2 crossings become three-wide ways and 3 x 3 crossings, all lined up. A boardwalk's planks are laid square by
   square as Route 12's are (trims half a square each side, the deck's planks across the whole width, faces down to
-  the water); its crossings are HeartGold's crate platforms, filled out to the box round each and laid as its 3 x 3
-  (corners, sides, middle); the sea's foam (Pallet's shore's) runs along every side.
+  the water); its crossings are HeartGold's crate platforms (two a square apart are one), each square laid by its own
+  neighbours as HeartGold's 3 x 3 (corners, sides, middle); the sea's foam (Pallet's shore's) runs along every side.
 - rivers: HeartGold's river water where its own maps have a river (`RIVERS`: Route 10, 24, Cerulean); Viridian's
-  paving is its `tok_fe01` with its curb (`border`), the GBA's sand there the route's road; Route 14's road `road02`.
+  paving is its `tok_fe01`, meeting the grass with an edge made of it (`cv_tok_r`, `MADE_EDGES` in build_interiors:
+  road01_r's layout with a paving's texels - a transition everywhere); a patch of pale grass under eight squares
+  against a road is road; Route 14's road `road02`. Snorlax is HeartGold's own sleeping one (`SPRITE_KABIGON`).
 - a *stamp*: every polygon over a block, fitted to the GBA's: Fuchsia's hedged pens (`PENS`: HeartGold's three, with a
   pond, a raised flower bed, flowers - the GBA's water ones its pond's walls round the GBA's water), only the faces the
   camera can see (a land must stay under 61,400 bytes: six pens fill one). The pens' Pokemon stand inside them.

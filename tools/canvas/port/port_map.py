@@ -912,6 +912,7 @@ SPRITE = {   # GBA graphics id (without OBJ_EVENT_GFX_ and _FRLG) -> HeartGold s
     'CRUSH_GIRL': 'GSGIRL3', 'CHEF': 'GSMAN3', 'GAUNTLET_ARCHER': 'GSMAN2',
     **{'TYPE_TUTOR_' + t: 'GSMIDDLEMAN1' for t in ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'ELECTRIC', 'ICE', 'FIGHTING', 'POISON', 'GROUND',
                                                    'FLYING', 'PSYCHIC', 'BUG', 'ROCK', 'GHOST', 'DRAGON', 'DARK', 'STEEL', 'FAIRY')},
+    'SNORLAX': 'KABIGON',        # (HeartGold's own sleeping Snorlax, lying across the way: its Route 11's)
     'PAINT_FIGURE': 'GSMAN2', 'BROCK': 'GSLEADER14', 'MISTY': 'GSLEADER15', 'GBA_KID': 'GSDSBOY', 'OLD_AMBER': 'MEDAL', 'FOSSIL': '#7000', 'CLIPBOARD': 'SCROLL', 'BILL': 'MASAKI', 'SWIMMER_M_WATER': 'GSSWIMMERM', 'SWIMMER_F_WATER': 'GSSWIMMERW',
 }
 # Pokemon in the overworld: HeartGold's standing sprite of that species where it has one (FOLLOWER_MON_STATIC_*),
@@ -1820,6 +1821,8 @@ def port(gba_map, g, ids, report):
                      'facingDirection': spot[2] if spot else FACING.get(mv, 1), 'param0': (spot[4] if spot else int(o.get('trainer_sight_or_berry_tree_id', 0) or 0)) if trainer_of(o) else 0,
                      'param1': 0, 'param2': 0,
                      'xRange': int(o.get('movement_range_x', 0)), 'yRange': int(o.get('movement_range_y', 0)), 'x': x, 'z': z, 'y': 0})
+        if spr == 'KABIGON':        # (HeartGold's sleeping Snorlax: one frame, set as its Route 11's is)
+            objs[-1].update(movement=0, facingDirection=0, xRange=0, yRange=0)
         if gfx not in SPRITE and not m: report.append('sprite %s -> GSMAN1 (no match yet)' % gfx)
     bgs = []
     for b in signs:

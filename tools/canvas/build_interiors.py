@@ -736,6 +736,39 @@ IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
 DROP = {18: ['sek_fe03', 'sek_fe03_r',      # (no longer laid: Fuchsia's dark red ground; and what no land of set 18's
             'tree01_re', 'hit_r', 'a17_gt01', 'beach01_r2', 'road05_r', 'r_climb', 'a12_gbb4', 'road01_sub']}   # lays: its room)
 
+# edges HeartGold has none of: its road's edge in the grass (road01_r's layout, which every edge we lay shares) with a
+# paving's own texels in place of the road's (Viridian's tok_fe01 meets the grass at a curb in HeartGold's; Nick:
+# a transition everywhere)
+MADE_EDGES = {18: [('cv_tok_r', 'road01_r', 'tok_fe01')]}
+
+
+def edge_texture(texs, pals, name, layout, base):
+    """road01_r with `base`'s texels for its sand and a rim of `base`'s own shadow: (texture, palette) entries, 256
+    colours (as build_pallet's cv_sand_r)"""
+    from texview import decode
+    tex = lambda n: next(t for t in texs if t[0] == n.encode())
+    pal = lambda n: next((q for q in pals if q[0] in ((n + '_pl').encode(), n.encode())))[2]
+    road = decode(tex(layout)[1], tex(layout)[3], tex(layout)[4], pal(layout)).convert('RGB')
+    pave = decode(tex(base)[1], tex(base)[3], tex(base)[4], pal(base)).convert('RGB')
+    lum = lambda c: 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2]
+    sandy = lambda c: c[0] > c[2] + 30 and c[0] >= c[1] - 12 and lum(c) > 150
+    green = lambda c: c[1] > c[0] + 10 and c[1] > c[2]
+    dark = min((pave.getpixel((x, y)) for x in range(pave.width) for y in range(pave.height)), key=lum)
+    rim = lambda c: tuple((a + 2 * b) // 3 for a, b in zip(c, dark))
+    cols, idx = [], bytearray()
+    for y in range(road.height):
+        for x in range(road.width):
+            c = road.getpixel((x, y))
+            if sandy(c): c = pave.getpixel((x % pave.width, y % pave.height))
+            elif not green(c): c = rim(c)
+            v = (c[0] >> 3) | (c[1] >> 3) << 5 | (c[2] >> 3) << 10
+            if v not in cols: cols.append(v)
+            idx.append(cols.index(v))
+    assert len(cols) <= 256
+    prm = tex(layout)[1] & ~(7 << 26) & ~(1 << 29) | (4 << 26)
+    return (name.encode(), prm, tex(layout)[2], bytes(idx), b''), \
+        ((name + '_pl').encode(), 0, b''.join(struct.pack('<H', c) for c in cols) + b'\0' * (-2 * len(cols) % 16))
+
 
 def import_textures():
     from nitro import read_tex0, tex0_of, write_btx0
@@ -752,6 +785,10 @@ def import_textures():
             np_ = [q for q in sp if q[0].decode() in names or q[0].decode()[:-3] in {n.split('.')[0] for n in names} | set(names) or q[0].decode() in pals_extra.get(src, ())]
             t = [e for e in t if e[0] not in {x[0] for x in nt}] + nt
             p = [q for q in p if q[0] not in {x[0] for x in np_}] + np_
+        for name, layout, base in MADE_EDGES.get(dst, ()):
+            e_, p_ = edge_texture(t, p, name, layout, base)
+            t = [x for x in t if x[0] != e_[0]] + [e_]
+            p = [x for x in p if x[0] != p_[0]] + [p_]
         ts[dst] = write_btx0(t, p)
         assert len(ts[dst]) < 56 * 1024, (dst, len(ts[dst]))
     open(path, 'wb').write(write_narc(ts, btnf))
