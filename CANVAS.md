@@ -832,3 +832,8 @@ world is woods or sea by whichever map is nearest, which leaves straight-edged s
 4. Canvas systems one at a time (gym leader mode, type tutors, Academy + market, TCG, Pit, ...);
    Safari Zones and the gym leader convention are left out for now
 5. Kanto story maps, then the region-unlock framework
+
+## Map viewer (tools/canvas/viewer)
+
+- `python3 tools/canvas/viewer/export.py build/viewer` writes every built map (models, textures, people, signs, warps, triggers) as `maps.json` plus `m/<map>.txt` (base64: published pages serve no plain binary files); `index.html` is the three.js viewer that reads them.
+- After a build that changes maps, re-export and republish the viewer to the same page so Nick can fly through what changed.
