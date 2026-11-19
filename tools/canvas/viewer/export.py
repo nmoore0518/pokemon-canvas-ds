@@ -291,6 +291,57 @@ def write(out, name, head, mesh):
     return os.path.getsize(os.path.join(out, 'm', name + '.txt'))
 
 
+# HeartGold's own maps to look at beside ours (its ledges, towns, routes)
+HG_REFERENCE = [('MAP_ROUTE_29', 'Route 29'), ('MAP_ROUTE_45', 'Route 45'), ('MAP_ROUTE_46', 'Route 46')]
+
+
+HG_KANTO = [('MAP_PALLET', 'Pallet Town'), ('MAP_ROUTE_1', 'Route 1'), ('MAP_VIRIDIAN', 'Viridian City'),
+            ('MAP_ROUTE_22', 'Route 22'), ('MAP_ROUTE_2', 'Route 2'), ('MAP_PEWTER', 'Pewter City'),
+            ('MAP_ROUTE_3', 'Route 3'), ('MAP_ROUTE_4', 'Route 4'), ('MAP_CERULEAN', 'Cerulean City'),
+            ('MAP_ROUTE_24', 'Route 24'), ('MAP_ROUTE_25', 'Route 25'), ('MAP_ROUTE_9', 'Route 9'),
+            ('MAP_ROUTE_10', 'Route 10'), ('MAP_LAVENDER', 'Lavender Town'), ('MAP_ROUTE_12', 'Route 12'),
+            ('MAP_VERMILION', 'Vermilion City'), ('MAP_SAFFRON', 'Saffron City'), ('MAP_CELADON', 'Celadon City'),
+            ('MAP_FUCHSIA', 'Fuchsia City'), ('MAP_ROUTE_15', 'Route 15')]
+
+
+def export_hg_kanto(out, listing):
+    """HeartGold's own Kanto maps, read out of the commit that still had them"""
+    global AREAS, ATEX, TEXSETS, BM_OUT, LANDS
+    import build_overworld as O
+    G = lambda p: read_narc(O._git(F(p)))[0]
+    keep = AREAS, ATEX, TEXSETS, BM_OUT, LANDS
+    AREAS, ATEX, TEXSETS, BM_OUT, LANDS = G('files/a/0/4/2'), G('files/a/0/7/0'), G('files/a/0/4/4'), G('files/a/0/4/0'), G('files/a/0/6/5')
+    _tt.clear()
+    d = O._git(os.path.join(slots.MATRIX_DIR, 'map_matrix_0000_EVERYWHERE.bin'))
+    w0, h0, hh, ha, nl = d[:5]
+    p = 5 + nl
+    hdr = struct.unpack_from('<%dH' % (w0 * h0), d, p); p += 2 * w0 * h0
+    alt = d[p:p + w0 * h0]; p += w0 * h0
+    ls = struct.unpack_from('<%dH' % (w0 * h0), d, p)
+    heads = O._git(F('src/data/map_headers.h')).decode()
+    ids = {n: int(v) for n, v in re.findall(r'#define (MAP_\w+)\s+(\d+)', open(slots.MAPS_H).read())}
+    try:
+        for m, title in HG_KANTO:
+            cells = [(i % w0, i // w0) for i in range(w0 * h0) if hdr[i] == ids[m] and ls[i] != 0xFFFF]
+            if not cells: continue
+            ad = int(re.search(r'\[%s\] = \{.*?\.areaDataBank = (\d+)' % m, heads, re.S).group(1))
+            a = AREAS[ad]; area = (u16(a, 0), u16(a, 2), a[7] == 1)
+            cx0, cz0 = min(c[0] for c in cells), min(c[1] for c in cells)
+            cx1, cz1 = max(c[0] for c in cells) + 1, max(c[1] for c in cells) + 1
+            mesh = Mesh((cx0 * 32, cz0 * 32))
+            head = dict(people=[], signs=[], warps=[], triggers=[])
+            for cx, cz in cells:
+                i = cz * w0 + cx
+                add_land(mesh, ls[i], cx, cz, area, alt[i] * 8 if alt[i] < 128 else (alt[i] - 256) * 8)
+            name = 'hgk_' + m.replace('MAP_', '').lower()
+            head.update(name=name, origin=[cx0 * 32, cz0 * 32], size=[(cx1 - cx0) * 32, (cz1 - cz0) * 32])
+            size = write(out, name, head, mesh)
+            listing.append(dict(name=name, title="HeartGold's own " + title, group="HeartGold's own Kanto (to compare)", file=name, size=head['size'], bytes=size, map=m))
+    finally:
+        AREAS, ATEX, TEXSETS, BM_OUT, LANDS = keep
+        _tt.clear()
+
+
 def reachable():
     sys.argv = [sys.argv[0], '--return']
     sys.path.insert(0, os.path.join(HERE, '..', 'test'))
@@ -341,6 +392,25 @@ def main():
         size = write(out, name, head, mesh)
         strips.append(dict(file=name, origin=head['origin'], size=head['size'], bytes=size))
         print(name, size, 'bytes', sum(len(m['verts']) for m in mesh.mats.values()) // 3, 'triangles')
+    # HeartGold's own (Johto's lands are untouched): to compare ours with
+    ids = {v: k for k, v in names.items()}
+    for m, title in HG_REFERENCE:
+        cells = [(i % w0, i // w0) for i in range(w0 * h0) if hdr[i] == ids[m] and ls[i] != 0xFFFF]
+        if not cells: continue
+        cx0, cz0 = min(c[0] for c in cells), min(c[1] for c in cells)
+        cx1, cz1 = max(c[0] for c in cells) + 1, max(c[1] for c in cells) + 1
+        mesh = Mesh((cx0 * 32, cz0 * 32))
+        head = dict(people=[], signs=[], warps=[], triggers=[])
+        for cx, cz in cells:
+            i = cz * w0 + cx
+            add_land(mesh, ls[i], cx, cz, area_of(m), alt[i] * 8 if alt[i] < 128 else (alt[i] - 256) * 8)
+        add_events(mesh, m, head)
+        name = 'hg_' + m.replace('MAP_', '').lower()
+        head.update(name=name, origin=[cx0 * 32, cz0 * 32], size=[(cx1 - cx0) * 32, (cz1 - cz0) * 32])
+        size = write(out, name, head, mesh)
+        listing.append(dict(name=name, title='HeartGold: ' + title, group='HeartGold\'s Johto (to compare)', file=name, size=head['size'], bytes=size, map=m))
+    # HeartGold's own Kanto, as it was before ours (O.HG_REV): its towns and routes beside ours
+    export_hg_kanto(out, listing)
     gmaps = {d: v for d, v in json.load(open(O.WORLD_JSON))['maps'].items()}
     listing.append(dict(name='kanto', title='Kanto (overworld)', group='Overworld', strips=strips, world=True,
                         start=[1039, 380], gba={d: v[:4] for d, v in gmaps.items()}))

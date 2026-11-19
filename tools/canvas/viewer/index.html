@@ -429,7 +429,9 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
   });
 
   fetch('maps.json').then((r) => r.json()).then((list) => {
-    LIST = list; fillList('');
+    // (ours first, Kanto's overworld at the top; HeartGold's own maps to compare with at the end)
+    const rank = (g) => g === 'Overworld' ? 0 : g.startsWith('HeartGold') ? 2 : 1;
+    LIST = list.slice().sort((a, b) => rank(a.group) - rank(b.group) || a.group.localeCompare(b.group)); fillList('');
     const n = location.hash.slice(1).replace(/-/g, '_');
     open(LIST.find((x) => x.name === n) || LIST.find((x) => x.name === 'kanto') || LIST[0]);
   }).catch((err) => { status.textContent = 'Could not load the map list: ' + err.message; });
