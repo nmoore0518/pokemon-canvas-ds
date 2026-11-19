@@ -7,5 +7,6 @@
 #define _EV_Route16_OnResume 3
 #define _EV_Route16_OnTransition 4
 
+#define LOCALID_ROUTE16_CUT_TREE 7
 
 #endif

@@ -9,6 +9,7 @@
 #define _EV_SilphCo_11F_EventScript_GiovanniTriggerRight 5
 #define _EV_SilphCo_11F_OnLoad 6
 #define _EV_SilphCo_11F_OnTransition 7
+#define _EV_SilphCo_11F_Frlg_cv_Barriers 8
 
 #define LOCALID_SILPH_CO_GIOVANNI 1
 #define LOCALID_SILPH_CO_11F_GRUNT1 2

@@ -576,16 +576,11 @@ _cv_yn_10:
 	
 CeladonCity_GameCorner_EventScript_OpenRocketHideout:
 	PlaySE SEQ_SE_DP_SELECT
-	// TODO(gba) setmetatile 15, 2, METATILE_GameCorner_Floor_StairsTop, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 16, 2, METATILE_GameCorner_StairsTop, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 17, 2, METATILE_GameCorner_StairsBottom, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 16, 3, METATILE_GameCorner_PurpleWall_StairsTop, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 17, 3, METATILE_GameCorner_PurpleWall_stairsBottom, 1
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 15, 2, METATILE_GameCorner_Floor_StairsTop, 0)
+	// (the GBA redraws a square here: 16, 2, METATILE_GameCorner_StairsTop, 1)
+	// (the GBA redraws a square here: 17, 2, METATILE_GameCorner_StairsBottom, 1)
+	// (the GBA redraws a square here: 16, 3, METATILE_GameCorner_PurpleWall_StairsTop, 1)
+	// (the GBA redraws a square here: 17, 3, METATILE_GameCorner_PurpleWall_stairsBottom, 1)
 	SetFlag 0x213A
 	Return
 	
@@ -623,11 +618,11 @@ CeladonCity_GameCorner_EventScript_PrintTypeSepia:
 	End
 	
 CeladonCity_GameCorner_EventScript_HideRocketHideout:
-	// TODO(gba) setmetatile 15, 2, METATILE_GameCorner_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 16, 2, METATILE_GameCorner_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 17, 2, METATILE_GameCorner_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 16, 3, METATILE_GameCorner_PurpleWall_Floor, 1
-	// TODO(gba) setmetatile 17, 3, METATILE_GameCorner_PurpleWall_Floor, 1
+	// (the GBA redraws a square here: 15, 2, METATILE_GameCorner_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 16, 2, METATILE_GameCorner_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 17, 2, METATILE_GameCorner_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 16, 3, METATILE_GameCorner_PurpleWall_Floor, 1)
+	// (the GBA redraws a square here: 17, 3, METATILE_GameCorner_PurpleWall_Floor, 1)
 	Return
 	
 CeladonCity_GameCorner_EventScript_ClerkNoCoinCase:

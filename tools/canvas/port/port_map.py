@@ -563,6 +563,43 @@ def settle(slot, x, z, taken):
         for c in ring:
             if c[0] >= 0 and c[1] >= 0 and ok(*c) and c not in taken: return c
     return x, z
+def unchoke(slot, objs, warps, report):
+    """move people (not trainers, things or barriers) off squares that cut the room in two"""
+    import world, collections
+    walk_ok = lambda c: (lambda v: v is not None and not v & 0x8000)(world.perm_in(slot, *c))
+
+    def reach(blocked):
+        starts = [w for w in warps if walk_ok(w) or any(walk_ok((w[0] + a, w[1] + b)) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0)))]
+        seen, q = set(), collections.deque()
+        for w in starts:
+            for c in [w] + [(w[0] + a, w[1] + b) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]:
+                if c not in seen and walk_ok(c) and c not in blocked: seen.add(c); q.append(c)
+        while q:
+            c = q.popleft()
+            for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+                n = (c[0] + a, c[1] + b)
+                if n not in seen and walk_ok(n) and n not in blocked: seen.add(n); q.append(n)
+        return seen
+    movable = lambda o: o['type'] == 0 and str(o['spriteId']).startswith('SPRITE_') and o['spriteId'] not in (
+        'SPRITE_MONSTARBALL', 'SPRITE_TREE', 'SPRITE_ROCK', 'SPRITE_BREAKROCK', 'SPRITE_KABIGON')
+    for o in objs:
+        if not movable(o): continue
+        others = {(p['x'], p['z']) for p in objs if p is not o}
+        with_, without = reach(others | {(o['x'], o['z'])}), reach(others)
+        if len(without) - len(with_) <= 2: continue
+        best = None
+        for r in range(1, 6):
+            for c in sorted(((o['x'] + i, o['z'] + j) for i in range(-r, r + 1) for j in range(-r, r + 1) if max(abs(i), abs(j)) == r),
+                            key=lambda c: abs(c[0] - o['x']) + abs(c[1] - o['z'])):
+                if c in without and c not in others and c not in warps and len(without) - len(reach(others | {c})) <= 1 \
+                        and (world.perm_in(slot, *c) & 0xFF) == 0:
+                    best = c; break
+            if best: break
+        if best:
+            report.append('  %s at %s moved (it cut off %d squares of the room): now at %s' % (o['spriteId'], (o['x'], o['z']), len(without) - len(with_), best))
+            o['x'], o['z'] = best
+
+
 PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
 
 
@@ -991,6 +1028,14 @@ BGM = {'MUS_RG_ENCOUNTER_RIVAL': 'SEQ_GS_E_RIVAL1', 'MUS_RG_RIVAL_EXIT': 'SEQ_GS
        'MUS_RG_POKE_CENTER': 'SEQ_GS_POKESEN', 'MUS_RG_ENCOUNTER_GYM_LEADER': 'SEQ_GS_GYM', 'MUS_RG_GYM': 'SEQ_GS_GYM',
        'MUS_RG_POKE_MANSION': 'SEQ_GS_D_AJITO', 'MUS_RG_ENCOUNTER_DEOXYS': 'SEQ_GS_E_ARCEUS'}
 SCRATCH = ('0x401E', '0x401F')
+_SM = os.path.join(os.path.dirname(HERE), 'data', 'safari_moved.json')
+SAFARI_MOVED = json.load(open(_SM)) if os.path.exists(_SM) else {}
+BOULDER_SWITCH = 0xB0B0               # a coord event a boulder sets off (engine: src/canvas_boulders.c)
+BOULDER_HOLE = 0xB0B1                 # (a hole it falls through)
+BAR_ID = 200                         # barrier objects' ids (people's are the GBA's local ids, under 100)
+BARRIERS = json.load(open(os.path.join(os.path.dirname(HERE), 'data', 'barriers.json'))) if os.path.exists(
+    os.path.join(os.path.dirname(HERE), 'data', 'barriers.json')) else {}
+BAR_INIT = 'VAR_CV_BARRIER_INIT'     # 1 while a map's barrier flags are being set up (OnTransition: no objects yet)
 MENU_PAGE, MENU_MORE = 6, 254
 OWN_TEXT = {'cv_more': ['More…']}       # free temp vars (the GBA's VAR_TEMP_0..F are 0x4000..0x400F)
 
@@ -1030,9 +1075,12 @@ class Port:
         self.xy = MAPS[gba_map][1]
         self.dyn, self.faded = [], False
         self.mapscript_labels = set()
+        self.bars = {}                # a GBA square a script opens and closes -> (its flag, its object's id): barriers.py
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
         self.flag_of = {}             # a person's local id -> their flag
+        self.nameless_flags = {o['flag'] for o in events_json(gba_map).get('object_events', [])
+                               if o.get('flag') not in (None, '0', '0x0') and not o.get('local_id')}
         for o in events_json(gba_map).get('object_events', []):
             if o.get('flag') not in (None, '0', '0x0') and o.get('local_id'):
                 self.hide_flags.setdefault(o['flag'], []).append(self.localid(o['local_id']))
@@ -1080,6 +1128,7 @@ class Port:
             spr = SPRITE.get(gfx, 'GSMAN1')
             return spr[1:] if spr.startswith('#') else 'SPRITE_' + spr
         if a in ('DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'): return str(['DIR_NORTH', 'DIR_SOUTH', 'DIR_WEST', 'DIR_EAST'].index(a))
+        if a.startswith('FLAG_') and a not in SYS_FLAGS: return self.flag(a)     # (a flag's number, for SetFlagVar)
         if a.startswith(('SPECIES_', 'ITEM_', 'MOVE_')):
             a = HG_NAMES.get(a, a)
             if a in HG_DEFINES: return a
@@ -1297,6 +1346,7 @@ class Port:
         self.emit('', label + ':')
         self.cur, self.dyn = label, []
         removed = set()
+        set_here = []
         open_msg = False
         sw = None
         insert = INSERTS.get(label)
@@ -1340,6 +1390,7 @@ class Port:
             elif cmd == 'waitbuttonpress': self.emit('WaitButton')
             elif cmd == 'closemessage': self.emit('CloseMsg'); open_msg = False
             elif cmd == 'setflag':
+                set_here.append(self.alias(a[0]))
                 self.emit('SetFlag %s' % self.flag(a[0]))
                 if self.alias(a[0]) == 'FLAG_SYS_POKEDEX_GET': self.emit('GivePokedex')
                 if self.alias(a[0]) == 'FLAG_SYS_B_DASH': self.emit('GiveRunningShoes')
@@ -1426,7 +1477,7 @@ class Port:
             elif cmd == 'set_gym_trainers_frlg':
                 self.emit('SetVar %s, %s' % (self.var('VAR_0x8008'), self.val(a[0])),
                           'Call %s' % self.label('Common_EventScript_SetGymTrainers_Frlg'))
-            elif cmd == 'special':
+            elif cmd == 'special' and a[0] not in ('BattleSetup_StartLegendaryBattle', 'StartWildBattle'):
                 lines = SP.special(self, a[0], None)
                 if lines is None:
                     self.emit('// TODO(gba) special %s' % a[0]); self.todo.append('special %s (%s)' % (a[0], label)); self.stop(label)
@@ -1436,6 +1487,32 @@ class Port:
                 to = mode in (1, 3)
                 self.emit('FadeScreen 6, 1, %d, %s' % (0 if to else 1, 'RGB_WHITE' if mode in (2, 3) else 'RGB_BLACK'), 'WaitFade')
                 self.faded = to
+            elif cmd == 'setwildbattle':          # (the battle itself comes at dowildbattle / StartLegendaryBattle)
+                self.wild = (self.val(a[0]), self.val(a[1]))
+            elif cmd == 'dowildbattle' or (cmd == 'special' and a[0] in ('BattleSetup_StartLegendaryBattle', 'StartWildBattle')):
+                sp, lv = getattr(self, 'wild', ('0', '5'))
+                won = self.new('wild')
+                self.emit(*close, 'WildBattle %s, %s, 0' % (sp, lv), 'CheckBattleWon VAR_SPECIAL_RESULT',
+                          'CompareVarToValue VAR_SPECIAL_RESULT, 0', 'GoToIfNe %s' % won, 'WhiteOut', 'ReleaseAll', 'End', won + ':')
+                open_msg = False
+                # (the GBA takes away, as the battle ends, whoever's flag the script set before it: Snorlax)
+                if 'FLAG_SYS_CTRL_OBJ_DELETE' in set_here:
+                    for f in set_here:
+                        for lid in self.hide_flags.get(f, []): self.emit('HidePerson %s' % lid)
+                        if f in self.nameless_flags: self.emit('HidePerson VAR_SPECIAL_LAST_TALKED')     # (no local id: the one talked to)
+            elif cmd == 'setmetatile':
+                sq = (self.g.value(a[0]), self.g.value(a[1]))
+                if sq in self.bars:
+                    # (a barrier square: its object, hidden while its flag says open; while the map is being set up
+                    # (BAR_INIT) only the flags, the objects are made from them)
+                    f, oid = self.bars[sq]
+                    shut = a[3] in ('1', 'TRUE')
+                    skip = self.new('bar')
+                    self.emit('GoToIf%s %s, %s' % ('Unset' if shut else 'Set', f, skip), '%s %s' % ('ClearFlag' if shut else 'SetFlag', f),
+                              'CompareVarToValue %s, 1' % self.var(BAR_INIT), 'GoToIfEq %s' % skip,
+                              '%s %d' % ('ShowPerson' if shut else 'HidePerson', oid), skip + ':')
+                else:
+                    self.emit('// (the GBA redraws a square here: %s)' % ', '.join(a))
             elif cmd == 'setobjectxyperm':
                 self.emit('MovePerson %s, %s, %s' % ((self.localid(a[0]),) + self.place(a[1], a[2])))
             elif cmd == 'copyobjectxytoperm':
@@ -1523,6 +1600,9 @@ class Port:
                 self.trainer_battle(cmd, a, label)
             elif cmd.startswith('trainerbattle_rematch'):
                 self.emit('// (rematches come later)', 'ReleaseAll', 'End')
+            elif cmd in ('call_if_defeated', 'call_if_not_defeated') and ' '.join(a).split()[0] in TRAINER_IDS:
+                t, l = ' '.join(a).replace(',', ' ').split()[:2]        # (the GBA scripts leave the comma out)
+                self.emit('CheckTrainerFlag %d' % TRAINER_IDS[t], 'CallIf %s, %s' % ('TRUE' if cmd == 'call_if_defeated' else 'FALSE', self.label(l)))
             elif cmd in ('checktrainerflag', 'goto_if_defeated', 'goto_if_not_defeated') and a[0] in TRAINER_IDS:
                 n = TRAINER_IDS[a[0]]
                 if cmd == 'checktrainerflag':
@@ -1689,6 +1769,27 @@ def port(gba_map, g, ids, report):
         if b['script'] not in entries: entries.append(b['script'])
     triggers = [c for c in mj.get('coord_events', []) if c.get('type') == 'trigger' and c.get('script') not in ('0x0', '0', None)
                 and part(c['x'], c['y'])]
+    # holes a boulder falls through (the GBA's MB_MT_PYRE_HOLE squares, Seafoam's and Victory Road's): a boulder
+    # pushed onto one (the engine's canvas_boulders.c) is taken away, and the one below (the flag the GBA keeps in its
+    # trainer type) shows instead
+    boulders = [(i, o) for i, o in enumerate(people) if 'PUSHABLE_BOULDER' in o['graphics_id']]
+    if boulders and '#' not in gba_map and '+' not in gba_map:
+        import gba_map as GM
+        lay_ = GM.Layout(mj['layout'])
+        hb = g.value('MB_MT_PYRE_HOLE')
+        holes = [(x, y) for y in range(lay_.h) for x in range(lay_.w) if lay_.behavior(lay_.metatile(x, y)) == hb]
+        if holes:
+            lbl = gba_map + '_cv_BoulderFalls'
+            lines = ['PlaySE SEQ_SE_GS_IWAOTOSHI']
+            for i, o in boulders:
+                lid = o.get('_lid') or (g.value(o['local_id']) if o.get('local_id') else i + 1)
+                nxt = '_cv_fall_%d' % lid
+                lines += ['CompareVarToValue VAR_SPECIAL_LAST_TALKED, %s' % lid, 'GoToIfNe %s' % nxt]
+                if o['flag'] not in ('0', '0x0'): lines.append('SetFlag %s' % p.flag(o['flag']))
+                if o.get('trainer_type', '').startswith('FLAG_'): lines.append('ClearFlag %s' % p.flag(o['trainer_type']))
+                lines += ['HidePerson VAR_SPECIAL_LAST_TALKED', 'WaitSE SEQ_SE_GS_IWAOTOSHI', 'End', nxt + ':']
+            g.labels[lbl] = [('cv_raw', lines), ('end', [])]
+            triggers = triggers + [dict(x=x, y=y, script=lbl, var=BAR_INIT, var_value=str(BOULDER_HOLE), _val=BOULDER_HOLE) for x, y in holes]
     for c in triggers:
         if c['script'] not in entries: entries.append(c['script'])
     gdir = gba_map.split('#')[0].split('+')[0]
@@ -1711,6 +1812,24 @@ def port(gba_map, g, ids, report):
             g.labels[lbl] = [('cv_raw', ['ViridianGymInit']), ('end', [])]
             on['MAP_SCRIPT_ON_TRANSITION'] = lbl
             entries.append(lbl)
+    # the squares its scripts open and close (barriers.py): an object each, hidden by a flag of its own while open.
+    # On entering, the flags start as the layout has them and the GBA's OnLoad (a copy that returns) sets them as it
+    # would the squares, before the objects are made
+    bars = BARRIERS.get(gdir, {}).get('squares', [])
+    if bars:
+        for k, b in enumerate(bars):
+            p.bars[(b['x'], b['y'])] = (p.flag('CV_BAR_%s_%d_%d' % (gdir.replace('_Frlg', '').upper(), b['x'], b['y'])), BAR_ID + k)
+        init = [('cv_raw', ['SetVar %s, 1' % p.var(BAR_INIT)] +
+                 ['%s %s' % ('SetFlag' if b['base'] == 0 else 'ClearFlag', p.bars[(b['x'], b['y'])][0]) for b in bars])]
+        load = on.get('MAP_SCRIPT_ON_LOAD')
+        if load and not any(c in ('goto',) or c.startswith('goto_') for c, _ in g.labels[load]):
+            g.labels[load + '_cv_init'] = [(c, a) for c, a in g.labels[load] if c != 'end'] + [('return', [])]
+            init.append(('call', [load + '_cv_init']))
+        init.append(('cv_raw', ['SetVar %s, 0' % p.var(BAR_INIT)]))
+        init.append(('goto', [on['MAP_SCRIPT_ON_TRANSITION']]) if 'MAP_SCRIPT_ON_TRANSITION' in on else ('end', []))
+        g.labels[gdir + '_cv_Barriers'] = init
+        on['MAP_SCRIPT_ON_TRANSITION'] = gdir + '_cv_Barriers'
+        entries.append(gdir + '_cv_Barriers')
     mapscript_entries = set(on.get(k) for k in ('MAP_SCRIPT_ON_TRANSITION', 'MAP_SCRIPT_ON_LOAD', 'MAP_SCRIPT_ON_RESUME'))
     for e in mapscript_entries:
         if e: p.mapscript_labels |= reachable(p, e)
@@ -1824,12 +1943,32 @@ def port(gba_map, g, ids, report):
         if spr == 'KABIGON':        # (HeartGold's sleeping Snorlax: one frame, set as its Route 11's is)
             objs[-1].update(movement=0, facingDirection=0, xRange=0, yRange=0)
         if gfx not in SPRITE and not m: report.append('sprite %s -> GSMAN1 (no match yet)' % gfx)
+    # (nobody stands where they cut off part of a room: HeartGold's rooms aren't the GBA's, and a square the GBA had
+    # open floor can be the only way into a corner here - such a person steps to the nearest square that cuts nothing)
+    if isinstance(xy, Anchored) and 'EVERYWHERE' not in slots.header(slot)['matrixId']:
+        unchoke(slot, objs, [(w_['x'], w_['z']) for w_ in ev.get('warps', [])], report)
+    sign_at = {(b['x'], b['y']): b['script'] for b in signs}
+    for k, b in enumerate(bars):
+        x, z = xy(b['x'], b['y'])
+        sc = sign_at.get((b['x'], b['y']))
+        objs.append({'id': str(BAR_ID + k), 'spriteId': str(b['sprite']), 'movement': 0, 'type': 0, 'eventFlag': p.bars[(b['x'], b['y'])][0],
+                     'scriptId': '_EV_%s + 1' % sc if sc else '0', 'facingDirection': 1, 'param0': 0, 'param1': 0, 'param2': 0,
+                     'xRange': 0, 'yRange': 0, 'x': x, 'z': z, 'y': 0})
+    if len(objs) > 60: report.append('  TOO MANY OBJECTS: %d (HeartGold keeps 64, the player among them)' % len(objs))
     bgs = []
     for b in signs:
         x, z = xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
+        x, z = SAFARI_MOVED.get(gba_map, {}).get('%d,%d' % (x, z), (x, z))      # (a sign build_safari.py moved off a door's front)
         x, z = off_furniture(slot, x, z, sign=True)
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})
     coords = []
+    # (a boulder switch: a boulder pushed onto it starts its script (the engine's canvas_boulders.c), the player can't)
+    switches = set()
+    if triggers and '#' not in gba_map and '+' not in gba_map:
+        import gba_map as GM
+        lay_ = GM.Layout(mj['layout'])
+        sb = g.value('MB_STRENGTH_BUTTON')
+        switches = {(c['x'], c['y']) for c in triggers if lay_.behavior(lay_.metatile(c['x'], c['y'])) == sb}
     for c in triggers:
         at = xy(c['x'], c['y'], 'trigger')
         if at is None: continue                       # (a trigger square HeartGold's layout has no place for)
@@ -1839,7 +1978,7 @@ def port(gba_map, g, ids, report):
         where = [(x, z)] + [hz for gs, hz in getattr(xy, 'extra', []) if gs == (c['x'], c['y'])]
         for x, z in where:
             coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': 1, 'h': 1, 'y': 0,
-                           'val': int(p.val(c['var_value']), 0), 'var': p.var(c['var'])})
+                           'val': c.get('_val') or (BOULDER_SWITCH if (c['x'], c['y']) in switches else int(p.val(c['var_value']), 0)), 'var': p.var(c['var'])})
     if isinstance(xy, Anchored):     # (HeartGold's hidden items stay where they are, for now)
         snap = os.path.join(os.path.dirname(HERE), 'data', 'hg_events', os.path.basename(ev_path))
         bgs += [b for b in json.load(open(snap)).get('bgs', []) if str(b.get('scriptId', '')).startswith('std_hidden')]

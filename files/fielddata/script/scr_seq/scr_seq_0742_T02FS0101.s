@@ -88,8 +88,8 @@ ViridianCity_Mart_EventScript_SayHiToOak:
 	End
 	
 ViridianCity_Mart_EventScript_HideQuestionnaire:
-	// TODO(gba) setmetatile 1, 3, METATILE_Mart_CounterMid_Top, 1
-	// TODO(gba) setmetatile 1, 4, METATILE_Mart_CounterMid_Bottom, 1
+	// (the GBA redraws a square here: 1, 3, METATILE_Mart_CounterMid_Top, 1)
+	// (the GBA redraws a square here: 1, 4, METATILE_Mart_CounterMid_Bottom, 1)
 	End
 
 _cv_stop:

@@ -9,7 +9,7 @@
 	InitScriptEntryEnd
 
 _cv_T10R0301_frame:
-	// (not yet: PokemonLeague_BrunosRoom_EventScript_EnterRoom)
+	InitScriptGoToIfEqual 0x501D, 1, _EV_PokemonLeague_BrunosRoom_EventScript_EnterRoom + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

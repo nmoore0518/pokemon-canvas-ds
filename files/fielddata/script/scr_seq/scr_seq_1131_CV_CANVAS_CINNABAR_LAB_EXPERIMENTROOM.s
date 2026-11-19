@@ -230,11 +230,16 @@ _cv_won_8:
 	End
 _cv_beaten_7:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_9
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_9:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_9
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_10
+_cv_outcome_9:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_10
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_10:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_Dissolve
@@ -276,12 +281,12 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty:
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_10
+	GoToIfEq _cv_yes_11
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_11
-_cv_yes_10:
+	GoTo _cv_yn_12
+_cv_yes_11:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_11:
+_cv_yn_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
 	Call Common_EventScript_GetGiftMonPartySlot
@@ -299,12 +304,12 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC:
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_12
+	GoToIfEq _cv_yes_13
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_13
-_cv_yes_12:
+	GoTo _cv_yn_14
+_cv_yes_13:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_13:
+_cv_yn_14:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
 	Call Common_EventScript_NameReceivedBoxMon

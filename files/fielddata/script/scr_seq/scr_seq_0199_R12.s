@@ -11,7 +11,6 @@
 	ScrDef Route12_EventScript_Luca
 	ScrDef Route12_EventScript_ItemTM48
 	ScrDef Route12_EventScript_ItemIron
-	ScrDef Route12_EventScript_RouteSign
 	ScrDef Route12_EventScript_FishingSign
 	ScrDef Route12_OnResume
 	ScrDefEnd
@@ -58,8 +57,6 @@ _cv_yn_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route12_EventScript_DontUsePokeFlute
 	Call EventScript_AwakenSnorlax
-	// TODO(gba) setwildbattle SPECIES_SNORLAX, 30
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_SNORLAX, 0
 	Wait 40, VAR_SPECIAL_RESULT
@@ -67,40 +64,52 @@ _cv_yn_4:
 	SetFlag 0x2108
 	SetFlag 0x2032
 	SetFlag 0x2109
-	// TODO(gba) dowildbattle 
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_SNORLAX, 30, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_5
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_5
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_5:
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_6
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_7
+_cv_outcome_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_7
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_7:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Route12_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfEq Route12_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq Route12_EventScript_FoughtSnorlax
-	CloseMsg
 	ReleaseAll
 	End
 	
 Route12_EventScript_Luca:
 	CheckTrainerFlag 1030
-	GoToIf TRUE, _cv_beaten_6
+	GoToIf TRUE, _cv_beaten_8
 	NPCMsg msg_0348_R12_Route12_Text_LucaIntro
 	WaitButton
 	CloseMsg
 	TrainerBattle 1030, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_7
+	GoToIfNe _cv_won_9
 	WhiteOut
 	End
-_cv_won_7:
+_cv_won_9:
 	SetTrainerFlag 1030
 	GoTo GymCandidate_EventScript_RecruitElectric
-_cv_beaten_6:
+_cv_beaten_8:
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Route12_EventScript_LucaRematch
@@ -123,15 +132,6 @@ Route12_EventScript_ItemIron:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
-	End
-	
-Route12_EventScript_RouteSign:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0348_R12_Route12_Text_RouteSign
-	WaitButton
-	CloseMsg
-	ReleaseAll
 	End
 	
 Route12_EventScript_FishingSign:
@@ -171,12 +171,12 @@ GymCandidate_EventScript_RecruitOffer:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_8
+	GoToIfEq _cv_yes_10
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_9
-_cv_yes_8:
+	GoTo _cv_yn_11
+_cv_yes_10:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_9:
+_cv_yn_11:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_RecruitDeclined
 	// TODO(gba) special GymCandidate_Recruit

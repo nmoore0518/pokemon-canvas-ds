@@ -41,14 +41,14 @@
             "x": 10,
             "z": 7,
             "header": "MAP_ROUTE_16",
-            "anchor": 1,
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 1,
             "z": 7,
             "header": "MAP_ROUTE_16",
-            "anchor": 4,
+            "anchor": 1,
             "y": 0
         }
     ],

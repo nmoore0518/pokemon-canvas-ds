@@ -4,32 +4,32 @@
         {
             "scriptId": "_EV_Academy_EventScript_HallSign + 1",
             "type": 0,
-            "x": 1331,
-            "z": 305,
+            "x": 1316,
+            "z": 273,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Academy_EventScript_BattleSign + 1",
             "type": 0,
-            "x": 1341,
-            "z": 313,
+            "x": 1326,
+            "z": 281,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Academy_EventScript_Statue + 1",
             "type": 0,
-            "x": 1332,
-            "z": 307,
+            "x": 1317,
+            "z": 275,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Academy_EventScript_Statue + 1",
             "type": 0,
-            "x": 1333,
-            "z": 307,
+            "x": 1318,
+            "z": 275,
             "y": 0,
             "dir": 4
         }
@@ -48,8 +48,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1322,
-            "z": 318,
+            "x": 1307,
+            "z": 286,
             "y": 0
         },
         {
@@ -65,8 +65,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 1329,
-            "z": 308,
+            "x": 1314,
+            "z": 276,
             "y": 0
         },
         {
@@ -82,8 +82,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1337,
-            "z": 312,
+            "x": 1322,
+            "z": 280,
             "y": 0
         },
         {
@@ -99,8 +99,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1324,
-            "z": 313,
+            "x": 1309,
+            "z": 281,
             "y": 0
         },
         {
@@ -116,8 +116,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1317,
-            "z": 312,
+            "x": 1302,
+            "z": 280,
             "y": 0
         },
         {
@@ -133,8 +133,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1320,
-            "z": 312,
+            "x": 1305,
+            "z": 280,
             "y": 0
         },
         {
@@ -150,8 +150,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1321,
-            "z": 312,
+            "x": 1306,
+            "z": 280,
             "y": 0
         },
         {
@@ -167,8 +167,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1327,
-            "z": 312,
+            "x": 1312,
+            "z": 280,
             "y": 0
         },
         {
@@ -184,8 +184,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1319,
-            "z": 316,
+            "x": 1304,
+            "z": 284,
             "y": 0
         },
         {
@@ -201,8 +201,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1320,
-            "z": 316,
+            "x": 1305,
+            "z": 284,
             "y": 0
         },
         {
@@ -218,8 +218,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1326,
-            "z": 317,
+            "x": 1311,
+            "z": 285,
             "y": 0
         },
         {
@@ -235,48 +235,31 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1327,
-            "z": 317,
-            "y": 0
-        },
-        {
-            "id": "18",
-            "spriteId": "SPRITE_FISHING_2",
-            "movement": 15,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(972)",
-            "facingDirection": 1,
-            "param0": 1,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1375,
-            "z": 314,
+            "x": 1312,
+            "z": 285,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1332,
-            "z": 302,
-            "header": "MAP_CANVAS_ACADEMY_HALL",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1333,
-            "z": 302,
+            "x": 1317,
+            "z": 270,
             "header": "MAP_CANVAS_ACADEMY_HALL",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1345,
-            "z": 313,
+            "x": 1318,
+            "z": 270,
+            "header": "MAP_CANVAS_ACADEMY_HALL",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1330,
+            "z": 281,
             "header": "MAP_CANVAS_ACADEMY_BATTLE_HALL",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         }
     ],

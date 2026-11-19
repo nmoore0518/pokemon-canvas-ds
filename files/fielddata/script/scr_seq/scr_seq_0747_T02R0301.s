@@ -146,11 +146,16 @@ _cv_won_8:
 	End
 _cv_beaten_7:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_9
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_9:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_9
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_10
+_cv_outcome_9:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_10
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_10:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0457_T02R0301_PaintWorld_Text_Dissolve
@@ -181,9 +186,9 @@ ViridianCity_School_EventScript_ChooseBlackboardTopic:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_11
+	GoToIfLt _cv_menu_12
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_11:
+_cv_menu_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq ViridianCity_School_EventScript_ReadSleep
 	CompareVarToValue VAR_SPECIAL_RESULT, 1

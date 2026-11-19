@@ -79,17 +79,17 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 17,
+            "z": 10,
+            "header": "MAP_FUCHSIA",
+            "anchor": 1,
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 18,
+            "z": 10,
+            "header": "MAP_FUCHSIA",
+            "anchor": 1,
             "y": 0
         },
         {

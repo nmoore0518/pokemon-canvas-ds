@@ -7,6 +7,7 @@
 // or the porter, not this file.
 
 	ScrDef SeafoamIslands_B2F_EventScript_ItemBigPearl
+	ScrDef SeafoamIslands_B2F_Frlg_cv_BoulderFalls
 	ScrDefEnd
 	
 SeafoamIslands_B2F_EventScript_ItemBigPearl:
@@ -14,6 +15,26 @@ SeafoamIslands_B2F_EventScript_ItemBigPearl:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+SeafoamIslands_B2F_Frlg_cv_BoulderFalls:
+	PlaySE SEQ_SE_GS_IWAOTOSHI
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 1
+	GoToIfNe _cv_fall_1
+	SetFlag 0x2116
+	ClearFlag 0x2118
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_1:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 2
+	GoToIfNe _cv_fall_2
+	SetFlag 0x2117
+	ClearFlag 0x2119
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_2:
 	End
 
 _cv_stop:

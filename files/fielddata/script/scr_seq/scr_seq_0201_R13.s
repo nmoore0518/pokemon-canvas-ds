@@ -8,7 +8,6 @@
 
 	ScrDef Route13_EventScript_Perry
 	ScrDef Route13_EventScript_Jared
-	ScrDef BerryField_EventScript_FindFlying
 	ScrDef Route12_EventScript_ItemChillDrive
 	ScrDef Route13_EventScript_RouteSign
 	ScrDef Route13_EventScript_TrainerTips2
@@ -65,13 +64,6 @@ _cv_beaten_3:
 	NPCMsg msg_0350_R13_Route13_Text_JaredPostBattle
 	WaitButton
 	CloseMsg
-	End
-	
-BerryField_EventScript_FindFlying:
-	SetVar 0x8004, ITEM_COBA_BERRY
-	SetVar 0x8005, 1
-	CallStd std_obtain_item_verbose
-	HidePerson VAR_SPECIAL_LAST_TALKED
 	End
 	
 Route12_EventScript_ItemChillDrive:

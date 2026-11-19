@@ -1295,6 +1295,1142 @@ C9c2>$
 literal 0
 HcmV?d00001
 
+diff --git a/data/graphics/overworlds/custom/0001-cv_none.pal b/data/graphics/overworlds/custom/0001-cv_none.pal
+new file mode 100644
+index 00000000..6b0281bd
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0001-cv_none.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0001.json b/data/graphics/overworlds/custom/0001.json
+new file mode 100644
+index 00000000..74824253
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0001.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_none": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_none": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_none.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0001.png b/data/graphics/overworlds/custom/0001.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a84dab00d3518dd4f795d8a0a3df0912e97dabfa
+GIT binary patch
+literal 132
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSGmrw5d@pD+
+pFfj0Yx;TbZ#3d(4ur6jWXJBAbU|>`)5;_7h%G1@)Wt~$(697~g5;y<=
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0002-cv_bar2.pal b/data/graphics/overworlds/custom/0002-cv_bar2.pal
+new file mode 100644
+index 00000000..91704a71
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0002-cv_bar2.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++230 222 189
++205 189 189
++180 156 172
++255 139 74
++139 139 148
++180 98 98
++123 82 74
++106 90 82
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0002.json b/data/graphics/overworlds/custom/0002.json
+new file mode 100644
+index 00000000..caefdc87
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0002.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar2": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar2": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar2.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0002.png b/data/graphics/overworlds/custom/0002.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..89db8d021d54b603c0ab878491fc8091ceee2b8a
+GIT binary patch
+literal 204
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSKfAa0?B2aw
+z=B)YO?bY2qWlK_0b&yw9R8UY*76S(Ov+uSR0|P_2r;B4qMO<=%1nY?g!6TZ#8N`z2
+zoIG&g08<*L(v=3*6uw5*133mC|I0-<@G5?g^W|=n6j_zv)NirDdPdK|Lx&Q~!bJZo
+p@crf~e_1ZR;lTf=1^X2&Wf?kV32X2g{kRLV*VEO{Wt~$(6955=MBe}a
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0003-cv_bar3.pal b/data/graphics/overworlds/custom/0003-cv_bar3.pal
+new file mode 100644
+index 00000000..f0c15f0c
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0003-cv_bar3.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++230 222 189
++205 189 189
++230 180 90
++213 172 90
++180 156 172
++255 139 74
++139 139 148
++172 131 90
++148 115 82
++180 98 98
++123 82 74
++106 90 82
++82 82 106
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0003.json b/data/graphics/overworlds/custom/0003.json
+new file mode 100644
+index 00000000..243ff71b
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0003.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar3": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar3": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar3.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0003.png b/data/graphics/overworlds/custom/0003.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..43bf896aed2f656606e2b5e3153765df3168d2d8
+GIT binary patch
+literal 324
+zcmV-K0lWT*P)<h;3K|Lk000e1NJLTq001BW001Ba0{{R3fmCP50000mP)t-s{{a8y
+z-o4Gez2>x9)vQ{yoUH$gN{fq>tb<yVb5gWoVtZ0bYFbiKQfdGI00000?y7;l0002b
+zNkl<ZcwU`SI}XAy6my{MoQMsTiG_)QT%j!NT!A~Wva)c1aD?6fdH|MmL@KB#PWq8r
+zghU4G$?|g?D*^!S)&fv!2_SOB%d9Wh7Mv#zta6CDCHjYo--PrM;egJuegM$49(ed1
+z`2v86+m(_QYWimmno2}jlY?Of&o_2cLii_hr8>KmIcI`Z^AnP^-^aTsLI+d;b&i#v
+z0wHu$QpiC?*GG~$h3{kBqcS`FwU4k8?J>LYqVY}{EJ?dy63+wbD{~Nz7AmvgclZEN
+WF);@9>X9D+0000<MNUMnLSTZviHFnx
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0004-cv_bar4.pal b/data/graphics/overworlds/custom/0004-cv_bar4.pal
+new file mode 100644
+index 00000000..d07df67f
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0004-cv_bar4.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 238 189
++222 205 156
++205 205 197
++172 172 172
++189 164 115
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0004.json b/data/graphics/overworlds/custom/0004.json
+new file mode 100644
+index 00000000..c6624b28
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0004.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar4": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar4": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar4.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0004.png b/data/graphics/overworlds/custom/0004.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d656c44e65614114fc29d720b2cdbdc216e93ae
+GIT binary patch
+literal 291
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSgTTAJ_s-5a
+zd-mv>HEZ@RDV{QA&Yb3`>gw*GpezPd(DL-2Ap--$I!_nJkczmq6L<3-G7xC9-)}W*
+z&4j)-HSG;d#uqLb3&vKtIYct1vV2!D`!xAPNyp@KR{wwf{rN_i;kS3hL!K7_F>f_&
+zIs)7qOD}n^o4lay#SZay!{sZ&8}HtbVf@V`9AgxFVv@1**NurgmY3X|yRLQTmp}==
+zq_p-ozc=g*eQ3|KwdvNjxW!){DyIEi@XBLt_3b~JXLPqDcC6E$5HH!puY9i9fPDi0
+fva=HV?gc&OJ&|o1I6t!RFvu^Su6{1-oD!M<5UPAh
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0005-cv_bar5.pal b/data/graphics/overworlds/custom/0005-cv_bar5.pal
+new file mode 100644
+index 00000000..8587e057
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0005-cv_bar5.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++222 205 156
++205 205 197
++172 172 172
++189 164 115
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0005.json b/data/graphics/overworlds/custom/0005.json
+new file mode 100644
+index 00000000..9966fc74
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0005.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar5": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar5": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar5.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0005.png b/data/graphics/overworlds/custom/0005.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..665ce5695455cfbf8e9e9e5aae772b899fde009f
+GIT binary patch
+literal 269
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS|NsC0-q|^4
+z&mLW~X3gFu#Z#utnbRCqUELiNl*NDn*8WxIXJBBM;pyTSQW3Xz;z8a+20X6um(nKk
+z9ayTpfoZn^)9ww7uh<Nn)g6);yt?1qVB`GSmUVLC*RP+GtT`X3uotjIX`Y)P<`J~o
+z!0B_7TFW_^@^YD;!s5h+vQ4i~RX9{SO|+U_&2;wFkHnq{>BZIZjHSnTW?kKA{^{xJ
+zuk{8=HT7nPT3Jo9<^LWRc)b37iFDh)^zgC?>o?v08mV;em!e){s3prEki$J){an^L
+HB{Ts5114$8
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0006-cv_bar6.pal b/data/graphics/overworlds/custom/0006-cv_bar6.pal
+new file mode 100644
+index 00000000..d07df67f
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0006-cv_bar6.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 238 189
++222 205 156
++205 205 197
++172 172 172
++189 164 115
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0006.json b/data/graphics/overworlds/custom/0006.json
+new file mode 100644
+index 00000000..585db41b
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0006.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar6": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar6": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar6.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0006.png b/data/graphics/overworlds/custom/0006.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..af3827126b27c36d85a644135d564f25893cee57
+GIT binary patch
+literal 283
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSgTTAJ_s-5a
+zd-mv>HEZ@RDV{QA&Yb3`>gw*GpezPd(DL-2Ap--$GEW!Bkczmi6K(kp8SuExzszQM
+z$Tgyhb=?8e9sKDD=}8IhF^Wk^scuu2dEHskd#dfk1B+|VpU>wwpeRxCw$ZA>U7)`=
+zkTZ?9^mLG%=fxFCJa48bE?;7CTqM=yh47o%N40*qUEOkcEm!IZ)#VljvR6+O2xlaf
+zuqOXjcl#>&%Omx(Cu97Vi!WZ=$;R)=3tnD&W?{VKQLg&LBaeFTHtZ~#U2`~RT1{2@
+W1g!<9*?8<he(-elb6Mw<&;$Vd6LV?+
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0007-cv_bar7.pal b/data/graphics/overworlds/custom/0007-cv_bar7.pal
+new file mode 100644
+index 00000000..69aea383
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0007-cv_bar7.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 238 189
++222 205 156
++205 205 197
++189 164 115
++222 148 123
++156 131 90
++164 98 74
++123 123 139
++139 115 49
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0007.json b/data/graphics/overworlds/custom/0007.json
+new file mode 100644
+index 00000000..7ca892b6
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0007.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar7": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar7": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar7.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0007.png b/data/graphics/overworlds/custom/0007.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae9314698cc6ef6c74d57589f620b90358079f32
+GIT binary patch
+literal 290
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSgTTAJ_s-5a
+zd-mwwCB^rqRL^OST9V{dUESSXY#0=j#ef7{>!#Z>Ffgq3ba4!+h+8|+k?W8HkL&!I
+z-vpGJ_)7H8@VXSN5C5pA6nC^$Tw}*er<P0E9@!I1tQN1^k|3sNllEz{JVVYizQ=ou
+zqq@}+g3i|nI=Fu2OW{o09yBGR=o7;&qozr>iuTuj=@6W?>BU6$BG2w4r~lX-7dvyz
+zEmB+e!W^X&na{3VcPyTvrTfGtr|<tS!=R6g?HzaXsri5Ao3TS??)?;fg<tNvFWx_z
+g|HJL#SAqKng{K?psl8g#kqPpLr>mdKI;Vst05zU?Qvd(}
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0008-cv_bar8.pal b/data/graphics/overworlds/custom/0008-cv_bar8.pal
+new file mode 100644
+index 00000000..cb677a4e
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0008-cv_bar8.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++222 205 156
++205 205 197
++189 164 115
++222 148 123
++156 131 90
++123 123 139
++164 98 74
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0008.json b/data/graphics/overworlds/custom/0008.json
+new file mode 100644
+index 00000000..22f440a7
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0008.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar8": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar8": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar8.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0008.png b/data/graphics/overworlds/custom/0008.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..989b654f16923ee6a04c98f4457b8adcace60577
+GIT binary patch
+literal 243
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS|NsC0-q|^4
+z&mP^or1;*H>N(9()z#fglDvX~vKTPHuDpC71_p*YPZ!6Kinyl}_i{EE2)NC+Pv-FA
+zie@bp@h&eG2p5>65OIV1n%1M4E&=8rx*k_Nk$Y&z@8EdXj9FGdN?>i4rF+dw1EaWR
+z)^#ba&d1iVMzQ~RRejV_D0yRFQkBKOKmA&bB4y>5E2b4!@?GH8$QO8WpzL^ot>r`a
+eqV*c_4;TzDsGa|CV8(fn^E_SsT-G@yGywo(rB^2a
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0009-cv_bar9.pal b/data/graphics/overworlds/custom/0009-cv_bar9.pal
+new file mode 100644
+index 00000000..e6345415
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0009-cv_bar9.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 238 189
++205 205 197
++172 172 172
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0009.json b/data/graphics/overworlds/custom/0009.json
+new file mode 100644
+index 00000000..dc7bd6cd
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0009.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar9": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar9": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar9.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0009.png b/data/graphics/overworlds/custom/0009.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc1cd1f1b656c1a4c6891a8dc99937f0bb6f7f4d
+GIT binary patch
+literal 280
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSgTTAJXU`s8
+zvu4edDRbsDM^#sM2L)v@U;_z9{(fR$U|8(w;uum9w|2s5-a`fgF7xff`7#^1SuZfL
+z1~Bjja+yAv#I)kzA_hLah8rjDw@fYK(q6k&>g>655sY)zy==8kxLojga@T@Oa~PY9
+zjc2f4IDV$Wylv}rpPFw|537V7s9!Ztk9}tLb?s+5CQX+c59!$*FqijLR;kWTo@usj
+z&41^`>6z)(rV38)?(6jPx#<5Bi8JcH5O8<`%l8b8mbU0Q`ROmevc6eu7CTdN^D2-x
+NJYD@<);T3K0RX&lY(xM6
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0010-cv_bar10.pal b/data/graphics/overworlds/custom/0010-cv_bar10.pal
+new file mode 100644
+index 00000000..3d89f77c
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0010-cv_bar10.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++205 205 197
++172 172 172
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0010.json b/data/graphics/overworlds/custom/0010.json
+new file mode 100644
+index 00000000..4f3a36aa
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0010.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar10": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar10": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar10.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0010.png b/data/graphics/overworlds/custom/0010.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ecf52003fc00a379ebae56850152ce38f533a81f
+GIT binary patch
+literal 254
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS|NsC0?AfDh
+z)~uN_WzL-DsOswOpr9-U9N^5AoU;rJ44s}Xjv*Csdna7vJ!HVcs-G*KAQqM&)|Mo4
+zgu{U8=7Lj9zFm)QC~AIa&pJ8nYs%ftZyC<*WDrj{b(Z%Im)>_J76~DqP>UBwa)i}W
+zZG0;ZNF?S+US4Fw$QZbJM~%UsYi1?^$tn|cdKOQ5ulA=iFyHXDl-e4Fo9_#A<8J)F
+kQol2my{$g~-|uNs`ku@5uM{oO<p;Uf)78&qol`;+08|xQVgLXD
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0011-cv_bar11.pal b/data/graphics/overworlds/custom/0011-cv_bar11.pal
+new file mode 100644
+index 00000000..e6345415
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0011-cv_bar11.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++255 238 189
++205 205 197
++172 172 172
++148 148 156
++156 131 90
++123 123 139
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0011.json b/data/graphics/overworlds/custom/0011.json
+new file mode 100644
+index 00000000..80327591
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0011.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar11": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar11": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar11.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0011.png b/data/graphics/overworlds/custom/0011.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..618b65a42ef6253091d7a8b8b80c90d22637b14a
+GIT binary patch
+literal 270
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSgTTAJXU`s8
+zvu4edDRbsDM^#sM2L)v@U;_z9{(fR$V3_IY;uum9mz<K2kf6aX$iuV$w}ga5gu@zJ
+z9-f~6ias2b{f&)3^_iuWV;ndaHGO3DY2`k`b4=KvadU#MN7|nBgoK}m4`?w29b*YR
+z`$62x`HJJ2ggp&8x|i+Q(ps$VDNAx0KbG&3JZ56l{8RsmtU>le2DK0J-PRI(2mXGN
+zlSz6Y;KCQ&@%+QAMh^Z@XA>eCQ*_%d7jiQ&oIaxUz9;hP36SGGUHx3vIVCg!0A)I0
+AD*ylh
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0012-cv_bar12.pal b/data/graphics/overworlds/custom/0012-cv_bar12.pal
+new file mode 100644
+index 00000000..abc230e9
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0012-cv_bar12.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++255 255 255
++238 213 172
++197 197 156
++164 164 98
++222 156 139
++148 148 164
++131 131 82
++123 123 123
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0012.json b/data/graphics/overworlds/custom/0012.json
+new file mode 100644
+index 00000000..cd627259
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0012.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar12": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar12": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar12.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0012.png b/data/graphics/overworlds/custom/0012.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..f5f332b0f1bf28a3415575463f72a3bc069c904a
+GIT binary patch
+literal 272
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS|NsC0-PJWm
+zkIq@LB<bFq?kQ82G&cuTS62rGWieoYXq#`v3=9mjJzX3_D&nqAI>>v-fX8)y<`L0S
+zmI*uD&oE5hAS?Xk0MncYXLvZ23Rwexn)6P4!4$FSY0ZC&!aAOW*NhfS2PgYqiu$P|
+z-p#o*v_|Zf-gW<m%6&dJloG$MluKHpT-JAEp}{@DO2%gj|Bdt>*xk$H&tZ7KaG5rT
+zKF9Tm7oP;n{FwQ)pYdcszkb4mR0GC-t{Kxlh1o9O*78T*Y5}|NPpL)CJGEwl-0tb>
+K=d#Wzp$P!LU1%u)
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0013-cv_bar13.pal b/data/graphics/overworlds/custom/0013-cv_bar13.pal
+new file mode 100644
+index 00000000..93a68207
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0013-cv_bar13.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++205 213 213
++230 213 115
++189 197 197
++131 189 197
++115 156 148
++106 156 164
++115 115 115
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0013.json b/data/graphics/overworlds/custom/0013.json
+new file mode 100644
+index 00000000..74436044
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0013.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar13": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar13": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar13.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0013.png b/data/graphics/overworlds/custom/0013.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..4b3e8565a08b24d9451c6b2d23f253cccc060563
+GIT binary patch
+literal 271
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSpS^nZ+128`
+zM~^n|Jz6|xO4ghu#l^)zL0JsgfJg(21Oo%ZEKe85kcznEl!Sx?4`x9g9-hq-5)u&(
+zJ@xztYSaW6#S#LNeth?6WYpmib7e~qJtUyBqr0)OQBXzU#DN3<CO0<zW%bkb;^A4d
+zUs58%QR_gOfu@1M{m_I2yGCE`wyn-S4W3~ynK+Vpoi@bRZO-FhNW7yp<NZrphQx|J
+z7KR1}r<|E(WLla$1ewJu`c)cipWR#JZZ=uSiJxKZHmQnwzh%2XuJ?5Hb6Mw<&;$V5
+CUsX>4
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0014-cv_bar14.pal b/data/graphics/overworlds/custom/0014-cv_bar14.pal
+new file mode 100644
+index 00000000..3b1a1e68
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0014-cv_bar14.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++205 213 213
++230 213 115
++189 197 197
++172 222 230
++131 189 197
++115 156 148
++106 156 164
++115 115 115
++82 82 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0014.json b/data/graphics/overworlds/custom/0014.json
+new file mode 100644
+index 00000000..5d7794ae
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0014.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar14": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar14": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar14.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0014.png b/data/graphics/overworlds/custom/0014.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..448164d8accb155aad1ae9391a0f7b6e15963be8
+GIT binary patch
+literal 269
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSpS^nZ+128`
+zM~|+#_pEvE(c(E%vgRx)E-nrV%3{C(#~VAm7#J94c)B=-RKz8xBqStounO|<@T``U
+zkce>T`7eK<#!Y}xEI}aU$N#_vMx8S(p}gz~qG|!}@@CjMva$8a^YF-=FU$%|N=W#9
+z^uPhOAV#z1n+=UW*Dx}FF3gECSR<Rn<YVN;?jVsZ(De6HcdjE7$K$YrMd#l!avXlF
+z+R@k;C}+8dWug+h%(C|rSvDNM6TP8Oz;lC`nre$2!@c!VONGM%=7SvW>FVdQ&MBb@
+E0Gkh5v;Y7A
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0015-cv_bar15.pal b/data/graphics/overworlds/custom/0015-cv_bar15.pal
+new file mode 100644
+index 00000000..144ca52a
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0015-cv_bar15.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++222 197 189
++205 180 156
++172 172 139
++189 148 139
++148 139 115
++148 115 106
++123 115 90
++115 65 74
++82 49 65
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0015.json b/data/graphics/overworlds/custom/0015.json
+new file mode 100644
+index 00000000..bb301996
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0015.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar15": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar15": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar15.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0015.png b/data/graphics/overworlds/custom/0015.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..82e8daa9a1c2b1785377f9c36e637b8b7576ef48
+GIT binary patch
+literal 415
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS-#fbZ?3Oue
+z)^zWk(mkcScuH|rb#YX&qgRljBLfCVzGb1#z`&^G>Eakt5$8L>-usAyz|s4CjM5K<
+z9JyOJtT}k>P<{LZfsK2P{nO&MZ<asmw!!uYbF}4=uq|5*TlRjL_c7=2niMrPv(uk$
+zo9Ew`W@eZ^?Y&=}PCTOlZ^4N*)j9!x8o6h!n=8BTf+<6mh>4^npZnR+gDHz^bkBP6
+zn;pN+_T$!jk?N;5>sCM6%>4dMXTw##9^0UHf${^%<rdsRoD=7mt-h)LSKsWB<c?RO
+zucuT`-FC2nNldXM;hbC^J5$I^;hZ&Gj1O;G1t0zEk=2>cmUZjdf;syYJsdBqy!ck)
+zxP|p~uZr-74cjg3e}w0q%rr4w70`cZ@@lq6iVAgyCp1NViG5+hto2fVS?ODc3%r~R
+z^Ab$kswNcQ*|#D|Q@V4feBlR=4;LGMuPQsPAt&{L`$tyHq{2s6mx6-Q)78&qol`;+
+E0G&juL;wH)
+
+literal 0
+HcmV?d00001
+
 diff --git a/data/graphics/sprites/appariteon/female/back.png b/data/graphics/sprites/appariteon/female/back.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..92851ca88f638c04cf6bf647adeed4030311e566
@@ -9659,10 +10795,10 @@ index 301b054b..bb40ee7e 100644
  a ₧₦ Trainer
 +a rival
 diff --git a/hooks b/hooks
-index 1b23ea97..6c465744 100644
+index 1b23ea97..e47753c5 100644
 --- a/hooks
 +++ b/hooks
-@@ -665,3 +665,13 @@ arm9 ScrCmd_CreateRoamer 02045264 1
+@@ -665,3 +665,16 @@ arm9 ScrCmd_CreateRoamer 02045264 1
  0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
  
  arm9 FieldSystem_RestoreMapObjectsFromSave 0203B9F4 1
@@ -9676,6 +10812,9 @@ index 1b23ea97..6c465744 100644
 +arm9 Canvas_TrainerFlagCheck 02040514 2
 +arm9 Canvas_TrainerFlagSet 0204052C 2
 +arm9 Canvas_TrainerFlagClear 02040544 2
++# Pokemon Canvas: a boulder pushed onto a boulder switch (a coord event of value 0xB0B0) starts its script
++# (src/canvas_boulders.c); replaces ov01_021F1ECC, the boulder-pushing task
++0001 Canvas_PushBoulderTask 021F1ECC 1
 diff --git a/include/constants/file.h b/include/constants/file.h
 index 13b6cbaf..e0b46b59 100644
 --- a/include/constants/file.h
@@ -9783,6 +10922,109 @@ index 27ffefac..c2ff5964 100644
  	mkdir -p $(BUILD)/trainers
  	mkdir -p $(BUILD_NARC)
  	rm -rf $(TRAINERDATA_DIR) $(TRAINERDATA_DIR_2) $(TRAINERTEXT_DIR) $(TRAINERTEXT_DIR_2) $(BUILD)/rawtext/728 $(BUILD)/rawtext/729
+diff --git a/src/canvas_boulders.c b/src/canvas_boulders.c
+new file mode 100644
+index 00000000..c4dd4fbf
+--- /dev/null
++++ b/src/canvas_boulders.c
+@@ -0,0 +1,97 @@
++// Pokemon Canvas: a Strength boulder that comes to rest on a boulder switch or a hole starts the square's script, as
++// the GBA game's Victory Road switches (HandleBoulderActivateVictoryRoadSwitch) and holes (HandleBoulderFallThroughHole)
++// do. Such a square is a coord event whose value is CANVAS_BOULDER_SWITCH.. +15 (the porter writes them so; no var is
++// ever set to one, so walking on one does nothing). The script runs with the boulder as the one talked to.
++// Replaces ov01_021F1ECC (overlay 1), the task that pushes a boulder: the same steps, then that check at the end.
++#include "../include/types.h"
++
++#define CANVAS_BOULDER_SWITCH 0xB0B0
++#define SEQ_SE_DP_UG_023 1574
++
++struct PushEnv {
++    int state;
++    int dir;
++    void *fieldSystem;
++    void *playerAvatar;
++    void *rock;
++};
++
++struct CanvasCoordEvent {
++    u16 scriptId;
++    s16 x;
++    s16 z;
++    u16 w;
++    u16 h;
++    u16 y;
++    u16 val;
++    u16 var;
++};
++
++#define FN(addr, ret, args) ((ret (*) args)((addr) | 1))
++#define TaskManager_GetEnvironment FN(0x02050650, struct PushEnv *, (void *))
++#define PlayerAvatar_GetMapObject FN(0x0205C6DC, void *, (void *))
++#define MapObject_AreBitsSetForMovementScriptInit FN(0x02062108, BOOL, (void *))
++#define PlayerAvatar_CanMove FN(0x0205DE38, BOOL, (void *))                 // sub_0205DE38
++#define MovementAction_ForDirection FN(0x0206234C, u32, (int, u32))         // sub_0206234C
++#define MapObject_SetHeldMovement FN(0x0206214C, void, (void *, u32))
++#define MapObject_IsMovementPaused FN(0x02062198, BOOL, (void *))
++#define MapObject_ClearHeldMovementIfActive FN(0x020621C0, void, (void *))
++#define PushEnv_Free FN(0x021F30F4, void, (struct PushEnv *))                // ov01_021F30F4
++#define Boulder_FallThroughHole FN(0x021F2004, BOOL, (void *, void *, void *))   // ov01_021F2004 (Blackthorn's)
++#define MapObject_GetXCoord FN(0x0205F914, int, (void *))
++#define MapObject_GetZCoord FN(0x0205F934, int, (void *))
++#define Field_GetNumCoordEvents FN(0x0203B73C, u32, (void *))
++#define Field_GetCoordEvents FN(0x0203B744, const struct CanvasCoordEvent *, (void *))
++#define StartScriptFromMenu FN(0x0203FF0C, void, (void *, u16, void *))      // (this task becomes the script's)
++#define PlaySE FN(0x0200604C, void, (u16))
++
++static BOOL Canvas_BoulderOnSwitch(void *taskManager, void *fieldSystem, void *rock)
++{
++    int x = MapObject_GetXCoord(rock), z = MapObject_GetZCoord(rock);
++    const struct CanvasCoordEvent *ev = Field_GetCoordEvents(fieldSystem);
++    u32 n = Field_GetNumCoordEvents(fieldSystem), i;
++    for (i = 0; i < n; i++) {
++        if ((ev[i].val & 0xFFF0) == CANVAS_BOULDER_SWITCH && x >= ev[i].x && x < ev[i].x + ev[i].w && z >= ev[i].z && z < ev[i].z + ev[i].h) {
++            StartScriptFromMenu(taskManager, ev[i].scriptId, rock);
++            return TRUE;
++        }
++    }
++    return FALSE;
++}
++
++BOOL Canvas_PushBoulderTask(void *taskManager)
++{
++    struct PushEnv *env = TaskManager_GetEnvironment(taskManager);
++    void *player = PlayerAvatar_GetMapObject(env->playerAvatar);
++    void *rock = env->rock;
++    void *fieldSystem;
++
++    switch (env->state) {
++    case 0:
++        if (!MapObject_AreBitsSetForMovementScriptInit(rock))
++            return FALSE;
++        if (!MapObject_AreBitsSetForMovementScriptInit(player) && !PlayerAvatar_CanMove(env->playerAvatar))
++            return FALSE;
++        MapObject_SetHeldMovement(rock, MovementAction_ForDirection(env->dir, 8));
++        MapObject_SetHeldMovement(player, MovementAction_ForDirection(env->dir, 0x20));
++        PlaySE(SEQ_SE_DP_UG_023);
++        env->state++;
++        return FALSE;
++    case 1:
++        if (!MapObject_IsMovementPaused(rock) || !MapObject_IsMovementPaused(player))
++            return FALSE;
++        MapObject_ClearHeldMovementIfActive(rock);
++        MapObject_ClearHeldMovementIfActive(player);
++        env->state++;
++        // fall through
++    case 2:
++        fieldSystem = env->fieldSystem;
++        PushEnv_Free(env);
++        if (**(int **)((u8 *)fieldSystem + 0x20) == 0xED)       // (fieldSystem->location->mapId)
++            return Boulder_FallThroughHole(taskManager, fieldSystem, rock);
++        if (Canvas_BoulderOnSwitch(taskManager, fieldSystem, rock))
++            return FALSE;         // (the task goes on as the switch's script)
++        return TRUE;
++    }
++    return FALSE;
++}
 diff --git a/src/canvas_flags.c b/src/canvas_flags.c
 new file mode 100644
 index 00000000..88146d6a
@@ -9968,7 +11210,7 @@ index cf38c7e5..42a77c8c 100644
      {
          rnd_tmp = 120;
 diff --git a/src/field/overworld_table.c b/src/field/overworld_table.c
-index e0101f32..16637ef2 100644
+index e0101f32..4387a5d7 100644
 --- a/src/field/overworld_table.c
 +++ b/src/field/overworld_table.c
 @@ -23,7 +23,7 @@
@@ -9976,21 +11218,36 @@ index e0101f32..16637ef2 100644
  
  // adjust this depending on the amount of new npc's that you have added
 -#define MON_OVERWORLD_GFX_START (297)
-+#define MON_OVERWORLD_GFX_START (298)   // Pokemon Canvas: one NPC overworld of our own (the fossil)
++#define MON_OVERWORLD_GFX_START (313)   // Pokemon Canvas: our own overworlds (the fossil, the barriers)
  
  #define MON_FOLLOWER_ENTRY(species, cbparams) \
      { .tag = MON_OVERWORLD_TAG_START + species, .gfx = MON_OVERWORLD_GFX_START + species, .callback_params = cbparams },
-@@ -370,6 +370,9 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -370,6 +370,24 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          { .tag = 1048, .gfx = MON_OVERWORLD_GFX_START + SPECIES_TYPHLOSION, .callback_params = OVERWORLD_SIZE_SMALL },
          { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
  
 +        // Pokemon Canvas: our own overworlds (data/graphics/overworlds/custom)
 +        { .tag = NEW_NPC_TAG_START + 0, .gfx = NEW_NPC_GFX_START + 0, .callback_params = 0x0820 },   // the GBA game's fossil (as the breakable rock)
++        { .tag = NEW_NPC_TAG_START + 1, .gfx = NEW_NPC_GFX_START + 1, .callback_params = 0x0024 },   // a barrier: nothing to see (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 2, .gfx = NEW_NPC_GFX_START + 2, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 3, .gfx = NEW_NPC_GFX_START + 3, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 4, .gfx = NEW_NPC_GFX_START + 4, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 5, .gfx = NEW_NPC_GFX_START + 5, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 6, .gfx = NEW_NPC_GFX_START + 6, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 7, .gfx = NEW_NPC_GFX_START + 7, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 8, .gfx = NEW_NPC_GFX_START + 8, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 9, .gfx = NEW_NPC_GFX_START + 9, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 10, .gfx = NEW_NPC_GFX_START + 10, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 11, .gfx = NEW_NPC_GFX_START + 11, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 12, .gfx = NEW_NPC_GFX_START + 12, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 13, .gfx = NEW_NPC_GFX_START + 13, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 14, .gfx = NEW_NPC_GFX_START + 14, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 15, .gfx = NEW_NPC_GFX_START + 15, .callback_params = 0x0024 },   // a barrier (barriers.py)
 +
          // pokémon follower specific overworlds start here... left off on gfx 1451 - galarian stunfisk which was inserted after all the others
  
          MON_FOLLOWER_ENTRY(SPECIES_BULBASAUR, OVERWORLD_SIZE_SMALL)
-@@ -1693,6 +1696,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -1693,6 +1711,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          MON_FOLLOWER_ENTRY(SPECIES_IRON_CROWN, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_TERAPAGOS, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_PECHARUNT, OVERWORLD_SIZE_SMALL)

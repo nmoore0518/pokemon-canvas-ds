@@ -21,8 +21,6 @@
 SeafoamIslands_B4F_EventScript_Articuno:
 	LockAll
 	FacePlayer
-	// TODO(gba) setwildbattle SPECIES_ARTICUNO, 50
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_ARTICUNO, 0
 	NPCMsg msg_0884_CV_CANVAS_SEAFOAM_B4F_Text_Gyaoo
@@ -31,14 +29,26 @@ SeafoamIslands_B4F_EventScript_Articuno:
 	PlayBGM SEQ_GS_GYM
 	WaitButton
 	SetFlag 0x2032
-	// TODO(gba) special BattleSetup_StartLegendaryBattle
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_ARTICUNO, 50, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_1
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_1:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_1
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_1:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_2
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_3
+_cv_outcome_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_3
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq SeafoamIslands_B4F_EventScript_DefeatedArticuno
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -46,7 +56,6 @@ _cv_won_1:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq SeafoamIslands_B4F_EventScript_RanFromArticuno
 	SetFlag 0x217F
-	CloseMsg
 	ReleaseAll
 	End
 	
@@ -153,11 +162,16 @@ SeafoamIslands_B4F_EventScript_SetNoCurrentLayout:
 	Return
 	
 SeafoamIslands_B4F_EventScript_TryRemoveArticuno:
-	CheckBattleWon 0x401C
-	CompareVarToValue 0x401C, 1
-	GoToIfEq _cv_won_2
-	SetVar 0x401C, 2
-_cv_won_2:
+	GetStaticEncounterOutcome 0x401C
+	CompareVarToValue 0x401C, 4
+	GoToIfNe _cv_outcome_4
+	SetVar 0x401C, 7
+	GoTo _cv_outcome_5
+_cv_outcome_4:
+	CompareVarToValue 0x401C, 5
+	GoToIfNe _cv_outcome_5
+	SetVar 0x401C, 4
+_cv_outcome_5:
 	CompareVarToValue 0x401C, 7
 	GoToIfNe Common_EventScript_NopReturn
 	HidePerson 0x401D
@@ -168,8 +182,8 @@ SeafoamIslands_B4F_EventScript_AddBoulderPresent:
 	Return
 	
 SeafoamIslands_B4F_EventScript_SetCalmWaterNearStairs:
-	// TODO(gba) setmetatile 12, 14, METATILE_GeneralFrlg_CalmWater, 0
-	// TODO(gba) setmetatile 13, 14, METATILE_GeneralFrlg_CalmWater, 0
+	// (the GBA redraws a square here: 12, 14, METATILE_GeneralFrlg_CalmWater, 0)
+	// (the GBA redraws a square here: 13, 14, METATILE_GeneralFrlg_CalmWater, 0)
 	End
 	
 SeafoamIslands_B4F_EventScript_CurrentBlocked:

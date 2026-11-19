@@ -9,7 +9,8 @@
 #define _EV_LavenderTown_EventScript_TownSign 5
 #define _EV_LavenderTown_EventScript_PokemonTowerSign 6
 #define _EV_LavenderTown_EventScript_VolunteerHouseSign 7
-#define _EV_LavenderTown_OnTransition 8
+#define _EV_Route12_EventScript_RouteSign 8
+#define _EV_LavenderTown_OnTransition 9
 
 
 #endif

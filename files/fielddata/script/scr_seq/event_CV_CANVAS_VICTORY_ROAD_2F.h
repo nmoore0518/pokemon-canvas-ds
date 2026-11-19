@@ -14,6 +14,7 @@
 #define _EV_VictoryRoad_2F_OnLoad 10
 #define _EV_VictoryRoad_2F_OnTransition 11
 #define _EV_VictoryRoad_2F_OnResume 12
+#define _EV_VictoryRoad_2F_Frlg_cv_Barriers 13
 
 #define LOCALID_VICTORY_ROAD_2F_BOULDER1 11
 #define LOCALID_VICTORY_ROAD_2F_BOULDER2 12

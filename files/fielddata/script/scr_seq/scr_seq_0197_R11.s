@@ -350,11 +350,16 @@ _cv_beaten_9:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_11
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_11:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_11
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_12
+_cv_outcome_11:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_12
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_12:
 	Return
 	
 Academy_EventScript_CandidateBeatPlayer:

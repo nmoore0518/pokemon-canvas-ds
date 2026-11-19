@@ -8,20 +8,21 @@
 #define _EV_FuchsiaCity_EventScript_SubstituteTutor 4
 #define _EV_FuchsiaCity_EventScript_Lass 5
 #define _EV_TypeTutor_EventScript_Poison 6
-#define _EV_FuchsiaCity_EventScript_CitySign 7
-#define _EV_FuchsiaCity_EventScript_SafariZoneSign 8
-#define _EV_FuchsiaCity_EventScript_GymSign 9
-#define _EV_FuchsiaCity_EventScript_WardensHomeSign 10
-#define _EV_FuchsiaCity_EventScript_VoltorbSign 11
-#define _EV_FuchsiaCity_EventScript_SlowpokeSign 12
-#define _EV_FuchsiaCity_EventScript_ChanseySign 13
-#define _EV_FuchsiaCity_EventScript_KangaskhanSign 14
-#define _EV_FuchsiaCity_EventScript_FossilMonSign 15
-#define _EV_FuchsiaCity_EventScript_LaprasSign 16
-#define _EV_FuchsiaCity_EventScript_SafariGameSign 17
-#define _EV_FuchsiaCity_EventScript_ExoticSafariSign 18
-#define _EV_Route19_EventScript_RouteSign 19
-#define _EV_FuchsiaCity_OnTransition 20
+#define _EV_TypeTutor_EventScript_Flying 7
+#define _EV_FuchsiaCity_EventScript_CitySign 8
+#define _EV_FuchsiaCity_EventScript_SafariZoneSign 9
+#define _EV_FuchsiaCity_EventScript_GymSign 10
+#define _EV_FuchsiaCity_EventScript_WardensHomeSign 11
+#define _EV_FuchsiaCity_EventScript_VoltorbSign 12
+#define _EV_FuchsiaCity_EventScript_SlowpokeSign 13
+#define _EV_FuchsiaCity_EventScript_ChanseySign 14
+#define _EV_FuchsiaCity_EventScript_KangaskhanSign 15
+#define _EV_FuchsiaCity_EventScript_FossilMonSign 16
+#define _EV_FuchsiaCity_EventScript_LaprasSign 17
+#define _EV_FuchsiaCity_EventScript_SafariGameSign 18
+#define _EV_FuchsiaCity_EventScript_ExoticSafariSign 19
+#define _EV_Route19_EventScript_RouteSign 20
+#define _EV_FuchsiaCity_OnTransition 21
 
 
 #endif

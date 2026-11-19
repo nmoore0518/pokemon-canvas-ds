@@ -13,6 +13,7 @@
 	ScrDef FuchsiaCity_EventScript_SubstituteTutor
 	ScrDef FuchsiaCity_EventScript_Lass
 	ScrDef TypeTutor_EventScript_Poison
+	ScrDef TypeTutor_EventScript_Flying
 	ScrDef FuchsiaCity_EventScript_CitySign
 	ScrDef FuchsiaCity_EventScript_SafariZoneSign
 	ScrDef FuchsiaCity_EventScript_GymSign
@@ -92,6 +93,12 @@ TypeTutor_EventScript_Poison:
 	LockAll
 	FacePlayer
 	SetVar 0x8004, 15
+	GoTo TypeTutor_EventScript_Talk
+	
+TypeTutor_EventScript_Flying:
+	LockAll
+	FacePlayer
+	SetVar 0x8004, 16
 	GoTo TypeTutor_EventScript_Talk
 	
 FuchsiaCity_EventScript_CitySign:

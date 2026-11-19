@@ -15,7 +15,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 26,
+            "x": 27,
             "z": 9,
             "y": 0
         },
@@ -32,7 +32,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 27,
+            "x": 29,
             "z": 9,
             "y": 0
         },
@@ -50,7 +50,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 15,
-            "z": 20,
+            "z": 22,
             "y": 0
         },
         {
@@ -67,7 +67,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 16,
-            "z": 20,
+            "z": 22,
             "y": 0
         },
         {
@@ -84,7 +84,7 @@
             "xRange": 0,
             "yRange": 0,
             "x": 11,
-            "z": 20,
+            "z": 22,
             "y": 0
         },
         {
@@ -101,28 +101,28 @@
             "xRange": 0,
             "yRange": 0,
             "x": 6,
-            "z": 21,
+            "z": 23,
             "y": 0
         }
     ],
     "warps": [
         {
             "x": 9,
-            "z": 18,
+            "z": 20,
             "header": "MAP_CANVAS_SEAFOAM_B2F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 37,
+            "x": 39,
             "z": 4,
             "header": "MAP_CANVAS_SEAFOAM_B2F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 37,
-            "z": 20,
+            "x": 39,
+            "z": 22,
             "header": "MAP_CANVAS_SEAFOAM_B2F",
             "anchor": 2,
             "y": 0
@@ -135,21 +135,21 @@
             "y": 0
         },
         {
-            "x": 34,
+            "x": 36,
             "z": 5,
             "header": "MAP_CANVAS_SEAFOAM_B4F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 26,
+            "x": 27,
             "z": 11,
             "header": "MAP_CANVAS_SEAFOAM_B2F",
             "anchor": 7,
             "y": 0
         },
         {
-            "x": 27,
+            "x": 29,
             "z": 11,
             "header": "MAP_CANVAS_SEAFOAM_B2F",
             "anchor": 8,
@@ -157,18 +157,39 @@
         },
         {
             "x": 6,
-            "z": 22,
+            "z": 24,
             "header": "MAP_CANVAS_SEAFOAM_B4F",
             "anchor": 2,
             "y": 0
         },
         {
             "x": 11,
-            "z": 22,
+            "z": 24,
             "header": "MAP_CANVAS_SEAFOAM_B4F",
             "anchor": 3,
             "y": 0
         }
     ],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_SeafoamIslands_B3F_Frlg_cv_BoulderFalls + 1",
+            "x": 6,
+            "z": 24,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45233,
+            "var": "0x5044"
+        },
+        {
+            "scriptId": "_EV_SeafoamIslands_B3F_Frlg_cv_BoulderFalls + 1",
+            "x": 11,
+            "z": 24,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45233,
+            "var": "0x5044"
+        }
+    ]
 }

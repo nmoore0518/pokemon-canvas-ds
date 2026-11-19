@@ -9,6 +9,7 @@
 	ScrDef SeafoamIslands_1F_EventScript_ItemIceHeal
 	ScrDef BerryField_EventScript_FindIce
 	ScrDef PaintWorld_EventScript_Figure
+	ScrDef SeafoamIslands_1F_Frlg_cv_BoulderFalls
 	ScrDef SeafoamIslands_1F_OnTransition
 	ScrDefEnd
 	
@@ -36,6 +37,26 @@ PaintWorld_EventScript_Figure:
 	NPCMsg msg_0880_CV_CANVAS_SEAFOAM_1F_PaintWorld_Text_FigureFirst
 	WaitButton
 	GoTo PaintWorld_EventScript_FigureBattle
+	
+SeafoamIslands_1F_Frlg_cv_BoulderFalls:
+	PlaySE SEQ_SE_GS_IWAOTOSHI
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 1
+	GoToIfNe _cv_fall_1
+	SetFlag 0x2112
+	ClearFlag 0x2114
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_1:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 2
+	GoToIfNe _cv_fall_2
+	SetFlag 0x2113
+	ClearFlag 0x2115
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_2:
+	End
 	
 SeafoamIslands_1F_OnTransition:
 	End
@@ -70,11 +91,16 @@ _cv_won_2:
 	End
 _cv_beaten_1:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_3
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_4
+_cv_outcome_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_4
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_4:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0880_CV_CANVAS_SEAFOAM_1F_PaintWorld_Text_Dissolve

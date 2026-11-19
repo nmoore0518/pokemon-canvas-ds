@@ -3,6 +3,7 @@
 #include "constants/init_script_types.h"
 #include "macros/script.inc"
 
+	InitScriptEntry_OnTransition _EV_SilphCo_5F_Frlg_cv_Barriers + 1
 	InitScriptEntry_OnLoad _EV_SilphCo_5F_OnLoad + 1
 	InitScriptEntryEnd
 

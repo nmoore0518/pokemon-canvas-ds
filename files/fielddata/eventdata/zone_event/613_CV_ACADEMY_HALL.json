@@ -103,9 +103,9 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 13,
+            "z": 15,
+            "header": "MAP_CANVAS_LEADER_ACADEMY",
             "anchor": 0,
             "y": 0
         },

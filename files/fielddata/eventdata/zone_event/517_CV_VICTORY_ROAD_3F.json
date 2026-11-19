@@ -205,6 +205,40 @@
             "x": 45,
             "z": 18,
             "y": 0
+        },
+        {
+            "id": "200",
+            "spriteId": "7001",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226E",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 13,
+            "z": 17,
+            "y": 0
+        },
+        {
+            "id": "201",
+            "spriteId": "7015",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226F",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 13,
+            "z": 18,
+            "y": 0
         }
     ],
     "warps": [
@@ -244,5 +278,26 @@
             "y": 0
         }
     ],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_VictoryRoad_3F_EventScript_FloorSwitch + 1",
+            "x": 7,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45232,
+            "var": "0x503B"
+        },
+        {
+            "scriptId": "_EV_VictoryRoad_3F_Frlg_cv_BoulderFalls + 1",
+            "x": 38,
+            "z": 24,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45233,
+            "var": "0x5044"
+        }
+    ]
 }

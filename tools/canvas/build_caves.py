@@ -335,12 +335,18 @@ def cave_heights(gm, lay, blocked, boulders, plain=()):
     which climb a tier going north."""
     W, H = lay.w, lay.h
     open_ = lambda x, y: 0 <= x < W and 0 <= y < H and (not blocked[y][x] or (x, y) in boulders)
-    stairs = {(x, y) for y in range(H) for x in range(W) if open_(x, y) and (x, y) not in boulders and (x, y) not in plain and lay.metatile(x, y) in STAIRS_MT}
+    smt = STAIRS_MT
+    stairs = {(x, y) for y in range(H) for x in range(W) if open_(x, y) and (x, y) not in boulders and (x, y) not in plain and lay.metatile(x, y) in smt}
+    # (and a square of no elevation between ground a tier up north of it and ground south: Cerulean Cave's steps,
+    # drawn in its own tileset)
+    el = lambda x, y: lay.elevation(x, y) if open_(x, y) else None
+    stairs |= {(x, y) for y in range(1, H - 1) for x in range(W) if open_(x, y) and (x, y) not in boulders and (x, y) not in plain
+               and el(x, y) == 0 and el(x, y - 1) == 4 and el(x, y + 1) == 3}
     warps = {(w['x'], w['y']) for w in gm.get('warp_events', [])}
 
     def cls(x, y):
         e = lay.elevation(x, y)
-        if (x, y) in plain and lay.metatile(x, y) in STAIRS_MT: return None     # (floor at a flight's head: as the ground north of it)
+        if (x, y) in plain and lay.metatile(x, y) in smt: return None     # (floor at a flight's head: as the ground north of it)
         return None if (x, y) in warps or (x, y) in boulders or e in (0, 2, 15) else 3 if e == 1 else e
     reg, regs = {}, []
     for y in range(H):

@@ -133,5 +133,26 @@
             "y": 0
         }
     ],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_SeafoamIslands_B2F_Frlg_cv_BoulderFalls + 1",
+            "x": 25,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45233,
+            "var": "0x5044"
+        },
+        {
+            "scriptId": "_EV_SeafoamIslands_B2F_Frlg_cv_BoulderFalls + 1",
+            "x": 28,
+            "z": 9,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45233,
+            "var": "0x5044"
+        }
+    ]
 }

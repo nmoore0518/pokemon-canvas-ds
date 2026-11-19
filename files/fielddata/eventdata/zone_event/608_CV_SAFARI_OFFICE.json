@@ -72,10 +72,10 @@
     ],
     "warps": [
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 5,
+            "z": 9,
+            "header": "MAP_FUCHSIA",
+            "anchor": 3,
             "y": 0
         },
         {
@@ -86,10 +86,10 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 7,
+            "z": 9,
+            "header": "MAP_FUCHSIA",
+            "anchor": 3,
             "y": 0
         }
     ],

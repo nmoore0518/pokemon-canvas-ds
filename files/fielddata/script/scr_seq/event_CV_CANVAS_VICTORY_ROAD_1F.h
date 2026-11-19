@@ -6,6 +6,7 @@
 #define _EV_VictoryRoad_1F_EventScript_FloorSwitch 2
 #define _EV_VictoryRoad_1F_Frlg_OnLoad 3
 #define _EV_VictoryRoad_1F_Frlg_OnTransition 4
+#define _EV_VictoryRoad_1F_Frlg_cv_Barriers 5
 
 #define LOCALID_VICTORY_ROAD_1F_BOULDER 5
 

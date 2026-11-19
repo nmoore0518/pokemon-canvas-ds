@@ -663,11 +663,16 @@ _cv_won_27:
 	End
 _cv_beaten_26:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_28
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_28:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_28
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_29
+_cv_outcome_28:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_29
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_29:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq DadStory_EventScript_GiovanniFinale
 	HealParty
@@ -781,14 +786,14 @@ DadStory_EventScript_GiovanniFinale:
 	WaitMovement
 	Wait 30, VAR_SPECIAL_RESULT
 	ClearFlag 0x2153
-	GoToIfUnset 0x2153, _cv_show_29
+	GoToIfUnset 0x2153, _cv_show_30
 	ClearFlag 0x2153
 	ShowPerson 13
 	SetFlag 0x2153
-	GoTo _cv_shown_30
-_cv_show_29:
+	GoTo _cv_shown_31
+_cv_show_30:
 	ShowPerson 13
-_cv_shown_30:
+_cv_shown_31:
 	ApplyMovement 13, DadStory_Movement_MomUpToGiovanni
 	WaitMovement
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_MomLastTime
@@ -798,14 +803,14 @@ _cv_shown_30:
 	Wait 20, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	ClearFlag 0x2154
-	GoToIfUnset 0x2154, _cv_show_31
+	GoToIfUnset 0x2154, _cv_show_32
 	ClearFlag 0x2154
 	ShowPerson 14
 	SetFlag 0x2154
-	GoTo _cv_shown_32
-_cv_show_31:
+	GoTo _cv_shown_33
+_cv_show_32:
 	ShowPerson 14
-_cv_shown_32:
+_cv_shown_33:
 	PlayCry SPECIES_CHANSEY, 0
 	WaitCry
 	Wait 20, VAR_SPECIAL_RESULT

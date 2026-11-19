@@ -9,6 +9,7 @@
 #define _EV_SilphCo_9F_EventScript_Door4 5
 #define _EV_SilphCo_9F_EventScript_FloorSign 6
 #define _EV_SilphCo_9F_OnLoad 7
+#define _EV_SilphCo_9F_Frlg_cv_Barriers 8
 
 
 #endif

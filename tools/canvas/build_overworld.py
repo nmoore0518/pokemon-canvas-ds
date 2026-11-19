@@ -58,6 +58,7 @@ def gba_dirs():
 # at PALLET_AT in it - where our Pallet's lands already are (build_pallet.py: cells 31..33, 11..12, the GBA map 27
 # squares in). Cinnabar is our own too (build_cinnabar.py: widened, in cell 32, 15): its GBA map is put where
 # that land draws it (the sea round it gives a few squares)
+SEA_ROUTES = {'Route19_Frlg', 'Route20_Frlg', 'Route21_North_Frlg', 'Route21_South_Frlg', 'CinnabarIsland_Frlg'}
 ORIGIN = (30, 2)
 CELLS = (14, 15)
 PALLET_AT = (59, 288)
@@ -77,7 +78,13 @@ def world():
         return size[d]
     pos, todo = {'PalletTown_Frlg': (0, 0)}, ['PalletTown_Frlg']
     while todo:
-        d = todo.pop(0)        # (nearest first: the GBA's maps don't quite close their loops, so the far side of one gives)
+        # (nearest first: the GBA's maps don't quite close their loops, so the far side of one gives. The sea routes
+        # go last: the loop south of Pallet (Route 21, Cinnabar, Routes 20 and 19 to Fuchsia) is some squares longer
+        # than the land round the north, so Fuchsia's side is placed from Celadon, Vermilion and Lavender - whose roads
+        # then meet theirs - and the gap is left in open sea, where it does no harm)
+        land = [d_ for d_ in todo if d_ not in SEA_ROUTES]
+        d = land[0] if land else todo[0]
+        todo.remove(d)
         x, y = pos[d]; w, h = sz(d)
         for c in gba_map.map_json(d).get('connections') or []:
             n = ids.get(c['map'])
@@ -337,6 +344,11 @@ DOOR_MB = 0x69
 CAVE_MB = 0x6E              # (HeartGold's cave mouths: walked into)
 CAVE_MOUTH = json.load(open(os.path.join(HERE, 'data', 'cave_mouth.json')))     # (its arch, off Route 11's land)
 SIGN_MODEL = 29
+
+
+# GBA maps we don't build that only pass you on: a door to one leads into a room of ours, onto the room's ways out to
+# it (the S.S. Anne's outside, at Vermilion's harbour: the ship's 1F corridor)
+THROUGH = {'MAP_SSANNE_EXTERIOR': ('MAP_CANVAS_SSANNE_1F', 'MAP_SSANNE_1F_CORRIDOR')}
 
 
 def gba_dest():
@@ -1396,7 +1408,7 @@ def wire(P, hdr_of, hgm):
     for (wx, wz), (d, w) in sorted(P['warps'].items(), key=lambda kv: (kv[0][1], kv[0][0])):
         cell = (wx // 32, wz // 32)
         if cell in CUSTOM: continue                 # (Pallet's and Cinnabar's builders lay their own)
-        room = dest.get(w['dest_map'])
+        room = THROUGH[w['dest_map']][0] if w['dest_map'] in THROUGH else dest.get(w['dest_map'])
         if room is None or room in world_maps:
             skipped.append((d, w['dest_map'])); continue
         X = hdr_of[cell]
@@ -1411,16 +1423,39 @@ def wire(P, hdr_of, hgm):
         ev = json.load(open(path_of(room)))
         Rw = ev['warps']
         if room in gba_built or room.startswith('MAP_CANVAS_'):
+            via = outs[0][3]['dest_map'] if outs[0][3]['dest_map'] in THROUGH else None
+            gd = gdirs.get(THROUGH[via][1] if via else outs[0][3]['dest_map'])
+            gws = gba_map.map_json(gd)['warp_events'] if gd else []
+            if via:         # (onto the room's ways out to the map we pass by, all of them leading back to this door)
+                back = [k for k, gw in enumerate(gws) if gw['dest_map'] == via and k < len(Rw)]
+                X, i = outs[0][0], outs[0][1]
+                for X_, i_, G_, w_ in outs: per[X_][i_]['anchor'] = back[0]
+                for k in back:
+                    Rw[k].update(header=X, anchor=i)
+                    if (Rw[k]['x'], Rw[k]['z']) == (0, 0): Rw[k]['x'], Rw[k]['z'] = port_map.room_xy(gd)(gws[k]['x'], gws[k]['y'])
+                json.dump(ev, open(path_of(room), 'w'), indent=4); open(path_of(room), 'a').write('\n')
+                continue
             for X, i, G, w in outs:
                 j = int(w['dest_warp_id'])
                 if j >= len(Rw): skipped.append((room, 'warp %d' % j)); continue
                 per[X][i]['anchor'] = j
                 Rw[j].update(header=X, anchor=i)
-                if (Rw[j]['x'], Rw[j]['z']) == (0, 0):      # (a way out the room's builder left unplaced: the GBA's square)
-                    gd = gdirs.get(w['dest_map'])
-                    if gd:
-                        gw = gba_map.map_json(gd)['warp_events'][j]
-                        Rw[j]['x'], Rw[j]['z'] = port_map.room_xy(gd)(gw['x'], gw['y'])
+                if (Rw[j]['x'], Rw[j]['z']) == (0, 0) and gd:      # (a way out the room's builder left unplaced: the GBA's square)
+                    Rw[j]['x'], Rw[j]['z'] = port_map.room_xy(gd)(gws[j]['x'], gws[j]['y'])
+            # the rest of the doormat leads out too (the GBA's mat squares that no door of ours leads to), and you come
+            # in on the middle of a mat three or five wide (the Academy hall's) rather than its first square
+            linked = sorted({int(w['dest_warp_id']) for *_, w in outs if int(w['dest_warp_id']) < len(Rw)})
+            if gws and linked:
+                j0 = linked[0]
+                mat = sorted((k for k, gw in enumerate(gws) if k < len(Rw) and gw['dest_map'] == gws[j0]['dest_map']
+                              and gw['y'] == gws[j0]['y'] and abs(gw['x'] - gws[j0]['x']) <= len(gws)), key=lambda k: gws[k]['x'])
+                for k in mat:
+                    if k not in linked and (Rw[k]['x'], Rw[k]['z']) == (0, 0):
+                        Rw[k].update(header=Rw[j0]['header'], anchor=Rw[j0]['anchor'])
+                        Rw[k]['x'], Rw[k]['z'] = port_map.room_xy(gd)(gws[k]['x'], gws[k]['y'])
+                if len(mat) >= 3 and len(mat) % 2 and len(outs) < len(mat) and all(int(o[3]['dest_warp_id']) in mat for o in outs):
+                    for X, i, G, w in outs:
+                        per[X][i]['anchor'] = mat[len(mat) // 2]
         else:
             exits = [j for j, rw in enumerate(Rw) if is_outdoor(rw['header'])]
             if not exits: skipped.append((room, 'no way out')); continue
@@ -1431,11 +1466,28 @@ def wire(P, hdr_of, hgm):
             key = lambda c: sum(p[along] for _, p in c) / len(c)
             rc.sort(key=key); oc.sort(key=key)
             if len(oc) == 1 and len(rc) > 1: rc = [max(rc, key=lambda c: sum(p[1] for _, p in c))]   # (the front door)
-            for k, o in enumerate(oc):
-                r = rc[min(k, len(rc) - 1)]
-                (X0, i0) = o[0][0]
-                for (X, i), _ in o: per[X][i]['anchor'] = r[0][0]
-                for j, _ in r: Rw[j].update(header=X0, anchor=i0)
+            if len(oc) > 1 and len(rc) > 1:
+                # (a gatehouse: each door outside to the way out on its own side - west to west, east to east - by
+                # where each lies from the middle of its doors. More doors outside than in (the GBA's Route 16 gate,
+                # two storeys of doors each side) share a way in; the way out goes to the first of them)
+                mid = lambda cs: (sum(p[0] for c in cs for _, p in c) / sum(len(c) for c in cs), sum(p[1] for c in cs for _, p in c) / sum(len(c) for c in cs))
+                rm, om = mid(rc), mid(oc)
+                rdir = lambda c: (mid([c])[0] - rm[0], mid([c])[1] - rm[1])
+                odir = lambda c: (mid([c])[0] - om[0], mid([c])[1] - om[1])
+                dot = lambda a, b: a[0] * b[0] + a[1] * b[1]
+                for o in oc:
+                    r = max(rc, key=lambda r_: dot(odir(o), rdir(r_)))
+                    for (X, i), _ in o: per[X][i]['anchor'] = r[0][0]
+                for r in rc:
+                    o = max(oc, key=lambda o_: dot(odir(o_), rdir(r)))
+                    (X0, i0) = o[0][0]
+                    for j, _ in r: Rw[j].update(header=X0, anchor=i0)
+            else:
+                for k, o in enumerate(oc):
+                    r = rc[min(k, len(rc) - 1)]
+                    (X0, i0) = o[0][0]
+                    for (X, i), _ in o: per[X][i]['anchor'] = r[0][0]
+                    for j, _ in r: Rw[j].update(header=X0, anchor=i0)
         json.dump(ev, open(path_of(room), 'w'), indent=4); open(path_of(room), 'a').write('\n')
     for X, ws in per.items():
         if X in ('MAP_PALLET', 'MAP_CINNABAR_ISLAND'): continue

@@ -14,6 +14,7 @@
 #define _EV_SilphCo_5F_EventScript_PokemonReport1 10
 #define _EV_SilphCo_5F_EventScript_FloorSign 11
 #define _EV_SilphCo_5F_OnLoad 12
+#define _EV_SilphCo_5F_Frlg_cv_Barriers 13
 
 
 #endif

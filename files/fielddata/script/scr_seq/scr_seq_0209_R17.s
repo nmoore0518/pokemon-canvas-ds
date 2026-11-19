@@ -11,6 +11,7 @@
 	ScrDef Route17_EventScript_TrainerTips1
 	ScrDef Route17_EventScript_ItemsNotice
 	ScrDef Route17_EventScript_BallsNotice
+	ScrDef Route17_EventScript_CyclingRoadSign
 	ScrDefEnd
 	
 Route17_EventScript_RouteSign:
@@ -53,6 +54,15 @@ Route17_EventScript_BallsNotice:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0357_R17_Route17_Text_DontThrowGameThrowBalls
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route17_EventScript_CyclingRoadSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0357_R17_Route17_Text_CyclingRoadSign
 	WaitButton
 	CloseMsg
 	ReleaseAll

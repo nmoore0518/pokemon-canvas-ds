@@ -2,6 +2,7 @@
 #define SCR_SEQ_CV_CANVAS_SEAFOAM_B2F_H_
 
 #define _EV_SeafoamIslands_B2F_EventScript_ItemBigPearl 0
+#define _EV_SeafoamIslands_B2F_Frlg_cv_BoulderFalls 1
 
 
 #endif

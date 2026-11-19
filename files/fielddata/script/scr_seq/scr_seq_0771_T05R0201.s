@@ -161,11 +161,16 @@ _cv_won_5:
 	End
 _cv_beaten_4:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_6
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_6:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_6
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_7
+_cv_outcome_6:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_7
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_7:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfNe LavenderTown_VolunteerPokemonHouse_EventScript_FujiLost
 	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiWon

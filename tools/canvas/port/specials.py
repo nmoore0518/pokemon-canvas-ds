@@ -79,10 +79,12 @@ def is_national_dex(port, ret):
 
 
 def battle_outcome(port, ret):
-    # GBA: B_OUTCOME_WON 1, B_OUTCOME_LOST 2
+    # the last battle's outcome, as the GBA numbers them: HeartGold's 1 won, 2 lost, 3 drew, 4 caught, 5 ran, 6 it
+    # fled; the GBA's B_OUTCOME_WON 1, LOST 2, DREW 3, RAN 4, MON_FLED 6, CAUGHT 7
     ret = ret or 'VAR_SPECIAL_RESULT'
-    l = port.new('won')
-    return ['CheckBattleWon %s' % ret, 'CompareVarToValue %s, 1' % ret, 'GoToIfEq %s' % l, 'SetVar %s, 2' % ret, l + ':']
+    a, z = port.new('outcome'), port.new('outcome')
+    return ['GetStaticEncounterOutcome %s' % ret, 'CompareVarToValue %s, 4' % ret, 'GoToIfNe %s' % a, 'SetVar %s, 7' % ret,
+            'GoTo %s' % z, a + ':', 'CompareVarToValue %s, 5' % ret, 'GoToIfNe %s' % z, 'SetVar %s, 4' % ret, z + ':']
 
 
 def mastered_flag(port, t):
@@ -254,6 +256,8 @@ SPECIALS = {
     'HealPlayerParty': lambda p, r: ['HealParty'],
     'ChangePokemonNickname': lambda p, r: ['NicknameInput 0x8004, VAR_SPECIAL_RESULT'],
     'DrawWholeMapView': lambda p, r: [],
+    # (sets the flag whose number is in VAR_0x8004: the GBA's Silph Co. doors and hidden items)
+    'SetHiddenItemFlag': lambda p, r: ['SetFlagVar 0x8004'],
     # outfits aren't in yet: nothing is unlocked
     'Outfit_CheckUnlocked': lambda p, r: ['SetVar VAR_SPECIAL_RESULT, 0'],
     'Outfit_CountUnlocked': lambda p, r: ['SetVar VAR_SPECIAL_RESULT, 1'],

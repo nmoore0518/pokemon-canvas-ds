@@ -57,8 +57,6 @@ PowerPlant_EventScript_ItemElixir:
 PowerPlant_EventScript_Zapdos:
 	LockAll
 	FacePlayer
-	// TODO(gba) setwildbattle SPECIES_ZAPDOS, 50
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_ZAPDOS, 0
 	NPCMsg msg_0902_CV_CANVAS_POWER_PLANT_Text_Gyaoo
@@ -67,14 +65,26 @@ PowerPlant_EventScript_Zapdos:
 	PlayBGM SEQ_GS_GYM
 	WaitButton
 	SetFlag 0x2032
-	// TODO(gba) special BattleSetup_StartLegendaryBattle
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_ZAPDOS, 50, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_1
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_1:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_1
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_1:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_2
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_3
+_cv_outcome_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_3
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PowerPlant_EventScript_DefeatedZapdos
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -82,28 +92,36 @@ _cv_won_1:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq PowerPlant_EventScript_RanFromZapdos
 	SetFlag 0x21C8
-	CloseMsg
 	ReleaseAll
 	End
 	
 PowerPlant_EventScript_Electrode2:
 	LockAll
 	FacePlayer
-	// TODO(gba) setwildbattle SPECIES_ELECTRODE, 34
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_ELECTRODE, 0
 	Wait 40, VAR_SPECIAL_RESULT
 	WaitCry
 	SetFlag 0x2032
-	// TODO(gba) dowildbattle 
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	WildBattle SPECIES_ELECTRODE, 34, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_2
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_4
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_4:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_5
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_6
+_cv_outcome_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_6
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PowerPlant_EventScript_FoughtElectrode2
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -117,21 +135,30 @@ _cv_won_2:
 PowerPlant_EventScript_Electrode1:
 	LockAll
 	FacePlayer
-	// TODO(gba) setwildbattle SPECIES_ELECTRODE, 34
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_ELECTRODE, 0
 	Wait 40, VAR_SPECIAL_RESULT
 	WaitCry
 	SetFlag 0x2032
-	// TODO(gba) dowildbattle 
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	WildBattle SPECIES_ELECTRODE, 34, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_7
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_7:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_8
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_9
+_cv_outcome_8:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_9
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PowerPlant_EventScript_FoughtElectrode1
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -200,24 +227,29 @@ PaintWorld_EventScript_FigureBattle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_4
+	GoToIf TRUE, _cv_beaten_10
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_5
+	GoToIfNe _cv_won_11
 	WhiteOut
 	End
-_cv_won_5:
+_cv_won_11:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_4:
+_cv_beaten_10:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_6
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_6:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_12
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_13
+_cv_outcome_12:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_13
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_13:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0902_CV_CANVAS_POWER_PLANT_PaintWorld_Text_Dissolve
@@ -232,11 +264,16 @@ _cv_won_6:
 	End
 	
 PowerPlant_EventScript_TryRemoveStaticMon:
-	CheckBattleWon 0x401C
-	CompareVarToValue 0x401C, 1
-	GoToIfEq _cv_won_7
-	SetVar 0x401C, 2
-_cv_won_7:
+	GetStaticEncounterOutcome 0x401C
+	CompareVarToValue 0x401C, 4
+	GoToIfNe _cv_outcome_14
+	SetVar 0x401C, 7
+	GoTo _cv_outcome_15
+_cv_outcome_14:
+	CompareVarToValue 0x401C, 5
+	GoToIfNe _cv_outcome_15
+	SetVar 0x401C, 4
+_cv_outcome_15:
 	CompareVarToValue 0x401C, 7
 	GoToIfNe Common_EventScript_NopReturn
 	HidePerson 0x401D

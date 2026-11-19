@@ -31,6 +31,7 @@
 	ScrDef CinnabarIsland_Gym_EventScript_BlaineFujiPhoto
 	ScrDef CinnabarIsland_Gym_OnLoad
 	ScrDef CinnabarIsland_Gym_OnTransitionGuest
+	ScrDef CinnabarIsland_Gym_Frlg_cv_Barriers
 	ScrDefEnd
 	
 CinnabarIsland_Gym_EventScript_Quinn:
@@ -382,6 +383,23 @@ CinnabarIsland_Gym_OnLoad:
 CinnabarIsland_Gym_OnTransitionGuest:
 	SetFlag 0x2017
 	End
+	
+CinnabarIsland_Gym_Frlg_cv_Barriers:
+	SetVar 0x5044, 1
+	ClearFlag 0x225C
+	ClearFlag 0x225D
+	ClearFlag 0x225E
+	ClearFlag 0x225F
+	ClearFlag 0x2260
+	ClearFlag 0x2261
+	ClearFlag 0x2262
+	ClearFlag 0x2263
+	ClearFlag 0x2264
+	ClearFlag 0x2265
+	ClearFlag 0x2266
+	ClearFlag 0x2267
+	SetVar 0x5044, 0
+	GoTo CinnabarIsland_Gym_OnTransitionGuest
 	
 CinnabarIsland_Gym_EventScript_DefeatedQuinn:
 	CallIfUnset 0x21F0, CinnabarIsland_Gym_EventScript_Quiz1CompleteTrainer
@@ -770,59 +788,119 @@ CinnabarIsland_Gym_EventScript_Quiz6Correct:
 	End
 	
 CinnabarIsland_Gym_EventScript_OpenDoor1:
-	// TODO(gba) setmetatile 26, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0
-	// TODO(gba) setmetatile 27, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0
-	// TODO(gba) setmetatile 26, 9, METATILE_CinnabarGym_Floor_WallLeftEdge, 0
-	// TODO(gba) setmetatile 27, 9, METATILE_CinnabarGym_Floor_WallRightEdge, 0
-	// TODO(gba) setmetatile 26, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 27, 10, METATILE_CinnabarGym_Floor, 0
-	// TODO(gba) setmetatile 28, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
+	// (the GBA redraws a square here: 26, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 27, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0)
+	GoToIfSet 0x2260, _cv_bar_40
+	SetFlag 0x2260
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_40
+	HidePerson 204
+_cv_bar_40:
+	GoToIfSet 0x2261, _cv_bar_41
+	SetFlag 0x2261
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_41
+	HidePerson 205
+_cv_bar_41:
+	// (the GBA redraws a square here: 26, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 27, 10, METATILE_CinnabarGym_Floor, 0)
+	// (the GBA redraws a square here: 28, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0)
 	Return
 	
 CinnabarIsland_Gym_EventScript_OpenDoor2:
-	// TODO(gba) setmetatile 17, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0
-	// TODO(gba) setmetatile 18, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0
-	// TODO(gba) setmetatile 17, 9, METATILE_CinnabarGym_Floor_WallLeftEdge, 0
-	// TODO(gba) setmetatile 18, 9, METATILE_CinnabarGym_Floor_WallRightEdge, 0
-	// TODO(gba) setmetatile 17, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 18, 10, METATILE_CinnabarGym_Floor, 0
-	// TODO(gba) setmetatile 19, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
+	// (the GBA redraws a square here: 17, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 18, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0)
+	GoToIfSet 0x225E, _cv_bar_42
+	SetFlag 0x225E
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_42
+	HidePerson 202
+_cv_bar_42:
+	GoToIfSet 0x225F, _cv_bar_43
+	SetFlag 0x225F
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_43
+	HidePerson 203
+_cv_bar_43:
+	// (the GBA redraws a square here: 17, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 18, 10, METATILE_CinnabarGym_Floor, 0)
+	// (the GBA redraws a square here: 19, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0)
 	Return
 	
 CinnabarIsland_Gym_EventScript_OpenDoor3:
-	// TODO(gba) setmetatile 17, 15, METATILE_CinnabarGym_Floor_WallLeftCorner, 0
-	// TODO(gba) setmetatile 18, 15, METATILE_CinnabarGym_Floor_WallRightCorner, 0
-	// TODO(gba) setmetatile 17, 16, METATILE_CinnabarGym_Floor_WallLeftEdge, 0
-	// TODO(gba) setmetatile 18, 16, METATILE_CinnabarGym_Floor_WallRightEdge, 0
-	// TODO(gba) setmetatile 17, 17, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 18, 17, METATILE_CinnabarGym_Floor, 0
-	// TODO(gba) setmetatile 19, 17, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
+	// (the GBA redraws a square here: 17, 15, METATILE_CinnabarGym_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 18, 15, METATILE_CinnabarGym_Floor_WallRightCorner, 0)
+	GoToIfSet 0x2262, _cv_bar_44
+	SetFlag 0x2262
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_44
+	HidePerson 206
+_cv_bar_44:
+	GoToIfSet 0x2263, _cv_bar_45
+	SetFlag 0x2263
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_45
+	HidePerson 207
+_cv_bar_45:
+	// (the GBA redraws a square here: 17, 17, METATILE_CinnabarGym_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 18, 17, METATILE_CinnabarGym_Floor, 0)
+	// (the GBA redraws a square here: 19, 17, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0)
 	Return
 	
 CinnabarIsland_Gym_EventScript_OpenDoor4:
-	// TODO(gba) setmetatile 11, 21, METATILE_CinnabarGym_Wall_RetractedBarrier, 1
-	// TODO(gba) setmetatile 11, 22, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 11, 23, METATILE_CinnabarGym_Floor, 0
+	// (the GBA redraws a square here: 11, 21, METATILE_CinnabarGym_Wall_RetractedBarrier, 1)
+	GoToIfSet 0x2266, _cv_bar_46
+	SetFlag 0x2266
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_46
+	HidePerson 210
+_cv_bar_46:
+	GoToIfSet 0x2267, _cv_bar_47
+	SetFlag 0x2267
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_47
+	HidePerson 211
+_cv_bar_47:
 	Return
 	
 CinnabarIsland_Gym_EventScript_OpenDoor5:
-	// TODO(gba) setmetatile 5, 16, METATILE_CinnabarGym_Floor_WallLeftCorner, 0
-	// TODO(gba) setmetatile 6, 16, METATILE_CinnabarGym_Floor_WallRightCorner, 0
-	// TODO(gba) setmetatile 5, 17, METATILE_CinnabarGym_Floor_WallLeftEdge, 0
-	// TODO(gba) setmetatile 6, 17, METATILE_CinnabarGym_Floor_WallRightEdge, 0
-	// TODO(gba) setmetatile 5, 18, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 6, 18, METATILE_CinnabarGym_Floor, 0
-	// TODO(gba) setmetatile 7, 18, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
+	// (the GBA redraws a square here: 5, 16, METATILE_CinnabarGym_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 6, 16, METATILE_CinnabarGym_Floor_WallRightCorner, 0)
+	GoToIfSet 0x2264, _cv_bar_48
+	SetFlag 0x2264
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_48
+	HidePerson 208
+_cv_bar_48:
+	GoToIfSet 0x2265, _cv_bar_49
+	SetFlag 0x2265
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_49
+	HidePerson 209
+_cv_bar_49:
+	// (the GBA redraws a square here: 5, 18, METATILE_CinnabarGym_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 18, METATILE_CinnabarGym_Floor, 0)
+	// (the GBA redraws a square here: 7, 18, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0)
 	Return
 	
 CinnabarIsland_Gym_EventScript_OpenDoor6:
-	// TODO(gba) setmetatile 5, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0
-	// TODO(gba) setmetatile 6, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0
-	// TODO(gba) setmetatile 5, 9, METATILE_CinnabarGym_Floor_WallLeftEdge, 0
-	// TODO(gba) setmetatile 6, 9, METATILE_CinnabarGym_Floor_WallRightEdge, 0
-	// TODO(gba) setmetatile 5, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0
-	// TODO(gba) setmetatile 6, 10, METATILE_CinnabarGym_Floor, 0
-	// TODO(gba) setmetatile 7, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
+	// (the GBA redraws a square here: 5, 8, METATILE_CinnabarGym_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 6, 8, METATILE_CinnabarGym_Floor_WallRightCorner, 0)
+	GoToIfSet 0x225C, _cv_bar_50
+	SetFlag 0x225C
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_50
+	HidePerson 200
+_cv_bar_50:
+	GoToIfSet 0x225D, _cv_bar_51
+	SetFlag 0x225D
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_51
+	HidePerson 201
+_cv_bar_51:
+	// (the GBA redraws a square here: 5, 10, METATILE_CinnabarGym_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 10, METATILE_CinnabarGym_Floor, 0)
+	// (the GBA redraws a square here: 7, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0)
 	Return
 	
 CinnabarIsland_Gym_EventScript_Quiz1Complete:
@@ -989,18 +1067,18 @@ CinnabarIsland_Gym_EventScript_BattleQuinn:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_QuinnIntro
 	WaitButton
 	CheckTrainerFlag 960
-	GoToIf TRUE, _cv_beaten_40
+	GoToIf TRUE, _cv_beaten_52
 	TrainerBattle 960, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_41
+	GoToIfNe _cv_won_53
 	WhiteOut
 	End
-_cv_won_41:
+_cv_won_53:
 	SetTrainerFlag 960
 	ReleaseAll
 	End
-_cv_beaten_40:
+_cv_beaten_52:
 	GoToIfSet 0x21F0, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz1Complete
 	CloseMsg
@@ -1015,18 +1093,18 @@ CinnabarIsland_Gym_EventScript_BattleAvery:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_AveryIntro
 	WaitButton
 	CheckTrainerFlag 929
-	GoToIf TRUE, _cv_beaten_42
+	GoToIf TRUE, _cv_beaten_54
 	TrainerBattle 929, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_43
+	GoToIfNe _cv_won_55
 	WhiteOut
 	End
-_cv_won_43:
+_cv_won_55:
 	SetTrainerFlag 929
 	ReleaseAll
 	End
-_cv_beaten_42:
+_cv_beaten_54:
 	GoToIfSet 0x21F1, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz2Complete
 	CloseMsg
@@ -1041,18 +1119,18 @@ CinnabarIsland_Gym_EventScript_BattleRamon:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_RamonIntro
 	WaitButton
 	CheckTrainerFlag 961
-	GoToIf TRUE, _cv_beaten_44
+	GoToIf TRUE, _cv_beaten_56
 	TrainerBattle 961, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_45
+	GoToIfNe _cv_won_57
 	WhiteOut
 	End
-_cv_won_45:
+_cv_won_57:
 	SetTrainerFlag 961
 	ReleaseAll
 	End
-_cv_beaten_44:
+_cv_beaten_56:
 	GoToIfSet 0x21F2, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz3Complete
 	CloseMsg
@@ -1067,18 +1145,18 @@ CinnabarIsland_Gym_EventScript_BattleDerek:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_DerekIntro
 	WaitButton
 	CheckTrainerFlag 930
-	GoToIf TRUE, _cv_beaten_46
+	GoToIf TRUE, _cv_beaten_58
 	TrainerBattle 930, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_47
+	GoToIfNe _cv_won_59
 	WhiteOut
 	End
-_cv_won_47:
+_cv_won_59:
 	SetTrainerFlag 930
 	ReleaseAll
 	End
-_cv_beaten_46:
+_cv_beaten_58:
 	GoToIfSet 0x21F3, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz4Complete
 	CloseMsg
@@ -1093,18 +1171,18 @@ CinnabarIsland_Gym_EventScript_BattleDusty:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_DustyIntro
 	WaitButton
 	CheckTrainerFlag 962
-	GoToIf TRUE, _cv_beaten_48
+	GoToIf TRUE, _cv_beaten_60
 	TrainerBattle 962, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_49
+	GoToIfNe _cv_won_61
 	WhiteOut
 	End
-_cv_won_49:
+_cv_won_61:
 	SetTrainerFlag 962
 	ReleaseAll
 	End
-_cv_beaten_48:
+_cv_beaten_60:
 	GoToIfSet 0x21F4, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz5Complete
 	CloseMsg
@@ -1119,18 +1197,18 @@ CinnabarIsland_Gym_EventScript_BattleZac:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_ZacIntro
 	WaitButton
 	CheckTrainerFlag 931
-	GoToIf TRUE, _cv_beaten_50
+	GoToIf TRUE, _cv_beaten_62
 	TrainerBattle 931, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_51
+	GoToIfNe _cv_won_63
 	WhiteOut
 	End
-_cv_won_51:
+_cv_won_63:
 	SetTrainerFlag 931
 	ReleaseAll
 	End
-_cv_beaten_50:
+_cv_beaten_62:
 	GoToIfSet 0x21F5, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz6Complete
 	CloseMsg
@@ -1163,12 +1241,12 @@ GymCandidate_EventScript_TalkAgain:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_52
+	GoToIfEq _cv_yes_64
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_53
-_cv_yes_52:
+	GoTo _cv_yn_65
+_cv_yes_64:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_53:
+_cv_yn_65:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_NotYet
 	SetVar 0x8007, 1
@@ -1179,82 +1257,82 @@ _cv_yn_53:
 GymCandidate_EventScript_AfterBadge:
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x8009, 0
-	GoToIfNe _cv_mentor_54
+	GoToIfNe _cv_mentor_66
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_mentor_54
+	GoToIfNe _cv_mentor_66
 	SetVar 0x401F, 12
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_54:
+_cv_mentor_66:
 	CompareVarToValue 0x8009, 0
-	GoToIfNe _cv_mentor_55
+	GoToIfNe _cv_mentor_67
 	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_mentor_55
+	GoToIfNe _cv_mentor_67
 	SetVar 0x401F, 13
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_55:
+_cv_mentor_67:
 	CompareVarToValue 0x8009, 1
-	GoToIfNe _cv_mentor_56
+	GoToIfNe _cv_mentor_68
 	CompareVarToValue 0x5019, 11
-	GoToIfNe _cv_mentor_56
+	GoToIfNe _cv_mentor_68
 	SetVar 0x401F, 14
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_56:
+_cv_mentor_68:
 	CompareVarToValue 0x8009, 2
-	GoToIfNe _cv_mentor_57
+	GoToIfNe _cv_mentor_69
 	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_mentor_57
+	GoToIfNe _cv_mentor_69
 	SetVar 0x401F, 15
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_57:
+_cv_mentor_69:
 	CompareVarToValue 0x8009, 2
-	GoToIfNe _cv_mentor_58
+	GoToIfNe _cv_mentor_70
 	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_mentor_58
+	GoToIfNe _cv_mentor_70
 	SetVar 0x401F, 16
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_58:
+_cv_mentor_70:
 	CompareVarToValue 0x8009, 3
-	GoToIfNe _cv_mentor_59
+	GoToIfNe _cv_mentor_71
 	CompareVarToValue 0x5019, 12
-	GoToIfNe _cv_mentor_59
+	GoToIfNe _cv_mentor_71
 	SetVar 0x401F, 17
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_59:
+_cv_mentor_71:
 	CompareVarToValue 0x8009, 4
-	GoToIfNe _cv_mentor_60
+	GoToIfNe _cv_mentor_72
 	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_mentor_60
+	GoToIfNe _cv_mentor_72
 	SetVar 0x401F, 18
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_60:
+_cv_mentor_72:
 	CompareVarToValue 0x8009, 4
-	GoToIfNe _cv_mentor_61
+	GoToIfNe _cv_mentor_73
 	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_mentor_61
+	GoToIfNe _cv_mentor_73
 	SetVar 0x401F, 19
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_61:
+_cv_mentor_73:
 	CompareVarToValue 0x8009, 5
-	GoToIfNe _cv_mentor_62
+	GoToIfNe _cv_mentor_74
 	CompareVarToValue 0x5019, 14
-	GoToIfNe _cv_mentor_62
+	GoToIfNe _cv_mentor_74
 	SetVar 0x401F, 20
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_62:
+_cv_mentor_74:
 	CompareVarToValue 0x8009, 5
-	GoToIfNe _cv_mentor_63
+	GoToIfNe _cv_mentor_75
 	CompareVarToValue 0x5019, 9
-	GoToIfNe _cv_mentor_63
+	GoToIfNe _cv_mentor_75
 	SetVar 0x401F, 21
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_63:
+_cv_mentor_75:
 	CompareVarToValue 0x8009, 6
-	GoToIfNe _cv_mentor_64
+	GoToIfNe _cv_mentor_76
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_mentor_64
+	GoToIfNe _cv_mentor_76
 	SetVar 0x401F, 22
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_64:
+_cv_mentor_76:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymCandidate_EventScript_ShowText4
 	Call GymCandidate_EventScript_MentorGift
@@ -1359,12 +1437,12 @@ GymCandidate_EventScript_Offer:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_65
+	GoToIfEq _cv_yes_77
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_66
-_cv_yes_65:
+	GoTo _cv_yn_78
+_cv_yes_77:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_66:
+_cv_yn_78:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_NotYet
 	SetVar 0x8007, 0

@@ -14,6 +14,7 @@
 	ScrDef LavenderTown_EventScript_TownSign
 	ScrDef LavenderTown_EventScript_PokemonTowerSign
 	ScrDef LavenderTown_EventScript_VolunteerHouseSign
+	ScrDef Route12_EventScript_RouteSign
 	ScrDef LavenderTown_OnTransition
 	ScrDefEnd
 	
@@ -94,6 +95,15 @@ LavenderTown_EventScript_VolunteerHouseSign:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0475_T05_LavenderTown_Text_VolunteerPokemonHouse
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route12_EventScript_RouteSign:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0475_T05_Route12_Text_RouteSign
 	WaitButton
 	CloseMsg
 	ReleaseAll

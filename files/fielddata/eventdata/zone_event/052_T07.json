@@ -4,64 +4,64 @@
         {
             "scriptId": "_EV_CeladonCity_EventScript_TrainerTips2 + 1",
             "type": 0,
-            "x": 1207,
-            "z": 267,
+            "x": 1192,
+            "z": 235,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_PrizeExchangeSign + 1",
             "type": 0,
-            "x": 1200,
-            "z": 267,
+            "x": 1185,
+            "z": 235,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_GameCornerSign + 1",
             "type": 0,
-            "x": 1195,
-            "z": 267,
+            "x": 1180,
+            "z": 235,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_CitySign + 1",
             "type": 0,
-            "x": 1184,
-            "z": 262,
+            "x": 1169,
+            "z": 230,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_MansionSign + 1",
             "type": 0,
-            "x": 1188,
-            "z": 255,
+            "x": 1173,
+            "z": 223,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_TrainerTips1 + 1",
             "type": 0,
-            "x": 1195,
-            "z": 260,
+            "x": 1180,
+            "z": 228,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_DeptStoreSign + 1",
             "type": 0,
-            "x": 1180,
-            "z": 258,
+            "x": 1165,
+            "z": 226,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_CeladonCity_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1178,
-            "z": 275,
+            "x": 1163,
+            "z": 243,
             "y": 0,
             "dir": 4
         },
@@ -88,8 +88,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1210,
-            "z": 259,
+            "x": 1195,
+            "z": 227,
             "y": 0
         },
         {
@@ -105,8 +105,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1200,
-            "z": 258,
+            "x": 1185,
+            "z": 226,
             "y": 0
         },
         {
@@ -122,8 +122,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1198,
-            "z": 258,
+            "x": 1183,
+            "z": 226,
             "y": 0
         },
         {
@@ -139,8 +139,8 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 4,
-            "x": 1173,
-            "z": 262,
+            "x": 1158,
+            "z": 230,
             "y": 0
         },
         {
@@ -156,8 +156,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 5,
-            "x": 1180,
-            "z": 266,
+            "x": 1165,
+            "z": 234,
             "y": 0
         },
         {
@@ -173,8 +173,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1192,
-            "z": 268,
+            "x": 1177,
+            "z": 236,
             "y": 0
         },
         {
@@ -190,8 +190,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1188,
-            "z": 263,
+            "x": 1173,
+            "z": 231,
             "y": 0
         },
         {
@@ -207,8 +207,8 @@
             "param2": 0,
             "xRange": 5,
             "yRange": 1,
-            "x": 1200,
-            "z": 275,
+            "x": 1185,
+            "z": 243,
             "y": 0
         },
         {
@@ -224,8 +224,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1171,
-            "z": 274,
+            "x": 1156,
+            "z": 242,
             "y": 0
         },
         {
@@ -241,8 +241,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1214,
-            "z": 266,
+            "x": 1199,
+            "z": 234,
             "y": 0
         },
         {
@@ -258,8 +258,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1202,
-            "z": 279,
+            "x": 1187,
+            "z": 247,
             "y": 0
         },
         {
@@ -275,8 +275,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1187,
-            "z": 254,
+            "x": 1172,
+            "z": 222,
             "y": 0
         },
         {
@@ -292,8 +292,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1167,
-            "z": 247,
+            "x": 1152,
+            "z": 215,
             "y": 0
         },
         {
@@ -309,8 +309,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1209,
-            "z": 268,
+            "x": 1194,
+            "z": 236,
             "y": 0
         },
         {
@@ -326,8 +326,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1206,
-            "z": 280,
+            "x": 1191,
+            "z": 248,
             "y": 0
         },
         {
@@ -343,63 +343,82 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1171,
-            "z": 276,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_ROUTE16_CUT_TREE",
-            "spriteId": "SPRITE_TREE",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "18",
-            "scriptId": "std_field_cut",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1155,
-            "z": 265,
-            "y": 0
-        },
-        {
-            "id": "20",
-            "spriteId": "SPRITE_GSBOY3",
-            "movement": 17,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(868)",
-            "facingDirection": 3,
-            "param0": 5,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1246,
-            "z": 268,
-            "y": 0
-        },
-        {
-            "id": "21",
-            "spriteId": "SPRITE_MONSTARBALL",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "0x20FE",
-            "scriptId": "_EV_BerryField_EventScript_FindElectric + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1245,
-            "z": 279,
+            "x": 1156,
+            "z": 244,
             "y": 0
         }
     ],
     "warps": [
+        {
+            "x": 1177,
+            "z": 216,
+            "header": "MAP_CELADON_CONDOMINIUMS_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1176,
+            "z": 217,
+            "header": "MAP_CELADON_CONDOMINIUMS_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1178,
+            "z": 217,
+            "header": "MAP_CELADON_CONDOMINIUMS_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1177,
+            "z": 223,
+            "header": "MAP_CELADON_CONDOMINIUMS_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1195,
+            "z": 223,
+            "header": "MAP_CELADON_POKECENTER_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1158,
+            "z": 226,
+            "header": "MAP_CELADON_DEPARTMENT_STORE_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1162,
+            "z": 226,
+            "header": "MAP_CELADON_DEPARTMENT_STORE_1F",
+            "anchor": 0,
+            "y": 0
+        },
+        {
+            "x": 1186,
+            "z": 232,
+            "header": "MAP_CANVAS_PRIZE_ROOM",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1181,
+            "z": 233,
+            "header": "MAP_CANVAS_GAME_CORNER",
+            "anchor": 1,
+            "y": 0
+        },
+        {
+            "x": 1190,
+            "z": 233,
+            "header": "MAP_CANVAS_PIT_HALL",
+            "anchor": 0,
+            "y": 0
+        },
         {
             "x": 1214,
             "z": 236,
@@ -408,99 +427,29 @@
             "y": 0
         },
         {
-            "x": 1192,
-            "z": 248,
-            "header": "MAP_CELADON_CONDOMINIUMS_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1191,
-            "z": 249,
-            "header": "MAP_CELADON_CONDOMINIUMS_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1193,
-            "z": 249,
-            "header": "MAP_CELADON_CONDOMINIUMS_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1192,
-            "z": 255,
-            "header": "MAP_CELADON_CONDOMINIUMS_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1210,
-            "z": 255,
-            "header": "MAP_CELADON_POKECENTER_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1173,
-            "z": 258,
-            "header": "MAP_CELADON_DEPARTMENT_STORE_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1177,
-            "z": 258,
-            "header": "MAP_CELADON_DEPARTMENT_STORE_1F",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1201,
-            "z": 264,
-            "header": "MAP_CANVAS_PRIZE_ROOM",
-            "anchor": 1,
-            "y": 0
-        },
-        {
-            "x": 1196,
-            "z": 265,
-            "header": "MAP_CANVAS_GAME_CORNER",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1205,
-            "z": 265,
-            "header": "MAP_CANVAS_PIT_HALL",
-            "anchor": 0,
-            "y": 0
-        },
-        {
-            "x": 1199,
-            "z": 273,
+            "x": 1184,
+            "z": 241,
             "header": "MAP_CELADON_RESTAURANT",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1203,
-            "z": 273,
+            "x": 1188,
+            "z": 241,
             "header": "MAP_CANVAS_CELADON_HOUSE1",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1211,
-            "z": 273,
+            "x": 1196,
+            "z": 241,
             "header": "MAP_CANVAS_CELADON_HOTEL",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1173,
-            "z": 274,
+            "x": 1158,
+            "z": 242,
             "header": "MAP_CELADON_GYM",
             "anchor": 0,
             "y": 0

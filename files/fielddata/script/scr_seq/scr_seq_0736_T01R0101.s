@@ -136,16 +136,16 @@ DadStory_EventScript_End:
 	End
 	
 DadStory_EventScript_HideStairs:
-	// TODO(gba) setmetatile 7, 0, 0x02E, TRUE
-	// TODO(gba) setmetatile 8, 0, 0x02F, TRUE
-	// TODO(gba) setmetatile 7, 1, 0x036, TRUE
-	// TODO(gba) setmetatile 8, 1, 0x037, TRUE
-	// TODO(gba) setmetatile 7, 2, 0x03E, TRUE
-	// TODO(gba) setmetatile 8, 2, 0x03F, TRUE
-	// TODO(gba) setmetatile 9, 2, 0x01D, FALSE
-	// TODO(gba) setmetatile 7, 3, 0x001, FALSE
-	// TODO(gba) setmetatile 8, 3, 0x001, FALSE
-	// TODO(gba) setmetatile 9, 3, 0x025, FALSE
+	// (the GBA redraws a square here: 7, 0, 0x02E, TRUE)
+	// (the GBA redraws a square here: 8, 0, 0x02F, TRUE)
+	// (the GBA redraws a square here: 7, 1, 0x036, TRUE)
+	// (the GBA redraws a square here: 8, 1, 0x037, TRUE)
+	// (the GBA redraws a square here: 7, 2, 0x03E, TRUE)
+	// (the GBA redraws a square here: 8, 2, 0x03F, TRUE)
+	// (the GBA redraws a square here: 9, 2, 0x01D, FALSE)
+	// (the GBA redraws a square here: 7, 3, 0x001, FALSE)
+	// (the GBA redraws a square here: 8, 3, 0x001, FALSE)
+	// (the GBA redraws a square here: 9, 3, 0x025, FALSE)
 	End
 	
 DadStory_EventScript_OldSaveStairs:
@@ -153,26 +153,16 @@ DadStory_EventScript_OldSaveStairs:
 	End
 	
 DadStory_EventScript_RevealStairs:
-	// TODO(gba) setmetatile 7, 0, 0x021, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 0, 0x022, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 1, 0x029, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 1, 0x02A, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 2, 0x005, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 2, 0x006, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 9, 2, 0x007, FALSE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 3, 0x00D, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 3, 0x00E, TRUE
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 9, 3, 0x00F, FALSE
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 7, 0, 0x021, TRUE)
+	// (the GBA redraws a square here: 8, 0, 0x022, TRUE)
+	// (the GBA redraws a square here: 7, 1, 0x029, TRUE)
+	// (the GBA redraws a square here: 8, 1, 0x02A, TRUE)
+	// (the GBA redraws a square here: 7, 2, 0x005, TRUE)
+	// (the GBA redraws a square here: 8, 2, 0x006, TRUE)
+	// (the GBA redraws a square here: 9, 2, 0x007, FALSE)
+	// (the GBA redraws a square here: 7, 3, 0x00D, TRUE)
+	// (the GBA redraws a square here: 8, 3, 0x00E, TRUE)
+	// (the GBA redraws a square here: 9, 3, 0x00F, FALSE)
 	Return
 	
 DadStory_EventScript_MomAtHome:

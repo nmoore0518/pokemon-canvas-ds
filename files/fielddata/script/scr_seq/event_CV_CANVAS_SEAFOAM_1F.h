@@ -4,7 +4,8 @@
 #define _EV_SeafoamIslands_1F_EventScript_ItemIceHeal 0
 #define _EV_BerryField_EventScript_FindIce 1
 #define _EV_PaintWorld_EventScript_Figure 2
-#define _EV_SeafoamIslands_1F_OnTransition 3
+#define _EV_SeafoamIslands_1F_Frlg_cv_BoulderFalls 3
+#define _EV_SeafoamIslands_1F_OnTransition 4
 
 
 #endif

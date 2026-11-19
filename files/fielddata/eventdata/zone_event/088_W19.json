@@ -15,8 +15,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1198,
-            "z": 481,
+            "x": 1183,
+            "z": 449,
             "y": 0
         },
         {
@@ -32,8 +32,8 @@
             "param2": 0,
             "xRange": 5,
             "yRange": 3,
-            "x": 1204,
-            "z": 497,
+            "x": 1189,
+            "z": 465,
             "y": 0
         },
         {
@@ -49,8 +49,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 1194,
-            "z": 491,
+            "x": 1179,
+            "z": 459,
             "y": 0
         },
         {
@@ -66,8 +66,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1202,
-            "z": 486,
+            "x": 1187,
+            "z": 454,
             "y": 0
         },
         {
@@ -83,8 +83,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1197,
-            "z": 511,
+            "x": 1182,
+            "z": 479,
             "y": 0
         },
         {
@@ -100,42 +100,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1200,
-            "z": 512,
-            "y": 0
-        },
-        {
-            "id": "9",
-            "spriteId": "SPRITE_GSSWIMMERW",
-            "movement": 2,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(1023)",
-            "facingDirection": 1,
-            "param0": 1,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1198,
-            "z": 513,
-            "y": 0
-        },
-        {
-            "id": "10",
-            "spriteId": "SPRITE_GSSWIMMERW",
-            "movement": 2,
-            "type": 1,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "std_trainer(1021)",
-            "facingDirection": 1,
-            "param0": 1,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1195,
-            "z": 512,
+            "x": 1185,
+            "z": 480,
             "y": 0
         },
         {
@@ -151,8 +117,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1194,
-            "z": 505,
+            "x": 1179,
+            "z": 473,
             "y": 0
         },
         {
@@ -168,8 +134,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1195,
-            "z": 505,
+            "x": 1180,
+            "z": 473,
             "y": 0
         }
     ],

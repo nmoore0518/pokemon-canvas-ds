@@ -350,55 +350,55 @@ VermilionCity_EventScript_CheckTicket:
 	End
 	
 VermilionCity_EventScript_MedicalCenterBuilt:
-	// TODO(gba) setmetatile 32, 8, 0x328, TRUE
-	// TODO(gba) setmetatile 33, 8, 0x329, TRUE
-	// TODO(gba) setmetatile 34, 8, 0x32A, TRUE
-	// TODO(gba) setmetatile 35, 8, 0x32B, TRUE
-	// TODO(gba) setmetatile 36, 8, 0x32C, TRUE
-	// TODO(gba) setmetatile 37, 8, 0x32D, TRUE
-	// TODO(gba) setmetatile 38, 8, 0x32E, TRUE
-	// TODO(gba) setmetatile 32, 9, 0x32F, TRUE
-	// TODO(gba) setmetatile 33, 9, 0x330, TRUE
-	// TODO(gba) setmetatile 34, 9, 0x331, TRUE
-	// TODO(gba) setmetatile 35, 9, 0x332, TRUE
-	// TODO(gba) setmetatile 36, 9, 0x333, TRUE
-	// TODO(gba) setmetatile 37, 9, 0x334, TRUE
-	// TODO(gba) setmetatile 38, 9, 0x335, TRUE
-	// TODO(gba) setmetatile 32, 10, 0x336, TRUE
-	// TODO(gba) setmetatile 33, 10, 0x337, TRUE
-	// TODO(gba) setmetatile 34, 10, 0x338, TRUE
-	// TODO(gba) setmetatile 35, 10, 0x339, TRUE
-	// TODO(gba) setmetatile 36, 10, 0x33A, TRUE
-	// TODO(gba) setmetatile 37, 10, 0x33B, TRUE
-	// TODO(gba) setmetatile 38, 10, 0x33C, TRUE
-	// TODO(gba) setmetatile 32, 11, 0x33D, TRUE
-	// TODO(gba) setmetatile 33, 11, 0x33E, TRUE
-	// TODO(gba) setmetatile 34, 11, 0x33F, TRUE
-	// TODO(gba) setmetatile 35, 11, 0x340, TRUE
-	// TODO(gba) setmetatile 36, 11, 0x341, TRUE
-	// TODO(gba) setmetatile 37, 11, 0x342, TRUE
-	// TODO(gba) setmetatile 38, 11, 0x343, TRUE
-	// TODO(gba) setmetatile 32, 12, 0x344, TRUE
-	// TODO(gba) setmetatile 33, 12, 0x345, TRUE
-	// TODO(gba) setmetatile 34, 12, 0x346, TRUE
-	// TODO(gba) setmetatile 35, 12, 0x347, TRUE
-	// TODO(gba) setmetatile 36, 12, 0x348, TRUE
-	// TODO(gba) setmetatile 37, 12, 0x349, TRUE
-	// TODO(gba) setmetatile 38, 12, 0x34A, TRUE
-	// TODO(gba) setmetatile 32, 13, 0x34B, TRUE
-	// TODO(gba) setmetatile 33, 13, 0x34C, TRUE
-	// TODO(gba) setmetatile 34, 13, 0x34D, TRUE
-	// TODO(gba) setmetatile 35, 13, 0x34E, FALSE
-	// TODO(gba) setmetatile 36, 13, 0x34F, TRUE
-	// TODO(gba) setmetatile 37, 13, 0x350, TRUE
-	// TODO(gba) setmetatile 38, 13, 0x351, TRUE
-	// TODO(gba) setmetatile 32, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 33, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 34, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 35, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 36, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 37, 14, 0x001, FALSE
-	// TODO(gba) setmetatile 38, 14, 0x001, FALSE
+	// (the GBA redraws a square here: 32, 8, 0x328, TRUE)
+	// (the GBA redraws a square here: 33, 8, 0x329, TRUE)
+	// (the GBA redraws a square here: 34, 8, 0x32A, TRUE)
+	// (the GBA redraws a square here: 35, 8, 0x32B, TRUE)
+	// (the GBA redraws a square here: 36, 8, 0x32C, TRUE)
+	// (the GBA redraws a square here: 37, 8, 0x32D, TRUE)
+	// (the GBA redraws a square here: 38, 8, 0x32E, TRUE)
+	// (the GBA redraws a square here: 32, 9, 0x32F, TRUE)
+	// (the GBA redraws a square here: 33, 9, 0x330, TRUE)
+	// (the GBA redraws a square here: 34, 9, 0x331, TRUE)
+	// (the GBA redraws a square here: 35, 9, 0x332, TRUE)
+	// (the GBA redraws a square here: 36, 9, 0x333, TRUE)
+	// (the GBA redraws a square here: 37, 9, 0x334, TRUE)
+	// (the GBA redraws a square here: 38, 9, 0x335, TRUE)
+	// (the GBA redraws a square here: 32, 10, 0x336, TRUE)
+	// (the GBA redraws a square here: 33, 10, 0x337, TRUE)
+	// (the GBA redraws a square here: 34, 10, 0x338, TRUE)
+	// (the GBA redraws a square here: 35, 10, 0x339, TRUE)
+	// (the GBA redraws a square here: 36, 10, 0x33A, TRUE)
+	// (the GBA redraws a square here: 37, 10, 0x33B, TRUE)
+	// (the GBA redraws a square here: 38, 10, 0x33C, TRUE)
+	// (the GBA redraws a square here: 32, 11, 0x33D, TRUE)
+	// (the GBA redraws a square here: 33, 11, 0x33E, TRUE)
+	// (the GBA redraws a square here: 34, 11, 0x33F, TRUE)
+	// (the GBA redraws a square here: 35, 11, 0x340, TRUE)
+	// (the GBA redraws a square here: 36, 11, 0x341, TRUE)
+	// (the GBA redraws a square here: 37, 11, 0x342, TRUE)
+	// (the GBA redraws a square here: 38, 11, 0x343, TRUE)
+	// (the GBA redraws a square here: 32, 12, 0x344, TRUE)
+	// (the GBA redraws a square here: 33, 12, 0x345, TRUE)
+	// (the GBA redraws a square here: 34, 12, 0x346, TRUE)
+	// (the GBA redraws a square here: 35, 12, 0x347, TRUE)
+	// (the GBA redraws a square here: 36, 12, 0x348, TRUE)
+	// (the GBA redraws a square here: 37, 12, 0x349, TRUE)
+	// (the GBA redraws a square here: 38, 12, 0x34A, TRUE)
+	// (the GBA redraws a square here: 32, 13, 0x34B, TRUE)
+	// (the GBA redraws a square here: 33, 13, 0x34C, TRUE)
+	// (the GBA redraws a square here: 34, 13, 0x34D, TRUE)
+	// (the GBA redraws a square here: 35, 13, 0x34E, FALSE)
+	// (the GBA redraws a square here: 36, 13, 0x34F, TRUE)
+	// (the GBA redraws a square here: 37, 13, 0x350, TRUE)
+	// (the GBA redraws a square here: 38, 13, 0x351, TRUE)
+	// (the GBA redraws a square here: 32, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 33, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 34, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 35, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 36, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 37, 14, 0x001, FALSE)
+	// (the GBA redraws a square here: 38, 14, 0x001, FALSE)
 	Return
 	
 VermilionCity_EventScript_HideOaksAide:

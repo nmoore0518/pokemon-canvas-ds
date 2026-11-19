@@ -11,6 +11,7 @@
 #define _EV_SilphCo_6F_EventScript_Door 7
 #define _EV_SilphCo_6F_EventScript_FloorSign 8
 #define _EV_SilphCo_6F_OnLoad 9
+#define _EV_SilphCo_6F_Frlg_cv_Barriers 10
 
 
 #endif

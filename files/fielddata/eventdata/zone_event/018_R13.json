@@ -4,24 +4,24 @@
         {
             "scriptId": "_EV_Route13_EventScript_RouteSign + 1",
             "type": 0,
-            "x": 1359,
-            "z": 406,
+            "x": 1344,
+            "z": 374,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Route13_EventScript_TrainerTips2 + 1",
             "type": 0,
-            "x": 1355,
-            "z": 400,
+            "x": 1340,
+            "z": 368,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Route13_EventScript_TrainerTips1 + 1",
             "type": 0,
-            "x": 1339,
-            "z": 408,
+            "x": 1324,
+            "z": 376,
             "y": 0,
             "dir": 4
         }
@@ -40,8 +40,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1380,
-            "z": 400,
+            "x": 1365,
+            "z": 368,
             "y": 0
         },
         {
@@ -57,8 +57,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1381,
-            "z": 406,
+            "x": 1366,
+            "z": 374,
             "y": 0
         },
         {
@@ -74,8 +74,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1372,
-            "z": 405,
+            "x": 1357,
+            "z": 373,
             "y": 0
         },
         {
@@ -91,8 +91,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1360,
-            "z": 401,
+            "x": 1345,
+            "z": 369,
             "y": 0
         },
         {
@@ -108,8 +108,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1361,
-            "z": 401,
+            "x": 1346,
+            "z": 369,
             "y": 0
         },
         {
@@ -125,8 +125,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1353,
-            "z": 404,
+            "x": 1338,
+            "z": 372,
             "y": 0
         },
         {
@@ -142,8 +142,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1347,
-            "z": 405,
+            "x": 1332,
+            "z": 373,
             "y": 0
         },
         {
@@ -159,8 +159,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1327,
-            "z": 408,
+            "x": 1312,
+            "z": 376,
             "y": 0
         },
         {
@@ -176,8 +176,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1334,
-            "z": 399,
+            "x": 1319,
+            "z": 367,
             "y": 0
         },
         {
@@ -193,8 +193,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1332,
-            "z": 402,
+            "x": 1317,
+            "z": 370,
             "y": 0
         },
         {
@@ -210,25 +210,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1362,
-            "z": 399,
-            "y": 0
-        },
-        {
-            "id": "12",
-            "spriteId": "SPRITE_MONSTARBALL",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "0x210D",
-            "scriptId": "_EV_BerryField_EventScript_FindFlying + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1319,
-            "z": 408,
+            "x": 1347,
+            "z": 367,
             "y": 0
         },
         {
@@ -244,8 +227,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1378,
-            "z": 385,
+            "x": 1363,
+            "z": 353,
             "y": 0
         },
         {
@@ -261,8 +244,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 1376,
-            "z": 387,
+            "x": 1361,
+            "z": 355,
             "y": 0
         }
     ],

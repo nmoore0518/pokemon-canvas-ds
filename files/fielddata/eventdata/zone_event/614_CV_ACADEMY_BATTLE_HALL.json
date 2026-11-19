@@ -62,17 +62,17 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 6,
+            "z": 14,
+            "header": "MAP_CANVAS_LEADER_ACADEMY",
+            "anchor": 2,
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 7,
+            "z": 14,
+            "header": "MAP_CANVAS_LEADER_ACADEMY",
+            "anchor": 2,
             "y": 0
         }
     ],

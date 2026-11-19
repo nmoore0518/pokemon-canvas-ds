@@ -3,6 +3,7 @@
 
 #define _EV_SeafoamIslands_B1F_EventScript_ItemWaterStone 0
 #define _EV_SeafoamIslands_B1F_EventScript_ItemRevive 1
+#define _EV_SeafoamIslands_B1F_Frlg_cv_BoulderFalls 2
 
 
 #endif

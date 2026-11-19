@@ -350,29 +350,29 @@ VermilionCity_Gym_EventScript_TrashCan:
 	End
 	
 VermilionCity_Gym_EventScript_SetOneBeamOff:
-	// TODO(gba) setmetatile 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_HalfOn, 1
-	// TODO(gba) setmetatile 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_HalfOn, 1
-	// TODO(gba) setmetatile 5, 6, METATILE_VermilionGym_Beam_MidTop_HalfOn, 1
-	// TODO(gba) setmetatile 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_HalfOn, 1
-	// TODO(gba) setmetatile 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_HalfOn, 1
-	// TODO(gba) setmetatile 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_HalfOn, 1
-	// TODO(gba) setmetatile 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_HalfOn, 1
-	// TODO(gba) setmetatile 5, 7, METATILE_VermilionGym_Beam_MidBottom_HalfOn, 1
-	// TODO(gba) setmetatile 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_HalfOn, 1
-	// TODO(gba) setmetatile 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_HalfOn, 1
+	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_HalfOn, 1)
+	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_HalfOn, 1)
+	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Beam_MidTop_HalfOn, 1)
+	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_HalfOn, 1)
+	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_HalfOn, 1)
+	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_HalfOn, 1)
+	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_HalfOn, 1)
+	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Beam_MidBottom_HalfOn, 1)
+	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_HalfOn, 1)
+	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_HalfOn, 1)
 	Return
 	
 VermilionCity_Gym_EventScript_SetBeamsOff:
-	// TODO(gba) setmetatile 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Off, 1
-	// TODO(gba) setmetatile 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_Off, 0
-	// TODO(gba) setmetatile 5, 6, METATILE_VermilionGym_Floor, 0
-	// TODO(gba) setmetatile 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_Off, 0
-	// TODO(gba) setmetatile 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_Off, 1
-	// TODO(gba) setmetatile 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Off, 1
-	// TODO(gba) setmetatile 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_Off, 0
-	// TODO(gba) setmetatile 5, 7, METATILE_VermilionGym_Floor, 0
-	// TODO(gba) setmetatile 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_Off, 0
-	// TODO(gba) setmetatile 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Off, 1
+	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Off, 1)
+	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_Off, 0)
+	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Floor, 0)
+	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_Off, 0)
+	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_Off, 1)
+	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Off, 1)
+	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_Off, 0)
+	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Floor, 0)
+	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_Off, 0)
+	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Off, 1)
 	Return
 	
 VermilionCity_Gym_EventScript_InitTrashCans:
@@ -579,26 +579,16 @@ VermilionCity_Gym_EventScript_FoundSwitchTwo:
 	End
 	
 VermilionCity_Gym_EventScript_SetBeamsOn:
-	// TODO(gba) setmetatile 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 6, METATILE_VermilionGym_Beam_MidTop, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 7, METATILE_VermilionGym_Beam_MidBottom, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_On, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_On, 1
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_On, 1)
+	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_On, 1)
+	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Beam_MidTop, 1)
+	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_On, 1)
+	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_On, 1)
+	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_On, 1)
+	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_On, 1)
+	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Beam_MidBottom, 1)
+	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_On, 1)
+	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_On, 1)
 	Return
 	
 GymHack_EventScript_GiftsDone:

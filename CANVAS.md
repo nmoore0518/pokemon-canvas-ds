@@ -11,6 +11,7 @@ sudo tools/canvas/setup_engine.sh    # once: hg-engine (battle engine, Gen 5-9 P
 python3 tools/canvas/build_pallet.py # regenerate our Pallet Town into the game's data files (idempotent)
 python3 tools/canvas/build_rooms.py  # then the rooms we model from the GBA layouts (houses, lab)
 python3 tools/canvas/build_clones.py # then the rooms that borrow a HeartGold room (Pokemon Center, Mart, Training Hall)
+python3 tools/canvas/port/barriers.py  # first: the squares scripts open and close (data/barriers.json, our overworlds)
 python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layouts (Mt. Moon, Rock Tunnel, ...)
 python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Pokemon Tower, Silph Co., S.S. Anne, ...)
 python3 tools/canvas/build_cinnabar.py   # then our Cinnabar Island (the GBA town in place of HeartGold's ruin)
@@ -173,6 +174,40 @@ What else it does:
   table from boot), so tests start from a new game: `tools/canvas/test/opening.sh TAG` plays from the title
   screen through Oak, the lab, the type choice and the rival battle.
 
+## Squares the scripts change (`port/barriers.py`, the porter, `engine/src/canvas_boulders.c`)
+
+The GBA game opens and closes ways with `setmetatile`: Silph Co.'s card-key doors, the Pokemon Mansion's switch
+barriers, the Rocket Hideout's barriers, the Cinnabar Gym's quiz doors, Victory Road's rock walls. HeartGold has no
+command that changes a map's square, so:
+- a square the scripts that can run on its map make both closed and open (the layout's own state counting as one)
+  is a **barrier square**. It is built open (`gba_map.Layout` applies `data/barriers.json`: the open metatile, no
+  collision) and closed by an object standing on it.
+- the object on a front square (nothing closed south of it) is the barrier's own picture: the GBA metatiles the
+  closing script puts there and above, standing up, 32x32, as an overworld of our own (engine
+  `data/graphics/overworlds/custom/0002..`, a scroll's settings: still, no shadow; Silph's side-on doors use its
+  front-on picture). Behind it, an invisible one (`0001`). Run `barriers.py` when the scripts change, then
+  `tools/canvas/engine/make_patch.sh` (it rewrites the engine's overworld table and `MON_OVERWORLD_GFX_START`).
+- each square has a flag of its own (`CV_BAR_<map>_<x>_<y>`), set while open: the object's flag. `setmetatile` on
+  it becomes that flag plus `HidePerson`/`ShowPerson` (guarded, so a person is never shown twice); a sign on the
+  square is the object's script (talking to the door is reading the GBA's sign there).
+- on entering the map (OnTransition, before the objects are made) the flags start as the layout has them and a copy
+  of the GBA's OnLoad that returns sets them as it would the squares; `VAR_CV_BARRIER_INIT` is 1 meanwhile, so no
+  object is shown or hidden then.
+- `special SetHiddenItemFlag` is `SetFlagVar 0x8004` (a `FLAG_` given as a value is our flag's number).
+- a boulder: hg-engine's hook replaces the boulder-pushing task (ov01_021F1ECC) with the same steps and, where the
+  boulder comes to rest on a coord event whose value is 0xB0B0..0xB0BF, runs that event's script with the boulder as
+  the one talked to. The porter writes the GBA's boulder switches (`MB_STRENGTH_BUTTON` squares) as 0xB0B0 and its
+  holes (`MB_MT_PYRE_HOLE`: Victory Road 3F's, Seafoam's) as 0xB0B1 with a script that takes the boulder away, sets
+  its flag and clears the one below's (the flag the GBA keeps in its trainer type). No var ever holds those values,
+  so walking on the square does nothing.
+- not done this way: the Game Corner's hideout stairs (shown once the poster's switch is found; the stairs are
+  always there), the League's doors and the Vermilion Gym's beams (HeartGold's own rooms).
+
+Wild battles the GBA sets up (`setwildbattle`, then `dowildbattle` or `special BattleSetup_StartLegendaryBattle`)
+are HeartGold's `WildBattle` (lose and you white out); `GetBattleOutcome` gives the GBA's numbers (caught 7, ran 4)
+from HeartGold's outcome. Someone whose flag the script sets before the battle with `FLAG_SYS_CTRL_OBJ_DELETE` is
+taken away after it (Snorlax).
+
 ## Our own species (the ten new Eeveelutions)
 
 `build_species.py` adds the GBA game's Odeon, Assasseon, Hypereon, Poiseon, Subterraneon, Obsideon, Lenneon,
@@ -292,7 +327,11 @@ HeartGold's bank round every edge of it (`BANK`, read off Union Cave: a lip on t
 water), against walls as well as floor. A floor is dark until Flash
 only where the GBA's is (Rock Tunnel). HeartGold has no
 Route 23: its League reception gate leads into our Victory Road 1F, and Victory Road 2F's way out is the Plateau.
-Not yet: Victory Road's and Seafoam's boulder switches and currents, ledges inside a floor.
+A square of no elevation between ground a tier up north of it and ground south of it is a flight of steps (Cerulean
+Cave draws its steps in its own tileset, not with `STAIRS_MT`); without that, widening put a closed row between the
+tiers and cut off half of Cerulean Cave.
+Boulder switches and holes: see "Squares the scripts change". Not yet: Seafoam's currents (its lower floors' water
+is calm water you surf anywhere - you need Surf to reach Seafoam, so nothing is cut off), ledges inside a floor.
 
 **Big NARCs**: once a NARC has 1000 members, hg-engine's unpacker names them `2_0003` while its rules copy `2_003` in;
 our `engine/tools/narcpy.py` packs members by number (the newer of two wins), or the scripts come out shuffled and
@@ -686,6 +725,29 @@ sSpawnMaps in the ARM9's data, changed in place). Rooms of the GBA's that HeartG
 their layouts: the small houses by `build_rooms.py` (HeartGold's house look and furniture), the rest (the Hotel,
 the Fan Club, the Safari Office, the Medical Center, the Academy's rooms, the Underground Path's east-west way...)
 by `build_interiors.py` in a plain house look. `test/world_reach.py` checks every door can be walked up to.
+
+**The world must be walkable round, both ways** (`test/reach_all.py`): a walk over every square of the world and of
+every room and cave, through their warps (water and ledges as with every HM), from Pallet and back. It reports warps
+you can't get to, squares you can get to but not back from (a trap), and with `--objects` the people and things
+whose square, made free, would open anything (cut trees, rocks, boulders, barriers, Snorlax and items left out, as
+they are meant to be moved). What it found and what was done:
+- the GBA game's map connections don't close their loops: round the south (Route 21, Cinnabar, Routes 20 and 19 to
+  Fuchsia) is 15 squares across and 32 down more than round the north. Placing Fuchsia's side from the south left
+  Celadon's road east, Vermilion's to Route 11 and Lavender's to Route 12 running into the woods, and Celadon a
+  pocket you could only get into by the Route 16 gate. The sea routes are placed last (`SEA_ROUTES`), so the land
+  meets and the gap is open sea.
+- a HeartGold gatehouse with more doors outside than in (the GBA's Route 16 gate, two storeys each side) pairs each
+  door with the way out on its own side (by where each lies from the middle of its doors), not by row.
+- a GBA map we don't build that only passes you on (the S.S. Anne's outside at Vermilion's harbour) is `THROUGH`: the
+  harbour leads aboard, onto the ship's ways out to it. (The S.S. Anne could not be reached at all.)
+- a doormat three or five wide is come in on in its middle, and all of it leads out.
+- in a room of HeartGold's layout, a person who cuts off part of it steps aside (`unchoke`: the Celadon Restaurant's
+  worker stood in the only way into its corridor).
+- the Safari Zone's rest-house signs stood in front of the model's door (it is a square right of the GBA's): they
+  go in front of the GBA's door square (`build_safari.py` writes `data/safari_moved.json`, the porter reads it).
+Left as the GBA has them (the scripts move them): the Cerulean Cave guard, the Academy gate guards, Saffron's
+Rockets, the S.S. Anne rival, the Pallet ceremony. Not yet: the Elite Four (their scripts stop at the gym-candidate
+specials and the League's lighting; the Hall of Fame isn't ported).
 
 Not yet: the town map (Pokegear) still shows HeartGold's Kanto; the Route 21 stadium cave and the rooms further in
 (the Pit, the Medical Center's upper floors, the Exotic Safari's regions) aren't built; the open ground round the

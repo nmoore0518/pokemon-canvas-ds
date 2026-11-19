@@ -26,6 +26,7 @@
 #define _EV_CinnabarIsland_Gym_EventScript_BlaineFujiPhoto 22
 #define _EV_CinnabarIsland_Gym_OnLoad 23
 #define _EV_CinnabarIsland_Gym_OnTransitionGuest 24
+#define _EV_CinnabarIsland_Gym_Frlg_cv_Barriers 25
 
 #define LOCALID_QUINN 1
 #define LOCALID_AVERY 3

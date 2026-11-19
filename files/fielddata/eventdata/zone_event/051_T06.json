@@ -274,22 +274,22 @@
         {
             "x": 1253,
             "z": 326,
-            "header": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
-            "anchor": 0,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 1254,
             "z": 326,
-            "header": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
-            "anchor": 0,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 1255,
             "z": 326,
-            "header": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
-            "anchor": 0,
+            "header": "MAP_CANVAS_SSANNE_1F",
+            "anchor": 2,
             "y": 0
         }
     ],

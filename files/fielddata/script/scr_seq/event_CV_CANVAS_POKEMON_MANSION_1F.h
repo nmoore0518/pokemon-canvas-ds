@@ -8,6 +8,7 @@
 #define _EV_PokemonMansion_1F_EventScript_Statue 4
 #define _EV_PokemonMansion_1F_OnLoad 5
 #define _EV_PokemonMansion_1F_OnTransition 6
+#define _EV_PokemonMansion_1F_Frlg_cv_Barriers 7
 
 
 #endif

@@ -59,7 +59,7 @@ def tileset(name):
 
 
 class Layout:
-    def __init__(self, layout_id):
+    def __init__(self, layout_id, raw=False):
         L = layouts()[layout_id]
         self.id, self.w, self.h = layout_id, L['width'], L['height']
         frlg = L.get('layout_version') == 'frlg'
@@ -67,9 +67,12 @@ class Layout:
         self.t_prim = 640 if frlg else 512
         self.p_prim = 7 if frlg else 6
         self.prim, self.sec = tileset(L['primary_tileset']), tileset(L['secondary_tileset'])
-        raw = open(P(L['blockdata_filepath']), 'rb').read()
-        b = struct.unpack('<%dH' % (len(raw) // 2), raw)
+        data = open(P(L['blockdata_filepath']), 'rb').read()
+        b = struct.unpack('<%dH' % (len(data) // 2), data)
         self.blocks = [[b[y * self.w + x] for x in range(self.w)] for y in range(self.h)]
+        if not raw:         # (squares a script opens and closes are built open: port/barriers.py)
+            for sq in _barriers().get(layout_id, []):
+                if sq['base']: self.blocks[sq['y']][sq['x']] = sq['open'] | (self.blocks[sq['y']][sq['x']] & 0xF000)
 
     def metatile(self, x, y): return self.blocks[y][x] & 0x3FF
     def collision(self, x, y): return (self.blocks[y][x] >> 10) & 3
@@ -121,6 +124,20 @@ class Layout:
                 if m not in cache: cache[m] = self.render_metatile(m)
                 im.alpha_composite(cache[m], (x * 16, y * 16))
         return im
+
+
+_BARRIERS = {}
+
+
+def _barriers():
+    """layout -> the squares built open (tools/canvas/data/barriers.json, written by port/barriers.py)"""
+    if not _BARRIERS:
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'barriers.json')
+        _BARRIERS[None] = None
+        if os.path.exists(f):
+            for v in json.load(open(f)).values():
+                _BARRIERS.setdefault(v['layout'], []).extend(v['squares'])
+    return _BARRIERS
 
 
 def map_json(map_dir):

@@ -495,7 +495,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_ROUTE_8] = {
                         .wildEncounterBank = ENCDATA_R08,
-                        .areaDataBank = 172,
+                        .areaDataBank = 171,
                         .moveModelBank = 15,
                         .worldMapX = 0,
                         .worldMapY = 0,
@@ -525,7 +525,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_ROUTE_9] = {
                         .wildEncounterBank = ENCDATA_R09,
-                        .areaDataBank = 173,
+                        .areaDataBank = 172,
                         .moveModelBank = 15,
                         .worldMapX = 0,
                         .worldMapY = 0,
@@ -1515,7 +1515,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_VIRIDIAN] = {
                         .wildEncounterBank = ENCDATA_T02,
-                        .areaDataBank = 176,
+                        .areaDataBank = 175,
                         .moveModelBank = 15,
                         .worldMapX = 0,
                         .worldMapY = 0,
@@ -1635,7 +1635,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_VERMILION] = {
                         .wildEncounterBank = ENCDATA_T06,
-                        .areaDataBank = 175,
+                        .areaDataBank = 174,
                         .moveModelBank = 15,
                         .worldMapX = 0,
                         .worldMapY = 0,
@@ -1785,7 +1785,7 @@ static const MapHeader sMapHeaders[] = {
                         },
     [MAP_SAFFRON] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 174,
+                        .areaDataBank = 173,
                         .moveModelBank = 15,
                         .worldMapX = 0,
                         .worldMapY = 0,

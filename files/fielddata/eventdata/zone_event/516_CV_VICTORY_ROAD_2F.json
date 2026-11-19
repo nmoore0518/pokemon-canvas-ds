@@ -256,6 +256,74 @@
             "x": 46,
             "z": 1,
             "y": 0
+        },
+        {
+            "id": "200",
+            "spriteId": "7001",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226A",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 15,
+            "z": 13,
+            "y": 0
+        },
+        {
+            "id": "201",
+            "spriteId": "7015",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226B",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 15,
+            "z": 14,
+            "y": 0
+        },
+        {
+            "id": "202",
+            "spriteId": "7001",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226C",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 37,
+            "z": 23,
+            "y": 0
+        },
+        {
+            "id": "203",
+            "spriteId": "7015",
+            "movement": 0,
+            "type": 0,
+            "eventFlag": "0x226D",
+            "scriptId": "0",
+            "facingDirection": 1,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 0,
+            "yRange": 0,
+            "x": 37,
+            "z": 24,
+            "y": 0
         }
     ],
     "warps": [
@@ -323,5 +391,26 @@
             "y": 0
         }
     ],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_VictoryRoad_2F_EventScript_FloorSwitch1 + 1",
+            "x": 2,
+            "z": 26,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45232,
+            "var": "0x5039"
+        },
+        {
+            "scriptId": "_EV_VictoryRoad_2F_EventScript_FloorSwitch2 + 1",
+            "x": 16,
+            "z": 26,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 45232,
+            "var": "0x503A"
+        }
+    ]
 }

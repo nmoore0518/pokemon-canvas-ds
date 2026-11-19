@@ -12,6 +12,7 @@
 	ScrDef BerryField_EventScript_FindDark
 	ScrDef RocketHideout_B1F_OnLoad
 	ScrDef RocketHideout_B1F_OnTransition
+	ScrDef RocketHideout_B1F_Frlg_cv_Barriers
 	ScrDefEnd
 	
 RocketHideout_B1F_EventScript_Grunt5:
@@ -57,11 +58,22 @@ BerryField_EventScript_FindDark:
 	End
 	
 RocketHideout_B1F_OnLoad:
-	// TODO(gba) call_if_not_defeated TRAINER_TEAM_ROCKET_GRUNT_12 RocketHideout_B1F_EventScript_SetBarrier
+	CheckTrainerFlag 1098
+	CallIf FALSE, RocketHideout_B1F_EventScript_SetBarrier
 	End
 	
 RocketHideout_B1F_OnTransition:
 	End
+	
+RocketHideout_B1F_Frlg_cv_Barriers:
+	SetVar 0x5044, 1
+	SetFlag 0x2258
+	SetFlag 0x2259
+	SetFlag 0x225A
+	SetFlag 0x225B
+	Call RocketHideout_B1F_OnLoad_cv_init
+	SetVar 0x5044, 0
+	GoTo RocketHideout_B1F_OnTransition
 	
 RocketHideout_B1F_EventScript_DefeatedGrunt5:
 	Call RocketHideout_B1F_EventScript_RemoveBarrier
@@ -70,19 +82,67 @@ RocketHideout_B1F_EventScript_DefeatedGrunt5:
 	ReleaseAll
 	End
 	
+RocketHideout_B1F_EventScript_SetBarrier:
+	GoToIfUnset 0x2258, _cv_bar_3
+	ClearFlag 0x2258
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_3
+	ShowPerson 200
+_cv_bar_3:
+	GoToIfUnset 0x2259, _cv_bar_4
+	ClearFlag 0x2259
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_4
+	ShowPerson 201
+_cv_bar_4:
+	GoToIfUnset 0x225A, _cv_bar_5
+	ClearFlag 0x225A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_5
+	ShowPerson 202
+_cv_bar_5:
+	GoToIfUnset 0x225B, _cv_bar_6
+	ClearFlag 0x225B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_6
+	ShowPerson 203
+_cv_bar_6:
+	// (the GBA redraws a square here: 20, 21, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
+	// (the GBA redraws a square here: 21, 21, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
+	Return
+	
+RocketHideout_B1F_OnLoad_cv_init:
+	CheckTrainerFlag 1098
+	CallIf FALSE, RocketHideout_B1F_EventScript_SetBarrier
+	Return
+	
 RocketHideout_B1F_EventScript_RemoveBarrier:
-	// TODO(gba) setmetatile 20, 19, METATILE_SilphCo_HideoutFloor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 19, METATILE_SilphCo_HideoutFloor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 20, 20, METATILE_SilphCo_HideoutFloor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 20, METATILE_SilphCo_HideoutFloor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 20, 21, METATILE_SilphCo_HideoutFloor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 21, METATILE_SilphCo_HideoutFloor, 0
-	GoTo _cv_stop
+	GoToIfSet 0x2258, _cv_bar_7
+	SetFlag 0x2258
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_7
+	HidePerson 200
+_cv_bar_7:
+	GoToIfSet 0x2259, _cv_bar_8
+	SetFlag 0x2259
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_8
+	HidePerson 201
+_cv_bar_8:
+	GoToIfSet 0x225A, _cv_bar_9
+	SetFlag 0x225A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_9
+	HidePerson 202
+_cv_bar_9:
+	GoToIfSet 0x225B, _cv_bar_10
+	SetFlag 0x225B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_10
+	HidePerson 203
+_cv_bar_10:
+	// (the GBA redraws a square here: 20, 21, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
+	// (the GBA redraws a square here: 21, 21, METATILE_SilphCo_HideoutFloor, 0)
 	Return
 
 _cv_stop:

@@ -61,8 +61,6 @@ PokemonTower_6F_EventScript_MarowakGhost:
 	LockAll
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_BeGoneIntruders
 	WaitButton
-	// TODO(gba) setwildbattle SPECIES_MAROWAK, 30
-	GoTo _cv_stop
 	// TODO(gba) special StartMarowakBattle
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

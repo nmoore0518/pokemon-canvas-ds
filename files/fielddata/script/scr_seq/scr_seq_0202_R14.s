@@ -6,8 +6,16 @@
 // Pokemon Canvas: ported from the GBA game's Route14_Frlg#world by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
+	ScrDef BerryField_EventScript_FindFlying
 	ScrDef Route14_EventScript_RouteSign
 	ScrDefEnd
+	
+BerryField_EventScript_FindFlying:
+	SetVar 0x8004, ITEM_COBA_BERRY
+	SetVar 0x8005, 1
+	CallStd std_obtain_item_verbose
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
 	
 Route14_EventScript_RouteSign:
 	PlaySE SEQ_SE_DP_SELECT

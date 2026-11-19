@@ -16,35 +16,6 @@
       ]
     },
     {
-      "id": "msg_0358_R18_Route17_Text_CyclingRoadSign",
-      "en_US": [
-        "Cycling Road\n",
-        "Slope ends here!"
-      ]
-    },
-    {
-      "id": "msg_0358_R18_TypeTutor_Text_WhichMove",
-      "en_US": "Which move should I teach?"
-    },
-    {
-      "id": "msg_0358_R18_TypeTutor_Text_WhichMon",
-      "en_US": [
-        "Which Pokémon should learn\n",
-        "{STRVAR_1 3, 0, 0}?"
-      ]
-    },
-    {
-      "id": "msg_0358_R18_TypeTutor_Text_Taught",
-      "en_US": "Well done! Anything else?"
-    },
-    {
-      "id": "msg_0358_R18_TypeTutor_Text_Bye",
-      "en_US": [
-        "Come back any time. A Leader\n",
-        "never stops learning."
-      ]
-    },
-    {
       "id": "msg_0358_R18_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

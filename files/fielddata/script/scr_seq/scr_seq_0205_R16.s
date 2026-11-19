@@ -29,29 +29,39 @@ _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route16_EventScript_DontUsePokeFlute
 	Call EventScript_AwakenSnorlax
-	// TODO(gba) setwildbattle SPECIES_SNORLAX, 30
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_SNORLAX, 0
 	Wait 40, VAR_SPECIAL_RESULT
 	WaitCry
 	SetFlag 0x2120
 	SetFlag 0x2032
-	// TODO(gba) dowildbattle 
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_SNORLAX, 30, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_3
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_3:
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_4
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_5
+_cv_outcome_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_5
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_5:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Route16_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfEq Route16_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq Route16_EventScript_FoughtSnorlax
-	CloseMsg
 	ReleaseAll
 	End
 	

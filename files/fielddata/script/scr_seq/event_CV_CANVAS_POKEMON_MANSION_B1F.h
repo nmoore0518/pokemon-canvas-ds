@@ -9,6 +9,7 @@
 #define _EV_PokemonMansion_B1F_EventScript_DiarySep1st 5
 #define _EV_PokemonMansion_B1F_EventScript_Statue 6
 #define _EV_PokemonMansion_B1F_OnLoad 7
+#define _EV_PokemonMansion_B1F_Frlg_cv_Barriers 8
 
 
 #endif

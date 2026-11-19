@@ -150,14 +150,14 @@
             "x": 975,
             "z": 275,
             "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
-            "anchor": 2,
+            "anchor": 3,
             "y": 0
         },
         {
             "x": 976,
             "z": 276,
             "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
-            "anchor": 3,
+            "anchor": 2,
             "y": 0
         },
         {

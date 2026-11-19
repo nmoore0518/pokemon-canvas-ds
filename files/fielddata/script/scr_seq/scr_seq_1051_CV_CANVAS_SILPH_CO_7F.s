@@ -21,6 +21,7 @@
 	ScrDef SilphCo_7F_EventScript_RivalTriggerBottom
 	ScrDef SilphCo_7F_OnLoad
 	ScrDef SilphCo_7F_OnTransition
+	ScrDef SilphCo_7F_Frlg_cv_Barriers
 	ScrDefEnd
 	
 SilphCo_7F_EventScript_LaprasGuy:
@@ -98,7 +99,7 @@ BerryField_EventScript_FindSteel:
 SilphCo_7F_EventScript_Door1:
 	LockAll
 	SetVar 0x4001, 11
-	SetVar 0x8004, 0
+	SetVar 0x8004, 0x21AC
 	GoToIfSet 0x21AC, EventScript_DoorUnlocked
 	GoTo EventScript_TryUnlockDoor
 	End
@@ -106,7 +107,7 @@ SilphCo_7F_EventScript_Door1:
 SilphCo_7F_EventScript_Door2:
 	LockAll
 	SetVar 0x4001, 12
-	SetVar 0x8004, 0
+	SetVar 0x8004, 0x21AD
 	GoToIfSet 0x21AD, EventScript_DoorUnlocked
 	GoTo EventScript_TryUnlockDoor
 	End
@@ -114,7 +115,7 @@ SilphCo_7F_EventScript_Door2:
 SilphCo_7F_EventScript_Door3:
 	LockAll
 	SetVar 0x4001, 13
-	SetVar 0x8004, 0
+	SetVar 0x8004, 0x21AE
 	GoToIfSet 0x21AE, EventScript_DoorUnlocked
 	GoTo EventScript_TryUnlockDoor
 	End
@@ -150,6 +151,24 @@ SilphCo_7F_OnTransition:
 	CompareVarToValue 0x5031, 1
 	CallIfGe SilphCo_7F_EventScript_SetObjRocketsGone
 	End
+	
+SilphCo_7F_Frlg_cv_Barriers:
+	SetVar 0x5044, 1
+	SetFlag 0x2290
+	SetFlag 0x2291
+	SetFlag 0x2292
+	SetFlag 0x2293
+	SetFlag 0x2294
+	SetFlag 0x2295
+	SetFlag 0x2296
+	SetFlag 0x2297
+	SetFlag 0x2298
+	SetFlag 0x2299
+	SetFlag 0x229A
+	SetFlag 0x229B
+	Call SilphCo_7F_OnLoad_cv_init
+	SetVar 0x5044, 0
+	GoTo SilphCo_7F_OnTransition
 	
 SilphCo_7F_EventScript_AlreadyGotLapras:
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RocketBossWentToBoardroom
@@ -287,32 +306,98 @@ SilphCo_7F_EventScript_RivalScene:
 	End
 	
 EventScript_Close7FDoor1:
-	// TODO(gba) setmetatile 11, 8, METATILE_SilphCo_HorizontalBarrier_TopLeft, 1
-	// TODO(gba) setmetatile 12, 8, METATILE_SilphCo_HorizontalBarrier_TopRight, 1
-	// TODO(gba) setmetatile 11, 9, METATILE_SilphCo_HorizontalBarrier_BottomLeft, 1
-	// TODO(gba) setmetatile 12, 9, METATILE_SilphCo_HorizontalBarrier_BottomRight, 1
-	// TODO(gba) setmetatile 12, 10, METATILE_SilphCo_Floor_ShadeFull, 0
+	GoToIfUnset 0x2292, _cv_bar_5
+	ClearFlag 0x2292
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_5
+	ShowPerson 202
+_cv_bar_5:
+	GoToIfUnset 0x2293, _cv_bar_6
+	ClearFlag 0x2293
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_6
+	ShowPerson 203
+_cv_bar_6:
+	GoToIfUnset 0x2296, _cv_bar_7
+	ClearFlag 0x2296
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_7
+	ShowPerson 206
+_cv_bar_7:
+	GoToIfUnset 0x2297, _cv_bar_8
+	ClearFlag 0x2297
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_8
+	ShowPerson 207
+_cv_bar_8:
+	// (the GBA redraws a square here: 12, 10, METATILE_SilphCo_Floor_ShadeFull, 0)
 	Return
 	
 EventScript_Close7FDoor2:
-	// TODO(gba) setmetatile 24, 7, METATILE_SilphCo_HorizontalBarrier_TopLeft, 1
-	// TODO(gba) setmetatile 25, 7, METATILE_SilphCo_HorizontalBarrier_TopRight, 1
-	// TODO(gba) setmetatile 24, 8, METATILE_SilphCo_HorizontalBarrier_BottomLeft, 1
-	// TODO(gba) setmetatile 25, 8, METATILE_SilphCo_HorizontalBarrier_BottomRight, 1
-	// TODO(gba) setmetatile 25, 9, METATILE_SilphCo_Floor_ShadeFull, 0
+	GoToIfUnset 0x2290, _cv_bar_9
+	ClearFlag 0x2290
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_9
+	ShowPerson 200
+_cv_bar_9:
+	GoToIfUnset 0x2291, _cv_bar_10
+	ClearFlag 0x2291
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_10
+	ShowPerson 201
+_cv_bar_10:
+	GoToIfUnset 0x2294, _cv_bar_11
+	ClearFlag 0x2294
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_11
+	ShowPerson 204
+_cv_bar_11:
+	GoToIfUnset 0x2295, _cv_bar_12
+	ClearFlag 0x2295
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_12
+	ShowPerson 205
+_cv_bar_12:
+	// (the GBA redraws a square here: 25, 9, METATILE_SilphCo_Floor_ShadeFull, 0)
 	Return
 	
 EventScript_Close7FDoor3:
-	// TODO(gba) setmetatile 25, 13, METATILE_SilphCo_HorizontalBarrier_TopLeft, 1
-	// TODO(gba) setmetatile 26, 13, METATILE_SilphCo_HorizontalBarrier_TopRight, 1
-	// TODO(gba) setmetatile 25, 14, METATILE_SilphCo_HorizontalBarrier_BottomLeft, 1
-	// TODO(gba) setmetatile 26, 14, METATILE_SilphCo_HorizontalBarrier_BottomRight, 1
-	// TODO(gba) setmetatile 26, 15, METATILE_SilphCo_Floor_ShadeFull, 0
+	GoToIfUnset 0x2298, _cv_bar_13
+	ClearFlag 0x2298
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_13
+	ShowPerson 208
+_cv_bar_13:
+	GoToIfUnset 0x2299, _cv_bar_14
+	ClearFlag 0x2299
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_14
+	ShowPerson 209
+_cv_bar_14:
+	GoToIfUnset 0x229A, _cv_bar_15
+	ClearFlag 0x229A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_15
+	ShowPerson 210
+_cv_bar_15:
+	GoToIfUnset 0x229B, _cv_bar_16
+	ClearFlag 0x229B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_16
+	ShowPerson 211
+_cv_bar_16:
+	// (the GBA redraws a square here: 26, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
 	Return
 	
 SilphCo_7F_EventScript_SetObjRocketsGone:
 	SetObjectMovementType 8, 14
 	SetObjectFacing 8, 0
+	Return
+	
+SilphCo_7F_OnLoad_cv_init:
+	CallIfUnset 0x21AC, EventScript_Close7FDoor1
+	CallIfUnset 0x21AD, EventScript_Close7FDoor2
+	CallIfUnset 0x21AE, EventScript_Close7FDoor3
 	Return
 	
 SilphCo_7F_EventScript_EndReceiveLapras:
@@ -398,8 +483,7 @@ EventScript_OpenDoor:
 	WaitSE SEQ_SE_DP_SELECT
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
-	// TODO(gba) special SetHiddenItemFlag
-	GoTo _cv_stop
+	SetFlagVar 0x8004
 	CloseMsg
 	ReleaseAll
 	End
@@ -422,217 +506,217 @@ SilphCo_7F_EventScript_RivalApproachBottom:
 	
 SilphCo_7F_EventScript_RivalSquirtle:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_6
+	GoToIfNe _cv_next_18
 	TrainerBattle 802, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_6:
+	GoTo _cv_battle_17
+_cv_next_18:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_7
+	GoToIfNe _cv_next_19
 	TrainerBattle 806, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_7:
+	GoTo _cv_battle_17
+_cv_next_19:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_8
+	GoToIfNe _cv_next_20
 	TrainerBattle 800, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_8:
+	GoTo _cv_battle_17
+_cv_next_20:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_9
+	GoToIfNe _cv_next_21
 	TrainerBattle 798, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_9:
+	GoTo _cv_battle_17
+_cv_next_21:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_10
+	GoToIfNe _cv_next_22
 	TrainerBattle 808, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_10:
+	GoTo _cv_battle_17
+_cv_next_22:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_11
+	GoToIfNe _cv_next_23
 	TrainerBattle 803, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_11:
+	GoTo _cv_battle_17
+_cv_next_23:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_12
+	GoToIfNe _cv_next_24
 	TrainerBattle 805, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_12:
+	GoTo _cv_battle_17
+_cv_next_24:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_13
+	GoToIfNe _cv_next_25
 	TrainerBattle 807, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_13:
+	GoTo _cv_battle_17
+_cv_next_25:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_14
+	GoToIfNe _cv_next_26
 	TrainerBattle 801, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_14:
+	GoTo _cv_battle_17
+_cv_next_26:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_15
+	GoToIfNe _cv_next_27
 	TrainerBattle 809, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_15:
+	GoTo _cv_battle_17
+_cv_next_27:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_16
+	GoToIfNe _cv_next_28
 	TrainerBattle 804, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_16:
+	GoTo _cv_battle_17
+_cv_next_28:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_17
+	GoToIfNe _cv_next_29
 	TrainerBattle 799, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_17:
+	GoTo _cv_battle_17
+_cv_next_29:
 	TrainerBattle 798, 0, 0, 0
-_cv_battle_5:
+_cv_battle_17:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_18
+	GoToIfNe _cv_won_30
 	WhiteOut
 	End
-_cv_won_18:
+_cv_won_30:
 	SetFlag 0x21B0
 	Return
 	
 SilphCo_7F_EventScript_RivalBulbasaur:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_20
+	GoToIfNe _cv_next_32
 	TrainerBattle 802, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_20:
+	GoTo _cv_battle_31
+_cv_next_32:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_21
+	GoToIfNe _cv_next_33
 	TrainerBattle 806, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_21:
+	GoTo _cv_battle_31
+_cv_next_33:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_22
+	GoToIfNe _cv_next_34
 	TrainerBattle 800, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_22:
+	GoTo _cv_battle_31
+_cv_next_34:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_23
+	GoToIfNe _cv_next_35
 	TrainerBattle 798, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_23:
+	GoTo _cv_battle_31
+_cv_next_35:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_24
+	GoToIfNe _cv_next_36
 	TrainerBattle 808, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_24:
+	GoTo _cv_battle_31
+_cv_next_36:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_25
+	GoToIfNe _cv_next_37
 	TrainerBattle 803, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_25:
+	GoTo _cv_battle_31
+_cv_next_37:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_26
+	GoToIfNe _cv_next_38
 	TrainerBattle 805, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_26:
+	GoTo _cv_battle_31
+_cv_next_38:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_27
+	GoToIfNe _cv_next_39
 	TrainerBattle 807, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_27:
+	GoTo _cv_battle_31
+_cv_next_39:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_28
+	GoToIfNe _cv_next_40
 	TrainerBattle 801, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_28:
+	GoTo _cv_battle_31
+_cv_next_40:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_29
+	GoToIfNe _cv_next_41
 	TrainerBattle 809, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_29:
+	GoTo _cv_battle_31
+_cv_next_41:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_30
+	GoToIfNe _cv_next_42
 	TrainerBattle 804, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_30:
+	GoTo _cv_battle_31
+_cv_next_42:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_31
+	GoToIfNe _cv_next_43
 	TrainerBattle 799, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_31:
+	GoTo _cv_battle_31
+_cv_next_43:
 	TrainerBattle 798, 0, 0, 0
-_cv_battle_19:
+_cv_battle_31:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_32
+	GoToIfNe _cv_won_44
 	WhiteOut
 	End
-_cv_won_32:
+_cv_won_44:
 	SetFlag 0x21B1
 	Return
 	
 SilphCo_7F_EventScript_RivalCharmander:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_34
+	GoToIfNe _cv_next_46
 	TrainerBattle 802, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_34:
+	GoTo _cv_battle_45
+_cv_next_46:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_35
+	GoToIfNe _cv_next_47
 	TrainerBattle 806, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_35:
+	GoTo _cv_battle_45
+_cv_next_47:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_36
+	GoToIfNe _cv_next_48
 	TrainerBattle 800, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_36:
+	GoTo _cv_battle_45
+_cv_next_48:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_37
+	GoToIfNe _cv_next_49
 	TrainerBattle 798, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_37:
+	GoTo _cv_battle_45
+_cv_next_49:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_38
+	GoToIfNe _cv_next_50
 	TrainerBattle 808, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_38:
+	GoTo _cv_battle_45
+_cv_next_50:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_39
+	GoToIfNe _cv_next_51
 	TrainerBattle 803, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_39:
+	GoTo _cv_battle_45
+_cv_next_51:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_40
+	GoToIfNe _cv_next_52
 	TrainerBattle 805, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_40:
+	GoTo _cv_battle_45
+_cv_next_52:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_41
+	GoToIfNe _cv_next_53
 	TrainerBattle 807, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_41:
+	GoTo _cv_battle_45
+_cv_next_53:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_42
+	GoToIfNe _cv_next_54
 	TrainerBattle 801, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_42:
+	GoTo _cv_battle_45
+_cv_next_54:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_43
+	GoToIfNe _cv_next_55
 	TrainerBattle 809, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_43:
+	GoTo _cv_battle_45
+_cv_next_55:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_44
+	GoToIfNe _cv_next_56
 	TrainerBattle 804, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_44:
+	GoTo _cv_battle_45
+_cv_next_56:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_45
+	GoToIfNe _cv_next_57
 	TrainerBattle 799, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_45:
+	GoTo _cv_battle_45
+_cv_next_57:
 	TrainerBattle 798, 0, 0, 0
-_cv_battle_33:
+_cv_battle_45:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_46
+	GoToIfNe _cv_won_58
 	WhiteOut
 	End
-_cv_won_46:
+_cv_won_58:
 	SetFlag 0x21B2
 	Return
 	
@@ -655,281 +739,232 @@ Common_EventScript_TransferredToPC:
 	Return
 	
 EventScript_Open2FDoor1:
-	// TODO(gba) setmetatile 5, 8, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 8, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 9, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 9, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 10, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 5, 8, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 8, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 5, 9, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 9, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 6, 10, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open2FDoor2:
-	// TODO(gba) setmetatile 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 15, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 16, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 16, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 17, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 15, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 5, 16, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 16, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 6, 17, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open3FDoor1:
-	// TODO(gba) setmetatile 9, 11, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 10, 11, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 9, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 10, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 9, 13, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 10, 13, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 9, 11, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 10, 11, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 9, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 10, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 9, 13, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 10, 13, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open3FDoor2:
-	// TODO(gba) setmetatile 20, 11, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 11, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 20, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 20, 13, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 13, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 20, 11, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 21, 11, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 20, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 21, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 20, 13, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 21, 13, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open4FDoor1:
-	// TODO(gba) setmetatile 3, 16, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 4, 16, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 3, 17, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 4, 17, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 4, 18, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 3, 16, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 4, 16, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 3, 17, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 4, 17, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 4, 18, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open4FDoor2:
-	// TODO(gba) setmetatile 14, 11, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 15, 11, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 14, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 15, 12, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 15, 13, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 14, 11, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 15, 11, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 14, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 15, 12, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 15, 13, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open5FDoor1:
-	// TODO(gba) setmetatile 7, 8, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 8, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 9, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 9, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 10, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 10, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 7, 8, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 8, 8, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 7, 9, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 8, 9, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 7, 10, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 8, 10, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open5FDoor2:
-	// TODO(gba) setmetatile 7, 17, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 17, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 18, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 18, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 7, 19, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 8, 19, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 7, 17, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 8, 17, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 7, 18, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 8, 18, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 7, 19, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 8, 19, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open5FDoor3:
-	// TODO(gba) setmetatile 18, 12, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 19, 12, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 18, 13, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 19, 13, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 18, 14, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 19, 14, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 18, 12, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 19, 12, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 18, 13, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 19, 13, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 18, 14, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 19, 14, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open6FDoor:
-	// TODO(gba) setmetatile 5, 14, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 14, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 15, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 16, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 16, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 5, 14, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 6, 14, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 5, 16, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 6, 16, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open7FDoor1:
-	// TODO(gba) setmetatile 11, 8, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 8, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 11, 9, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 9, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 10, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	GoToIfSet 0x2292, _cv_bar_59
+	SetFlag 0x2292
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_59
+	HidePerson 202
+_cv_bar_59:
+	GoToIfSet 0x2293, _cv_bar_60
+	SetFlag 0x2293
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_60
+	HidePerson 203
+_cv_bar_60:
+	GoToIfSet 0x2296, _cv_bar_61
+	SetFlag 0x2296
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_61
+	HidePerson 206
+_cv_bar_61:
+	GoToIfSet 0x2297, _cv_bar_62
+	SetFlag 0x2297
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_62
+	HidePerson 207
+_cv_bar_62:
+	// (the GBA redraws a square here: 12, 10, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open7FDoor2:
-	// TODO(gba) setmetatile 24, 7, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 25, 7, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 24, 8, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 25, 8, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 25, 9, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	GoToIfSet 0x2290, _cv_bar_63
+	SetFlag 0x2290
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_63
+	HidePerson 200
+_cv_bar_63:
+	GoToIfSet 0x2291, _cv_bar_64
+	SetFlag 0x2291
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_64
+	HidePerson 201
+_cv_bar_64:
+	GoToIfSet 0x2294, _cv_bar_65
+	SetFlag 0x2294
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_65
+	HidePerson 204
+_cv_bar_65:
+	GoToIfSet 0x2295, _cv_bar_66
+	SetFlag 0x2295
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_66
+	HidePerson 205
+_cv_bar_66:
+	// (the GBA redraws a square here: 25, 9, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open7FDoor3:
-	// TODO(gba) setmetatile 25, 13, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 26, 13, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 25, 14, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 26, 14, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 26, 15, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	GoToIfSet 0x2298, _cv_bar_67
+	SetFlag 0x2298
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_67
+	HidePerson 208
+_cv_bar_67:
+	GoToIfSet 0x2299, _cv_bar_68
+	SetFlag 0x2299
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_68
+	HidePerson 209
+_cv_bar_68:
+	GoToIfSet 0x229A, _cv_bar_69
+	SetFlag 0x229A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_69
+	HidePerson 210
+_cv_bar_69:
+	GoToIfSet 0x229B, _cv_bar_70
+	SetFlag 0x229B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_70
+	HidePerson 211
+_cv_bar_70:
+	// (the GBA redraws a square here: 26, 15, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open8FDoor:
-	// TODO(gba) setmetatile 5, 9, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 9, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 10, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 10, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 11, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 11, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 5, 9, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 6, 9, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 5, 10, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 10, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 5, 11, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 6, 11, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open9FDoor1:
-	// TODO(gba) setmetatile 2, 9, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 3, 9, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 2, 10, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 3, 10, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 2, 11, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 3, 11, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 2, 9, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 3, 9, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 2, 10, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 3, 10, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 2, 11, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 3, 11, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open9FDoor2:
-	// TODO(gba) setmetatile 12, 15, METATILE_SilphCo_Wall_LeftEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 15, METATILE_SilphCo_Wall_RightEdge, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 16, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 16, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 17, METATILE_SilphCo_Floor_WallLeftCorner, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 17, METATILE_SilphCo_Floor_WallRightCorner, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 12, 15, METATILE_SilphCo_Wall_LeftEdge, 1)
+	// (the GBA redraws a square here: 13, 15, METATILE_SilphCo_Wall_RightEdge, 1)
+	// (the GBA redraws a square here: 12, 16, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 13, 16, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 12, 17, METATILE_SilphCo_Floor_WallLeftCorner, 0)
+	// (the GBA redraws a square here: 13, 17, METATILE_SilphCo_Floor_WallRightCorner, 0)
 	Return
 	
 EventScript_Open9FDoor3:
-	// TODO(gba) setmetatile 21, 6, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 6, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 7, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 7, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 8, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 21, 6, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 22, 6, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 21, 7, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 22, 7, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 22, 8, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open9FDoor4:
-	// TODO(gba) setmetatile 21, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 12, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 21, 13, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 13, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 22, 14, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 21, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 22, 12, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 21, 13, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 22, 13, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 22, 14, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open10FDoor:
-	// TODO(gba) setmetatile 12, 11, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 11, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 12, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 12, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 13, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 12, 11, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 13, 11, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 12, 12, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 13, 12, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 13, 13, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_Open11FDoor:
-	// TODO(gba) setmetatile 5, 16, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 16, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 5, 17, METATILE_SilphCo_Floor_ShadeFull, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 17, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 18, METATILE_SilphCo_Floor, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 5, 16, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 16, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 5, 17, METATILE_SilphCo_Floor_ShadeFull, 0)
+	// (the GBA redraws a square here: 6, 17, METATILE_SilphCo_Floor, 0)
+	// (the GBA redraws a square here: 6, 18, METATILE_SilphCo_Floor, 0)
 	Return
 	
 EventScript_TransferredSomeonesPC:

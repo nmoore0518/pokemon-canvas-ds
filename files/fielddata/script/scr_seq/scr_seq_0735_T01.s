@@ -838,7 +838,7 @@ PalletTown_EventScript_SignLadyShowSign:
 	Return
 	
 PalletTown_EventScript_LockGymDoor:
-	// TODO(gba) setmetatile PALLET_GYM_DOOR_X, PALLET_GYM_DOOR_Y, METATILE_PALLET_GYM_DOOR_LOCKED, TRUE
+	// (the GBA redraws a square here: PALLET_GYM_DOOR_X, PALLET_GYM_DOOR_Y, METATILE_PALLET_GYM_DOOR_LOCKED, TRUE)
 	Return
 	
 DadStory_EventScript_PalletTransition:

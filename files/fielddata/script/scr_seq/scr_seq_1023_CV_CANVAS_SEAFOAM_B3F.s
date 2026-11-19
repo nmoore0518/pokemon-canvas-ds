@@ -6,9 +6,58 @@
 // Pokemon Canvas: ported from the GBA game's SeafoamIslands_B3F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
+	ScrDef SeafoamIslands_B3F_Frlg_cv_BoulderFalls
 	ScrDef SeafoamIslands_B3F_OnTransition
 	ScrDef SeafoamIslands_B3F_EventScript_EnterByFalling
 	ScrDefEnd
+	
+SeafoamIslands_B3F_Frlg_cv_BoulderFalls:
+	PlaySE SEQ_SE_GS_IWAOTOSHI
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 1
+	GoToIfNe _cv_fall_1
+	SetFlag 0x2118
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_1:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 2
+	GoToIfNe _cv_fall_2
+	SetFlag 0x2119
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_2:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 3
+	GoToIfNe _cv_fall_3
+	SetFlag 0x211C
+	ClearFlag 0x211F
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_3:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 4
+	GoToIfNe _cv_fall_4
+	SetFlag 0x211D
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_4:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 5
+	GoToIfNe _cv_fall_5
+	SetFlag 0x211B
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_5:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 6
+	GoToIfNe _cv_fall_6
+	SetFlag 0x211A
+	ClearFlag 0x211E
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_6:
+	End
 	
 SeafoamIslands_B3F_OnTransition:
 	CallIfUnset 0x2110, SeafoamIslands_B3F_EventScript_CheckStoppedCurrent
@@ -30,7 +79,7 @@ SeafoamIslands_B3F_EventScript_EnterByFalling:
 	SetVar 0x503C, 1
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	Warp MAP_CANVAS_SEAFOAM_B4F, 0, 28, 24, DIR_SOUTH
+	Warp MAP_CANVAS_SEAFOAM_B4F, 0, 33, 28, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll

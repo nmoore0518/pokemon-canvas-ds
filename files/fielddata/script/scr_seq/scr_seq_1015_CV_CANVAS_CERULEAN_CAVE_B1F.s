@@ -37,17 +37,27 @@ CeruleanCave_B1F_EventScript_Mewtwo:
 	Wait 20, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_GYM
 	WaitButton
-	// TODO(gba) setwildbattle SPECIES_MEWTWO, 70
-	GoTo _cv_stop
 	SetFlag 0x2032
-	// TODO(gba) special BattleSetup_StartLegendaryBattle
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_MEWTWO, 70, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_1
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_1:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_1
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_1:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_2
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_3
+_cv_outcome_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_3
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq CeruleanCave_B1F_EventScript_DefeatedMewtwo
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -55,7 +65,6 @@ _cv_won_1:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq CeruleanCave_B1F_EventScript_RanFromMewtwo
 	SetFlag 0x2176
-	CloseMsg
 	ReleaseAll
 	End
 	
@@ -78,11 +87,16 @@ CeruleanCave_B1F_EventScript_RanFromMewtwo:
 	End
 	
 CeruleanCave_B1F_EventScript_TryRemoveMewtwo:
-	CheckBattleWon 0x401C
-	CompareVarToValue 0x401C, 1
-	GoToIfEq _cv_won_2
-	SetVar 0x401C, 2
-_cv_won_2:
+	GetStaticEncounterOutcome 0x401C
+	CompareVarToValue 0x401C, 4
+	GoToIfNe _cv_outcome_4
+	SetVar 0x401C, 7
+	GoTo _cv_outcome_5
+_cv_outcome_4:
+	CompareVarToValue 0x401C, 5
+	GoToIfNe _cv_outcome_5
+	SetVar 0x401C, 4
+_cv_outcome_5:
 	CompareVarToValue 0x401C, 7
 	GoToIfNe Common_EventScript_NopReturn
 	HidePerson 0x401D

@@ -829,6 +829,8 @@ def main():
         print(spec['gba'], '->', spec['map'], '%dx%d lands' % (nx, nz), lids)
     land = [d if d else land[209] for d in land]
     open(LAND_NARC, 'wb').write(write_narc(land, btnf))
+    import build_safari
+    json.dump(build_safari.MOVED, open(build_safari.MOVED_FILE, 'w'), indent=1, sort_keys=True)
     ship_models()
     import world
     for m, (x, z), beh, to, anchor in ADD_WARPS:

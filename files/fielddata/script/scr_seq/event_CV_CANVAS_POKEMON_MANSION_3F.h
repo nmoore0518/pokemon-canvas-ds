@@ -7,6 +7,7 @@
 #define _EV_PokemonMansion_3F_EventScript_DiaryFeb6th 3
 #define _EV_PokemonMansion_3F_EventScript_Statue 4
 #define _EV_PokemonMansion_3F_OnLoad 5
+#define _EV_PokemonMansion_3F_Frlg_cv_Barriers 6
 
 
 #endif

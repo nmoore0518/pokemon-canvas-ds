@@ -158,11 +158,16 @@ _cv_won_4:
 	End
 _cv_beaten_3:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_5
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_5:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_5
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_6
+_cv_outcome_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_6
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_6:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0518_T08R0601_PaintWorld_Text_Dissolve

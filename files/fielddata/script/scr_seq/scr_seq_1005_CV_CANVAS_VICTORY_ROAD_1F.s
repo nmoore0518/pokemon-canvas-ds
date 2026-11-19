@@ -8,9 +8,10 @@
 
 	ScrDef VictoryRoad_1F_EventScript_ItemRareCandy
 	ScrDef VictoryRoad_1F_EventScript_ItemTM02
-	ScrDef _cv_unported_2
+	ScrDef VictoryRoad_1F_EventScript_FloorSwitch
 	ScrDef VictoryRoad_1F_Frlg_OnLoad
 	ScrDef VictoryRoad_1F_Frlg_OnTransition
+	ScrDef VictoryRoad_1F_Frlg_cv_Barriers
 	ScrDefEnd
 	
 VictoryRoad_1F_EventScript_ItemRareCandy:
@@ -31,10 +32,18 @@ VictoryRoad_1F_EventScript_FloorSwitch:
 	LockAll
 	CompareVarToValue 0x5038, 100
 	GoToIfEq VictoryRoad_1F_EventScript_FloorSwitchAlreadyPressed
-	// TODO(gba) setmetatile 12, 14, METATILE_Cave_Floor_Ledge_Top, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 12, 15, METATILE_Cave_Floor_Ledge_Bottom, 0
-	GoTo _cv_stop
+	GoToIfSet 0x2268, _cv_bar_1
+	SetFlag 0x2268
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_1
+	HidePerson 200
+_cv_bar_1:
+	GoToIfSet 0x2269, _cv_bar_2
+	SetFlag 0x2269
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_2
+	HidePerson 201
+_cv_bar_2:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	GetPersonCoords 5, 0x401E, 0x401F
@@ -51,23 +60,37 @@ VictoryRoad_1F_Frlg_OnLoad:
 VictoryRoad_1F_Frlg_OnTransition:
 	End
 	
+VictoryRoad_1F_Frlg_cv_Barriers:
+	SetVar 0x5044, 1
+	SetFlag 0x2268
+	SetFlag 0x2269
+	Call VictoryRoad_1F_Frlg_OnLoad_cv_init
+	SetVar 0x5044, 0
+	GoTo VictoryRoad_1F_Frlg_OnTransition
+	
 VictoryRoad_1F_EventScript_FloorSwitchAlreadyPressed:
 	ReleaseAll
 	End
 	
 VictoryRoad_1F_EventScript_SetRockBarrier:
-	// TODO(gba) setmetatile 12, 14, METATILE_Cave_RockBarrier_Top, 1
-	// TODO(gba) setmetatile 12, 15, METATILE_Cave_RockBarrier_Bottom, 1
+	GoToIfUnset 0x2268, _cv_bar_3
+	ClearFlag 0x2268
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_3
+	ShowPerson 200
+_cv_bar_3:
+	GoToIfUnset 0x2269, _cv_bar_4
+	ClearFlag 0x2269
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_4
+	ShowPerson 201
+_cv_bar_4:
 	Return
-
-_cv_unported_2:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0874_CV_CANVAS_VICTORY_ROAD_1F_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
+	
+VictoryRoad_1F_Frlg_OnLoad_cv_init:
+	CompareVarToValue 0x5038, 100
+	CallIfNe VictoryRoad_1F_EventScript_SetRockBarrier
+	Return
 
 _cv_stop:
 	NPCMsg msg_0874_CV_CANVAS_VICTORY_ROAD_1F_cv_unported

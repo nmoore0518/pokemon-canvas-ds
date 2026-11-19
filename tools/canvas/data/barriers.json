@@ -1,0 +1,1299 @@
+{
+ "CinnabarIsland_Gym_Frlg": {
+  "layout": "LAYOUT_CINNABAR_ISLAND_GYM",
+  "squares": [
+   {
+    "x": 5,
+    "y": 9,
+    "base": 1,
+    "open": 719,
+    "sprite": 7002
+   },
+   {
+    "x": 6,
+    "y": 9,
+    "base": 1,
+    "open": 718,
+    "sprite": 7002
+   },
+   {
+    "x": 17,
+    "y": 9,
+    "base": 1,
+    "open": 719,
+    "sprite": 7002
+   },
+   {
+    "x": 18,
+    "y": 9,
+    "base": 1,
+    "open": 718,
+    "sprite": 7002
+   },
+   {
+    "x": 26,
+    "y": 9,
+    "base": 1,
+    "open": 719,
+    "sprite": 7002
+   },
+   {
+    "x": 27,
+    "y": 9,
+    "base": 1,
+    "open": 718,
+    "sprite": 7002
+   },
+   {
+    "x": 17,
+    "y": 16,
+    "base": 1,
+    "open": 719,
+    "sprite": 7002
+   },
+   {
+    "x": 18,
+    "y": 16,
+    "base": 1,
+    "open": 718,
+    "sprite": 7002
+   },
+   {
+    "x": 5,
+    "y": 17,
+    "base": 1,
+    "open": 719,
+    "sprite": 7002
+   },
+   {
+    "x": 6,
+    "y": 17,
+    "base": 1,
+    "open": 718,
+    "sprite": 7002
+   },
+   {
+    "x": 11,
+    "y": 22,
+    "base": 1,
+    "open": 649,
+    "sprite": 7001
+   },
+   {
+    "x": 11,
+    "y": 23,
+    "base": 1,
+    "open": 641,
+    "sprite": 7003
+   }
+  ]
+ },
+ "PokemonMansion_1F_Frlg": {
+  "layout": "LAYOUT_POKEMON_MANSION_1F",
+  "squares": [
+   {
+    "x": 22,
+    "y": 10,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 23,
+    "y": 10,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 24,
+    "y": 10,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 22,
+    "y": 11,
+    "base": 1,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 23,
+    "y": 11,
+    "base": 1,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 24,
+    "y": 11,
+    "base": 1,
+    "open": 644,
+    "sprite": 7006
+   },
+   {
+    "x": 31,
+    "y": 18,
+    "base": 0,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 32,
+    "y": 18,
+    "base": 0,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 33,
+    "y": 18,
+    "base": 0,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 31,
+    "y": 19,
+    "base": 0,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 32,
+    "y": 19,
+    "base": 0,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 33,
+    "y": 19,
+    "base": 0,
+    "open": 644,
+    "sprite": 7006
+   },
+   {
+    "x": 27,
+    "y": 25,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 28,
+    "y": 25,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 29,
+    "y": 25,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 32,
+    "y": 25,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 33,
+    "y": 25,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 34,
+    "y": 25,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 27,
+    "y": 26,
+    "base": 1,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 28,
+    "y": 26,
+    "base": 1,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 29,
+    "y": 26,
+    "base": 1,
+    "open": 644,
+    "sprite": 7006
+   },
+   {
+    "x": 32,
+    "y": 26,
+    "base": 1,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 33,
+    "y": 26,
+    "base": 1,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 34,
+    "y": 26,
+    "base": 1,
+    "open": 644,
+    "sprite": 7006
+   }
+  ]
+ },
+ "PokemonMansion_2F_Frlg": {
+  "layout": "LAYOUT_POKEMON_MANSION_2F",
+  "squares": [
+   {
+    "x": 12,
+    "y": 6,
+    "base": 0,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 7,
+    "base": 0,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 8,
+    "base": 0,
+    "open": 693,
+    "sprite": 7007
+   },
+   {
+    "x": 24,
+    "y": 14,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 25,
+    "y": 14,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 26,
+    "y": 14,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 24,
+    "y": 15,
+    "base": 1,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 25,
+    "y": 15,
+    "base": 1,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 26,
+    "y": 15,
+    "base": 1,
+    "open": 644,
+    "sprite": 7006
+   },
+   {
+    "x": 10,
+    "y": 30,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 10,
+    "y": 31,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 10,
+    "y": 32,
+    "base": 1,
+    "open": 693,
+    "sprite": 7007
+   }
+  ]
+ },
+ "PokemonMansion_3F_Frlg": {
+  "layout": "LAYOUT_POKEMON_MANSION_3F",
+  "squares": [
+   {
+    "x": 21,
+    "y": 6,
+    "base": 0,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 7,
+    "base": 0,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 8,
+    "base": 0,
+    "open": 693,
+    "sprite": 7007
+   },
+   {
+    "x": 17,
+    "y": 11,
+    "base": 1,
+    "open": 645,
+    "sprite": 7001
+   },
+   {
+    "x": 18,
+    "y": 11,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 19,
+    "y": 11,
+    "base": 1,
+    "open": 644,
+    "sprite": 7001
+   },
+   {
+    "x": 17,
+    "y": 12,
+    "base": 1,
+    "open": 645,
+    "sprite": 7004
+   },
+   {
+    "x": 18,
+    "y": 12,
+    "base": 1,
+    "open": 644,
+    "sprite": 7005
+   },
+   {
+    "x": 19,
+    "y": 12,
+    "base": 1,
+    "open": 644,
+    "sprite": 7006
+   }
+  ]
+ },
+ "PokemonMansion_B1F_Frlg": {
+  "layout": "LAYOUT_POKEMON_MANSION_B1F",
+  "squares": [
+   {
+    "x": 12,
+    "y": 10,
+    "base": 1,
+    "open": 647,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 11,
+    "base": 1,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 12,
+    "base": 1,
+    "open": 688,
+    "sprite": 7008
+   },
+   {
+    "x": 33,
+    "y": 20,
+    "base": 0,
+    "open": 647,
+    "sprite": 7001
+   },
+   {
+    "x": 34,
+    "y": 20,
+    "base": 0,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 35,
+    "y": 20,
+    "base": 0,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 33,
+    "y": 21,
+    "base": 0,
+    "open": 647,
+    "sprite": 7009
+   },
+   {
+    "x": 34,
+    "y": 21,
+    "base": 0,
+    "open": 646,
+    "sprite": 7010
+   },
+   {
+    "x": 35,
+    "y": 21,
+    "base": 0,
+    "open": 646,
+    "sprite": 7011
+   },
+   {
+    "x": 20,
+    "y": 22,
+    "base": 1,
+    "open": 647,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 22,
+    "base": 1,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 22,
+    "y": 22,
+    "base": 1,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 20,
+    "y": 23,
+    "base": 1,
+    "open": 647,
+    "sprite": 7009
+   },
+   {
+    "x": 21,
+    "y": 23,
+    "base": 1,
+    "open": 646,
+    "sprite": 7010
+   },
+   {
+    "x": 22,
+    "y": 23,
+    "base": 1,
+    "open": 646,
+    "sprite": 7011
+   },
+   {
+    "x": 16,
+    "y": 28,
+    "base": 0,
+    "open": 647,
+    "sprite": 7001
+   },
+   {
+    "x": 16,
+    "y": 29,
+    "base": 0,
+    "open": 646,
+    "sprite": 7001
+   },
+   {
+    "x": 16,
+    "y": 30,
+    "base": 0,
+    "open": 688,
+    "sprite": 7008
+   }
+  ]
+ },
+ "RocketHideout_B1F_Frlg": {
+  "layout": "LAYOUT_ROCKET_HIDEOUT_B1F",
+  "squares": [
+   {
+    "x": 20,
+    "y": 19,
+    "base": 0,
+    "open": 642,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 19,
+    "base": 0,
+    "open": 641,
+    "sprite": 7001
+   },
+   {
+    "x": 20,
+    "y": 20,
+    "base": 0,
+    "open": 642,
+    "sprite": 7012
+   },
+   {
+    "x": 21,
+    "y": 20,
+    "base": 0,
+    "open": 641,
+    "sprite": 7012
+   }
+  ]
+ },
+ "RocketHideout_B4F_Frlg": {
+  "layout": "LAYOUT_ROCKET_HIDEOUT_B4F",
+  "squares": [
+   {
+    "x": 17,
+    "y": 12,
+    "base": 0,
+    "open": 642,
+    "sprite": 7001
+   },
+   {
+    "x": 18,
+    "y": 12,
+    "base": 0,
+    "open": 641,
+    "sprite": 7001
+   },
+   {
+    "x": 17,
+    "y": 13,
+    "base": 0,
+    "open": 642,
+    "sprite": 7012
+   },
+   {
+    "x": 18,
+    "y": 13,
+    "base": 0,
+    "open": 641,
+    "sprite": 7012
+   }
+  ]
+ },
+ "SilphCo_10F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_10F",
+  "squares": [
+   {
+    "x": 12,
+    "y": 11,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 13,
+    "y": 11,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 13,
+    "y": 12,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_11F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_11F",
+  "squares": [
+   {
+    "x": 5,
+    "y": 16,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 6,
+    "y": 16,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 5,
+    "y": 17,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 6,
+    "y": 17,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_2F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_2F",
+  "squares": [
+   {
+    "x": 5,
+    "y": 8,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 6,
+    "y": 8,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 5,
+    "y": 9,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 6,
+    "y": 9,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 5,
+    "y": 15,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 6,
+    "y": 15,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 5,
+    "y": 16,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 6,
+    "y": 16,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_3F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_3F",
+  "squares": [
+   {
+    "x": 9,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 10,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 20,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 9,
+    "y": 13,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 10,
+    "y": 13,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   },
+   {
+    "x": 20,
+    "y": 13,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 21,
+    "y": 13,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_4F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_4F",
+  "squares": [
+   {
+    "x": 14,
+    "y": 11,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 15,
+    "y": 11,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 14,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 15,
+    "y": 12,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 3,
+    "y": 16,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 4,
+    "y": 16,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 3,
+    "y": 17,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 4,
+    "y": 17,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_5F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_5F",
+  "squares": [
+   {
+    "x": 7,
+    "y": 9,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 8,
+    "y": 9,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 7,
+    "y": 10,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 8,
+    "y": 10,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   },
+   {
+    "x": 18,
+    "y": 13,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 19,
+    "y": 13,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 18,
+    "y": 14,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 19,
+    "y": 14,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   },
+   {
+    "x": 7,
+    "y": 18,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 8,
+    "y": 18,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 7,
+    "y": 19,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 8,
+    "y": 19,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_6F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_6F",
+  "squares": [
+   {
+    "x": 5,
+    "y": 15,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 6,
+    "y": 15,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 5,
+    "y": 16,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 6,
+    "y": 16,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_7F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_7F",
+  "squares": [
+   {
+    "x": 24,
+    "y": 7,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 25,
+    "y": 7,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 11,
+    "y": 8,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 8,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 24,
+    "y": 8,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 25,
+    "y": 8,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 11,
+    "y": 9,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 12,
+    "y": 9,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 25,
+    "y": 13,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 26,
+    "y": 13,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 25,
+    "y": 14,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 26,
+    "y": 14,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_8F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_8F",
+  "squares": [
+   {
+    "x": 5,
+    "y": 10,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 6,
+    "y": 10,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 5,
+    "y": 11,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 6,
+    "y": 11,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   }
+  ]
+ },
+ "SilphCo_9F_Frlg": {
+  "layout": "LAYOUT_SILPH_CO_9F",
+  "squares": [
+   {
+    "x": 21,
+    "y": 6,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 22,
+    "y": 6,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 7,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 22,
+    "y": 7,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 2,
+    "y": 10,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 3,
+    "y": 10,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 2,
+    "y": 11,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 3,
+    "y": 11,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   },
+   {
+    "x": 21,
+    "y": 12,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 22,
+    "y": 12,
+    "base": 0,
+    "open": 820,
+    "sprite": 7001
+   },
+   {
+    "x": 21,
+    "y": 13,
+    "base": 0,
+    "open": 821,
+    "sprite": 7013
+   },
+   {
+    "x": 22,
+    "y": 13,
+    "base": 0,
+    "open": 820,
+    "sprite": 7014
+   },
+   {
+    "x": 12,
+    "y": 16,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 13,
+    "y": 16,
+    "base": 0,
+    "open": 821,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 17,
+    "base": 0,
+    "open": 825,
+    "sprite": 7013
+   },
+   {
+    "x": 13,
+    "y": 17,
+    "base": 0,
+    "open": 826,
+    "sprite": 7014
+   }
+  ]
+ },
+ "VictoryRoad_1F_Frlg": {
+  "layout": "LAYOUT_VICTORY_ROAD_1F_FRLG",
+  "squares": [
+   {
+    "x": 12,
+    "y": 14,
+    "base": 0,
+    "open": 721,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 15,
+    "base": 0,
+    "open": 737,
+    "sprite": 7015
+   }
+  ]
+ },
+ "VictoryRoad_2F_Frlg": {
+  "layout": "LAYOUT_VICTORY_ROAD_2F",
+  "squares": [
+   {
+    "x": 13,
+    "y": 10,
+    "base": 0,
+    "open": 721,
+    "sprite": 7001
+   },
+   {
+    "x": 13,
+    "y": 11,
+    "base": 0,
+    "open": 737,
+    "sprite": 7015
+   },
+   {
+    "x": 33,
+    "y": 16,
+    "base": 0,
+    "open": 721,
+    "sprite": 7001
+   },
+   {
+    "x": 33,
+    "y": 17,
+    "base": 0,
+    "open": 737,
+    "sprite": 7015
+   }
+  ]
+ },
+ "VictoryRoad_3F_Frlg": {
+  "layout": "LAYOUT_VICTORY_ROAD_3F",
+  "squares": [
+   {
+    "x": 12,
+    "y": 12,
+    "base": 0,
+    "open": 721,
+    "sprite": 7001
+   },
+   {
+    "x": 12,
+    "y": 13,
+    "base": 0,
+    "open": 737,
+    "sprite": 7015
+   }
+  ]
+ }
+}

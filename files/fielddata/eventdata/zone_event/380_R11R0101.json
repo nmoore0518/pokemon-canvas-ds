@@ -14,7 +14,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 10,
+            "x": 1,
             "z": 4,
             "y": 0
         },
@@ -31,7 +31,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 9,
+            "x": 1,
             "z": 10,
             "y": 0
         }
@@ -40,15 +40,15 @@
         {
             "x": 1,
             "z": 7,
-            "header": "MAP_ROUTE_12",
-            "anchor": 0,
+            "header": "MAP_ROUTE_11",
+            "anchor": 2,
             "y": 0
         },
         {
             "x": 10,
             "z": 7,
-            "header": "MAP_ROUTE_11",
-            "anchor": 3,
+            "header": "MAP_ROUTE_12",
+            "anchor": 0,
             "y": 0
         }
     ],

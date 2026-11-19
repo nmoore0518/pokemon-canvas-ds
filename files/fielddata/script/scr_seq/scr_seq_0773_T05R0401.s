@@ -158,11 +158,16 @@ _cv_won_14:
 	End
 _cv_beaten_13:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_15
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_15:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_15
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_16
+_cv_outcome_15:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_16
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_16:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0480_T05R0401_PaintWorld_Text_Dissolve
@@ -222,12 +227,12 @@ LavenderTown_House2_EventScript_CheckCanRateMon:
 	NPCMsg msg_0480_T05R0401_LavenderTown_House2_Text_GiveItANicerName
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_16
+	GoToIfEq _cv_yes_17
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_17
-_cv_yes_16:
+	GoTo _cv_yn_18
+_cv_yes_17:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_17:
+_cv_yn_18:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq LavenderTown_House2_EventScript_ChooseNewNickname
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

@@ -7,6 +7,7 @@
 #define _EV_BerryField_EventScript_FindDark 3
 #define _EV_RocketHideout_B1F_OnLoad 4
 #define _EV_RocketHideout_B1F_OnTransition 5
+#define _EV_RocketHideout_B1F_Frlg_cv_Barriers 6
 
 
 #endif

@@ -21,9 +21,9 @@
     ],
     "warps": [
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 5,
+            "z": 8,
+            "header": "MAP_ROUTE_8",
             "anchor": 0,
             "y": 0
         },
@@ -35,9 +35,9 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 7,
+            "z": 8,
+            "header": "MAP_ROUTE_8",
             "anchor": 0,
             "y": 0
         },

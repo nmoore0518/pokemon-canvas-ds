@@ -119,6 +119,10 @@ def plan(gba):
     return dict(rows=[(y, 1, y - 1) for y in need]) if need else {}
 
 
+MOVED_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'safari_moved.json')
+MOVED = {}            # GBA map -> {"x,z": [x, z]}: signs moved off the square in front of a door (our squares)
+
+
 def build_safari_floor(spec, depth_of):
     gm = gba_map.map_json(spec['gba'])
     lay = gba_map.Layout(gm['layout'])
@@ -152,6 +156,11 @@ def build_safari_floor(spec, depth_of):
         for w in gm['warp_events']:
             if (w['x'], w['y']) == (x, y): w['x'] = dx_
         kind[(x, y)] = 'house'; kind[(dx_, y)] = 'door'
+        # (the rest house's sign stands a square right of the GBA's door - in front of the model's: it goes in front
+        # of the GBA's door instead, and its words with it (the porter reads MOVED))
+        if dx_ != x and kind.get((dx_, y + 1)) == 'sign' and kind.get((x, y + 1)) not in OBJECTS:
+            kind[(x, y + 1)], kind[(dx_, y + 1)] = 'sign', kind.get((x, y + 1))
+            MOVED.setdefault(spec['gba'], {})['%d,%d' % (dx_, y + 1)] = [x, y + 1]
     doors = [(dx_, y) for _, y, dx_ in houses]
     # (HeartGold's house is taller than the GBA's: its roof reaches back over the row behind. A bush or a fence there
     # would stand in the roof, so it goes)

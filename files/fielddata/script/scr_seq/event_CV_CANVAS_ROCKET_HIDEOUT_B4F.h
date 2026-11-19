@@ -12,6 +12,7 @@
 #define _EV_RocketHideout_B4F_EventScript_ItemCalcium 8
 #define _EV_RocketHideout_B4F_EventScript_ItemTM36 9
 #define _EV_RocketHideout_B4F_OnLoad 10
+#define _EV_RocketHideout_B4F_Frlg_cv_Barriers 11
 
 #define LOCALID_HIDEOUT_GIOVANNI 1
 #define LOCALID_SILPH_SCOPE 2

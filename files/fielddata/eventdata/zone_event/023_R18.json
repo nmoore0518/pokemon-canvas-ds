@@ -4,29 +4,55 @@
         {
             "scriptId": "_EV_Route18_EventScript_CyclingRoadSign + 1",
             "type": 0,
-            "x": 1151,
-            "z": 441,
+            "x": 1136,
+            "z": 409,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_Route18_EventScript_RouteSign + 1",
             "type": 0,
-            "x": 1166,
-            "z": 441,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_Route17_EventScript_CyclingRoadSign + 1",
-            "type": 0,
-            "x": 1125,
-            "z": 431,
+            "x": 1151,
+            "z": 409,
             "y": 0,
             "dir": 4
         }
     ],
     "objects": [
+        {
+            "id": "1",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 16,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1054)",
+            "facingDirection": 2,
+            "param0": 4,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1145,
+            "z": 416,
+            "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSMAN2",
+            "movement": 2,
+            "type": 1,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "std_trainer(1053)",
+            "facingDirection": 1,
+            "param0": 1,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 1140,
+            "z": 417,
+            "y": 0
+        },
         {
             "id": "3",
             "spriteId": "SPRITE_GSMAN2",
@@ -40,56 +66,22 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1153,
-            "z": 446,
-            "y": 0
-        },
-        {
-            "id": "4",
-            "spriteId": "101",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "0",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 1,
-            "yRange": 1,
-            "x": 1182,
-            "z": 432,
-            "y": 0
-        },
-        {
-            "id": "5",
-            "spriteId": "SPRITE_GSMIDDLEMAN1",
-            "movement": 15,
-            "type": 0,
-            "eventFlag": "FLAG_NOTHING",
-            "scriptId": "_EV_TypeTutor_EventScript_Flying + 1",
-            "facingDirection": 1,
-            "param0": 0,
-            "param1": 0,
-            "param2": 0,
-            "xRange": 0,
-            "yRange": 0,
-            "x": 1176,
-            "z": 442,
+            "x": 1138,
+            "z": 414,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 1155,
-            "z": 443,
+            "x": 1140,
+            "z": 411,
             "header": "MAP_ROUTE_18_GATEHOUSE",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1162,
-            "z": 443,
+            "x": 1147,
+            "z": 411,
             "header": "MAP_ROUTE_18_GATEHOUSE",
             "anchor": 1,
             "y": 0

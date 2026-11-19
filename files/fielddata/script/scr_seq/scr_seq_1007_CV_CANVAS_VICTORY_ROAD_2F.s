@@ -14,11 +14,12 @@
 	ScrDef VictoryRoad_2F_EventScript_DoubleEdgeTutor
 	ScrDef VictoryRoad_2F_EventScript_Moltres
 	ScrDef BerryField_EventScript_FindDragon
-	ScrDef _cv_unported_8
-	ScrDef _cv_unported_9
+	ScrDef VictoryRoad_2F_EventScript_FloorSwitch1
+	ScrDef VictoryRoad_2F_EventScript_FloorSwitch2
 	ScrDef VictoryRoad_2F_OnLoad
 	ScrDef VictoryRoad_2F_OnTransition
 	ScrDef VictoryRoad_2F_OnResume
+	ScrDef VictoryRoad_2F_Frlg_cv_Barriers
 	ScrDefEnd
 	
 VictoryRoad_2F_EventScript_Nelson:
@@ -97,10 +98,18 @@ VictoryRoad_2F_EventScript_FloorSwitch1:
 	LockAll
 	CompareVarToValue 0x5039, 100
 	GoToIfEq VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed
-	// TODO(gba) setmetatile 13, 10, METATILE_Cave_Floor_Ledge_Top, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 13, 11, METATILE_Cave_Floor_Ledge_Bottom, 0
-	GoTo _cv_stop
+	GoToIfSet 0x226A, _cv_bar_3
+	SetFlag 0x226A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_3
+	HidePerson 200
+_cv_bar_3:
+	GoToIfSet 0x226B, _cv_bar_4
+	SetFlag 0x226B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_4
+	HidePerson 201
+_cv_bar_4:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	GetPersonCoords 11, 0x401E, 0x401F
@@ -113,10 +122,18 @@ VictoryRoad_2F_EventScript_FloorSwitch2:
 	LockAll
 	CompareVarToValue 0x503A, 100
 	GoToIfEq VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed
-	// TODO(gba) setmetatile 33, 16, METATILE_Cave_Floor_Ledge_Top, 0
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 33, 17, METATILE_Cave_Floor_Ledge_Bottom, 0
-	GoTo _cv_stop
+	GoToIfSet 0x226C, _cv_bar_5
+	SetFlag 0x226C
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_5
+	HidePerson 202
+_cv_bar_5:
+	GoToIfSet 0x226D, _cv_bar_6
+	SetFlag 0x226D
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_6
+	HidePerson 203
+_cv_bar_6:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	GetPersonCoords 12, 0x401E, 0x401F
@@ -140,6 +157,16 @@ VictoryRoad_2F_OnResume:
 	CallIfSet 0x2032, MtEmber_Summit_EventScript_TryRemoveMoltres
 	End
 	
+VictoryRoad_2F_Frlg_cv_Barriers:
+	SetVar 0x5044, 1
+	SetFlag 0x226A
+	SetFlag 0x226B
+	SetFlag 0x226C
+	SetFlag 0x226D
+	Call VictoryRoad_2F_OnLoad_cv_init
+	SetVar 0x5044, 0
+	GoTo VictoryRoad_2F_OnTransition
+	
 GymCandidate_EventScript_RecruitPsychic:
 	SetVar 0x8004, 15
 	GoTo GymCandidate_EventScript_RecruitAfterBattle
@@ -155,12 +182,12 @@ GymCandidate_EventScript_RecruitOffer:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_3
+	GoToIfEq _cv_yes_7
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_4
-_cv_yes_3:
+	GoTo _cv_yn_8
+_cv_yes_7:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_4:
+_cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_RecruitDeclined
 	// TODO(gba) special GymCandidate_Recruit
@@ -178,8 +205,6 @@ _cv_yn_4:
 MtEmber_Summit_EventScript_Moltres:
 	LockAll
 	FacePlayer
-	// TODO(gba) setwildbattle SPECIES_MOLTRES, 50
-	GoTo _cv_stop
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry SPECIES_MOLTRES, 0
 	NPCMsg msg_0875_CV_CANVAS_VICTORY_ROAD_2F_Text_Gyaoo
@@ -188,14 +213,26 @@ MtEmber_Summit_EventScript_Moltres:
 	PlayBGM SEQ_GS_GYM
 	WaitButton
 	SetFlag 0x2032
-	// TODO(gba) special BattleSetup_StartLegendaryBattle
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	CloseMsg
+	WildBattle SPECIES_MOLTRES, 50, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_5
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_5:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_9
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_9:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_10
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_11
+_cv_outcome_10:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_11
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_11:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq MtEmber_Summit_EventScript_DefeatedMoltres
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -203,7 +240,6 @@ _cv_won_5:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq MtEmber_Summit_EventScript_RanFromMoltres
 	SetFlag 0x2165
-	CloseMsg
 	ReleaseAll
 	End
 	
@@ -216,13 +252,33 @@ VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed:
 	End
 	
 VictoryRoad_2F_EventScript_SetRockBarrier1:
-	// TODO(gba) setmetatile 13, 10, METATILE_Cave_RockBarrier_Top, 1
-	// TODO(gba) setmetatile 13, 11, METATILE_Cave_RockBarrier_Bottom, 1
+	GoToIfUnset 0x226A, _cv_bar_12
+	ClearFlag 0x226A
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_12
+	ShowPerson 200
+_cv_bar_12:
+	GoToIfUnset 0x226B, _cv_bar_13
+	ClearFlag 0x226B
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_13
+	ShowPerson 201
+_cv_bar_13:
 	Return
 	
 VictoryRoad_2F_EventScript_SetRockBarrier2:
-	// TODO(gba) setmetatile 33, 16, METATILE_Cave_RockBarrier_Top, 1
-	// TODO(gba) setmetatile 33, 17, METATILE_Cave_RockBarrier_Bottom, 1
+	GoToIfUnset 0x226C, _cv_bar_14
+	ClearFlag 0x226C
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_14
+	ShowPerson 202
+_cv_bar_14:
+	GoToIfUnset 0x226D, _cv_bar_15
+	ClearFlag 0x226D
+	CompareVarToValue 0x5044, 1
+	GoToIfEq _cv_bar_15
+	ShowPerson 203
+_cv_bar_15:
 	Return
 	
 MtEmber_Summit_EventScript_ShowMoltres:
@@ -230,14 +286,26 @@ MtEmber_Summit_EventScript_ShowMoltres:
 	Return
 	
 MtEmber_Summit_EventScript_TryRemoveMoltres:
-	CheckBattleWon 0x401C
-	CompareVarToValue 0x401C, 1
-	GoToIfEq _cv_won_6
-	SetVar 0x401C, 2
-_cv_won_6:
+	GetStaticEncounterOutcome 0x401C
+	CompareVarToValue 0x401C, 4
+	GoToIfNe _cv_outcome_16
+	SetVar 0x401C, 7
+	GoTo _cv_outcome_17
+_cv_outcome_16:
+	CompareVarToValue 0x401C, 5
+	GoToIfNe _cv_outcome_17
+	SetVar 0x401C, 4
+_cv_outcome_17:
 	CompareVarToValue 0x401C, 7
 	GoToIfNe Common_EventScript_NopReturn
 	HidePerson 0x401D
+	Return
+	
+VictoryRoad_2F_OnLoad_cv_init:
+	CompareVarToValue 0x5039, 100
+	CallIfNe VictoryRoad_2F_EventScript_SetRockBarrier1
+	CompareVarToValue 0x503A, 100
+	CallIfNe VictoryRoad_2F_EventScript_SetRockBarrier2
 	Return
 	
 GymCandidate_EventScript_RecruitAfterBattle:
@@ -285,24 +353,6 @@ EventScript_MonFlewAway:
 	WaitFade
 	BufferSpeciesName 0, 0x8004, 0, 0
 	NPCMsg msg_0875_CV_CANVAS_VICTORY_ROAD_2F_Text_MonFlewAway
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_8:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0875_CV_CANVAS_VICTORY_ROAD_2F_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_9:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0875_CV_CANVAS_VICTORY_ROAD_2F_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll

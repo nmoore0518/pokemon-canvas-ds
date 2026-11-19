@@ -9,7 +9,7 @@
 	ScrDef PokemonLeague_LancesRoom_EventScript_Lance
 	ScrDef PokemonLeague_LancesRoom_OnResume
 	ScrDef PokemonLeague_LancesRoom_OnLoad
-	ScrDef _cv_unported_3
+	ScrDef PokemonLeague_LancesRoom_EventScript_EnterRoom
 	ScrDefEnd
 	
 PokemonLeague_LancesRoom_EventScript_Lance:
@@ -212,14 +212,14 @@ PokemonLeague_LancesRoom_EventScript_SetDoorOpen:
 	Return
 	
 PokemonLeague_LancesRoom_EventScript_SetEntryClosed:
-	// TODO(gba) setmetatile 5, 14, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1
-	// TODO(gba) setmetatile 6, 14, METATILE_PokemonLeague_Entry_TopMid_Closed, 1
-	// TODO(gba) setmetatile 7, 14, METATILE_PokemonLeague_Entry_TopRight_Closed, 1
-	// TODO(gba) setmetatile 5, 15, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1
-	// TODO(gba) setmetatile 6, 15, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1
-	// TODO(gba) setmetatile 7, 15, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1
-	// TODO(gba) setmetatile 6, 16, METATILE_PokemonLeague_Floor_ShadeFull_Lance, 0
-	// TODO(gba) setmetatile 7, 16, METATILE_PokemonLeague_Floor_ShadeFull_Lance, 0
+	// (the GBA redraws a square here: 5, 14, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1)
+	// (the GBA redraws a square here: 6, 14, METATILE_PokemonLeague_Entry_TopMid_Closed, 1)
+	// (the GBA redraws a square here: 7, 14, METATILE_PokemonLeague_Entry_TopRight_Closed, 1)
+	// (the GBA redraws a square here: 5, 15, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1)
+	// (the GBA redraws a square here: 6, 15, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1)
+	// (the GBA redraws a square here: 7, 15, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1)
+	// (the GBA redraws a square here: 6, 16, METATILE_PokemonLeague_Floor_ShadeFull_Lance, 0)
+	// (the GBA redraws a square here: 7, 16, METATILE_PokemonLeague_Floor_ShadeFull_Lance, 0)
 	Return
 	
 GymCandidate_EventScript_ShowText4:
@@ -231,10 +231,8 @@ PokemonLeague_EventScript_OpenDoorLance:
 	ApplyMovement obj_player, Common_Movement_Delay32
 	WaitMovement
 	PlaySE SEQ_SE_DP_DOOR
-	// TODO(gba) setmetatile 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1
-	GoTo _cv_stop
-	// TODO(gba) setmetatile 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0
-	GoTo _cv_stop
+	// (the GBA redraws a square here: 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1)
+	// (the GBA redraws a square here: 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0)
 	SetFlag 4
 	Return
 	
@@ -247,21 +245,12 @@ GymCandidate_EventScript_EliteFourApprove:
 	End
 	
 PokemonLeague_EventScript_SetDoorOpenLance:
-	// TODO(gba) setmetatile 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1
-	// TODO(gba) setmetatile 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0
+	// (the GBA redraws a square here: 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1)
+	// (the GBA redraws a square here: 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0)
 	Return
 	
 GymCandidate_EventScript_Return:
 	Return
-
-_cv_unported_3:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0526_T10R0501_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_str4:
 	BufferPlayersName 6

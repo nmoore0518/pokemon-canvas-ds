@@ -162,14 +162,25 @@ GymLegend_EventScript_Legend:
 	// TODO(gba) special GymLegend_CreateMon
 	GoTo _cv_stop
 	SetFlag 0x2032
-	// TODO(gba) special BattleSetup_StartLegendaryBattle
-	GoTo _cv_stop
-	ClearFlag 0x2032
+	WildBattle 0, 5, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_wild_3
+	WhiteOut
+	ReleaseAll
+	End
+_cv_wild_3:
+	ClearFlag 0x2032
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_4
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_5
+_cv_outcome_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_5
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_5:
 	HidePerson 16
 	SetFlag 0x203A
 	CompareVarToValue VAR_SPECIAL_RESULT, 7
@@ -391,565 +402,565 @@ Johto_EventScript_Invitation:
 	Call GymCandidate_EventScript_VisitorWalksIn
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_next_5
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_5:
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_next_6
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_6:
-	CompareVarToValue 0x5019, 11
 	GoToIfNe _cv_next_7
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_7:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_8
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_8:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_9
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Misty
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_7:
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_next_8
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_8:
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_next_9
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
+	GoTo _cv_done_6
 _cv_next_9:
-	CompareVarToValue 0x5019, 12
+	CompareVarToValue 0x5019, 13
 	GoToIfNe _cv_next_10
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_10:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_11
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_11:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_12
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Erika
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_10:
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_next_11
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_11:
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_next_12
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
+	GoTo _cv_done_6
 _cv_next_12:
-	CompareVarToValue 0x5019, 14
+	CompareVarToValue 0x5019, 3
 	GoToIfNe _cv_next_13
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
+	GoTo _cv_done_6
 _cv_next_13:
-	CompareVarToValue 0x5019, 9
+	CompareVarToValue 0x5019, 6
 	GoToIfNe _cv_next_14
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_14:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_15
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_14:
+	GoTo _cv_done_6
+_cv_next_15:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_16
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_16:
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_next_15
+	GoToIfNe _cv_next_17
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Blaine
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_15:
+	GoTo _cv_done_6
+_cv_next_17:
 	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_next_16
+	GoToIfNe _cv_next_18
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_16:
+	GoTo _cv_done_6
+_cv_next_18:
 	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_next_17
+	GoToIfNe _cv_next_19
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_17:
+	GoTo _cv_done_6
+_cv_next_19:
 	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_next_18
+	GoToIfNe _cv_next_20
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lorelei
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_18:
+	GoTo _cv_done_6
+_cv_next_20:
 	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_next_19
+	GoToIfNe _cv_next_21
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_19:
+	GoTo _cv_done_6
+_cv_next_21:
 	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_next_20
+	GoToIfNe _cv_next_22
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_20:
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_next_21
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
-_cv_next_21:
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_next_22
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_4
+	GoTo _cv_done_6
 _cv_next_22:
-_cv_done_4:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_23
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_23:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_24
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_6
+_cv_next_24:
+_cv_done_6:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorInvite
 	WaitButton
 	Call Johto_EventScript_ReceiveInvitation
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_next_24
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_24:
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_next_25
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_25:
-	CompareVarToValue 0x5019, 11
 	GoToIfNe _cv_next_26
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_26:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_27
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_27:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_28
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Misty
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_26:
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_next_27
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_27:
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_next_28
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
+	GoTo _cv_done_25
 _cv_next_28:
-	CompareVarToValue 0x5019, 12
+	CompareVarToValue 0x5019, 13
 	GoToIfNe _cv_next_29
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_29:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_30
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_30:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_31
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Erika
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_29:
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_next_30
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_30:
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_next_31
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
+	GoTo _cv_done_25
 _cv_next_31:
-	CompareVarToValue 0x5019, 14
+	CompareVarToValue 0x5019, 3
 	GoToIfNe _cv_next_32
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
+	GoTo _cv_done_25
 _cv_next_32:
-	CompareVarToValue 0x5019, 9
+	CompareVarToValue 0x5019, 6
 	GoToIfNe _cv_next_33
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_33:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_34
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_33:
+	GoTo _cv_done_25
+_cv_next_34:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_35
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_35:
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_next_34
+	GoToIfNe _cv_next_36
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Blaine
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_34:
+	GoTo _cv_done_25
+_cv_next_36:
 	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_next_35
+	GoToIfNe _cv_next_37
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_35:
+	GoTo _cv_done_25
+_cv_next_37:
 	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_next_36
+	GoToIfNe _cv_next_38
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_36:
+	GoTo _cv_done_25
+_cv_next_38:
 	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_next_37
+	GoToIfNe _cv_next_39
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lorelei
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_37:
+	GoTo _cv_done_25
+_cv_next_39:
 	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_next_38
+	GoToIfNe _cv_next_40
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_38:
+	GoTo _cv_done_25
+_cv_next_40:
 	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_next_39
+	GoToIfNe _cv_next_41
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_39:
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_next_40
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
-_cv_next_40:
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_next_41
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_23
+	GoTo _cv_done_25
 _cv_next_41:
-_cv_done_23:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_42
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_42:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_43
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_25
+_cv_next_43:
+_cv_done_25:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorInviteFerry
 	WaitButton
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_next_43
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_43:
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_next_44
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_44:
-	CompareVarToValue 0x5019, 11
 	GoToIfNe _cv_next_45
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_45:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_46
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_46:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_47
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Misty
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_45:
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_next_46
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_46:
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_next_47
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
+	GoTo _cv_done_44
 _cv_next_47:
-	CompareVarToValue 0x5019, 12
+	CompareVarToValue 0x5019, 13
 	GoToIfNe _cv_next_48
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_48:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_49
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_49:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_50
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Erika
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_48:
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_next_49
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_49:
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_next_50
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
+	GoTo _cv_done_44
 _cv_next_50:
-	CompareVarToValue 0x5019, 14
+	CompareVarToValue 0x5019, 3
 	GoToIfNe _cv_next_51
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
+	GoTo _cv_done_44
 _cv_next_51:
-	CompareVarToValue 0x5019, 9
+	CompareVarToValue 0x5019, 6
 	GoToIfNe _cv_next_52
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_52:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_53
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_52:
+	GoTo _cv_done_44
+_cv_next_53:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_54
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_54:
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_next_53
+	GoToIfNe _cv_next_55
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Blaine
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_53:
+	GoTo _cv_done_44
+_cv_next_55:
 	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_next_54
+	GoToIfNe _cv_next_56
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_54:
+	GoTo _cv_done_44
+_cv_next_56:
 	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_next_55
+	GoToIfNe _cv_next_57
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_55:
+	GoTo _cv_done_44
+_cv_next_57:
 	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_next_56
+	GoToIfNe _cv_next_58
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lorelei
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_56:
+	GoTo _cv_done_44
+_cv_next_58:
 	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_next_57
+	GoToIfNe _cv_next_59
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_57:
+	GoTo _cv_done_44
+_cv_next_59:
 	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_next_58
+	GoToIfNe _cv_next_60
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_58:
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_next_59
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
-_cv_next_59:
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_next_60
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_42
+	GoTo _cv_done_44
 _cv_next_60:
-_cv_done_42:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_61
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_61:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_62
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_44
+_cv_next_62:
+_cv_done_44:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorGymCharm
 	WaitButton
 	Call Johto_EventScript_ReceiveGymCharm
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_next_62
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_62:
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_next_63
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_63:
-	CompareVarToValue 0x5019, 11
 	GoToIfNe _cv_next_64
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_64:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_65
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_65:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_66
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Misty
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_64:
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_next_65
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_65:
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_next_66
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
+	GoTo _cv_done_63
 _cv_next_66:
-	CompareVarToValue 0x5019, 12
+	CompareVarToValue 0x5019, 13
 	GoToIfNe _cv_next_67
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_67:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_68
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_68:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_69
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Erika
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_67:
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_next_68
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_68:
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_next_69
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
+	GoTo _cv_done_63
 _cv_next_69:
-	CompareVarToValue 0x5019, 14
+	CompareVarToValue 0x5019, 3
 	GoToIfNe _cv_next_70
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
+	GoTo _cv_done_63
 _cv_next_70:
-	CompareVarToValue 0x5019, 9
+	CompareVarToValue 0x5019, 6
 	GoToIfNe _cv_next_71
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_71:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_72
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_71:
+	GoTo _cv_done_63
+_cv_next_72:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_73
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_73:
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_next_72
+	GoToIfNe _cv_next_74
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Blaine
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_72:
+	GoTo _cv_done_63
+_cv_next_74:
 	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_next_73
+	GoToIfNe _cv_next_75
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_73:
+	GoTo _cv_done_63
+_cv_next_75:
 	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_next_74
+	GoToIfNe _cv_next_76
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_74:
+	GoTo _cv_done_63
+_cv_next_76:
 	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_next_75
+	GoToIfNe _cv_next_77
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lorelei
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_75:
+	GoTo _cv_done_63
+_cv_next_77:
 	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_next_76
+	GoToIfNe _cv_next_78
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_76:
+	GoTo _cv_done_63
+_cv_next_78:
 	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_next_77
+	GoToIfNe _cv_next_79
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_77:
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_next_78
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
-_cv_next_78:
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_next_79
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_61
+	GoTo _cv_done_63
 _cv_next_79:
-_cv_done_61:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_80
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_80:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_81
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_63
+_cv_next_81:
+_cv_done_63:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorGymCharmHow
 	WaitButton
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_next_81
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_81:
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_next_82
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_82:
-	CompareVarToValue 0x5019, 11
 	GoToIfNe _cv_next_83
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_83:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_84
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Brock
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_84:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_85
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Misty
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_83:
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_next_84
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_84:
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_next_85
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
+	GoTo _cv_done_82
 _cv_next_85:
-	CompareVarToValue 0x5019, 12
+	CompareVarToValue 0x5019, 13
 	GoToIfNe _cv_next_86
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_86:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_87
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_LtSurge
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_87:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_88
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Erika
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_86:
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_next_87
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_87:
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_next_88
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
+	GoTo _cv_done_82
 _cv_next_88:
-	CompareVarToValue 0x5019, 14
+	CompareVarToValue 0x5019, 3
 	GoToIfNe _cv_next_89
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
+	GoTo _cv_done_82
 _cv_next_89:
-	CompareVarToValue 0x5019, 9
+	CompareVarToValue 0x5019, 6
 	GoToIfNe _cv_next_90
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Koga
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_90:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_91
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_90:
+	GoTo _cv_done_82
+_cv_next_91:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_92
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Sabrina
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_92:
 	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_next_91
+	GoToIfNe _cv_next_93
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Blaine
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_91:
+	GoTo _cv_done_82
+_cv_next_93:
 	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_next_92
+	GoToIfNe _cv_next_94
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_92:
+	GoTo _cv_done_82
+_cv_next_94:
 	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_next_93
+	GoToIfNe _cv_next_95
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_93:
+	GoTo _cv_done_82
+_cv_next_95:
 	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_next_94
+	GoToIfNe _cv_next_96
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lorelei
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_94:
+	GoTo _cv_done_82
+_cv_next_96:
 	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_next_95
+	GoToIfNe _cv_next_97
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Bruno
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_95:
+	GoTo _cv_done_82
+_cv_next_97:
 	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_next_96
+	GoToIfNe _cv_next_98
 	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Agatha
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_96:
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_next_97
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
-_cv_next_97:
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_next_98
-	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
-	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_done_80
+	GoTo _cv_done_82
 _cv_next_98:
-_cv_done_80:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_99
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_99:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_100
+	CanvasBufferMsg 0, msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_name_Lance
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_done_82
+_cv_next_100:
+_cv_done_82:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Johto_Text_MentorLeaderPerks
 	WaitButton
 	Call GymCandidate_EventScript_VisitorWalksOut
@@ -962,14 +973,14 @@ Gauntlet_EventScript_Arrives:
 	LockAll
 	SetVar 0x501B, 2
 	ClearFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_99
+	GoToIfUnset 0x2035, _cv_show_101
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_100
-_cv_show_99:
+	GoTo _cv_shown_102
+_cv_show_101:
 	ShowPerson 17
-_cv_shown_100:
+_cv_shown_102:
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 17, Common_Movement_ExclamationMark
 	WaitMovement
@@ -989,12 +1000,12 @@ GymFinale_EventScript_OakAsksToBattle:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakWillYouBattle
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_101
+	GoToIfEq _cv_yes_103
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_102
-_cv_yes_101:
+	GoTo _cv_yn_104
+_cv_yes_103:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_102:
+_cv_yn_104:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymFinale_EventScript_PutOff
 	// TODO(gba) special GymHack_CheckTeamSpecial
@@ -1010,24 +1021,29 @@ _cv_yn_102:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_103
+	GoToIf TRUE, _cv_beaten_105
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_104
+	GoToIfNe _cv_won_106
 	WhiteOut
 	End
-_cv_won_104:
+_cv_won_106:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_103:
+_cv_beaten_105:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_105
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_105:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_107
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_108
+_cv_outcome_107:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_108
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_108:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymFinale_EventScript_BeatOak
 	GoTo GymFinale_EventScript_LostToOak
@@ -1035,30 +1051,30 @@ _cv_won_105:
 	
 GymChallenge_EventScript_AideNotYet:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2093, _cv_appr_106
-	AddVar VAR_SPECIAL_RESULT, 1
-_cv_appr_106:
-	GoToIfUnset 0x2094, _cv_appr_107
-	AddVar VAR_SPECIAL_RESULT, 1
-_cv_appr_107:
-	GoToIfUnset 0x2095, _cv_appr_108
-	AddVar VAR_SPECIAL_RESULT, 1
-_cv_appr_108:
-	GoToIfUnset 0x2096, _cv_appr_109
+	GoToIfUnset 0x2093, _cv_appr_109
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_109:
-	GoToIfUnset 0x2097, _cv_appr_110
+	GoToIfUnset 0x2094, _cv_appr_110
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_110:
-	GoToIfUnset 0x2098, _cv_appr_111
+	GoToIfUnset 0x2095, _cv_appr_111
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_111:
-	GoToIfUnset 0x2099, _cv_appr_112
+	GoToIfUnset 0x2096, _cv_appr_112
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_112:
-	GoToIfUnset 0x2007, _cv_appr_113
+	GoToIfUnset 0x2097, _cv_appr_113
 	AddVar VAR_SPECIAL_RESULT, 1
 _cv_appr_113:
+	GoToIfUnset 0x2098, _cv_appr_114
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_114:
+	GoToIfUnset 0x2099, _cv_appr_115
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_115:
+	GoToIfUnset 0x2007, _cv_appr_116
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_116:
 	BufferInt 0, VAR_SPECIAL_RESULT
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_AideNotYet
 	WaitButton
@@ -1117,14 +1133,14 @@ GymChallenge_EventScript_NextChallenger:
 	CallIfEq GymSwitch_EventScript_AnnounceMentor
 	CloseMsg
 	ClearFlag 0x2017
-	GoToIfUnset 0x2017, _cv_show_114
+	GoToIfUnset 0x2017, _cv_show_117
 	ClearFlag 0x2017
 	ShowPerson 4
 	SetFlag 0x2017
-	GoTo _cv_shown_115
-_cv_show_114:
+	GoTo _cv_shown_118
+_cv_show_117:
 	ShowPerson 4
-_cv_shown_115:
+_cv_shown_118:
 	SetVar 0x8004, 0
 	// TODO(gba) special GymChallenge_PlanChallengerWalk
 	GoTo _cv_stop
@@ -1138,24 +1154,29 @@ _cv_shown_115:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_116
+	GoToIf TRUE, _cv_beaten_119
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_117
+	GoToIfNe _cv_won_120
 	WhiteOut
 	End
-_cv_won_117:
+_cv_won_120:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_116:
+_cv_beaten_119:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_118
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_118:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_121
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_122
+_cv_outcome_121:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_122
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_122:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymChallenge_EventScript_Won
 	GoTo GymChallenge_EventScript_Lost
@@ -1169,12 +1190,12 @@ GymPractice_EventScript_Trainer:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymPractice_Text_Offer
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_119
+	GoToIfEq _cv_yes_123
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_120
-_cv_yes_119:
+	GoTo _cv_yn_124
+_cv_yes_123:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_120:
+_cv_yn_124:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymPractice_EventScript_NotNow
 	// TODO(gba) special GymChallenge_GeneratePractice
@@ -1185,27 +1206,32 @@ _cv_yn_120:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_121
+	GoToIf TRUE, _cv_beaten_125
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_122
+	GoToIfNe _cv_won_126
 	WhiteOut
 	End
-_cv_won_122:
+_cv_won_126:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_121:
+_cv_beaten_125:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
 	HealParty
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_123
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_123:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_127
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_128
+_cv_outcome_127:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_128
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_128:
 	// TODO(gba) special GymChallenge_BufferPracticeTrainer
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1230,12 +1256,12 @@ Gauntlet_EventScript_PalmPilot:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_124
+	GoToIfEq _cv_yes_129
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_125
-_cv_yes_124:
+	GoTo _cv_yn_130
+_cv_yes_129:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_125:
+_cv_yn_130:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	End
@@ -1245,12 +1271,12 @@ Gauntlet_EventScript_AllBeaten:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ReadyToMeet
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_126
+	GoToIfEq _cv_yes_131
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_127
-_cv_yes_126:
+	GoTo _cv_yn_132
+_cv_yes_131:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_127:
+_cv_yn_132:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_NotYet
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal1
@@ -1263,14 +1289,14 @@ _cv_yn_127:
 	GoTo _cv_stop
 	HidePerson 17
 	SetFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_128
+	GoToIfUnset 0x2035, _cv_show_133
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_129
-_cv_show_128:
+	GoTo _cv_shown_134
+_cv_show_133:
 	ShowPerson 17
-_cv_shown_129:
+_cv_shown_134:
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 1, RGB_WHITE
 	WaitFade
@@ -1306,9 +1332,9 @@ Tourney_EventScript_Menu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_131
+	GoToIfLt _cv_menu_136
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_131:
+_cv_menu_136:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Enter
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1359,18 +1385,18 @@ PalletTown_Gym_EventScript_ShowOak:
 	
 EventScript_TryReadyNationalDexScene:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_132
+	GoToIfUnset 0x2026, _cv_dex_137
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_132:
+_cv_dex_137:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	CallIfEq EventScript_SetReadyTryGiveNationalDexScene
 	Return
 	
 EventScript_GiveHotAirBalloon:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x202C, _cv_has_133
+	GoToIfUnset 0x202C, _cv_has_138
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_133:
+_cv_has_138:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_PalmPilotReturn
 	SetFlag 0x202C
@@ -1410,14 +1436,14 @@ GymLegend_EventScript_RivalWalksIn:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_134
+	GoToIfUnset 0x2033, _cv_show_139
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_135
-_cv_show_134:
+	GoTo _cv_shown_140
+_cv_show_139:
 	ShowPerson 2
-_cv_shown_135:
+_cv_shown_140:
 	ApplyMovement 2, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
@@ -1462,14 +1488,14 @@ GymLegend_EventScript_Appears:
 	WaitButton
 	CloseMsg
 	ClearFlag 0x203A
-	GoToIfUnset 0x203A, _cv_show_136
+	GoToIfUnset 0x203A, _cv_show_141
 	ClearFlag 0x203A
 	ShowPerson 16
 	SetFlag 0x203A
-	GoTo _cv_shown_137
-_cv_show_136:
+	GoTo _cv_shown_142
+_cv_show_141:
 	ShowPerson 16
-_cv_shown_137:
+_cv_shown_142:
 	Wait 40, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 1, RGB_WHITE
@@ -1660,12 +1686,12 @@ GymChallenge_EventScript_Won:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_KeepGoing
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_138
+	GoToIfEq _cv_yes_143
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_139
-_cv_yes_138:
+	GoTo _cv_yn_144
+_cv_yes_143:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_139:
+_cv_yn_144:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	// TODO(gba) special GymChallenge_BufferRecord
@@ -1728,9 +1754,9 @@ Gauntlet_EventScript_PilotMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_141
+	GoToIfLt _cv_menu_146
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_141:
+_cv_menu_146:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Menu
 	GoTo Gauntlet_EventScript_PilotOff
@@ -1746,12 +1772,12 @@ Gauntlet_EventScript_Withdraw:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawConfirm
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_142
+	GoToIfEq _cv_yes_147
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_143
-_cv_yes_142:
+	GoTo _cv_yn_148
+_cv_yes_147:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_143:
+_cv_yn_148:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	GiveMon 0x8005, 70, 0, 0, 0, VAR_SPECIAL_RESULT
@@ -1773,12 +1799,12 @@ Gauntlet_EventScript_BillAgain:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillAgain
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_144
+	GoToIfEq _cv_yes_149
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_145
-_cv_yes_144:
+	GoTo _cv_yn_150
+_cv_yes_149:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_145:
+_cv_yn_150:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_BillWait
 	End
@@ -1804,24 +1830,29 @@ Gauntlet_EventScript_BillBattle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_146
+	GoToIf TRUE, _cv_beaten_151
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_147
+	GoToIfNe _cv_won_152
 	WhiteOut
 	End
-_cv_won_147:
+_cv_won_152:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_146:
+_cv_beaten_151:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_148
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_148:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_153
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_154
+_cv_outcome_153:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_154
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_154:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_BillWon
 	HealParty
@@ -1846,9 +1877,9 @@ Tourney_EventScript_MenuActive:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_150
+	GoToIfLt _cv_menu_156
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_150:
+_cv_menu_156:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Match
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1867,9 +1898,9 @@ Tourney_EventScript_MenuSimBill:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_152
+	GoToIfLt _cv_menu_158
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_152:
+_cv_menu_158:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_SimBill
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1885,9 +1916,9 @@ Tourney_EventScript_MenuFirst:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_154
+	GoToIfLt _cv_menu_160
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_154:
+_cv_menu_160:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Enter
 	GoTo Tourney_EventScript_NotNow
@@ -1974,14 +2005,14 @@ GymLegend_EventScript_RivalAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_155
+	GoToIfUnset 0x2033, _cv_show_161
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_156
-_cv_show_155:
+	GoTo _cv_shown_162
+_cv_show_161:
 	ShowPerson 2
-_cv_shown_156:
+_cv_shown_162:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
 	End
@@ -2156,9 +2187,9 @@ GymSwitch_EventScript_KeepGoingOrRetire:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_158
+	GoToIfLt _cv_menu_164
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_158:
+_cv_menu_164:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -2191,14 +2222,14 @@ GymSwitch_EventScript_OakComes:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_159
+	GoToIfUnset 0x2034, _cv_show_165
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_160
-_cv_show_159:
+	GoTo _cv_shown_166
+_cv_show_165:
 	ShowPerson 1
-_cv_shown_160:
+_cv_shown_166:
 	ApplyMovement 1, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
@@ -2214,9 +2245,9 @@ Gauntlet_EventScript_PilotMenuWithdraw:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_162
+	GoToIfLt _cv_menu_168
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_162:
+_cv_menu_168:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -2269,14 +2300,14 @@ Gauntlet_EventScript_BillWon:
 	GoTo _cv_stop
 	HidePerson 17
 	SetFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_163
+	GoToIfUnset 0x2035, _cv_show_169
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_164
-_cv_show_163:
+	GoTo _cv_shown_170
+_cv_show_169:
 	ShowPerson 17
-_cv_shown_164:
+_cv_shown_170:
 	Wait 60, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
@@ -2351,24 +2382,29 @@ Tourney_EventScript_SimBill:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_165
+	GoToIf TRUE, _cv_beaten_171
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_166
+	GoToIfNe _cv_won_172
 	WhiteOut
 	End
-_cv_won_166:
+_cv_won_172:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_165:
+_cv_beaten_171:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_167
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_167:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_173
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_174
+_cv_outcome_173:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_174
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_174:
 	HealParty
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Tourney_EventScript_SimBillWon
@@ -2388,12 +2424,12 @@ Tourney_EventScript_SayRules:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Rules
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_168
+	GoToIfEq _cv_yes_175
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_169
-_cv_yes_168:
+	GoTo _cv_yn_176
+_cv_yes_175:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_169:
+_cv_yn_176:
 	Return
 	
 Tourney_EventScript_BreaksClause:
@@ -2413,9 +2449,9 @@ Tourney_EventScript_SimFormat:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_171
+	GoToIfLt _cv_menu_178
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_171:
+_cv_menu_178:
 	// TODO(gba) special Tourney_SetSimFormat
 	GoTo _cv_stop
 	CloseMsg
@@ -2434,12 +2470,12 @@ Tourney_EventScript_SayFirst:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_First
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_172
+	GoToIfEq _cv_yes_179
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_173
-_cv_yes_172:
+	GoTo _cv_yn_180
+_cv_yes_179:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_173:
+_cv_yn_180:
 	Return
 	
 Tourney_EventScript_SayChampion:
@@ -2534,14 +2570,14 @@ GymSwitch_EventScript_OakAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_174
+	GoToIfUnset 0x2034, _cv_show_181
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_175
-_cv_show_174:
+	GoTo _cv_shown_182
+_cv_show_181:
 	ShowPerson 1
-_cv_shown_175:
+_cv_shown_182:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
 	End
@@ -2572,12 +2608,12 @@ Tourney_EventScript_SayForfeitAsk:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ForfeitAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_176
+	GoToIfEq _cv_yes_183
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_177
-_cv_yes_176:
+	GoTo _cv_yn_184
+_cv_yes_183:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_177:
+_cv_yn_184:
 	Return
 	
 Tourney_EventScript_SimForfeited:
@@ -2596,12 +2632,12 @@ Tourney_EventScript_SimBillWon:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_178
+	GoToIfEq _cv_yes_185
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_179
-_cv_yes_178:
+	GoTo _cv_yn_186
+_cv_yes_185:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_179:
+_cv_yn_186:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CloseMsg
@@ -2612,12 +2648,12 @@ Tourney_EventScript_SayRulesSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimStart
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_180
+	GoToIfEq _cv_yes_187
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_181
-_cv_yes_180:
+	GoTo _cv_yn_188
+_cv_yes_187:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_181:
+_cv_yn_188:
 	Return
 	
 Tourney_EventScript_SpeciesClause:
@@ -2643,12 +2679,12 @@ Tourney_EventScript_SayFirstSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFirst
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_182
+	GoToIfEq _cv_yes_189
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_183
-_cv_yes_182:
+	GoTo _cv_yn_190
+_cv_yes_189:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_183:
+_cv_yn_190:
 	Return
 	
 Tourney_EventScript_SayChampionSim:
@@ -2710,12 +2746,12 @@ Tourney_EventScript_SayForfeitAskSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_184
+	GoToIfEq _cv_yes_191
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_185
-_cv_yes_184:
+	GoTo _cv_yn_192
+_cv_yes_191:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_185:
+_cv_yn_192:
 	Return
 	
 Tourney_EventScript_SimSpeciesClause:
@@ -2744,12 +2780,12 @@ GymSwitch_EventScript_OakHere:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_186
+	GoToIfEq _cv_yes_193
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_187
-_cv_yes_186:
+	GoTo _cv_yn_194
+_cv_yes_193:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_187:
+_cv_yn_194:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakDeclined
 	SetVar 0x8004, 1
@@ -2837,9 +2873,9 @@ GymSwitch_EventScript_TypeMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_189
+	GoToIfLt _cv_menu_196
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_189:
+_cv_menu_196:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymSwitch_EventScript_ChoiceCancelled
 	// TODO(gba) special GymSwitch_BufferChoice
@@ -2850,12 +2886,12 @@ _cv_menu_189:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmOld
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_190
+	GoToIfEq _cv_yes_197
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_191
-_cv_yes_190:
+	GoTo _cv_yn_198
+_cv_yes_197:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_191:
+_cv_yn_198:
 	GoTo GymSwitch_EventScript_Confirmed
 	CloseMsg
 	End
@@ -2878,12 +2914,12 @@ GymSwitch_EventScript_ConfirmNew:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmNew
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_192
+	GoToIfEq _cv_yes_199
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_193
-_cv_yes_192:
+	GoTo _cv_yn_200
+_cv_yes_199:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_193:
+_cv_yn_200:
 	End
 	
 GymSwitch_EventScript_Confirmed:

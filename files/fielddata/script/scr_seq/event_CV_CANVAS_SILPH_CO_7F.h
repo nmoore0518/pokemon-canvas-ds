@@ -16,6 +16,7 @@
 #define _EV_SilphCo_7F_EventScript_RivalTriggerBottom 12
 #define _EV_SilphCo_7F_OnLoad 13
 #define _EV_SilphCo_7F_OnTransition 14
+#define _EV_SilphCo_7F_Frlg_cv_Barriers 15
 
 #define LOCALID_SILPH_CO_RIVAL 1
 #define LOCALID_SILPH_CO_7F_WORKER_M2 8

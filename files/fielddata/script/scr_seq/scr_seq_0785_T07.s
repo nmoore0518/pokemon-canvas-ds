@@ -20,7 +20,6 @@
 	ScrDef CeladonCity_EventScript_SilphCoScientist
 	ScrDef BerryField_EventScript_FindFairy
 	ScrDef TypeTutor_EventScript_Grass
-	ScrDef BerryField_EventScript_FindElectric
 	ScrDef CeladonCity_EventScript_TrainerTips2
 	ScrDef CeladonCity_EventScript_PrizeExchangeSign
 	ScrDef CeladonCity_EventScript_GameCornerSign
@@ -159,13 +158,6 @@ TypeTutor_EventScript_Grass:
 	FacePlayer
 	SetVar 0x8004, 11
 	GoTo TypeTutor_EventScript_Talk
-	
-BerryField_EventScript_FindElectric:
-	SetVar 0x8004, ITEM_WACAN_BERRY
-	SetVar 0x8005, 1
-	CallStd std_obtain_item_verbose
-	HidePerson VAR_SPECIAL_LAST_TALKED
-	End
 	
 CeladonCity_EventScript_TrainerTips2:
 	PlaySE SEQ_SE_DP_SELECT

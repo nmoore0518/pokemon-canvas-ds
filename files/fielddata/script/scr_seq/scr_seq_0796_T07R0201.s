@@ -147,11 +147,16 @@ _cv_won_2:
 	End
 _cv_beaten_1:
 	ClearFlag 0x2036
-	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq _cv_won_3
-	SetVar VAR_SPECIAL_RESULT, 2
-_cv_won_3:
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_3
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_4
+_cv_outcome_3:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_4
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_4:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0501_T07R0201_PaintWorld_Text_Dissolve
@@ -216,9 +221,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_5
+	GoToIfLt _cv_menu_6
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_5:
+_cv_menu_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

@@ -32,6 +32,14 @@
             "z": 233,
             "y": 0,
             "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route12_EventScript_RouteSign + 1",
+            "type": 0,
+            "x": 1368,
+            "z": 255,
+            "y": 0,
+            "dir": 4
         }
     ],
     "objects": [

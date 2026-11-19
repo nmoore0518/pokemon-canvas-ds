@@ -56,10 +56,10 @@
     ],
     "warps": [
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 3,
+            "z": 7,
+            "header": "MAP_CELADON",
+            "anchor": 12,
             "y": 0
         },
         {
@@ -70,10 +70,10 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 5,
+            "z": 7,
+            "header": "MAP_CELADON",
+            "anchor": 12,
             "y": 0
         }
     ],

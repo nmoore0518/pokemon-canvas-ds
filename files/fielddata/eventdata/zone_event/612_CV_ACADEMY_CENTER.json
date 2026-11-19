@@ -46,16 +46,16 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 7,
+            "z": 8,
+            "header": "MAP_ROUTE_11",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
+            "x": 8,
+            "z": 8,
+            "header": "MAP_ROUTE_11",
             "anchor": 0,
             "y": 0
         }

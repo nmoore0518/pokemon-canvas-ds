@@ -10,7 +10,7 @@
 	ScrDef PokemonLeague_LoreleisRoom_OnResume
 	ScrDef PokemonLeague_LoreleisRoom_OnLoad
 	ScrDef PokemonLeague_LoreleisRoom_OnTransition
-	ScrDef _cv_unported_4
+	ScrDef PokemonLeague_LoreleisRoom_EventScript_EnterRoom
 	ScrDefEnd
 	
 PokemonLeague_LoreleisRoom_EventScript_Lorelei:
@@ -231,30 +231,21 @@ GymCandidate_EventScript_EliteFourApprove:
 	End
 	
 PokemonLeague_EventScript_SetDoorOpen:
-	// TODO(gba) setmetatile 6, 1, METATILE_PokemonLeague_Door_Top_Open, 1
-	// TODO(gba) setmetatile 6, 2, METATILE_PokemonLeague_Door_Mid_Open, 0
+	// (the GBA redraws a square here: 6, 1, METATILE_PokemonLeague_Door_Top_Open, 1)
+	// (the GBA redraws a square here: 6, 2, METATILE_PokemonLeague_Door_Mid_Open, 0)
 	Return
 	
 PokemonLeague_EventScript_CloseEntry:
-	// TODO(gba) setmetatile 5, 11, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1
-	// TODO(gba) setmetatile 6, 11, METATILE_PokemonLeague_Entry_TopMid_Closed, 1
-	// TODO(gba) setmetatile 7, 11, METATILE_PokemonLeague_Entry_TopRight_Closed, 1
-	// TODO(gba) setmetatile 5, 12, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1
-	// TODO(gba) setmetatile 6, 12, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1
-	// TODO(gba) setmetatile 7, 12, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1
+	// (the GBA redraws a square here: 5, 11, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1)
+	// (the GBA redraws a square here: 6, 11, METATILE_PokemonLeague_Entry_TopMid_Closed, 1)
+	// (the GBA redraws a square here: 7, 11, METATILE_PokemonLeague_Entry_TopRight_Closed, 1)
+	// (the GBA redraws a square here: 5, 12, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1)
+	// (the GBA redraws a square here: 6, 12, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1)
+	// (the GBA redraws a square here: 7, 12, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1)
 	Return
 	
 GymCandidate_EventScript_Return:
 	Return
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0523_T10R0201_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_str4:
 	BufferPlayersName 6

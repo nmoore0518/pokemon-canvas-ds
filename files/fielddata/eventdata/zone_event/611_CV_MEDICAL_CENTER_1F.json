@@ -259,10 +259,10 @@
     ],
     "warps": [
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 9,
+            "z": 13,
+            "header": "MAP_VERMILION",
+            "anchor": 2,
             "y": 0
         },
         {
@@ -273,10 +273,10 @@
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 11,
+            "z": 13,
+            "header": "MAP_VERMILION",
+            "anchor": 2,
             "y": 0
         },
         {

@@ -21,24 +21,24 @@
     ],
     "warps": [
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 5,
+            "z": 8,
+            "header": "MAP_CELADON",
+            "anchor": 10,
             "y": 0
         },
         {
             "x": 6,
             "z": 8,
             "header": "MAP_CELADON",
-            "anchor": 0,
+            "anchor": 10,
             "y": 0
         },
         {
-            "x": 0,
-            "z": 0,
-            "header": "MAP_PALLET",
-            "anchor": 0,
+            "x": 7,
+            "z": 8,
+            "header": "MAP_CELADON",
+            "anchor": 10,
             "y": 0
         },
         {

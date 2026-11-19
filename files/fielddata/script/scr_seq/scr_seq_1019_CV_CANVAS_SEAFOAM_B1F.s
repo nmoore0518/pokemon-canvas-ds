@@ -8,6 +8,7 @@
 
 	ScrDef SeafoamIslands_B1F_EventScript_ItemWaterStone
 	ScrDef SeafoamIslands_B1F_EventScript_ItemRevive
+	ScrDef SeafoamIslands_B1F_Frlg_cv_BoulderFalls
 	ScrDefEnd
 	
 SeafoamIslands_B1F_EventScript_ItemWaterStone:
@@ -22,6 +23,26 @@ SeafoamIslands_B1F_EventScript_ItemRevive:
 	SetVar 0x8005, 1
 	CallStd std_obtain_item_verbose
 	HidePerson VAR_SPECIAL_LAST_TALKED
+	End
+	
+SeafoamIslands_B1F_Frlg_cv_BoulderFalls:
+	PlaySE SEQ_SE_GS_IWAOTOSHI
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 1
+	GoToIfNe _cv_fall_1
+	SetFlag 0x2114
+	ClearFlag 0x2116
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_1:
+	CompareVarToValue VAR_SPECIAL_LAST_TALKED, 2
+	GoToIfNe _cv_fall_2
+	SetFlag 0x2115
+	ClearFlag 0x2117
+	HidePerson VAR_SPECIAL_LAST_TALKED
+	WaitSE SEQ_SE_GS_IWAOTOSHI
+	End
+_cv_fall_2:
 	End
 
 _cv_stop:
