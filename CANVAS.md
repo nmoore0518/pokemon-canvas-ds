@@ -698,6 +698,14 @@ pond's water and banks, trees one to a 2x2 block of woods at HG density, cards f
 HeartGold's ground height, 16 (as Pallet's and Cinnabar's lands: the matrix's altitude moves a land's model but not the heights people stand at, so it stays 0). Lands must stay
 under 61,400 bytes of model (`build_land` prints the biggest).
 
+**Ledges** (Nick: ledges looked flat) are a raised lip on level ground: the ground rising from the side you jump from
+to a crest 8 high, then HeartGold's cliff face (`wall01_g`, the cliff's profile squeezed into the square's front 0.42)
+down to the side you land on, its ends closed with the face's texture (`ledge` in `build_land`). HeartGold's own
+Kanto draws them flatter still (a painted strip, `allpeak_pgs`, a unit over the ground: compare in the map viewer).
+A ledge can't be a real tier step as the GBA lays them out: every area above a ledge is reached on foot some other
+way (the only stairs in its Kanto are Pallet's), so a step needs a ramp or stairs added on that way - as HeartGold's
+own Route 1 has one cliff with stairs across it. (A solver for that is not in: every ledge came out a lip.)
+
 **Buildings** are HeartGold's own: for each GBA door, the building HeartGold's town has for that room
 (`hg_buildings`: read once off HeartGold's Kanto as it was, kept in `data/hg_buildings.json`), its door model, and
 the squares its box covers closed. Gatehouses are HeartGold's two (doors north and south: 246; west and east: 247),

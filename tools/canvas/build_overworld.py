@@ -949,7 +949,7 @@ def plan_world(W=None, woods=False):
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
-                trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_closed=bridge_closed, on_bridge=on_bridge, bridge_pos=bridge_pos, bridge_kit=bridge_kit, bridge_cls=bridge_cls)
+                trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_closed=bridge_closed, on_bridge=on_bridge, bridge_pos=bridge_pos, bridge_kit=bridge_kit, bridge_cls=bridge_cls, bldg=bldg)
 
 
 _KITS = {}
@@ -997,6 +997,7 @@ def build_land(P, cx, cz, base=None):
             else:
                 poly(tex, [((x * 16 + u, base + h, y * 16 + v), (s, t)) for u, v, h, s, t in pts])
     BED_H = 5
+    LIP_H, LIP_D, LIP_BACK = 8, 0.42, 0.95      # (a ledge's lip: its height, its face's depth and where the ground's rise starts)
 
     def planter(x, y):
         """a square of a raised flower bed: HeartGold's grass and flowers on top, Fuchsia's brick round the sides
@@ -1062,7 +1063,34 @@ def build_land(P, cx, cz, base=None):
     level = lambda x, y: 1 if K_(x, y) == 'rock' else 0
     perm = [0x8000] * 1024
     props = []
-    edged = {}
+    edged, sq_tex = {}, {}
+
+    def ledge(x, y, way, top):
+        """a ledge's square: a lip raised LIP_H over the ground (Nick: ledges looked flat) - the ground rising from the
+        side you jump from to its crest, then HeartGold's cliff face (wall01_g, its profile) down to the side you land
+        on; its ends closed with the face's texture where the run of ledges stops"""
+        dx, dz = way
+        X, Z = x * 16, y * 16
+        # (d across the square from the side you land on, 0, to the side you jump from, 1; a along it, 0..1)
+        def at(d, a, h):
+            if dz: return (X + a * 16, h, Z + ((1 - d) * 16 if dz > 0 else d * 16))
+            return (X + ((1 - d) * 16 if dx > 0 else d * 16), h, Z + a * 16)
+        sface = lambda a: (x + a if dz else y + a) * 16 * (1 if (dz > 0 or dx < 0) else -1)
+        prof = [(d * LIP_D, h * LIP_H / 16, t) for d, h, t in R.PROFILE]
+        for (d0, h0, t0), (d1, h1, t1) in zip(prof, prof[1:]):
+            poly('wall01_g', [(at(d0, 0, h0), (sface(0), t0)), (at(d0, 1, h0), (sface(1), t0)), (at(d1, 1, h1), (sface(1), t1)), (at(d1, 0, h1), (sface(0), t1))])
+        # (the ground's rise behind the crest, in the square's own texture)
+        st = lambda p_: (p_[0], p_[2])
+        for d0, h0, d1, h1 in ((LIP_D, LIP_H, LIP_BACK, 0.0),):
+            q4 = [at(d0, 0, h0), at(d0, 1, h0), at(d1, 1, h1), at(d1, 0, h1)]
+            poly(top, [(p_, st(p_)) for p_ in q4])
+        # (the ends: the lip's side, where the next square along is no ledge going the same way)
+        for a, nb in ((0, (x - abs(dz), y - abs(dx))), (1, (x + abs(dz), y + abs(dx)))):
+            if ledges.get(nb) == way: continue
+            side = [(d, h) for d, h, _ in prof] + [(LIP_BACK, 0.0)]
+            pts = [(at(d, a, h), (d * 16, 15.6 - h / LIP_H * 15)) for d, h in side]
+            if a == 0: pts = pts[::-1]
+            poly('wall01_g', pts)
     for y in range(Z0, Z1):
         runs = []
         for x in range(X0, X1):
@@ -1075,6 +1103,7 @@ def build_land(P, cx, cz, base=None):
                 e = next(((rr, v) for rr, v in nb.items() if v), None)
                 if e: edged[(x, y)] = e; tex = None
                 else: tex = GROUND
+            sq_tex[(x, y)] = tex
             if runs and runs[-1][0] == tex and runs[-1][2] == x: runs[-1][2] = x + 1
             else: runs.append([tex, x, x + 1])
         for tex, a, b in runs:
@@ -1163,12 +1192,8 @@ def build_land(P, cx, cz, base=None):
                         faces.setdefault((what, look['foot'], y if what[1] else x), []).append((x, y))
                     else:
                         piece(x, y, R.rock_piece(lower, x, y, BS.LAND_NARC, look), 0, ground)
-            if (x, y) in ledges:          # (a ledge: a lip of rock along its way down)
-                dx, dz = ledges[(x, y)]
-                X, Z = x * 16, y * 16
-                if dz: zz = Z + (16 if dz > 0 else 0); a, b = (X, zz), (X + 16, zz)
-                else: xx = X + (16 if dx > 0 else 0); a, b = (xx, Z), (xx, Z + 16)
-                poly('wall01_h', [((a[0], -1, a[1]), (a[0] + a[1], 16)), ((b[0], -1, b[1]), (b[0] + b[1], 16)), ((b[0] - dx * 3, 5, b[1] - dz * 3), (b[0] + b[1], 4)), ((a[0] - dx * 3, 5, a[1] - dz * 3), (a[0] + a[1], 4))])
+            if (x, y) in ledges:          # (a ledge: a raised lip of rock along its way down - ledge())
+                ledge(x, y, ledges[(x, y)], sq_tex.get((x, y)) or GROUND)
             if k not in ('tall', 'water', 'rock'):
                 for tex, u0, v0, (s0, t0) in R.grass_edges(tall, x, y):
                     if tex == 'egrass_u': bands_u.setdefault((y * 2 + v0 // 8, t0), set()).add(x * 2 + u0 // 8)

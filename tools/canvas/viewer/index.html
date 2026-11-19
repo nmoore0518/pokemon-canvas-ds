@@ -364,7 +364,13 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
   }
   for (const id of ['t-people', 't-warps', 't-signs', 't-trig', 't-grid']) $(id).addEventListener('change', applyToggles);
 
-  async function open(entry) {
+  // (a link to a view: #map@x,z[,distance] - the square to look at)
+  const parseHash = () => {
+    const [n, at] = location.hash.slice(1).split('@');
+    const v = at ? at.split(',').map(Number) : null;
+    return { name: n.replace(/-/g, '_'), at: v && v.length >= 2 && v.every(isFinite) ? v : null };
+  };
+  async function open(entry, at) {
     current = entry; picked = null; sel.visible = false; $('picked').textContent = '';
     status.textContent = 'Loading ' + entry.title + '\u2026'; status.hidden = false;
     clear(world); clear(marks); clear(people);
@@ -389,10 +395,11 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
       else if (!box.isEmpty()) { const c = box.getCenter(new THREE.Vector3()); cam.target.set(c.x, cam.ground, c.z); }
       const span = box.isEmpty() ? 20 : Math.max(box.max.x - box.min.x, box.max.z - box.min.z);
       cam.dist = entry.start ? 34 : Math.min(60, Math.max(10, span * 0.9));
+      if (at) { cam.target.set(at[0] + 0.5, cam.ground, at[1] + 0.5); if (at[2]) cam.dist = at[2]; }
       if (cam.mode === 'fly') setMode('game');
       placeCamera();
       status.hidden = true;
-      try { history.replaceState(null, '', '#' + entry.name.replace(/_/g, '-')); } catch (e) {}
+      try { history.replaceState(null, '', '#' + entry.name.replace(/_/g, '-') + (at ? '@' + at.join(',') : '')); } catch (e) {}
     } catch (err) {
       status.textContent = 'Could not load ' + entry.title + ': ' + err.message;
     }
@@ -424,16 +431,17 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
     $('fold').textContent = closed ? 'Show' : 'Hide'; $('fold').setAttribute('aria-expanded', String(!closed));
   });
   window.addEventListener('hashchange', () => {
-    const n = location.hash.slice(1).replace(/-/g, '_');
-    const m = LIST.find((x) => x.name === n); if (m && m !== current) open(m);
+    const h = parseHash();
+    const m = LIST.find((x) => x.name === h.name); if (m && (m !== current || h.at)) open(m, h.at);
   });
 
   fetch('maps.json').then((r) => r.json()).then((list) => {
     // (ours first, Kanto's overworld at the top; HeartGold's own maps to compare with at the end)
     const rank = (g) => g === 'Overworld' ? 0 : g.startsWith('HeartGold') ? 2 : 1;
     LIST = list.slice().sort((a, b) => rank(a.group) - rank(b.group) || a.group.localeCompare(b.group)); fillList('');
-    const n = location.hash.slice(1).replace(/-/g, '_');
-    open(LIST.find((x) => x.name === n) || LIST.find((x) => x.name === 'kanto') || LIST[0]);
+    const h = parseHash();
+    const m = LIST.find((x) => x.name === h.name);
+    open(m || LIST.find((x) => x.name === 'kanto') || LIST[0], m ? h.at : null);
   }).catch((err) => { status.textContent = 'Could not load the map list: ' + err.message; });
 })();
 </script>
