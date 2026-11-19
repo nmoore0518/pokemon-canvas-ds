@@ -790,7 +790,39 @@ def pewter_moves(xy):
     return m
 
 
-MOVES = {'PewterCity_Frlg': pewter_moves}
+_G = {}
+
+
+def rescaled(xy, start, label):
+    """a GBA walk (its movement label) from square `start`, redone for a room built bigger (build_interiors'
+    silph_widen): each step to the next GBA square becomes as many as that square is away here"""
+    if 'g' not in _G: _G['g'] = G.Gba()
+    out, (x, y) = [], start
+    for c, a in _G['g'].labels[label]:
+        m = re.match(r'walk_(?:slow_|fast_|faster_)?(up|down|left|right)$', c)
+        if not m:
+            if c != 'step_end': out.append((c, a))
+            continue
+        dx, dy = DIRS[m.group(1)]
+        (ax, az), (bx, bz) = xy(x, y), xy(x + dx, y + dy)
+        out += [(c, a)] * (abs(bx - ax) + abs(bz - az))
+        x, y = x + dx, y + dy
+    return out
+
+
+def silph_7f_moves(xy):
+    """the rival leaves for the warp pad (5, 4) by the way the GBA's walks go, over our bigger floor"""
+    return {'SilphCo_7F_Movement_RivalExitTop': rescaled(xy, (2, 5), 'SilphCo_7F_Movement_RivalExitTop'),
+            'SilphCo_7F_Movement_RivalExitBottom': rescaled(xy, (2, 6), 'SilphCo_7F_Movement_RivalExitBottom')}
+
+
+def silph_11f_moves(xy):
+    """Giovanni comes down to the player (the last square before them is the GBA's: SILPH_SCENES)"""
+    return {'SilphCo_11F_Movement_GiovanniApproachLeft': rescaled(xy, (6, 11), 'SilphCo_11F_Movement_GiovanniApproachLeft'),
+            'SilphCo_11F_Movement_GiovanniApproachRight': rescaled(xy, (6, 11), 'SilphCo_11F_Movement_GiovanniApproachRight')}
+
+
+MOVES = {'PewterCity_Frlg': pewter_moves, 'SilphCo_7F_Frlg': silph_7f_moves, 'SilphCo_11F_Frlg': silph_11f_moves}
 
 
 def pewter_gym_guide_lane4(p):

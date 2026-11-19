@@ -322,6 +322,11 @@ def widen(gm, lay, cols=(), rows=()):
 
     def cell(r, c):
         (ay, rs), (ax, cs) = r, c
+        if isinstance(rs, list) and isinstance(cs, list):
+            # (a new row across a new column: floor if either has floor there - a wall's square only where both are
+            # wall, so a wall run along one doesn't step out a square at each crossing)
+            a_, b_ = rs[ax], cs[ay]
+            return a_ if not (a_ >> 10) & 3 or (b_ >> 10) & 3 else b_
         if isinstance(rs, list): return rs[ax]
         if isinstance(cs, list): return cs[rs]
         return lay.blocks[rs][cs]
@@ -442,7 +447,12 @@ def build_room(spec, land_id):
                 else:
                     print('  (someone stands on a', name, 'in', spec['gba'], sorted(comp & people), ')')
             pr, cl, rg, wn = furnish.place(kind, comp, first, blocked)
-            fz += [(m, x, yo, z) for m, x, z, yo in pr]
+            if kind[0] == 'cols' and kind[1] == furnish.BED and kind[2] == 1:
+                # (a bed a square wide - HeartGold's is two: drawn narrower - and one with someone in it sunk to its
+                # mattress, so who lies in it shows on top, not inside it)
+                pr = [(m, x, z, -7 if any((int(x), y) in people for y in range(min(c[1] for c in comp), max(c[1] for c in comp) + 1)) else yo, (0.55, 1, 1))
+                      for m, x, z, yo in pr]
+            fz += [(p_[0], p_[1], p_[3], p_[2]) + tuple(p_[4:]) for p_ in pr]
             fz_close |= {c for c in cl if c not in warp_sq}
             fz_rugs += rg; fz_wins += wn
             claimed |= comp
@@ -650,8 +660,8 @@ def build_room(spec, land_id):
     for (x, y) in fz_close:
         perm[y * 32 + x] = 0x8000
         stands.append((x, y))
-    for m, x, yo, z in fz:
-        props.append((m, U(x), yo, U(z)))
+    for m, x, yo, z, *sc in fz:
+        props.append((m, U(x), yo, U(z)) + tuple(sc))
     for t, ax, ay, bx, by in fz_rugs:
         tw, th = dims[t]
         M(t).quad([((U(ax), 1, U(by)), (0, th)), ((U(bx), 1, U(by)), (tw, th)), ((U(bx), 1, U(ay)), (tw, 0)), ((U(ax), 1, U(ay)), (0, 0))], up)
@@ -709,7 +719,8 @@ def build_room(spec, land_id):
         groups.append((t, t, pal_of(t), mesh, {'repeat': rep, 'size': dims[t]}))
     model = build_model('canvas_room_%d' % land_id, groups)
     model += b'\0' * (-len(model) % 4)
-    bld = b''.join(struct.pack('<I3i3i3i8x', m, int(x * 4096), int(y * 4096), int(z * 4096), 0, 0, 0, 4096, 4096, 4096) for m, x, y, z in props)
+    bld = b''.join(struct.pack('<I3i3i3i8x', m, int(x * 4096), int(y * 4096), int(z * 4096), 0, 0, 0,
+                               *[int(v * 4096) for v in (sc[0] if sc else (1, 1, 1))]) for m, x, y, z, *sc in props)
     bdhc = struct.pack('<4s6H', b'BDHC', 2, 1, 1, 1, 1, 1) + struct.pack('<2i2i', -256 * 4096, -256 * 4096, 256 * 4096, 256 * 4096) + \
         struct.pack('<3i', 0, 4096, 0) + struct.pack('<i', 0) + struct.pack('<4H', 0, 1, 0, 0) + struct.pack('<iHH', 256 * 4096, 1, 0) + struct.pack('<H', 0)
     p = struct.pack('<1024H', *perm)

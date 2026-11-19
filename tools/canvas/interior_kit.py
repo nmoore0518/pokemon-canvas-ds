@@ -177,6 +177,18 @@ class Piece:
         for t, o, p in self.polys:
             emit(t, o, [(px + x, py + y, pz + z, s, tt) for px, py, pz, s, tt in p])
 
+    def lowered(self, h):
+        """the piece cut down to h units tall: what stands higher is cut off, what lies higher (its top) comes down to h"""
+        m = Piece.__new__(Piece)
+        m.w, m.h, m.polys = self.w, self.h, []
+        for t, o, p in self.polys:
+            if min(v[1] for v in p) >= h - 1e-6:
+                m.polys.append((t, o, [(x, h, z, s, tt) for x, y, z, s, tt in p]))
+            else:
+                q = _clip(p, 1, h, False)
+                if len(q) >= 3: m.polys.append((t, o, q))
+        return m
+
 
 class PieceSet:
     """pieces cut at every square of a source box, laid by remainder (the texture's pattern lines up)"""
@@ -312,6 +324,7 @@ def build_kit_floor(spec, depth_of):
                     if n not in seen_w and wall0(*n): seen_w.add(n); comp.append(n); stack.append(n)
             if KIT.get('low_inner') and not any(0 <= q[0] + dx < W and 0 <= q[1] + dy < H and isvoid(q[0] + dx, q[1] + dy) for q in comp for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
                 thin |= set(comp)
+    thin -= {q for q in thin if lay.metatile(*q) in KIT.get('wall_mt', ())}      # (a partition's strip stays a wall, however thin)
     inside |= thin
     # (a thick wall - a block of rooms the GBA has walkways all round, as the S.S. Anne's cabins - with walkable floor
     # along its north side: HeartGold's tall wall would stand over that walkway; it is a low wall, the kit's top
@@ -326,7 +339,19 @@ def build_kit_floor(spec, depth_of):
             if y - y0 >= 3 and walk(x, y0 - 1) and not KIT.get("tall_walls"): lowwall |= {(x, k) for k in range(y0, y)}
     LOW_H = KIT.get('low_h', 10)
     is_wall = lambda x, y: wall0(x, y) and (x, y) not in thin and (x, y) not in lowwall
+    # (a wall across the floor - floor north of it as well as south: a partition - stands lower, `partition` units,
+    # so it doesn't hide the floor behind it: HeartGold's wall cut down, as an office's partitions)
+    part = set()
+    if KIT.get('partition'):
+        for x in range(W):
+            y = 0
+            while y < H:
+                if not is_wall(x, y): y += 1; continue
+                y0 = y
+                while y < H and is_wall(x, y): y += 1
+                if y0 > 0 and walk(x, y0 - 1) and y < H and is_floor(x, y): part |= {(x, k) for k in range(y0, y)}
     block = {s for s in inside if s not in furn and s not in closed}      # (closed, inside a room, no furniture of ours: the kit's block)
+    if os.environ.get("CV_KIT_DEBUG"): print("  block", sorted({("%x" % lay.metatile(*q), "thin" if q in thin else "") for q in block}))
     base = KIT['base']
     lid = KIT['src']
     floor_p = Piece(lid, *KIT['floor'], base=base, keep=KIT.get('floor_tex'))
@@ -339,6 +364,13 @@ def build_kit_floor(spec, depth_of):
     # plain, ends, art (one square each; a dict: from another land, {src, at, base})
     face = {k: Piece(v['src'], *v['at'], base=v['base'], drop=KIT.get('face_drop', ())) if isinstance(v, dict) else
             Piece(lid, *v, base=base, drop=KIT.get('face_drop', ())) for k, v in KIT['faces'].items()}
+    LP = KIT.get('partition')
+    face_low = {k: f.lowered(LP) for k, f in face.items()} if LP else {}
+    if LP and 'partition_top' in KIT:     # (the face pieces' own strip of top, too)
+        ps_, pt_ = KIT['partition_top']
+        for f in face_low.values():
+            f.polys = [(t, o, [(x, y, z, ps_, pt_) for x, y, z, s_, tt in p]) if all(abs(v[1] - LP) < 1e-6 for v in p) and t == KIT.get('top_tex') else (t, o, p)
+                       for t, o, p in f.polys]
     things_p = {}
     for rule in KIT.get('things', []):
         if 'piece' in rule: things_p[id(rule)] = Piece(rule.get('src', lid), *rule['piece'], base=rule.get('base', base), drop=rule.get('drop', ()), whole=True)
@@ -360,6 +392,11 @@ def build_kit_floor(spec, depth_of):
                     for j in (0, 1): hole_sq.add((x - 1 + i, y + j))
             else: keep.append((m, x, z, *_))
         props[:] = keep
+    # warp pads: a panel of HeartGold's laid on the floor (`pad`) in place of the pad model
+    pads = []
+    if KIT.get('pad'):
+        pads = [(x, z) for m, x, z, *_ in props if m == LOOK.get('pad_model')]
+        props[:] = [p_ for p_ in props if p_[0] != LOOK.get('pad_model')]
     # the GBA's spin tiles: HeartGold's slide tiles (behaviour), its arrow (Viridian Gym's) on the floor
     slide = {}
     for y in range(H):
@@ -415,8 +452,11 @@ def build_kit_floor(spec, depth_of):
                     run_quad(ftex, fopt, fy, x0_, x0_ + n_, y, y + 1, fa, fb, fc, fd)
                 if top_flat:      # (a flat top: in runs)
                     tt, to, ty, ta, tb, tc, td = top_flat
-                    for x0_, n_ in _runs([x for x in range(X0, X1) if is_wall(x, y) and not is_floor(x, y + 1)]):
+                    for x0_, n_ in _runs([x for x in range(X0, X1) if is_wall(x, y) and not is_floor(x, y + 1) and (x, y) not in part]):
                         run_quad(tt, to, ty, x0_, x0_ + n_, y, y + 1, ta, tb, tc, td)
+                    ps, pt = KIT.get('partition_top', (tb, td))       # (a partition's top: a texel of its own, lighter than the dark over the walls)
+                    for x0_, n_ in _runs([x for x in range(X0, X1) if is_wall(x, y) and not is_floor(x, y + 1) and (x, y) in part]):
+                        run_quad(tt, to, LP, x0_, x0_ + n_, y, y + 1, 0, ps, 0, pt)
                 # walls: the face where floor lies south, else the top
                 for x in range(X0, X1):
                     if door(x, y) and 'door' in face and is_wall(x - 1, y) | is_wall(x + 1, y):
@@ -428,11 +468,28 @@ def build_kit_floor(spec, depth_of):
                         if not wr and is_floor(x + 1, y) and 'end_e' in face: f = 'end_e'
                         elif not wl and is_floor(x - 1, y) and 'end_w' in face: f = 'end_w'
                         elif art and art in face: f = art
-                        elif "lit" in face and x % KIT.get("lit_every", 6) == KIT.get("lit_every", 6) // 2 and wl and wr: f = "lit"
+                        elif "lit" in face and x % KIT.get("lit_every", 6) == KIT.get("lit_every", 6) // 2 and wl and wr \
+                                and is_floor(x + 1, y + 1) and is_wall(x + 2, y) and (x, y) not in part and (x + 1, y) not in part: f = "lit"   # (a window two wide: wall face both squares)
                         else: f = 'plain'
-                        face[f].lay(emit, x, y)
+                        (face_low if (x, y) in part else face)[f].lay(emit, x, y)
                     elif not top_flat:
                         top_p.lay(emit, x, y)
+                    # (its sides, where floor lies east or west: the wall stands as a solid, its corners and ends
+                    # closed, as HeartGold's own rooms draw theirs - a column of the face's texture down each)
+                    sd = KIT.get('sides')
+                    if sd:
+                        za = y
+                        zb = y + (sd['face_z'] if is_floor(x, y + 1) else 1)
+                        for dx_ in (-1, 1):
+                            if not is_floor(x + dx_, y) or is_wall(x + dx_, y): continue
+                            xx = x + (0 if dx_ < 0 else 1)
+                            q = [(xx, za), (xx, zb)] if dx_ < 0 else [(xx, zb), (xx, za)]
+                            for (y0_, y1_, t0_, t1_) in sd['bands']:
+                                if (x, y) in part:        # (a partition's side: as high as it)
+                                    if y0_ >= LP: continue
+                                    if y1_ > LP: t1_ = t0_ + (t1_ - t0_) * (LP - y0_) / (y1_ - y0_); y1_ = LP
+                                emit(sd['tex'], sd['opt'], [(q[0][0], y0_, q[0][1], sd['s'], t0_), (q[1][0], y0_, q[1][1], sd['s'], t0_),
+                                                            (q[1][0], y1_, q[1][1], sd['s'], t1_), (q[0][0], y1_, q[0][1], sd['s'], t1_)])
                 # a way in through a low wall (the S.S. Anne's cabins, entered going south): a mat before it
                 if KIT.get('mat'):
                     for x in range(X0, X1):
@@ -480,6 +537,11 @@ def build_kit_floor(spec, depth_of):
             for sx_, sy_, left in stair_at:
                 if X0 <= sx_ < X1 and Z0 <= sy_ < Z1:
                     (stairs_p if left else stairs_p.mirrored()).lay(emit, sx_, sy_)
+            for px_, pz_ in pads:
+                if X0 <= px_ < X1 and Z0 <= pz_ < Z1:
+                    t_, sz = KIT['pad']
+                    a0, a1, b0, b1 = px_ - 0.5, px_ + 0.5, pz_ - 0.5, pz_ + 0.5
+                    emit(t_, (0, 0, 31, t_ + '_pl'), [(a0, 1, b1, 0, sz), (a1, 1, b1, sz, sz), (a1, 1, b0, sz, 0), (a0, 1, b0, 0, 0)])
             for rule, a0, b0, a1, b1 in laid_things:
                 if not (X0 <= a0 < X1 and Z0 <= b0 < Z1): continue
                 if 'model' in rule:

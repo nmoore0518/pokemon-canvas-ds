@@ -52,7 +52,10 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
         faces={'plain': (5, 4), 'lit': (3, 4, 2, 1), 'door': dict(src=303, at=(3, 2), base=29)}, lit_every=5,
         things=[dict(mt={0x36D, 0x36E, 0x36F, 0x391, 0x31C, 0x31D, 0x323, 0x324, 0x325, 0x388, 0x389, 0x3A8, 0x3EF, 0x374},
                      src=462, piece=(3, 7, 2, 3), center=True, base=-2, drop={'ryuka_b'})],
-        furnish=True, stairs_src=(462, 1, 4, 2, 3, -2), wall_mt={0x288, 0x28C, 0x290, 0x294, 0x298, 0x29C, 0x331, 0x33E, 0x33F, 0x346, 0x347},
+        # (its walls' sides, as the Radio Tower's: a column of its wall's texture, from the floor to the top)
+        pad=('y_j_warp', 32),           # (warp pads: Saffron Gym's panel, laid on the floor)
+        sides=dict(tex='rwall_a', opt=(3, 0, 31, 'rwall_a_pl'), s=-184, face_z=0.5, bands=[(0, 28, 32, 13), (28, 32, 13, 11), (32, 48, 11, 0)]),
+        furnish=True, tall_walls=True, partition=24, partition_top=(25.5, 16.5), top_tex='rtop_a', stairs_src=(462, 1, 4, 2, 3, -2), wall_mt={0x288, 0x28C, 0x290, 0x294, 0x298, 0x29C, 0x331, 0x33E, 0x33F, 0x346, 0x347},
         block=(19, 9, 1, 2), block_src=499, block_keep={'aj_box01', 'h_kage'}, block_at=(0, -0.56), block_base=14)),
     # the Pokemon Mansion, burnt out, in HeartGold's Burned Tower (area 78, its 1F, land 449): charred plank walls,
     # their scorched pieces now and then, its wooden floor, its fallen rubble for the GBA's rubble and anything
@@ -568,13 +571,14 @@ for _s in INTERIORS:        # (a row more where a plateau's north face needs a s
     if _s['look'] == 'safari' and safari_plan(_s['gba']): _s['widen'] = safari_plan(_s['gba'])
 
 
-# Silph Co.'s floors a row longer under each of its walls: HeartGold's offices are roomier than the GBA's (Nick: "a
-# little cramped"; widths at HeartGold's, err bigger). The new row goes between a wall's face and the floor in front
-# of it; each column's square in it is a copy of the floor below (the corridor gets longer) or, where that is a
-# thing (a desk, a plant, stairs, a pad), of the wall above (the wall gets deeper behind it). A row is not put in
-# where neither will do in some column, where it would split a card-key door, or across a scripted walk
-# (SILPH_SCENES). Everything below moves down with its square (the porter: room_xy).
-SILPH_SCENES = {'SilphCo_7F_Frlg': dict(rows=(2, 9), cols=(0, 7)), 'SilphCo_11F_Frlg': dict(rows=(10, 16))}   # where a scripted walk goes
+# Silph Co.'s floors half as big again: HeartGold's offices are roomier than the GBA's (Nick: "cramped"; widths at
+# HeartGold's, err bigger). A new row (or column) goes in every other line where it can: each square of it a copy of
+# the floor beyond (a corridor longer) or of the wall (a wall deeper), plain floor between two things; never through
+# a thing (a desk, a plant, a terminal, stairs), a card-key door or a scripted walk (SILPH_SCENES). Everything moves
+# with its square (the porter: room_xy).
+# (where a scripted walk ends beside the player, the squares between stay as the GBA's; the rest of each walk the
+# porter redoes over the bigger floor: port_map.rescaled)
+SILPH_SCENES = {'SilphCo_7F_Frlg': dict(rows=(4, 6)), 'SilphCo_11F_Frlg': dict(rows=(14, 15))}
 
 
 def silph_widen(gba):
@@ -589,16 +593,35 @@ def silph_widen(gba):
     thing = {}
     L_ = gba_map.layouts()[gm['layout']]
     tsn = lambda m: L_['primary_tileset'] if m < lay.n_prim else L_['secondary_tileset']
+    # (things that may grow a line, HeartGold's models being laid to fit: across, any; down, those standing on the
+    # floor - one against the wall would stand out from it)
+    stretch = {'rows': set(), 'cols': set()}
     for k, (rule, comp) in enumerate(furnish.patches(lay, tsn, rules=furnish.KIT, full=True)):
         for c in comp: thing[c] = k
+        stretch['cols'].add(k)
+        if not (len(rule) > 4 and rule[4]): stretch['rows'].add(k)
     desk = LOOKS['silph']['kit']['things'][0]['mt']
     for (x, y) in [(x, y) for y in range(H) for x in range(W) if lay.metatile(x, y) in desk]:
         thing[(x, y)] = 'desk%d' % x            # (a desk's squares in a column are one)
+        stretch['rows'].add('desk%d' % x); stretch['cols'].add('desk%d' % x)
     for (x, y) in warps:
         if lay.metatile(x, y) != 0x390:
             for dx in (-2, -1, 0, 1, 2):
                 for dy in (-2, -1, 0, 1, 2): thing[(x + dx, y + dy)] = 'stairs%d_%d' % (x, y)
     plain_floor = next((x, y) for y in range(H) for x in range(W) if walk(x, y) and lay.metatile(x, y) == 0x334)
+    # (a card-key door: a block of barrier squares; one in a north-south partition - wall above it - closes an
+    # east-west way, one in an east-west wall a north-south way)
+    door_of, todo = {}, set(bars)
+    while todo:
+        c = todo.pop(); comp, st = {c}, [c]
+        while st:
+            q = st.pop()
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                n = (q[0] + d[0], q[1] + d[1])
+                if n in todo: todo.discard(n); comp.add(n); st.append(n)
+        x0_, y0_ = min(q[0] for q in comp), min(q[1] for q in comp)
+        across = 'cols' if not walk(x0_, y0_ - 1) and walk(x0_ - 1, y0_) else 'rows'     # (the way it closes: a new line along it is wall)
+        for q in comp: door_of[q] = (across, (x0_, y0_ - 1) if across == 'cols' else (x0_ - 1, y0_))
     free_floor = lambda q: walk(*q) and q not in warps and q not in thing and q not in bars
     wall = lambda q: not walk(*q) and q not in thing and q not in bars and q not in warps
     out = {}
@@ -610,12 +633,19 @@ def silph_widen(gba):
 
         def plan(r):
             """the new line's squares (one per square across) put in between lines r-1 and r, or None"""
-            if lo <= r <= hi + 1 or r < 3: return None
+            if lo < r <= hi or r < (3 if axis == 'rows' else 1): return None
             src = []
             for u in range(M):
                 a, b = sq(u, r - 1), sq(u, r)
-                if a in thing and thing.get(b) == thing[a]: return None      # (it would split a thing)
-                if a in bars and b in bars: return None                      # (or a card-key door)
+                if a in thing and thing.get(b) == thing[a]:
+                    if thing[a] in stretch[axis]: src.append(b); continue     # (a table a line bigger)
+                    return None                                               # (it would split a thing)
+                if a in bars and b in bars:
+                    # (through a card-key door: wall where a new line would make a way round it, else floor - shut in
+                    # by the door's own squares either side)
+                    across, wall_sq = door_of[a]
+                    src.append(wall_sq if across == ('cols' if axis == 'rows' else 'rows') else plain_floor)
+                    continue
                 if wall(a) and wall(b): src.append(b)                         # (a wall: deeper)
                 elif free_floor(b): src.append(b)                             # (a floor: longer)
                 elif free_floor(a): src.append(a)
@@ -625,14 +655,16 @@ def silph_widen(gba):
                 else: return None
             return src
         lines, last = [], -9
-        for f in range(2, N):
-            # beside a wall (floor this side, wall the other, in a run of five or more), or the first line after
-            # it that takes a new one (past the plants and terminals that stand against the wall)
-            if sum(walk(*sq(u, f)) and not walk(*sq(u, f - 1)) for u in range(M)) < 5: continue
-            for r in range(f, min(N, f + 5)):
-                if r - last < 3: break
-                src = plan(r)
-                if src: lines.append((r, 1, src)); last = r; break
+        for r in range(3 if axis == 'rows' else 1, N):
+            # every line it can (up to twice as big), where it crosses floor
+            if sum(walk(*sq(u, r)) for u in range(M)) < 3: continue
+            src = plan(r)
+            # (mostly floor: a line through the middle of a partition only makes it thicker)
+            if src and sum(walk(*q) for q in src) >= sum(not walk(*q) and lay.metatile(*q) != 0x8 for q in src):
+                # (two rows just before a wall across the floor: HeartGold's wall stands three squares tall and hides
+                # the floor behind it, where the GBA's stands one)
+                n = 2 if axis == 'rows' and sum(walk(*sq(u, r - 1)) and not walk(*sq(u, r)) for u in range(M)) >= 5 else 1
+                lines.append((r, n, src)); last = r
         if lines: out[axis] = lines
     return out
 
@@ -842,7 +874,8 @@ def ship_models():
 # tiles are the Viridian Gym's slide tiles)
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
-           39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01'])],
+           39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01']),
+                (('bm', 204), ['y_j_warp'])],          # (Saffron Gym's warp panel, from its model)
            44: [(70, ['d_rock01'])],
            18: [(75, ['pond_on', 'pond_edge', 'pond_un']),          # (Kanto's overworld: build_overworld.py;
                 (11, ['ymb_fe01', 'ymb_fe01_r', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
@@ -899,7 +932,11 @@ def import_textures():
         gone = {n.encode() for n in DROP.get(dst, ())} | {(n + '_pl').encode() for n in DROP.get(dst, ())}
         t, p = [e for e in t if e[0] not in gone], [q for q in p if q[0] not in gone]
         for src, names in srcs:
-            st, sp = read_tex0(ts[src], tex0_of(ts[src]))
+            if isinstance(src, tuple):       # (('bm', n): a room model's own textures, files/a/1/4/8)
+                bm_ = read_narc(open(os.path.join(ROOT, 'files/a/1/4/8'), 'rb').read())[0][src[1]]
+                st, sp = read_tex0(bm_, tex0_of(bm_))
+            else:
+                st, sp = read_tex0(ts[src], tex0_of(ts[src]))
             nt = [e for e in st if e[0].decode() in names]
             np_ = [q for q in sp if q[0].decode() in names or q[0].decode()[:-3] in {n.split('.')[0] for n in names} | set(names) or q[0].decode() in pals_extra.get(src, ())]
             t = [e for e in t if e[0] not in {x[0] for x in nt}] + nt

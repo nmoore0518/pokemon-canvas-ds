@@ -4,71 +4,71 @@
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 10,
-            "z": 13,
+            "x": 17,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 10,
-            "z": 14,
+            "x": 17,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 21,
-            "z": 13,
+            "x": 36,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 21,
-            "z": 14,
+            "x": 36,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 9,
-            "z": 13,
+            "x": 16,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 9,
-            "z": 14,
+            "x": 16,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 20,
-            "z": 13,
+            "x": 35,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 20,
-            "z": 14,
+            "x": 35,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_3F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 30,
+            "x": 46,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -88,8 +88,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 26,
-            "z": 10,
+            "x": 41,
+            "z": 13,
             "y": 0
         },
         {
@@ -105,8 +105,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 32,
-            "z": 14,
+            "x": 48,
+            "z": 21,
             "y": 0
         },
         {
@@ -122,8 +122,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 4,
-            "z": 13,
+            "x": 8,
+            "z": 19,
             "y": 0
         },
         {
@@ -139,13 +139,13 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 8,
-            "z": 11,
+            "x": 14,
+            "z": 14,
             "y": 0
         },
         {
             "id": "200",
-            "spriteId": "7001",
+            "spriteId": "7015",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2270",
@@ -156,13 +156,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 9,
-            "z": 13,
+            "x": 16,
+            "z": 19,
             "y": 0
         },
         {
             "id": "201",
-            "spriteId": "7001",
+            "spriteId": "7016",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2271",
@@ -173,13 +173,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 10,
-            "z": 13,
+            "x": 17,
+            "z": 19,
             "y": 0
         },
         {
             "id": "202",
-            "spriteId": "7001",
+            "spriteId": "7015",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2272",
@@ -190,13 +190,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 20,
-            "z": 13,
+            "x": 35,
+            "z": 19,
             "y": 0
         },
         {
             "id": "203",
-            "spriteId": "7001",
+            "spriteId": "7016",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2273",
@@ -207,13 +207,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 21,
-            "z": 13,
+            "x": 36,
+            "z": 19,
             "y": 0
         },
         {
             "id": "204",
-            "spriteId": "7013",
+            "spriteId": "7017",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2274",
@@ -224,13 +224,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 9,
-            "z": 14,
+            "x": 16,
+            "z": 21,
             "y": 0
         },
         {
             "id": "205",
-            "spriteId": "7014",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2275",
@@ -241,13 +241,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 10,
-            "z": 14,
+            "x": 17,
+            "z": 21,
             "y": 0
         },
         {
             "id": "206",
-            "spriteId": "7013",
+            "spriteId": "7017",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2276",
@@ -258,13 +258,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 20,
-            "z": 14,
+            "x": 35,
+            "z": 21,
             "y": 0
         },
         {
             "id": "207",
-            "spriteId": "7014",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2277",
@@ -275,77 +275,77 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 21,
-            "z": 14,
+            "x": 36,
+            "z": 21,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 29,
+            "x": 45,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_2F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 4,
+            "x": 8,
             "z": 7,
             "header": "MAP_CANVAS_SILPH_CO_5F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 13,
-            "z": 15,
+            "x": 23,
+            "z": 24,
             "header": "MAP_CANVAS_SILPH_CO_7F",
             "anchor": 4,
             "y": 0
         },
         {
-            "x": 31,
+            "x": 47,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 2,
-            "z": 15,
+            "x": 4,
+            "z": 24,
             "header": "MAP_CANVAS_SILPH_CO_9F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 3,
-            "z": 23,
+            "x": 6,
+            "z": 36,
             "header": "MAP_CANVAS_SILPH_CO_5F",
             "anchor": 4,
             "y": 0
         },
         {
-            "x": 30,
-            "z": 15,
+            "x": 46,
+            "z": 24,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 7,
             "y": 0
         },
         {
-            "x": 33,
-            "z": 23,
+            "x": 49,
+            "z": 36,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 6,
             "y": 0
         },
         {
-            "x": 34,
+            "x": 51,
             "z": 5,
             "header": "MAP_CANVAS_SILPH_CO_2F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 22,
+            "x": 37,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

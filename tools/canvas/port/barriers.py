@@ -132,6 +132,36 @@ def picture(gdir, sq, g=None):
     return top, b['closed']
 
 
+VERTICAL = set(range(0x3C0, 0x3C6))       # (Silph Co.'s doors across its east-west passages: METATILE_SilphCo_VerticalBarrier_*)
+
+
+def edge_image(gdir, sq, vert):
+    """a door in a north-south wall, seen from the south as HeartGold's camera sees it: edge on, a thin upright slab
+    down the middle of the passage's width (the GBA's two-square partition), each square showing its share of it: the
+    door's grey, lit on its west side, its top edge pale on the northmost square. Its colours are the door's own (the
+    picture of its east-west turn, SUBST)"""
+    from PIL import Image
+    import gba as G
+    lay = gba_map.Layout(G.map_json(gdir)['layout'], raw=True)
+    g = _gba()
+    face = lay.render_metatile(g.value('METATILE_SilphCo_HorizontalBarrier_BottomLeft')).convert('RGB')
+    cols = sorted({c for c in face.getdata()}, key=lambda c: sum(c))
+    dark, mid, light = cols[len(cols) // 5], cols[len(cols) // 2], cols[-1 - len(cols) // 8]
+    x, y = sq
+    left = (x + 1, y) in vert                 # (the slab stands on the line between the two columns)
+    top = (x, y - 1) not in vert
+    im = Image.new('RGBA', (32, 32), (0, 0, 0, 0))
+    px = im.load()
+    x0 = 21 if left else 8                    # (the line between the columns: 8 pixels right or left of the middle)
+    for yy in range(32):
+        for k in range(3):
+            xx = x0 + k
+            c = (light if k == 0 else mid) if left else (mid if k < 2 else dark)
+            if top and yy < 3: c = light
+            px[xx, yy] = c + (255,)
+    return im
+
+
 def fronts(gdir):
     """the barrier squares that show the picture (nothing closed in front of them, to the south)"""
     bs = barriers(gdir)
@@ -229,11 +259,17 @@ def main():
         bs = barriers(d, g)
         if not bs: continue
         fr = fronts(d)
+        vert = {sq for sq, b in bs.items() if b['closed'] in VERTICAL}
         sq_out = []
         for sq in sorted(bs, key=lambda s: (s[1], s[0])):
             b = bs[sq]
             sprite = FIRST
-            if sq in fr:
+            if sq in vert:            # (a door across a passage running east-west: seen edge on)
+                im = edge_image(d, sq, vert)
+                k = im.tobytes()
+                if k not in pics: pics[k] = (FIRST + 1 + len(pics), im)
+                sprite = pics[k][0]
+            elif sq in fr:
                 im = image(d, sq)
                 k = im.tobytes()
                 if k not in pics: pics[k] = (FIRST + 1 + len(pics), im)

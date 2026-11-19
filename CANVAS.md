@@ -85,7 +85,9 @@ tall since the camera looks down), with sides in the face's edge colours and a s
 gets its own texture set and area entry so no other room pays for its textures.
 
 **People on the furniture**: the GBA seats people on its sofas (the Fan Club); HeartGold's sofa stands taller than
-a person, so a sofa someone sits on is HeartGold's low seats instead.
+a person, so a sofa someone sits on is HeartGold's low seats instead. A bed a square wide (the Medical Center's)
+is HeartGold's bed drawn narrower (a prop's scale), and one with a Pokemon in it sunk to its mattress, so the
+Pokemon lies on top rather than inside it.
 
 **Real assets first; draw only what HeartGold has nothing for** (Nick, the interior pass: rooms looked flat and
 unfinished, the Celadon old man's house empty). Every room built as a house (`build_rooms.build_room`: the small
@@ -544,12 +546,26 @@ The looks (each HeartGold's own place of that kind):
   (land 303) elevator door; the GBA's dark partition strips are walls wherever they stand (`wall_mt`); its plants,
   terminals, glass cabinets, meeting tables, pictures, crates and beds as HeartGold's models (`furnish.KIT`).
   (Cinnabar's Lab and Mart are rooms now: the `labroom` look.)
-  **Roomier than the GBA's** (Nick: a little cramped; widths at HeartGold's, err bigger): each floor gets a row
-  more under its walls and a column more beside its partitions (`silph_widen`, the porter moves everything with its
-  square). A new line goes in just past a wall, or the first line after it that can take one; each square in it is
-  a copy of the floor beyond (the corridor longer) or of the wall (the wall deeper), plain floor between two things,
-  and none goes through a thing (a desk, a plant, a terminal, stairs), a card-key door or a scripted walk
-  (`SILPH_SCENES`: the 7F rival's, 11F Giovanni's).
+  **Roomier than the GBA's** (Nick: cramped; widths at HeartGold's, err bigger): each floor gets a new row or
+  column at every line where one can go (`silph_widen`; up to twice the size; the porter moves everything with its
+  square), and two rows just before a wall across the floor (HeartGold's wall hides the floor behind it). Each
+  square of a new line is a copy of the floor beyond (a corridor longer) or of the wall (a wall deeper; a line
+  that is mostly wall isn't put in: it would only thicken a partition), plain floor between two things; a table,
+  a crate, a desk grows a line (HeartGold's models are laid to fit), and across, a terminal row or a cabinet too;
+  never stairs, nor anything against a wall a row down. Through a card-key door the new square is wall where it
+  would make a way round the door, else floor (shut in by the door's own squares). Where a new row crosses a new
+  column the square is floor if either has floor (a wall run stays straight). A scripted walk is redone over the
+  bigger floor (`port_map.rescaled`: each GBA step as many as its squares are apart now: the 7F rival's way to
+  the warp pad, 11F Giovanni's); only the squares between someone and who they walk up to stay as the GBA's
+  (`SILPH_SCENES`).
+  **Walls**: a wall across the floor (floor north of it too: a partition) stands half as high (`partition`: its
+  face cut down from HeartGold's, its top the light grey of HeartGold's wall top, `partition_top`), an office's
+  partition, so it doesn't hide the room behind it; every wall's ends and sides are closed (`sides`: a column of
+  the Radio Tower's wall texture down each side that has floor beside it, as its own rooms draw them); its windows
+  only on a face two squares long. The GBA's walls drawn from above (its partition strips and their ends,
+  `wall_mt`) are walls however thin. Warp pads are Saffron Gym's panel (`pad`, imported from its model) laid on
+  the floor. A card-key door across an east-west way is seen edge on (`port/barriers.py edge_image`: a thin
+  upright slab down the middle of the passage, each square its share), one across a north-south way face on.
 - **the Power Plant and Cinnabar's Gym**: Route 10's Power Plant (area 44, land 367): stone tiles, a wall of
   machine cabinets; the GBA's rubble as Mt. Moon's boulder card, its coils as blocks of the generator's yellow;
 - **the Pokemon Mansion**: the Burned Tower (area 78, land 449): charred plank walls (scorched now and then), its

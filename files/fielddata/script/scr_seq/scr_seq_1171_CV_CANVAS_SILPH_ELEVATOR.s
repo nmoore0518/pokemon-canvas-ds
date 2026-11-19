@@ -83,7 +83,7 @@ EventScript_GetElevatorFloor:
 	
 SilphCo_Elevator_EventScript_To11F:
 	SetVar 0x8006, 14
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_11F, 2, 14, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_11F, 2, 16, 3, 1
 	CompareVarToValue 0x5032, 14
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -93,7 +93,7 @@ SilphCo_Elevator_EventScript_To11F:
 	
 SilphCo_Elevator_EventScript_To10F:
 	SetVar 0x8006, 13
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_10F, 5, 13, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_10F, 5, 17, 3, 1
 	CompareVarToValue 0x5032, 13
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -103,7 +103,7 @@ SilphCo_Elevator_EventScript_To10F:
 	
 SilphCo_Elevator_EventScript_To9F:
 	SetVar 0x8006, 12
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_9F, 4, 27, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_9F, 4, 35, 3, 1
 	CompareVarToValue 0x5032, 12
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -113,7 +113,7 @@ SilphCo_Elevator_EventScript_To9F:
 	
 SilphCo_Elevator_EventScript_To8F:
 	SetVar 0x8006, 11
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_8F, 6, 26, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_8F, 6, 34, 3, 1
 	CompareVarToValue 0x5032, 11
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -123,7 +123,7 @@ SilphCo_Elevator_EventScript_To8F:
 	
 SilphCo_Elevator_EventScript_To7F:
 	SetVar 0x8006, 10
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_7F, 5, 25, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_7F, 5, 34, 3, 1
 	CompareVarToValue 0x5032, 10
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -133,7 +133,7 @@ SilphCo_Elevator_EventScript_To7F:
 	
 SilphCo_Elevator_EventScript_To6F:
 	SetVar 0x8006, 9
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_6F, 4, 22, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_6F, 4, 32, 3, 1
 	CompareVarToValue 0x5032, 9
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -143,7 +143,7 @@ SilphCo_Elevator_EventScript_To6F:
 	
 SilphCo_Elevator_EventScript_To5F:
 	SetVar 0x8006, 8
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_5F, 6, 26, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_5F, 6, 39, 3, 1
 	CompareVarToValue 0x5032, 8
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -153,7 +153,7 @@ SilphCo_Elevator_EventScript_To5F:
 	
 SilphCo_Elevator_EventScript_To4F:
 	SetVar 0x8006, 7
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_4F, 6, 23, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_4F, 6, 34, 3, 1
 	CompareVarToValue 0x5032, 7
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -163,7 +163,7 @@ SilphCo_Elevator_EventScript_To4F:
 	
 SilphCo_Elevator_EventScript_To3F:
 	SetVar 0x8006, 6
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_3F, 9, 22, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_3F, 9, 37, 3, 1
 	CompareVarToValue 0x5032, 6
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator
@@ -173,7 +173,7 @@ SilphCo_Elevator_EventScript_To3F:
 	
 SilphCo_Elevator_EventScript_To2F:
 	SetVar 0x8006, 5
-	SetDynamicWarp MAP_CANVAS_SILPH_CO_2F, 6, 24, 3, 1
+	SetDynamicWarp MAP_CANVAS_SILPH_CO_2F, 6, 37, 3, 1
 	CompareVarToValue 0x5032, 5
 	GoToIfEq SilphCo_Elevator_EventScript_ExitFloorSelect
 	Call SilphCo_Elevator_EventScript_MoveElevator

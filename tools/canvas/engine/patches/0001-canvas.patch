@@ -2354,7 +2354,7 @@ HcmV?d00001
 
 diff --git a/data/graphics/overworlds/custom/0015-cv_bar15.pal b/data/graphics/overworlds/custom/0015-cv_bar15.pal
 new file mode 100644
-index 00000000..144ca52a
+index 00000000..7c60b14a
 --- /dev/null
 +++ b/data/graphics/overworlds/custom/0015-cv_bar15.pal
 @@ -0,0 +1,19 @@
@@ -2362,15 +2362,15 @@ index 00000000..144ca52a
 +0100
 +16
 +255 0 255
-+222 197 189
-+205 180 156
-+172 172 139
-+189 148 139
-+148 139 115
-+148 115 106
-+123 115 90
-+115 65 74
-+82 49 65
++189 197 197
++106 156 164
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
 +0 0 0
 +0 0 0
 +0 0 0
@@ -2415,6 +2415,298 @@ index 00000000..bb301996
 \ No newline at end of file
 diff --git a/data/graphics/overworlds/custom/0015.png b/data/graphics/overworlds/custom/0015.png
 new file mode 100644
+index 0000000000000000000000000000000000000000..cc313d060f8cec7df609b2443353708faadf33af
+GIT binary patch
+literal 151
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS?>%}nYt9k|
+z;=peWw;2o!3`(9Zjv*Cs$q5b2ZjJ(zITaZgD_BolaJq3JP;`kK^IIn#hR!I4B;B-E
+QsvvVcUHx3vIVCg!03Qq=m;e9(
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0016-cv_bar16.pal b/data/graphics/overworlds/custom/0016-cv_bar16.pal
+new file mode 100644
+index 00000000..215c9e70
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0016-cv_bar16.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++189 197 197
++106 156 164
++115 115 115
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0016.json b/data/graphics/overworlds/custom/0016.json
+new file mode 100644
+index 00000000..7a4cd0c8
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0016.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar16": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar16": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar16.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0016.png b/data/graphics/overworlds/custom/0016.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..bb2e8657050db04ef2b0a60d9b3eb8432e6413df
+GIT binary patch
+literal 156
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS?>%}nYtEA5
+z;$j9Oz&pm=uM7+f>Ygr+Ar*1S2?+@a0wN3(1rD?%JQ5ZNQHbO=Qn)lNP<P2O?yb%|
+Y49_+*Omy1)I|F30r>mdKI;Vst0E*}&n*aa+
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0017-cv_bar17.pal b/data/graphics/overworlds/custom/0017-cv_bar17.pal
+new file mode 100644
+index 00000000..7c60b14a
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0017-cv_bar17.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++189 197 197
++106 156 164
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0017.json b/data/graphics/overworlds/custom/0017.json
+new file mode 100644
+index 00000000..dc2c7235
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0017.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar17": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar17": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar17.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0017.png b/data/graphics/overworlds/custom/0017.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..39244dbbd9b29abb78a905324c5a592efa9bc263
+GIT binary patch
+literal 143
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYS?>%}nYt9k|
+z;=peWw;2o!3{svhjv*Cs$q5b2ZmI&4ITaZg7c;F$NNHtf=-JDVbjEn~Ly&o%u6{1-
+HoD!M<6d4@T
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0018-cv_bar18.pal b/data/graphics/overworlds/custom/0018-cv_bar18.pal
+new file mode 100644
+index 00000000..3fed1718
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0018-cv_bar18.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++106 156 164
++115 115 115
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0018.json b/data/graphics/overworlds/custom/0018.json
+new file mode 100644
+index 00000000..b1662c1f
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0018.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar18": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar18": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar18.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0018.png b/data/graphics/overworlds/custom/0018.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..5ded2bea47dba3b4a6213cee405251081c04f941
+GIT binary patch
+literal 142
+zcmeAS@N?(olHy`uVBq!ia0y~yU{C;I7G?$phQ^Te;|vT81_3@HuKyYSXU$nsTwKgR
+z9H=}X15zmI>Eakt5tp2hkdPn{!Z1<bKuba&S5F%|!)k7Zf^DzfZ2_tBboFyt=akR{
+E0I6;qivR!s
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/graphics/overworlds/custom/0019-cv_bar19.pal b/data/graphics/overworlds/custom/0019-cv_bar19.pal
+new file mode 100644
+index 00000000..144ca52a
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0019-cv_bar19.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++255 0 255
++222 197 189
++205 180 156
++172 172 139
++189 148 139
++148 139 115
++148 115 106
++123 115 90
++115 65 74
++82 49 65
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/graphics/overworlds/custom/0019.json b/data/graphics/overworlds/custom/0019.json
+new file mode 100644
+index 00000000..56185ff3
+--- /dev/null
++++ b/data/graphics/overworlds/custom/0019.json
+@@ -0,0 +1,29 @@
++{
++	"frames": {
++		"cv_bar19": {
++			"frame": 0,
++			"coordTrans": 0,
++			"color0": 1,
++			"format": 3,
++			"height": 32,
++			"width": 32,
++			"flipY": 0,
++			"flipX": 0,
++			"repeatY": 0,
++			"repeatX": 0,
++			"unkBlockUnk0": 46,
++			"unkBlockUnk1": 1,
++			"unk0": 0,
++			"unk1": 1,
++			"unk2": 128
++		}
++	},
++	"palettes": {
++		"cv_bar19": {
++			"offset": 0,
++			"unk0": 70,
++			"unk1": 1,
++			"fileName": "cv_bar19.pal"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/data/graphics/overworlds/custom/0019.png b/data/graphics/overworlds/custom/0019.png
+new file mode 100644
 index 0000000000000000000000000000000000000000..82e8daa9a1c2b1785377f9c36e637b8b7576ef48
 GIT binary patch
 literal 415
@@ -2431,11 +2723,11 @@ E0G&juL;wH)
 literal 0
 HcmV?d00001
 
-diff --git a/data/graphics/overworlds/custom/0016-cv_chef.pal b/data/graphics/overworlds/custom/0016-cv_chef.pal
+diff --git a/data/graphics/overworlds/custom/0020-cv_chef.pal b/data/graphics/overworlds/custom/0020-cv_chef.pal
 new file mode 100644
 index 00000000..34f8e1e5
 --- /dev/null
-+++ b/data/graphics/overworlds/custom/0016-cv_chef.pal
++++ b/data/graphics/overworlds/custom/0020-cv_chef.pal
 @@ -0,0 +1,19 @@
 +JASC-PAL
 +0100
@@ -2456,11 +2748,11 @@ index 00000000..34f8e1e5
 +57 57 24
 +0 0 0
 +0 0 0
-diff --git a/data/graphics/overworlds/custom/0016.json b/data/graphics/overworlds/custom/0016.json
+diff --git a/data/graphics/overworlds/custom/0020.json b/data/graphics/overworlds/custom/0020.json
 new file mode 100644
 index 00000000..f5e2c2c9
 --- /dev/null
-+++ b/data/graphics/overworlds/custom/0016.json
++++ b/data/graphics/overworlds/custom/0020.json
 @@ -0,0 +1,284 @@
 +{
 +	"frames": {
@@ -2747,7 +3039,7 @@ index 00000000..f5e2c2c9
 +	}
 +}
 \ No newline at end of file
-diff --git a/data/graphics/overworlds/custom/0016.png b/data/graphics/overworlds/custom/0016.png
+diff --git a/data/graphics/overworlds/custom/0020.png b/data/graphics/overworlds/custom/0020.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..252a481260a6ac759466fa93d3e3fe5de9b50fc9
 GIT binary patch
@@ -11557,7 +11849,7 @@ index cf38c7e5..42a77c8c 100644
      {
          rnd_tmp = 120;
 diff --git a/src/field/overworld_table.c b/src/field/overworld_table.c
-index e0101f32..40c44157 100644
+index e0101f32..d01f0033 100644
 --- a/src/field/overworld_table.c
 +++ b/src/field/overworld_table.c
 @@ -23,7 +23,7 @@
@@ -11565,11 +11857,11 @@ index e0101f32..40c44157 100644
  
  // adjust this depending on the amount of new npc's that you have added
 -#define MON_OVERWORLD_GFX_START (297)
-+#define MON_OVERWORLD_GFX_START (314)   // Pokemon Canvas: our own overworlds (the fossil, the barriers, people)
++#define MON_OVERWORLD_GFX_START (318)   // Pokemon Canvas: our own overworlds (the fossil, the barriers, people)
  
  #define MON_FOLLOWER_ENTRY(species, cbparams) \
      { .tag = MON_OVERWORLD_TAG_START + species, .gfx = MON_OVERWORLD_GFX_START + species, .callback_params = cbparams },
-@@ -370,6 +370,25 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -370,6 +370,29 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          { .tag = 1048, .gfx = MON_OVERWORLD_GFX_START + SPECIES_TYPHLOSION, .callback_params = OVERWORLD_SIZE_SMALL },
          { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
  
@@ -11590,12 +11882,16 @@ index e0101f32..40c44157 100644
 +        { .tag = NEW_NPC_TAG_START + 13, .gfx = NEW_NPC_GFX_START + 13, .callback_params = 0x0024 },   // a barrier (barriers.py)
 +        { .tag = NEW_NPC_TAG_START + 14, .gfx = NEW_NPC_GFX_START + 14, .callback_params = 0x0024 },   // a barrier (barriers.py)
 +        { .tag = NEW_NPC_TAG_START + 15, .gfx = NEW_NPC_GFX_START + 15, .callback_params = 0x0024 },   // a barrier (barriers.py)
-+        { .tag = NEW_NPC_TAG_START + 16, .gfx = NEW_NPC_GFX_START + 16, .callback_params = 0x0000 },   // a person: CHEF (barriers.py PEOPLE)
++        { .tag = NEW_NPC_TAG_START + 16, .gfx = NEW_NPC_GFX_START + 16, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 17, .gfx = NEW_NPC_GFX_START + 17, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 18, .gfx = NEW_NPC_GFX_START + 18, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 19, .gfx = NEW_NPC_GFX_START + 19, .callback_params = 0x0024 },   // a barrier (barriers.py)
++        { .tag = NEW_NPC_TAG_START + 20, .gfx = NEW_NPC_GFX_START + 20, .callback_params = 0x0000 },   // a person: CHEF (barriers.py PEOPLE)
 +
          // pokémon follower specific overworlds start here... left off on gfx 1451 - galarian stunfisk which was inserted after all the others
  
          MON_FOLLOWER_ENTRY(SPECIES_BULBASAUR, OVERWORLD_SIZE_SMALL)
-@@ -1693,6 +1712,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
+@@ -1693,6 +1716,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
          MON_FOLLOWER_ENTRY(SPECIES_IRON_CROWN, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_TERAPAGOS, OVERWORLD_SIZE_SMALL)
          MON_FOLLOWER_ENTRY(SPECIES_PECHARUNT, OVERWORLD_SIZE_SMALL)

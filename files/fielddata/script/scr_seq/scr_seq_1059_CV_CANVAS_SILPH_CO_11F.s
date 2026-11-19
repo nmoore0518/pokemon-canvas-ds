@@ -585,7 +585,7 @@ Common_Movement_WalkInPlaceFasterDown:
 
 	.balign 4, 0
 SilphCo_11F_Movement_GiovanniApproachLeft:
-	WalkNormalSouth 4
+	WalkNormalSouth 5
 	WalkOnSpotFasterWest
 	EndMovement
 
@@ -599,7 +599,7 @@ SilphCo_11F_Movement_PlayerFaceGiovanni:
 
 	.balign 4, 0
 SilphCo_11F_Movement_GiovanniApproachRight:
-	WalkNormalSouth 3
+	WalkNormalSouth 4
 	EndMovement
 
 	.balign 4, 0

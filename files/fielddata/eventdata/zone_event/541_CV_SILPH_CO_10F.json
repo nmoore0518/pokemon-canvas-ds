@@ -4,39 +4,39 @@
         {
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
-            "x": 12,
-            "z": 12,
+            "x": 16,
+            "z": 18,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
-            "x": 13,
-            "z": 12,
+            "x": 17,
+            "z": 18,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
-            "x": 12,
-            "z": 13,
+            "x": 16,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_10F_EventScript_Door + 1",
             "type": 0,
-            "x": 13,
-            "z": 13,
+            "x": 17,
+            "z": 19,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_10F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 7,
+            "x": 11,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -56,8 +56,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 2,
-            "z": 8,
+            "x": 4,
+            "z": 9,
             "y": 0
         },
         {
@@ -73,8 +73,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 10,
-            "z": 19,
+            "x": 14,
+            "z": 30,
             "y": 0
         },
         {
@@ -91,7 +91,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 0,
-            "z": 15,
+            "z": 21,
             "y": 0
         },
         {
@@ -107,8 +107,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 5,
-            "z": 17,
+            "x": 9,
+            "z": 26,
             "y": 0
         },
         {
@@ -124,8 +124,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 2,
-            "z": 17,
+            "x": 4,
+            "z": 26,
             "y": 0
         },
         {
@@ -141,8 +141,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 3,
-            "z": 19,
+            "x": 6,
+            "z": 30,
             "y": 0
         },
         {
@@ -158,8 +158,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 12,
-            "z": 12,
+            "x": 16,
+            "z": 18,
             "y": 0
         },
         {
@@ -175,8 +175,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 12,
+            "x": 17,
+            "z": 18,
             "y": 0
         },
         {
@@ -192,8 +192,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 12,
-            "z": 13,
+            "x": 16,
+            "z": 19,
             "y": 0
         },
         {
@@ -209,49 +209,49 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 13,
+            "x": 17,
+            "z": 19,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 6,
+            "x": 10,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_11F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 10,
-            "z": 16,
+            "x": 14,
+            "z": 24,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 14,
-            "z": 10,
+            "x": 18,
+            "z": 13,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 5,
             "y": 0
         },
         {
-            "x": 8,
+            "x": 12,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_9F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 14,
-            "z": 19,
+            "x": 18,
+            "z": 30,
             "header": "MAP_CANVAS_SILPH_CO_4F",
             "anchor": 4,
             "y": 0
         },
         {
-            "x": 13,
+            "x": 17,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

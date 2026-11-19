@@ -4,95 +4,7 @@
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 3,
-            "z": 11,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
-            "type": 0,
-            "x": 3,
-            "z": 12,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 14,
-            "z": 18,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 14,
-            "z": 19,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 24,
-            "z": 7,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 25,
-            "z": 7,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 25,
-            "z": 8,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
-            "type": 0,
-            "x": 24,
-            "z": 8,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
-            "type": 0,
-            "x": 24,
-            "z": 15,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
-            "type": 0,
-            "x": 24,
-            "z": 14,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
-            "type": 0,
-            "x": 25,
-            "z": 14,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
-            "type": 0,
-            "x": 25,
+            "x": 5,
             "z": 15,
             "y": 0,
             "dir": 4
@@ -100,39 +12,127 @@
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 2,
-            "z": 12,
+            "x": 5,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 25,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 22,
+            "z": 27,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 32,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 33,
+            "z": 8,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 33,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door3 + 1",
+            "type": 0,
+            "x": 32,
+            "z": 9,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 32,
+            "z": 21,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 32,
+            "z": 20,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 33,
+            "z": 20,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door4 + 1",
+            "type": 0,
+            "x": 33,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 2,
-            "z": 11,
+            "x": 4,
+            "z": 17,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_9F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 4,
+            "z": 15,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 13,
-            "z": 18,
+            "x": 21,
+            "z": 25,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 13,
-            "z": 19,
+            "x": 21,
+            "z": 27,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_9F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 19,
+            "x": 27,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -152,8 +152,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 29,
-            "z": 18,
+            "x": 37,
+            "z": 25,
             "y": 0
         },
         {
@@ -169,8 +169,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 17,
-            "z": 20,
+            "x": 25,
+            "z": 29,
             "y": 0
         },
         {
@@ -186,8 +186,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 2,
-            "z": 18,
+            "x": 4,
+            "z": 25,
             "y": 0
         },
         {
@@ -203,8 +203,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1,
-            "z": 7,
+            "x": 2,
+            "z": 8,
             "y": 0
         },
         {
@@ -220,8 +220,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 35,
-            "z": 18,
+            "x": 43,
+            "z": 25,
             "y": 0
         },
         {
@@ -237,8 +237,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 24,
-            "z": 7,
+            "x": 32,
+            "z": 8,
             "y": 0
         },
         {
@@ -254,8 +254,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 25,
-            "z": 7,
+            "x": 33,
+            "z": 8,
             "y": 0
         },
         {
@@ -271,8 +271,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 24,
-            "z": 8,
+            "x": 32,
+            "z": 9,
             "y": 0
         },
         {
@@ -288,13 +288,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 25,
-            "z": 8,
+            "x": 33,
+            "z": 9,
             "y": 0
         },
         {
             "id": "204",
-            "spriteId": "7001",
+            "spriteId": "7015",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22A4",
@@ -305,13 +305,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 2,
-            "z": 11,
+            "x": 4,
+            "z": 15,
             "y": 0
         },
         {
             "id": "205",
-            "spriteId": "7001",
+            "spriteId": "7016",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22A5",
@@ -322,13 +322,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 3,
-            "z": 11,
+            "x": 5,
+            "z": 15,
             "y": 0
         },
         {
             "id": "206",
-            "spriteId": "7013",
+            "spriteId": "7017",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22A6",
@@ -339,13 +339,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 2,
-            "z": 12,
+            "x": 4,
+            "z": 17,
             "y": 0
         },
         {
             "id": "207",
-            "spriteId": "7014",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22A7",
@@ -356,8 +356,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 3,
-            "z": 12,
+            "x": 5,
+            "z": 17,
             "y": 0
         },
         {
@@ -373,8 +373,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 24,
-            "z": 14,
+            "x": 32,
+            "z": 20,
             "y": 0
         },
         {
@@ -390,8 +390,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 25,
-            "z": 14,
+            "x": 33,
+            "z": 20,
             "y": 0
         },
         {
@@ -407,8 +407,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 24,
-            "z": 15,
+            "x": 32,
+            "z": 21,
             "y": 0
         },
         {
@@ -424,13 +424,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 25,
-            "z": 15,
+            "x": 33,
+            "z": 21,
             "y": 0
         },
         {
             "id": "212",
-            "spriteId": "7001",
+            "spriteId": "7015",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22AC",
@@ -441,13 +441,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 18,
+            "x": 21,
+            "z": 25,
             "y": 0
         },
         {
             "id": "213",
-            "spriteId": "7001",
+            "spriteId": "7016",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22AD",
@@ -458,13 +458,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 14,
-            "z": 18,
+            "x": 22,
+            "z": 25,
             "y": 0
         },
         {
             "id": "214",
-            "spriteId": "7013",
+            "spriteId": "7017",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22AE",
@@ -475,13 +475,13 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 19,
+            "x": 21,
+            "z": 27,
             "y": 0
         },
         {
             "id": "215",
-            "spriteId": "7014",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x22AF",
@@ -492,42 +492,42 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 14,
-            "z": 19,
+            "x": 22,
+            "z": 27,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 18,
+            "x": 26,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_8F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 25,
-            "z": 20,
+            "x": 33,
+            "z": 29,
             "header": "MAP_CANVAS_SILPH_CO_5F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 10,
+            "x": 16,
             "z": 4,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 4,
             "y": 0
         },
         {
-            "x": 20,
+            "x": 28,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_10F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 27,
+            "x": 35,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,

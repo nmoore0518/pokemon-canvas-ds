@@ -1032,7 +1032,7 @@ SilphCo_7F_Movement_RivalApproachTop:
 
 	.balign 4, 0
 SilphCo_7F_Movement_RivalExitTop:
-	WalkNormalEast 3
+	WalkNormalEast 6
 	WalkNormalNorth
 	Delay16
 	EndMovement
@@ -1041,7 +1041,7 @@ SilphCo_7F_Movement_RivalExitTop:
 SilphCo_7F_Movement_RivalExitBottom:
 	WalkNormalWest
 	WalkNormalNorth 2
-	WalkNormalEast 4
+	WalkNormalEast 7
 	Delay16
 	EndMovement
 	.balign 4, 0

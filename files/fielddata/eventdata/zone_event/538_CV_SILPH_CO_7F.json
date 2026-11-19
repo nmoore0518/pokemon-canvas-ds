@@ -4,31 +4,47 @@
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 12,
-            "z": 8,
+            "x": 18,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 13,
-            "z": 8,
+            "x": 20,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door1 + 1",
             "type": 0,
-            "x": 12,
+            "x": 18,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_7F_EventScript_Door1 + 1",
+            "type": 0,
+            "x": 20,
+            "z": 13,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
+            "type": 0,
+            "x": 35,
             "z": 9,
             "y": 0,
             "dir": 4
         },
         {
-            "scriptId": "_EV_SilphCo_7F_EventScript_Door1 + 1",
+            "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 13,
+            "x": 36,
             "z": 9,
             "y": 0,
             "dir": 4
@@ -36,71 +52,55 @@
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 26,
-            "z": 7,
+            "x": 36,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
             "type": 0,
-            "x": 27,
-            "z": 7,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 27,
-            "z": 8,
-            "y": 0,
-            "dir": 4
-        },
-        {
-            "scriptId": "_EV_SilphCo_7F_EventScript_Door2 + 1",
-            "type": 0,
-            "x": 26,
-            "z": 8,
+            "x": 35,
+            "z": 12,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 27,
-            "z": 14,
+            "x": 36,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 28,
-            "z": 14,
+            "x": 37,
+            "z": 21,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 27,
-            "z": 15,
+            "x": 36,
+            "z": 22,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_Door3 + 1",
             "type": 0,
-            "x": 28,
-            "z": 15,
+            "x": 37,
+            "z": 22,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_FloorSign + 1",
             "type": 0,
-            "x": 22,
+            "x": 31,
             "z": 1,
             "y": 0,
             "dir": 4
@@ -120,7 +120,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 2,
+            "x": 3,
             "z": 6,
             "y": 0
         },
@@ -138,7 +138,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 0,
-            "z": 7,
+            "z": 9,
             "y": 0
         },
         {
@@ -154,7 +154,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 26,
+            "x": 35,
             "z": 5,
             "y": 0
         },
@@ -171,8 +171,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 26,
-            "z": 16,
+            "x": 35,
+            "z": 23,
             "y": 0
         },
         {
@@ -188,7 +188,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 14,
+            "x": 21,
             "z": 4,
             "y": 0
         },
@@ -205,8 +205,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 10,
-            "z": 10,
+            "x": 16,
+            "z": 16,
             "y": 0
         },
         {
@@ -222,8 +222,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 14,
-            "z": 15,
+            "x": 21,
+            "z": 22,
             "y": 0
         },
         {
@@ -239,8 +239,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 9,
-            "z": 15,
+            "x": 15,
+            "z": 22,
             "y": 0
         },
         {
@@ -256,8 +256,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 1,
-            "x": 3,
-            "z": 14,
+            "x": 5,
+            "z": 21,
             "y": 0
         },
         {
@@ -274,7 +274,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 0,
-            "z": 12,
+            "z": 18,
             "y": 0
         },
         {
@@ -290,8 +290,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 32,
-            "z": 11,
+            "x": 42,
+            "z": 17,
             "y": 0
         },
         {
@@ -307,8 +307,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 8,
-            "z": 7,
+            "x": 13,
+            "z": 9,
             "y": 0
         },
         {
@@ -324,8 +324,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 26,
-            "z": 7,
+            "x": 35,
+            "z": 9,
             "y": 0
         },
         {
@@ -341,8 +341,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 27,
-            "z": 7,
+            "x": 36,
+            "z": 9,
             "y": 0
         },
         {
@@ -358,8 +358,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 12,
-            "z": 8,
+            "x": 18,
+            "z": 12,
             "y": 0
         },
         {
@@ -375,8 +375,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 8,
+            "x": 20,
+            "z": 12,
             "y": 0
         },
         {
@@ -392,8 +392,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 26,
-            "z": 8,
+            "x": 35,
+            "z": 12,
             "y": 0
         },
         {
@@ -409,8 +409,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 27,
-            "z": 8,
+            "x": 36,
+            "z": 12,
             "y": 0
         },
         {
@@ -426,8 +426,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 12,
-            "z": 9,
+            "x": 18,
+            "z": 13,
             "y": 0
         },
         {
@@ -443,8 +443,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 13,
-            "z": 9,
+            "x": 20,
+            "z": 13,
             "y": 0
         },
         {
@@ -460,8 +460,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 27,
-            "z": 14,
+            "x": 36,
+            "z": 21,
             "y": 0
         },
         {
@@ -477,8 +477,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 28,
-            "z": 14,
+            "x": 37,
+            "z": 21,
             "y": 0
         },
         {
@@ -494,8 +494,8 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 27,
-            "z": 15,
+            "x": 36,
+            "z": 22,
             "y": 0
         },
         {
@@ -511,49 +511,49 @@
             "param2": 0,
             "xRange": 0,
             "yRange": 0,
-            "x": 28,
-            "z": 15,
+            "x": 37,
+            "z": 22,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 21,
+            "x": 30,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_6F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 5,
-            "z": 8,
+            "x": 9,
+            "z": 12,
             "header": "MAP_CANVAS_SILPH_CO_11F",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 27,
-            "z": 18,
+            "x": 36,
+            "z": 28,
             "header": "MAP_CANVAS_SILPH_CO_5F",
             "anchor": 5,
             "y": 0
         },
         {
-            "x": 29,
+            "x": 38,
             "z": 2,
             "header": "MAP_CANVAS_SILPH_CO_8F",
             "anchor": 3,
             "y": 0
         },
         {
-            "x": 5,
+            "x": 9,
             "z": 4,
             "header": "MAP_CANVAS_SILPH_CO_3F",
             "anchor": 2,
             "y": 0
         },
         {
-            "x": 25,
+            "x": 34,
             "z": 3,
             "header": "MAP_CANVAS_SILPH_ELEVATOR",
             "anchor": 0,
@@ -563,7 +563,7 @@
     "coords": [
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_RivalTriggerTop + 1",
-            "x": 2,
+            "x": 3,
             "z": 4,
             "w": 1,
             "h": 1,
@@ -573,7 +573,7 @@
         },
         {
             "scriptId": "_EV_SilphCo_7F_EventScript_RivalTriggerBottom + 1",
-            "x": 2,
+            "x": 3,
             "z": 5,
             "w": 1,
             "h": 1,
