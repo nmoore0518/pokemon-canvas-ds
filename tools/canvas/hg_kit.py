@@ -111,13 +111,28 @@ def make_kit(hg_map, member, top, keep):
         return abs(sum(P[k][0] * P[(k + 1) % len(P)][2] - P[(k + 1) % len(P)][0] * P[k][2] for k in range(len(P)))) / 2
     # (the thing's squares: those its top covers most of)
     mem = {q for q, polys in sq.items() if sum(flat_area(P) for t, P in polys if t in member and all(abs(p[1] - top) < 0.6 for p in P)) > 160}
+    crate = {q for q in mem if sum(flat_area(P) for t, P in sq[q] if t == 'sio_board' and all(abs(p[1] - top) < 0.6 for p in P)) > 160}
+    pos = blocks(crate)
     kit = []
     for q in sorted(mem):
         mask = sum(1 << i for i, (a, b) in enumerate(RING) if (q[0] + a, q[1] + b) in mem)
         polys = [(t, [(round(x, 2), round(y - g0, 2), round(z, 2), round(s, 2), round(tt, 2)) for x, y, z, s, tt in P]) for t, P in sq[q] if t in keep]
-        cls = 'crate' if any(t == 'sio_board' and all(abs(p[1] - top) < 0.6 for p in P) for t, P in sq[q]) else 'plank'
-        kit.append({'mask': mask, 'cls': cls, 'polys': polys})
-    return {'map': hg_map, 'ground': g0, 'top': top - g0, 'pieces': kit}
+        cls = 'crate' if q in pos else 'plank'
+        kit.append({'mask': mask, 'cls': cls, 'pos': pos.get(q), 'polys': polys})
+    # (and the water round it: the deck's overhang, the water splashing against it - HeartGold's foam - by the thing
+    # round each such square)
+    edge = []
+    for q in sorted(sq):
+        if q in mem or not any((q[0] + a, q[1] + b) in mem for a in (-1, 0, 1) for b in (-1, 0, 1)): continue
+        if not any(t in ('sea_on', 'river', 'pond_on') for t, P in sq[q]): continue
+        mask = sum(1 << i for i, (a, b) in enumerate(RING) if (q[0] + a, q[1] + b) in mem)
+        polys = [(t, [(round(x, 2), round(y - g0, 2), round(z, 2), round(s, 2), round(tt, 2)) for x, y, z, s, tt in P]) for t, P in sq[q]
+                 if t in keep or t in FOAM]
+        edge.append({'mask': mask, 'polys': polys})
+    return {'map': hg_map, 'ground': g0, 'top': top - g0, 'pieces': kit, 'edge': edge}
+
+
+FOAM = {'sea_line02', 'pond_line'}
 
 
 def make_stamp(hg_map, x0, z0, x1, z1, keep, models):
@@ -143,13 +158,25 @@ def seen(P):
     return n[2] / L > -0.15 and n[1] / L > -0.15 and (abs(n[0]) / L < 0.9 or n[1] / L > 0.35)     # (nor straight east or west)
 
 
-def pick(kit, have, cls=None):
+def blocks(sqs):
+    """squares tiled into whole 3 x 3 blocks, top left first: {square: its place in its block, 0..8}"""
+    out = {}
+    for q in sorted(sqs, key=lambda q: (q[1], q[0])):
+        if q in out: continue
+        blk = [(q[0] + i, q[1] + j) for j in range(3) for i in range(3)]
+        if all(b in sqs and b not in out for b in blk):
+            for k, b in enumerate(blk): out[b] = k
+    return out
+
+
+def pick(kit, have, cls=None, pos=None):
     """the kit's piece for a square of ours: `have(a, b)` whether the square (a, b) from it is the thing too. The
     eight round it count most, the ring outside them once each; of its class (a boardwalk's crossings, its planks)
     where it has one"""
     m = sum(1 << i for i, (a, b) in enumerate(RING) if have(a, b))
     wt = [4 if max(abs(a), abs(b)) == 1 else 1 for a, b in RING]
-    pool = [p for p in kit['pieces'] if p.get('cls') == cls] or kit['pieces']
+    pool = kit['edge'] if cls == 'edge' else [p for p in kit['pieces'] if p.get('cls') == cls and (pos is None or p.get('pos') == pos)] \
+        or [p for p in kit['pieces'] if p.get('cls') == cls] or kit['pieces']
     best = min(pool, key=lambda p: sum(w for i, w in enumerate(wt) if ((p['mask'] ^ m) >> i) & 1))
     return best['polys']
 
@@ -159,7 +186,7 @@ KITS = {
     'boardwalk': lambda: make_kit('MAP_ROUTE_12', {'bridge_c', 'sio_board', 'bridge_b', 'bridge_a'}, 18.0,
                                   {'bridge_a', 'bridge_b', 'bridge_c', 'sio_board'}),
     # Route 24's Nugget Bridge
-    'nugget': lambda: make_kit('MAP_ROUTE_24', {'a12_gbb2', 'a12_gbb3'}, 50.0, {'a12_gbb1', 'a12_gbb2', 'a12_gbb3', 'a12_gbb4'}),
+    'nugget': lambda: make_kit('MAP_ROUTE_24', {'a12_gbb2', 'a12_gbb3'}, 50.0, {'a12_gbb1', 'a12_gbb2', 'a12_gbb3'}),
 }
 PEN_TEX = {'grass02', 'grass02_a', 'sek_teien', 'sek_flower', 'flower01', 'flower02', 'f_dodai', 'f_dodai_a',
            'flower_sp1', 'pond_un', 'pond_on', 'pond_edge', 'pond_line'}

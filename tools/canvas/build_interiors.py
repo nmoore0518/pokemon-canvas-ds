@@ -725,13 +725,16 @@ PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something 
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair']), (64, ['aj_box01'])],
            44: [(70, ['d_rock01'])],
-           18: [(75, ['pond_on', 'pond_edge', 'pond_un', 'road05_r']),          # (Kanto's overworld: build_overworld.py;
+           18: [(75, ['pond_on', 'pond_edge', 'pond_un']),          # (Kanto's overworld: build_overworld.py;
                 (11, ['ymb_fe01', 'ymb_fe01_r', 'ymb_fe02', 'ymb_fe02_r', 'kbc_rd01', 'kbc_rd02', 'kbc_rd03', 'kbc_rd07', 'kbc_rd10']),       # its towns' own grounds)
                 (15, ['tama_yuka', 'tama_yuka2', 'tama_fuch']), (13, ['han_fe02', 'han_fe02_r']),
-                (14, ['sio_fe02', 'sio_fe02_r', 'bridge_a', 'bridge_b', 'bridge_c', 'sio_board']),   # (Route 12's boardwalk)
-                (13, ['a12_gbb1', 'a12_gbb2', 'a12_gbb3', 'a12_gbb4']),                              # (the Nugget Bridge)
+                (14, ['sio_fe02', 'sio_fe02_r', 'bridge_a', 'bridge_b', 'bridge_c', 'sio_board',     # (Route 12's boardwalk,
+                      'road02', 'road02_r']),                                                       # Route 14's road)
+                (13, ['a12_gbb1', 'a12_gbb2', 'a12_gbb3', 'river', 'river_r']),     # (the Nugget Bridge, HeartGold's rivers)
+                (10, ['tok_fe01', 'tok_fe01_r']),                                      # (Viridian's paving)
                 (16, ['f_dodai', 'f_dodai_a', 'flower_sp1', 'sek_teien', 'sek_flower', 'grass02_a'])]}  # (Fuchsia's pens)
-DROP = {18: ['sek_fe03', 'sek_fe03_r']}     # (no longer laid: Fuchsia's dark red ground)
+DROP = {18: ['sek_fe03', 'sek_fe03_r',      # (no longer laid: Fuchsia's dark red ground; and what no land of set 18's
+            'tree01_re', 'hit_r', 'a17_gt01', 'beach01_r2', 'road05_r', 'r_climb', 'a12_gbb4', 'road01_sub']}   # lays: its room)
 
 
 def import_textures():

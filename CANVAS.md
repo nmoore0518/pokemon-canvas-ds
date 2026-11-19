@@ -630,6 +630,14 @@ is what ours is built of. **`hg_kit.py`** reads HeartGold's own pieces out of it
   (and of their class: a boardwalk's platforms or its planks). The GBA's wooden walkways (`BRIDGE_MT`, by tileset)
   are HeartGold's: Route 12 and 13's boardwalks and Vermilion's planks Route 12's (its Silence Bridge), Route 24's
   Nugget Bridge Route 24's, their decks just above the ground, the sea under them (the sea goes on under a walkway).
+  **Widths are HeartGold's** (Nick: things come out too narrow - check the width against HeartGold's own, and err
+  bigger): its boardwalks are three squares across (the GBA's two: widened over the water on the side with room),
+  its Nugget Bridge six (the GBA's three take in their railings: five). A boardwalk's planks are laid square by
+  square as Route 12's are (trims half a square each side, the deck's planks across the whole width, faces down to
+  the water); its crossings are HeartGold's crate platforms, filled out to the box round each and laid as its 3 x 3
+  (corners, sides, middle); the sea's foam (Pallet's shore's) runs along every side.
+- rivers: HeartGold's river water where its own maps have a river (`RIVERS`: Route 10, 24, Cerulean); Viridian's
+  paving is its `tok_fe01` with its curb (`border`), the GBA's sand there the route's road; Route 14's road `road02`.
 - a *stamp*: every polygon over a block, fitted to the GBA's: Fuchsia's hedged pens (`PENS`: HeartGold's three, with a
   pond, a raised flower bed, flowers - the GBA's water ones its pond's walls round the GBA's water), only the faces the
   camera can see (a land must stay under 61,400 bytes: six pens fill one). The pens' Pokemon stand inside them.

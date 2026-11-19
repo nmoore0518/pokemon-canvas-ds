@@ -310,6 +310,10 @@ GROUND_STYLE = {
     'CeruleanCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'PewterCity_Frlg': dict(side='han_fe02', edge='han_fe02_r'),
     'LavenderTown_Frlg': dict(side='sio_fe02', edge='sio_fe02_r', paved=True),
+    # (Viridian: HeartGold's mixes its paving with the route's road - the GBA's paving is its, the GBA's sand the road;
+    # its paving meets the grass at a brick curb, no edge in the grass)
+    'ViridianCity_Frlg': dict(kinds=('pave',), side='tok_fe01', edge=None, border='tok_fe01_r', border_s=(5, 0)),
+    'Route14_Frlg': dict(side='road02', edge='road02_r'),        # (HeartGold's Route 14: its grey road)
 }
 EDGE_UNDER = {st['edge']: st['side'] for st in GROUND_STYLE.values() if st.get('under')}
 
@@ -322,6 +326,8 @@ PLAZAS = {
                                  statue=[(20, 16, 2, 2)], lamp=[(16, 14), (25, 14)], signs={(19, 13): (19, 15)}),
 }
 LAMP_MODEL = 95             # (Goldenrod's street lamp)
+SEA_EDGE = [(0.16, -1.5, 40.0), (0.22, -6.2, 47.6), (0.55, -9.6, 64.0)]     # (the sea's foam: build_pallet's)
+RIVERS = {'Route24_Frlg', 'CeruleanCity_Frlg', 'Route10_Frlg'}     # (the GBA's rivers: HeartGold's own lays its river there)
 # Fuchsia's pens (Nick: wrong size and shape as houses): the GBA's hedged pens, each HeartGold's own (its Fuchsia's,
 # hg_kit's stamps, fitted to the GBA's): with a pond where the GBA's has water, else a raised flower bed or flowers
 PENS = {'FuchsiaCity_Frlg': [(5, 7, 7, 4, 'pen_pond'), (12, 7, 7, 4, 'pen_flowers'), (31, 7, 6, 4, 'pen_bed'),
@@ -553,6 +559,25 @@ def plan_world(W=None, woods=False):
         for (ax, az), (bx_, bz_) in spec['signs'].items():
             kind[(x0 + bx_, y0 + bz_)] = 'sign'
             moved[(x0 + ax, y0 + az)] = (x0 + bx_, y0 + bz_)
+    # (the GBA's walkways widened to HeartGold's: Route 12's boardwalks are three squares across, the GBA's two - one
+    # more over the water on the side with room; the Nugget Bridge takes in its railings, five across)
+    bridge_closed = set()
+    # (a sign standing on a walkway stands on its deck)
+    on_bridge = {q for q, v in kind.items() if v == 'sign' and sum(kind.get(n) == 'bridge' for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1))) >= 2}
+    lt = lambda q: gba_map.layouts()[gba_map.map_json(owner[q])['layout']]['secondary_tileset'] if q in owner else None
+    B = lambda q: kind.get(q) == 'bridge' or q in on_bridge
+    for d in ((0, 1), (1, 0)):
+        add = set()
+        for q in [q for q, v in kind.items() if v == 'bridge' or q in on_bridge]:
+            if BRIDGE_KIT.get(lt(q), 'boardwalk') != 'boardwalk': continue
+            n = lambda k: (q[0] + d[0] * k, q[1] + d[1] * k)
+            if not (B(n(1)) and not B(n(-1)) and not B(n(2))): continue
+            if kind.get(n(2)) == 'water' and kind.get(n(3)) == 'water' and n(3) not in add: add.add(n(2))
+            elif kind.get(n(-1)) == 'water' and kind.get(n(-2)) == 'water' and n(-2) not in add: add.add(n(-1))
+        for q in add: kind[q] = 'bridge'
+    for q in [q for q, v in kind.items() if v == 'bridge' and BRIDGE_KIT.get(lt(q)) == 'nugget']:
+        for a in (-1, 1):
+            if kind.get((q[0] + a, q[1])) == 'stone': kind[(q[0] + a, q[1])] = 'bridge'; bridge_closed.add((q[0] + a, q[1]))
     pens, pen_open = [], set()
     for d, lst in ([] if woods else PENS.items()):      # (Fuchsia's pens: HeartGold's own, hg_kit's stamps)
         if d not in W_: continue
@@ -827,12 +852,38 @@ def plan_world(W=None, woods=False):
     # (each walkway's kit, by its GBA map's tileset)
     bridge_kit, bridge_cls = {}, {}
     for q, v in kind.items():
-        if v != 'bridge' or q not in owner: continue
+        if not (v == 'bridge' or q in on_bridge) or q not in owner: continue
         lay = gba_map.Layout(gba_map.map_json(owner[q])['layout'])
         ts_ = gba_map.layouts()[lay.id]['secondary_tileset']
         bridge_kit[q] = BRIDGE_KIT.get(ts_, 'boardwalk')
         m_ = lay.metatile(q[0] - W_[owner[q]][0], q[1] - W_[owner[q]][1])
-        bridge_cls[q] = 'crate' if (bridge_kit[q] == 'boardwalk' and m_ in BRIDGE_CRATE and ts_ == 'gTileset_LavenderTown') else 'plank'
+        # (a crossing: where walkways run both ways - HeartGold's crate platforms)
+        run = lambda dx, dz: sum(1 for k_ in range(1, 6) if all(kind.get((q[0] + dx * j, q[1] + dz * j)) == 'bridge' for j in range(1, k_ + 1)))
+        cross = run(1, 0) + run(-1, 0) + 1 >= 4 and run(0, 1) + run(0, -1) + 1 >= 4
+        bridge_cls[q] = 'crate' if bridge_kit[q] == 'boardwalk' and cross else 'plank'
+    # (HeartGold's crossings are whole platforms: each crossing of ours filled out to the box round it, over the water,
+    # and laid as HeartGold's 3 x 3 - its corners, its sides, its middle)
+    bridge_pos, seen_c = {}, set()
+    for q0 in sorted(q for q, c in bridge_cls.items() if c == 'crate'):
+        if q0 in seen_c: continue
+        comp, todo = {q0}, [q0]
+        while todo:
+            q = todo.pop()
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1),
+                      (q[0] + 2, q[1]), (q[0] - 2, q[1]), (q[0], q[1] + 2), (q[0], q[1] - 2)):      # (a square between: one crossing)
+                if n not in comp and bridge_cls.get(n) == 'crate': comp.add(n); todo.append(n)
+        seen_c |= comp
+        xa, xb = min(q[0] for q in comp), max(q[0] for q in comp)
+        za, zb = min(q[1] for q in comp), max(q[1] for q in comp)
+        if xb - xa < 1 or zb - za < 1: continue
+        box = [(x, z) for x in range(xa, xb + 1) for z in range(za, zb + 1)]
+        if not all(kind.get(b) in ('bridge', 'water') or b in on_bridge for b in box): continue
+        for b in box:
+            if kind.get(b) == 'water': kind[b] = 'bridge'; bridge_kit[b] = bridge_kit[q0]
+            bridge_cls[b] = 'crate'
+            bridge_pos[b] = (0 if b[0] == xa else 2 if b[0] == xb else 1) + 3 * (0 if b[1] == za else 2 if b[1] == zb else 1)
+    for q, c in bridge_cls.items():
+        if c == 'crate' and q not in bridge_pos: bridge_cls[q] = 'plank'
     # trees: one to a 2x2 block of woods, the blocks never overlapping, the woods' edge first (build_safari)
     full = lambda x, y: all(kind.get((x + a, y + b)) == 'woods' for a in (0, 1) for b in (0, 1))
     walk = [q for q, v in kind.items() if v in walkable or v == 'water']
@@ -865,7 +916,7 @@ def plan_world(W=None, woods=False):
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
-                trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_kit=bridge_kit, bridge_cls=bridge_cls)
+                trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_closed=bridge_closed, on_bridge=on_bridge, bridge_pos=bridge_pos, bridge_kit=bridge_kit, bridge_cls=bridge_cls)
 
 
 _KITS = {}
@@ -952,7 +1003,7 @@ def build_land(P, cx, cz, base=None):
     near = lambda q: abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18
     street = P.get('street', set())
     owner = P['owner']
-    gst = lambda q: GROUND_STYLE.get(owner.get(q), {})
+    gst = lambda q: (lambda st: st if K_(*q) in st.get('kinds', (K_(*q),)) else {})(GROUND_STYLE.get(owner.get(q), {}))
     # (Vermilion's harbour: a row of HeartGold's stone blocks along the water)
     quay = lambda q: gst(q).get('quay') and any(K_(q[0] + a, q[1] + b) == 'water' for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1)))
     skin_at = lambda q: SKIN['lawn'] if K_(*q) == 'lawn' else gst(q).get('street') if q in street else gst(q)['quay'] if quay(q) else gst(q).get('side', SKIN['pave'])
@@ -960,7 +1011,9 @@ def build_land(P, cx, cz, base=None):
     # (the roads, by the edge each lays in the grass beside it)
     roads, rskin = {}, {}
     for q, v in kind.items():
-        if v in EDGE and near(q): roads.setdefault(edge_at(q), set()).add(q); rskin[q] = skin_at(q)
+        if v in EDGE and near(q):
+            rskin[q] = skin_at(q)
+            if edge_at(q): roads.setdefault(edge_at(q), set()).add(q)
     for y in range(Z0 - 1, Z1 + 1):
         for x in range(X0 - 1, X1 + 1):
             k = K_(x, y)
@@ -968,7 +1021,8 @@ def build_land(P, cx, cz, base=None):
                 nb = [(x + a, y + b) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]
                 r = [n for n in nb if n in rskin]
                 if len(r) >= 2:
-                    roads.setdefault(edge_at(r[0]), set()).add((x, y)); rskin[(x, y)] = gst(r[0]).get('side', SKIN['pave'])
+                    if edge_at(r[0]): roads.setdefault(edge_at(r[0]), set()).add((x, y))
+                    rskin[(x, y)] = gst(r[0]).get('side', SKIN['pave'])
     road_of = lambda x, y: rskin.get((x, y))
     tall = {q for q, v in kind.items() if v == 'tall' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
     water = {q for q, v in kind.items() if v == 'water' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
@@ -981,7 +1035,7 @@ def build_land(P, cx, cz, base=None):
         for x in range(X0, X1):
             k = K_(x, y)
             r = road_of(x, y)
-            if k in ('water', 'rock', 'bridge', 'pen'): tex = None
+            if k in ('water', 'rock', 'bridge', 'pen') or (x, y) in P.get('on_bridge', ()): tex = None
             elif r: tex = r
             else:
                 nb = {rr: BS._sand_nb(sq, x, y) for rr, sq in roads.items()}
@@ -1004,7 +1058,7 @@ def build_land(P, cx, cz, base=None):
         for x in range(X0, X1):
             k = K_(x, y)
             i = (y - oz) * 32 + (x - ox)
-            if k in ('grass', 'sand', 'pave', 'flower', 'stairs', 'lawn', 'bridge') or (x, y) in P.get('pen_open', ()): perm[i] = 0x0000
+            if (k in ('grass', 'sand', 'pave', 'flower', 'stairs', 'lawn', 'bridge') and (x, y) not in P.get('bridge_closed', ())) or (x, y) in P.get('pen_open', ()): perm[i] = 0x0000
             elif k == 'tall': perm[i] = 0x0002
             elif k == 'water': perm[i] = 0x0010
             if (x, y) in ledges:
@@ -1025,6 +1079,19 @@ def build_land(P, cx, cz, base=None):
                     BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, lift(pts)), nb, x, y)
                 else:
                     BS._sand_edge(lambda tex, pts, rr=rr: poly(rr if tex == 'road01_r' else tex, pts), nb, x, y)
+            if gst((x, y)).get('border') and K_(x, y) in EDGE:
+                # (paving that meets the grass at a curb: a strip of HeartGold's along each side it meets anything else)
+                cb = gst((x, y))['border']; c0, c1 = gst((x, y))['border_s']
+                for dx, dz in ((0, 1), (1, 0), (-1, 0), (0, -1)):
+                    n_ = (x + dx, y + dz)
+                    if K_(*n_) in EDGE or n_ in rskin or K_(*n_) in ('house', 'door', None): continue
+                    X, Z, Wc = x * 16, y * 16, 4
+                    if dz:
+                        zo = Z + (16 if dz > 0 else 0); zi = zo - dz * Wc
+                        poly(cb, [((X, 0.3, zi), (c0, X)), ((X + 16, 0.3, zi), (c0, X + 16)), ((X + 16, 0.3, zo), (c1, X + 16)), ((X, 0.3, zo), (c1, X))])
+                    else:
+                        xo = X + (16 if dx > 0 else 0); xi = xo - dx * Wc
+                        poly(cb, [((xi, 0.3, Z + 16), (c0, Z + 16)), ((xo, 0.3, Z + 16), (c1, Z + 16)), ((xo, 0.3, Z), (c1, Z)), ((xi, 0.3, Z), (c0, Z))])
             if (x, y) in street and gst((x, y)).get('curb'):
                 # (a street's curb: a strip of HeartGold's along each side it meets the pavement)
                 cb = gst((x, y))['curb']
@@ -1094,7 +1161,9 @@ def build_land(P, cx, cz, base=None):
                 props.append((SIGN_MODEL, U(x + 0.5, ox), 0, U(y + 0.35, oz)))
     for y, xs in open_water.items():         # (open water, in runs: the water as the pond's middle has it; the sea
         sea_xs = [x for x in xs if (x, y) in P.get('sea', ())]          # HeartGold's sea, its clear layer over it)
-        for a, b in BS._runs(sorted(set(xs) - set(sea_xs))): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
+        riv = [x for x in xs if x not in sea_xs and owner.get((x, y)) in RIVERS]       # (HeartGold's rivers: its river)
+        for a, b in BS._runs(sorted(set(xs) - set(sea_xs) - set(riv))): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
+        for a, b in BS._runs(sorted(riv)): flat('river', a, y, b, y + 1, R.WATER_Y)
         for a, b in BS._runs(sorted(sea_xs)):
             flat('sea_un', a, y, b, y + 1, R.WATER_Y - 1); flat('sea_on', a, y, b, y + 1, R.WATER_Y)
     for y, xs in rock_tops.items():
@@ -1121,17 +1190,80 @@ def build_land(P, cx, cz, base=None):
         for a, b in BS._runs(sorted(zs)):
             za, zb, xa = a * 8, b * 8, xh * 8
             poly('egrass_v', [((xa, R.GRASS_Y, zb), (s0, zb)), ((xa + 8, R.GRASS_Y, zb), (s0 + 8, zb)), ((xa + 8, R.GRASS_Y, za), (s0 + 8, za)), ((xa, R.GRASS_Y, za), (s0, za))])
+    BR = lambda x, y: K_(x, y) == 'bridge' or (x, y) in P.get('on_bridge', ())
+
+    def boardwalk(x, y):
+        """a square of a boardwalk's planks, laid as HeartGold lays Route 12's (read off its own: hg_kit's): across
+        the walkway its trims (bridge_b, half a square each side), between them its deck (bridge_c, the planks' V across
+        the whole width), along it the texture running on; a side over the water its face down to the water"""
+        run = lambda dx, dz: next((k for k in range(1, 8) if not BR(x + dx * k, y + dz * k)), 8) - 1
+        along_x = run(1, 0) + run(-1, 0) >= run(0, 1) + run(0, -1)
+        if along_x: a_, b_ = run(0, -1), run(0, 1)       # (squares across, each side)
+        else: a_, b_ = run(-1, 0), run(1, 0)
+        Wu = (a_ + b_ + 1) * 16
+        u0 = a_ * 16
+        def P3(u, along, h):         # (u across from the walkway's -across edge, along in world units)
+            if along_x: return (along, h, y * 16 - u0 + u)
+            return (x * 16 - u0 + u, h, along)
+        al0, al1 = (x * 16, x * 16 + 16) if along_x else (y * 16, y * 16 + 16)
+        cuts = sorted({u0, u0 + 16} | {u for u in (8, Wu - 8) if u0 < u < u0 + 16})
+        for ua, ub in zip(cuts, cuts[1:]):
+            um = (ua + ub) / 2
+            if um < 8 or um > Wu - 8:       # (a trim: bridge_b's planks, s from its outer edge in)
+                sf = lambda u: 8.0 - 7.8 * (u / 8 if u < 8 else (Wu - u) / 8)
+                tex, S, T = 'bridge_b', sf, lambda al: al / 2
+            else:
+                tex, S, T = 'bridge_c', (lambda u: -(u - 8) * 32 / max(16, Wu - 16)), (lambda al: al)
+            poly(tex, [(P3(ua, al0, 2), (S(ua), T(al0))), (P3(ub, al0, 2), (S(ub), T(al0))), (P3(ub, al1, 2), (S(ub), T(al1))), (P3(ua, al1, 2), (S(ua), T(al1)))])
+        sides(x, y)
+
+    def sides(x, y):
+        """a boardwalk square's sides and ends over the water: bridge_b's face, down to under the water's top"""
+        for dx, dz in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+            if BR(x + dx, y + dz): continue
+            if dz: zz = y * 16 + (16 if dz > 0 else 0); A, B = (x * 16, zz), (x * 16 + 16, zz)
+            else: xx = x * 16 + (16 if dx > 0 else 0); A, B = (xx, y * 16), (xx, y * 16 + 16)
+            ta, tb = (A[0] if dz else A[1]) / 2, (B[0] if dz else B[1]) / 2
+            poly('bridge_b', [((A[0], 2, A[1]), (8.0, ta)), ((B[0], 2, B[1]), (8.0, tb)), ((B[0], R.WATER_Y - 1, B[1]), (15.7, tb)), ((A[0], R.WATER_Y - 1, A[1]), (15.7, ta))])
+    BR_at = lambda x, y: (lambda a, b: BR(x + a, y + b))
     # the walkways: HeartGold's own, a piece to a square by the walkway round it (hg_kit), their decks just above
     # the ground, the water under them
     for y in range(Z0, Z1):
         for x in range(X0, X1):
-            if K_(x, y) != 'bridge': continue
+            if not BR(x, y): continue
             kit = KIT(P['bridge_kit'].get((x, y), 'boardwalk'))
-            dy = 2 - kit['top']
-            for tex, pts in hg_kit.pick(kit, lambda a, b: K_(x + a, y + b) == 'bridge', P['bridge_cls'].get((x, y))):
-                poly(tex, [((x * 16 + px, max(R.WATER_Y - 6, py + dy), y * 16 + pz), (s_, t_)) for px, py, pz, s_, t_ in pts])
+            if P['bridge_kit'].get((x, y), 'boardwalk') == 'boardwalk' and P['bridge_cls'].get((x, y)) != 'crate':
+                boardwalk(x, y)
+            else:
+                dy = 2 - kit['top']
+                for tex, pts in hg_kit.pick(kit, BR_at(x, y), P['bridge_cls'].get((x, y)), P['bridge_pos'].get((x, y))):
+                    if P['bridge_cls'].get((x, y)) == 'crate' and not all(abs(p_[1] - 2) < 0.2 for p_ in pts): continue   # (its top)
+                    poly(tex, [((x * 16 + px, max(R.WATER_Y - 6, py + dy), y * 16 + pz), (s_, t_)) for px, py, pz, s_, t_ in pts])
+                if P['bridge_cls'].get((x, y)) == 'crate': sides(x, y)
             if any((x + a, y + b) in P.get('sea', ()) for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))): P['sea'].add((x, y))
-            open_water.setdefault(y, []).append(x)
+            if any(K_(x + a, y + b) == 'water' for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1))): open_water.setdefault(y, []).append(x)
+            else: flat(GROUND, x, y, x + 1, y + 1, 0)      # (a walkway on land: the ground under it)
+    foam = {}
+    for y in range(Z0, Z1):         # (the water round them: the decks' overhang; the sea splashing against them, as at
+        for x in range(X0, X1):     # Pallet's shore - HeartGold's foam - along each side in runs)
+            if K_(x, y) != 'water': continue
+            nb = [(x + a, y + b) for a in (-1, 0, 1) for b in (-1, 0, 1) if BR(x + a, y + b)]
+            if not nb: continue
+            kit = KIT(P['bridge_kit'].get(nb[0], 'boardwalk'))
+            dy = 2 - kit['top']
+            for tex, pts in ([] if P['bridge_kit'].get(nb[0], 'boardwalk') == 'boardwalk' else hg_kit.pick(kit, BR_at(x, y), 'edge')):
+                if tex == 'sea_line02': continue      # (its foam: ours, in runs)
+                poly(tex, [((x * 16 + px, max(R.WATER_Y - 6, py + dy), y * 16 + pz), (s_, t_)) for px, py, pz, s_, t_ in pts])
+            if (x, y) not in P.get('sea', ()): continue
+            for dx, dz in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+                if BR(x + dx, y + dz): foam.setdefault(((dx, dz), y if dz else x), set()).add(x if dz else y)
+    for ((dx, dz), line), al in foam.items():
+        for a, b in BS._runs(sorted(al)):
+            def FP(d, at, h):
+                if dz: return (at * 16, h, (line + (1 - d if dz > 0 else d)) * 16)
+                return ((line + (1 - d if dx > 0 else d)) * 16, h, at * 16)
+            for (d0, h0, t0), (d1, h1, t1) in zip(SEA_EDGE, SEA_EDGE[1:]):
+                poly('sea_line02', [(FP(d0, a, h0), (a * 16, t0)), (FP(d0, b, h0), (b * 16, t0)), (FP(d1, b, h1), (b * 16, t1)), (FP(d1, a, h1), (a * 16, t1))])
     # Fuchsia's pens: HeartGold's, stretched to the GBA's
     for px, pz, pw, ph, st_ in P.get('pens', ()):
         if not (X0 - 8 <= px < X1 and Z0 - 6 <= pz < Z1): continue
