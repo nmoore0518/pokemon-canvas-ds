@@ -11,7 +11,9 @@ built square by square from the GBA's layouts in HeartGold's own tower look:
     HeartGold's own lie flat, a slab with the picture on top), a square each, and the 7F's statues the same stone,
     twice as tall, over their two squares;
   - the 1F's counter: a low box, the Sprout Tower's boards on top and its wall's foot round it;
-  - the stairs: the Sprout Tower's own wooden stairs (room models 66, 67), placed by build_interiors._furnish.
+  - the Sprout Tower's lamps (model 68) on the north wall every six squares, as it hangs them;
+  - the stairs: the Sprout Tower's own ladders (field models 66, 67), placed by build_interiors._furnish;
+  - every floor a third roomier than the GBA's (`tower_widen`).
 Area 120 (build_interiors.OWN_AREAS): the Sprout Tower's texture set (77) with the House of Memories' tombstone and
 wood brought in (build_interiors.IMPORTS)."""
 import math, os, struct, sys
@@ -28,6 +30,30 @@ KERB_H = 8
 PANEL = 32 / 3                  # (its wall texture: a panel, 32 texels, to three squares)
 TOP_ST = (3.9, 0.4)             # (its wall top: one dark texel)
 COUNTER_H = 12
+# (Nick: the rooms looked much smaller than they should): every floor a third roomier - plain columns before the
+# GBA's 5, 7, 14 and 16, plain rows before 5, 13 and 14 (clear of the stairs, the 5F's purifying ground, the 2F rival's
+# triggers and the 7F statues; the porter moves everyone with the squares, and redoes the walks: port_map MOVES)
+WIDEN_COLS = (5, 7, 14, 16)
+WIDEN_ROWS = (5, 13, 14)
+LAMP, LAMP_EVERY = 68, 6        # (the Sprout Tower's wall lamp, on the north wall now and then)
+
+
+def tower_widen(gba):
+    """-> build_rooms.widen(cols=, rows=) for a Tower floor: each new line a copy of the GBA's line after it, but
+    plain floor where it would cut through a grave or anything closed on one side of it only (the graves' rows get
+    an aisle; the counter carries on across it), so nothing is doubled"""
+    import gba_map
+    gm = gba_map.map_json(gba); lay = gba_map.Layout(gm['layout'])
+    W, H = lay.w, lay.h
+    thing = lambda x, y: 0 <= x < W and 0 <= y < H and lay.collision(x, y) and lay.metatile(x, y) not in WALL_MT | {0x281}
+    floor = next((x, y) for y in range(H) for x in range(W) if lay.metatile(x, y) == 0x282 and not lay.collision(x, y))
+    grave = lambda x, y: 0 <= x < W and 0 <= y < H and lay.metatile(x, y) in GRAVE_MT
+    pick = lambda a, b: b if thing(*a) and thing(*b) and not grave(*a) and not grave(*b) else floor if thing(*a) or thing(*b) else b
+    return dict(cols=[(c, 1, [pick((c - 1, y), (c, y)) for y in range(H)]) for c in WIDEN_COLS],
+                rows=[(r, 1, [pick((x, r - 1), (x, r)) for x in range(W)]) for r in WIDEN_ROWS])
+
+
+_grave = {}
 
 # a gravestone (Nick: gravestone shaped, not cubes - HeartGold's own lie flat, a slab with the stone's picture on top,
 # so ours stands up): an arched slab facing the camera, leaning back a little, the House of Memories' tombstone
@@ -121,6 +147,8 @@ def build_tower_floor(spec, depth_of):
                     if beyond(x, y - 1):
                         s0, s1 = x * PANEL, (x + 1) * PANEL
                         hh = hgt(x, y - 1)
+                        if hh == WALL_H and x % LAMP_EVERY == 3 and beyond(x - 1, y - 1) and beyond(x + 1, y - 1) and (x, y) not in grave:
+                            props.append((LAMP, x + 0.5, y + 0.02, 1))      # (as the Sprout Tower hangs them: on the face, a unit up)
                         emit('d15_wall01', OPT('d15_wall01'), [(x, 0, y, s0, 32), (x + 1, 0, y, s1, 32), (x + 1, hh, y, s1, 32 - hh / 2), (x, hh, y, s0, 32 - hh / 2)])
                         emit('h_kage', (3, 0, 12, 'h_kage_pl'), [(x, 0.3, y + 0.5, 8, x * 10.67), (x + 1, 0.3, y + 0.5, 8, (x + 1) * 10.67),
                                                                   (x + 1, 0.3, y, 16, (x + 1) * 10.67), (x, 0.3, y, 16, x * 10.67)])

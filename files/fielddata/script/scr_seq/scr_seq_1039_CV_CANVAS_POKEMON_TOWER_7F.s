@@ -109,6 +109,69 @@ PokemonTower_7F_EventScript_DefeatedGrunt1:
 	WaitButton
 	CloseMsg
 	GetPlayerCoords 0x8004, 0x8005
+	CompareVarToValue 0x8004, 19
+	GoToIfLt _cv_unwiden_7
+	CompareVarToValue 0x8004, 20
+	GoToIfLt _cv_unwiden_8
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_7
+_cv_unwiden_8:
+	SetVar 0x8004, 19
+_cv_unwiden_7:
+	CompareVarToValue 0x8004, 16
+	GoToIfLt _cv_unwiden_9
+	CompareVarToValue 0x8004, 17
+	GoToIfLt _cv_unwiden_10
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_9
+_cv_unwiden_10:
+	SetVar 0x8004, 16
+_cv_unwiden_9:
+	CompareVarToValue 0x8004, 8
+	GoToIfLt _cv_unwiden_11
+	CompareVarToValue 0x8004, 9
+	GoToIfLt _cv_unwiden_12
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_11
+_cv_unwiden_12:
+	SetVar 0x8004, 8
+_cv_unwiden_11:
+	CompareVarToValue 0x8004, 5
+	GoToIfLt _cv_unwiden_13
+	CompareVarToValue 0x8004, 6
+	GoToIfLt _cv_unwiden_14
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_13
+_cv_unwiden_14:
+	SetVar 0x8004, 5
+_cv_unwiden_13:
+	CompareVarToValue 0x8005, 16
+	GoToIfLt _cv_unwiden_15
+	CompareVarToValue 0x8005, 17
+	GoToIfLt _cv_unwiden_16
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_15
+_cv_unwiden_16:
+	SetVar 0x8005, 16
+_cv_unwiden_15:
+	CompareVarToValue 0x8005, 14
+	GoToIfLt _cv_unwiden_17
+	CompareVarToValue 0x8005, 15
+	GoToIfLt _cv_unwiden_18
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_17
+_cv_unwiden_18:
+	SetVar 0x8005, 14
+_cv_unwiden_17:
+	CompareVarToValue 0x8005, 5
+	GoToIfLt _cv_unwiden_19
+	CompareVarToValue 0x8005, 6
+	GoToIfLt _cv_unwiden_20
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_19
+_cv_unwiden_20:
+	SetVar 0x8005, 5
+_cv_unwiden_19:
 	CompareVarToValue 0x8004, 10
 	GoToIfEq PokemonTower_7F_EventScript_Grunt1ExitMid
 	CompareVarToValue 0x8004, 11
@@ -125,6 +188,69 @@ PokemonTower_7F_EventScript_DefeatedGrunt2:
 	WaitButton
 	CloseMsg
 	GetPlayerCoords 0x8004, 0x8005
+	CompareVarToValue 0x8004, 19
+	GoToIfLt _cv_unwiden_21
+	CompareVarToValue 0x8004, 20
+	GoToIfLt _cv_unwiden_22
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_21
+_cv_unwiden_22:
+	SetVar 0x8004, 19
+_cv_unwiden_21:
+	CompareVarToValue 0x8004, 16
+	GoToIfLt _cv_unwiden_23
+	CompareVarToValue 0x8004, 17
+	GoToIfLt _cv_unwiden_24
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_23
+_cv_unwiden_24:
+	SetVar 0x8004, 16
+_cv_unwiden_23:
+	CompareVarToValue 0x8004, 8
+	GoToIfLt _cv_unwiden_25
+	CompareVarToValue 0x8004, 9
+	GoToIfLt _cv_unwiden_26
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_25
+_cv_unwiden_26:
+	SetVar 0x8004, 8
+_cv_unwiden_25:
+	CompareVarToValue 0x8004, 5
+	GoToIfLt _cv_unwiden_27
+	CompareVarToValue 0x8004, 6
+	GoToIfLt _cv_unwiden_28
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_27
+_cv_unwiden_28:
+	SetVar 0x8004, 5
+_cv_unwiden_27:
+	CompareVarToValue 0x8005, 16
+	GoToIfLt _cv_unwiden_29
+	CompareVarToValue 0x8005, 17
+	GoToIfLt _cv_unwiden_30
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_29
+_cv_unwiden_30:
+	SetVar 0x8005, 16
+_cv_unwiden_29:
+	CompareVarToValue 0x8005, 14
+	GoToIfLt _cv_unwiden_31
+	CompareVarToValue 0x8005, 15
+	GoToIfLt _cv_unwiden_32
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_31
+_cv_unwiden_32:
+	SetVar 0x8005, 14
+_cv_unwiden_31:
+	CompareVarToValue 0x8005, 5
+	GoToIfLt _cv_unwiden_33
+	CompareVarToValue 0x8005, 6
+	GoToIfLt _cv_unwiden_34
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_33
+_cv_unwiden_34:
+	SetVar 0x8005, 5
+_cv_unwiden_33:
 	CompareVarToValue 0x8004, 12
 	GoToIfEq PokemonTower_7F_EventScript_Grunt2ExitLeft
 	CompareVarToValue 0x8004, 13
@@ -139,6 +265,69 @@ PokemonTower_7F_EventScript_DefeatedGrunt3:
 	WaitButton
 	CloseMsg
 	GetPlayerCoords 0x8004, 0x8005
+	CompareVarToValue 0x8004, 19
+	GoToIfLt _cv_unwiden_35
+	CompareVarToValue 0x8004, 20
+	GoToIfLt _cv_unwiden_36
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_35
+_cv_unwiden_36:
+	SetVar 0x8004, 19
+_cv_unwiden_35:
+	CompareVarToValue 0x8004, 16
+	GoToIfLt _cv_unwiden_37
+	CompareVarToValue 0x8004, 17
+	GoToIfLt _cv_unwiden_38
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_37
+_cv_unwiden_38:
+	SetVar 0x8004, 16
+_cv_unwiden_37:
+	CompareVarToValue 0x8004, 8
+	GoToIfLt _cv_unwiden_39
+	CompareVarToValue 0x8004, 9
+	GoToIfLt _cv_unwiden_40
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_39
+_cv_unwiden_40:
+	SetVar 0x8004, 8
+_cv_unwiden_39:
+	CompareVarToValue 0x8004, 5
+	GoToIfLt _cv_unwiden_41
+	CompareVarToValue 0x8004, 6
+	GoToIfLt _cv_unwiden_42
+	SubVar 0x8004, 1
+	GoTo _cv_unwiden_41
+_cv_unwiden_42:
+	SetVar 0x8004, 5
+_cv_unwiden_41:
+	CompareVarToValue 0x8005, 16
+	GoToIfLt _cv_unwiden_43
+	CompareVarToValue 0x8005, 17
+	GoToIfLt _cv_unwiden_44
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_43
+_cv_unwiden_44:
+	SetVar 0x8005, 16
+_cv_unwiden_43:
+	CompareVarToValue 0x8005, 14
+	GoToIfLt _cv_unwiden_45
+	CompareVarToValue 0x8005, 15
+	GoToIfLt _cv_unwiden_46
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_45
+_cv_unwiden_46:
+	SetVar 0x8005, 14
+_cv_unwiden_45:
+	CompareVarToValue 0x8005, 5
+	GoToIfLt _cv_unwiden_47
+	CompareVarToValue 0x8005, 6
+	GoToIfLt _cv_unwiden_48
+	SubVar 0x8005, 1
+	GoTo _cv_unwiden_47
+_cv_unwiden_48:
+	SetVar 0x8005, 5
+_cv_unwiden_47:
 	CompareVarToValue 0x8004, 10
 	GoToIfEq PokemonTower_7F_EventScript_Grunt3ExitRight
 	CompareVarToValue 0x8004, 9
@@ -165,29 +354,29 @@ PaintWorld_EventScript_FigureBattle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_7
+	GoToIf TRUE, _cv_beaten_49
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_8
+	GoToIfNe _cv_won_50
 	WhiteOut
 	End
-_cv_won_8:
+_cv_won_50:
 	SetTrainerFlag 1442
 	ReleaseAll
 	End
-_cv_beaten_7:
+_cv_beaten_49:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_9
+	GoToIfNe _cv_outcome_51
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_10
-_cv_outcome_9:
+	GoTo _cv_outcome_52
+_cv_outcome_51:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_10
+	GoToIfNe _cv_outcome_52
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_10:
+_cv_outcome_52:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_Dissolve
@@ -272,12 +461,12 @@ _cv_stop:
 
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt1Exit:
-	WalkNormalSouth 6
+	WalkNormalSouth 8
 	EndMovement
 
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt2Exit:
-	WalkNormalSouth 6
+	WalkNormalSouth 8
 	EndMovement
 
 	.balign 4, 0
@@ -289,14 +478,14 @@ PokemonTower_7F_Movement_Grunt3Exit:
 PokemonTower_7F_Movement_Grunt1ExitMid:
 	WalkNormalSouth
 	WalkNormalEast
-	WalkNormalSouth 3
+	WalkNormalSouth 5
 	WalkNormalEast
 	WalkNormalSouth 2
 	EndMovement
 
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt1ExitRight:
-	WalkNormalSouth 4
+	WalkNormalSouth 6
 	WalkNormalEast
 	WalkNormalSouth 2
 	EndMovement
@@ -304,7 +493,7 @@ PokemonTower_7F_Movement_Grunt1ExitRight:
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt1ExitLeft:
 	WalkNormalEast
-	WalkNormalSouth 4
+	WalkNormalSouth 6
 	WalkNormalEast
 	WalkNormalSouth 2
 	WalkOnSpotFasterWest
@@ -314,13 +503,13 @@ PokemonTower_7F_Movement_Grunt1ExitLeft:
 PokemonTower_7F_Movement_Grunt2ExitLeft:
 	WalkNormalSouth 3
 	WalkNormalWest
-	WalkNormalSouth 3
+	WalkNormalSouth 5
 	EndMovement
 
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt2ExitRight:
 	WalkNormalWest
-	WalkNormalSouth 7
+	WalkNormalSouth 9
 	EndMovement
 
 	.balign 4, 0
@@ -333,6 +522,6 @@ PokemonTower_7F_Movement_Grunt3ExitRight:
 	.balign 4, 0
 PokemonTower_7F_Movement_Grunt3ExitLeft:
 	WalkNormalEast
-	WalkNormalSouth 7
+	WalkNormalSouth 8
 	EndMovement
 	.balign 4, 0

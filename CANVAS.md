@@ -549,7 +549,17 @@ The looks (each HeartGold's own place of that kind):
   stone; 10 polygons each (the 7F's 104 graves fill a land). Every GBA grave is one (by metatile, `GRAVE_MT`, not
   by what is joined to a wall); the 7F's statues are the same stone twice as tall; the 1F's counter a low box.
   Stairs are the Sprout Tower's own ladders (66 up, 67 down in the field models: an area whose byte 6 is 1 places
-  a/0/4/0's models, else a/1/4/8's rooms - the old tower's area drew them as shelves).
+  a/0/4/0's models, else a/1/4/8's rooms - the old tower's area drew them as shelves); its wall lamps (68) on the
+  north wall every six squares. The walls are HeartGold's texture at HeartGold's own scale (a 32-texel panel over
+  three squares and the wall's 64 units: the Sprout Tower's are as soft). The Sprout Tower's camera (0), not a
+  house's (4). **Roomier** (Nick: the rooms looked much smaller than they should): plain columns before the GBA's
+  5, 7, 14, 16 and rows before 5, 13, 14 (`tower_widen`: a grave or anything closed on one side only is cut with
+  floor, so the graves' rows get aisles and nothing is doubled; clear of the stairs, the 5F's purifying ground, the
+  2F rival's triggers). The porter redoes the scripted walks (`MOVES`: the 2F rival, the 7F grunts) and turns
+  `getplayerxy` back into the GBA's squares on any widened map (`unwiden`), so the GBA's comparisons hold.
+- **after build_interiors.py, run build_cinnabar, build_overworld and the porter** (the order at the top): it
+  writes the interiors' headers with no scripts and their events bare, and the later steps fill them in. A build
+  that stops after it ships interiors with no scripts.
 - **Silph Co. 2F-11F**: HeartGold's offices, the Radio Tower's (land 462, its textures imported into Silph Co.'s
   set, area 39): its grey zigzag floor, cream wall with a window every few squares, its dark top (`top_solid`: one
   texel, however long the run; stretched, the top ran into the texture's grey), its desks and stairs; the lobby's

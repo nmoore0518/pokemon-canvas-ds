@@ -179,6 +179,42 @@ CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland:
 	GetPlayerCoords 0x4014, 0x4015
 	SubVar 0x4014, 1028
 	SubVar 0x4015, 483
+	CompareVarToValue 0x4014, 26
+	GoToIfLt _cv_unwiden_3
+	CompareVarToValue 0x4014, 27
+	GoToIfLt _cv_unwiden_4
+	SubVar 0x4014, 1
+	GoTo _cv_unwiden_3
+_cv_unwiden_4:
+	SetVar 0x4014, 26
+_cv_unwiden_3:
+	CompareVarToValue 0x4014, 13
+	GoToIfLt _cv_unwiden_5
+	CompareVarToValue 0x4014, 15
+	GoToIfLt _cv_unwiden_6
+	SubVar 0x4014, 2
+	GoTo _cv_unwiden_5
+_cv_unwiden_6:
+	SetVar 0x4014, 13
+_cv_unwiden_5:
+	CompareVarToValue 0x4014, 4
+	GoToIfLt _cv_unwiden_7
+	CompareVarToValue 0x4014, 6
+	GoToIfLt _cv_unwiden_8
+	SubVar 0x4014, 2
+	GoTo _cv_unwiden_7
+_cv_unwiden_8:
+	SetVar 0x4014, 4
+_cv_unwiden_7:
+	CompareVarToValue 0x4015, 6
+	GoToIfLt _cv_unwiden_9
+	CompareVarToValue 0x4015, 9
+	GoToIfLt _cv_unwiden_10
+	SubVar 0x4015, 3
+	GoTo _cv_unwiden_9
+_cv_unwiden_10:
+	SetVar 0x4015, 6
+_cv_unwiden_9:
 	CompareVarToValue 0x4014, 18
 	GoToIfGe CinnabarIsland_EventScript_MoveSeagallopDown
 	SetFlag 2
@@ -204,14 +240,14 @@ CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter:
 	
 CinnabarIsland_EventScript_SailToOneIsland:
 	CallIfSet 2, CinnabarIsland_EventScript_ApproachShore
-	GoToIfUnset 0x2068, _cv_show_3
+	GoToIfUnset 0x2068, _cv_show_11
 	ClearFlag 0x2068
 	ShowPerson 4
 	SetFlag 0x2068
-	GoTo _cv_shown_4
-_cv_show_3:
+	GoTo _cv_shown_12
+_cv_show_11:
 	ShowPerson 4
-_cv_shown_4:
+_cv_shown_12:
 	CallIfUnset 2, CinnabarIsland_EventScript_BoatArrive
 	CallIfSet 2, CinnabarIsland_EventScript_BoatArriveExitedPokeCenter
 	NPCMsg msg_0519_T09_CinnabarIsland_Text_MyPalsBoatArrived
@@ -312,9 +348,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_6
+	GoToIfLt _cv_menu_14
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_6:
+_cv_menu_14:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

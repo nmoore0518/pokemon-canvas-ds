@@ -38,7 +38,7 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # the Pokemon Tower in HeartGold's own tower look (tower_kit.py: the Sprout Tower's boards and purple panelled walls,
     # the House of Memories' gravestones), in our area 120 (the Sprout Tower's textures, OWN_AREAS); its stairs the
     # Sprout Tower's own
-    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), tower=True),
+    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), tower=True, camera=0),     # (the Sprout Tower's own camera, 0: further out than a house's)
     # Silph Co.'s upper floors as HeartGold's offices (the Radio Tower's, land 462, its textures imported into the
     # Silph Co. set, area 39): its grey zigzag floor, its cream wall with a window now and then, its dark top, its
     # desks with monitors; the lobby's (land 303) door; HeartGold's room models for the rest (furnish.KIT: plants,
@@ -666,6 +666,9 @@ def silph_widen(gba):
 
 
 for _s in INTERIORS:
+    if _s['look'] == 'tower':
+        import tower_kit as _TK
+        _s['widen'] = _TK.tower_widen(_s['gba'])
     if _s['look'] == 'silph' and 'Elevator' not in _s['gba']:
         _w = silph_widen(_s['gba'])
         if _w: _s['widen'] = _w
@@ -979,7 +982,8 @@ def main():
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
         fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(spec.get('_area', LOOKS[spec['look']]['area'])), weather='0', **NO_SCRIPTS)
-        if LOOKS[spec['look']].get('kit') or LOOKS[spec['look']].get('tower'): fields['cameraType'] = '4'      # (HeartGold's indoor camera, as its own rooms of these looks have)
+        if LOOKS[spec['look']].get('kit'): fields['cameraType'] = '4'      # (HeartGold's indoor camera, as its own rooms of these looks have)
+        if LOOKS[spec['look']].get('camera') is not None: fields['cameraType'] = str(LOOKS[spec['look']]['camera'])
         if spec.get('place'):       # (the name shown on entering: the town's, where the template is elsewhere)
             fields['mapsec'] = header(spec['place'])['mapsec']
         set_header(spec['map'], fields)

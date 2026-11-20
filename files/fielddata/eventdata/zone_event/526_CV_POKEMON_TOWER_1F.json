@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 18,
-            "z": 13,
+            "x": 22,
+            "z": 15,
             "y": 0
         },
         {
@@ -31,8 +31,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 18,
-            "z": 7,
+            "x": 22,
+            "z": 8,
             "y": 0
         },
         {
@@ -48,8 +48,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 15,
-            "z": 6,
+            "x": 18,
+            "z": 7,
             "y": 0
         },
         {
@@ -65,8 +65,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 7,
-            "z": 8,
+            "x": 9,
+            "z": 9,
             "y": 0
         },
         {
@@ -82,8 +82,8 @@
             "param2": 0,
             "xRange": 2,
             "yRange": 2,
-            "x": 8,
-            "z": 12,
+            "x": 10,
+            "z": 13,
             "y": 0
         },
         {
@@ -100,35 +100,35 @@
             "xRange": 0,
             "yRange": 0,
             "x": 4,
-            "z": 10,
+            "z": 11,
             "y": 0
         }
     ],
     "warps": [
         {
-            "x": 10,
-            "z": 19,
+            "x": 12,
+            "z": 22,
             "header": "MAP_LAVENDER",
             "anchor": 6,
             "y": 0
         },
         {
-            "x": 11,
-            "z": 18,
+            "x": 13,
+            "z": 21,
             "header": "MAP_LAVENDER",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 12,
-            "z": 19,
+            "x": 14,
+            "z": 22,
             "header": "MAP_LAVENDER",
             "anchor": 6,
             "y": 0
         },
         {
-            "x": 18,
-            "z": 9,
+            "x": 22,
+            "z": 10,
             "header": "MAP_CANVAS_POKEMON_TOWER_2F",
             "anchor": 1,
             "y": 0

@@ -125,6 +125,105 @@ SeafoamIslands_B4F_EventScript_EnterByFalling:
 	CompareVarToValue 0x4002, 2
 	GoToIfEq SeafoamIslands_B4F_EventScript_CurrentBlocked
 	GetPlayerCoords 0x8008, 0x8009
+	CompareVarToValue 0x8008, 28
+	GoToIfLt _cv_unwiden_4
+	CompareVarToValue 0x8008, 29
+	GoToIfLt _cv_unwiden_5
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_4
+_cv_unwiden_5:
+	SetVar 0x8008, 28
+_cv_unwiden_4:
+	CompareVarToValue 0x8008, 24
+	GoToIfLt _cv_unwiden_6
+	CompareVarToValue 0x8008, 25
+	GoToIfLt _cv_unwiden_7
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_6
+_cv_unwiden_7:
+	SetVar 0x8008, 24
+_cv_unwiden_6:
+	CompareVarToValue 0x8008, 20
+	GoToIfLt _cv_unwiden_8
+	CompareVarToValue 0x8008, 21
+	GoToIfLt _cv_unwiden_9
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_8
+_cv_unwiden_9:
+	SetVar 0x8008, 20
+_cv_unwiden_8:
+	CompareVarToValue 0x8008, 17
+	GoToIfLt _cv_unwiden_10
+	CompareVarToValue 0x8008, 18
+	GoToIfLt _cv_unwiden_11
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_10
+_cv_unwiden_11:
+	SetVar 0x8008, 17
+_cv_unwiden_10:
+	CompareVarToValue 0x8008, 11
+	GoToIfLt _cv_unwiden_12
+	CompareVarToValue 0x8008, 12
+	GoToIfLt _cv_unwiden_13
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_12
+_cv_unwiden_13:
+	SetVar 0x8008, 11
+_cv_unwiden_12:
+	CompareVarToValue 0x8008, 6
+	GoToIfLt _cv_unwiden_14
+	CompareVarToValue 0x8008, 7
+	GoToIfLt _cv_unwiden_15
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_14
+_cv_unwiden_15:
+	SetVar 0x8008, 6
+_cv_unwiden_14:
+	CompareVarToValue 0x8009, 24
+	GoToIfLt _cv_unwiden_16
+	CompareVarToValue 0x8009, 25
+	GoToIfLt _cv_unwiden_17
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_16
+_cv_unwiden_17:
+	SetVar 0x8009, 24
+_cv_unwiden_16:
+	CompareVarToValue 0x8009, 21
+	GoToIfLt _cv_unwiden_18
+	CompareVarToValue 0x8009, 23
+	GoToIfLt _cv_unwiden_19
+	SubVar 0x8009, 2
+	GoTo _cv_unwiden_18
+_cv_unwiden_19:
+	SetVar 0x8009, 21
+_cv_unwiden_18:
+	CompareVarToValue 0x8009, 15
+	GoToIfLt _cv_unwiden_20
+	CompareVarToValue 0x8009, 16
+	GoToIfLt _cv_unwiden_21
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_20
+_cv_unwiden_21:
+	SetVar 0x8009, 15
+_cv_unwiden_20:
+	CompareVarToValue 0x8009, 8
+	GoToIfLt _cv_unwiden_22
+	CompareVarToValue 0x8009, 10
+	GoToIfLt _cv_unwiden_23
+	SubVar 0x8009, 2
+	GoTo _cv_unwiden_22
+_cv_unwiden_23:
+	SetVar 0x8009, 8
+_cv_unwiden_22:
+	CompareVarToValue 0x8009, 4
+	GoToIfLt _cv_unwiden_24
+	CompareVarToValue 0x8009, 5
+	GoToIfLt _cv_unwiden_25
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_24
+_cv_unwiden_25:
+	SetVar 0x8009, 4
+_cv_unwiden_24:
 	CompareVarToValue 0x8008, 9
 	CallIfLt SeafoamIslands_B4F_EventScript_RideCurrentFar
 	CompareVarToValue 0x8008, 9
@@ -164,14 +263,14 @@ SeafoamIslands_B4F_EventScript_SetNoCurrentLayout:
 SeafoamIslands_B4F_EventScript_TryRemoveArticuno:
 	GetStaticEncounterOutcome 0x401C
 	CompareVarToValue 0x401C, 4
-	GoToIfNe _cv_outcome_4
+	GoToIfNe _cv_outcome_26
 	SetVar 0x401C, 7
-	GoTo _cv_outcome_5
-_cv_outcome_4:
+	GoTo _cv_outcome_27
+_cv_outcome_26:
 	CompareVarToValue 0x401C, 5
-	GoToIfNe _cv_outcome_5
+	GoToIfNe _cv_outcome_27
 	SetVar 0x401C, 4
-_cv_outcome_5:
+_cv_outcome_27:
 	CompareVarToValue 0x401C, 7
 	GoToIfNe Common_EventScript_NopReturn
 	HidePerson 0x401D

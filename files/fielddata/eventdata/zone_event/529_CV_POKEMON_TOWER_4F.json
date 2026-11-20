@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 17,
-            "z": 7,
+            "x": 21,
+            "z": 8,
             "y": 0
         },
         {
@@ -31,8 +31,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 15,
-            "z": 13,
+            "x": 18,
+            "z": 15,
             "y": 0
         },
         {
@@ -49,7 +49,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 4,
-            "z": 12,
+            "z": 13,
             "y": 0
         },
         {
@@ -65,8 +65,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 12,
-            "z": 11,
+            "x": 14,
+            "z": 12,
             "y": 0
         },
         {
@@ -82,8 +82,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 8,
-            "z": 11,
+            "x": 10,
+            "z": 12,
             "y": 0
         },
         {
@@ -99,8 +99,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 11,
-            "z": 16,
+            "x": 13,
+            "z": 19,
             "y": 0
         },
         {
@@ -141,14 +141,14 @@
     "warps": [
         {
             "x": 4,
-            "z": 10,
+            "z": 11,
             "header": "MAP_CANVAS_POKEMON_TOWER_5F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 18,
-            "z": 10,
+            "x": 22,
+            "z": 11,
             "header": "MAP_CANVAS_POKEMON_TOWER_3F",
             "anchor": 1,
             "y": 0
@@ -158,7 +158,7 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave22 + 1",
             "type": 0,
-            "x": 15,
+            "x": 18,
             "z": 4,
             "y": 0,
             "dir": 4
@@ -166,56 +166,56 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave23 + 1",
             "type": 0,
-            "x": 7,
-            "z": 5,
+            "x": 9,
+            "z": 6,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave24 + 1",
             "type": 0,
-            "x": 12,
-            "z": 7,
+            "x": 14,
+            "z": 8,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave25 + 1",
             "type": 0,
-            "x": 19,
-            "z": 8,
+            "x": 23,
+            "z": 9,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave26 + 1",
             "type": 0,
-            "x": 8,
-            "z": 10,
+            "x": 10,
+            "z": 11,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave27 + 1",
             "type": 0,
-            "x": 13,
-            "z": 12,
+            "x": 15,
+            "z": 13,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave28 + 1",
             "type": 0,
-            "x": 5,
-            "z": 13,
+            "x": 6,
+            "z": 15,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave29 + 1",
             "type": 0,
-            "x": 14,
-            "z": 14,
+            "x": 17,
+            "z": 17,
             "y": 0,
             "dir": 4
         }

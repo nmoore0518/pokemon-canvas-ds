@@ -14,8 +14,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 16,
-            "z": 5,
+            "x": 20,
+            "z": 6,
             "y": 0
         },
         {
@@ -32,7 +32,7 @@
             "xRange": 1,
             "yRange": 1,
             "x": 3,
-            "z": 7,
+            "z": 8,
             "y": 0
         },
         {
@@ -73,14 +73,14 @@
     "warps": [
         {
             "x": 4,
-            "z": 10,
+            "z": 11,
             "header": "MAP_CANVAS_POKEMON_TOWER_3F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 18,
-            "z": 10,
+            "x": 22,
+            "z": 11,
             "header": "MAP_CANVAS_POKEMON_TOWER_1F",
             "anchor": 3,
             "y": 0
@@ -90,7 +90,7 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave00 + 1",
             "type": 0,
-            "x": 9,
+            "x": 11,
             "z": 2,
             "y": 0,
             "dir": 4
@@ -98,7 +98,7 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave01 + 1",
             "type": 0,
-            "x": 13,
+            "x": 15,
             "z": 2,
             "y": 0,
             "dir": 4
@@ -106,7 +106,7 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave02 + 1",
             "type": 0,
-            "x": 8,
+            "x": 10,
             "z": 4,
             "y": 0,
             "dir": 4
@@ -114,48 +114,48 @@
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave03 + 1",
             "type": 0,
-            "x": 7,
-            "z": 7,
+            "x": 9,
+            "z": 8,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave04 + 1",
             "type": 0,
-            "x": 11,
-            "z": 7,
+            "x": 13,
+            "z": 8,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave05 + 1",
             "type": 0,
-            "x": 15,
-            "z": 7,
+            "x": 18,
+            "z": 8,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave06 + 1",
             "type": 0,
-            "x": 19,
-            "z": 8,
+            "x": 23,
+            "z": 9,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave07 + 1",
             "type": 0,
-            "x": 5,
-            "z": 10,
+            "x": 6,
+            "z": 11,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave08 + 1",
             "type": 0,
-            "x": 15,
-            "z": 10,
+            "x": 18,
+            "z": 11,
             "y": 0,
             "dir": 4
         },
@@ -163,23 +163,23 @@
             "scriptId": "_EV_PokemonTower_EventScript_Grave09 + 1",
             "type": 0,
             "x": 4,
-            "z": 14,
+            "z": 17,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave10 + 1",
             "type": 0,
-            "x": 16,
-            "z": 14,
+            "x": 20,
+            "z": 17,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_PokemonTower_EventScript_Grave11 + 1",
             "type": 0,
-            "x": 11,
-            "z": 17,
+            "x": 13,
+            "z": 20,
             "y": 0,
             "dir": 4
         }
@@ -187,8 +187,8 @@
     "coords": [
         {
             "scriptId": "_EV_PokemonTower_2F_EventScript_RivalTriggerRight + 1",
-            "x": 17,
-            "z": 5,
+            "x": 21,
+            "z": 6,
             "w": 1,
             "h": 1,
             "y": 0,
@@ -197,8 +197,8 @@
         },
         {
             "scriptId": "_EV_PokemonTower_2F_EventScript_RivalTriggerDown + 1",
-            "x": 16,
-            "z": 6,
+            "x": 20,
+            "z": 7,
             "w": 1,
             "h": 1,
             "y": 0,

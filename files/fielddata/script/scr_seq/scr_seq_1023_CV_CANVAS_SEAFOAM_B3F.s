@@ -72,6 +72,123 @@ SeafoamIslands_B3F_EventScript_EnterByFalling:
 	CompareVarToValue 0x4002, 2
 	GoToIfEq SeafoamIslands_B3F_EventScript_CurrentBlocked
 	GetPlayerCoords 0x8008, 0x8009
+	CompareVarToValue 0x8008, 38
+	GoToIfLt _cv_unwiden_1
+	CompareVarToValue 0x8008, 39
+	GoToIfLt _cv_unwiden_2
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_1
+_cv_unwiden_2:
+	SetVar 0x8008, 38
+_cv_unwiden_1:
+	CompareVarToValue 0x8008, 35
+	GoToIfLt _cv_unwiden_3
+	CompareVarToValue 0x8008, 36
+	GoToIfLt _cv_unwiden_4
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_3
+_cv_unwiden_4:
+	SetVar 0x8008, 35
+_cv_unwiden_3:
+	CompareVarToValue 0x8008, 30
+	GoToIfLt _cv_unwiden_5
+	CompareVarToValue 0x8008, 31
+	GoToIfLt _cv_unwiden_6
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_5
+_cv_unwiden_6:
+	SetVar 0x8008, 30
+_cv_unwiden_5:
+	CompareVarToValue 0x8008, 28
+	GoToIfLt _cv_unwiden_7
+	CompareVarToValue 0x8008, 29
+	GoToIfLt _cv_unwiden_8
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_7
+_cv_unwiden_8:
+	SetVar 0x8008, 28
+_cv_unwiden_7:
+	CompareVarToValue 0x8008, 21
+	GoToIfLt _cv_unwiden_9
+	CompareVarToValue 0x8008, 22
+	GoToIfLt _cv_unwiden_10
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_9
+_cv_unwiden_10:
+	SetVar 0x8008, 21
+_cv_unwiden_9:
+	CompareVarToValue 0x8008, 13
+	GoToIfLt _cv_unwiden_11
+	CompareVarToValue 0x8008, 14
+	GoToIfLt _cv_unwiden_12
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_11
+_cv_unwiden_12:
+	SetVar 0x8008, 13
+_cv_unwiden_11:
+	CompareVarToValue 0x8008, 10
+	GoToIfLt _cv_unwiden_13
+	CompareVarToValue 0x8008, 11
+	GoToIfLt _cv_unwiden_14
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_13
+_cv_unwiden_14:
+	SetVar 0x8008, 10
+_cv_unwiden_13:
+	CompareVarToValue 0x8008, 7
+	GoToIfLt _cv_unwiden_15
+	CompareVarToValue 0x8008, 8
+	GoToIfLt _cv_unwiden_16
+	SubVar 0x8008, 1
+	GoTo _cv_unwiden_15
+_cv_unwiden_16:
+	SetVar 0x8008, 7
+_cv_unwiden_15:
+	CompareVarToValue 0x8009, 18
+	GoToIfLt _cv_unwiden_17
+	CompareVarToValue 0x8009, 20
+	GoToIfLt _cv_unwiden_18
+	SubVar 0x8009, 2
+	GoTo _cv_unwiden_17
+_cv_unwiden_18:
+	SetVar 0x8009, 18
+_cv_unwiden_17:
+	CompareVarToValue 0x8009, 14
+	GoToIfLt _cv_unwiden_19
+	CompareVarToValue 0x8009, 15
+	GoToIfLt _cv_unwiden_20
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_19
+_cv_unwiden_20:
+	SetVar 0x8009, 14
+_cv_unwiden_19:
+	CompareVarToValue 0x8009, 12
+	GoToIfLt _cv_unwiden_21
+	CompareVarToValue 0x8009, 13
+	GoToIfLt _cv_unwiden_22
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_21
+_cv_unwiden_22:
+	SetVar 0x8009, 12
+_cv_unwiden_21:
+	CompareVarToValue 0x8009, 10
+	GoToIfLt _cv_unwiden_23
+	CompareVarToValue 0x8009, 11
+	GoToIfLt _cv_unwiden_24
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_23
+_cv_unwiden_24:
+	SetVar 0x8009, 10
+_cv_unwiden_23:
+	CompareVarToValue 0x8009, 7
+	GoToIfLt _cv_unwiden_25
+	CompareVarToValue 0x8009, 8
+	GoToIfLt _cv_unwiden_26
+	SubVar 0x8009, 1
+	GoTo _cv_unwiden_25
+_cv_unwiden_26:
+	SetVar 0x8009, 7
+_cv_unwiden_25:
 	CompareVarToValue 0x8008, 24
 	CallIfLt SeafoamIslands_B3F_EventScript_RideCurrentFar
 	CompareVarToValue 0x8008, 24

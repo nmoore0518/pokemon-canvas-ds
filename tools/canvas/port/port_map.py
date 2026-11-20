@@ -822,7 +822,30 @@ def silph_11f_moves(xy):
             'SilphCo_11F_Movement_GiovanniApproachRight': rescaled(xy, (6, 11), 'SilphCo_11F_Movement_GiovanniApproachRight')}
 
 
-MOVES = {'PewterCity_Frlg': pewter_moves, 'SilphCo_7F_Frlg': silph_7f_moves, 'SilphCo_11F_Frlg': silph_11f_moves}
+def tower_2f_moves(xy):
+    """the rival leaves for the stairs by the GBA's walks, over our roomier floor"""
+    return {k: rescaled(xy, (16, 5), k) for k in ('PokemonTower_2F_Movement_RivalExitRight', 'PokemonTower_2F_Movement_RivalExitDown')}
+
+
+def tower_7f_moves(xy):
+    """the grunts leave down the middle by the GBA's walks, over our roomier floor"""
+    out = {}
+    for start, labels in (((9, 10), ('Grunt1Exit', 'Grunt1ExitMid', 'Grunt1ExitRight', 'Grunt1ExitLeft')),
+                          ((13, 8), ('Grunt2Exit', 'Grunt2ExitLeft', 'Grunt2ExitRight')),
+                          ((9, 6), ('Grunt3Exit', 'Grunt3ExitLeft', 'Grunt3ExitRight'))):
+        for l in labels:
+            k = 'PokemonTower_7F_Movement_' + l
+            if k in _gba_labels(): out[k] = rescaled(xy, start, k)
+    return out
+
+
+def _gba_labels():
+    if 'g' not in _G: _G['g'] = G.Gba()
+    return _G['g'].labels
+
+
+MOVES = {'PewterCity_Frlg': pewter_moves, 'SilphCo_7F_Frlg': silph_7f_moves, 'SilphCo_11F_Frlg': silph_11f_moves,
+         'PokemonTower_2F_Frlg': tower_2f_moves, 'PokemonTower_7F_Frlg': tower_7f_moves}
 
 
 def pewter_gym_guide_lane4(p):
@@ -1246,6 +1269,20 @@ class Port:
         if label not in self.mapscript_labels:
             self.emit('GoTo _cv_stop')
 
+    def unwiden(self, v, axis):
+        """a square of a room built bigger than the GBA's (widen) back to the GBA's, in var v (after the origin is
+        taken off): past a run of added lines, less their number; on one, the GBA line it copies (the one after it).
+        Runs from the far side in, so each takes off only its own"""
+        pos = [self.xy(*((k, 0) if axis == 0 else (0, k)))[axis] - (self.ox, self.oy)[axis] for k in range(64)]
+        runs = [(pos[k] - (pos[k] - pos[k - 1] - 1), pos[k] - pos[k - 1] - 1) for k in range(1, 64) if pos[k] - pos[k - 1] > 1]
+        if pos[0] > 0: runs.insert(0, (0, pos[0]))
+        for start, n in sorted(runs, reverse=True):
+            past, on = self.new('unwiden'), self.new('unwiden')
+            self.emit('CompareVarToValue %s, %d' % (v, start), 'GoToIfLt %s' % past,
+                      'CompareVarToValue %s, %d' % (v, start + n), 'GoToIfLt %s' % on,
+                      'SubVar %s, %d' % (v, n), 'GoTo %s' % past,
+                      on + ':', 'SetVar %s, %d' % (v, start), past + ':')
+
     def strvar(self, a):
         return int(a[-1]) - 1 if a.startswith('STR_VAR_') else int(self.val(a))
 
@@ -1559,6 +1596,7 @@ class Port:
                 self.emit('GetPlayerCoords %s, %s' % (vx, vy))
                 if self.ox: self.emit('SubVar %s, %d' % (vx, self.ox))
                 if self.oy: self.emit('SubVar %s, %d' % (vy, self.oy))
+                self.unwiden(vx, 0); self.unwiden(vy, 1)
             elif cmd == 'setobjectmovementtype':
                 mv = MOVETYPE.get(a[1])
                 if mv is None:
