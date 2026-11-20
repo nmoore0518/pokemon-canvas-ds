@@ -806,6 +806,14 @@ is what ours is built of. **`hg_kit.py`** reads HeartGold's own pieces out of it
 A house (narrower than 5.5 squares) is centred on the GBA's building, its door model on the GBA's door; HeartGold's
 own buildings go up before the town's houses.
 
+**The Academy's main hall** (Nick: "a bigger version of" Pewter's Museum of Science "with brick facade and a blue
+roof"): `academy_hall.py` copies HeartGold's museum (field model 293) as model 343 (appended by build_pallet.py after
+the recoloured houses, `ACADEMY_MODEL`; its own texture names, `cv_ac..`, as building textures share VRAM by name):
+the roof's palette turned blue, the cream plaster's texels relaid as brick (a running bond, 8 by 4 texels, in three
+palette slots the plaster freed), the glass, emblem and trim HeartGold's. It stands with its arch on the GBA's
+doors, 1.12 times the museum and 1.2 times taller, the squares under it closed (`ACADEMY`, `academy_hall`).
+A model of ours made from one of HeartGold's: build_pallet.py's list, run from the top of the build order.
+
 **The Academy's front** (`PLAZAS`; Nick: "our flowers and Roserade statue... make it look pretty") is laid anew: paved,
 raised flower beds (HeartGold's grass and flowers on Fuchsia's brick), Goldenrod's street lamps (model 95) where the
 GBA's lamps stand, and the GBA's statue as HeartGold's own Roserade (its overworld frame from hg-engine,

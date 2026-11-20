@@ -703,6 +703,7 @@ for dx, dy, nm in DECOR:
 
 # ---------------------------------------------------------------- buildings (HeartGold models), lined up on our doors
 BM_HOUSE = {'red': 313, 'blue': 340, 'green': 341, 'purple': 342}
+ACADEMY_MODEL = 343             # (academy_hall.py: appended after the houses)
 BUILDINGS = {   # model, door model, door offset from the model's origin (units), door model's centre x
     'house': (None, 310, (-6.0, 2.64, 19.52), -10.0),
     'lab': (314, 311, (10.0, 2.64, 19.52), -10.0),
@@ -933,20 +934,25 @@ def main():
     # buildings archive
     bm, bm_btnf = read_narc(open(BM_FIELD, 'rb').read())
     bm = bm[:ORIG_BM_COUNT]
+    src = []            # (the HeartGold model each of ours is a copy of: its animation and materials too)
     for hue, ks, kv, tag in ((0.6, 0.85, 0.95, b'b'), (0.3, 0.6, 0.78, b'g'), (0.77, 0.6, 0.85, b'p')):
-        bm.append(recolor_model(bm[313], hue, ks, kv, tag))
+        bm.append(recolor_model(bm[313], hue, ks, kv, tag)); src.append(313)
+    import academy_hall         # (the Leader Academy's hall: Pewter's museum in brick with a blue roof, ACADEMY_MODEL)
+    bm.append(academy_hall.make(bm[academy_hall.SRC])); src.append(academy_hall.SRC)
+    assert len(bm) - 1 == ACADEMY_MODEL
     for path in (BM_FIELD, BM_FIELD_FS):
         open(path, 'wb').write(write_narc(bm, bm_btnf))
     an, an_btnf = read_narc(open(BM_ANIM, 'rb').read())
-    an = an[:ORIG_BM_COUNT] + [an[313]] * (len(bm) - ORIG_BM_COUNT)
+    an = an[:ORIG_BM_COUNT] + [an[m] for m in src]
     open(BM_ANIM, 'wb').write(write_narc(an, an_btnf))
     ms = open(BM_MATSHP, 'rb').read()
     n0, tot = struct.unpack_from('<HH', ms, 0)
     heads = [struct.unpack_from('<2H', ms, 4 + 4 * i) for i in range(n0)][:ORIG_BM_COUNT]
     ents = [ms[4 + 4 * n0 + 4 * i:4 + 4 * n0 + 4 * i + 4] for i in range(tot)]
-    cnt, start = heads[313]
     ents = ents[:max(s + c for c, s in heads if s != 0xFFFF)]
-    for _ in range(3):
+    for m in src:
+        cnt, start = heads[m]
+        if start == 0xFFFF: heads.append((cnt, start)); continue
         heads.append((cnt, len(ents))); ents += ents[start:start + cnt]
     open(BM_MATSHP, 'wb').write(struct.pack('<HH', len(heads), len(ents)) + b''.join(struct.pack('<2H', *h) for h in heads) +
                                 b''.join(ents) + ms[4 + 4 * n0 + 4 * tot:])

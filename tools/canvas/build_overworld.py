@@ -953,6 +953,7 @@ def plan_world(W=None, woods=False):
             if orig.get(n) in walkable and kind.get(n) == 'house' and n not in door_sq: kind[n] = orig[n]
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
+    if not woods: academy_hall(W_, kind, props, door_sq, warps)
     # (a ledge only on open ground: where our layout made the GBA's square water or a building - the river beside
     # Cerulean's bridge, a Saffron house - it is gone, its jump with it)
     ledges = {q: v for q, v in ledges.items() if kind.get(q) in ('grass', 'sand', 'pave', 'lawn', 'tall', 'flower')}
@@ -973,6 +974,35 @@ def ledge_piece(way, before, after):
         return [(t, [(16 - u, 16 - v, s_, t_) for u, v, s_, t_ in q]) for t, q in ledge_piece((0, 1), after, before)]
     k = '%d,%d,%d,%d' % (way[0], way[1], before or not after, after or not before)
     return P.get(k) or P['%d,%d,1,1' % way]
+
+
+# The Leader Academy's main hall (Nick: "a bigger version of" Pewter's museum, "with brick facade and a blue roof"):
+# academy_hall.py's model, its arch on the GBA's doors (20-21, 12), as much bigger than Pewter's as the campus has
+# room for between its lecture halls, and taller; the squares it stands on closed (the GBA's open ground round the
+# old block: the way round its back is now round the side halls)
+ACADEMY = dict(map='LeaderAcademy_Campus', door=(21.0, 12.5), front=13.0, back=4.05, scale=1.12, lift=1.2, old=(58, 60),
+               area=(12, 3, 33, 13))
+
+
+def academy_hall(W_, kind, props, door_sq, warps):
+    import build_pallet
+    if ACADEMY['map'] not in W_: return
+    x0, y0 = W_[ACADEMY['map']][:2]
+    a0, b0, a1, b1 = ACADEMY['area']
+    props[:] = [p_ for p_ in props if not (p_[0] in ACADEMY['old'] and x0 + a0 <= p_[1] < x0 + a1 and y0 + b0 <= p_[2] < y0 + b1)]
+    m = build_pallet.ACADEMY_MODEL
+    bx0, bz0, mw, md = model_box(academy_hall_src())
+    sc = ACADEMY['scale']
+    ox_, oz_ = x0 + ACADEMY['door'][0], y0 + ACADEMY['front'] - (bz0 + md) * sc
+    props.append((m, ox_, oz_, 0, (sc, sc * ACADEMY['lift'], sc)))
+    for x in range(math.floor(ox_ + bx0 * sc + 0.4), math.ceil(ox_ + (bx0 + mw) * sc - 0.4)):
+        for z in range(math.floor(oz_ + bz0 * sc + 0.4), y0 + math.ceil(ACADEMY['front'])):
+            if (x, z) not in door_sq and (x, z) not in warps: kind[(x, z)] = 'house'
+
+
+def academy_hall_src():
+    import academy_hall as AH
+    return AH.SRC
 
 
 def ledge_corner_key(ledges, x, y):
