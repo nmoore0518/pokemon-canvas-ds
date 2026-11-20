@@ -953,6 +953,9 @@ def plan_world(W=None, woods=False):
             if orig.get(n) in walkable and kind.get(n) == 'house' and n not in door_sq: kind[n] = orig[n]
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
+    # (a ledge only on open ground: where our layout made the GBA's square water or a building - the river beside
+    # Cerulean's bridge, a Saffron house - it is gone, its jump with it)
+    ledges = {q: v for q, v in ledges.items() if kind.get(q) in ('grass', 'sand', 'pave', 'lawn', 'tall', 'flower')}
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
                 trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_closed=bridge_closed, on_bridge=on_bridge, bridge_pos=bridge_pos, bridge_kit=bridge_kit, bridge_cls=bridge_cls, bldg=bldg)
 
@@ -1122,6 +1125,50 @@ def build_land(P, cx, cz, base=None):
             flat('egrass', x, y, e, y + 1, R.GRASS_Y)
             x = e
     bands_u, bands_v, pond_runs, rock_tops, open_water, faces = {}, {}, {}, {}, {}, {}
+    wet = lambda q: K_(*q) in ('water', None, 'bridge') or q in P.get('on_bridge', ())     # (no bank against a walkway)
+
+    EDGE_LIFT = 0.2         # (the water's edge band a little over the water's top: they lie together)
+    ARC = 2                 # (a corner of the bank: two segments round - lands are tight)
+
+    def band_pts(prof, P_):
+        """quads between successive points of a profile: P_(d) -> list of points along the band's width"""
+        out = []
+        for (d0, h0, t0), (d1, h1, t1) in zip(prof, prof[1:]):
+            A, B = P_(d0, h0), P_(d1, h1)
+            for k_ in range(len(A) - 1):
+                out.append([(A[k_][0], (A[k_][1], t0)), (A[k_ + 1][0], (A[k_ + 1][1], t0)), (B[k_ + 1][0], (B[k_ + 1][1], t1)), (B[k_][0], (B[k_][1], t1))])
+        return out
+    PROFS = (('pond_line', R.BANK), ('pond_edge', [(d, h + EDGE_LIFT, t) for d, h, t in R.EDGE]))
+
+    def bank_run(n, line, a, b, ma, mb):
+        """the bank (and the water's edge) along water squares a..b-1 of row/column `line`, the land on side n; an
+        end against land along the line (an inside corner) is mitred: ma, mb"""
+        dx, dz = n
+        def P_(d, h):
+            al0, al1 = a + (d if ma else 0), b - (d if mb else 0)
+            if dz:
+                z = line * 16 + (d * 16 if dz < 0 else 16 - d * 16)
+                return [((al * 16, h, z), al * 16) for al in (al0, al1)]
+            x_ = line * 16 + (d * 16 if dx < 0 else 16 - d * 16)
+            return [((x_, h, al * 16), al * 16) for al in (al0, al1)]
+        for tex, prof in PROFS:
+            for q4 in band_pts(prof, P_): poly(tex, q4)
+
+    def bank_corner(x, y, cx, cz):
+        """a water square with land only at its corner (cx, cz: -1/1): the bank turned round that corner"""
+        X0_, Z0_ = (x + (1 if cx > 0 else 0)) * 16, (y + (1 if cz > 0 else 0)) * 16
+        def P_(d, h):
+            pts = []
+            for k_ in range(ARC + 1):
+                ang = math.pi / 2 * k_ / ARC
+                ux, uz = -cx * math.cos(ang), -cz * math.sin(ang)       # (from the corner back into the square)
+                pts.append(((X0_ + ux * d * 16, h, Z0_ + uz * d * 16), (X0_ + Z0_) + d * 16 * ang))
+            return pts
+        for tex, prof in PROFS:
+            for q4 in band_pts(prof, P_):
+                q = [v for i_, v in enumerate(q4) if v[0] != q4[i_ - 1][0]]       # (at the corner itself: a triangle)
+                if len(q) >= 3: poly(tex, q)
+
     for y in range(Z0, Z1):
         for x in range(X0, X1):
             k = K_(x, y)
@@ -1176,15 +1223,16 @@ def build_land(P, cx, cz, base=None):
                         q4 = [((xi, 0.3, Z + 16), (c0, Z + 16)), ((xo, 0.3, Z + 16), (c1, Z + 16)), ((xo, 0.3, Z), (c1, Z)), ((xi, 0.3, Z), (c0, Z))]
                     poly(cb, q4)
             if k == 'water':
-                # the water: its middle in runs; a bank down into it along each side it meets land (a strip of
-                # HeartGold's bank a side: laid by distance a thin channel came to thousands of polygons a land)
+                # the water (Nick: the shore's corners were broken): HeartGold's pond as the Safari Zone lays it -
+                # its bank (pond_line) down from the land, the water's edge (pond_edge), then the water, with
+                # HeartGold's profile (R.BANK, R.EDGE); straight sides in runs, any other square (a corner, a
+                # channel) laid by distance from the land round it, so the bank turns every corner unbroken
                 open_water.setdefault(y, []).append(x)
                 for dx, dz in ((0, 1), (0, -1), (1, 0), (-1, 0)):
-                    if (x + dx, y + dz) in water or K_(x + dx, y + dz) in (None, 'bridge'): continue
-                    X, Z = x * 16, y * 16
-                    if dz: e = Z + (16 if dz > 0 else 0); a_, b_ = (X, e), (X + 16, e); inw = (0, -dz * 5)
-                    else: e = X + (16 if dx > 0 else 0); a_, b_ = (e, Z + 16), (e, Z); inw = (-dx * 5, 0)
-                    poly('pond_line', [((a_[0], 0, a_[1]), (0, 0)), ((b_[0], 0, b_[1]), (16, 0)), ((b_[0] + inw[0], R.WATER_Y, b_[1] + inw[1]), (16, 15.6)), ((a_[0] + inw[0], R.WATER_Y, a_[1] + inw[1]), (0, 15.6))])
+                    if not wet((x + dx, y + dz)):
+                        pond_runs.setdefault(((dx, dz), y if dz else x), set()).add(x if dz else y)
+                for cx, cz in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+                    if not wet((x + cx, y + cz)) and wet((x + cx, y)) and wet((x, y + cz)): bank_corner(x, y, cx, cz)
             elif k == 'rock':
                 lower = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and K_(x + dx, y + dz) is not None and not level(x + dx, y + dz)]
                 if not lower: rock_tops.setdefault(y, []).append(x)
@@ -1248,7 +1296,11 @@ def build_land(P, cx, cz, base=None):
                 poly(tex, [w(qa, pa[0]), w(qb, pb[1]), w(qb, pb[2]), w(qa, pa[3])])
     for (n, line), along in pond_runs.items():
         for a, b in BS._runs(sorted(along)):
-            BS._pond_run(poly, n, line, a, b)
+            # (an end against land along the line - an inside corner - is mitred; one where the land turns away
+            # meets a corner piece in the next square)
+            if n[1]: lnd = lambda al: not wet((al, line))
+            else: lnd = lambda al: not wet((line, al))
+            bank_run(n, line, a, b, lnd(a - 1), lnd(b))
     for (zh, t0), xs in bands_u.items():
         for a, b in BS._runs(sorted(xs)):
             xa, xb, za = a * 8, b * 8, zh * 8

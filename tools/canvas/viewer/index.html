@@ -346,6 +346,9 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
       let mat;
       if (p.tex >= 0) {
         const tx = new THREE.Texture(texs[p.tex].img); tx.magFilter = THREE.NearestFilter; tx.minFilter = THREE.NearestFilter;
+        // (rows uploaded top first in every browser - an ImageBitmap's flip is honoured by some and not others -
+        // and the picture turned right way up by its texture coordinates)
+        tx.flipY = false; tx.repeat.set(1, -1); tx.offset.set(0, 1);
         tx.generateMipmaps = false; tx.needsUpdate = true;
         mat = new THREE.SpriteMaterial({ map: tx, alphaTest: 0.5 });
       } else mat = new THREE.SpriteMaterial({ color: 0xff55aa, transparent: true, opacity: 0.6 });

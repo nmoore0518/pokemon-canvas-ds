@@ -416,7 +416,12 @@ These hold for every map of every region, built now or later; each was settled o
   thing (a kit: `hg_kit.py`, `data/kit_*.json`) and lay it by what is round each square; compare with HeartGold's
   map in the map viewer (its "HeartGold's own Kanto" and Johto groups) before calling it done.
 - **Ledges**: HeartGold's flat painted lip, its ends and its turns, a decal over the ground so the ground blends
-  (`kit_ledge.json`, `ledge_piece`; see the overworld's ledges below). Never a raised berm or a ramp.
+  (`kit_ledge.json`, `ledge_piece`; see the overworld's ledges below). Never a raised berm or a ramp. A ledge only
+  on open ground: where our layout turns the GBA's square into water or a building, the ledge (and its jump) goes.
+- **Water's edges** (Nick: the shore's corners were broken): HeartGold's bank and water's edge with its profile
+  (`pond_line` then `pond_edge`, R.BANK / R.EDGE) along every side the water meets land, in runs; an inside corner
+  mitred, an outside corner turned round in an arc (`bank_run`, `bank_corner`); the water's top laid in runs under
+  it. Never one flat strip a side (its top rows are see-through: black dashes, and gaps at every corner).
 - **Transitions everywhere**: every ground meets the next with an edge (a made edge where HeartGold has none);
   no two edge pieces back to back.
 - **Widths are HeartGold's, err bigger**; a room or floor that reads cramped gets plain rows and columns (`widen`),
