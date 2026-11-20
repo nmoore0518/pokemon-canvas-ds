@@ -10,8 +10,8 @@
 	ScrDef SilphCo_11F_EventScript_ItemStrongAcid
 	ScrDef SilphCo_11F_EventScript_Door
 	ScrDef SilphCo_11F_EventScript_FloorSign
-	ScrDef _cv_unported_4
-	ScrDef _cv_unported_5
+	ScrDef SilphCo_11F_EventScript_GiovanniTriggerLeft
+	ScrDef SilphCo_11F_EventScript_GiovanniTriggerRight
 	ScrDef SilphCo_11F_OnLoad
 	ScrDef SilphCo_11F_OnTransition
 	ScrDef SilphCo_11F_Frlg_cv_Barriers
@@ -102,9 +102,8 @@ SilphCo_11F_EventScript_BattleGiovanni:
 	CompareVarToValue 0x4001, 1
 	CallIfEq SilphCo_11F_EventScript_GiovanniApproachRight
 	SetVar VAR_SPECIAL_LAST_TALKED, 1
-	CheckTrainerFlag 1085
-	GoToIf TRUE, _cv_beaten_1
-	TrainerBattle 1085, 0, 0, 0
+	CanvasCloseMsg
+	TrainerBattle 1085, 1085, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_2
@@ -112,9 +111,6 @@ SilphCo_11F_EventScript_BattleGiovanni:
 	End
 _cv_won_2:
 	SetTrainerFlag 1085
-	ReleaseAll
-	End
-_cv_beaten_1:
 	BufferPlayersName 6
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_GiovanniPostBattle
 	WaitButton
@@ -522,8 +518,7 @@ Common_EventScript_NopReturn:
 	Return
 	
 DadStory_EventScript_SilphMomLeft:
-	// TODO(gba) setobjectxy LOCALID_SILPH_CO_11F_MOM, 5, 18
-	GoTo _cv_stop
+	MovePersonFacing 6, 8, 0, 28, DIR_SOUTH
 	Return
 	
 DadStory_EventScript_MomSilphBoy:
@@ -548,28 +543,10 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_5:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_cv_unported

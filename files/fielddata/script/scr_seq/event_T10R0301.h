@@ -7,5 +7,9 @@
 #define _EV_PokemonLeague_BrunosRoom_EventScript_EnterRoom 3
 
 #define LOCALID_BRUNO 1
+#define obj_T10R0301_babyboy1_11 0x3F00
+#define obj_T10R0301_leag_door2 0x3F01
+#define obj_T10R0301_stop 0x3F02
+#define obj_T10R0301_stop_2 0x3F03
 
 #endif

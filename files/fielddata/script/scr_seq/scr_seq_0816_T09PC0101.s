@@ -112,7 +112,7 @@ CableClub_OnResume:
 	// TODO(gba) .else 
 	End
 	// TODO(gba) .endif 
-	End
+	GoTo MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 	
 CinnabarIsland_PokemonCenter_1F_EventScript_NotReadyToSail:
 	NPCMsg msg_0520_T09PC0101_CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet
@@ -138,6 +138,53 @@ CinnabarIsland_PokemonCenter_1F_EventScript_ExitWithBillWest:
 	ApplyMovement obj_player, CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitWest
 	WaitMovement
 	Return
+	
+MossdeepCity_GameCorner_1F_EventScript_InfoMan2:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0520_T09PC0101_MossdeepCity_GameCorner_1F_Text_DescribeWhichGame
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0520_T09PC0101_cv_mc_wireless_minigame_0, 0
+	ScrCmd_559 msg_0520_T09PC0101_cv_mc_wireless_minigame_1, 1
+	ScrCmd_559 msg_0520_T09PC0101_cv_mc_wireless_minigame_2, 2
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_4
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+	CloseMsg
+	End
+	
+MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo:
+	NPCMsg msg_0520_T09PC0101_MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo:
+	NPCMsg msg_0520_T09PC0101_MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit:
+	NPCMsg msg_0520_T09PC0101_MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
 
 _cv_stop:
 	NPCMsg msg_0520_T09PC0101_cv_unported

@@ -7,7 +7,7 @@
 	InitScriptEntryEnd
 
 _cv_T10R0701_frame:
-	// (not yet: PokemonLeague_HallOfFame_EventScript_EnterRoom)
+	InitScriptGoToIfEqual 0x4001, 0, _EV_PokemonLeague_HallOfFame_EventScript_EnterRoom + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

@@ -7,5 +7,9 @@
 #define _EV_PokemonLeague_LoreleisRoom_OnTransition 3
 #define _EV_PokemonLeague_LoreleisRoom_EventScript_EnterRoom 4
 
+#define obj_T10R0201_babyboy1_11 0x3F00
+#define obj_T10R0201_leag_door2 0x3F01
+#define obj_T10R0201_stop 0x3F02
+#define obj_T10R0201_stop_2 0x3F03
 
 #endif

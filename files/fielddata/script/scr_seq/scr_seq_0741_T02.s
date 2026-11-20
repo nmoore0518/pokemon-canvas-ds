@@ -505,7 +505,7 @@ MoveExtractor_EventScript_Visit:
 	SetFlag 0x2089
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
-	End
+	GoTo MoveExtractor_EventScript_VisitNoRoom
 	
 ViridianCity_EventScript_TeachyTVNotHelpful:
 	NPCMsg msg_0452_T02_ViridianCity_Text_TooBusyForTeachyTV
@@ -544,7 +544,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -562,7 +562,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
@@ -603,6 +603,7 @@ Route22_EventScript_EarlyRivalApproachBottom:
 	Return
 	
 Route22_EventScript_EarlyRivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_14
 	TrainerBattle 754, 0, 1, 0
@@ -669,6 +670,7 @@ _cv_battle_13:
 	Return
 	
 Route22_EventScript_EarlyRivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_27
 	TrainerBattle 754, 0, 1, 0
@@ -735,6 +737,7 @@ _cv_battle_26:
 	Return
 	
 Route22_EventScript_EarlyRivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_40
 	TrainerBattle 754, 0, 1, 0
@@ -822,67 +825,68 @@ Route22_EventScript_LateRivalApproachBottom:
 	Return
 	
 Route22_EventScript_LateRivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_53
-	TrainerBattle 814, 0, 0, 0
+	TrainerBattle 814, 814, 0, 0
 	GoTo _cv_battle_52
 _cv_next_53:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_54
-	TrainerBattle 818, 0, 0, 0
+	TrainerBattle 818, 818, 0, 0
 	GoTo _cv_battle_52
 _cv_next_54:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_55
-	TrainerBattle 812, 0, 0, 0
+	TrainerBattle 812, 812, 0, 0
 	GoTo _cv_battle_52
 _cv_next_55:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_56
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 	GoTo _cv_battle_52
 _cv_next_56:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_57
-	TrainerBattle 820, 0, 0, 0
+	TrainerBattle 820, 820, 0, 0
 	GoTo _cv_battle_52
 _cv_next_57:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_58
-	TrainerBattle 815, 0, 0, 0
+	TrainerBattle 815, 815, 0, 0
 	GoTo _cv_battle_52
 _cv_next_58:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_59
-	TrainerBattle 817, 0, 0, 0
+	TrainerBattle 817, 817, 0, 0
 	GoTo _cv_battle_52
 _cv_next_59:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_60
-	TrainerBattle 819, 0, 0, 0
+	TrainerBattle 819, 819, 0, 0
 	GoTo _cv_battle_52
 _cv_next_60:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_61
-	TrainerBattle 813, 0, 0, 0
+	TrainerBattle 813, 813, 0, 0
 	GoTo _cv_battle_52
 _cv_next_61:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_62
-	TrainerBattle 821, 0, 0, 0
+	TrainerBattle 821, 821, 0, 0
 	GoTo _cv_battle_52
 _cv_next_62:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_63
-	TrainerBattle 816, 0, 0, 0
+	TrainerBattle 816, 816, 0, 0
 	GoTo _cv_battle_52
 _cv_next_63:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_64
-	TrainerBattle 811, 0, 0, 0
+	TrainerBattle 811, 811, 0, 0
 	GoTo _cv_battle_52
 _cv_next_64:
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 _cv_battle_52:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -894,67 +898,68 @@ _cv_won_65:
 	Return
 	
 Route22_EventScript_LateRivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_67
-	TrainerBattle 814, 0, 0, 0
+	TrainerBattle 814, 814, 0, 0
 	GoTo _cv_battle_66
 _cv_next_67:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_68
-	TrainerBattle 818, 0, 0, 0
+	TrainerBattle 818, 818, 0, 0
 	GoTo _cv_battle_66
 _cv_next_68:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_69
-	TrainerBattle 812, 0, 0, 0
+	TrainerBattle 812, 812, 0, 0
 	GoTo _cv_battle_66
 _cv_next_69:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_70
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 	GoTo _cv_battle_66
 _cv_next_70:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_71
-	TrainerBattle 820, 0, 0, 0
+	TrainerBattle 820, 820, 0, 0
 	GoTo _cv_battle_66
 _cv_next_71:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_72
-	TrainerBattle 815, 0, 0, 0
+	TrainerBattle 815, 815, 0, 0
 	GoTo _cv_battle_66
 _cv_next_72:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_73
-	TrainerBattle 817, 0, 0, 0
+	TrainerBattle 817, 817, 0, 0
 	GoTo _cv_battle_66
 _cv_next_73:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_74
-	TrainerBattle 819, 0, 0, 0
+	TrainerBattle 819, 819, 0, 0
 	GoTo _cv_battle_66
 _cv_next_74:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_75
-	TrainerBattle 813, 0, 0, 0
+	TrainerBattle 813, 813, 0, 0
 	GoTo _cv_battle_66
 _cv_next_75:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_76
-	TrainerBattle 821, 0, 0, 0
+	TrainerBattle 821, 821, 0, 0
 	GoTo _cv_battle_66
 _cv_next_76:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_77
-	TrainerBattle 816, 0, 0, 0
+	TrainerBattle 816, 816, 0, 0
 	GoTo _cv_battle_66
 _cv_next_77:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_78
-	TrainerBattle 811, 0, 0, 0
+	TrainerBattle 811, 811, 0, 0
 	GoTo _cv_battle_66
 _cv_next_78:
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 _cv_battle_66:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -966,67 +971,68 @@ _cv_won_79:
 	Return
 	
 Route22_EventScript_LateRivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_81
-	TrainerBattle 814, 0, 0, 0
+	TrainerBattle 814, 814, 0, 0
 	GoTo _cv_battle_80
 _cv_next_81:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_82
-	TrainerBattle 818, 0, 0, 0
+	TrainerBattle 818, 818, 0, 0
 	GoTo _cv_battle_80
 _cv_next_82:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_83
-	TrainerBattle 812, 0, 0, 0
+	TrainerBattle 812, 812, 0, 0
 	GoTo _cv_battle_80
 _cv_next_83:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_84
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 	GoTo _cv_battle_80
 _cv_next_84:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_85
-	TrainerBattle 820, 0, 0, 0
+	TrainerBattle 820, 820, 0, 0
 	GoTo _cv_battle_80
 _cv_next_85:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_86
-	TrainerBattle 815, 0, 0, 0
+	TrainerBattle 815, 815, 0, 0
 	GoTo _cv_battle_80
 _cv_next_86:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_87
-	TrainerBattle 817, 0, 0, 0
+	TrainerBattle 817, 817, 0, 0
 	GoTo _cv_battle_80
 _cv_next_87:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_88
-	TrainerBattle 819, 0, 0, 0
+	TrainerBattle 819, 819, 0, 0
 	GoTo _cv_battle_80
 _cv_next_88:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_89
-	TrainerBattle 813, 0, 0, 0
+	TrainerBattle 813, 813, 0, 0
 	GoTo _cv_battle_80
 _cv_next_89:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_90
-	TrainerBattle 821, 0, 0, 0
+	TrainerBattle 821, 821, 0, 0
 	GoTo _cv_battle_80
 _cv_next_90:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_91
-	TrainerBattle 816, 0, 0, 0
+	TrainerBattle 816, 816, 0, 0
 	GoTo _cv_battle_80
 _cv_next_91:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_92
-	TrainerBattle 811, 0, 0, 0
+	TrainerBattle 811, 811, 0, 0
 	GoTo _cv_battle_80
 _cv_next_92:
-	TrainerBattle 810, 0, 0, 0
+	TrainerBattle 810, 810, 0, 0
 _cv_battle_80:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -1089,7 +1095,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0452_T02_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return

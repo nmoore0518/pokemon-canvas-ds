@@ -21,7 +21,7 @@ RocketHideout_B1F_EventScript_Grunt5:
 	NPCMsg msg_0928_CV_CANVAS_ROCKET_HIDEOUT_B1F_RocketHideout_B1F_Text_Grunt5Intro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1098, 0, 0, 0
+	TrainerBattle 1098, 1098, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_2

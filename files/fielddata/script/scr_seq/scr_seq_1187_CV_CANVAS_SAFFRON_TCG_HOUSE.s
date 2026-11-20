@@ -30,7 +30,7 @@ _cv_yn_2:
 	GoTo SaffronCity_TcgHouse_EventScript_Answer
 	
 SaffronCity_TcgHouse_OnTransition:
-	End
+	GoTo SaffronCity_TcgHouse_OnResume
 	
 SaffronCity_TcgHouse_OnResume:
 	// TODO(gba) special PlayTcgHouseMusic
@@ -46,7 +46,7 @@ SaffronCity_TcgHouse_EventScript_RodAgain:
 _cv_yes_3:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_4:
-	End
+	GoTo SaffronCity_TcgHouse_EventScript_Answer
 	
 SaffronCity_TcgHouse_EventScript_Answer:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

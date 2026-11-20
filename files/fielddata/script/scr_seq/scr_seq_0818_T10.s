@@ -7,7 +7,7 @@
 // or the porter, not this file.
 
 	ScrDef IndigoPlateau_Exterior_OnTransition
-	ScrDef _cv_unported_1
+	ScrDef IndigoPlateau_Exterior_EventScript_Credits
 	ScrDefEnd
 	
 IndigoPlateau_Exterior_OnTransition:
@@ -64,23 +64,15 @@ _cv_shown_4:
 	SetFlag 0x2065
 	HidePerson 2
 	SetFlag 0x2066
-	// TODO(gba) special CB2_StartCreditsSequence
-	GoTo _cv_stop
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	CanvasCredits
 	ReleaseAll
 	End
 	
 IndigoPlateau_Exterior_EventScript_PlayCreditsMusic:
 	// (music MUS_CREDITS: no HeartGold match yet)
 	Return
-
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0521_T10_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0521_T10_cv_unported

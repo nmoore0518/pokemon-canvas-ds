@@ -44,8 +44,7 @@ CeruleanCity_EventScript_Grunt:
 	NPCMsg msg_0467_T04_CeruleanCity_Text_GruntIntro
 	PlayBGM SEQ_GS_EYE_ROCKET
 	WaitButton
-	CheckTrainerFlag 1091
-	GoToIf TRUE, _cv_beaten_1
+	CanvasCloseMsg
 	TrainerBattle 1091, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -54,9 +53,6 @@ CeruleanCity_EventScript_Grunt:
 	End
 _cv_won_2:
 	SetTrainerFlag 1091
-	ReleaseAll
-	End
-_cv_beaten_1:
 	SetVar 0x5025, 1
 	GoTo CeruleanCity_EventScript_GruntDefeated
 	CloseMsg
@@ -287,8 +283,7 @@ CeruleanCity_EventScript_GruntTrigger:
 	NPCMsg msg_0467_T04_CeruleanCity_Text_GruntIntro
 	WaitButton
 	SetVar VAR_SPECIAL_LAST_TALKED, 2
-	CheckTrainerFlag 1091
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 1091, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -297,9 +292,6 @@ CeruleanCity_EventScript_GruntTrigger:
 	End
 _cv_won_6:
 	SetTrainerFlag 1091
-	ReleaseAll
-	End
-_cv_beaten_5:
 	SetVar 0x5025, 1
 	GoTo CeruleanCity_EventScript_GruntDefeated
 	CloseMsg
@@ -331,7 +323,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -349,7 +341,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
@@ -379,6 +371,7 @@ _cv_menu_8:
 	GoTo TypeTutor_EventScript_Teach
 	
 CeruleanCity_EventScript_RivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_10
 	TrainerBattle 766, 0, 0, 0
@@ -451,6 +444,7 @@ _cv_won_22:
 	Return
 	
 CeruleanCity_EventScript_RivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_24
 	TrainerBattle 766, 0, 0, 0
@@ -523,6 +517,7 @@ _cv_won_36:
 	Return
 	
 CeruleanCity_EventScript_RivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_38
 	TrainerBattle 766, 0, 0, 0

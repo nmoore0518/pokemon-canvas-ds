@@ -26,11 +26,11 @@
 
 #define LOCALID_VERMILIONCITY_GYM_OAK_AIDE 6
 #define LOCALID_VERMILION_GYM_GUEST 7
-#define obj_T06GYM0101_stop 0x7F00
-#define obj_T06GYM0101_stop_2 0x7F01
-#define obj_T06GYM0101_stop_3 0x7F02
-#define obj_T06GYM0101_stop_4 0x7F03
-#define obj_T06GYM0101_stop_5 0x7F04
-#define obj_T06GYM0101_stop_6 0x7F05
+#define obj_T06GYM0101_stop 0x3F00
+#define obj_T06GYM0101_stop_2 0x3F01
+#define obj_T06GYM0101_stop_3 0x3F02
+#define obj_T06GYM0101_stop_4 0x3F03
+#define obj_T06GYM0101_stop_5 0x3F04
+#define obj_T06GYM0101_stop_6 0x3F05
 
 #endif

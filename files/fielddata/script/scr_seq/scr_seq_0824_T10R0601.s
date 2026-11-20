@@ -7,7 +7,7 @@
 // or the porter, not this file.
 
 	ScrDef PokemonLeague_ChampionsRoom_OnResume
-	ScrDef _cv_unported_1
+	ScrDef PokemonLeague_ChampionsRoom_EventScript_EnterRoom
 	ScrDefEnd
 	
 PokemonLeague_ChampionsRoom_OnResume:
@@ -60,8 +60,97 @@ _cv_shown_2:
 	ApplyMovement 2, PokemonLeague_ChampionsRoom_Movement_OakEnter
 	WaitMovement
 	Wait 25, VAR_SPECIAL_RESULT
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetStarterPokemon
-	GoTo _cv_stop
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_4
+	SetVar VAR_SPECIAL_RESULT, SPECIES_RALTS
+	GoTo _cv_done_3
+_cv_next_4:
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_next_5
+	SetVar VAR_SPECIAL_RESULT, SPECIES_CHARMANDER
+	GoTo _cv_done_3
+_cv_next_5:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_6
+	SetVar VAR_SPECIAL_RESULT, SPECIES_PORYGON
+	GoTo _cv_done_3
+_cv_next_6:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_7
+	SetVar VAR_SPECIAL_RESULT, SPECIES_SQUIRTLE
+	GoTo _cv_done_3
+_cv_next_7:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_8
+	SetVar VAR_SPECIAL_RESULT, SPECIES_BULBASAUR
+	GoTo _cv_done_3
+_cv_next_8:
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_next_9
+	SetVar VAR_SPECIAL_RESULT, SPECIES_PIKACHU
+	GoTo _cv_done_3
+_cv_next_9:
+	CompareVarToValue 0x5019, 5
+	GoToIfNe _cv_next_10
+	SetVar VAR_SPECIAL_RESULT, SPECIES_LARVITAR
+	GoTo _cv_done_3
+_cv_next_10:
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_next_11
+	SetVar VAR_SPECIAL_RESULT, SPECIES_EKANS
+	GoTo _cv_done_3
+_cv_next_11:
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_next_12
+	SetVar VAR_SPECIAL_RESULT, SPECIES_CATERPIE
+	GoTo _cv_done_3
+_cv_next_12:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_13
+	SetVar VAR_SPECIAL_RESULT, SPECIES_BELDUM
+	GoTo _cv_done_3
+_cv_next_13:
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_next_14
+	SetVar VAR_SPECIAL_RESULT, SPECIES_SPHEAL
+	GoTo _cv_done_3
+_cv_next_14:
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_next_15
+	SetVar VAR_SPECIAL_RESULT, SPECIES_SANDSHREW
+	GoTo _cv_done_3
+_cv_next_15:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_16
+	SetVar VAR_SPECIAL_RESULT, SPECIES_SPEAROW
+	GoTo _cv_done_3
+_cv_next_16:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_17
+	SetVar VAR_SPECIAL_RESULT, SPECIES_DRATINI
+	GoTo _cv_done_3
+_cv_next_17:
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_next_18
+	SetVar VAR_SPECIAL_RESULT, SPECIES_TYROGUE
+	GoTo _cv_done_3
+_cv_next_18:
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_next_19
+	SetVar VAR_SPECIAL_RESULT, SPECIES_POOCHYENA
+	GoTo _cv_done_3
+_cv_next_19:
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_next_20
+	SetVar VAR_SPECIAL_RESULT, SPECIES_GASTLY
+	GoTo _cv_done_3
+_cv_next_20:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_21
+	SetVar VAR_SPECIAL_RESULT, SPECIES_CLEFAIRY
+	GoTo _cv_done_3
+_cv_next_21:
+_cv_done_3:
 	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
 	CallIfUnset FLAG_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_GymFinaleCongratulations
 	CallIfSet FLAG_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_Congratulations
@@ -94,7 +183,6 @@ _cv_shown_2:
 	End
 	
 PokemonLeague_EventScript_DoLightingEffect:
-	// TODO(gba) special DoPokemonLeagueLightingEffect
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_CheckStopTriggerSquirtle:
@@ -113,14 +201,14 @@ PokemonLeague_ChampionsRoom_EventScript_CheckStopTriggerCharmander:
 	Return
 	
 GymFinale_EventScript_OakBeforeChampion:
-	GoToIfUnset 0x2064, _cv_show_3
+	GoToIfUnset 0x2064, _cv_show_22
 	ClearFlag 0x2064
 	ShowPerson 2
 	SetFlag 0x2064
-	GoTo _cv_shown_4
-_cv_show_3:
+	GoTo _cv_shown_23
+_cv_show_22:
 	ShowPerson 2
-_cv_shown_4:
+_cv_shown_23:
 	BufferPlayersName 6
 	BufferRivalsName 7
 	NPCMsg msg_0527_T10R0601_GymFinale_Text_OakWait
@@ -227,445 +315,442 @@ PokemonLeague_ChampionsRoom_EventScript_StopSceneTrigger:
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_6
-	TrainerBattle 826, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_6:
+	GoToIfNe _cv_next_25
+	TrainerBattle 826, 826, 0, 0
+	GoTo _cv_battle_24
+_cv_next_25:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_7
-	TrainerBattle 830, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_7:
+	GoToIfNe _cv_next_26
+	TrainerBattle 830, 830, 0, 0
+	GoTo _cv_battle_24
+_cv_next_26:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_8
-	TrainerBattle 824, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_8:
+	GoToIfNe _cv_next_27
+	TrainerBattle 824, 824, 0, 0
+	GoTo _cv_battle_24
+_cv_next_27:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_9
-	TrainerBattle 822, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_9:
+	GoToIfNe _cv_next_28
+	TrainerBattle 822, 822, 0, 0
+	GoTo _cv_battle_24
+_cv_next_28:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_10
-	TrainerBattle 832, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_10:
+	GoToIfNe _cv_next_29
+	TrainerBattle 832, 832, 0, 0
+	GoTo _cv_battle_24
+_cv_next_29:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_11
-	TrainerBattle 827, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_11:
+	GoToIfNe _cv_next_30
+	TrainerBattle 827, 827, 0, 0
+	GoTo _cv_battle_24
+_cv_next_30:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_12
-	TrainerBattle 829, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_12:
+	GoToIfNe _cv_next_31
+	TrainerBattle 829, 829, 0, 0
+	GoTo _cv_battle_24
+_cv_next_31:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_13
-	TrainerBattle 831, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_13:
+	GoToIfNe _cv_next_32
+	TrainerBattle 831, 831, 0, 0
+	GoTo _cv_battle_24
+_cv_next_32:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_14
-	TrainerBattle 825, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_14:
+	GoToIfNe _cv_next_33
+	TrainerBattle 825, 825, 0, 0
+	GoTo _cv_battle_24
+_cv_next_33:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_15
-	TrainerBattle 833, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_15:
+	GoToIfNe _cv_next_34
+	TrainerBattle 833, 833, 0, 0
+	GoTo _cv_battle_24
+_cv_next_34:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_16
-	TrainerBattle 828, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_16:
+	GoToIfNe _cv_next_35
+	TrainerBattle 828, 828, 0, 0
+	GoTo _cv_battle_24
+_cv_next_35:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_17
-	TrainerBattle 823, 0, 0, 0
-	GoTo _cv_battle_5
-_cv_next_17:
-	TrainerBattle 822, 0, 0, 0
-_cv_battle_5:
+	GoToIfNe _cv_next_36
+	TrainerBattle 823, 823, 0, 0
+	GoTo _cv_battle_24
+_cv_next_36:
+	TrainerBattle 822, 822, 0, 0
+_cv_battle_24:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_18
+	GoToIfNe _cv_won_37
 	WhiteOut
 	End
-_cv_won_18:
+_cv_won_37:
 	SetFlag 0x2053
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_20
-	TrainerBattle 826, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_20:
+	GoToIfNe _cv_next_39
+	TrainerBattle 826, 826, 0, 0
+	GoTo _cv_battle_38
+_cv_next_39:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_21
-	TrainerBattle 830, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_21:
+	GoToIfNe _cv_next_40
+	TrainerBattle 830, 830, 0, 0
+	GoTo _cv_battle_38
+_cv_next_40:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_22
-	TrainerBattle 824, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_22:
+	GoToIfNe _cv_next_41
+	TrainerBattle 824, 824, 0, 0
+	GoTo _cv_battle_38
+_cv_next_41:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_23
-	TrainerBattle 822, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_23:
+	GoToIfNe _cv_next_42
+	TrainerBattle 822, 822, 0, 0
+	GoTo _cv_battle_38
+_cv_next_42:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_24
-	TrainerBattle 832, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_24:
+	GoToIfNe _cv_next_43
+	TrainerBattle 832, 832, 0, 0
+	GoTo _cv_battle_38
+_cv_next_43:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_25
-	TrainerBattle 827, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_25:
+	GoToIfNe _cv_next_44
+	TrainerBattle 827, 827, 0, 0
+	GoTo _cv_battle_38
+_cv_next_44:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_26
-	TrainerBattle 829, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_26:
+	GoToIfNe _cv_next_45
+	TrainerBattle 829, 829, 0, 0
+	GoTo _cv_battle_38
+_cv_next_45:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_27
-	TrainerBattle 831, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_27:
+	GoToIfNe _cv_next_46
+	TrainerBattle 831, 831, 0, 0
+	GoTo _cv_battle_38
+_cv_next_46:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_28
-	TrainerBattle 825, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_28:
+	GoToIfNe _cv_next_47
+	TrainerBattle 825, 825, 0, 0
+	GoTo _cv_battle_38
+_cv_next_47:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_29
-	TrainerBattle 833, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_29:
+	GoToIfNe _cv_next_48
+	TrainerBattle 833, 833, 0, 0
+	GoTo _cv_battle_38
+_cv_next_48:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_30
-	TrainerBattle 828, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_30:
+	GoToIfNe _cv_next_49
+	TrainerBattle 828, 828, 0, 0
+	GoTo _cv_battle_38
+_cv_next_49:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_31
-	TrainerBattle 823, 0, 0, 0
-	GoTo _cv_battle_19
-_cv_next_31:
-	TrainerBattle 822, 0, 0, 0
-_cv_battle_19:
+	GoToIfNe _cv_next_50
+	TrainerBattle 823, 823, 0, 0
+	GoTo _cv_battle_38
+_cv_next_50:
+	TrainerBattle 822, 822, 0, 0
+_cv_battle_38:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_32
+	GoToIfNe _cv_won_51
 	WhiteOut
 	End
-_cv_won_32:
+_cv_won_51:
 	SetFlag 0x2054
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_BattleCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_34
-	TrainerBattle 826, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_34:
+	GoToIfNe _cv_next_53
+	TrainerBattle 826, 826, 0, 0
+	GoTo _cv_battle_52
+_cv_next_53:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_35
-	TrainerBattle 830, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_35:
+	GoToIfNe _cv_next_54
+	TrainerBattle 830, 830, 0, 0
+	GoTo _cv_battle_52
+_cv_next_54:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_36
-	TrainerBattle 824, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_36:
+	GoToIfNe _cv_next_55
+	TrainerBattle 824, 824, 0, 0
+	GoTo _cv_battle_52
+_cv_next_55:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_37
-	TrainerBattle 822, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_37:
+	GoToIfNe _cv_next_56
+	TrainerBattle 822, 822, 0, 0
+	GoTo _cv_battle_52
+_cv_next_56:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_38
-	TrainerBattle 832, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_38:
+	GoToIfNe _cv_next_57
+	TrainerBattle 832, 832, 0, 0
+	GoTo _cv_battle_52
+_cv_next_57:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_39
-	TrainerBattle 827, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_39:
+	GoToIfNe _cv_next_58
+	TrainerBattle 827, 827, 0, 0
+	GoTo _cv_battle_52
+_cv_next_58:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_40
-	TrainerBattle 829, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_40:
+	GoToIfNe _cv_next_59
+	TrainerBattle 829, 829, 0, 0
+	GoTo _cv_battle_52
+_cv_next_59:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_41
-	TrainerBattle 831, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_41:
+	GoToIfNe _cv_next_60
+	TrainerBattle 831, 831, 0, 0
+	GoTo _cv_battle_52
+_cv_next_60:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_42
-	TrainerBattle 825, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_42:
+	GoToIfNe _cv_next_61
+	TrainerBattle 825, 825, 0, 0
+	GoTo _cv_battle_52
+_cv_next_61:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_43
-	TrainerBattle 833, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_43:
+	GoToIfNe _cv_next_62
+	TrainerBattle 833, 833, 0, 0
+	GoTo _cv_battle_52
+_cv_next_62:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_44
-	TrainerBattle 828, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_44:
+	GoToIfNe _cv_next_63
+	TrainerBattle 828, 828, 0, 0
+	GoTo _cv_battle_52
+_cv_next_63:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_45
-	TrainerBattle 823, 0, 0, 0
-	GoTo _cv_battle_33
-_cv_next_45:
-	TrainerBattle 822, 0, 0, 0
-_cv_battle_33:
+	GoToIfNe _cv_next_64
+	TrainerBattle 823, 823, 0, 0
+	GoTo _cv_battle_52
+_cv_next_64:
+	TrainerBattle 822, 822, 0, 0
+_cv_battle_52:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_46
+	GoToIfNe _cv_won_65
 	WhiteOut
 	End
-_cv_won_46:
+_cv_won_65:
 	SetFlag 0x2055
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_48
-	TrainerBattle 838, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_48:
+	GoToIfNe _cv_next_67
+	TrainerBattle 838, 838, 0, 0
+	GoTo _cv_battle_66
+_cv_next_67:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_49
-	TrainerBattle 842, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_49:
+	GoToIfNe _cv_next_68
+	TrainerBattle 842, 842, 0, 0
+	GoTo _cv_battle_66
+_cv_next_68:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_50
-	TrainerBattle 836, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_50:
+	GoToIfNe _cv_next_69
+	TrainerBattle 836, 836, 0, 0
+	GoTo _cv_battle_66
+_cv_next_69:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_51
-	TrainerBattle 834, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_51:
+	GoToIfNe _cv_next_70
+	TrainerBattle 834, 834, 0, 0
+	GoTo _cv_battle_66
+_cv_next_70:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_52
-	TrainerBattle 844, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_52:
+	GoToIfNe _cv_next_71
+	TrainerBattle 844, 844, 0, 0
+	GoTo _cv_battle_66
+_cv_next_71:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_53
-	TrainerBattle 839, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_53:
+	GoToIfNe _cv_next_72
+	TrainerBattle 839, 839, 0, 0
+	GoTo _cv_battle_66
+_cv_next_72:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_54
-	TrainerBattle 841, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_54:
+	GoToIfNe _cv_next_73
+	TrainerBattle 841, 841, 0, 0
+	GoTo _cv_battle_66
+_cv_next_73:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_55
-	TrainerBattle 843, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_55:
+	GoToIfNe _cv_next_74
+	TrainerBattle 843, 843, 0, 0
+	GoTo _cv_battle_66
+_cv_next_74:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_56
-	TrainerBattle 837, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_56:
+	GoToIfNe _cv_next_75
+	TrainerBattle 837, 837, 0, 0
+	GoTo _cv_battle_66
+_cv_next_75:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_57
-	TrainerBattle 845, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_57:
+	GoToIfNe _cv_next_76
+	TrainerBattle 845, 845, 0, 0
+	GoTo _cv_battle_66
+_cv_next_76:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_58
-	TrainerBattle 840, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_58:
+	GoToIfNe _cv_next_77
+	TrainerBattle 840, 840, 0, 0
+	GoTo _cv_battle_66
+_cv_next_77:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_59
-	TrainerBattle 835, 0, 0, 0
-	GoTo _cv_battle_47
-_cv_next_59:
-	TrainerBattle 834, 0, 0, 0
-_cv_battle_47:
+	GoToIfNe _cv_next_78
+	TrainerBattle 835, 835, 0, 0
+	GoTo _cv_battle_66
+_cv_next_78:
+	TrainerBattle 834, 834, 0, 0
+_cv_battle_66:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_60
+	GoToIfNe _cv_won_79
 	WhiteOut
 	End
-_cv_won_60:
+_cv_won_79:
 	SetFlag 0x2056
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_62
-	TrainerBattle 838, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_62:
+	GoToIfNe _cv_next_81
+	TrainerBattle 838, 838, 0, 0
+	GoTo _cv_battle_80
+_cv_next_81:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_63
-	TrainerBattle 842, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_63:
+	GoToIfNe _cv_next_82
+	TrainerBattle 842, 842, 0, 0
+	GoTo _cv_battle_80
+_cv_next_82:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_64
-	TrainerBattle 836, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_64:
+	GoToIfNe _cv_next_83
+	TrainerBattle 836, 836, 0, 0
+	GoTo _cv_battle_80
+_cv_next_83:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_65
-	TrainerBattle 834, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_65:
+	GoToIfNe _cv_next_84
+	TrainerBattle 834, 834, 0, 0
+	GoTo _cv_battle_80
+_cv_next_84:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_66
-	TrainerBattle 844, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_66:
+	GoToIfNe _cv_next_85
+	TrainerBattle 844, 844, 0, 0
+	GoTo _cv_battle_80
+_cv_next_85:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_67
-	TrainerBattle 839, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_67:
+	GoToIfNe _cv_next_86
+	TrainerBattle 839, 839, 0, 0
+	GoTo _cv_battle_80
+_cv_next_86:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_68
-	TrainerBattle 841, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_68:
+	GoToIfNe _cv_next_87
+	TrainerBattle 841, 841, 0, 0
+	GoTo _cv_battle_80
+_cv_next_87:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_69
-	TrainerBattle 843, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_69:
+	GoToIfNe _cv_next_88
+	TrainerBattle 843, 843, 0, 0
+	GoTo _cv_battle_80
+_cv_next_88:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_70
-	TrainerBattle 837, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_70:
+	GoToIfNe _cv_next_89
+	TrainerBattle 837, 837, 0, 0
+	GoTo _cv_battle_80
+_cv_next_89:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_71
-	TrainerBattle 845, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_71:
+	GoToIfNe _cv_next_90
+	TrainerBattle 845, 845, 0, 0
+	GoTo _cv_battle_80
+_cv_next_90:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_72
-	TrainerBattle 840, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_72:
+	GoToIfNe _cv_next_91
+	TrainerBattle 840, 840, 0, 0
+	GoTo _cv_battle_80
+_cv_next_91:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_73
-	TrainerBattle 835, 0, 0, 0
-	GoTo _cv_battle_61
-_cv_next_73:
-	TrainerBattle 834, 0, 0, 0
-_cv_battle_61:
+	GoToIfNe _cv_next_92
+	TrainerBattle 835, 835, 0, 0
+	GoTo _cv_battle_80
+_cv_next_92:
+	TrainerBattle 834, 834, 0, 0
+_cv_battle_80:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_74
+	GoToIfNe _cv_won_93
 	WhiteOut
 	End
-_cv_won_74:
+_cv_won_93:
 	SetFlag 0x2057
 	Return
 	
 PokemonLeague_ChampionsRoom_EventScript_RematchCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_76
-	TrainerBattle 838, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_76:
+	GoToIfNe _cv_next_95
+	TrainerBattle 838, 838, 0, 0
+	GoTo _cv_battle_94
+_cv_next_95:
 	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_77
-	TrainerBattle 842, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_77:
+	GoToIfNe _cv_next_96
+	TrainerBattle 842, 842, 0, 0
+	GoTo _cv_battle_94
+_cv_next_96:
 	CompareVarToValue 0x501A, 1
-	GoToIfNe _cv_next_78
-	TrainerBattle 836, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_78:
+	GoToIfNe _cv_next_97
+	TrainerBattle 836, 836, 0, 0
+	GoTo _cv_battle_94
+_cv_next_97:
 	CompareVarToValue 0x501A, 10
-	GoToIfNe _cv_next_79
-	TrainerBattle 834, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_79:
+	GoToIfNe _cv_next_98
+	TrainerBattle 834, 834, 0, 0
+	GoTo _cv_battle_94
+_cv_next_98:
 	CompareVarToValue 0x501A, 12
-	GoToIfNe _cv_next_80
-	TrainerBattle 844, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_80:
+	GoToIfNe _cv_next_99
+	TrainerBattle 844, 844, 0, 0
+	GoTo _cv_battle_94
+_cv_next_99:
 	CompareVarToValue 0x501A, 4
-	GoToIfNe _cv_next_81
-	TrainerBattle 839, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_81:
+	GoToIfNe _cv_next_100
+	TrainerBattle 839, 839, 0, 0
+	GoTo _cv_battle_94
+_cv_next_100:
 	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_82
-	TrainerBattle 841, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_82:
+	GoToIfNe _cv_next_101
+	TrainerBattle 841, 841, 0, 0
+	GoTo _cv_battle_94
+_cv_next_101:
 	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_83
-	TrainerBattle 843, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_83:
+	GoToIfNe _cv_next_102
+	TrainerBattle 843, 843, 0, 0
+	GoTo _cv_battle_94
+_cv_next_102:
 	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_84
-	TrainerBattle 837, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_84:
+	GoToIfNe _cv_next_103
+	TrainerBattle 837, 837, 0, 0
+	GoTo _cv_battle_94
+_cv_next_103:
 	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_85
-	TrainerBattle 845, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_85:
+	GoToIfNe _cv_next_104
+	TrainerBattle 845, 845, 0, 0
+	GoTo _cv_battle_94
+_cv_next_104:
 	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_86
-	TrainerBattle 840, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_86:
+	GoToIfNe _cv_next_105
+	TrainerBattle 840, 840, 0, 0
+	GoTo _cv_battle_94
+_cv_next_105:
 	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_87
-	TrainerBattle 835, 0, 0, 0
-	GoTo _cv_battle_75
-_cv_next_87:
-	TrainerBattle 834, 0, 0, 0
-_cv_battle_75:
+	GoToIfNe _cv_next_106
+	TrainerBattle 835, 835, 0, 0
+	GoTo _cv_battle_94
+_cv_next_106:
+	TrainerBattle 834, 834, 0, 0
+_cv_battle_94:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_88
+	GoToIfNe _cv_won_107
 	WhiteOut
 	End
-_cv_won_88:
+_cv_won_107:
 	SetFlag 0x2058
 	Return
-
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0527_T10R0601_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0527_T10R0601_cv_unported
@@ -676,27 +761,27 @@ _cv_stop:
 
 	.balign 4, 0
 PokemonLeague_ChampionsRoom_Movement_PlayerEnter:
-	WalkNormalNorth 10
+	WalkNormalNorth 17
 	EndMovement
 
 	.balign 4, 0
 PokemonLeague_ChampionsRoom_Movement_PlayerWatchOakEnter:
 	Delay8
 	WalkOnSpotFasterSouth
-	Delay16 7
+	Delay16 13
 	WalkOnSpotFasterWest
 	EndMovement
 
 	.balign 4, 0
 PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter:
-	Delay16 9
+	Delay16 15
 	WalkOnSpotFasterWest
 	EndMovement
 
 	.balign 4, 0
 PokemonLeague_ChampionsRoom_Movement_OakEnter:
 	Delay16 2
-	WalkNormalNorth 5
+	WalkNormalNorth 11
 	WalkNormalWest
 	WalkNormalNorth 2
 	WalkOnSpotFasterSouth
@@ -722,7 +807,7 @@ Common_Movement_WalkInPlaceFasterDown:
 PokemonLeague_ChampionsRoom_Movement_OakExit:
 	WalkNormalNorth 2
 	WalkNormalEast
-	WalkNormalNorth 4
+	WalkNormalNorth 6
 	Delay8
 	SetInvisible
 	EndMovement
@@ -733,7 +818,7 @@ PokemonLeague_ChampionsRoom_Movement_PlayerExit:
 	WalkNormalWest
 	WalkNormalNorth 3
 	WalkNormalEast
-	WalkNormalNorth 4
+	WalkNormalNorth 6
 	Delay8
 	SetInvisible
 	EndMovement

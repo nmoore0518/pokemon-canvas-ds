@@ -11930,6 +11930,34 @@ index e0101f32..d01f0033 100644
  
          { 0xFFFF, 0, 0 },
      };
+diff --git a/src/individual/CalculateBallShakes.c b/src/individual/CalculateBallShakes.c
+index c9a91ef7..a1d58f5c 100644
+--- a/src/individual/CalculateBallShakes.c
++++ b/src/individual/CalculateBallShakes.c
+@@ -20,6 +20,8 @@
+ #include "q412.h"
+ #include "save.h"
+ 
++#define CANVAS_NO_CATCH_FLAG 63      // (a map-temp flag: HeartGold clears them on entering a map)
++
+ u32 get_shake_chance(int input_value);
+ 
+ extern u8 gSafariBallRateTable[13][2];
+@@ -62,6 +64,14 @@ u32 __attribute__((section(".init"))) CalculateBallShakesInternal(void *bw, stru
+     int badges, missingBadges;
+     BOOL isCriticalCatch = FALSE;
+ 
++    // Pokemon Canvas: a battle the script marks as one with no catching (the GBA game's ghost battles: the Pokemon
++    // Tower's Marowak) - the Pokemon breaks free at once. The flag is a map-temp flag, set by the porter's script
++    // right before the battle and cleared after it (tools/canvas/port/port_map.py, NO_CATCH_FLAG)
++    if (CheckScriptFlag(CANVAS_NO_CATCH_FLAG))
++    {
++        return 0;
++    }
++
+     if (BattleTypeGet(bw) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_TUTORIAL)) // poke park and safari zone always succeed
+     {
+         return 4;
 diff --git a/src/individual/GetMonEvolutionInternal.c b/src/individual/GetMonEvolutionInternal.c
 index 6a6b065b..b9084393 100644
 --- a/src/individual/GetMonEvolutionInternal.c
@@ -12020,10 +12048,10 @@ index b1df6be3..67770baa 100644
  #endif
  }
 diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
-index d4b59833..9c9da93b 100644
+index d4b59833..80a92b15 100644
 --- a/src/script_new_cmds.c
 +++ b/src/script_new_cmds.c
-@@ -2,10 +2,24 @@
+@@ -2,10 +2,43 @@
  #include "../include/constants/file.h"
  #include "../include/repel.h"
  #include "../include/roamer.h"
@@ -12042,13 +12070,32 @@ index d4b59833..9c9da93b 100644
 +#define CANVAS_CMD_VAR_ADD    105
 +#define CANVAS_CMD_BUFFER_MSG 107   // CanvasBufferMsg slot, msg: a message of this script's bank into a string slot
 +#define CANVAS_CMD_MART       106   // CanvasMart n, then n items (.short): a shop with exactly those items
++#define CANVAS_CMD_CHECK_TEAM 108   // CanvasCheckTeam rules, typeVar: the GBA game's team rules (its GymHack_CheckTeamRules)
++#define CANVAS_TEAM_RULE_TYPE    1  // (as its include/constants/gym_hack.h: every Pokemon's first type the player's
++#define CANVAS_TEAM_RULE_SPECIES 2  //  no two the same species
++#define CANVAS_TEAM_RULE_ITEM    4  //  no two holding the same item)
++#include "../include/pokemon.h"
++struct Party *LONG_CALL SaveArray_Party_Get(void *saveData);
++int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
++void LONG_CALL BufferSpeciesName(MessageFormat *fmt, u32 idx, u16 species);
++void LONG_CALL BufferTypeName(MessageFormat *fmt, u32 idx, u32 type);
++void LONG_CALL BufferItemName(MessageFormat *fmt, u32 idx, u32 item);
++static u32 Canvas_CheckTeam(MessageFormat *fmt, u32 rules, u32 playerType);
++#define CANVAS_CMD_HALL_OF_FAME 109 // CanvasHallOfFame: HeartGold's game clear (its CallTask_GameClear) without the credits
++#define CANVAS_CMD_CREDITS      110 // CanvasCredits: HeartGold's credits, then the reset its game clear ends with
++#define CANVAS_CMD_CLOSE_MSG    111 // CanvasCloseMsg: CloseMsg, if a message is open (a GBA script may leave one open
++                                    // in a script it called; HeartGold's battles must start with none)
++void LONG_CALL ClearFrameAndWindow2(void *window, BOOL dont_copy_to_vram);
++void LONG_CALL RemoveWindow(void *);
++#include "../include/task.h"
++static void Canvas_StartGameClear(FieldSystem *fsys, BOOL credits);
 +struct MartItem;
 +void LONG_CALL InitMartUI(void *taskManager, FieldSystem *fieldSystem, const u16 *items, int kind, int buySell, int decoWhich, const struct MartItem *priceOverrides);
 +BOOL Canvas_RunCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 n);
  
  #define SCRIPT_NEW_CMD_MAX 256
  
-@@ -23,6 +37,35 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -23,6 +56,59 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
  #endif
          break;
  
@@ -12081,13 +12128,159 @@ index d4b59833..9c9da93b 100644
 +        return TRUE;
 +    }
 +
++    case CANVAS_CMD_CHECK_TEAM: {     // -> VAR_SPECIAL_RESULT: 0 fine, 1 wrong type, 2 two alike, 3 two holding one item
++        MessageFormat **fmt = FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_MSGFMT);
++        u16 type = GetScriptVar(ScriptReadHalfword(ctx));
++        SetScriptVar(0x800C, Canvas_CheckTeam(*fmt, arg0, type));
++        return FALSE;
++    }
++
++    case CANVAS_CMD_CLOSE_MSG: {
++        u8 *flags = (u8 *)ctx->fsys + 0xD2;    // (FieldSystem.textbox_open: bit 6)
++        if (*flags & 0x40) {
++            void *window = FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_WINDOW);
++            ClearFrameAndWindow2(window, 0);
++            RemoveWindow(window);
++            *flags &= ~0x40;
++            *(u8 *)FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_08) = 0;
++        }
++        return FALSE;
++    }
++
++    case CANVAS_CMD_HALL_OF_FAME:
++    case CANVAS_CMD_CREDITS:
++        Canvas_StartGameClear(ctx->fsys, sw == CANVAS_CMD_CREDITS);
++        return TRUE;
++
      default:
          break;
      }
-@@ -30,6 +73,40 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -30,6 +116,162 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
      return FALSE;
  }
  
++// The GBA game's Hall of Fame and credits are apart (the Hall of Fame, then a scene outside the League, then the
++// credits), so HeartGold's game clear (src/game_clear.c) is split in two here: the Hall of Fame's registration,
++// the flags and the save; and, later, the credits and the reset. (No "saving" window: the GBA's has none either.)
++struct CanvasHofArgs { void *profile, *party, *igt; };          // (HeartGold's RegisterHallOfFameArgs)
++struct CanvasCreditsArgs { int gender; BOOL gameCleared; };     // (its CreditsArgs)
++struct CanvasGameClear { struct CanvasHofArgs hof; struct CanvasCreditsArgs credits; BOOL gameCleared, doCredits; };
++void *LONG_CALL Save_VarsFlags_Get(void *save);
++BOOL LONG_CALL CheckGameClearFlag(void *varsFlags);
++void LONG_CALL SetGameClearFlag(void *varsFlags);
++void LONG_CALL SetFlag966(void *varsFlags);
++void *LONG_CALL Save_PlayerData_GetProfile(void *save);
++void *LONG_CALL Save_PlayerData_GetIGTAddr(void *save);
++int LONG_CALL PlayerProfile_GetTrainerGender(void *profile);
++void LONG_CALL PlayerProfile_SetGameClearFlag(void *profile);
++void *LONG_CALL Save_LocalFieldData_Get(void *save);
++void *LONG_CALL LocalFieldData_GetDynamicWarp(void *fieldData);
++void *LONG_CALL LocalFieldData_GetSpecialSpawnWarpPtr(void *fieldData);
++void LONG_CALL Location_SetToPlayerRoom(void *loc);
++void LONG_CALL Location_SetToOutsidePlayerHome(void *loc);
++void LONG_CALL FieldSystem_SetGameClearTime(FieldSystem *fsys);
++void LONG_CALL RegisterHallOfFame_LaunchApp(FieldSystem *fsys, struct CanvasHofArgs *args);
++void LONG_CALL Credits_LaunchApp(FieldSystem *fsys, struct CanvasCreditsArgs *args);
++BOOL LONG_CALL FieldSystem_ApplicationIsRunning(FieldSystem *fsys);
++int LONG_CALL SaveGameNormal(void *save);
++void LONG_CALL HealParty(struct Party *party);
++void LONG_CALL Sound_SetMasterVolume(int volume);
++
++static BOOL Canvas_Task_GameClear(TaskManager *taskman)
++{
++    FieldSystem *fsys = taskman->fieldSystem;
++    struct CanvasGameClear *env = taskman->env;
++    switch (taskman->state) {
++    case 0:
++        if (env->doCredits) {
++            Sound_SetMasterVolume(127);
++            Credits_LaunchApp(fsys, &env->credits);
++            taskman->state = 3;
++        } else {
++            RegisterHallOfFame_LaunchApp(fsys, &env->hof);
++            taskman->state = 1;
++        }
++        break;
++    case 1:
++        if (!FieldSystem_ApplicationIsRunning(fsys)) {
++            HealParty(SaveArray_Party_Get(fsys->savedata));
++            SaveGameNormal(fsys->savedata);
++            AddHallOfFameEntry(fsys, env->gameCleared);
++            sys_FreeMemoryEz(env);
++            return TRUE;
++        }
++        break;
++    case 3:
++        if (!FieldSystem_ApplicationIsRunning(fsys)) {
++            OS_ResetSystem(0);
++            return TRUE;
++        }
++        break;
++    }
++    return FALSE;
++}
++
++static void Canvas_StartGameClear(FieldSystem *fsys, BOOL credits)
++{
++    void *save = fsys->savedata, *varsFlags = Save_VarsFlags_Get(save), *profile = Save_PlayerData_GetProfile(save);
++    void *fieldData = Save_LocalFieldData_Get(save);
++    struct CanvasGameClear *env = sys_AllocMemory(32 /* HEAP_ID_FIELD3 */, sizeof(struct CanvasGameClear));
++    env->gameCleared = CheckGameClearFlag(varsFlags);
++    env->doCredits = credits;
++    env->hof.profile = profile;
++    env->hof.party = SaveArray_Party_Get(save);
++    env->hof.igt = Save_PlayerData_GetIGTAddr(save);
++    env->credits.gender = PlayerProfile_GetTrainerGender(profile);
++    env->credits.gameCleared = env->gameCleared;
++    if (!credits) {
++        if (!env->gameCleared)
++            FieldSystem_SetGameClearTime(fsys);
++        Location_SetToPlayerRoom(LocalFieldData_GetDynamicWarp(fieldData));      // (wake up at home: Canvas's Pallet)
++        Location_SetToOutsidePlayerHome(LocalFieldData_GetSpecialSpawnWarpPtr(fieldData));
++        SetFlag966(varsFlags);
++        SetGameClearFlag(varsFlags);
++        PlayerProfile_SetGameClearFlag(profile);
++        GameStats_Inc(Save_GameStats_Get(save), 74 /* GAME_STAT_LEAGUE_WINS */);
++    }
++    TaskManager_Call(fsys->taskman, Canvas_Task_GameClear, env);
++}
++
++// The GBA game's team rules (its src/gym_hack.c GymHack_CheckTeamRules): eggs don't count. On a break, the
++// message's names: wrong type -> slot 0 the Pokemon's nickname, 1 its type, 2 the player's; two alike -> slot 0
++// the species; two holding one item -> slot 0 the item.
++static u32 Canvas_CheckTeam(MessageFormat *fmt, u32 rules, u32 playerType)
++{
++    struct Party *party = SaveArray_Party_Get(SaveBlock2_get());
++    int n = PokeParty_GetPokeCount(party), i, j;
++    for (i = 0; i < n; i++) {
++        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
++        u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL), item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
++        if (species == 0 || GetMonData(mon, MON_DATA_IS_EGG, NULL))
++            continue;
++        if ((rules & CANVAS_TEAM_RULE_TYPE) && GetMonData(mon, MON_DATA_TYPE_1, NULL) != playerType) {
++            BufferBoxMonNickname(fmt, 0, (struct BoxPokemon *)mon);
++            BufferTypeName(fmt, 1, GetMonData(mon, MON_DATA_TYPE_1, NULL));
++            BufferTypeName(fmt, 2, playerType);
++            return 1;
++        }
++        for (j = i + 1; j < n; j++) {
++            struct PartyPokemon *other = Party_GetMonByIndex(party, j);
++            u32 sp = GetMonData(other, MON_DATA_SPECIES, NULL);
++            if (sp == 0 || GetMonData(other, MON_DATA_IS_EGG, NULL))
++                continue;
++            if ((rules & CANVAS_TEAM_RULE_SPECIES) && sp == species) {
++                BufferSpeciesName(fmt, 0, species);
++                return 2;
++            }
++            if ((rules & CANVAS_TEAM_RULE_ITEM) && item != 0 && GetMonData(other, MON_DATA_HELD_ITEM, NULL) == item) {
++                BufferItemName(fmt, 0, item);
++                return 3;
++            }
++        }
++    }
++    return 0;
++}
++
 +BOOL Canvas_RunCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 n)
 +{
 +    struct SAVE_MISC_DATA *misc = Sav2_Misc_get(SaveBlock2_get());

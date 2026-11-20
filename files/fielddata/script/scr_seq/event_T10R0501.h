@@ -7,5 +7,9 @@
 #define _EV_PokemonLeague_LancesRoom_EventScript_EnterRoom 3
 
 #define LOCALID_LANCE 1
+#define obj_T10R0501_babyboy1_11 0x3F00
+#define obj_T10R0501_leag_door2 0x3F01
+#define obj_T10R0501_leag_door2_2 0x3F02
+#define obj_T10R0501_leag_door2_3 0x3F03
 
 #endif

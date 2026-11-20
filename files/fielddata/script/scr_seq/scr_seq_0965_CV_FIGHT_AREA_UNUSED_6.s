@@ -31,7 +31,7 @@ PlayersHouse_B1F_EventScript_Synthesizer:
 	SetVar 0x8006, 0
 	GoToIfUnset 0x200D, PlayersHouse_B1F_EventScript_SynthFuel
 	SetVar 0x8006, 0
-	End
+	GoTo PlayersHouse_B1F_EventScript_SynthFuel
 	
 PlayersHouse_B1F_EventScript_BallMaker:
 	LockAll

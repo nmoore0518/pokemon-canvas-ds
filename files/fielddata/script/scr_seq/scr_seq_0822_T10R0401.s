@@ -131,6 +131,55 @@ _cv_mentor_10:
 	SetVar 0x401F, 11
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_mentor_11:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_12
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_mentor_12
+	SetVar 0x401F, 12
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_12:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_13
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_mentor_13
+	SetVar 0x401F, 13
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_13:
+	CompareVarToValue 0x8009, 8
+	GoToIfNe _cv_mentor_14
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_mentor_14
+	SetVar 0x401F, 14
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_14:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_15
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_mentor_15
+	SetVar 0x401F, 15
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_15:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_16
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_mentor_16
+	SetVar 0x401F, 16
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_16:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_17
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_mentor_17
+	SetVar 0x401F, 17
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_17:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_18
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_mentor_18
+	SetVar 0x401F, 18
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_18:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymCandidate_EventScript_ShowText4
 	BufferPlayersName 6
@@ -145,35 +194,27 @@ PokemonLeague_AgathasRoom_EventScript_RematchIntro:
 	Return
 	
 PokemonLeague_AgathasRoom_EventScript_Battle:
-	CheckTrainerFlag 1148
-	GoToIf TRUE, _cv_beaten_12
-	TrainerBattle 1148, 0, 0, 0
+	CanvasCloseMsg
+	TrainerBattle 1148, 1148, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_13
+	GoToIfNe _cv_won_20
 	WhiteOut
 	End
-_cv_won_13:
+_cv_won_20:
 	SetTrainerFlag 1148
-	ReleaseAll
-	End
-_cv_beaten_12:
 	Return
 	
 PokemonLeague_AgathasRoom_EventScript_Rematch:
-	CheckTrainerFlag 1439
-	GoToIf TRUE, _cv_beaten_14
-	TrainerBattle 1439, 0, 0, 0
+	CanvasCloseMsg
+	TrainerBattle 1439, 1439, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_15
+	GoToIfNe _cv_won_22
 	WhiteOut
 	End
-_cv_won_15:
+_cv_won_22:
 	SetTrainerFlag 1439
-	ReleaseAll
-	End
-_cv_beaten_14:
 	Return
 	
 PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha:
@@ -188,15 +229,14 @@ PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha:
 	End
 	
 PokemonLeague_EventScript_DoLightingEffect:
-	// TODO(gba) special DoPokemonLeagueLightingEffect
 	Return
 	
 PokemonLeague_AgathasRoom_EventScript_SetDoorOpen:
-	Call PokemonLeague_EventScript_SetDoorOpen
+	SetFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
 	Return
 	
 PokemonLeague_AgathasRoom_EventScript_CloseEntry:
-	Call PokemonLeague_EventScript_CloseEntry
+	ClearFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
 	Return
 	
 PokemonLeague_EventScript_EnterRoom:
@@ -222,24 +262,88 @@ PokemonLeague_EventScript_OpenDoor:
 	
 GymCandidate_EventScript_EliteFourApprove:
 	GoToIfSet 0x215C, GymCandidate_EventScript_Return
-	// TODO(gba) special GymCandidate_BufferEliteFourApproval
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 8
+	GoToIfNe _cv_next_35
+	SetVar 0x401F, 19
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_next_24
+	SetVar 0x401F, 20
+	GoTo _cv_done_23
+_cv_next_24:
+_cv_done_23:
+	GoTo _cv_done_34
+_cv_next_35:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_next_36
+	SetVar 0x401F, 21
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_next_26
+	SetVar 0x401F, 22
+	GoTo _cv_done_25
+_cv_next_26:
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_next_27
+	SetVar 0x401F, 23
+	GoTo _cv_done_25
+_cv_next_27:
+_cv_done_25:
+	GoTo _cv_done_34
+_cv_next_36:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_next_37
+	SetVar 0x401F, 24
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_next_29
+	SetVar 0x401F, 25
+	GoTo _cv_done_28
+_cv_next_29:
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_next_30
+	SetVar 0x401F, 26
+	GoTo _cv_done_28
+_cv_next_30:
+_cv_done_28:
+	GoTo _cv_done_34
+_cv_next_37:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_next_38
+	SetVar 0x401F, 27
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_32
+	SetVar 0x401F, 28
+	GoTo _cv_done_31
+_cv_next_32:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_33
+	SetVar 0x401F, 29
+	GoTo _cv_done_31
+_cv_next_33:
+_cv_done_31:
+	GoTo _cv_done_34
+_cv_next_38:
+_cv_done_34:
 	Call _cv_str4
 	WaitButton
-	End
-	
-PokemonLeague_EventScript_SetDoorOpen:
-	// (the GBA redraws a square here: 6, 1, METATILE_PokemonLeague_Door_Top_Open, 1)
-	// (the GBA redraws a square here: 6, 2, METATILE_PokemonLeague_Door_Mid_Open, 0)
-	Return
+	GoTo GymCandidate_EventScript_Return
 	
 PokemonLeague_EventScript_CloseEntry:
+	ClearFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
+	ShowPerson obj_T10R0401_babyboy1_11
 	// (the GBA redraws a square here: 5, 11, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1)
 	// (the GBA redraws a square here: 6, 11, METATILE_PokemonLeague_Entry_TopMid_Closed, 1)
 	// (the GBA redraws a square here: 7, 11, METATILE_PokemonLeague_Entry_TopRight_Closed, 1)
 	// (the GBA redraws a square here: 5, 12, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1)
 	// (the GBA redraws a square here: 6, 12, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1)
 	// (the GBA redraws a square here: 7, 12, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1)
+	Return
+	
+PokemonLeague_EventScript_SetDoorOpen:
+	SetFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
+	HidePerson obj_T10R0401_leag_door2
+	HidePerson obj_T10R0401_leag_door2_2
+	HidePerson obj_T10R0401_leag_door2_3
+	// (the GBA redraws a square here: 6, 1, METATILE_PokemonLeague_Door_Top_Open, 1)
+	// (the GBA redraws a square here: 6, 2, METATILE_PokemonLeague_Door_Mid_Open, 0)
 	Return
 	
 GymCandidate_EventScript_Return:
@@ -303,6 +407,96 @@ _cv_str4_9:
 	NPCMsg msg_0525_T10R0401_cv_mentor_first_fire
 	Return
 _cv_str4_10:
+	CompareVarToValue 0x401F, 12
+	GoToIfNe _cv_str4_11
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_ground
+	Return
+_cv_str4_11:
+	CompareVarToValue 0x401F, 13
+	GoToIfNe _cv_str4_12
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_dark
+	Return
+_cv_str4_12:
+	CompareVarToValue 0x401F, 14
+	GoToIfNe _cv_str4_13
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_ice
+	Return
+_cv_str4_13:
+	CompareVarToValue 0x401F, 15
+	GoToIfNe _cv_str4_14
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_fighting
+	Return
+_cv_str4_14:
+	CompareVarToValue 0x401F, 16
+	GoToIfNe _cv_str4_15
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_ghost
+	Return
+_cv_str4_15:
+	CompareVarToValue 0x401F, 17
+	GoToIfNe _cv_str4_16
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_dragon
+	Return
+_cv_str4_16:
+	CompareVarToValue 0x401F, 18
+	GoToIfNe _cv_str4_17
+	NPCMsg msg_0525_T10R0401_cv_mentor_first_flying
+	Return
+_cv_str4_17:
+	CompareVarToValue 0x401F, 19
+	GoToIfNe _cv_str4_18
+	NPCMsg msg_0525_T10R0401_cv_e4_approve_lorelei
+	Return
+_cv_str4_18:
+	CompareVarToValue 0x401F, 20
+	GoToIfNe _cv_str4_19
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_ice
+	Return
+_cv_str4_19:
+	CompareVarToValue 0x401F, 21
+	GoToIfNe _cv_str4_20
+	NPCMsg msg_0525_T10R0401_cv_e4_approve_bruno
+	Return
+_cv_str4_20:
+	CompareVarToValue 0x401F, 22
+	GoToIfNe _cv_str4_21
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_ground
+	Return
+_cv_str4_21:
+	CompareVarToValue 0x401F, 23
+	GoToIfNe _cv_str4_22
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_fighting
+	Return
+_cv_str4_22:
+	CompareVarToValue 0x401F, 24
+	GoToIfNe _cv_str4_23
+	NPCMsg msg_0525_T10R0401_cv_e4_approve_agatha
+	Return
+_cv_str4_23:
+	CompareVarToValue 0x401F, 25
+	GoToIfNe _cv_str4_24
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_dark
+	Return
+_cv_str4_24:
+	CompareVarToValue 0x401F, 26
+	GoToIfNe _cv_str4_25
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_ghost
+	Return
+_cv_str4_25:
+	CompareVarToValue 0x401F, 27
+	GoToIfNe _cv_str4_26
+	NPCMsg msg_0525_T10R0401_cv_e4_approve_lance
+	Return
+_cv_str4_26:
+	CompareVarToValue 0x401F, 28
+	GoToIfNe _cv_str4_27
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_dragon
+	Return
+_cv_str4_27:
+	CompareVarToValue 0x401F, 29
+	GoToIfNe _cv_str4_28
+	NPCMsg msg_0525_T10R0401_cv_mentor_approve_flying
+	Return
+_cv_str4_28:
 	Return
 
 _cv_stop:

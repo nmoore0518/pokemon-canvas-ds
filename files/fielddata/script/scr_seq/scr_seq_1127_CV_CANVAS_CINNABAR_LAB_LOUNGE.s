@@ -267,8 +267,7 @@ _cv_yn_26:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1459
-	CheckTrainerFlag 1459
-	GoToIf TRUE, _cv_beaten_27
+	CanvasCloseMsg
 	TrainerBattle 1459, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -277,9 +276,6 @@ _cv_yn_26:
 	End
 _cv_won_28:
 	SetTrainerFlag 1459
-	ReleaseAll
-	End
-_cv_beaten_27:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -301,8 +297,7 @@ _cv_yn_30:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1460
-	CheckTrainerFlag 1460
-	GoToIf TRUE, _cv_beaten_31
+	CanvasCloseMsg
 	TrainerBattle 1460, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -311,9 +306,6 @@ _cv_yn_30:
 	End
 _cv_won_32:
 	SetTrainerFlag 1460
-	ReleaseAll
-	End
-_cv_beaten_31:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg

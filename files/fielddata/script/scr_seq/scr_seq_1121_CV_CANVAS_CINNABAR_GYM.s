@@ -61,7 +61,7 @@ CinnabarIsland_Gym_EventScript_Avery:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_AveryIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 929, 0, 0, 0
+	TrainerBattle 929, 929, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_4
@@ -257,7 +257,7 @@ _cv_won_25:
 	SetTrainerFlag 1155
 	GoTo CinnabarIsland_Gym_EventScript_DefeatedBlaine
 _cv_beaten_24:
-	End
+	GoTo CinnabarIsland_Gym_EventScript_AfterLeaderBattle
 	
 CinnabarIsland_Gym_EventScript_GymGuy:
 	LockAll
@@ -452,6 +452,16 @@ CinnabarIsland_Gym_EventScript_DefeatedBlaine:
 	SetVar 0x8008, 7
 	Call Common_EventScript_SetGymTrainers_Frlg
 	GoTo CinnabarIsland_Gym_EventScript_GiveTM38
+	End
+	
+CinnabarIsland_Gym_EventScript_AfterLeaderBattle:
+	GoToIfUnset 0x21F6, CinnabarIsland_Gym_EventScript_GiveTM38
+	Call GymHack_EventScript_BlaineGifts
+	Call GymCandidate_EventScript_CinnabarIslandTalk
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_BlainePostBattle
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 CinnabarIsland_Gym_EventScript_GymGuyPostVictory:
@@ -652,16 +662,6 @@ CinnabarIsland_Gym_EventScript_Quiz6CompleteTrainer:
 	Call CinnabarIsland_Gym_EventScript_Quiz6Complete
 	Return
 	
-CinnabarIsland_Gym_EventScript_AfterLeaderBattle:
-	GoToIfUnset 0x21F6, CinnabarIsland_Gym_EventScript_GiveTM38
-	Call GymHack_EventScript_BlaineGifts
-	Call GymCandidate_EventScript_CinnabarIslandTalk
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_BlainePostBattle
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
 Common_EventScript_SetGymTrainers_Frlg:
 	CompareVarToValue 0x8008, 1
 	GoToIfEq EventScript_SetPewterGymTrainers
@@ -702,6 +702,22 @@ CinnabarIsland_Gym_EventScript_GiveTM38:
 	CloseMsg
 	ReleaseAll
 	End
+	
+GymHack_EventScript_BlaineGifts:
+	GoToIfSet 0x21F7, GymHack_EventScript_GiftsDone
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_BlaineSilverCap
+	WaitButton
+	SetVar 0x8009, 795
+	Call GymHack_EventScript_GiveStatItem
+	SetFlag 0x21F7
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_BlaineSilverCapAfter
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_CinnabarIslandTalk:
+	SetVar 0x8009, 6
+	SetVar 0x800A, 11
+	GoTo GymCandidate_EventScript_TalkAgain
 	
 CinnabarIsland_Gym_EventScript_Quiz1Correct:
 	Call CinnabarIsland_Gym_EventScript_CorrectAnswer
@@ -945,22 +961,6 @@ CinnabarIsland_Gym_EventScript_Quiz6Complete:
 	SetFlag 0x21F5
 	Return
 	
-GymHack_EventScript_BlaineGifts:
-	GoToIfSet 0x21F7, GymHack_EventScript_GiftsDone
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_BlaineSilverCap
-	WaitButton
-	SetVar 0x8009, 795
-	Call GymHack_EventScript_GiveStatItem
-	SetFlag 0x21F7
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_BlaineSilverCapAfter
-	WaitButton
-	Return
-	
-GymCandidate_EventScript_CinnabarIslandTalk:
-	SetVar 0x8009, 6
-	SetVar 0x800A, 11
-	GoTo GymCandidate_EventScript_TalkAgain
-	
 EventScript_SetPewterGymTrainers:
 	SetTrainerFlag 897
 	Return
@@ -1039,6 +1039,45 @@ GymCandidate_EventScript_CinnabarIslandAfterBadge:
 	GoTo GymCandidate_EventScript_AfterBadge
 	End
 	
+GymHack_EventScript_GiftsDone:
+	Return
+	
+GymHack_EventScript_GiveStatItem:
+	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymHack_EventScript_GiveStatItemDone
+	BufferItemName 1, 0x8009
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_GiftSentToPC
+	WaitButton
+	GoTo GymHack_EventScript_GiveStatItemDone
+	
+GymCandidate_EventScript_TalkAgain:
+	Call GymCandidate_EventScript_MentorGift
+	// TODO(gba) special GymCandidate_IsApproved
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Offer
+	CompareVarToValue 0x8009, 7
+	GoToIfEq GymCandidate_EventScript_Return
+	GoToIfSet 0x2008, GymCandidate_EventScript_OwnGym
+	// TODO(gba) special GymCandidate_BufferRepeatOffer
+	GoTo _cv_stop
+	Call _cv_str4
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_52
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_53
+_cv_yes_52:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_53:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_NotYet
+	SetVar 0x8007, 1
+	GoTo GymCandidate_EventScript_Start
+	CloseMsg
+	End
+	
 CinnabarIsland_Gym_EventScript_CorrectAnswer:
 	PlayFanfare SEQ_ME_LVUP
 	WaitFanfare
@@ -1066,19 +1105,15 @@ CinnabarIsland_Gym_EventScript_BattleQuinn:
 	CallIfEq CinnabarIsland_Gym_EventScript_QuinnApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_QuinnIntro
 	WaitButton
-	CheckTrainerFlag 960
-	GoToIf TRUE, _cv_beaten_52
+	CanvasCloseMsg
 	TrainerBattle 960, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_53
+	GoToIfNe _cv_won_55
 	WhiteOut
 	End
-_cv_won_53:
+_cv_won_55:
 	SetTrainerFlag 960
-	ReleaseAll
-	End
-_cv_beaten_52:
 	GoToIfSet 0x21F0, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz1Complete
 	CloseMsg
@@ -1092,19 +1127,15 @@ CinnabarIsland_Gym_EventScript_BattleAvery:
 	CallIfEq CinnabarIsland_Gym_EventScript_AveryApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_AveryIntro
 	WaitButton
-	CheckTrainerFlag 929
-	GoToIf TRUE, _cv_beaten_54
-	TrainerBattle 929, 0, 0, 0
+	CanvasCloseMsg
+	TrainerBattle 929, 929, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_55
+	GoToIfNe _cv_won_57
 	WhiteOut
 	End
-_cv_won_55:
+_cv_won_57:
 	SetTrainerFlag 929
-	ReleaseAll
-	End
-_cv_beaten_54:
 	GoToIfSet 0x21F1, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz2Complete
 	CloseMsg
@@ -1118,19 +1149,15 @@ CinnabarIsland_Gym_EventScript_BattleRamon:
 	CallIfEq CinnabarIsland_Gym_EventScript_RamonApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_RamonIntro
 	WaitButton
-	CheckTrainerFlag 961
-	GoToIf TRUE, _cv_beaten_56
+	CanvasCloseMsg
 	TrainerBattle 961, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_57
+	GoToIfNe _cv_won_59
 	WhiteOut
 	End
-_cv_won_57:
+_cv_won_59:
 	SetTrainerFlag 961
-	ReleaseAll
-	End
-_cv_beaten_56:
 	GoToIfSet 0x21F2, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz3Complete
 	CloseMsg
@@ -1144,19 +1171,15 @@ CinnabarIsland_Gym_EventScript_BattleDerek:
 	CallIfEq CinnabarIsland_Gym_EventScript_DerekApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_DerekIntro
 	WaitButton
-	CheckTrainerFlag 930
-	GoToIf TRUE, _cv_beaten_58
+	CanvasCloseMsg
 	TrainerBattle 930, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_59
+	GoToIfNe _cv_won_61
 	WhiteOut
 	End
-_cv_won_59:
+_cv_won_61:
 	SetTrainerFlag 930
-	ReleaseAll
-	End
-_cv_beaten_58:
 	GoToIfSet 0x21F3, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz4Complete
 	CloseMsg
@@ -1170,19 +1193,15 @@ CinnabarIsland_Gym_EventScript_BattleDusty:
 	CallIfEq CinnabarIsland_Gym_EventScript_DustyApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_DustyIntro
 	WaitButton
-	CheckTrainerFlag 962
-	GoToIf TRUE, _cv_beaten_60
+	CanvasCloseMsg
 	TrainerBattle 962, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_61
+	GoToIfNe _cv_won_63
 	WhiteOut
 	End
-_cv_won_61:
+_cv_won_63:
 	SetTrainerFlag 962
-	ReleaseAll
-	End
-_cv_beaten_60:
 	GoToIfSet 0x21F4, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz5Complete
 	CloseMsg
@@ -1196,62 +1215,19 @@ CinnabarIsland_Gym_EventScript_BattleZac:
 	CallIfEq CinnabarIsland_Gym_EventScript_ZacApproachRight
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_ZacIntro
 	WaitButton
-	CheckTrainerFlag 931
-	GoToIf TRUE, _cv_beaten_62
+	CanvasCloseMsg
 	TrainerBattle 931, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_63
+	GoToIfNe _cv_won_65
 	WhiteOut
 	End
-_cv_won_63:
+_cv_won_65:
 	SetTrainerFlag 931
-	ReleaseAll
-	End
-_cv_beaten_62:
 	GoToIfSet 0x21F5, CinnabarIsland_Gym_EventScript_DoorAlreadyOpen
 	Call CinnabarIsland_Gym_EventScript_Quiz6Complete
 	CloseMsg
 	ReleaseAll
-	End
-	
-GymHack_EventScript_GiftsDone:
-	Return
-	
-GymHack_EventScript_GiveStatItem:
-	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq GymHack_EventScript_GiveStatItemDone
-	BufferItemName 1, 0x8009
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_GiftSentToPC
-	WaitButton
-	End
-	
-GymCandidate_EventScript_TalkAgain:
-	Call GymCandidate_EventScript_MentorGift
-	// TODO(gba) special GymCandidate_IsApproved
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymCandidate_EventScript_Offer
-	CompareVarToValue 0x8009, 7
-	GoToIfEq GymCandidate_EventScript_Return
-	GoToIfSet 0x2008, GymCandidate_EventScript_OwnGym
-	// TODO(gba) special GymCandidate_BufferRepeatOffer
-	GoTo _cv_stop
-	Call _cv_str4
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_64
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_65
-_cv_yes_64:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_65:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymCandidate_EventScript_NotYet
-	SetVar 0x8007, 1
-	GoTo GymCandidate_EventScript_Start
-	CloseMsg
 	End
 	
 GymCandidate_EventScript_AfterBadge:
@@ -1333,11 +1309,124 @@ _cv_mentor_75:
 	SetVar 0x401F, 22
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_mentor_76:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_77
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_mentor_77
+	SetVar 0x401F, 23
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_77:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_78
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_mentor_78
+	SetVar 0x401F, 24
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_78:
+	CompareVarToValue 0x8009, 8
+	GoToIfNe _cv_mentor_79
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_mentor_79
+	SetVar 0x401F, 25
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_79:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_80
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_mentor_80
+	SetVar 0x401F, 26
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_80:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_81
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_mentor_81
+	SetVar 0x401F, 27
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_81:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_82
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_mentor_82
+	SetVar 0x401F, 28
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_82:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_83
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_mentor_83
+	SetVar 0x401F, 29
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_83:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymCandidate_EventScript_ShowText4
 	Call GymCandidate_EventScript_MentorGift
 	GoTo GymCandidate_EventScript_Offer
 	End
+	
+GymHack_EventScript_GiveStatItemDone:
+	Return
+	
+GymCandidate_EventScript_MentorGift:
+	// TODO(gba) special GymCandidate_PrepareMentorGift
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Return
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_MentorGiveItem
+	PlaySE SEQ_SE_DP_DOOR
+	BufferPlayersName 6
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_SomeoneToSeeYou
+	WaitButton
+	CloseMsg
+	Call GymCandidate_EventScript_VisitorWalksIn
+	Call GymCandidate_EventScript_MentorGiveItem
+	Call GymCandidate_EventScript_VisitorWalksOut
+	Return
+	
+GymCandidate_EventScript_Offer:
+	// TODO(gba) special GymCandidate_BufferOffer
+	GoTo _cv_stop
+	Call _cv_str4
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_84
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_85
+_cv_yes_84:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_85:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_NotYet
+	SetVar 0x8007, 0
+	GoTo GymCandidate_EventScript_Start
+	
+GymCandidate_EventScript_Return:
+	Return
+	
+GymCandidate_EventScript_OwnGym:
+	// TODO(gba) special GymCandidate_BufferOwnGym
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_NotYet:
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_NotYet
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_Start:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe GymCandidate_EventScript_TeamBreaksRules
+	SetVar 0x800B, 0
+	Call GymCandidate_EventScript_TakeLeadersPlace
+	GoTo GymCandidate_EventScript_NextGuest
 	
 CinnabarIsland_Gym_EventScript_QuinnApproachLeft:
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterRight
@@ -1411,71 +1500,6 @@ CinnabarIsland_Gym_EventScript_ZacApproachRight:
 	WaitMovement
 	Return
 	
-GymHack_EventScript_GiveStatItemDone:
-	Return
-	
-GymCandidate_EventScript_MentorGift:
-	// TODO(gba) special GymCandidate_PrepareMentorGift
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymCandidate_EventScript_Return
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq GymCandidate_EventScript_MentorGiveItem
-	PlaySE SEQ_SE_DP_DOOR
-	BufferPlayersName 6
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_SomeoneToSeeYou
-	WaitButton
-	CloseMsg
-	Call GymCandidate_EventScript_VisitorWalksIn
-	Call GymCandidate_EventScript_MentorGiveItem
-	Call GymCandidate_EventScript_VisitorWalksOut
-	Return
-	
-GymCandidate_EventScript_Offer:
-	// TODO(gba) special GymCandidate_BufferOffer
-	GoTo _cv_stop
-	Call _cv_str4
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_77
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_78
-_cv_yes_77:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_78:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymCandidate_EventScript_NotYet
-	SetVar 0x8007, 0
-	End
-	
-GymCandidate_EventScript_Return:
-	Return
-	
-GymCandidate_EventScript_OwnGym:
-	// TODO(gba) special GymCandidate_BufferOwnGym
-	GoTo _cv_stop
-	Call _cv_str4
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-GymCandidate_EventScript_NotYet:
-	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_NotYet
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-GymCandidate_EventScript_Start:
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe GymCandidate_EventScript_TeamBreaksRules
-	SetVar 0x800B, 0
-	Call GymCandidate_EventScript_TakeLeadersPlace
-	End
-	
 GymCandidate_EventScript_ShowText4:
 	Call _cv_str4
 	WaitButton
@@ -1492,7 +1516,7 @@ GymCandidate_EventScript_MentorGiveItem:
 	BufferItemName 1, 0x8004
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymCandidate_EventScript_MentorItemExplain
 	
 GymCandidate_EventScript_VisitorWalksIn:
 	// TODO(gba) special GymCandidate_PlanVisitorWalk
@@ -1555,6 +1579,69 @@ GymCandidate_EventScript_TakeLeadersPlace:
 	WaitFade
 	Return
 	
+GymCandidate_EventScript_NextGuest:
+	HealParty
+	// TODO(gba) special GymCandidate_GenerateGuest
+	GoTo _cv_stop
+	CompareVarToValue 0x800B, 0
+	CallIfEq GymCandidate_EventScript_LaterThatDay
+	CompareVarToValue 0x800B, 0
+	CallIfNe GymCandidate_EventScript_AnotherOne
+	CloseMsg
+	Call GymCandidate_EventScript_ChallengerWalksIn
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeIntroText
+	WaitButton
+	CloseMsg
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CanvasCloseMsg
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_87
+	WhiteOut
+	End
+_cv_won_87:
+	SetTrainerFlag 1442
+	ClearFlag 0x2036
+	// TODO(gba) special GymChallenge_EndPractice
+	GoTo _cv_stop
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_88
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_89
+_cv_outcome_88:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_89
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_89:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe GymCandidate_EventScript_GuestWon
+	HealParty
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeAfterText
+	WaitButton
+	Call GymCandidate_EventScript_VisitorWalksOut
+	AddVar 0x800B, 1
+	// TODO(gba) special GymCandidate_MoreGuests
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_NextGuest
+	Call GymCandidate_EventScript_ReturnLeadersPlace
+	CompareVarToValue 0x8007, 1
+	GoToIfEq GymCandidate_EventScript_ShiftDone
+	// TODO(gba) special GymCandidate_Approve
+	GoTo _cv_stop
+	PlayFanfare SEQ_ME_LVUP
+	Call _cv_str4
+	WaitButton
+	WaitFanfare
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_ApprovalCount
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 GymCandidate_EventScript_MentorItemExplain:
 	BufferItemName 0, 0x8004
 	CompareVarToValue 0x8009, 6
@@ -1578,7 +1665,7 @@ GymCandidate_EventScript_MentorAppears:
 	ShowPerson 0x800A
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
 	CloseMsg
@@ -1597,6 +1684,70 @@ GymCandidate_EventScript_ItemClause:
 	ReleaseAll
 	End
 	
+GymCandidate_EventScript_LaterThatDay:
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_LaterThatDay
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_AnotherOne:
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_AnotherOne
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_ChallengerWalksIn:
+	// TODO(gba) special GymCandidate_PlanChallengerWalk
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_ChallengerAppears
+	CopyVar 0x401E, 0x8005
+	CopyVar 0x401F, 0x8006
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	PlaySE SEQ_SE_DP_KAIDAN2
+	ApplyMovement 0x800A, gMentorWalkIn
+	WaitMovement
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	Return
+	
+GymCandidate_EventScript_GuestWon:
+	HealParty
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeWinText
+	WaitButton
+	Call GymCandidate_EventScript_VisitorWalksOut
+	Call GymCandidate_EventScript_ReturnLeadersPlace
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_TryAgain
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_ReturnLeadersPlace:
+	// TODO(gba) special GymCandidate_IsHolding
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Return
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ApplyMovement obj_player, gHoldPlayerOut
+	WaitMovement
+	// TODO(gba) special GymCandidate_HoldLeaderBack
+	GoTo _cv_stop
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+	
+GymCandidate_EventScript_ShiftDone:
+	// TODO(gba) special GymCandidate_BufferRepeatThanks
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 GymCandidate_EventScript_EdgeItemExplain:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_EdgeItemExplain
 	WaitButton
@@ -1612,7 +1763,7 @@ Outfits_EventScript_GymUniform:
 	BufferPlayersName 6
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_Outfits_Text_PutInWardrobe
 	WaitButton
-	End
+	GoTo Outfits_EventScript_Return
 	
 GymCandidate_EventScript_MentorNoRoom:
 	FadeScreen 6, 1, 1, RGB_BLACK
@@ -1627,6 +1778,22 @@ EventScript_GymHack_ShowTeamRuleMessage:
 	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	CallIfEq EventScript_GymHack_MsgDuplicateItem
 	Return
+	
+GymCandidate_EventScript_ChallengerAppears:
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special GymCandidate_PlaceGuest
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_GuestNoRoom
+	CopyVar 0x401E, 0x8005
+	CopyVar 0x401F, 0x8006
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	GoTo GymCandidate_EventScript_GuestNoRoom
 	
 Outfits_EventScript_Return:
 	Return
@@ -1644,6 +1811,11 @@ EventScript_GymHack_MsgDuplicate:
 EventScript_GymHack_MsgDuplicateItem:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_DuplicateItem
 	WaitButton
+	Return
+	
+GymCandidate_EventScript_GuestNoRoom:
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	Return
 
 _cv_str4:
@@ -1759,6 +1931,41 @@ _cv_str4_20:
 	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_fire
 	Return
 _cv_str4_21:
+	CompareVarToValue 0x401F, 23
+	GoToIfNe _cv_str4_22
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ground
+	Return
+_cv_str4_22:
+	CompareVarToValue 0x401F, 24
+	GoToIfNe _cv_str4_23
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_dark
+	Return
+_cv_str4_23:
+	CompareVarToValue 0x401F, 25
+	GoToIfNe _cv_str4_24
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ice
+	Return
+_cv_str4_24:
+	CompareVarToValue 0x401F, 26
+	GoToIfNe _cv_str4_25
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_fighting
+	Return
+_cv_str4_25:
+	CompareVarToValue 0x401F, 27
+	GoToIfNe _cv_str4_26
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ghost
+	Return
+_cv_str4_26:
+	CompareVarToValue 0x401F, 28
+	GoToIfNe _cv_str4_27
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_dragon
+	Return
+_cv_str4_27:
+	CompareVarToValue 0x401F, 29
+	GoToIfNe _cv_str4_28
+	NPCMsg msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_flying
+	Return
+_cv_str4_28:
 	Return
 
 _cv_stop:
@@ -1851,5 +2058,9 @@ gMentorWalkOut:
 
 	.balign 4, 0
 gHoldPlayerIn:
+	EndMovement
+
+	.balign 4, 0
+gHoldPlayerOut:
 	EndMovement
 	.balign 4, 0

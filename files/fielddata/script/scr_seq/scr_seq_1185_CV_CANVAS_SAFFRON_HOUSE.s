@@ -62,8 +62,7 @@ _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1455
-	CheckTrainerFlag 1455
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1455, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -72,9 +71,6 @@ _cv_yn_2:
 	End
 _cv_won_4:
 	SetTrainerFlag 1455
-	ReleaseAll
-	End
-_cv_beaten_3:
 	NPCMsg msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -96,8 +92,7 @@ _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1456
-	CheckTrainerFlag 1456
-	GoToIf TRUE, _cv_beaten_7
+	CanvasCloseMsg
 	TrainerBattle 1456, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -106,9 +101,6 @@ _cv_yn_6:
 	End
 _cv_won_8:
 	SetTrainerFlag 1456
-	ReleaseAll
-	End
-_cv_beaten_7:
 	NPCMsg msg_0964_CV_CANVAS_SAFFRON_HOUSE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -150,7 +142,7 @@ PaintWorld_EventScript_FigureSketch:
 PaintWorld_EventScript_FigureMega:
 	NPCMsg msg_0964_CV_CANVAS_SAFFRON_HOUSE_PaintWorld_Text_FigureMega
 	WaitButton
-	End
+	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
 	CloseMsg
@@ -158,8 +150,7 @@ PaintWorld_EventScript_FigureBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_9
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -168,9 +159,6 @@ PaintWorld_EventScript_FigureBattle:
 	End
 _cv_won_10:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_9:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4

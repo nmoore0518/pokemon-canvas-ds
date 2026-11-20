@@ -59,7 +59,7 @@ Route19_BeachHouse_EventScript_Again:
 _cv_yes_3:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_4:
-	End
+	GoTo Route19_BeachHouse_EventScript_Answer
 	
 Route19_BeachHouse_EventScript_Answer:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

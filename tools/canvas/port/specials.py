@@ -140,6 +140,46 @@ def candidate_mentor_name(port, ret):
     return ['SetVar VAR_SPECIAL_RESULT, 0'] + chain(port, pt, cases)
 
 
+ELITE_FOUR = ['LORELEI', 'BRUNO', 'AGATHA', 'LANCE']       # (src/gym_candidate.c: 8-11)
+
+
+def _elite_four():
+    """src/gym_candidate.c sEliteFour: each one's approval, when they don't mentor the player's type"""
+    src = open(G.P('src/gym_candidate.c')).read()
+    body = src[src.index('sEliteFour[GYM_CANDIDATE_ELITE_FOUR] ='):].split('};')[0]
+    return dict(re.findall(r'\{COMPOUND_STRING\("(\w+)"\),\s*\w+,\s*COMPOUND_STRING\("((?:[^"\\]|\\.)*)"\)\}', body))
+
+
+def elite_four_approval(port, ret):
+    """VAR_0x8009 = an Elite Four member (8-11) -> gStringVar4 = their approval (their mentor's line, if they mentor
+    the player's type)"""
+    pt, who = port.var('VAR_PLAYER_TYPE'), port.var('VAR_0x8009')
+    own = _elite_four()
+    cases = []
+    for i, name in enumerate(ELITE_FOUR):
+        k = port.str4('cv_e4_approve_%s' % name.lower(), own[name])
+        mine = [(_type(port, t), ['SetVar %s, %d' % (SCRATCH4, port.str4('cv_mentor_approve_%s' % t.lower(), approve))])
+                for t, (w, intro, first, approve) in MENTOR_TEXTS.items() if w == 8 + i]
+        cases.append((8 + i, ['SetVar %s, %d' % (SCRATCH4, k)] + (chain(port, pt, mine) if mine else [])))
+    return chain(port, who, cases)
+
+
+def hall_of_fame(port, ret):
+    """EnterHallOfFame: HeartGold's Hall of Fame and save (engine: CanvasHallOfFame), then as the GBA's
+    SetWarpsToRollCredits: the credits scene outside the League (it ends at CB2_StartCreditsSequence)"""
+    w = port.warp(['MAP_INDIGO_PLATEAU_EXTERIOR', '11', '6'])
+    return ['CanvasHallOfFame', 'RestoreOverworld', 'SetVar %s, 1' % port.var('VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR'),
+            'Warp %s, 0, %s, %s, DIR_SOUTH' % w, 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade']
+
+
+def starter_species(port, ret):
+    """GetStarterPokemon: the starter the player took - their type's (the GBA's sStarterMon[VAR_STARTER_MON] is
+    FireRed's three, by where the player stood in the lab; theirs is by type)"""
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    pt = port.var('VAR_PLAYER_TYPE')
+    return chain(port, pt, [(_type(port, own), ['SetVar %s, %s' % (ret, sp)]) for sp, own, _ in STARTERS])
+
+
 def _mentors():
     """src/gym_candidate.c sMentors: the player's type -> (leader 0-7 / Elite Four 8-11, intro, first, approve)"""
     src = open(G.P('src/gym_candidate.c')).read()
@@ -151,7 +191,7 @@ def _mentors():
         if not m: continue
         t, who, strs = m.groups()
         texts = re.findall(r'COMPOUND_STRING\("((?:[^"\\]|\\.)*)"\)', strs)
-        if len(texts) == 3: out[t] = (int(who, 0) if who[0].isdigit() else who, *texts)
+        if len(texts) == 3: out[t] = (int(who, 0) if who[0].isdigit() else ELITE_FOUR.index(who) + 8, *texts)
     return out
 
 
@@ -270,6 +310,15 @@ SPECIALS = {
                                                      enumerate(('FLAG_GYM_ROOM_BACK', 'FLAG_GYM_ROOM_LEFT', 'FLAG_GYM_ROOM_RIGHT'))]),
     'EventMons_PartnerReady': event_mons_partner_ready,
     'GymCandidate_BufferApprovals': candidate_approvals,
+    'GymCandidate_BufferEliteFourApproval': elite_four_approval,
+    # the League (HeartGold's rooms have their own lights; the trainer fan club is on Five Island, which isn't here)
+    'DoPokemonLeagueLightingEffect': lambda p, r: [],
+    'Script_TryGainNewFanFromCounterFrlg': lambda p, r: [], 'Script_UpdateTrainerFanClubGameClear': lambda p, r: [],
+    'GetStarterPokemon': starter_species,
+    'EnterHallOfFame': hall_of_fame,
+    'CB2_StartCreditsSequence': lambda p, r: ['FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'CanvasCredits'],
+    # the GBA game's team rules (src/gym_hack.c: TEAM_RULES_GYM, all three), checked by our engine
+    'GymHack_CheckTeamSpecial': lambda p, r: ['CanvasCheckTeam 7, %s' % p.var('VAR_PLAYER_TYPE')] + (['CopyVar %s, VAR_SPECIAL_RESULT' % r] if r else []),
     'GymCandidate_BufferMentorName': candidate_mentor_name,
     'GetBattleOutcome': battle_outcome,
     # The gym's decorations (and the practice trainers that come with them) aren't in yet: keep its people

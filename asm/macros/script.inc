@@ -5099,6 +5099,36 @@ _start:
 	.short \n
 	.endm
 
+	// CanvasCheckTeam rules, typeVar: the GBA game's team rules (1 type, 2 species, 4 items) -> VAR_SPECIAL_RESULT
+	// 0 fine, 1 wrong type, 2 two alike, 3 two holding one item, with the names in string slots 0-2
+	.macro CanvasCheckTeam rules, typeVar
+	.short 208
+	.byte 108
+	.short \rules
+	.short \typeVar
+	.endm
+
+	// CanvasHallOfFame: HeartGold's Hall of Fame and save (its game clear without the credits; then RestoreOverworld)
+	.macro CanvasHallOfFame
+	.short 208
+	.byte 109
+	.short 0
+	.endm
+
+	// CanvasCredits: HeartGold's credits, then the reset
+	.macro CanvasCredits
+	.short 208
+	.byte 110
+	.short 0
+	.endm
+
+	// CanvasCloseMsg: CloseMsg if a message is open
+	.macro CanvasCloseMsg
+	.short 208
+	.byte 111
+	.short 0
+	.endm
+
 	// CanvasBufferMsg slot, msg: puts one of this script's messages into a string slot ({STRVAR_1 3, slot, 0})
 	.macro CanvasBufferMsg slot, msg
 	.short 208

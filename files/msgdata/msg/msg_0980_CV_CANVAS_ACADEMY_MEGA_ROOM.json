@@ -23,6 +23,96 @@
       ]
     },
     {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaKeeperAsk",
+      "en_US": [
+        "Primrose: Which Pokémon will\n",
+        "carry a stone?"
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaLater",
+      "en_US": [
+        "Primrose: The stones will wait.\n",
+        "They’re good at it."
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaNoStone",
+      "en_US": [
+        "Primrose: {STRVAR_1 3, 2, 0} doesn’t\n",
+        "Mega Evolve. There’s no stone\r",
+        "waiting for it, I’m afraid."
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaHasAll",
+      "en_US": [
+        "Primrose: {STRVAR_1 3, 2, 0}’s stone\n",
+        "has already chosen you. Go and\r",
+        "use it well!"
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaWhich",
+      "en_US": [
+        "Primrose: Two stones answer to\n",
+        "{STRVAR_1 3, 2, 0}. Which one?"
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_gStringVar1",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_gStringVar2",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaConfirm",
+      "en_US": [
+        "Primrose: {STRVAR_1 3, 2, 0} alone,\n",
+        "holding the {STRVAR_1 3, 0, 0}, against\r",
+        "my three. Ready?"
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaWon",
+      "en_US": [
+        "Primrose: There. Did you feel\n",
+        "it? The stone has chosen you\r",
+        "both.\r",
+        "The {STRVAR_1 3, 0, 0} is yours to\n",
+        "keep."
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaPartyBack",
+      "en_US": [
+        "Your other Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaHasThis",
+      "en_US": [
+        "Primrose: That one’s already\n",
+        "yours. Perhaps the other?"
+      ]
+    },
+    {
+      "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaLost",
+      "en_US": [
+        "Primrose: Not this time. The\n",
+        "{STRVAR_1 3, 0, 0} comes back to me.\r",
+        "Train, think it over, and come\n",
+        "back. It’ll be here."
+      ]
+    },
+    {
       "id": "msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

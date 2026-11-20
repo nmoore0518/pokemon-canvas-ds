@@ -195,7 +195,7 @@ _cv_has_7:
 	WaitButton
 	NPCMsg msg_0364_R25R0101_Text_BillPalmPilotSecret
 	WaitButton
-	End
+	GoTo EventScript_PalmPilotReturn
 	
 Route25_SeaCottage_EventScript_BillThanksMale:
 	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_ThanksBudTakeThis

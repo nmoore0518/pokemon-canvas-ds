@@ -19,7 +19,7 @@ Route20_EventScript_Nora:
 	NPCMsg msg_0742_W20_Route20_Text_NoraIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1016, 0, 0, 0
+	TrainerBattle 1016, 1016, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_2
@@ -45,7 +45,7 @@ Route20_EventScript_Shirley:
 	NPCMsg msg_0742_W20_Route20_Text_ShirleyIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1024, 0, 0, 0
+	TrainerBattle 1024, 1024, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_4

@@ -187,7 +187,27 @@ What else it does:
   (it asserts), so they use temp vars 0x4010-0x401D; people whose look is a var use sprites 101-116 (VAR_OBJ_0-15:
   the decomp's SPRITE_VAR_n names are off by one).
 - **Engine commands** (208, ours from 100): flags/vars 100-105, `CanvasMart` 106 (a shop with a given list),
-  `CanvasBufferMsg` 107 (a message into a string slot).
+  `CanvasBufferMsg` 107 (a message into a string slot), `CanvasCheckTeam` 108 (the GBA's team rules:
+  `GymHack_CheckTeamSpecial`, the names for its message in slots 0-2), `CanvasHallOfFame` 109 / `CanvasCredits` 110
+  (HeartGold's game clear split in two: the Hall of Fame's registration and save, then later its credits and reset -
+  the GBA has a scene outside the League between them), `CanvasCloseMsg` 111 (CloseMsg only if a message is open).
+- **Scenes on HeartGold's own machinery** (`REWRITES` in port_map.py: a GBA map -> a function rewriting its labels
+  before the port, GBA commands plus `('cv_raw', [HeartGold lines])`; `EXTRA_OBJECTS`: HeartGold's objects a scene
+  needs, kept in our map - their ids are defined in the event header with the C-named ones, from 0x3F00: under
+  0x4000, or HidePerson/ShowPerson read them as vars). Vermilion's trash cans run on HeartGold's gymmick; Marowak's
+  ghost is a WildBattle with map-temp flag 63 set (the engine's ball check: no catching); the League's doors and
+  walls are HeartGold's objects and flags (`LEAGUE`).
+- **Battles from a script**: a double battle names its trainer twice (`TrainerBattle n, n`: HeartGold's way;
+  `DOUBLES` from canvas_trainers.h); `trainerbattle_no_intro` battles every time and the script goes on after it
+  (the GBA's scripts check the trainer flag themselves); a message a called script left open is closed first.
+  HeartGold's transition picked nothing for a double battle on the Elite Four's or the Frontier's backgrounds (the
+  game waited for ever): engine `bytereplacement` gives those the indoor one.
+- **A script without an end runs on** into the label after it in its file (`Gba.next`), as the GBA's does.
+- **The League** (`LEAGUE`, `champions_moves`, `hall_of_fame_moves`): entering the Indigo Plateau's Center starts
+  it afresh (HeartGold's way). The Elite Four stand where HeartGold's do; the Champion's room and the Hall of Fame
+  are HeartGold's long halls, so their walks are longer. The Hall of Fame's machine is HeartGold's
+  (`HallOfFameAnim`); then HeartGold's registration and save, the GBA's credits scene outside, HeartGold's credits,
+  and the player wakes up at home.
 - **Items HeartGold doesn't have** (Oak's Parcel, the balloon...) are carried as flags until we add the items.
 - **Trigger squares** (coord events) come over; HeartGold doesn't respawn a removed person when their flag clears,
   so the porter shows them again itself.
@@ -201,8 +221,8 @@ What else it does:
   read from `src/gym_candidate.c`).
 - **hg-engine's own items, Pokemon and moves** (Bottle Cap...) go into scripts by number.
 - **Not yet**: the Guest Leader challenges after each badge (GymCandidate_*: Brock's badge, TM and gifts work, then
-  "not ported yet"), type tutors, the painter's loft in Pewter (her paintings), the Museum's second floor, in-game
-  trades, the fossil pictures.
+  "not ported yet"), type tutors, the painter's loft in Pewter (her paintings), the fossil pictures; the team rules
+  are checked where a script asks (the League's door) but not yet before the gym leaders' and rival's battles.
 - **Split maps**: a GBA map HeartGold splits in two (Route 2) gets two `MAPS` entries, `Map#part`, each with a
   test for which squares it takes.
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file
@@ -452,6 +472,11 @@ These hold for every map of every region, built now or later; each was settled o
   then `engine/make_patch.sh`); the porter turns the GBA's shared trade scripts into LoadNPCTrade / NPCTradeExec
   (one branch a trade: HeartGold names the trade in the script) and its party screen. A region's own trades go on
   after these, the same way. (HeartGold's party screen for a trade needs a Pokemon in the party.)
+- **A GBA scene runs on HeartGold's own machinery where HeartGold has it** (Nick: the first five League/story rows):
+  a gym puzzle on HeartGold's gymmick (Vermilion's cans), a ghost or legend as HeartGold's battle, a door as
+  HeartGold's door objects and flags, the Hall of Fame and credits as HeartGold's. Only what HeartGold lacks is
+  ours (the engine commands above). Its people stand where HeartGold's stand in that room, and its walks are
+  redone for HeartGold's room (`PEOPLE`, `MOVES`). Every region's League and its gym puzzles go the same way.
 - **Towns keep the GBA's layout, one building to each of its buildings** (Nick, from Saffron): where HeartGold's
   buildings won't fit the GBA's town, reshape the map (`reshape.py`: lines out of its spare woods, as many in
   between its buildings) rather than drop or merge buildings, and place buildings that run together by `LOTS`;

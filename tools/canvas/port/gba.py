@@ -25,6 +25,7 @@ def split_args(s):
 class Gba:
     def __init__(self):
         self.labels = {}       # label -> list of (cmd, args)          (scripts and movements)
+        self.next = {}         # label -> the label right after it in its file (a script without an end runs on into it)
         self.texts = {}        # label -> string                        (.string lines joined)
         self.equ = {}          # .equ / .set constants
         self.where = {}        # label -> file
@@ -103,6 +104,7 @@ class Gba:
                 macro.append((parts[0], split_args(parts[1]) if len(parts) > 1 else [])); continue
             m = re.match(r'^(\w+)::?$', s)
             if m:
+                if cur is not None and self.where.get(cur) == f: self.next.setdefault(cur, m.group(1))
                 cur = m.group(1)
                 self.labels.setdefault(cur, [])
                 self.where[cur] = f
@@ -110,7 +112,7 @@ class Gba:
             m = re.match(r'^\.(equ|set)\s+(\w+)\s*,\s*(.+)$', s)
             if m:
                 local_equ[m.group(2)] = m.group(3).strip(); self.equ.setdefault(m.group(2), m.group(3).strip()); continue
-            if s.startswith('.include') or s.startswith('.align') or s.startswith('.section'):
+            if s.startswith(('.include', '.align', '.section', '.global')):
                 continue
             if cur is None:
                 continue

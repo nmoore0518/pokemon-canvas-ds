@@ -247,6 +247,15 @@
       ]
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_BlainePostBattle",
+      "en_US": [
+        "TM38 contains Fire Blast.\n",
+        "Teach it to Fire-type Pokémon.\r",
+        "Vulpix or Charmeleon would be\n",
+        "ideal for that move."
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_GymGuyPostVictory",
       "en_US": [
         "{STRVAR_1 3, 6, 0}!\n",
@@ -318,15 +327,6 @@
       "en_US": "TM28 contains Tombstony?"
     },
     {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_BlainePostBattle",
-      "en_US": [
-        "TM38 contains Fire Blast.\n",
-        "Teach it to Fire-type Pokémon.\r",
-        "Vulpix or Charmeleon would be\n",
-        "ideal for that move."
-      ]
-    },
-    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_ExplainVolcanoBadge",
       "en_US": [
         "Hah!\r",
@@ -373,6 +373,13 @@
       "en_US": "Make space for this, child!"
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_GiftSentToPC",
+      "en_US": [
+        "Your Bag is full, so the\n",
+        "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_CorrectGoOnThrough",
       "en_US": [
         "You’re absolutely correct!\r",
@@ -384,13 +391,6 @@
       "en_US": [
         "Sorry!\n",
         "Bad call!"
-      ]
-    },
-    {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymHack_Text_GiftSentToPC",
-      "en_US": [
-        "Your Bag is full, so the\n",
-        "{STRVAR_1 3, 1, 0} was sent to your PC."
       ]
     },
     {
@@ -498,6 +498,67 @@
       ]
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ground",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! Your\n",
+        "Ground Pokémon have grown sturdy!\r",
+        "Now show me the power of the\n",
+        "earth itself!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_dark",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Dark whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ice",
+      "en_US": [
+        "Lorelei: {STRVAR_1 3, 6, 0}. I’ve waited for\n",
+        "this since Oak’s lab.\r",
+        "Show me how cold you’ve become!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_fighting",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! You’ve\n",
+        "grown strong since Oak’s lab!\r",
+        "Now let our Pokémon talk with\n",
+        "their fists!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_ghost",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Ghost whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_dragon",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. I’ve watched your\n",
+        "Dragons grow since Oak’s lab.\r",
+        "Now prove you’re worthy of them!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_first_flying",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. Your Flying Pokémon\n",
+        "have come far since Oak’s lab.\r",
+        "Let’s see if they can keep up with\n",
+        "my Dragonite!"
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_SomeoneToSeeYou",
       "en_US": [
         "Hm? Someone came into the Gym\n",
@@ -521,12 +582,51 @@
       ]
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeAfterText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_ApprovalCount",
+      "en_US": [
+        "Gym Leader approvals:\n",
+        "{STRVAR_1 3, 0, 0} of 8."
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_GuardItemExplain",
       "en_US": [
         "When a Pokémon holds the\n",
         "{STRVAR_1 3, 0, 0}, no move is\f",
         "super effective against it.\r",
         "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_LaterThatDay",
+      "en_US": [
+        "Later that day…\n",
+        "A challenger arrives!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_AnotherOne",
+      "en_US": "Here comes the next challenger!"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_TryAgain",
+      "en_US": [
+        "It’s OK. Every Leader loses\n",
+        "sometimes.\r",
+        "Come back when you’re ready, and\n",
+        "we’ll try again."
       ]
     },
     {

@@ -247,6 +247,13 @@
       ]
     },
     {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYouLost",
+      "en_US": [
+        "Giovanni: Ha. Looks like I was right.\r",
+        "Now get out of here, kid."
+      ]
+    },
+    {
       "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniTakeThese",
       "en_US": [
         "Giovanni: You’re just like your father.\r",
@@ -312,204 +319,18 @@
       ]
     },
     {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherAgain",
+      "en_US": [
+        "Archer: The Boss’s Pokémon answer to me\n",
+        "now. I’ll make this a Gym your father\f",
+        "would have respected."
+      ]
+    },
+    {
       "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherNotForgiven",
       "en_US": [
         "Archer: …I understand.\r",
         "Then I’ll earn it. However long it takes."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYourFather",
-      "en_US": [
-        "Giovanni: He tried to stop me too, you\n",
-        "know.\r",
-        "He did well. He took down much of the\n",
-        "organization I built from within.\r",
-        "But he paid the price.\r",
-        "Do you know what he did, {STRVAR_1 3, 6, 0}? All\n",
-        "the evil things he contributed to Team\f",
-        "Rocket?\r",
-        "Ha. I bet you don’t know the first thing\n",
-        "about him.\r",
-        "He was my top deputy. My best scientist.\n",
-        "His inventions gave us unfathomable\f",
-        "power!\r",
-        "It was a shame when he defied me.\r",
-        "Something about a “conscience,”\n",
-        "treating Pokémon with “kindness” and\f",
-        "not as a means for power.\r",
-        "Blah, blah, blah. I shut him up, though.\n",
-        "Used his own inventions against him.\r",
-        "I tried to play nice with you. You’re his\n",
-        "child, after all.\r",
-        "And he was such a good deputy, even if\n",
-        "he was a little… soft.\r",
-        "But I’m done playing nice.\r",
-        "I’ll show you my true power… the power\n",
-        "your father gave me!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_rock",
-      "en_US": [
-        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
-        "Your Rock types have gotten solid\n",
-        "since Oak’s lab.\r",
-        "Two Rock Gyms in Kanto?\n",
-        "I can’t wait!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_normal",
-      "en_US": [
-        "Brock: Good to see you again,\n",
-        "{STRVAR_1 3, 6, 0}!\r",
-        "Your Normal types fought well.\n",
-        "Basics win battles. Stick with it!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_water",
-      "en_US": [
-        "Misty: Hmph. So the kid from\n",
-        "Oak’s lab made it all the way here.\r",
-        "Your Water Pokémon are good.\n",
-        "Annoyingly good.\r",
-        "There’s still only room for One\n",
-        "Water Gym in Kanto!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_electric",
-      "en_US": [
-        "Lt. Surge: Well, well! The Electric\n",
-        "kid from Oak’s lab!\r",
-        "You’ve got a spark, I’ll give you\n",
-        "that. But this is still my turf!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_steel",
-      "en_US": [
-        "Lt. Surge: The Steel kid from\n",
-        "Oak’s lab! Your team held up under\f",
-        "fire.\r",
-        "Still don’t buy a Steel Gym in\n",
-        "Pallet, though!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_grass",
-      "en_US": [
-        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
-        "to see you again.\r",
-        "Your Grass Pokémon have grown so\n",
-        "much since we met at Oak’s lab."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_poison",
-      "en_US": [
-        "Koga: …So. The child from Oak’s\n",
-        "lab grows stronger.\r",
-        "I have watched you. I still will\n",
-        "not make it easy for a rival."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_bug",
-      "en_US": [
-        "Koga: Fwahaha! You’ve come far\n",
-        "since Oak’s lab.\r",
-        "Your Bug Pokémon surprised even\n",
-        "me. A little."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_psychic",
-      "en_US": [
-        "Sabrina: …As I foresaw at Oak’s\n",
-        "lab, you came.\r",
-        "I still do not like a second\n",
-        "Psychic Gym. But visions do not\f",
-        "ask for permission."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_fairy",
-      "en_US": [
-        "Sabrina: We meet again, as I said\n",
-        "we would.\r",
-        "Your Fairy Pokémon trust you\n",
-        "completely. That is rare."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_cv_mentor_first_fire",
-      "en_US": [
-        "Blaine: Hah! My favorite Fire\n",
-        "trainer! Quiz! Who knew you’d make\f",
-        "it this far?\r",
-        "Answer: me! Wahahahah!"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_GymCandidate_Text_SomeoneToSeeYou",
-      "en_US": [
-        "Hm? Someone came into the Gym\n",
-        "looking for {STRVAR_1 3, 6, 0}…"
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_GymCandidate_Text_NotYet",
-      "en_US": [
-        "Come back when you’re ready.\n",
-        "My Gym isn’t going anywhere."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneLater",
-      "en_US": "Archer: Come back anytime."
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneEgg",
-      "en_US": [
-        "Archer: That’s an Egg. Let it hatch\n",
-        "first."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneAlready",
-      "en_US": [
-        "Archer: Its Tera Type is {STRVAR_1 3, 1, 0}\n",
-        "already."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneNoBerries",
-      "en_US": [
-        "Archer: The crystal needs something of\n",
-        "the type to take it in. For {STRVAR_1 3, 1, 0},\f",
-        "that’s {STRVAR_1 3, 2, 0}.\r",
-        "Wild Pokémon of the type carry them\n",
-        "sometimes, and you can grow them. Come\f",
-        "back when you have them."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYouLost",
-      "en_US": [
-        "Giovanni: Ha. Looks like I was right.\r",
-        "Now get out of here, kid."
-      ]
-    },
-    {
-      "id": "msg_0454_T02GYM0101_GymCandidate_Text_TeamBreaksRules",
-      "en_US": [
-        "Hold on. A Gym Leader battles with\n",
-        "one type, and no two alike.\r",
-        "Fix your team first, then\n",
-        "come back."
       ]
     },
     {
@@ -655,6 +476,273 @@
       ]
     },
     {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_GiovanniYourFather",
+      "en_US": [
+        "Giovanni: He tried to stop me too, you\n",
+        "know.\r",
+        "He did well. He took down much of the\n",
+        "organization I built from within.\r",
+        "But he paid the price.\r",
+        "Do you know what he did, {STRVAR_1 3, 6, 0}? All\n",
+        "the evil things he contributed to Team\f",
+        "Rocket?\r",
+        "Ha. I bet you don’t know the first thing\n",
+        "about him.\r",
+        "He was my top deputy. My best scientist.\n",
+        "His inventions gave us unfathomable\f",
+        "power!\r",
+        "It was a shame when he defied me.\r",
+        "Something about a “conscience,”\n",
+        "treating Pokémon with “kindness” and\f",
+        "not as a means for power.\r",
+        "Blah, blah, blah. I shut him up, though.\n",
+        "Used his own inventions against him.\r",
+        "I tried to play nice with you. You’re his\n",
+        "child, after all.\r",
+        "And he was such a good deputy, even if\n",
+        "he was a little… soft.\r",
+        "But I’m done playing nice.\r",
+        "I’ll show you my true power… the power\n",
+        "your father gave me!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_rock",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! You made it!\r",
+        "Your Rock types have gotten solid\n",
+        "since Oak’s lab.\r",
+        "Two Rock Gyms in Kanto?\n",
+        "I can’t wait!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_normal",
+      "en_US": [
+        "Brock: Good to see you again,\n",
+        "{STRVAR_1 3, 6, 0}!\r",
+        "Your Normal types fought well.\n",
+        "Basics win battles. Stick with it!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_water",
+      "en_US": [
+        "Misty: Hmph. So the kid from\n",
+        "Oak’s lab made it all the way here.\r",
+        "Your Water Pokémon are good.\n",
+        "Annoyingly good.\r",
+        "There’s still only room for One\n",
+        "Water Gym in Kanto!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_electric",
+      "en_US": [
+        "Lt. Surge: Well, well! The Electric\n",
+        "kid from Oak’s lab!\r",
+        "You’ve got a spark, I’ll give you\n",
+        "that. But this is still my turf!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_steel",
+      "en_US": [
+        "Lt. Surge: The Steel kid from\n",
+        "Oak’s lab! Your team held up under\f",
+        "fire.\r",
+        "Still don’t buy a Steel Gym in\n",
+        "Pallet, though!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_grass",
+      "en_US": [
+        "Erika: Oh, {STRVAR_1 3, 6, 0}! It’s so nice\n",
+        "to see you again.\r",
+        "Your Grass Pokémon have grown so\n",
+        "much since we met at Oak’s lab."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_poison",
+      "en_US": [
+        "Koga: …So. The child from Oak’s\n",
+        "lab grows stronger.\r",
+        "I have watched you. I still will\n",
+        "not make it easy for a rival."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_bug",
+      "en_US": [
+        "Koga: Fwahaha! You’ve come far\n",
+        "since Oak’s lab.\r",
+        "Your Bug Pokémon surprised even\n",
+        "me. A little."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_psychic",
+      "en_US": [
+        "Sabrina: …As I foresaw at Oak’s\n",
+        "lab, you came.\r",
+        "I still do not like a second\n",
+        "Psychic Gym. But visions do not\f",
+        "ask for permission."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_fairy",
+      "en_US": [
+        "Sabrina: We meet again, as I said\n",
+        "we would.\r",
+        "Your Fairy Pokémon trust you\n",
+        "completely. That is rare."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_fire",
+      "en_US": [
+        "Blaine: Hah! My favorite Fire\n",
+        "trainer! Quiz! Who knew you’d make\f",
+        "it this far?\r",
+        "Answer: me! Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_ground",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! Your\n",
+        "Ground Pokémon have grown sturdy!\r",
+        "Now show me the power of the\n",
+        "earth itself!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_dark",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Dark whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_ice",
+      "en_US": [
+        "Lorelei: {STRVAR_1 3, 6, 0}. I’ve waited for\n",
+        "this since Oak’s lab.\r",
+        "Show me how cold you’ve become!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_fighting",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! You’ve\n",
+        "grown strong since Oak’s lab!\r",
+        "Now let our Pokémon talk with\n",
+        "their fists!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_ghost",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Ghost whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_dragon",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. I’ve watched your\n",
+        "Dragons grow since Oak’s lab.\r",
+        "Now prove you’re worthy of them!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_first_flying",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. Your Flying Pokémon\n",
+        "have come far since Oak’s lab.\r",
+        "Let’s see if they can keep up with\n",
+        "my Dragonite!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_SomeoneToSeeYou",
+      "en_US": [
+        "Hm? Someone came into the Gym\n",
+        "looking for {STRVAR_1 3, 6, 0}…"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_NotYet",
+      "en_US": [
+        "Come back when you’re ready.\n",
+        "My Gym isn’t going anywhere."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneLater",
+      "en_US": "Archer: Come back anytime."
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneEgg",
+      "en_US": [
+        "Archer: That’s an Egg. Let it hatch\n",
+        "first."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneAlready",
+      "en_US": [
+        "Archer: Its Tera Type is {STRVAR_1 3, 1, 0}\n",
+        "already."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ArcherTuneNoBerries",
+      "en_US": [
+        "Archer: The crystal needs something of\n",
+        "the type to take it in. For {STRVAR_1 3, 1, 0},\f",
+        "that’s {STRVAR_1 3, 2, 0}.\r",
+        "Wild Pokémon of the type carry them\n",
+        "sometimes, and you can grow them. Come\f",
+        "back when you have them."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_DadStory_Text_ChanseySentToPC",
+      "en_US": "Dad’s Chansey was sent to the PC."
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_TeamBreaksRules",
+      "en_US": [
+        "Hold on. A Gym Leader battles with\n",
+        "one type, and no two alike.\r",
+        "Fix your team first, then\n",
+        "come back."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_gGymChallengeAfterText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_ApprovalCount",
+      "en_US": [
+        "Gym Leader approvals:\n",
+        "{STRVAR_1 3, 0, 0} of 8."
+      ]
+    },
+    {
       "id": "msg_0454_T02GYM0101_GymCandidate_Text_GuardItemExplain",
       "en_US": [
         "When a Pokémon holds the\n",
@@ -664,8 +752,28 @@
       ]
     },
     {
-      "id": "msg_0454_T02GYM0101_DadStory_Text_ChanseySentToPC",
-      "en_US": "Dad’s Chansey was sent to the PC."
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_LaterThatDay",
+      "en_US": [
+        "Later that day…\n",
+        "A challenger arrives!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_AnotherOne",
+      "en_US": "Here comes the next challenger!"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0454_T02GYM0101_GymCandidate_Text_TryAgain",
+      "en_US": [
+        "It’s OK. Every Leader loses\n",
+        "sometimes.\r",
+        "Come back when you’re ready, and\n",
+        "we’ll try again."
+      ]
     },
     {
       "id": "msg_0454_T02GYM0101_GymCandidate_Text_EdgeItemExplain",

@@ -329,7 +329,7 @@ VermilionCity_MedicalCenter_1F_EventScript_GiveFive:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo VermilionCity_MedicalCenter_1F_EventScript_GiveFiveDone
 	
 VermilionCity_MedicalCenter_1F_EventScript_TreatCancel:
 	CloseMsg

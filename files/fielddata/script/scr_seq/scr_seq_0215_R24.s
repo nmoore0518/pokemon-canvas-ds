@@ -9,8 +9,8 @@
 	ScrDef Route24_EventScript_Rocket
 	ScrDef Route24_EventScript_ItemTM45
 	ScrDef BerryField_EventScript_FindGrass
-	ScrDef _cv_unported_3
-	ScrDef _cv_unported_4
+	ScrDef Route24_EventScript_RocketTriggerLeft
+	ScrDef Route24_EventScript_RocketTriggerRight
 	ScrDef Route24_OnTransition
 	ScrDefEnd
 	
@@ -151,8 +151,9 @@ DadStory_EventScript_RivalSendsHome:
 _cv_show_5:
 	ShowPerson 9
 _cv_shown_6:
-	// TODO(gba) setobjectxy LOCALID_ROUTE24_RIVAL, VAR_0x8004, 20
-	GoTo _cv_stop
+	CopyVar 0x401E, 0x8004
+	AddVar 0x401E, 1243
+	MovePersonFacing 9, 0x401E, 0, 112, DIR_SOUTH
 	PlayBGM SEQ_GS_E_RIVAL1
 	ApplyMovement 9, DadStory_Movement_RivalUpTheBridge
 	WaitMovement
@@ -243,28 +244,10 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0362_R24_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-
-_cv_unported_3:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0362_R24_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0362_R24_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0362_R24_cv_unported

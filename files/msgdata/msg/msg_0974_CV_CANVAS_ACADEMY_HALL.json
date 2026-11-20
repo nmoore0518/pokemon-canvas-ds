@@ -88,6 +88,41 @@
       ]
     },
     {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterHello",
+      "en_US": [
+        "Wisteria: Ah, {STRVAR_1 3, 6, 0}. You have\n",
+        "{STRVAR_1 3, 0, 0} BP. What can I tell\r",
+        "you about?"
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptBP",
+      "en_US": "Battle Points"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptHall",
+      "en_US": "Battle Hall"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptCandidates",
+      "en_US": "Candidates"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptTeachers",
+      "en_US": "Instructors"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptBye",
+      "en_US": "That’s All"
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterBye",
+      "en_US": [
+        "Off you go, then. A Gym Leader\n",
+        "never stops learning."
+      ]
+    },
+    {
       "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateAsk",
       "en_US": [
         "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
@@ -104,6 +139,66 @@
       "en_US": [
         "Your Pokémon were patched up\n",
         "after the practice match."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterBP",
+      "en_US": [
+        "BP are Battle Points. You earn\n",
+        "them in practice: a win against\r",
+        "another candidate, an\n",
+        "Instructor’s demonstration, or a\r",
+        "streak in the Battle Hall.\r",
+        "The Market’s carts sell TMs,\n",
+        "held items and Mints for BP. But\r",
+        "every one of them takes money,\n",
+        "too: tell the cashier at the\r",
+        "gate which."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterHall",
+      "en_US": [
+        "In the Battle Hall, you borrow\n",
+        "three Pokémon from a list of\r",
+        "six. Your own team waits safely\n",
+        "with the clerk.\r",
+        "Win and you keep going, and the\n",
+        "BP grows with your streak. Lose,\r",
+        "and you simply start again."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterCandidates",
+      "en_US": [
+        "Candidates come here from Johto,\n",
+        "Hoenn, Sinnoh, Unova, Kalos,\r",
+        "Alola, Galar and Paldea.\r",
+        "Some are just starting out. Some\n",
+        "could take a Gym tomorrow. All\r",
+        "of them will battle you, as\n",
+        "often as you like."
+      ]
+    },
+    {
+      "id": "msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterTeachers",
+      "en_US": [
+        "Each of my Instructors is named\n",
+        "for a flower, as I am. It’s a\r",
+        "tradition here.\r",
+        "Their lecture halls are through\n",
+        "the doors behind me. In A,\r",
+        "Larkspur teaches speed control\n",
+        "and Camellia setup. In B,\r",
+        "Foxglove spread moves and\n",
+        "Verbena positioning.\r",
+        "In C, Marigold weather and\n",
+        "Hyacinth targeting. In D, Yarrow\r",
+        "training and Tansy team\n",
+        "building.\r",
+        "All of it for double battles,\n",
+        "mind you. That’s where Gym\r",
+        "battles are going."
       ]
     },
     {

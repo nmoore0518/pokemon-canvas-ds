@@ -205,7 +205,7 @@ _cv_yes_5:
 _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PainterLoft_EventScript_Later
-	End
+	GoTo PainterLoft_EventScript_ChooseType
 	
 PainterLoft_EventScript_Mega:
 	NPCMsg msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_MegaIntro
@@ -221,7 +221,7 @@ _cv_yes_7:
 _cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PainterLoft_EventScript_Later
-	End
+	GoTo PainterLoft_EventScript_MegaReady
 	
 PainterLoft_EventScript_Both:
 	NPCMsg msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_BothAsk
@@ -441,7 +441,7 @@ _cv_yes_15:
 _cv_yn_16:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PainterLoft_EventScript_Later
-	End
+	GoTo PainterLoft_EventScript_SketchReady
 	
 PainterLoft_EventScript_MegaReady:
 	// TODO(gba) special Painter_FindSmeargle

@@ -21,6 +21,7 @@ import specials as SP
 import trainers as TR
 RIVAL_STAGES, RIVAL_TEAMS = TR.rival_stages(), TR.rival_team_ids()
 TRAINER_IDS, SIMPLE_TRAINERS = TR.trainer_ids(), TR.simple_trainers()
+DOUBLES = TR.double_trainers()          # (named twice in TrainerBattle: HeartGold's way to a double battle)
 import slots
 import build_cinnabar as _CN     # (Cinnabar is widened: its squares move with it)
 
@@ -929,6 +930,174 @@ if WORLD:
     for _k in INSERTS_DROP: INSERTS.pop(_k, None)
 
 
+# ---------------------------------------------------------------- GBA scenes run on HeartGold's own machinery
+def vermilion_gym(g):
+    """Lt. Surge's trash cans (Nick: the door to Surge stays shut) on HeartGold's own Vermilion Gym: its trash-can
+    gymmick (VermilionGymInit / CanCheck / LockAction / Resample: the same puzzle - a first switch anywhere, the
+    second in a can beside it, a wrong second can resets both) and its two electric gates, the six STOP posts that
+    run aside as each lock opens. The GBA's cans are HeartGold's, in the same order (1-15 = 0-14). Its beams'
+    metatiles are HeartGold's gate props, which the gymmick draws."""
+    T = 'VermilionCity_Gym_Text_'
+    check = []
+    for k in range(1, 16):
+        check += ['CompareVarToValue 0x8008, %d' % k, 'GoToIfNe _cv_vcan_%d' % k,
+                  'VermilionGymCanCheck %d, VAR_SPECIAL_RESULT' % (k - 1), 'GoTo _cv_vcan_done', '_cv_vcan_%d:' % k]
+    check += ['SetVar VAR_SPECIAL_RESULT, 0', '_cv_vcan_done:']
+    L = g.labels
+    L['VermilionCity_Gym_EventScript_TrashCan'] = [
+        ('cv_raw', check),
+        ('goto_if_eq', ['VAR_RESULT', '1', 'VermilionCity_Gym_cv_FirstSwitch']),
+        ('goto_if_eq', ['VAR_RESULT', '2', 'VermilionCity_Gym_cv_SecondSwitch']),
+        ('goto_if_eq', ['VAR_RESULT', '3', 'VermilionCity_Gym_cv_WrongCan']),
+        ('msgbox', [T + 'NopeOnlyTrashHere']), ('releaseall', []), ('end', [])]
+    L['VermilionCity_Gym_cv_FirstSwitch'] = [
+        ('msgbox', [T + 'SwitchUnderTrashFirstLockOpened']), ('closemessage', []),
+        ('cv_raw', ['VermilionGymLockAction 0, 0']), ('setflag', ['FLAG_TEMP_1']), ('releaseall', []), ('end', [])]
+    L['VermilionCity_Gym_cv_SecondSwitch'] = [
+        ('msgbox', [T + 'SecondLockOpened']), ('closemessage', []),
+        ('cv_raw', ['VermilionGymLockAction 1, 0', 'SetFlag FLAG_SYS_SOLVED_LT_SURGE_GYM', 'StopSE SEQ_SE_GS_DENGEKIBARIA']),
+        ('setflag', ['FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES']), ('releaseall', []), ('end', [])]
+    L['VermilionCity_Gym_cv_WrongCan'] = [
+        ('msgbox', [T + 'OnlyTrashLocksWereReset']), ('closemessage', []),
+        ('cv_raw', ['VermilionGymLockAction 0, 1', 'ResampleVermilionGymCans']), ('clearflag', ['FLAG_TEMP_1']),
+        ('releaseall', []), ('end', [])]
+    L['VermilionCity_Gym_EventScript_InitTrashCans'] = [
+        ('cv_raw', ['GoToIfSet FLAG_HIDE_VERMILION_GYM_STOPS, _cv_vgym_init', 'ClearFlag FLAG_SYS_SOLVED_LT_SURGE_GYM',
+                    '_cv_vgym_init:', 'VermilionGymInit']), ('return', [])]
+    L['VermilionCity_Gym_EventScript_SetOneBeamOff'] = [('return', [])]
+    L['VermilionCity_Gym_EventScript_SetBeamsOff'] = [('return', [])]
+    L['VermilionCity_Gym_OnLoad'] = [('end', [])]
+    # (Surge beaten: HeartGold's posts gone for good, as its own Surge has them)
+    INSERTS['VermilionCity_Gym_EventScript_DefeatedLtSurge'] = (None, lambda p_: [
+        'SetFlag FLAG_HIDE_VERMILION_GYM_STOPS'] + ['HidePerson obj_T06GYM0101_stop%s' % s_ for s_ in ('', '_2', '_3', '_4', '_5', '_6')])
+
+
+NO_CATCH_FLAG = 63          # a map-temp flag the engine reads in a battle: no catching (engine CalculateBallShakes.c)
+
+
+def tower_marowak(g):
+    """The ghost on Pokemon Tower 6F (Nick: Mr. Fuji sits behind it). The GBA's ghost battle: without the Silph Scope
+    the GHOST can't be identified and drives you back (the GBA lets you only run: here its lines, then the push
+    back); with it, Marowak at 30, which can't be caught (NO_CATCH_FLAG: the ball breaks free at once). Beaten, its
+    spirit is calmed; fled, it pushes you back as before."""
+    g.texts['Canvas_Tower6F_Text_GhostCantBeIdentified'] = "Darn! The GHOST can't be\nidentified!$"
+    g.texts['Canvas_Tower6F_Text_GhostGetOut'] = "GHOST: Get out…… Get out……$"
+    L = g.labels
+    L['PokemonTower_6F_EventScript_MarowakGhost'] = [
+        ('lockall', []), ('msgbox', ['PokemonTower_6F_Text_BeGoneIntruders']), ('closemessage', []),
+        ('checkitem', ['ITEM_SILPH_SCOPE', '1']),
+        ('goto_if_eq', ['VAR_RESULT', 'FALSE', 'PokemonTower_6F_cv_NoScope']),
+        ('cv_raw', ['SetFlag %d' % NO_CATCH_FLAG, 'WildBattle SPECIES_MAROWAK, 30, 0', 'ClearFlag %d' % NO_CATCH_FLAG,
+                    'CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0', 'GoToIfNe _cv_mw_alive',
+                    'WhiteOut', 'ReleaseAll', 'End', '_cv_mw_alive:', 'StaticWildWonOrCaughtCheck VAR_SPECIAL_RESULT, 0']),
+        ('goto_if_eq', ['VAR_RESULT', 'FALSE', 'PokemonTower_6F_EventScript_DefeatedMarowakGhost']),     # (HeartGold's check: FALSE once it's beaten)
+        ('applymovement', ['LOCALID_PLAYER', 'PokemonTower_6F_Movement_ForcePlayerUp']), ('waitmovement', ['0']),
+        ('releaseall', []), ('end', [])]
+    L['PokemonTower_6F_cv_NoScope'] = [
+        ('msgbox', ['Canvas_Tower6F_Text_GhostCantBeIdentified']), ('msgbox', ['Canvas_Tower6F_Text_GhostGetOut']),
+        ('closemessage', []),
+        ('applymovement', ['LOCALID_PLAYER', 'PokemonTower_6F_Movement_ForcePlayerUp']), ('waitmovement', ['0']),
+        ('releaseall', []), ('end', [])]
+
+
+# The Elite Four's rooms are HeartGold's (Nick: the League): its door to the next room (a door and two posts, or
+# three doors, on the warps: gone once the room's trainer is beaten) and the wall that closes the way back in once
+# the player has walked in, both its objects and its flags, in place of the GBA's redrawn squares. The GBA's room
+# scripts open and close them as it does its squares (HeartGold's own: HidePerson sets the hide flag).
+LEAGUE = {   # GBA room -> (HeartGold's room, its flags' name, the door's objects, the wall's room-script labels)
+    'PokemonLeague_LoreleisRoom_Frlg': ('T10R0201', 'WILLS', ('leag_door2', 'stop', 'stop_2'), 'LoreleisRoom'),
+    'PokemonLeague_BrunosRoom_Frlg': ('T10R0301', 'KOGAS', ('leag_door2', 'stop', 'stop_2'), 'BrunosRoom'),
+    'PokemonLeague_AgathasRoom_Frlg': ('T10R0401', 'BRUNOS', ('leag_door2', 'leag_door2_2', 'leag_door2_3'), 'AgathasRoom'),
+    'PokemonLeague_LancesRoom_Frlg': ('T10R0501', 'KARENS', ('leag_door2', 'leag_door2_2', 'leag_door2_3'), 'LancesRoom'),
+}
+
+
+def league_door(p, hide=True):
+    code, who, door, _ = LEAGUE[p.gba_map]
+    return ['SetFlag FLAG_HIDE_%s_ROOM_EXIT' % who] + (['HidePerson obj_%s_%s' % (code, o) for o in door] if hide else [])
+
+
+def league_wall(p, show=True):
+    code, who, _, _ = LEAGUE[p.gba_map]
+    return ['ClearFlag FLAG_HIDE_%s_ROOM_RETREAT' % who] + (['ShowPerson obj_%s_babyboy1_11' % code] if show else [])
+
+
+def league_room(g):
+    """a room's own scripts that run as it loads only set the flags (the objects follow them)"""
+    for gba_map, (code, who, door, room) in LEAGUE.items():
+        if g.labels.get('PokemonLeague_%s_EventScript_SetDoorOpen' % room) is not None:
+            g.labels['PokemonLeague_%s_EventScript_SetDoorOpen' % room] = [('cv_raw', ['SetFlag FLAG_HIDE_%s_ROOM_EXIT' % who]), ('return', [])]
+            g.labels['PokemonLeague_%s_EventScript_CloseEntry' % room] = [('cv_raw', ['ClearFlag FLAG_HIDE_%s_ROOM_RETREAT' % who]), ('return', [])]
+
+
+for _l in ('PokemonLeague_EventScript_SetDoorOpen', 'PokemonLeague_EventScript_SetDoorOpenLance', 'PokemonLeague_EventScript_OpenDoorLance'):
+    INSERTS[_l] = ('setmetatile', league_door)
+for _l in ('PokemonLeague_EventScript_CloseEntry', 'PokemonLeague_LancesRoom_EventScript_SetEntryClosed'):
+    INSERTS[_l] = ('setmetatile', league_wall)
+# (entering the League starts it afresh, as HeartGold's does - the GBA's own reset is EventScript_ResetEliteFour)
+INSERTS['IndigoPlateau_PokemonCenter_1F_OnTransition'] = (None, lambda p: ['Call %s' % p.label('EventScript_ResetEliteFour')])
+INSERTS['EventScript_ResetEliteFour'] = (None, lambda p: sum((['SetFlag FLAG_HIDE_%s_ROOM_RETREAT' % w, 'ClearFlag FLAG_HIDE_%s_ROOM_EXIT' % w]
+                                                             for _, w, _, _ in LEAGUE.values()), []))
+
+
+def lance_moves(xy):
+    """the GBA's Lance is down a winding corridor; HeartGold's room is straight, as the others"""
+    return {'PokemonLeague_LancesRoom_Movement_WalkThroughCorridor': [('walk_up', [])] * 5 + [('step_end', [])]}
+
+
+MOVES['PokemonLeague_LancesRoom_Frlg'] = lance_moves
+
+
+def _mv(*parts):
+    out = []
+    for p_ in parts:
+        cmd, n = p_ if isinstance(p_, tuple) else (p_, 1)
+        out += [(cmd, [])] * n
+    return out + [('step_end', [])]
+
+
+def champions_moves(xy):
+    """HeartGold's Champion's room is a long hall (the GBA's is short): the player walks it up to the rival, where
+    HeartGold's Lance stands, Oak comes the whole way after them, and both leave past the rival for the far door"""
+    P = 'PokemonLeague_ChampionsRoom_Movement_'
+    return {P + 'PlayerEnter': _mv(('walk_up', 17)),
+            P + 'OakEnter': _mv(('delay_16', 2), ('walk_up', 11), 'walk_left', ('walk_up', 2), 'walk_in_place_faster_down', 'delay_16'),
+            P + 'PlayerWatchOakEnter': _mv('delay_8', 'walk_in_place_faster_down', ('delay_16', 13), 'walk_in_place_faster_left'),
+            P + 'RivalWatchOakEnter': _mv(('delay_16', 15), 'walk_in_place_faster_left'),
+            P + 'OakExit': _mv(('walk_up', 2), 'walk_right', ('walk_up', 6), 'delay_8', 'set_invisible'),
+            P + 'PlayerExit': _mv('delay_16', 'walk_left', ('walk_up', 3), 'walk_right', ('walk_up', 6), 'delay_8', 'set_invisible')}
+
+
+def hall_of_fame_moves(xy):
+    """up HeartGold's Hall of Fame to its machine, as HeartGold walks it (Oak waits beside it)"""
+    return {'PokemonLeague_HallOfFame_Movement_EnterRoom': _mv(('walk_up', 14))}
+
+
+MOVES['PokemonLeague_ChampionsRoom_Frlg'] = champions_moves
+MOVES['PokemonLeague_HallOfFame_Frlg'] = hall_of_fame_moves
+PEOPLE['PokemonLeague_HallOfFame_Frlg'] = lambda people: [dict(o, _at=(7, 8)) for o in people]
+# each stands where HeartGold's Elite Four member does (the floor beyond is the room's raised back, out of reach)
+for _m, _z in (('PokemonLeague_LoreleisRoom_Frlg', 10), ('PokemonLeague_BrunosRoom_Frlg', 11), ('PokemonLeague_AgathasRoom_Frlg', 10),
+               ('PokemonLeague_LancesRoom_Frlg', 10)):
+    PEOPLE[_m] = (lambda z_: lambda people: [dict(o, _at=(6, z_)) for o in people])(_z)
+REWRITES = {'VermilionCity_Gym_Frlg': vermilion_gym, 'PokemonTower_6F_Frlg': tower_marowak}      # GBA map -> its scenes rewritten before the port
+REWRITES.update({m: league_room for m in LEAGUE})
+# HeartGold's own objects a scene of its needs, kept in our map (ids: the names the event header gives them)
+EXTRA_OBJECTS = {
+    'VermilionCity_Gym_Frlg': [dict(id='obj_T06GYM0101_stop' + s_, spriteId='SPRITE_STOP', movement=0, type=0,
+                                    eventFlag='FLAG_HIDE_VERMILION_GYM_STOPS', scriptId='0', facingDirection=0, param0=0,
+                                    param1=0, param2=0, xRange=0, yRange=0, x=x_, z=z_, y=0)
+                               for s_, (x_, z_) in zip(('', '_2', '_3', '_4', '_5', '_6'), ((5, 8), (6, 8), (7, 8), (5, 10), (6, 10), (7, 10)))],
+}
+for _m, (_code, _who, _door, _) in LEAGUE.items():
+    EXTRA_OBJECTS[_m] = [dict(id='obj_%s_%s' % (_code, o), spriteId='SPRITE_STOP' if o.startswith('stop') else 'SPRITE_LEAG_DOOR2',
+                              movement=0, type=0, eventFlag='FLAG_HIDE_%s_ROOM_EXIT' % _who, scriptId='0', facingDirection=0, param0=0,
+                              param1=0, param2=0, xRange=0, yRange=0, x=x_, z=2, y=0) for o, x_ in zip(_door, (6, 5, 7))]
+    EXTRA_OBJECTS[_m].append(dict(id='obj_%s_babyboy1_11' % _code, spriteId='SPRITE_BABYBOY1_11', movement=0, type=0,
+                                  eventFlag='FLAG_HIDE_%s_ROOM_RETREAT' % _who, scriptId='0', facingDirection=0, param0=0, param1=0,
+                                  param2=0, xRange=0, yRange=0, x=6, z=20, y=0))
+
+
 def map_safe(line):
     """Map scripts (on load, on transition) run before HeartGold sets up the special vars (0x8000-0x800D): using
     one there fails an assert. They use temp vars 0x4010-0x401D in their place."""
@@ -1357,6 +1526,7 @@ class Port:
 
     def warp(self, a):
         dest = G.map_dir(a[0])
+        if dest not in MAPS and dest + '#world' in MAPS: dest += '#world'     # (a town of the world map)
         if dest in MAPS: slot, xy = MAPS[dest][:2]
         elif a[0] in slots.ROOM_SLOTS: slot, xy = slots.ROOM_SLOTS[a[0]], same    # (rooms built from the GBA layouts)
         else: return None
@@ -1419,10 +1589,15 @@ class Port:
         if cmd == 'trainerbattle_double' and len(a) > 4: cont = a[4]
         if cmd == 'trainerbattle_no_intro' and len(a) > 2 and a[2] in self.g.labels: cont = a[2]
         beaten, won = self.new('beaten'), self.new('won')
-        self.emit('CheckTrainerFlag %d' % n, 'GoToIf TRUE, %s' % beaten)
+        # (trainerbattle_no_intro is the scripts' own battle: no beaten check - the scripts check, and the Elite
+        # Four's rematches fight it again - and the script goes on after it, as the GBA's does)
+        scripted = cmd == 'trainerbattle_no_intro' and not cont
+        if not scripted: self.emit('CheckTrainerFlag %d' % n, 'GoToIf TRUE, %s' % beaten)
         if intro and intro in self.g.texts: self.say(intro); self.emit('CloseMsg')
-        self.emit('TrainerBattle %d, 0, 0, 0' % n, 'CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
+        if scripted: self.emit('CanvasCloseMsg')       # (its words may be open, from a script it called)
+        self.emit('TrainerBattle %d, %d, 0, 0' % (n, n if n in DOUBLES else 0), 'CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
                   'GoToIfNe %s' % won, 'WhiteOut', 'End', won + ':', 'SetTrainerFlag %d' % n)
+        if scripted: return
         if cont: self.emit('GoTo %s' % self.label(cont))
         else: self.emit('ReleaseAll', 'End')
         self.emit(beaten + ':')
@@ -1432,11 +1607,13 @@ class Port:
         teams = RIVAL_TEAMS.get(RIVAL_STAGES[trainer], {})
         done = self.new('battle')
         rv = self.var('VAR_RIVAL_TYPE')
+        self.emit('CanvasCloseMsg')
         for t, num in sorted(teams.items()):
             nxt = self.new('next')
             self.emit('CompareVarToValue %s, %s' % (rv, self.val('TYPE_' + t)), 'GoToIfNe %s' % nxt,
-                      'TrainerBattle %d, 0, %d, 0' % (num, 1 if lose_ok else 0), 'GoTo %s' % done, nxt + ':')
-        self.emit('TrainerBattle %d, 0, %d, 0' % (min(teams.values()), 1 if lose_ok else 0), done + ':')
+                      'TrainerBattle %d, %d, %d, 0' % (num, num if num in DOUBLES else 0, 1 if lose_ok else 0), 'GoTo %s' % done, nxt + ':')
+        last = min(teams.values())
+        self.emit('TrainerBattle %d, %d, %d, 0' % (last, last if last in DOUBLES else 0, 1 if lose_ok else 0), done + ':')
         if not lose_ok:
             won = self.new('won')
             self.emit('CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0', 'GoToIfNe %s' % won,
@@ -1634,6 +1811,9 @@ class Port:
                               '%s %d' % ('ShowPerson' if shut else 'HidePerson', oid), skip + ':')
                 else:
                     self.emit('// (the GBA redraws a square here: %s)' % ', '.join(a))
+            elif cmd == 'setobjectxy':          # (a person moved now, where they stand: HeartGold's MovePersonFacing)
+                x_, z_ = self.place(a[1], a[2])
+                self.emit('MovePersonFacing %s, %s, 0, %s, DIR_SOUTH' % (self.localid(a[0]), x_, z_))
             elif cmd == 'setobjectxyperm':
                 self.emit('MovePerson %s, %s, %s' % ((self.localid(a[0]),) + self.place(a[1], a[2])))
             elif cmd == 'copyobjectxytoperm':
@@ -1652,6 +1832,10 @@ class Port:
                 else:
                     self.emit('SetObjectMovementType %s, %d' % (self.localid(a[0]), mv))
                     if mv in FACING: self.emit('SetObjectFacing %s, %d' % (self.localid(a[0]), FACING[mv]))
+            elif cmd == 'dofieldeffect' and a[0] == 'FLDEFF_HALL_OF_FAME_RECORD_FRLG':
+                # (the Hall of Fame's machine taking the team down: HeartGold's own, the balls lit for each one)
+                self.emit('PartyCountNotEgg VAR_SPECIAL_RESULT', 'HallOfFameAnim VAR_SPECIAL_RESULT')
+            elif cmd == 'waitfieldeffect' and a[0] == 'FLDEFF_HALL_OF_FAME_RECORD_FRLG': pass
             elif cmd == 'turnobject':
                 d = {'DIR_NORTH': 0, 'DIR_SOUTH': 1, 'DIR_WEST': 2, 'DIR_EAST': 3}.get(a[1])
                 self.emit('ApplyMovement %s, %s' % (self.localid(a[0]), self.face_movement(d)), 'WaitMovement')
@@ -1743,7 +1927,13 @@ class Port:
             else:
                 self.emit('// TODO(gba) %s %s' % (cmd, ', '.join(a))); self.todo.append('%s (%s)' % (cmd, label)); self.stop(label)
         if not cmds or cmds[-1][0] not in ('end', 'return', 'goto'):
-            self.emit('End')
+            # (the GBA script runs on into the label after it)
+            nxt = self.g.next.get(label)
+            if nxt and self.g.labels.get(nxt) is not None and nxt not in self.g.texts and nxt not in self.moves \
+                    and not (self.g.labels[nxt] and step(self.g.labels[nxt][0][0]) is not None):
+                self.emit('GoTo %s' % self.label(nxt))
+            else:
+                self.emit('End')
 
     def movement(self, label, cmds):
         out = []
@@ -1866,6 +2056,7 @@ def port(gba_map, g, ids, report):
         xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
         xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
         xy.warps = [(w['x'], w['z']) for w in ev.get('warps', [])]
+    if gba_map in REWRITES: REWRITES[gba_map](g)
     mj = events_json(gba_map)
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
@@ -2022,8 +2213,10 @@ def port(gba_map, g, ids, report):
         if o.get('local_id'): eh.append('#define %s %d' % (o['local_id'], LID_OVER.get(o['local_id'], g.value(o['local_id']))))
     # (HeartGold's own code that names this map's people, such as a gym's moving gates: their ids stay defined,
     # as nobody's, so it still builds)
-    for k, n in enumerate(sorted(n for n in c_object_refs() if n.startswith('obj_%s_' % tag))):
-        eh.append('#define %s 0x%X' % (n, 0x7F00 + k))
+    # (and HeartGold's objects a scene of ours keeps, EXTRA_OBJECTS: named the same way)
+    for k, n in enumerate(sorted(set(n for n in c_object_refs() if n.startswith('obj_%s_' % tag)) |
+                                 {o['id'] for o in EXTRA_OBJECTS.get(gba_map, [])})):
+        eh.append('#define %s 0x%X' % (n, 0x3F00 + k))      # (under 0x4000: a script's number, not a var's)
     eh += ['', '#endif', '']
     open(os.path.join(SCR, 'event_%s.h' % tag), 'w').write('\n'.join(eh))
     # ---- people and signs
@@ -2109,6 +2302,7 @@ def port(gba_map, g, ids, report):
     if isinstance(xy, Anchored):     # (HeartGold's hidden items stay where they are, for now)
         snap = os.path.join(os.path.dirname(HERE), 'data', 'hg_events', os.path.basename(ev_path))
         bgs += [b for b in json.load(open(snap)).get('bgs', []) if str(b.get('scriptId', '')).startswith('std_hidden')]
+    objs += [dict(o) for o in EXTRA_OBJECTS.get(gba_map, [])]
     ev['objects'], ev['bgs'], ev['coords'] = objs, bgs, coords
     ev['header'] = 'fielddata/script/scr_seq/event_%s.h' % tag
     json.dump(ev, open(ev_path, 'w'), indent=4); open(ev_path, 'a').write('\n')

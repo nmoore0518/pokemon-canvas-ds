@@ -252,7 +252,7 @@ _cv_has_12:
 _cv_has_13:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer
-	End
+	GoTo PalletTown_RivalsHouse_EventScript_DaisyCoinsReturn
 	
 PalletTown_RivalsHouse_EventScript_DaisyCoinsOffer:
 	SetVar 0x8004, ITEM_AMULET_COIN
@@ -352,7 +352,7 @@ PalletTown_RivalsHouse_EventScript_DaisyCoinsShort:
 PalletTown_RivalsHouse_EventScript_DaisyCoinsDecline:
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyKeepThem
 	WaitButton
-	End
+	GoTo PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd
 	
 PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd:
 	ReleaseAll

@@ -6,5 +6,9 @@
 #define _EV_PokemonLeague_AgathasRoom_OnLoad 2
 #define _EV_PokemonLeague_AgathasRoom_EventScript_EnterRoom 3
 
+#define obj_T10R0401_babyboy1_11 0x3F00
+#define obj_T10R0401_leag_door2 0x3F01
+#define obj_T10R0401_leag_door2_2 0x3F02
+#define obj_T10R0401_leag_door2_3 0x3F03
 
 #endif

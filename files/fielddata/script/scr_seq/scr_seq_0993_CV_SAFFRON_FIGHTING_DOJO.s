@@ -47,7 +47,7 @@ SaffronCity_Dojo_EventScript_MasterKoichi:
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_MasterKoichiIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1062, 0, 0, 0
+	TrainerBattle 1062, 1062, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_4
@@ -319,7 +319,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -337,7 +337,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008

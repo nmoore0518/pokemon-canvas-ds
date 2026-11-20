@@ -8,7 +8,7 @@
 	InitScriptEntryEnd
 
 _cv_T10R0601_frame:
-	// (not yet: PokemonLeague_ChampionsRoom_EventScript_EnterRoom)
+	InitScriptGoToIfEqual 0x4001, 0, _EV_PokemonLeague_ChampionsRoom_EventScript_EnterRoom + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

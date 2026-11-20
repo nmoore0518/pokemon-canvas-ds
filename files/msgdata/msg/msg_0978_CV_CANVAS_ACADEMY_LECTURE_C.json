@@ -153,6 +153,22 @@
       ]
     },
     {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_RentalPick",
+      "en_US": [
+        "Choose a rental Pokémon.\n",
+        "({STRVAR_1 3, 0, 0} of 3)"
+      ]
+    },
+    {
+      "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_Academy_Text_RentalInfo",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\r",
+        "{STRVAR_1 3, 1, 0}\n",
+        "{STRVAR_1 3, 2, 0}\r",
+        "Take this one?"
+      ]
+    },
+    {
       "id": "msg_0978_CV_CANVAS_ACADEMY_LECTURE_C_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

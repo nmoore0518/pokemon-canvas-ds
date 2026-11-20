@@ -127,7 +127,7 @@ _cv_won_13:
 	SetTrainerFlag 1152
 	GoTo VermilionCity_Gym_EventScript_DefeatedLtSurge
 _cv_beaten_12:
-	End
+	GoTo VermilionCity_Gym_EventScript_AfterLeaderBattle
 	
 VermilionCity_Gym_EventScript_GymGuy:
 	LockAll
@@ -272,8 +272,6 @@ VermilionCity_Gym_EventScript_TrashCan15:
 	End
 	
 VermilionCity_Gym_OnLoad:
-	CallIfSet 1, VermilionCity_Gym_EventScript_SetOneBeamOff
-	CallIfSet 0x2126, VermilionCity_Gym_EventScript_SetBeamsOff
 	End
 	
 VermilionCity_Gym_OnTransition:
@@ -297,6 +295,13 @@ _cv_beaten_16:
 	GoTo VermilionCity_Gym_EventScript_AfterLeaderBattle
 	
 VermilionCity_Gym_EventScript_DefeatedLtSurge:
+	SetFlag FLAG_HIDE_VERMILION_GYM_STOPS
+	HidePerson obj_T06GYM0101_stop
+	HidePerson obj_T06GYM0101_stop_2
+	HidePerson obj_T06GYM0101_stop_3
+	HidePerson obj_T06GYM0101_stop_4
+	HidePerson obj_T06GYM0101_stop_5
+	HidePerson obj_T06GYM0101_stop_6
 	CallIfUnset 0x2127, VermilionCity_Gym_EventScript_ShowOaksAide
 	ClearFlag 0x2086
 	SetFlag 0x2125
@@ -304,6 +309,16 @@ VermilionCity_Gym_EventScript_DefeatedLtSurge:
 	SetVar 0x8008, 3
 	Call Common_EventScript_SetGymTrainers_Frlg
 	GoTo VermilionCity_Gym_EventScript_GiveTM34
+	End
+	
+VermilionCity_Gym_EventScript_AfterLeaderBattle:
+	GoToIfUnset 0x2128, VermilionCity_Gym_EventScript_GiveTM34
+	Call GymHack_EventScript_SurgeGifts
+	Call GymCandidate_EventScript_VermilionCityTalk
+	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_LtSurgePostBattle
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 VermilionCity_Gym_EventScript_GymGuyPostVictory:
@@ -337,60 +352,101 @@ VermilionCity_Gym_EventScript_GymStatuePostVictory:
 	End
 	
 VermilionCity_Gym_EventScript_TrashCan:
-	CopyVar 0x8004, 0x4000
-	CopyVar 0x8005, 0x4001
-	GoToIfSet 0x2126, VermilionCity_Gym_EventScript_LocksAlreadyOpen
-	GoToIfSet 1, VermilionCity_Gym_EventScript_TrySwitchTwo
-	CompareVarToVar 0x8004, 0x8008
-	GoToIfEq VermilionCity_Gym_EventScript_FoundSwitchOne
+	CompareVarToValue 0x8008, 1
+	GoToIfNe _cv_vcan_1
+	VermilionGymCanCheck 0, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_1:
+	CompareVarToValue 0x8008, 2
+	GoToIfNe _cv_vcan_2
+	VermilionGymCanCheck 1, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_2:
+	CompareVarToValue 0x8008, 3
+	GoToIfNe _cv_vcan_3
+	VermilionGymCanCheck 2, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_3:
+	CompareVarToValue 0x8008, 4
+	GoToIfNe _cv_vcan_4
+	VermilionGymCanCheck 3, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_4:
+	CompareVarToValue 0x8008, 5
+	GoToIfNe _cv_vcan_5
+	VermilionGymCanCheck 4, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_5:
+	CompareVarToValue 0x8008, 6
+	GoToIfNe _cv_vcan_6
+	VermilionGymCanCheck 5, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_6:
+	CompareVarToValue 0x8008, 7
+	GoToIfNe _cv_vcan_7
+	VermilionGymCanCheck 6, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_7:
+	CompareVarToValue 0x8008, 8
+	GoToIfNe _cv_vcan_8
+	VermilionGymCanCheck 7, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_8:
+	CompareVarToValue 0x8008, 9
+	GoToIfNe _cv_vcan_9
+	VermilionGymCanCheck 8, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_9:
+	CompareVarToValue 0x8008, 10
+	GoToIfNe _cv_vcan_10
+	VermilionGymCanCheck 9, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_10:
+	CompareVarToValue 0x8008, 11
+	GoToIfNe _cv_vcan_11
+	VermilionGymCanCheck 10, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_11:
+	CompareVarToValue 0x8008, 12
+	GoToIfNe _cv_vcan_12
+	VermilionGymCanCheck 11, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_12:
+	CompareVarToValue 0x8008, 13
+	GoToIfNe _cv_vcan_13
+	VermilionGymCanCheck 12, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_13:
+	CompareVarToValue 0x8008, 14
+	GoToIfNe _cv_vcan_14
+	VermilionGymCanCheck 13, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_14:
+	CompareVarToValue 0x8008, 15
+	GoToIfNe _cv_vcan_15
+	VermilionGymCanCheck 14, VAR_SPECIAL_RESULT
+	GoTo _cv_vcan_done
+_cv_vcan_15:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_vcan_done:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq VermilionCity_Gym_cv_FirstSwitch
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq VermilionCity_Gym_cv_SecondSwitch
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq VermilionCity_Gym_cv_WrongCan
 	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_NopeOnlyTrashHere
 	WaitButton
 	CloseMsg
 	ReleaseAll
 	End
 	
-VermilionCity_Gym_EventScript_SetOneBeamOff:
-	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_HalfOn, 1)
-	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_HalfOn, 1)
-	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Beam_MidTop_HalfOn, 1)
-	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_HalfOn, 1)
-	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_HalfOn, 1)
-	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_HalfOn, 1)
-	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_HalfOn, 1)
-	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Beam_MidBottom_HalfOn, 1)
-	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_HalfOn, 1)
-	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_HalfOn, 1)
-	Return
-	
-VermilionCity_Gym_EventScript_SetBeamsOff:
-	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Off, 1)
-	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_Off, 0)
-	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Floor, 0)
-	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_Off, 0)
-	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_Off, 1)
-	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Off, 1)
-	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_Off, 0)
-	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Floor, 0)
-	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_Off, 0)
-	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Off, 1)
-	Return
-	
 VermilionCity_Gym_EventScript_InitTrashCans:
-	GoToIfSet 0x2126, Common_EventScript_NopReturn
-	// TODO(gba) special SetVermilionTrashCans
-	CopyVar 0x4000, 0x4014
-	CopyVar 0x4001, 0x4015
+	GoToIfSet FLAG_HIDE_VERMILION_GYM_STOPS, _cv_vgym_init
+	ClearFlag FLAG_SYS_SOLVED_LT_SURGE_GYM
+_cv_vgym_init:
+	VermilionGymInit
 	Return
-	
-VermilionCity_Gym_EventScript_AfterLeaderBattle:
-	GoToIfUnset 0x2128, VermilionCity_Gym_EventScript_GiveTM34
-	Call GymHack_EventScript_SurgeGifts
-	Call GymCandidate_EventScript_VermilionCityTalk
-	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_LtSurgePostBattle
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 	
 VermilionCity_Gym_EventScript_ShowOaksAide:
 	ClearFlag 0x2061
@@ -437,42 +493,6 @@ VermilionCity_Gym_EventScript_GiveTM34:
 	ReleaseAll
 	End
 	
-VermilionCity_Gym_EventScript_LocksAlreadyOpen:
-	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_NopeOnlyTrashHere
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-VermilionCity_Gym_EventScript_TrySwitchTwo:
-	CompareVarToVar 0x8005, 0x8008
-	GoToIfEq VermilionCity_Gym_EventScript_FoundSwitchTwo
-	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_OnlyTrashLocksWereReset
-	WaitButton
-	ClearFlag 1
-	// TODO(gba) special SetVermilionTrashCans
-	GoTo _cv_stop
-	CopyVar 0x4000, 0x8004
-	CopyVar 0x4001, 0x8005
-	Call VermilionCity_Gym_EventScript_SetBeamsOn
-	CloseMsg
-	ReleaseAll
-	End
-	
-VermilionCity_Gym_EventScript_FoundSwitchOne:
-	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened
-	WaitButton
-	PlaySE SEQ_SE_DP_SELECT
-	WaitSE SEQ_SE_DP_SELECT
-	Call VermilionCity_Gym_EventScript_SetOneBeamOff
-	SetFlag 1
-	CloseMsg
-	ReleaseAll
-	End
-	
-Common_EventScript_NopReturn:
-	Return
-	
 GymHack_EventScript_SurgeGifts:
 	GoToIfSet 0x2129, GymHack_EventScript_GiftsDone
 	NPCMsg msg_0485_T06GYM0101_GymHack_Text_SurgeSilverCap
@@ -488,6 +508,36 @@ GymCandidate_EventScript_VermilionCityTalk:
 	SetVar 0x8009, 2
 	SetVar 0x800A, 7
 	GoTo GymCandidate_EventScript_TalkAgain
+	
+VermilionCity_Gym_cv_FirstSwitch:
+	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened
+	WaitButton
+	CloseMsg
+	VermilionGymLockAction 0, 0
+	SetFlag 1
+	ReleaseAll
+	End
+	
+VermilionCity_Gym_cv_SecondSwitch:
+	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_SecondLockOpened
+	WaitButton
+	CloseMsg
+	VermilionGymLockAction 1, 0
+	SetFlag FLAG_SYS_SOLVED_LT_SURGE_GYM
+	StopSE SEQ_SE_GS_DENGEKIBARIA
+	SetFlag 0x2126
+	ReleaseAll
+	End
+	
+VermilionCity_Gym_cv_WrongCan:
+	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_OnlyTrashLocksWereReset
+	WaitButton
+	CloseMsg
+	VermilionGymLockAction 0, 1
+	ResampleVermilionGymCans
+	ClearFlag 1
+	ReleaseAll
+	End
 	
 EventScript_SetPewterGymTrainers:
 	SetTrainerFlag 897
@@ -567,30 +617,6 @@ GymCandidate_EventScript_VermilionCityAfterBadge:
 	GoTo GymCandidate_EventScript_AfterBadge
 	End
 	
-VermilionCity_Gym_EventScript_FoundSwitchTwo:
-	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_SecondLockOpened
-	WaitButton
-	CloseMsg
-	Call VermilionCity_Gym_EventScript_SetBeamsOff
-	PlaySE SEQ_SE_DP_SELECT
-	WaitSE SEQ_SE_DP_SELECT
-	SetFlag 0x2126
-	ReleaseAll
-	End
-	
-VermilionCity_Gym_EventScript_SetBeamsOn:
-	// (the GBA redraws a square here: 3, 6, METATILE_VermilionGym_Beam_Node_TopLeft_On, 1)
-	// (the GBA redraws a square here: 4, 6, METATILE_VermilionGym_Beam_Node_TopLeft_Edge_On, 1)
-	// (the GBA redraws a square here: 5, 6, METATILE_VermilionGym_Beam_MidTop, 1)
-	// (the GBA redraws a square here: 6, 6, METATILE_VermilionGym_Beam_Node_TopRight_Edge_On, 1)
-	// (the GBA redraws a square here: 7, 6, METATILE_VermilionGym_Beam_Node_TopRight_On, 1)
-	// (the GBA redraws a square here: 3, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_On, 1)
-	// (the GBA redraws a square here: 4, 7, METATILE_VermilionGym_Beam_Node_BottomLeft_Edge_On, 1)
-	// (the GBA redraws a square here: 5, 7, METATILE_VermilionGym_Beam_MidBottom, 1)
-	// (the GBA redraws a square here: 6, 7, METATILE_VermilionGym_Beam_Node_BottomRight_Edge_On, 1)
-	// (the GBA redraws a square here: 7, 7, METATILE_VermilionGym_Beam_Node_BottomRight_On, 1)
-	Return
-	
 GymHack_EventScript_GiftsDone:
 	Return
 	
@@ -601,7 +627,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0485_T06GYM0101_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymCandidate_EventScript_TalkAgain:
 	Call GymCandidate_EventScript_MentorGift
@@ -709,6 +735,55 @@ _cv_mentor_29:
 	SetVar 0x401F, 22
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_mentor_30:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_31
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_mentor_31
+	SetVar 0x401F, 23
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_31:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_32
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_mentor_32
+	SetVar 0x401F, 24
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_32:
+	CompareVarToValue 0x8009, 8
+	GoToIfNe _cv_mentor_33
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_mentor_33
+	SetVar 0x401F, 25
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_33:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_34
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_mentor_34
+	SetVar 0x401F, 26
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_34:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_35
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_mentor_35
+	SetVar 0x401F, 27
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_35:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_36
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_mentor_36
+	SetVar 0x401F, 28
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_36:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_37
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_mentor_37
+	SetVar 0x401F, 29
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_37:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymCandidate_EventScript_ShowText4
 	Call GymCandidate_EventScript_MentorGift
@@ -741,16 +816,16 @@ GymCandidate_EventScript_Offer:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_31
+	GoToIfEq _cv_yes_38
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_32
-_cv_yes_31:
+	GoTo _cv_yn_39
+_cv_yes_38:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_32:
+_cv_yn_39:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_NotYet
 	SetVar 0x8007, 0
-	End
+	GoTo GymCandidate_EventScript_Start
 	
 GymCandidate_EventScript_Return:
 	Return
@@ -772,13 +847,12 @@ GymCandidate_EventScript_NotYet:
 	End
 	
 GymCandidate_EventScript_Start:
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
+	CanvasCheckTeam 7, 0x5019
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe GymCandidate_EventScript_TeamBreaksRules
 	SetVar 0x800B, 0
 	Call GymCandidate_EventScript_TakeLeadersPlace
-	End
+	GoTo GymCandidate_EventScript_NextGuest
 	
 GymCandidate_EventScript_ShowText4:
 	Call _cv_str4
@@ -796,7 +870,7 @@ GymCandidate_EventScript_MentorGiveItem:
 	BufferItemName 1, 0x8004
 	NPCMsg msg_0485_T06GYM0101_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymCandidate_EventScript_MentorItemExplain
 	
 GymCandidate_EventScript_VisitorWalksIn:
 	// TODO(gba) special GymCandidate_PlanVisitorWalk
@@ -861,6 +935,69 @@ GymCandidate_EventScript_TakeLeadersPlace:
 	WaitFade
 	Return
 	
+GymCandidate_EventScript_NextGuest:
+	HealParty
+	// TODO(gba) special GymCandidate_GenerateGuest
+	GoTo _cv_stop
+	CompareVarToValue 0x800B, 0
+	CallIfEq GymCandidate_EventScript_LaterThatDay
+	CompareVarToValue 0x800B, 0
+	CallIfNe GymCandidate_EventScript_AnotherOne
+	CloseMsg
+	Call GymCandidate_EventScript_ChallengerWalksIn
+	NPCMsg msg_0485_T06GYM0101_gGymChallengeIntroText
+	WaitButton
+	CloseMsg
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CanvasCloseMsg
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_41
+	WhiteOut
+	End
+_cv_won_41:
+	SetTrainerFlag 1442
+	ClearFlag 0x2036
+	// TODO(gba) special GymChallenge_EndPractice
+	GoTo _cv_stop
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_42
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_43
+_cv_outcome_42:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_43
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_43:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe GymCandidate_EventScript_GuestWon
+	HealParty
+	NPCMsg msg_0485_T06GYM0101_gGymChallengeAfterText
+	WaitButton
+	Call GymCandidate_EventScript_VisitorWalksOut
+	AddVar 0x800B, 1
+	// TODO(gba) special GymCandidate_MoreGuests
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymCandidate_EventScript_NextGuest
+	Call GymCandidate_EventScript_ReturnLeadersPlace
+	CompareVarToValue 0x8007, 1
+	GoToIfEq GymCandidate_EventScript_ShiftDone
+	// TODO(gba) special GymCandidate_Approve
+	GoTo _cv_stop
+	PlayFanfare SEQ_ME_LVUP
+	Call _cv_str4
+	WaitButton
+	WaitFanfare
+	NPCMsg msg_0485_T06GYM0101_GymCandidate_Text_ApprovalCount
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 GymCandidate_EventScript_MentorItemExplain:
 	BufferItemName 0, 0x8004
 	CompareVarToValue 0x8009, 6
@@ -886,7 +1023,7 @@ GymCandidate_EventScript_MentorAppears:
 	ShowPerson 0x800A
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
 	CloseMsg
@@ -905,6 +1042,72 @@ GymCandidate_EventScript_ItemClause:
 	ReleaseAll
 	End
 	
+GymCandidate_EventScript_LaterThatDay:
+	NPCMsg msg_0485_T06GYM0101_GymCandidate_Text_LaterThatDay
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_AnotherOne:
+	NPCMsg msg_0485_T06GYM0101_GymCandidate_Text_AnotherOne
+	WaitButton
+	Return
+	
+GymCandidate_EventScript_ChallengerWalksIn:
+	// TODO(gba) special GymCandidate_PlanChallengerWalk
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_ChallengerAppears
+	CopyVar 0x401E, 0x8005
+	AddVar 0x401E, 1
+	CopyVar 0x401F, 0x8006
+	AddVar 0x401F, 3
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	PlaySE SEQ_SE_DP_KAIDAN2
+	ApplyMovement 0x800A, gMentorWalkIn
+	WaitMovement
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	Return
+	
+GymCandidate_EventScript_GuestWon:
+	HealParty
+	NPCMsg msg_0485_T06GYM0101_gGymChallengeWinText
+	WaitButton
+	Call GymCandidate_EventScript_VisitorWalksOut
+	Call GymCandidate_EventScript_ReturnLeadersPlace
+	NPCMsg msg_0485_T06GYM0101_GymCandidate_Text_TryAgain
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+GymCandidate_EventScript_ReturnLeadersPlace:
+	// TODO(gba) special GymCandidate_IsHolding
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_Return
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ApplyMovement obj_player, gHoldPlayerOut
+	WaitMovement
+	// TODO(gba) special GymCandidate_HoldLeaderBack
+	GoTo _cv_stop
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+	
+GymCandidate_EventScript_ShiftDone:
+	// TODO(gba) special GymCandidate_BufferRepeatThanks
+	GoTo _cv_stop
+	Call _cv_str4
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 GymCandidate_EventScript_EdgeItemExplain:
 	NPCMsg msg_0485_T06GYM0101_GymCandidate_Text_EdgeItemExplain
 	WaitButton
@@ -920,7 +1123,7 @@ Outfits_EventScript_GymUniform:
 	BufferPlayersName 6
 	NPCMsg msg_0485_T06GYM0101_Outfits_Text_PutInWardrobe
 	WaitButton
-	End
+	GoTo Outfits_EventScript_Return
 	
 GymCandidate_EventScript_MentorNoRoom:
 	FadeScreen 6, 1, 1, RGB_BLACK
@@ -935,6 +1138,24 @@ EventScript_GymHack_ShowTeamRuleMessage:
 	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	CallIfEq EventScript_GymHack_MsgDuplicateItem
 	Return
+	
+GymCandidate_EventScript_ChallengerAppears:
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special GymCandidate_PlaceGuest
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymCandidate_EventScript_GuestNoRoom
+	CopyVar 0x401E, 0x8005
+	AddVar 0x401E, 1
+	CopyVar 0x401F, 0x8006
+	AddVar 0x401F, 3
+	MovePerson 0x800A, 0x401E, 0x401F
+	ClearFlag 0x2017
+	ShowPerson 0x800A
+	// TODO(gba) special GymCandidate_FaceGuest
+	GoTo _cv_stop
+	GoTo GymCandidate_EventScript_GuestNoRoom
 	
 Outfits_EventScript_Return:
 	Return
@@ -952,6 +1173,11 @@ EventScript_GymHack_MsgDuplicate:
 EventScript_GymHack_MsgDuplicateItem:
 	NPCMsg msg_0485_T06GYM0101_Text_GymHack_DuplicateItem
 	WaitButton
+	Return
+	
+GymCandidate_EventScript_GuestNoRoom:
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	Return
 
 _cv_str4:
@@ -1067,6 +1293,41 @@ _cv_str4_20:
 	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_fire
 	Return
 _cv_str4_21:
+	CompareVarToValue 0x401F, 23
+	GoToIfNe _cv_str4_22
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_ground
+	Return
+_cv_str4_22:
+	CompareVarToValue 0x401F, 24
+	GoToIfNe _cv_str4_23
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_dark
+	Return
+_cv_str4_23:
+	CompareVarToValue 0x401F, 25
+	GoToIfNe _cv_str4_24
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_ice
+	Return
+_cv_str4_24:
+	CompareVarToValue 0x401F, 26
+	GoToIfNe _cv_str4_25
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_fighting
+	Return
+_cv_str4_25:
+	CompareVarToValue 0x401F, 27
+	GoToIfNe _cv_str4_26
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_ghost
+	Return
+_cv_str4_26:
+	CompareVarToValue 0x401F, 28
+	GoToIfNe _cv_str4_27
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_dragon
+	Return
+_cv_str4_27:
+	CompareVarToValue 0x401F, 29
+	GoToIfNe _cv_str4_28
+	NPCMsg msg_0485_T06GYM0101_cv_mentor_first_flying
+	Return
+_cv_str4_28:
 	Return
 
 _cv_stop:
@@ -1086,5 +1347,9 @@ gMentorWalkOut:
 
 	.balign 4, 0
 gHoldPlayerIn:
+	EndMovement
+
+	.balign 4, 0
+gHoldPlayerOut:
 	EndMovement
 	.balign 4, 0

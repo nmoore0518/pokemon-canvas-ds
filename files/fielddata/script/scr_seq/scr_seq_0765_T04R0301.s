@@ -68,8 +68,7 @@ _cv_yn_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1447
-	CheckTrainerFlag 1447
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 1447, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -78,9 +77,6 @@ _cv_yn_4:
 	End
 _cv_won_6:
 	SetTrainerFlag 1447
-	ReleaseAll
-	End
-_cv_beaten_5:
 	NPCMsg msg_0473_T04R0301_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -316,7 +312,7 @@ PaintWorld_EventScript_FigureSketch:
 PaintWorld_EventScript_FigureMega:
 	NPCMsg msg_0473_T04R0301_PaintWorld_Text_FigureMega
 	WaitButton
-	End
+	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
 	CloseMsg
@@ -324,8 +320,7 @@ PaintWorld_EventScript_FigureBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_27
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -334,9 +329,6 @@ PaintWorld_EventScript_FigureBattle:
 	End
 _cv_won_28:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_27:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4

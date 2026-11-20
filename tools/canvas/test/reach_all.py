@@ -16,7 +16,8 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 import world, slots
 
 LEDGE = {0x38: (1, 0), 0x39: (-1, 0), 0x3A: (0, -1), 0x3B: (0, 1)}
-MOVABLE = {'SPRITE_TREE', 'SPRITE_BREAKROCK', 'SPRITE_ROCK', 'SPRITE_KABIGON', 'SPRITE_MONSTARBALL'}
+MOVABLE = {'SPRITE_TREE', 'SPRITE_BREAKROCK', 'SPRITE_ROCK', 'SPRITE_KABIGON', 'SPRITE_MONSTARBALL',
+           'SPRITE_LEAG_DOOR2', 'SPRITE_STOP'}     # (the League's doors and HeartGold's posts: scripts open them)
 START = ('WORLD', 1039, 380)          # Pallet Town, outside the player's house
 
 

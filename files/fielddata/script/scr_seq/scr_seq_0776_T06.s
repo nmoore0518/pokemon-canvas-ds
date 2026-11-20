@@ -484,8 +484,9 @@ VermilionCity_EventScript_ForemanBuilt:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	Wait 30, VAR_SPECIAL_RESULT
-	// TODO(gba) warpsilent MAP_VERMILION_CITY, 35, 14
-	GoTo _cv_stop
+	Warp MAP_VERMILION, 0, 1266, 306, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -553,7 +554,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -571,7 +572,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
@@ -612,7 +613,7 @@ _cv_yes_13:
 _cv_yn_14:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq VermilionCity_EventScript_WalkUpPier
-	End
+	GoTo Johto_EventScript_SailToOlivine
 	
 VermilionCity_EventScript_CheckSeagallopPresentTrigger:
 	SetVar 0x8004, 0
@@ -645,7 +646,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0483_T06_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 VermilionCity_EventScript_ForemanClaw:
 	SetVar 0x8009, ITEM_CLAW_FOSSIL

@@ -161,6 +161,18 @@
       ]
     },
     {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_BrockPostBattle",
+      "en_US": [
+        "There are all kinds of Trainers in\n",
+        "this huge world of ours.\r",
+        "You appear to be very gifted as a\n",
+        "Pokémon Trainer.\r",
+        "So let me make a suggestion.\r",
+        "Go to the Gym in Cerulean and test\n",
+        "your abilities."
+      ]
+    },
+    {
       "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_YoureChampMaterial",
       "en_US": [
         "Just as I thought!\n",
@@ -201,18 +213,6 @@
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_BrockPostBattle",
-      "en_US": [
-        "There are all kinds of Trainers in\n",
-        "this huge world of ours.\r",
-        "You appear to be very gifted as a\n",
-        "Pokémon Trainer.\r",
-        "So let me make a suggestion.\r",
-        "Go to the Gym in Cerulean and test\n",
-        "your abilities."
-      ]
-    },
-    {
       "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_TakeThisWithYou",
       "en_US": [
         "Wait!\n",
@@ -243,17 +243,6 @@
       ]
     },
     {
-      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_TryDifferentPartyOrders",
-      "en_US": [
-        "The first Pokémon out in a match is\n",
-        "at the left of the Pokémon List.\r",
-        "By changing the order of Pokémon,\n",
-        "you may gain an advantage.\r",
-        "Try different orders to suit your\n",
-        "opponent’s party."
-      ]
-    },
-    {
       "id": "msg_0462_T03GYM0101_GymHack_Text_BrockSilverCap",
       "en_US": [
         "Brock: One more thing.\r",
@@ -271,6 +260,17 @@
         "A strong team is built like a\n",
         "mountain: one solid layer at a\f",
         "time. Choose wisely!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_PewterCity_Gym_Text_TryDifferentPartyOrders",
+      "en_US": [
+        "The first Pokémon out in a match is\n",
+        "at the left of the Pokémon List.\r",
+        "By changing the order of Pokémon,\n",
+        "you may gain an advantage.\r",
+        "Try different orders to suit your\n",
+        "opponent’s party."
       ]
     },
     {
@@ -389,6 +389,67 @@
       ]
     },
     {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_ground",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! Your\n",
+        "Ground Pokémon have grown sturdy!\r",
+        "Now show me the power of the\n",
+        "earth itself!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_dark",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Dark whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_ice",
+      "en_US": [
+        "Lorelei: {STRVAR_1 3, 6, 0}. I’ve waited for\n",
+        "this since Oak’s lab.\r",
+        "Show me how cold you’ve become!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_fighting",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! You’ve\n",
+        "grown strong since Oak’s lab!\r",
+        "Now let our Pokémon talk with\n",
+        "their fists!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_ghost",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Ghost whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_dragon",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. I’ve watched your\n",
+        "Dragons grow since Oak’s lab.\r",
+        "Now prove you’re worthy of them!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_cv_mentor_first_flying",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. Your Flying Pokémon\n",
+        "have come far since Oak’s lab.\r",
+        "Let’s see if they can keep up with\n",
+        "my Dragonite!"
+      ]
+    },
+    {
       "id": "msg_0462_T03GYM0101_GymCandidate_Text_SomeoneToSeeYou",
       "en_US": [
         "Hm? Someone came into the Gym\n",
@@ -412,12 +473,51 @@
       ]
     },
     {
+      "id": "msg_0462_T03GYM0101_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0462_T03GYM0101_gGymChallengeAfterText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_ApprovalCount",
+      "en_US": [
+        "Gym Leader approvals:\n",
+        "{STRVAR_1 3, 0, 0} of 8."
+      ]
+    },
+    {
       "id": "msg_0462_T03GYM0101_GymCandidate_Text_GuardItemExplain",
       "en_US": [
         "When a Pokémon holds the\n",
         "{STRVAR_1 3, 0, 0}, no move is\f",
         "super effective against it.\r",
         "It never wears out."
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_LaterThatDay",
+      "en_US": [
+        "Later that day…\n",
+        "A challenger arrives!"
+      ]
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_AnotherOne",
+      "en_US": "Here comes the next challenger!"
+    },
+    {
+      "id": "msg_0462_T03GYM0101_gGymChallengeWinText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0462_T03GYM0101_GymCandidate_Text_TryAgain",
+      "en_US": [
+        "It’s OK. Every Leader loses\n",
+        "sometimes.\r",
+        "Come back when you’re ready, and\n",
+        "we’ll try again."
       ]
     },
     {

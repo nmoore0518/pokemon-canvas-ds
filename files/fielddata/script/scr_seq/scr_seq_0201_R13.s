@@ -20,7 +20,7 @@ Route13_EventScript_Perry:
 	NPCMsg msg_0350_R13_Route13_Text_PerryIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1046, 0, 0, 0
+	TrainerBattle 1046, 1046, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_2
@@ -46,7 +46,7 @@ Route13_EventScript_Jared:
 	NPCMsg msg_0350_R13_Route13_Text_JaredIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 946, 0, 0, 0
+	TrainerBattle 946, 946, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_4

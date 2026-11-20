@@ -121,5 +121,26 @@
         }
     ],
     "bgs": [],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_PokemonTower_6F_EventScript_MarowakGhost + 1",
+            "x": 13,
+            "z": 18,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x503E"
+        },
+        {
+            "scriptId": "_EV_PokemonTower_6F_EventScript_MarowakGhost + 1",
+            "x": 14,
+            "z": 19,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x503E"
+        }
+    ]
 }

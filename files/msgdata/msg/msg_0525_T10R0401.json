@@ -116,6 +116,67 @@
       ]
     },
     {
+      "id": "msg_0525_T10R0401_cv_mentor_first_ground",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! Your\n",
+        "Ground Pokémon have grown sturdy!\r",
+        "Now show me the power of the\n",
+        "earth itself!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_dark",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Dark whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_ice",
+      "en_US": [
+        "Lorelei: {STRVAR_1 3, 6, 0}. I’ve waited for\n",
+        "this since Oak’s lab.\r",
+        "Show me how cold you’ve become!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_fighting",
+      "en_US": [
+        "Bruno: Hoo hah! {STRVAR_1 3, 6, 0}! You’ve\n",
+        "grown strong since Oak’s lab!\r",
+        "Now let our Pokémon talk with\n",
+        "their fists!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_ghost",
+      "en_US": [
+        "Agatha: Well, if it isn’t Oak’s\n",
+        "Ghost whippersnapper.\r",
+        "You got this far? Hah! Let’s see\n",
+        "what my gifts did for you!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_dragon",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. I’ve watched your\n",
+        "Dragons grow since Oak’s lab.\r",
+        "Now prove you’re worthy of them!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_first_flying",
+      "en_US": [
+        "Lance: {STRVAR_1 3, 6, 0}. Your Flying Pokémon\n",
+        "have come far since Oak’s lab.\r",
+        "Let’s see if they can keep up with\n",
+        "my Dragonite!"
+      ]
+    },
+    {
       "id": "msg_0525_T10R0401_PokemonLeague_AgathasRoom_Text_Intro",
       "en_US": [
         "I am Agatha of the Elite Four.\r",
@@ -149,6 +210,101 @@
         "Pokémon are for battling!\r",
         "{STRVAR_1 3, 6, 0}! I’ll show you how a real\n",
         "Trainer battles!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_e4_approve_lorelei",
+      "en_US": [
+        "Lorelei: And you hope to run a\n",
+        "Gym of your own, I hear.\r",
+        "You have my approval. The\n",
+        "League will need Leaders like you."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_ice",
+      "en_US": [
+        "Lorelei: A fellow Ice trainer…\n",
+        "and a fine one.\r",
+        "You have my approval. Kanto could\n",
+        "use an Ice Gym. Stay cool."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_e4_approve_bruno",
+      "en_US": [
+        "Bruno: A Gym Leader, eh?\n",
+        "With strength like that…\r",
+        "You have my approval! Hoo hah!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_ground",
+      "en_US": [
+        "Bruno: Such power! The ground\n",
+        "itself shook!\r",
+        "You have my approval. Come train\n",
+        "with me any time!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_fighting",
+      "en_US": [
+        "Bruno: Such power! You trained\n",
+        "them well!\r",
+        "You have my approval. Come train\n",
+        "with me any time!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_e4_approve_agatha",
+      "en_US": [
+        "Agatha: Oak’s little Gym, eh?\r",
+        "Fine, fine. You have my approval.\n",
+        "Now shoo! Go on!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_dark",
+      "en_US": [
+        "Agatha: …Hmph. Your Dark Pokémon\n",
+        "fight dirty. I like that.\r",
+        "You have my approval. Don’t make\n",
+        "me regret it!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_ghost",
+      "en_US": [
+        "Agatha: …Hmph. You’ve got the\n",
+        "gift, child. I’ll grant you that.\r",
+        "You have my approval. Don’t make\n",
+        "me regret it!"
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_e4_approve_lance",
+      "en_US": [
+        "Lance: You battle like a Leader\n",
+        "already.\r",
+        "The Elite Four approves. Only the\n",
+        "Champion’s room remains."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_dragon",
+      "en_US": [
+        "Lance: Your Dragons fly true.\n",
+        "I was wrong about you.\r",
+        "You have my approval, Dragon\n",
+        "master."
+      ]
+    },
+    {
+      "id": "msg_0525_T10R0401_cv_mentor_approve_flying",
+      "en_US": [
+        "Lance: Your Pokémon own the sky.\r",
+        "You have my approval."
       ]
     },
     {

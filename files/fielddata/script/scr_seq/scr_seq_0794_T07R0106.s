@@ -57,7 +57,7 @@ CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinks:
 	GoToIfUnset 0x212D, CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
 	GoToIfUnset 0x212E, CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
 	SetVar VAR_SPECIAL_RESULT, 1
-	End
+	GoTo CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone
 	
 CeladonCity_DepartmentStore_Roof_EventScript_AfterDrinks:
 	// TODO(gba) special DrinkMachine_FixFlag
@@ -378,7 +378,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0499_T07R0106_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 EventScript_RestorePrevTextColor:
 	CopyVar 0x5015, 0x5016

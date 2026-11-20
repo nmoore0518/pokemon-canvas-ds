@@ -37,7 +37,7 @@ _cv_has_1:
 	SetVar VAR_SPECIAL_RESULT, 1
 	NPCMsg msg_0450_T01R0202_EventMons_Text_CapBoyCase
 	WaitButton
-	End
+	GoTo EventMons_EventScript_CapBoyRewards
 	
 PalletTown_House1_EventScript_Pidgey:
 	LockAll
@@ -88,7 +88,7 @@ EventMons_EventScript_CapBoyHint:
 EventMons_EventScript_CapBoyPartner:
 	NPCMsg msg_0450_T01R0202_EventMons_Text_CapBoyAll
 	WaitButton
-	End
+	GoTo EventMons_EventScript_CapBoyGive
 	
 EventMons_EventScript_CapBoyGive:
 	CopyVar 0x8004, 0x800A

@@ -19,7 +19,7 @@ Academy_EventScript_Yarrow:
 	GoToIfSet 0x2236, Academy_EventScript_YarrowMenu
 	Call Academy_EventScript_YarrowLecture
 	SetFlag 0x2236
-	End
+	GoTo Academy_EventScript_YarrowMenu
 	
 Academy_EventScript_Tansy:
 	LockAll
@@ -28,7 +28,7 @@ Academy_EventScript_Tansy:
 	GoToIfSet 0x2237, Academy_EventScript_TansyMenu
 	Call Academy_EventScript_TansyLecture
 	SetFlag 0x2237
-	End
+	GoTo Academy_EventScript_TansyMenu
 	
 Academy_EventScript_LectureDStudent:
 	PlaySE SEQ_SE_DP_SELECT
@@ -45,7 +45,7 @@ Academy_EventScript_TeamBuilderPC:
 	PlaySE SEQ_SE_DP_SELECT
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TeamBuilderPC
 	WaitButton
-	End
+	GoTo Academy_EventScript_TeamBuilder
 	
 Academy_EventScript_YarrowMenu:
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TeacherMenu
@@ -77,9 +77,6 @@ Academy_EventScript_YarrowLecture:
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_YarrowLecture3
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Tansy
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_TansyMenu:
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TeacherMenu
@@ -111,6 +108,13 @@ Academy_EventScript_TansyLecture:
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_TansyLecture3
 	WaitButton
 	Return
+	
+Academy_EventScript_TeamBuilder:
+	CloseMsg
+	// TODO(gba) special Academy_OpenTeamBuilder
+	GoTo _cv_stop
+	ReleaseAll
+	End
 	
 Academy_EventScript_Demo:
 	CopyVar 0x8004, 0x8008
@@ -154,13 +158,12 @@ Academy_EventScript_PickRentals:
 	// TODO(gba) special Academy_RentalBegin
 	GoTo _cv_stop
 	SetVar 0x8007, 1
-	End
+	GoTo Academy_EventScript_PickRentalLoop
 	
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -169,9 +172,6 @@ Academy_EventScript_Battle:
 	End
 _cv_won_6:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_5:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
@@ -205,9 +205,49 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
+	
+Academy_EventScript_PickRentalLoop:
+	BufferInt 0, 0x8007
+	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_RentalPick
+	// TODO(gba) special Academy_PushRentals
 	GoTo _cv_stop
-	End
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_10
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_10:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq Academy_EventScript_PickRentalCancel
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	// TODO(gba) special Academy_BufferRental
+	GoTo _cv_stop
+	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_Academy_Text_RentalInfo
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_11
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_12
+_cv_yes_11:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_12:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Academy_EventScript_PickRentalLoop
+	// TODO(gba) special Academy_TakeRental
+	GoTo _cv_stop
+	AddVar 0x8007, 1
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfLt Academy_EventScript_PickRentalLoop
+	SetVar VAR_SPECIAL_RESULT, 0
+	Return
+	
+Academy_EventScript_PickRentalCancel:
+	// TODO(gba) special Academy_RentalEnd
+	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 127
+	Return
 
 _cv_stop:
 	NPCMsg msg_0979_CV_CANVAS_ACADEMY_LECTURE_D_cv_unported

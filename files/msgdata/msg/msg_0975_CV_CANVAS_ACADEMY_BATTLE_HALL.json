@@ -47,16 +47,38 @@
       "en_US": "Come back anytime!"
     },
     {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallNext",
+      "en_US": [
+        "Battle {STRVAR_1 3, 1, 0}! Your\n",
+        "opponent: {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallWon",
+      "en_US": "That’s {STRVAR_1 3, 1, 0} in a row!"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallContinue",
+      "en_US": "Will you keep going?"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalReturn",
+      "en_US": [
+        "Your own Pokémon are back with\n",
+        "you."
+      ]
+    },
+    {
       "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateAsk",
       "en_US": [
         "{STRVAR_1 3, 0, 0} ({STRVAR_1 3, 2, 0},\n",
         "{STRVAR_1 3, 1, 0}): A practice battle,\r",
         "for BP?"
       ]
-    },
-    {
-      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText",
-      "en_US": "(missing text)"
     },
     {
       "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateHealed",
@@ -66,12 +88,31 @@
       ]
     },
     {
-      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateLater",
-      "en_US": "Anytime. I’ll be here."
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalPick",
+      "en_US": [
+        "Choose a rental Pokémon.\n",
+        "({STRVAR_1 3, 0, 0} of 3)"
+      ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalInfo",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\r",
+        "{STRVAR_1 3, 1, 0}\n",
+        "{STRVAR_1 3, 2, 0}\r",
+        "Take this one?"
+      ]
     },
     {
       "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeWinText",
       "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallLost",
+      "en_US": [
+        "That’s the end of your streak.\n",
+        "Well battled!"
+      ]
     },
     {
       "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_EarnedBP",
@@ -79,6 +120,10 @@
         "{STRVAR_1 3, 6, 0} earned {STRVAR_1 3, 0, 0} BP!\n",
         "(Total: {STRVAR_1 3, 1, 0} BP)"
       ]
+    },
+    {
+      "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateLater",
+      "en_US": "Anytime. I’ll be here."
     },
     {
       "id": "msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_cv_unported",

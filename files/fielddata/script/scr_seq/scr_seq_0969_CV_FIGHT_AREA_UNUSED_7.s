@@ -71,8 +71,7 @@ _cv_yes_1:
 _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymChallenge_EventScript_NotNow
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
+	CanvasCheckTeam 7, 0x5019
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe GymChallenge_EventScript_TeamBreaksRules
 	HealParty
@@ -212,7 +211,7 @@ GymDecor_EventScript_GymPC:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_BootedUpGymPC
 	WaitButton
-	End
+	GoTo GymDecor_EventScript_PCMenu
 	
 PalletTown_Gym_OnLoad:
 	End
@@ -255,7 +254,7 @@ GymFinale_EventScript_FirstDay:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakFirstDay
 	WaitButton
 	Call EventScript_TryReadyNationalDexScene
-	End
+	GoTo GymFinale_EventScript_AideAndLegend
 	
 PalletTown_Gym_EventScript_OakShowsGym:
 	LockAll
@@ -388,7 +387,7 @@ GymLegend_EventScript_ArrivesLater:
 	WaitButton
 	CloseMsg
 	ResetBGM
-	End
+	GoTo GymLegend_EventScript_ArrivesLaterEnd
 	
 Johto_EventScript_Invitation:
 	LockAll
@@ -1008,8 +1007,7 @@ _cv_yes_103:
 _cv_yn_104:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymFinale_EventScript_PutOff
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
+	CanvasCheckTeam 7, 0x5019
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe GymFinale_EventScript_TeamBreaksRules
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakThenShowMe
@@ -1020,8 +1018,7 @@ _cv_yn_104:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_105
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -1030,9 +1027,6 @@ _cv_yn_104:
 	End
 _cv_won_106:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_105:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -1153,8 +1147,7 @@ _cv_shown_118:
 	CloseMsg
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_119
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -1163,9 +1156,6 @@ _cv_shown_118:
 	End
 _cv_won_120:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_119:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -1205,8 +1195,7 @@ _cv_yn_124:
 	CloseMsg
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_125
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -1215,9 +1204,6 @@ _cv_yn_124:
 	End
 _cv_won_126:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_125:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
@@ -1264,7 +1250,7 @@ _cv_yes_129:
 _cv_yn_130:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
-	End
+	GoTo Gauntlet_EventScript_PilotMenu
 	
 Gauntlet_EventScript_AllBeaten:
 	GoToIfSet 0x2038, Gauntlet_EventScript_BillAgain
@@ -1369,6 +1355,33 @@ GymChallenge_EventScript_Statue:
 	ReleaseAll
 	End
 	
+GymDecor_EventScript_PCMenu:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhatToDo
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Buy, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Sell, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Decorate, 2
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_PutAllAway, 3
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_LogOff, 4
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_138
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_138:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_Buy
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymDecor_EventScript_Sell
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq GymDecor_EventScript_Decorate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq GymDecor_EventScript_PutAllAway
+	GoTo GymDecor_EventScript_LogOff
+	CloseMsg
+	End
+	
 PalletTown_Gym_EventScript_FirstVisitPeople:
 	SetFlag 0x2039
 	ClearFlag 0x2033
@@ -1385,18 +1398,48 @@ PalletTown_Gym_EventScript_ShowOak:
 	
 EventScript_TryReadyNationalDexScene:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_137
+	GoToIfUnset 0x2026, _cv_dex_139
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_137:
+_cv_dex_139:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	CallIfEq EventScript_SetReadyTryGiveNationalDexScene
 	Return
 	
+GymFinale_EventScript_AideAndLegend:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakMeetMyAide
+	WaitButton
+	ApplyMovement 1, Common_Movement_WalkInPlaceFasterRight
+	ApplyMovement obj_player, GymFinale_Movement_PlayerLookAtAide
+	WaitMovement
+	ApplyMovement 3, Common_Movement_WalkInPlaceFasterLeft
+	WaitMovement
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_AideHello
+	WaitButton
+	ApplyMovement 1, Common_Movement_WalkInPlaceFasterDown
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
+	WaitMovement
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks
+	WaitButton
+	CloseMsg
+	Call GymLegend_EventScript_Arrives
+	CloseMsg
+	ApplyMovement 1, PalletTown_Gym_Movement_OakLeave
+	WaitMovement
+	HidePerson 1
+	SetFlag 0x2034
+	PlaySE SEQ_SE_DP_KAIDAN2
+	SetFlag 0x2034
+	ResetBGM
+	ReleaseAll
+	End
+	
 EventScript_GiveHotAirBalloon:
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x202C, _cv_has_138
+	GoToIfUnset 0x202C, _cv_has_140
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_138:
+_cv_has_140:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_PalmPilotReturn
 	SetFlag 0x202C
@@ -1436,14 +1479,14 @@ GymLegend_EventScript_RivalWalksIn:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_139
+	GoToIfUnset 0x2033, _cv_show_141
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_140
-_cv_show_139:
+	GoTo _cv_shown_142
+_cv_show_141:
 	ShowPerson 2
-_cv_shown_140:
+_cv_shown_142:
 	ApplyMovement 2, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
@@ -1459,7 +1502,7 @@ GymLegend_EventScript_RivalWalksOut:
 	GoToIfEq GymLegend_EventScript_RivalVanishes
 	ApplyMovement 2, gMentorWalkOut
 	WaitMovement
-	End
+	GoTo GymLegend_EventScript_RivalVanishes
 	
 GymLegend_EventScript_Appears:
 	// TODO(gba) special GymLegend_Setup
@@ -1488,14 +1531,14 @@ GymLegend_EventScript_Appears:
 	WaitButton
 	CloseMsg
 	ClearFlag 0x203A
-	GoToIfUnset 0x203A, _cv_show_141
+	GoToIfUnset 0x203A, _cv_show_143
 	ClearFlag 0x203A
 	ShowPerson 16
 	SetFlag 0x203A
-	GoTo _cv_shown_142
-_cv_show_141:
+	GoTo _cv_shown_144
+_cv_show_143:
 	ShowPerson 16
-_cv_shown_142:
+_cv_shown_144:
 	Wait 40, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 1, RGB_WHITE
@@ -1656,8 +1699,9 @@ GymSwitch_EventScript_AnnounceMentor:
 	Return
 	
 GymChallenge_EventScript_ChallengerJumpsIn:
-	// TODO(gba) setobjectxy LOCALID_PALLET_GYM_CHALLENGER, VAR_0x8005, VAR_0x8006
-	GoTo _cv_stop
+	CopyVar 0x401E, 0x8005
+	CopyVar 0x401F, 0x8006
+	MovePersonFacing 4, 0x401E, 0, 0x401F, DIR_SOUTH
 	Return
 	
 GymChallenge_EventScript_Won:
@@ -1686,12 +1730,12 @@ GymChallenge_EventScript_Won:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_KeepGoing
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_143
+	GoToIfEq _cv_yes_145
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_144
-_cv_yes_143:
+	GoTo _cv_yn_146
+_cv_yes_145:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_144:
+_cv_yn_146:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	// TODO(gba) special GymChallenge_BufferRecord
@@ -1754,9 +1798,9 @@ Gauntlet_EventScript_PilotMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_146
+	GoToIfLt _cv_menu_148
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_146:
+_cv_menu_148:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Menu
 	GoTo Gauntlet_EventScript_PilotOff
@@ -1772,12 +1816,12 @@ Gauntlet_EventScript_Withdraw:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawConfirm
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_147
+	GoToIfEq _cv_yes_149
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_148
-_cv_yes_147:
+	GoTo _cv_yn_150
+_cv_yes_149:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_148:
+_cv_yn_150:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	GiveMon 0x8005, 70, 0, 0, 0, VAR_SPECIAL_RESULT
@@ -1799,15 +1843,15 @@ Gauntlet_EventScript_BillAgain:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillAgain
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_149
+	GoToIfEq _cv_yes_151
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_150
-_cv_yes_149:
+	GoTo _cv_yn_152
+_cv_yes_151:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_150:
+_cv_yn_152:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_BillWait
-	End
+	GoTo Gauntlet_EventScript_BillBattle
 	
 Gauntlet_EventScript_NotYet:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_NotYet
@@ -1829,30 +1873,26 @@ Gauntlet_EventScript_BillBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_151
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_152
+	GoToIfNe _cv_won_154
 	WhiteOut
 	End
-_cv_won_152:
+_cv_won_154:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_151:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_153
+	GoToIfNe _cv_outcome_155
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_154
-_cv_outcome_153:
+	GoTo _cv_outcome_156
+_cv_outcome_155:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_154
+	GoToIfNe _cv_outcome_156
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_154:
+_cv_outcome_156:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_BillWon
 	HealParty
@@ -1877,16 +1917,16 @@ Tourney_EventScript_MenuActive:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_156
+	GoToIfLt _cv_menu_158
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_156:
+_cv_menu_158:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Match
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Tourney_EventScript_Board
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	GoToIfEq Tourney_EventScript_Forfeit
-	End
+	GoTo Tourney_EventScript_NotNow
 	
 Tourney_EventScript_MenuSimBill:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillMenu
@@ -1898,9 +1938,9 @@ Tourney_EventScript_MenuSimBill:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_158
+	GoToIfLt _cv_menu_160
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_158:
+_cv_menu_160:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_SimBill
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1916,9 +1956,9 @@ Tourney_EventScript_MenuFirst:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_160
+	GoToIfLt _cv_menu_162
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_160:
+_cv_menu_162:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_Enter
 	GoTo Tourney_EventScript_NotNow
@@ -1951,7 +1991,7 @@ Tourney_EventScript_Enter:
 	Call Tourney_EventScript_SayFirst
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Tourney_EventScript_NotNow
-	End
+	GoTo Tourney_EventScript_Match
 	
 Tourney_EventScript_LastResults:
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -1987,8 +2027,105 @@ GymChallenge_EventScript_StatueUnbeaten:
 	ReleaseAll
 	End
 	
+GymDecor_EventScript_Buy:
+	SetVar 0x8007, 0
+	ShowMoneyBox 20, 2
+	GoTo GymDecor_EventScript_BuyCategory
+	
+GymDecor_EventScript_Sell:
+	SetVar 0x8007, 0
+	ShowMoneyBox 20, 2
+	GoTo GymDecor_EventScript_SellCategory
+	
+GymDecor_EventScript_Decorate:
+	// TODO(gba) special GymDecor_PushOwnedCategories
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_NothingOwned
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKindToPlace
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_164
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_164:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_PCMenu
+	CopyVar 0x8006, VAR_SPECIAL_RESULT
+	// TODO(gba) special GymDecor_PushOwnedList
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToPlace
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_166
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_166:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_Decorate
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	// TODO(gba) special GymDecor_GetKind
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfEq GymDecor_EventScript_SetWallStyle
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq GymDecor_EventScript_HowToPaint
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowToDecorate
+	WaitButton
+	GoTo GymDecor_EventScript_StartEditing
+	
+GymDecor_EventScript_PutAllAway:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmPutAllAway
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_167
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_168
+_cv_yes_167:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_168:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_PCMenu
+	// TODO(gba) special GymDecor_PutAllAway
+	GoTo _cv_stop
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_AllPutAway
+	WaitButton
+	GoTo GymDecor_EventScript_PCMenu
+	CloseMsg
+	End
+	
+GymDecor_EventScript_LogOff:
+	PlaySE SEQ_SE_DP_SELECT
+	CloseMsg
+	ReleaseAll
+	End
+	
 EventScript_SetReadyTryGiveNationalDexScene:
 	SetVar 0x5007, 2
+	Return
+	
+GymLegend_EventScript_Arrives:
+	Call GymLegend_EventScript_Appears
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymLegend_EventScript_Return
+	PlaySE SEQ_SE_DP_SELECT
+	ApplyMovement obj_player, Common_Movement_ExclamationMark
+	ApplyMovement 1, Common_Movement_ExclamationMark
+	WaitMovement
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth
+	WaitButton
+	// TODO(gba) special GymSwitch_HasSwitched
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymLegend_EventScript_OakCatchAnother
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt
+	WaitButton
 	Return
 	
 EventScript_PalmPilotReturn:
@@ -2005,17 +2142,17 @@ GymLegend_EventScript_RivalAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 2, 0x401E, 0x401F
 	ClearFlag 0x2033
-	GoToIfUnset 0x2033, _cv_show_161
+	GoToIfUnset 0x2033, _cv_show_169
 	ClearFlag 0x2033
 	ShowPerson 2
 	SetFlag 0x2033
-	GoTo _cv_shown_162
-_cv_show_161:
+	GoTo _cv_shown_170
+_cv_show_169:
 	ShowPerson 2
-_cv_shown_162:
+_cv_shown_170:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymLegend_EventScript_RivalNoRoom
 	
 GymLegend_EventScript_RivalVanishes:
 	HidePerson 2
@@ -2029,7 +2166,7 @@ GymLegend_EventScript_RivalVanishes:
 GymLegend_EventScript_NoLegend:
 	SetVar 0x5014, 4
 	SetVar VAR_SPECIAL_RESULT, 0
-	End
+	GoTo GymLegend_EventScript_Return
 	
 GymCandidate_EventScript_MentorAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -2045,7 +2182,7 @@ GymCandidate_EventScript_MentorAppears:
 	ShowPerson 0x800A
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
 	CloseMsg
@@ -2085,8 +2222,12 @@ GymFinale_EventScript_HallOfFame:
 	SetVar 0x5005, 4
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special EnterHallOfFame
-	GoTo _cv_stop
+	CanvasHallOfFame
+	RestoreOverworld
+	SetVar 0x502E, 1
+	Warp MAP_INDIGO_PLATEAU, 0, 978, 108, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -2103,36 +2244,6 @@ GymFinale_EventScript_Badge:
 	GoTo _cv_stop
 	Return
 	
-GymFinale_EventScript_AideAndLegend:
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakMeetMyAide
-	WaitButton
-	ApplyMovement 1, Common_Movement_WalkInPlaceFasterRight
-	ApplyMovement obj_player, GymFinale_Movement_PlayerLookAtAide
-	WaitMovement
-	ApplyMovement 3, Common_Movement_WalkInPlaceFasterLeft
-	WaitMovement
-	BufferPlayersName 6
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_AideHello
-	WaitButton
-	ApplyMovement 1, Common_Movement_WalkInPlaceFasterDown
-	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
-	WaitMovement
-	BufferPlayersName 6
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks
-	WaitButton
-	CloseMsg
-	Call GymLegend_EventScript_Arrives
-	CloseMsg
-	ApplyMovement 1, PalletTown_Gym_Movement_OakLeave
-	WaitMovement
-	HidePerson 1
-	SetFlag 0x2034
-	PlaySE SEQ_SE_DP_KAIDAN2
-	SetFlag 0x2034
-	ResetBGM
-	ReleaseAll
-	End
-	
 GymChallenge_EventScript_ChallengerLeaves:
 	CloseMsg
 	SetVar 0x8004, 1
@@ -2143,7 +2254,7 @@ GymChallenge_EventScript_ChallengerLeaves:
 	ApplyMovement 4, gGymChallengeChallengerPath
 	WaitMovement
 	PlaySE SEQ_SE_DP_KAIDAN2
-	End
+	GoTo GymChallenge_EventScript_ChallengerGone
 	
 GymChallenge_EventScript_NewRecord:
 	PlayFanfare SEQ_ME_LVUP
@@ -2165,7 +2276,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymSwitch_EventScript_Mastered:
 	PlayFanfare SEQ_ME_ITEM
@@ -2187,9 +2298,9 @@ GymSwitch_EventScript_KeepGoingOrRetire:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_164
+	GoToIfLt _cv_menu_172
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_164:
+_cv_menu_172:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymChallenge_EventScript_KeepGoing
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -2222,19 +2333,19 @@ GymSwitch_EventScript_OakComes:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_165
+	GoToIfUnset 0x2034, _cv_show_173
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_166
-_cv_show_165:
+	GoTo _cv_shown_174
+_cv_show_173:
 	ShowPerson 1
-_cv_shown_166:
+_cv_shown_174:
 	ApplyMovement 1, gMentorWalkIn
 	WaitMovement
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymSwitch_EventScript_OakHere
 	
 Gauntlet_EventScript_PilotMenuWithdraw:
 	TouchscreenMenuHide
@@ -2245,14 +2356,14 @@ Gauntlet_EventScript_PilotMenuWithdraw:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_168
+	GoToIfLt _cv_menu_176
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_168:
+_cv_menu_176:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Tourney_EventScript_Menu
-	End
+	GoTo Gauntlet_EventScript_PilotOff
 	
 Gauntlet_EventScript_PilotOff:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_PilotOff
@@ -2300,14 +2411,14 @@ Gauntlet_EventScript_BillWon:
 	GoTo _cv_stop
 	HidePerson 17
 	SetFlag 0x2035
-	GoToIfUnset 0x2035, _cv_show_169
+	GoToIfUnset 0x2035, _cv_show_177
 	ClearFlag 0x2035
 	ShowPerson 17
 	SetFlag 0x2035
-	GoTo _cv_shown_170
-_cv_show_169:
+	GoTo _cv_shown_178
+_cv_show_177:
 	ShowPerson 17
-_cv_shown_170:
+_cv_shown_178:
 	Wait 60, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
@@ -2343,7 +2454,7 @@ Tourney_EventScript_Match:
 	CloseMsg
 	ApplyMovement obj_player, gGymChallengePlayerPath
 	WaitMovement
-	End
+	GoTo Tourney_EventScript_NextMatch
 	
 Tourney_EventScript_Board:
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -2381,30 +2492,26 @@ Tourney_EventScript_SimBill:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_171
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_172
+	GoToIfNe _cv_won_180
 	WhiteOut
 	End
-_cv_won_172:
+_cv_won_180:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_171:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_173
+	GoToIfNe _cv_outcome_181
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_174
-_cv_outcome_173:
+	GoTo _cv_outcome_182
+_cv_outcome_181:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_174
+	GoToIfNe _cv_outcome_182
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_174:
+_cv_outcome_182:
 	HealParty
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Tourney_EventScript_SimBillWon
@@ -2424,12 +2531,12 @@ Tourney_EventScript_SayRules:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Rules
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_175
+	GoToIfEq _cv_yes_183
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_176
-_cv_yes_175:
+	GoTo _cv_yn_184
+_cv_yes_183:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_176:
+_cv_yn_184:
 	Return
 	
 Tourney_EventScript_BreaksClause:
@@ -2449,9 +2556,9 @@ Tourney_EventScript_SimFormat:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_178
+	GoToIfLt _cv_menu_186
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_178:
+_cv_menu_186:
 	// TODO(gba) special Tourney_SetSimFormat
 	GoTo _cv_stop
 	CloseMsg
@@ -2470,18 +2577,100 @@ Tourney_EventScript_SayFirst:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_First
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_179
+	GoToIfEq _cv_yes_187
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_180
-_cv_yes_179:
+	GoTo _cv_yn_188
+_cv_yes_187:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_180:
+_cv_yn_188:
 	Return
 	
 Tourney_EventScript_SayChampion:
 	CompareVarToValue 0x501B, 4
 	GoToIfEq Tourney_EventScript_SayChampionSim
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Champion
+	WaitButton
+	Return
+	
+GymDecor_EventScript_BuyCategory:
+	// TODO(gba) special GymDecor_PushShopCategories
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKind
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_190
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_190:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_BuyDone
+	CopyVar 0x8006, VAR_SPECIAL_RESULT
+	CopyVar 0x8007, VAR_SPECIAL_RESULT
+	SetVar 0x8005, 0
+	GoTo GymDecor_EventScript_BuyLoop
+	
+GymDecor_EventScript_SellCategory:
+	// TODO(gba) special GymDecor_PushSellCategories
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_NothingToSell
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKindToSell
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_192
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_192:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_SellDone
+	CopyVar 0x8006, VAR_SPECIAL_RESULT
+	CopyVar 0x8007, VAR_SPECIAL_RESULT
+	SetVar 0x8005, 0
+	GoTo GymDecor_EventScript_SellLoop
+	
+GymDecor_EventScript_NothingOwned:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NothingOwned
+	WaitButton
+	GoTo GymDecor_EventScript_PCMenu
+	CloseMsg
+	End
+	
+GymDecor_EventScript_SetWallStyle:
+	// TODO(gba) special GymDecor_ApplyWallStyle
+	GoTo _cv_stop
+	// TODO(gba) special GymDecor_BufferDecorInfo
+	GoTo _cv_stop
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WallsChanged
+	WaitButton
+	GoTo GymDecor_EventScript_PCMenu
+	CloseMsg
+	End
+	
+GymDecor_EventScript_HowToPaint:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowToPaint
+	WaitButton
+	GoTo GymDecor_EventScript_StartEditing
+	CloseMsg
+	End
+	
+GymDecor_EventScript_StartEditing:
+	CloseMsg
+	ReleaseAll
+	// TODO(gba) special GymDecor_StartEditing
+	GoTo _cv_stop
+	End
+	
+GymLegend_EventScript_Return:
+	Return
+	
+GymLegend_EventScript_OakCatchAnother:
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother
 	WaitButton
 	Return
 	
@@ -2513,32 +2702,11 @@ EventScript_GymHack_MsgDuplicateItem:
 EventScript_SetDefeatedEliteFourFlagsVars:
 	ClearFlag 0x203C
 	Call EventScript_ResetEliteFour
-	// TODO(gba) special Script_UpdateTrainerFanClubGameClear
-	GoTo _cv_stop
 	CompareVarToValue 0x5004, 0
 	CallIfEq EventScript_GymHack_StartGymFinale
 	CompareVarToValue 0x5004, 3
 	CallIfEq EventScript_TryReadyNationalDexScene
 	Call EventScript_ResetLegendaries
-	Return
-	
-GymLegend_EventScript_Arrives:
-	Call GymLegend_EventScript_Appears
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymLegend_EventScript_Return
-	PlaySE SEQ_SE_DP_SELECT
-	ApplyMovement obj_player, Common_Movement_ExclamationMark
-	ApplyMovement 1, Common_Movement_ExclamationMark
-	WaitMovement
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth
-	WaitButton
-	// TODO(gba) special GymSwitch_HasSwitched
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq GymLegend_EventScript_OakCatchAnother
-	BufferPlayersName 6
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt
-	WaitButton
 	Return
 	
 GymChallenge_EventScript_ChallengerGone:
@@ -2570,16 +2738,62 @@ GymSwitch_EventScript_OakAppears:
 	CopyVar 0x401F, 0x8006
 	MovePerson 1, 0x401E, 0x401F
 	ClearFlag 0x2034
-	GoToIfUnset 0x2034, _cv_show_181
+	GoToIfUnset 0x2034, _cv_show_193
 	ClearFlag 0x2034
 	ShowPerson 1
 	SetFlag 0x2034
-	GoTo _cv_shown_182
-_cv_show_181:
+	GoTo _cv_shown_194
+_cv_show_193:
 	ShowPerson 1
-_cv_shown_182:
+_cv_shown_194:
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
+	GoTo GymSwitch_EventScript_OakNoRoom
+	
+GymSwitch_EventScript_OakHere:
+	// TODO(gba) special GymSwitch_BufferStatus
+	GoTo _cv_stop
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered
+	WaitButton
+	HasItem 1833, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq GymSwitch_EventScript_OakTeraTip
+	// TODO(gba) special GymSwitch_CanTakeNewType
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymSwitch_EventScript_OakNothingToOffer
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_195
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_196
+_cv_yes_195:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_196:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymSwitch_EventScript_OakDeclined
+	SetVar 0x8004, 1
+	Call GymSwitch_EventScript_ChooseType
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymSwitch_EventScript_OakDeclined
+	CompareVarToValue 0x5014, 5
+	GoToIfNe GymSwitch_EventScript_OakLeaves
+	CloseMsg
+	Call GymLegend_EventScript_Arrives
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	HidePerson 1
+	SetFlag 0x2034
+	SetFlag 0x2034
+	// TODO(gba) special GymCandidate_FaceBack
+	GoTo _cv_stop
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	ResetBGM
+	ReleaseAll
 	End
 	
 Tourney_EventScript_SayNextSim:
@@ -2600,6 +2814,76 @@ Tourney_EventScript_SayTakeYourPlace:
 	GoToIfEq Tourney_EventScript_Return
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_TakeYourPlace
 	WaitButton
+	GoTo Tourney_EventScript_Return
+	
+Tourney_EventScript_NextMatch:
+	// TODO(gba) special Tourney_SetupNext
+	GoTo _cv_stop
+	Call Tourney_EventScript_SayAnnounce
+	CloseMsg
+	ClearFlag 0x2017
+	GoToIfUnset 0x2017, _cv_show_197
+	ClearFlag 0x2017
+	ShowPerson 4
+	SetFlag 0x2017
+	GoTo _cv_shown_198
+_cv_show_197:
+	ShowPerson 4
+_cv_shown_198:
+	SetVar 0x8004, 0
+	// TODO(gba) special GymChallenge_PlanChallengerWalk
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	CallIfEq GymChallenge_EventScript_ChallengerJumpsIn
+	ApplyMovement 4, gGymChallengeChallengerPath
+	WaitMovement
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
+	WaitButton
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special Tourney_ShowTitleCard
+	GoTo _cv_stop
+	ClearTrainerFlag 1442
+	SetFlag 0x2036
+	CanvasCloseMsg
+	TrainerBattle 1442, 0, 0, 0
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_won_200
+	WhiteOut
+	End
+_cv_won_200:
+	SetTrainerFlag 1442
+	ClearFlag 0x2036
+	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_outcome_201
+	SetVar VAR_SPECIAL_RESULT, 7
+	GoTo _cv_outcome_202
+_cv_outcome_201:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_outcome_202
+	SetVar VAR_SPECIAL_RESULT, 4
+_cv_outcome_202:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Tourney_EventScript_Won
+	HealParty
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeWinText
+	WaitButton
+	Call GymChallenge_EventScript_ChallengerLeaves
+	// TODO(gba) special Tourney_RecordLoss
+	GoTo _cv_stop
+	Call Tourney_EventScript_SayLost
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special Tourney_ShowBoard
+	GoTo _cv_stop
+	// TODO(gba) special Tourney_BufferChampion
+	GoTo _cv_stop
+	Call Tourney_EventScript_SayChampion
+	CloseMsg
+	ReleaseAll
 	End
 	
 Tourney_EventScript_SayForfeitAsk:
@@ -2608,12 +2892,12 @@ Tourney_EventScript_SayForfeitAsk:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ForfeitAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_183
+	GoToIfEq _cv_yes_203
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_184
-_cv_yes_183:
+	GoTo _cv_yn_204
+_cv_yes_203:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_184:
+_cv_yn_204:
 	Return
 	
 Tourney_EventScript_SimForfeited:
@@ -2632,12 +2916,12 @@ Tourney_EventScript_SimBillWon:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_WithdrawAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_185
+	GoToIfEq _cv_yes_205
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_186
-_cv_yes_185:
+	GoTo _cv_yn_206
+_cv_yes_205:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_186:
+_cv_yn_206:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq Gauntlet_EventScript_Withdraw
 	CloseMsg
@@ -2648,12 +2932,12 @@ Tourney_EventScript_SayRulesSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimStart
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_187
+	GoToIfEq _cv_yes_207
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_188
-_cv_yes_187:
+	GoTo _cv_yn_208
+_cv_yes_207:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_188:
+_cv_yn_208:
 	Return
 	
 Tourney_EventScript_SpeciesClause:
@@ -2679,12 +2963,12 @@ Tourney_EventScript_SayFirstSim:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimFirst
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_189
+	GoToIfEq _cv_yes_209
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_190
-_cv_yes_189:
+	GoTo _cv_yn_210
+_cv_yes_209:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_190:
+_cv_yn_210:
 	Return
 	
 Tourney_EventScript_SayChampionSim:
@@ -2692,7 +2976,111 @@ Tourney_EventScript_SayChampionSim:
 	WaitButton
 	Return
 	
+GymDecor_EventScript_BuyDone:
+	HideMoneyBox
+	GoTo GymDecor_EventScript_PCMenu
+	End
+	
+GymDecor_EventScript_BuyLoop:
+	// TODO(gba) special GymDecor_PushShopList
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToBuy
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_212
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_212:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_BuyCategory
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	CopyVar 0x8005, VAR_SPECIAL_RESULT
+	SetVar 0x8009, 1
+	// TODO(gba) special GymDecor_GetKind
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfGe GymDecor_EventScript_ConfirmBuy
+	// TODO(gba) special GymDecor_BufferDecorInfo
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowMany
+	// TODO(gba) special GymDecor_ChooseQuantity
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_BuyLoop
+	CopyVar 0x8009, VAR_SPECIAL_RESULT
+	GoTo GymDecor_EventScript_ConfirmBuy
+	
+GymDecor_EventScript_NothingToSell:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NothingToSell
+	WaitButton
+	GoTo GymDecor_EventScript_SellDone
+	
+GymDecor_EventScript_SellDone:
+	HideMoneyBox
+	GoTo GymDecor_EventScript_PCMenu
+	End
+	
+GymDecor_EventScript_SellLoop:
+	// TODO(gba) special GymDecor_PushSellList
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_SellCategory
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToSell
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_214
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_214:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq GymDecor_EventScript_SellCategory
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	CopyVar 0x8005, VAR_SPECIAL_RESULT
+	SetVar 0x8009, 1
+	// TODO(gba) special GymDecor_BufferSellInfo
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowManyToSell
+	// TODO(gba) special GymDecor_ChooseSellQuantity
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_SellLoop
+	CopyVar 0x8009, VAR_SPECIAL_RESULT
+	// TODO(gba) special GymDecor_BufferSellInfo
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmSell
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_215
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_216
+_cv_yes_215:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_216:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_SellLoop
+	// TODO(gba) special GymDecor_Sell
+	GoTo _cv_stop
+	UpdateMoneyBox
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Sold
+	WaitButton
+	GoTo GymDecor_EventScript_SellLoop
+	CloseMsg
+	End
+	
 EventScript_ResetEliteFour:
+	SetFlag FLAG_HIDE_WILLS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_WILLS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KOGAS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KOGAS_ROOM_EXIT
+	SetFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KARENS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KARENS_ROOM_EXIT
 	ClearFlag 0x203D
 	ClearFlag 0x203E
 	ClearFlag 0x203F
@@ -2717,97 +3105,10 @@ EventScript_ResetLegendaries:
 	ClearFlag 0x2044
 	Return
 	
-GymLegend_EventScript_Return:
-	Return
-	
-GymLegend_EventScript_OakCatchAnother:
-	BufferPlayersName 6
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother
-	WaitButton
-	Return
-	
 GymSwitch_EventScript_OakNoRoom:
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	GoTo GymSwitch_EventScript_OakHere
-	End
-	
-Tourney_EventScript_SimWrongTeam:
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-Tourney_EventScript_Return:
-	Return
-	
-Tourney_EventScript_SayForfeitAskSim:
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_191
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_192
-_cv_yes_191:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_192:
-	Return
-	
-Tourney_EventScript_SimSpeciesClause:
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimSpeciesClause
-	WaitButton
-	Return
-	
-Tourney_EventScript_SimItemClause:
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimItemClause
-	WaitButton
-	Return
-	
-GymSwitch_EventScript_OakHere:
-	// TODO(gba) special GymSwitch_BufferStatus
-	GoTo _cv_stop
-	BufferPlayersName 6
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered
-	WaitButton
-	HasItem 1833, 1, VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	CallIfEq GymSwitch_EventScript_OakTeraTip
-	// TODO(gba) special GymSwitch_CanTakeNewType
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymSwitch_EventScript_OakNothingToOffer
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_193
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_194
-_cv_yes_193:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_194:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymSwitch_EventScript_OakDeclined
-	SetVar 0x8004, 1
-	Call GymSwitch_EventScript_ChooseType
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq GymSwitch_EventScript_OakDeclined
-	CompareVarToValue 0x5014, 5
-	GoToIfNe GymSwitch_EventScript_OakLeaves
-	CloseMsg
-	Call GymLegend_EventScript_Arrives
-	CloseMsg
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	HidePerson 1
-	SetFlag 0x2034
-	SetFlag 0x2034
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
-	FadeScreen 6, 1, 1, RGB_BLACK
-	WaitFade
-	ResetBGM
-	ReleaseAll
 	End
 	
 GymSwitch_EventScript_OakTeraTip:
@@ -2832,7 +3133,7 @@ GymSwitch_EventScript_OakNothingToOffer:
 GymSwitch_EventScript_OakDeclined:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakOfferStands
 	WaitButton
-	End
+	GoTo GymSwitch_EventScript_OakLeaves
 	
 GymSwitch_EventScript_ChooseType:
 	CompareVarToValue 0x8004, 1
@@ -2851,6 +3152,99 @@ GymSwitch_EventScript_OakLeaves:
 	ApplyMovement 1, gMentorWalkOut
 	WaitMovement
 	PlaySE SEQ_SE_DP_KAIDAN2
+	GoTo GymSwitch_EventScript_OakGone
+	
+Tourney_EventScript_SimWrongTeam:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Tourney_EventScript_Return:
+	Return
+	
+Tourney_EventScript_SayAnnounce:
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SayAnnounceSim
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Announce
+	WaitButton
+	Return
+	
+Tourney_EventScript_Won:
+	HealParty
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeAfterText
+	WaitButton
+	Call GymChallenge_EventScript_ChallengerLeaves
+	// TODO(gba) special Tourney_RollPrize
+	GoTo _cv_stop
+	Call Tourney_EventScript_Prize
+	// TODO(gba) special Tourney_RecordWin
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Tourney_EventScript_Title
+	Call Tourney_EventScript_SayWon
+	GoTo Tourney_EventScript_BetweenRounds
+	
+Tourney_EventScript_SayLost:
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SayLostSim
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Lost
+	WaitButton
+	Return
+	
+Tourney_EventScript_SayForfeitAskSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_217
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_218
+_cv_yes_217:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_218:
+	Return
+	
+Tourney_EventScript_SimSpeciesClause:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimSpeciesClause
+	WaitButton
+	Return
+	
+Tourney_EventScript_SimItemClause:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimItemClause
+	WaitButton
+	Return
+	
+GymDecor_EventScript_ConfirmBuy:
+	// TODO(gba) special GymDecor_BufferDecorInfo
+	GoTo _cv_stop
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmBuy
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_219
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_220
+_cv_yes_219:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_220:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq GymDecor_EventScript_BuyLoop
+	// TODO(gba) special GymDecor_TryBuy
+	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq GymDecor_EventScript_NotEnoughMoney
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq GymDecor_EventScript_StorageFull
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq GymDecor_EventScript_AlreadyHave
+	UpdateMoneyBox
+	// TODO(gba) special GymDecor_BufferDecorInfo
+	GoTo _cv_stop
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Bought
+	WaitButton
+	GoTo GymDecor_EventScript_BuyLoop
+	CloseMsg
 	End
 	
 GymSwitch_EventScript_OakAllMastered:
@@ -2863,7 +3257,7 @@ GymSwitch_EventScript_OakAllMastered:
 	
 GymSwitch_EventScript_AskNewType:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_WhichType
-	End
+	GoTo GymSwitch_EventScript_TypeMenu
 	
 GymSwitch_EventScript_TypeMenu:
 	// TODO(gba) special GymSwitch_PushTypes
@@ -2873,9 +3267,9 @@ GymSwitch_EventScript_TypeMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_196
+	GoToIfLt _cv_menu_222
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_196:
+_cv_menu_222:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymSwitch_EventScript_ChoiceCancelled
 	// TODO(gba) special GymSwitch_BufferChoice
@@ -2886,12 +3280,12 @@ _cv_menu_196:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmOld
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_197
+	GoToIfEq _cv_yes_223
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_198
-_cv_yes_197:
+	GoTo _cv_yn_224
+_cv_yes_223:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_198:
+_cv_yn_224:
 	GoTo GymSwitch_EventScript_Confirmed
 	CloseMsg
 	End
@@ -2906,6 +3300,92 @@ GymSwitch_EventScript_OakGone:
 	ReleaseAll
 	End
 	
+Tourney_EventScript_SayAnnounceSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimAnnounce
+	WaitButton
+	Return
+	
+Tourney_EventScript_Prize:
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq Tourney_EventScript_RarePrize
+	CompareVarToValue 0x501B, 4
+	CallIfEq Tourney_EventScript_PrizeSim
+	CompareVarToValue 0x501B, 4
+	CallIfNe Tourney_EventScript_PrizeReal
+	Call GymHack_EventScript_GiveStatItem
+	Return
+	
+Tourney_EventScript_Title:
+	PlayFanfare SEQ_ME_ITEM
+	BufferPlayersName 6
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Title
+	WaitFanfare
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SimTitle
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_TitleHall
+	WaitButton
+	CompareVarToValue 0x501B, 3
+	CallIfEq Tourney_EventScript_FirstTitle
+	CloseMsg
+	ReleaseAll
+	End
+	
+Tourney_EventScript_SayWon:
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SayWonSim
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Won
+	Return
+	
+Tourney_EventScript_BetweenRounds:
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptNext, 0
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptBoard, 1
+	ScrCmd_559 msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptRest, 2
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_226
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_226:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Tourney_EventScript_Continue
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Tourney_EventScript_BoardBetween
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SimBreak
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Break
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Tourney_EventScript_SayLostSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimLost
+	WaitButton
+	Return
+	
+GymDecor_EventScript_NotEnoughMoney:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NotEnoughMoney
+	WaitButton
+	GoTo GymDecor_EventScript_BuyLoop
+	CloseMsg
+	End
+	
+GymDecor_EventScript_StorageFull:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_StorageFull
+	WaitButton
+	GoTo GymDecor_EventScript_BuyLoop
+	CloseMsg
+	End
+	
+GymDecor_EventScript_AlreadyHave:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_AlreadyHave
+	WaitButton
+	GoTo GymDecor_EventScript_BuyLoop
+	CloseMsg
+	End
+	
 GymSwitch_EventScript_ChoiceCancelled:
 	SetVar VAR_SPECIAL_RESULT, 0
 	Return
@@ -2914,13 +3394,13 @@ GymSwitch_EventScript_ConfirmNew:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmNew
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_199
+	GoToIfEq _cv_yes_227
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_200
-_cv_yes_199:
+	GoTo _cv_yn_228
+_cv_yes_227:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_200:
-	End
+_cv_yn_228:
+	GoTo GymSwitch_EventScript_Confirmed
 	
 GymSwitch_EventScript_Confirmed:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -2946,6 +3426,75 @@ GymSwitch_EventScript_Confirmed:
 	SetVar VAR_SPECIAL_RESULT, 1
 	Return
 	
+Tourney_EventScript_RarePrize:
+	CompareVarToValue 0x501B, 4
+	CallIfEq Tourney_EventScript_RarePrizeSim
+	CompareVarToValue 0x501B, 4
+	CallIfNe Tourney_EventScript_RarePrizeReal
+	Call GymHack_EventScript_GiveStatItem
+	Return
+	
+Tourney_EventScript_PrizeSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_PrizeSim
+	WaitButton
+	Return
+	
+Tourney_EventScript_PrizeReal:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_Prize
+	WaitButton
+	Return
+	
+Tourney_EventScript_SimTitle:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_TitleHall
+	WaitButton
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillNext
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_229
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_230
+_cv_yes_229:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_230:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Tourney_EventScript_SimBill
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillLater
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Tourney_EventScript_FirstTitle:
+	PlaySE SEQ_SE_DP_SELECT
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_LastOne
+	WaitButton
+	Return
+	
+Tourney_EventScript_SayWonSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWon
+	Return
+	
+Tourney_EventScript_Continue:
+	CloseMsg
+	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterDown
+	WaitMovement
+	GoTo Tourney_EventScript_NextMatch
+	
+Tourney_EventScript_BoardBetween:
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	// TODO(gba) special Tourney_ShowBoard
+	GoTo _cv_stop
+	Call Tourney_EventScript_SayNextQuestion
+	GoTo Tourney_EventScript_BetweenRounds
+	
+Tourney_EventScript_SimBreak:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBreak
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 Outfits_EventScript_AllGymUniforms:
 	// TODO(gba) special Outfit_UnlockAllGymUniforms
 	GoTo _cv_stop
@@ -2970,7 +3519,27 @@ GymSwitch_EventScript_NewTypeTips:
 	SetVar VAR_SPECIAL_RESULT, 1
 	Return
 	
+Tourney_EventScript_RarePrizeSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_RarePrizeSim
+	WaitButton
+	Return
+	
+Tourney_EventScript_RarePrizeReal:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_RarePrize
+	WaitButton
+	Return
+	
+Tourney_EventScript_SayNextQuestion:
+	CompareVarToValue 0x501B, 4
+	GoToIfEq Tourney_EventScript_SayNextQuestionSim
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ContinueOrBreak
+	Return
+	
 Outfits_EventScript_Return:
+	Return
+	
+Tourney_EventScript_SayNextQuestionSim:
+	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimContinue
 	Return
 
 _cv_unported_21:
@@ -3083,6 +3652,16 @@ gGymChallengeChallengerPath:
 	EndMovement
 
 	.balign 4, 0
+Common_Movement_WalkInPlaceFasterRight:
+	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
+GymFinale_Movement_PlayerLookAtAide:
+	WalkOnSpotFasterEast
+	EndMovement
+
+	.balign 4, 0
 gMentorWalkIn:
 	EndMovement
 
@@ -3096,16 +3675,6 @@ gGymLegendCameraIn:
 
 	.balign 4, 0
 gGymLegendCameraOut:
-	EndMovement
-
-	.balign 4, 0
-Common_Movement_WalkInPlaceFasterRight:
-	WalkOnSpotFasterEast
-	EndMovement
-
-	.balign 4, 0
-GymFinale_Movement_PlayerLookAtAide:
-	WalkOnSpotFasterEast
 	EndMovement
 
 	.balign 4, 0

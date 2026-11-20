@@ -6,6 +6,183 @@
       "en_US": "{STRVAR_1 3, 6, 0} booted up the Gym PC."
     },
     {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhatToDo",
+      "en_US": "What would you like to do?"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_Buy",
+      "en_US": "Buy Decorations"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_Sell",
+      "en_US": "Sell Decorations"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_Decorate",
+      "en_US": "Decorate"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_PutAllAway",
+      "en_US": "Put All Away"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_LogOff",
+      "en_US": "Log Off"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichKindToPlace",
+      "en_US": [
+        "What kind of decoration will\n",
+        "you start with?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichToPlace",
+      "en_US": [
+        "Which decoration will you\n",
+        "start with?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_HowToDecorate",
+      "en_US": [
+        "Walk anywhere in the Gym. The\n",
+        "decoration appears in front of you,\f",
+        "in red where it can’t go.\r",
+        "A: place it. Start: turn it.\n",
+        "Select: pick up the one in front,\f",
+        "to move it (L/R: back to storage).\r",
+        "L and R: switch decorations.\n",
+        "B: finish decorating."
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_ConfirmPutAllAway",
+      "en_US": [
+        "Put all the decorations back in\n",
+        "storage? Floors and walls stay."
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_AllPutAway",
+      "en_US": "Everything’s back in storage."
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichKind",
+      "en_US": "What kind of decoration?"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichKindToSell",
+      "en_US": [
+        "What kind of decoration will\n",
+        "you sell?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_NothingOwned",
+      "en_US": [
+        "There aren’t any decorations in\n",
+        "storage. Buy some first!"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WallsChanged",
+      "en_US": [
+        "The Gym’s walls are now\n",
+        "{STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_HowToPaint",
+      "en_US": [
+        "Walk anywhere in the Gym. A paints\n",
+        "the square in front of you.\r",
+        "Hold A down as you walk to paint\n",
+        "every square you face.\r",
+        "Select: fill the whole area of\n",
+        "floor in front with it (or pick\f",
+        "up a piece in front).\r",
+        "L and R: switch to a decoration\n",
+        "or another floor. B: finish."
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichToBuy",
+      "en_US": [
+        "Which decoration would you\n",
+        "like to buy?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_HowMany",
+      "en_US": "{STRVAR_1 3, 0, 0}? How many?"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_NothingToSell",
+      "en_US": [
+        "There’s nothing in storage to\n",
+        "sell. (Placed pieces have to be\f",
+        "put away first.)"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_WhichToSell",
+      "en_US": [
+        "Which decoration will you\n",
+        "sell? (Only ones in storage.)"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_HowManyToSell",
+      "en_US": "{STRVAR_1 3, 0, 0}? How many?"
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_ConfirmSell",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}?\n",
+        "You’ll get ¥{STRVAR_1 3, 1, 0}. OK?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_Sold",
+      "en_US": [
+        "Sold {STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}\n",
+        "for ¥{STRVAR_1 3, 1, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_ConfirmBuy",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}?\n",
+        "That’ll be ¥{STRVAR_1 3, 1, 0}. OK?"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_Bought",
+      "en_US": [
+        "Sent {STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}\n",
+        "to the Gym’s storage!"
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_NotEnoughMoney",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_StorageFull",
+      "en_US": [
+        "The Gym can’t store any more\n",
+        "of those."
+      ]
+    },
+    {
+      "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_GymDecor_Text_AlreadyHave",
+      "en_US": [
+        "You already have that one. It\n",
+        "can be used as much as you like!"
+      ]
+    },
+    {
       "id": "msg_0858_CV_FIGHT_AREA_UNUSED_9_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

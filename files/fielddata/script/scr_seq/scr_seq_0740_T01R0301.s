@@ -852,7 +852,7 @@ LeaderAide_EventScript_Again:
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_LeaderAide_Text_Again
 	WaitButton
-	End
+	GoTo LeaderAide_EventScript_Menu
 	
 LeaderAide_EventScript_Menu:
 	NPCMsg msg_0451_T01R0301_LeaderAide_Text_WhichTopic
@@ -1389,7 +1389,7 @@ GymRooms_EventScript_BackRoom:
 GymRooms_EventScript_LeftRoom:
 	NPCMsg msg_0451_T01R0301_GymRooms_Text_OakLeftRoom
 	WaitButton
-	End
+	GoTo GymRooms_EventScript_Give
 	
 GymRooms_EventScript_Give:
 	CompareVarToValue 0x8004, 1
@@ -1524,7 +1524,7 @@ _cv_menu_115:
 _cv_menu_117:
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	CallIfEq EventMons_EventScript_QuizRight
-	End
+	GoTo EventMons_EventScript_QuizScore
 	
 EventMons_EventScript_QuizRight:
 	AddVar 0x800A, 1
@@ -1580,7 +1580,7 @@ GymSwitch_EventScript_LabGoal:
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_GymSwitch_Text_LabGoal
 	WaitButton
-	End
+	GoTo GymSwitch_EventScript_Return
 	
 GymSwitch_EventScript_LabMidStreak:
 	BufferPlayersName 6
@@ -1602,7 +1602,7 @@ GymSwitch_EventScript_LabOffer:
 _cv_yes_119:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_120:
-	End
+	GoTo GymSwitch_EventScript_LabAnswer
 	
 GymSwitch_EventScript_LabAnswer:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -2592,7 +2592,7 @@ EventMons_EventScript_GiftFull:
 	
 GymSwitch_EventScript_AskNewType:
 	NPCMsg msg_0451_T01R0301_GymSwitch_Text_WhichType
-	End
+	GoTo GymSwitch_EventScript_TypeMenu
 	
 GymSwitch_EventScript_TypeMenu:
 	// TODO(gba) special GymSwitch_PushTypes
@@ -2689,7 +2689,7 @@ GymCandidate_EventScript_MentorAppears:
 	ShowPerson 0x800A
 	// TODO(gba) special GymCandidate_FaceGuest
 	GoTo _cv_stop
-	End
+	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
 	CloseMsg
@@ -2728,6 +2728,7 @@ PalletTown_ProfessorOaksLab_EventScript_RivalWalksToSquirtle:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_182
 	TrainerBattle 742, 0, 1, 0
@@ -2795,6 +2796,7 @@ _cv_battle_181:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_195
 	TrainerBattle 742, 0, 1, 0
@@ -2862,6 +2864,7 @@ _cv_battle_194:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_208
 	TrainerBattle 742, 0, 1, 0
@@ -2942,7 +2945,7 @@ GymSwitch_EventScript_ConfirmNew:
 _cv_yes_220:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_221:
-	End
+	GoTo GymSwitch_EventScript_Confirmed
 	
 GymSwitch_EventScript_Confirmed:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

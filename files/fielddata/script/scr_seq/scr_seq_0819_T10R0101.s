@@ -14,7 +14,7 @@
 	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_CooltrainerM
 	ScrDef TypeTutor_EventScript_Dragon
 	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_PokemonJournal
-	ScrDef _cv_unported_8
+	ScrDef IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamCheck
 	ScrDef IndigoPlateau_PokemonCenter_1F_OnTransition
 	ScrDef CableClub_OnResume
 	ScrDefEnd
@@ -102,8 +102,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_PokemonJournal:
 IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamCheck:
 	LockAll
 	Call GymCandidate_EventScript_LeagueApprovalCheck
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
+	CanvasCheckTeam 7, 0x5019
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamOk
 	Call EventScript_GymHack_ShowTeamRuleMessage
@@ -114,9 +113,10 @@ IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamCheck:
 	End
 	
 IndigoPlateau_PokemonCenter_1F_OnTransition:
+	Call EventScript_ResetEliteFour
 	End
 	// TODO(gba) @ Gym Trainer hack: FireRed's guard blocked the door ("Lorelei is absent") from the National Dex
-	End
+	GoTo IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard
 	
 CableClub_OnResume:
 	// TODO(gba) special InitUnionRoom
@@ -125,7 +125,7 @@ CableClub_OnResume:
 	// TODO(gba) .else 
 	End
 	// TODO(gba) .endif 
-	End
+	GoTo MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 	
 IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipOffer:
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipOffer
@@ -139,8 +139,7 @@ _cv_yes_1:
 _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo
-	// TODO(gba) special GymHack_CheckTeamSpecial
-	GoTo _cv_stop
+	CanvasCheckTeam 7, 0x5019
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipTeam
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipGo
@@ -211,6 +210,55 @@ EventScript_GymHack_ShowTeamRuleMessage:
 	CallIfEq EventScript_GymHack_MsgDuplicateItem
 	Return
 	
+EventScript_ResetEliteFour:
+	SetFlag FLAG_HIDE_WILLS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_WILLS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KOGAS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KOGAS_ROOM_EXIT
+	SetFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KARENS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KARENS_ROOM_EXIT
+	ClearFlag 0x203D
+	ClearFlag 0x203E
+	ClearFlag 0x203F
+	ClearFlag 0x2040
+	ClearFlag 0x2041
+	ClearFlag 0x2053
+	ClearFlag 0x2054
+	ClearFlag 0x2055
+	ClearFlag 0x2056
+	ClearFlag 0x2057
+	ClearFlag 0x2058
+	SetVar 0x501D, 0
+	Return
+	
+MossdeepCity_GameCorner_1F_EventScript_InfoMan2:
+	LockAll
+	FacePlayer
+	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_DescribeWhichGame
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_0, 0
+	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_1, 1
+	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_2, 2
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_12
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_12:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+	CloseMsg
+	End
+	
 IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo:
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	WaitButton
@@ -232,7 +280,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -250,7 +298,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
@@ -262,9 +310,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_12
+	GoToIfLt _cv_menu_14
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_12:
+_cv_menu_14:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
@@ -303,6 +351,27 @@ EventScript_GymHack_MsgDuplicateItem:
 	WaitButton
 	Return
 	
+MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo:
+	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo:
+	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit:
+	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 TypeTutor_EventScript_Bye:
 	NPCMsg msg_0522_T10R0101_TypeTutor_Text_Bye
 	WaitButton
@@ -316,15 +385,6 @@ EventScript_ChooseMoveTutorMon:
 	LockAll
 	FacePlayer
 	Return
-
-_cv_unported_8:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0522_T10R0101_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_str4:
 	BufferPlayersName 6

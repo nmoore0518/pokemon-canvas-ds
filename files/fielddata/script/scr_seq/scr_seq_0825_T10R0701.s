@@ -6,7 +6,7 @@
 // Pokemon Canvas: ported from the GBA game's PokemonLeague_HallOfFame_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
-	ScrDef _cv_unported_0
+	ScrDef PokemonLeague_HallOfFame_EventScript_EnterRoom
 	ScrDefEnd
 	
 PokemonLeague_HallOfFame_EventScript_EnterRoom:
@@ -25,25 +25,25 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	Wait 20, VAR_SPECIAL_RESULT
-	// TODO(gba) dofieldeffect FLDEFF_HALL_OF_FAME_RECORD_FRLG
-	GoTo _cv_stop
-	// TODO(gba) waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD_FRLG
-	GoTo _cv_stop
+	PartyCountNotEgg VAR_SPECIAL_RESULT
+	HallOfFameAnim VAR_SPECIAL_RESULT
 	Wait 40, VAR_SPECIAL_RESULT
 	SetVar 0x4001, 1
 	Call EventScript_SetDefeatedEliteFourFlagsVars
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special EnterHallOfFame
-	GoTo _cv_stop
+	CanvasHallOfFame
+	RestoreOverworld
+	SetVar 0x502E, 1
+	Warp MAP_INDIGO_PLATEAU, 0, 978, 108, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
 EventScript_SetDefeatedEliteFourFlagsVars:
 	ClearFlag 0x203C
 	Call EventScript_ResetEliteFour
-	// TODO(gba) special Script_UpdateTrainerFanClubGameClear
-	GoTo _cv_stop
 	CompareVarToValue 0x5004, 0
 	CallIfEq EventScript_GymHack_StartGymFinale
 	CompareVarToValue 0x5004, 3
@@ -52,6 +52,14 @@ EventScript_SetDefeatedEliteFourFlagsVars:
 	Return
 	
 EventScript_ResetEliteFour:
+	SetFlag FLAG_HIDE_WILLS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_WILLS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KOGAS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KOGAS_ROOM_EXIT
+	SetFlag FLAG_HIDE_BRUNOS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_BRUNOS_ROOM_EXIT
+	SetFlag FLAG_HIDE_KARENS_ROOM_RETREAT
+	ClearFlag FLAG_HIDE_KARENS_ROOM_EXIT
 	ClearFlag 0x203D
 	ClearFlag 0x203E
 	ClearFlag 0x203F
@@ -89,15 +97,6 @@ EventScript_SetReadyTryGiveNationalDexScene:
 	SetVar 0x5007, 2
 	Return
 
-_cv_unported_0:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0528_T10R0701_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
 _cv_stop:
 	NPCMsg msg_0528_T10R0701_cv_unported
 	WaitButton
@@ -107,7 +106,7 @@ _cv_stop:
 
 	.balign 4, 0
 PokemonLeague_HallOfFame_Movement_EnterRoom:
-	WalkNormalNorth 8
+	WalkNormalNorth 14
 	EndMovement
 
 	.balign 4, 0

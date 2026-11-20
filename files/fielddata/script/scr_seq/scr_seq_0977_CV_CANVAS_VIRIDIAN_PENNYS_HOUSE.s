@@ -154,7 +154,7 @@ ViridianCity_PennysHouse_EventScript_BringAnother:
 ViridianCity_PennysHouse_EventScript_Maybe:
 	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_Maybe
 	WaitButton
-	End
+	GoTo ViridianCity_PennysHouse_EventScript_End
 	
 ViridianCity_PennysHouse_EventScript_PushTypes:
 	Return

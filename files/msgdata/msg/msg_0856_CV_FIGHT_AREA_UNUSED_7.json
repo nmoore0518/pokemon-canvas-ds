@@ -593,6 +593,75 @@
       ]
     },
     {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhatToDo",
+      "en_US": "What would you like to do?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Buy",
+      "en_US": "Buy Decorations"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Sell",
+      "en_US": "Sell Decorations"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Decorate",
+      "en_US": "Decorate"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_PutAllAway",
+      "en_US": "Put All Away"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_LogOff",
+      "en_US": "Log Off"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakMeetMyAide",
+      "en_US": [
+        "Oak: Now, a Gym needs challengers.\n",
+        "Let me introduce my Aide!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_AideHello",
+      "en_US": [
+        "Aide: Pleased to meet you,\n",
+        "Leader {STRVAR_1 3, 6, 0}!\r",
+        "I’ll be sending challengers in for\n",
+        "you. Just talk to me when you’re\f",
+        "ready!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks",
+      "en_US": [
+        "Oak: Here’s how it works.\r",
+        "When you’re ready, tell my Aide.\n",
+        "Challengers will keep coming, one\f",
+        "after another, until one beats you.\r",
+        "Your team still has to follow the\n",
+        "League’s rules, of course.\r",
+        "Every win earns prize money, and\n",
+        "challengers often leave a gift.\r",
+        "Your win streak is recorded, so\n",
+        "try to set a record!\r",
+        "Anyone who beats you earns your\n",
+        "Badge, and their name goes on\f",
+        "the Gym statue.\r",
+        "Put the Battle Stage anywhere in\n",
+        "the Gym with the PC. That’s where\f",
+        "you’ll battle.\r",
+        "And now that the Gym is officially\n",
+        "yours, the PC sells a Badge\f",
+        "Pedestal too.\r",
+        "I’ll be in my lab. And my new\n",
+        "Aide there keeps track of all a\f",
+        "Gym Leader can do. Ask anytime!\r",
+        "Make Pallet Town proud, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHeardTheCheering",
       "en_US": [
         "Oak: …Ah. {STRVAR_1 3, 6, 0}.\r",
@@ -894,6 +963,69 @@
       ]
     },
     {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKindToPlace",
+      "en_US": [
+        "What kind of decoration will\n",
+        "you start with?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToPlace",
+      "en_US": [
+        "Which decoration will you\n",
+        "start with?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowToDecorate",
+      "en_US": [
+        "Walk anywhere in the Gym. The\n",
+        "decoration appears in front of you,\f",
+        "in red where it can’t go.\r",
+        "A: place it. Start: turn it.\n",
+        "Select: pick up the one in front,\f",
+        "to move it (L/R: back to storage).\r",
+        "L and R: switch decorations.\n",
+        "B: finish decorating."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmPutAllAway",
+      "en_US": [
+        "Put all the decorations back in\n",
+        "storage? Floors and walls stay."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_AllPutAway",
+      "en_US": "Everything’s back in storage."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth",
+      "en_US": [
+        "Oak: W-What on earth!?\n",
+        "That’s {STRVAR_1 3, 0, 0}!\r",
+        "They say no {STRVAR_1 3, 1, 0}-type\n",
+        "Pokémon is more powerful!\r",
+        "It must have sensed a new\n",
+        "{STRVAR_1 3, 1, 0} Gym in Kanto…"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt",
+      "en_US": [
+        "Oak: Most Gym Leaders don’t use\n",
+        "legendary Pokémon, you know.\r",
+        "But there’s no rule against it!\r",
+        "And challengers are getting\n",
+        "stronger these days, {STRVAR_1 3, 6, 0}…\r",
+        "If you can catch it, it might be\n",
+        "just what your Gym needs!\r",
+        "It’s waiting for you on the\n",
+        "stage. Good luck!"
+      ]
+    },
+    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakRulesStillApply",
       "en_US": [
         "Oak: Hold on!\r",
@@ -922,51 +1054,6 @@
         "The League has made it official!\r",
         "Challengers who beat you will earn\n",
         "the {STRVAR_1 3, 0, 0}!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakMeetMyAide",
-      "en_US": [
-        "Oak: Now, a Gym needs challengers.\n",
-        "Let me introduce my Aide!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_AideHello",
-      "en_US": [
-        "Aide: Pleased to meet you,\n",
-        "Leader {STRVAR_1 3, 6, 0}!\r",
-        "I’ll be sending challengers in for\n",
-        "you. Just talk to me when you’re\f",
-        "ready!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks",
-      "en_US": [
-        "Oak: Here’s how it works.\r",
-        "When you’re ready, tell my Aide.\n",
-        "Challengers will keep coming, one\f",
-        "after another, until one beats you.\r",
-        "Your team still has to follow the\n",
-        "League’s rules, of course.\r",
-        "Every win earns prize money, and\n",
-        "challengers often leave a gift.\r",
-        "Your win streak is recorded, so\n",
-        "try to set a record!\r",
-        "Anyone who beats you earns your\n",
-        "Badge, and their name goes on\f",
-        "the Gym statue.\r",
-        "Put the Battle Stage anywhere in\n",
-        "the Gym with the PC. That’s where\f",
-        "you’ll battle.\r",
-        "And now that the Gym is officially\n",
-        "yours, the PC sells a Badge\f",
-        "Pedestal too.\r",
-        "I’ll be in my lab. And my new\n",
-        "Aide there keeps track of all a\f",
-        "Gym Leader can do. Ask anytime!\r",
-        "Make Pallet Town proud, {STRVAR_1 3, 6, 0}!"
       ]
     },
     {
@@ -1162,6 +1249,54 @@
       ]
     },
     {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKind",
+      "en_US": "What kind of decoration?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichKindToSell",
+      "en_US": [
+        "What kind of decoration will\n",
+        "you sell?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NothingOwned",
+      "en_US": [
+        "There aren’t any decorations in\n",
+        "storage. Buy some first!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WallsChanged",
+      "en_US": [
+        "The Gym’s walls are now\n",
+        "{STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowToPaint",
+      "en_US": [
+        "Walk anywhere in the Gym. A paints\n",
+        "the square in front of you.\r",
+        "Hold A down as you walk to paint\n",
+        "every square you face.\r",
+        "Select: fill the whole area of\n",
+        "floor in front with it (or pick\f",
+        "up a piece in front).\r",
+        "L and R: switch to a decoration\n",
+        "or another floor. B: finish."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother",
+      "en_US": [
+        "Oak: Another legendary Pokémon,\n",
+        "drawn to your new Gym!\r",
+        "It’s waiting for you on the\n",
+        "stage. Good luck, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Text_GymHack_WrongType",
       "en_US": [
         "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
@@ -1191,36 +1326,32 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth",
-      "en_US": [
-        "Oak: W-What on earth!?\n",
-        "That’s {STRVAR_1 3, 0, 0}!\r",
-        "They say no {STRVAR_1 3, 1, 0}-type\n",
-        "Pokémon is more powerful!\r",
-        "It must have sensed a new\n",
-        "{STRVAR_1 3, 1, 0} Gym in Kanto…"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt",
-      "en_US": [
-        "Oak: Most Gym Leaders don’t use\n",
-        "legendary Pokémon, you know.\r",
-        "But there’s no rule against it!\r",
-        "And challengers are getting\n",
-        "stronger these days, {STRVAR_1 3, 6, 0}…\r",
-        "If you can catch it, it might be\n",
-        "just what your Gym needs!\r",
-        "It’s waiting for you on the\n",
-        "stage. Good luck!"
-      ]
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CalledItADay",
       "en_US": [
         "What a run! {STRVAR_1 3, 0, 0} wins in a row,\n",
         "and nobody could beat you!\r",
         "I’ll send the rest home."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered",
+      "en_US": [
+        "Oak: {STRVAR_1 3, 6, 0}! I heard all about\n",
+        "it from your mentor!\r",
+        "You’ve truly mastered {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon. At this rate, nobody will\f",
+        "ever earn your badge again!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother",
+      "en_US": [
+        "So how about a new challenge?\n",
+        "Your Gym could take a new type!\r",
+        "You won’t lose {STRVAR_1 3, 2, 0}, either.\n",
+        "Any type your Gym has had, you can\f",
+        "switch back to at my Lab, free.\r",
+        "Would you like to try another type?"
       ]
     },
     {
@@ -1310,60 +1441,47 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother",
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToBuy",
       "en_US": [
-        "Oak: Another legendary Pokémon,\n",
-        "drawn to your new Gym!\r",
-        "It’s waiting for you on the\n",
-        "stage. Good luck, {STRVAR_1 3, 6, 0}!"
+        "Which decoration would you\n",
+        "like to buy?"
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam",
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowMany",
+      "en_US": "{STRVAR_1 3, 0, 0}? How many?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NothingToSell",
       "en_US": [
-        "Simulation: That isn’t the team\n",
-        "entered. Bring the same Pokémon,\f",
-        "or forfeit."
+        "There’s nothing in storage to\n",
+        "sell. (Placed pieces have to be\f",
+        "put away first.)"
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk",
-      "en_US": "Forfeit the simulation?"
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimSpeciesClause",
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhichToSell",
       "en_US": [
-        "Rules Check: no two of the same\n",
-        "Pokémon. More than one {STRVAR_1 3, 0, 0}."
+        "Which decoration will you\n",
+        "sell? (Only ones in storage.)"
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimItemClause",
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_HowManyToSell",
+      "en_US": "{STRVAR_1 3, 0, 0}? How many?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmSell",
       "en_US": [
-        "Rules Check: no two Pokémon may\n",
-        "hold the same item. More than one\f",
-        "is holding {STRVAR_1 3, 0, 0}."
+        "{STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}?\n",
+        "You’ll get ¥{STRVAR_1 3, 1, 0}. OK?"
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered",
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Sold",
       "en_US": [
-        "Oak: {STRVAR_1 3, 6, 0}! I heard all about\n",
-        "it from your mentor!\r",
-        "You’ve truly mastered {STRVAR_1 3, 2, 0}-type\n",
-        "Pokémon. At this rate, nobody will\f",
-        "ever earn your badge again!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother",
-      "en_US": [
-        "So how about a new challenge?\n",
-        "Your Gym could take a new type!\r",
-        "You won’t lose {STRVAR_1 3, 2, 0}, either.\n",
-        "Any type your Gym has had, you can\f",
-        "switch back to at my Lab, free.\r",
-        "Would you like to try another type?"
+        "Sold {STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}\n",
+        "for ¥{STRVAR_1 3, 1, 0}!"
       ]
     },
     {
@@ -1411,6 +1529,63 @@
       ]
     },
     {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam",
+      "en_US": [
+        "Simulation: That isn’t the team\n",
+        "entered. Bring the same Pokémon,\f",
+        "or forfeit."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Announce",
+      "en_US": [
+        "???: The {STRVAR_1 3, 1, 0}!\n",
+        "Facing you… {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Lost",
+      "en_US": [
+        "???: Out in the {STRVAR_1 3, 1, 0}.\n",
+        "As the odds said.\r",
+        "Here’s how the rest of it\n",
+        "played out."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimForfeitAsk",
+      "en_US": "Forfeit the simulation?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimSpeciesClause",
+      "en_US": [
+        "Rules Check: no two of the same\n",
+        "Pokémon. More than one {STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimItemClause",
+      "en_US": [
+        "Rules Check: no two Pokémon may\n",
+        "hold the same item. More than one\f",
+        "is holding {STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_ConfirmBuy",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}?\n",
+        "That’ll be ¥{STRVAR_1 3, 1, 0}. OK?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_Bought",
+      "en_US": [
+        "Sent {STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}\n",
+        "to the Gym’s storage!"
+      ]
+    },
+    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakAllMastered",
       "en_US": [
         "And that’s every type there is!\n",
@@ -1427,6 +1602,67 @@
       "en_US": [
         "Switch your Gym back to\n",
         "{STRVAR_1 3, 0, 0} type?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimAnnounce",
+      "en_US": [
+        "Simulation: {STRVAR_1 3, 1, 0}…\n",
+        "{STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Title",
+      "en_US": "{STRVAR_1 3, 6, 0} won the tournament!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_TitleHall",
+      "en_US": [
+        "Your team’s been recorded in the\n",
+        "PC’s Tournament Hall of Fame."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Won",
+      "en_US": [
+        "???: Hmph. On to the {STRVAR_1 3, 0, 0}.\n",
+        "Next match now, or a breather?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptRest",
+      "en_US": "Rest"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Break",
+      "en_US": [
+        "???: Rest, then. Your opponent\n",
+        "will wait. So will the bets."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimLost",
+      "en_US": [
+        "Simulation: Out in the\n",
+        "{STRVAR_1 3, 1, 0}. The rest, simulated…"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_NotEnoughMoney",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_StorageFull",
+      "en_US": [
+        "The Gym can’t store any more\n",
+        "of those."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_AlreadyHave",
+      "en_US": [
+        "You already have that one. It\n",
+        "can be used as much as you like!"
       ]
     },
     {
@@ -1450,6 +1686,59 @@
         "Oak: Back to {STRVAR_1 3, 0, 0} type!\n",
         "Challengers, beware!"
       ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_PrizeSim",
+      "en_US": [
+        "The simulator printed out a prize\n",
+        "for that match!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_Prize",
+      "en_US": [
+        "The organizers have a prize for\n",
+        "that match!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillNext",
+      "en_US": [
+        "Simulation: One more. Bill’s own\n",
+        "data, the team he battled you with.\r",
+        "Beat it for a Withdraw.\n",
+        "Load it now?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBillLater",
+      "en_US": [
+        "Simulation paused. Bill’s data\n",
+        "will be waiting."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_LastOne",
+      "en_US": [
+        "???: …You won. All seven.\n",
+        "You actually won the whole thing.\r",
+        "…Good. Better than good.\r",
+        "Then it’s time you met the one who\n",
+        "really put this tournament on.\r",
+        "Rest first. Speak to me when\n",
+        "you’re ready."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWon",
+      "en_US": [
+        "Simulation: On to the\n",
+        "{STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBreak",
+      "en_US": "Simulation paused."
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Outfits_Text_ReceivedAllGymUniforms",
@@ -1481,6 +1770,31 @@
         "It’s free! Just come see me at\n",
         "my Lab."
       ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_RarePrizeSim",
+      "en_US": [
+        "The simulator printed out a rare\n",
+        "prize for that match! A real one!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_RarePrize",
+      "en_US": [
+        "One moment! The organizers have a\n",
+        "rare prize for that match!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_ContinueOrBreak",
+      "en_US": [
+        "???: Next match now, or\n",
+        "a breather?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimContinue",
+      "en_US": "Load the next match?"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_unported",

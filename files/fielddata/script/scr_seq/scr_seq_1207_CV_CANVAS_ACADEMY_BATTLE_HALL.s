@@ -30,7 +30,7 @@ _cv_yn_2:
 	Call Academy_EventScript_PickRentals
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq Academy_EventScript_HallBye
-	End
+	GoTo Academy_EventScript_HallNext
 	
 Academy_EventScript_Briony:
 	LockAll
@@ -39,9 +39,6 @@ Academy_EventScript_Briony:
 	WaitButton
 	SetVar 0x8004, 6
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Teo
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Teo:
 	LockAll
@@ -57,20 +54,31 @@ Academy_EventScript_HallBye:
 	CloseMsg
 	ReleaseAll
 	End
-	// TODO(gba) .global Academy_EventScript_Larkspur
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_PickRentals:
 	// TODO(gba) special Academy_RentalBegin
 	GoTo _cv_stop
 	SetVar 0x8007, 1
-	End
+	GoTo Academy_EventScript_PickRentalLoop
 	
-Academy_EventScript_CandidateBattle:
-	// TODO(gba) special Academy_SetupCandidate
+Academy_EventScript_HallNext:
+	// TODO(gba) special Academy_SetupHallBattle
 	GoTo _cv_stop
-	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateAsk
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallNext
+	WaitButton
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText
+	WaitButton
+	CloseMsg
+	Call Academy_EventScript_Battle
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe Academy_EventScript_HallLost
+	// TODO(gba) special Academy_HallWin
+	GoTo _cv_stop
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallWon
+	WaitButton
+	Call Academy_EventScript_EarnBP
+	HealParty
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallContinue
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq _cv_yes_3
@@ -79,6 +87,26 @@ Academy_EventScript_CandidateBattle:
 _cv_yes_3:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_4:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Academy_EventScript_HallNext
+	// TODO(gba) special Academy_RentalEnd
+	GoTo _cv_stop
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalReturn
+	WaitButton
+	GoTo Academy_EventScript_HallBye
+	
+Academy_EventScript_CandidateBattle:
+	// TODO(gba) special Academy_SetupCandidate
+	GoTo _cv_stop
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateAsk
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_5
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_6
+_cv_yes_5:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Academy_EventScript_CandidateLater
 	CopyVar 0x8008, 0x8005
@@ -99,52 +127,80 @@ _cv_yn_4:
 	ReleaseAll
 	End
 	
-Academy_EventScript_CandidateLater:
-	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateLater
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
+Academy_EventScript_PickRentalLoop:
+	BufferInt 0, 0x8007
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalPick
+	// TODO(gba) special Academy_PushRentals
+	GoTo _cv_stop
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_8
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_8:
+	CompareVarToValue VAR_SPECIAL_RESULT, 127
+	GoToIfEq Academy_EventScript_PickRentalCancel
+	CopyVar 0x8004, VAR_SPECIAL_RESULT
+	// TODO(gba) special Academy_BufferRental
+	GoTo _cv_stop
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalInfo
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_9
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_10
+_cv_yes_9:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_10:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Academy_EventScript_PickRentalLoop
+	// TODO(gba) special Academy_TakeRental
+	GoTo _cv_stop
+	AddVar 0x8007, 1
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfLt Academy_EventScript_PickRentalLoop
+	SetVar VAR_SPECIAL_RESULT, 0
+	Return
 	
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_6
+	GoToIfNe _cv_won_12
 	WhiteOut
 	End
-_cv_won_6:
+_cv_won_12:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_5:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_7
+	GoToIfNe _cv_outcome_13
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_8
-_cv_outcome_7:
+	GoTo _cv_outcome_14
+_cv_outcome_13:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_8
+	GoToIfNe _cv_outcome_14
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_8:
+_cv_outcome_14:
 	Return
 	
-Academy_EventScript_CandidateBeatPlayer:
+Academy_EventScript_HallLost:
+	// TODO(gba) special Academy_RentalEnd
+	GoTo _cv_stop
 	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeWinText
 	WaitButton
-	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateHealed
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_HallLost
 	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_RentalReturn
+	WaitButton
+	GoTo Academy_EventScript_HallBye
 	
 Academy_EventScript_EarnBP:
 	// TODO(gba) special Academy_AddBP
@@ -155,9 +211,28 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
-	GoTo _cv_stop
+	
+Academy_EventScript_CandidateLater:
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateLater
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
+	
+Academy_EventScript_CandidateBeatPlayer:
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeWinText
+	WaitButton
+	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_Academy_Text_CandidateHealed
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Academy_EventScript_PickRentalCancel:
+	// TODO(gba) special Academy_RentalEnd
+	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 127
+	Return
 
 _cv_stop:
 	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_cv_unported

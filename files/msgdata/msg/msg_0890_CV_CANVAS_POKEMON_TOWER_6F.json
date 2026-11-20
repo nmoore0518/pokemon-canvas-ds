@@ -31,6 +31,17 @@
       ]
     },
     {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_Canvas_Tower6F_Text_GhostCantBeIdentified",
+      "en_US": [
+        "Darn! The Ghost can’t be\n",
+        "identified!"
+      ]
+    },
+    {
+      "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_Canvas_Tower6F_Text_GhostGetOut",
+      "en_US": "Ghost: Get out…… Get out……"
+    },
+    {
       "id": "msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_GhostWasCubonesMother",
       "en_US": [
         "The ghost was the restless spirit\n",

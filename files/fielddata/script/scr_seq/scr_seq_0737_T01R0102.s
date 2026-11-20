@@ -100,7 +100,7 @@ Outfits_EventScript_PushList:
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_CASUAL
-	End
+	GoTo Outfits_EventScript_Skip_CASUAL
 	
 Outfits_EventScript_Done:
 	CloseMsg
@@ -115,133 +115,133 @@ Outfits_EventScript_Skip_CASUAL:
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_ROCKET
-	End
+	GoTo Outfits_EventScript_Skip_ROCKET
 	
 Outfits_EventScript_Skip_ROCKET:
 	SetVar 0x8004, 2
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_NORMAL
-	End
+	GoTo Outfits_EventScript_Skip_NORMAL
 	
 Outfits_EventScript_Skip_NORMAL:
 	SetVar 0x8004, 3
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_FIGHTING
-	End
+	GoTo Outfits_EventScript_Skip_FIGHTING
 	
 Outfits_EventScript_Skip_FIGHTING:
 	SetVar 0x8004, 4
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_FLYING
-	End
+	GoTo Outfits_EventScript_Skip_FLYING
 	
 Outfits_EventScript_Skip_FLYING:
 	SetVar 0x8004, 5
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_POISON
-	End
+	GoTo Outfits_EventScript_Skip_POISON
 	
 Outfits_EventScript_Skip_POISON:
 	SetVar 0x8004, 6
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_GROUND
-	End
+	GoTo Outfits_EventScript_Skip_GROUND
 	
 Outfits_EventScript_Skip_GROUND:
 	SetVar 0x8004, 7
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_ROCK
-	End
+	GoTo Outfits_EventScript_Skip_ROCK
 	
 Outfits_EventScript_Skip_ROCK:
 	SetVar 0x8004, 8
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_BUG
-	End
+	GoTo Outfits_EventScript_Skip_BUG
 	
 Outfits_EventScript_Skip_BUG:
 	SetVar 0x8004, 9
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_GHOST
-	End
+	GoTo Outfits_EventScript_Skip_GHOST
 	
 Outfits_EventScript_Skip_GHOST:
 	SetVar 0x8004, 10
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_STEEL
-	End
+	GoTo Outfits_EventScript_Skip_STEEL
 	
 Outfits_EventScript_Skip_STEEL:
 	SetVar 0x8004, 11
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_FIRE
-	End
+	GoTo Outfits_EventScript_Skip_FIRE
 	
 Outfits_EventScript_Skip_FIRE:
 	SetVar 0x8004, 12
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_WATER
-	End
+	GoTo Outfits_EventScript_Skip_WATER
 	
 Outfits_EventScript_Skip_WATER:
 	SetVar 0x8004, 13
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_GRASS
-	End
+	GoTo Outfits_EventScript_Skip_GRASS
 	
 Outfits_EventScript_Skip_GRASS:
 	SetVar 0x8004, 14
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_ELECTRIC
-	End
+	GoTo Outfits_EventScript_Skip_ELECTRIC
 	
 Outfits_EventScript_Skip_ELECTRIC:
 	SetVar 0x8004, 15
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_PSYCHIC
-	End
+	GoTo Outfits_EventScript_Skip_PSYCHIC
 	
 Outfits_EventScript_Skip_PSYCHIC:
 	SetVar 0x8004, 16
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_ICE
-	End
+	GoTo Outfits_EventScript_Skip_ICE
 	
 Outfits_EventScript_Skip_ICE:
 	SetVar 0x8004, 17
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_DRAGON
-	End
+	GoTo Outfits_EventScript_Skip_DRAGON
 	
 Outfits_EventScript_Skip_DRAGON:
 	SetVar 0x8004, 18
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_DARK
-	End
+	GoTo Outfits_EventScript_Skip_DARK
 	
 Outfits_EventScript_Skip_DARK:
 	SetVar 0x8004, 19
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Outfits_EventScript_Skip_FAIRY
-	End
+	GoTo Outfits_EventScript_Skip_FAIRY
 	
 Outfits_EventScript_Skip_FAIRY:
 	Return

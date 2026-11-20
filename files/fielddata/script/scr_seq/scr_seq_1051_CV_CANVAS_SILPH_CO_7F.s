@@ -505,67 +505,68 @@ SilphCo_7F_EventScript_RivalApproachBottom:
 	Return
 	
 SilphCo_7F_EventScript_RivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_18
-	TrainerBattle 802, 0, 0, 0
+	TrainerBattle 802, 802, 0, 0
 	GoTo _cv_battle_17
 _cv_next_18:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_19
-	TrainerBattle 806, 0, 0, 0
+	TrainerBattle 806, 806, 0, 0
 	GoTo _cv_battle_17
 _cv_next_19:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_20
-	TrainerBattle 800, 0, 0, 0
+	TrainerBattle 800, 800, 0, 0
 	GoTo _cv_battle_17
 _cv_next_20:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_21
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 	GoTo _cv_battle_17
 _cv_next_21:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_22
-	TrainerBattle 808, 0, 0, 0
+	TrainerBattle 808, 808, 0, 0
 	GoTo _cv_battle_17
 _cv_next_22:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_23
-	TrainerBattle 803, 0, 0, 0
+	TrainerBattle 803, 803, 0, 0
 	GoTo _cv_battle_17
 _cv_next_23:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_24
-	TrainerBattle 805, 0, 0, 0
+	TrainerBattle 805, 805, 0, 0
 	GoTo _cv_battle_17
 _cv_next_24:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_25
-	TrainerBattle 807, 0, 0, 0
+	TrainerBattle 807, 807, 0, 0
 	GoTo _cv_battle_17
 _cv_next_25:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_26
-	TrainerBattle 801, 0, 0, 0
+	TrainerBattle 801, 801, 0, 0
 	GoTo _cv_battle_17
 _cv_next_26:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_27
-	TrainerBattle 809, 0, 0, 0
+	TrainerBattle 809, 809, 0, 0
 	GoTo _cv_battle_17
 _cv_next_27:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_28
-	TrainerBattle 804, 0, 0, 0
+	TrainerBattle 804, 804, 0, 0
 	GoTo _cv_battle_17
 _cv_next_28:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_29
-	TrainerBattle 799, 0, 0, 0
+	TrainerBattle 799, 799, 0, 0
 	GoTo _cv_battle_17
 _cv_next_29:
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 _cv_battle_17:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -577,67 +578,68 @@ _cv_won_30:
 	Return
 	
 SilphCo_7F_EventScript_RivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_32
-	TrainerBattle 802, 0, 0, 0
+	TrainerBattle 802, 802, 0, 0
 	GoTo _cv_battle_31
 _cv_next_32:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_33
-	TrainerBattle 806, 0, 0, 0
+	TrainerBattle 806, 806, 0, 0
 	GoTo _cv_battle_31
 _cv_next_33:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_34
-	TrainerBattle 800, 0, 0, 0
+	TrainerBattle 800, 800, 0, 0
 	GoTo _cv_battle_31
 _cv_next_34:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_35
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 	GoTo _cv_battle_31
 _cv_next_35:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_36
-	TrainerBattle 808, 0, 0, 0
+	TrainerBattle 808, 808, 0, 0
 	GoTo _cv_battle_31
 _cv_next_36:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_37
-	TrainerBattle 803, 0, 0, 0
+	TrainerBattle 803, 803, 0, 0
 	GoTo _cv_battle_31
 _cv_next_37:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_38
-	TrainerBattle 805, 0, 0, 0
+	TrainerBattle 805, 805, 0, 0
 	GoTo _cv_battle_31
 _cv_next_38:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_39
-	TrainerBattle 807, 0, 0, 0
+	TrainerBattle 807, 807, 0, 0
 	GoTo _cv_battle_31
 _cv_next_39:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_40
-	TrainerBattle 801, 0, 0, 0
+	TrainerBattle 801, 801, 0, 0
 	GoTo _cv_battle_31
 _cv_next_40:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_41
-	TrainerBattle 809, 0, 0, 0
+	TrainerBattle 809, 809, 0, 0
 	GoTo _cv_battle_31
 _cv_next_41:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_42
-	TrainerBattle 804, 0, 0, 0
+	TrainerBattle 804, 804, 0, 0
 	GoTo _cv_battle_31
 _cv_next_42:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_43
-	TrainerBattle 799, 0, 0, 0
+	TrainerBattle 799, 799, 0, 0
 	GoTo _cv_battle_31
 _cv_next_43:
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 _cv_battle_31:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -649,67 +651,68 @@ _cv_won_44:
 	Return
 	
 SilphCo_7F_EventScript_RivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_46
-	TrainerBattle 802, 0, 0, 0
+	TrainerBattle 802, 802, 0, 0
 	GoTo _cv_battle_45
 _cv_next_46:
 	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_47
-	TrainerBattle 806, 0, 0, 0
+	TrainerBattle 806, 806, 0, 0
 	GoTo _cv_battle_45
 _cv_next_47:
 	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_48
-	TrainerBattle 800, 0, 0, 0
+	TrainerBattle 800, 800, 0, 0
 	GoTo _cv_battle_45
 _cv_next_48:
 	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_49
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 	GoTo _cv_battle_45
 _cv_next_49:
 	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_50
-	TrainerBattle 808, 0, 0, 0
+	TrainerBattle 808, 808, 0, 0
 	GoTo _cv_battle_45
 _cv_next_50:
 	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_51
-	TrainerBattle 803, 0, 0, 0
+	TrainerBattle 803, 803, 0, 0
 	GoTo _cv_battle_45
 _cv_next_51:
 	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_52
-	TrainerBattle 805, 0, 0, 0
+	TrainerBattle 805, 805, 0, 0
 	GoTo _cv_battle_45
 _cv_next_52:
 	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_53
-	TrainerBattle 807, 0, 0, 0
+	TrainerBattle 807, 807, 0, 0
 	GoTo _cv_battle_45
 _cv_next_53:
 	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_54
-	TrainerBattle 801, 0, 0, 0
+	TrainerBattle 801, 801, 0, 0
 	GoTo _cv_battle_45
 _cv_next_54:
 	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_55
-	TrainerBattle 809, 0, 0, 0
+	TrainerBattle 809, 809, 0, 0
 	GoTo _cv_battle_45
 _cv_next_55:
 	CompareVarToValue 0x501A, 8
 	GoToIfNe _cv_next_56
-	TrainerBattle 804, 0, 0, 0
+	TrainerBattle 804, 804, 0, 0
 	GoTo _cv_battle_45
 _cv_next_56:
 	CompareVarToValue 0x501A, 11
 	GoToIfNe _cv_next_57
-	TrainerBattle 799, 0, 0, 0
+	TrainerBattle 799, 799, 0, 0
 	GoTo _cv_battle_45
 _cv_next_57:
-	TrainerBattle 798, 0, 0, 0
+	TrainerBattle 798, 798, 0, 0
 _cv_battle_45:
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0

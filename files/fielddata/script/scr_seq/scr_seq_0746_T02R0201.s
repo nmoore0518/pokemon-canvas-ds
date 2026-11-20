@@ -61,8 +61,7 @@ _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1443
-	CheckTrainerFlag 1443
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1443, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -71,9 +70,6 @@ _cv_yn_2:
 	End
 _cv_won_4:
 	SetTrainerFlag 1443
-	ReleaseAll
-	End
-_cv_beaten_3:
 	NPCMsg msg_0456_T02R0201_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -95,8 +91,7 @@ _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1444
-	CheckTrainerFlag 1444
-	GoToIf TRUE, _cv_beaten_7
+	CanvasCloseMsg
 	TrainerBattle 1444, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -105,9 +100,6 @@ _cv_yn_6:
 	End
 _cv_won_8:
 	SetTrainerFlag 1444
-	ReleaseAll
-	End
-_cv_beaten_7:
 	NPCMsg msg_0456_T02R0201_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg

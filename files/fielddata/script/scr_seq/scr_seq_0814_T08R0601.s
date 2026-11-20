@@ -136,7 +136,7 @@ PaintWorld_EventScript_FigureSketch:
 PaintWorld_EventScript_FigureMega:
 	NPCMsg msg_0518_T08R0601_PaintWorld_Text_FigureMega
 	WaitButton
-	End
+	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
 	CloseMsg
@@ -144,8 +144,7 @@ PaintWorld_EventScript_FigureBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -154,9 +153,6 @@ PaintWorld_EventScript_FigureBattle:
 	End
 _cv_won_4:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_3:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4

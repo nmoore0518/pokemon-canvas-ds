@@ -189,7 +189,28 @@
             "y": 0
         }
     ],
-    "coords": [],
+    "coords": [
+        {
+            "scriptId": "_EV_Route24_EventScript_RocketTriggerLeft + 1",
+            "x": 1253,
+            "z": 107,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5026"
+        },
+        {
+            "scriptId": "_EV_Route24_EventScript_RocketTriggerRight + 1",
+            "x": 1254,
+            "z": 107,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5026"
+        }
+    ],
     "bgs": [],
     "warps": []
 }

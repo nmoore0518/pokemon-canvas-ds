@@ -28,7 +28,7 @@ VictoryRoad_2F_EventScript_Nelson:
 	NPCMsg msg_0875_CV_CANVAS_VICTORY_ROAD_2F_VictoryRoad_2F_Text_NelsonIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1032, 0, 0, 0
+	TrainerBattle 1032, 1032, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_2

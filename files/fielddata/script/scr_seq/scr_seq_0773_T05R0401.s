@@ -25,7 +25,7 @@ LavenderTown_House2_EventScript_NameRater:
 _cv_yes_1:
 	SetVar VAR_SPECIAL_RESULT, 1
 _cv_yn_2:
-	End
+	GoTo LavenderTown_House2_EventScript_Answer
 	
 TrainingHouse_EventScript_Winston:
 	LockAll
@@ -42,8 +42,7 @@ _cv_yn_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1451
-	CheckTrainerFlag 1451
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 1451, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -52,9 +51,6 @@ _cv_yn_4:
 	End
 _cv_won_6:
 	SetTrainerFlag 1451
-	ReleaseAll
-	End
-_cv_beaten_5:
 	NPCMsg msg_0480_T05R0401_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -76,8 +72,7 @@ _cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1452
-	CheckTrainerFlag 1452
-	GoToIf TRUE, _cv_beaten_9
+	CanvasCloseMsg
 	TrainerBattle 1452, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -86,9 +81,6 @@ _cv_yn_8:
 	End
 _cv_won_10:
 	SetTrainerFlag 1452
-	ReleaseAll
-	End
-_cv_beaten_9:
 	NPCMsg msg_0480_T05R0401_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -121,6 +113,13 @@ _cv_yes_11:
 _cv_yn_12:
 	GoTo LavenderTown_House2_EventScript_Answer
 	
+LavenderTown_House2_EventScript_Answer:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq LavenderTown_House2_EventScript_ChooseMon
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq LavenderTown_House2_EventScript_DontRateNickname
+	End
+	
 TrainingHouse_EventScript_Declined:
 	NPCMsg msg_0480_T05R0401_TrainingHouse_Text_Declined
 	WaitButton
@@ -136,7 +135,7 @@ PaintWorld_EventScript_FigureSketch:
 PaintWorld_EventScript_FigureMega:
 	NPCMsg msg_0480_T05R0401_PaintWorld_Text_FigureMega
 	WaitButton
-	End
+	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
 	CloseMsg
@@ -144,8 +143,7 @@ PaintWorld_EventScript_FigureBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_13
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -154,9 +152,6 @@ PaintWorld_EventScript_FigureBattle:
 	End
 _cv_won_14:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_13:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -179,13 +174,6 @@ _cv_outcome_16:
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll
-	End
-	
-LavenderTown_House2_EventScript_Answer:
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq LavenderTown_House2_EventScript_ChooseMon
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq LavenderTown_House2_EventScript_DontRateNickname
 	End
 	
 LavenderTown_House2_EventScript_ChooseMon:

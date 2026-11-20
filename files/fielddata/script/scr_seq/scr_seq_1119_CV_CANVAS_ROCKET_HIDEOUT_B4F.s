@@ -26,8 +26,7 @@ RocketHideout_B4F_EventScript_Giovanni:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_GiovanniIntro
 	PlayBGM SEQ_GS_EYE_ROCKET
 	WaitButton
-	CheckTrainerFlag 1084
-	GoToIf TRUE, _cv_beaten_1
+	CanvasCloseMsg
 	TrainerBattle 1084, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -36,9 +35,6 @@ RocketHideout_B4F_EventScript_Giovanni:
 	End
 _cv_won_2:
 	SetTrainerFlag 1084
-	ReleaseAll
-	End
-_cv_beaten_1:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_GiovanniPostBattle
 	WaitButton
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -112,7 +108,7 @@ RocketHideout_B4F_EventScript_Grunt3:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt3Intro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1103, 0, 0, 0
+	TrainerBattle 1103, 1103, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_8
@@ -133,7 +129,7 @@ RocketHideout_B4F_EventScript_Grunt2:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt2Intro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1102, 0, 0, 0
+	TrainerBattle 1102, 1102, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_10

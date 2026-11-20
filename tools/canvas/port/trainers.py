@@ -307,6 +307,14 @@ def trainer_ids():
     return json.load(open(IDS)) if os.path.exists(IDS) else {}
 
 
+def double_trainers():
+    """our trainer numbers that fight double battles (data/canvas_trainers.h): HeartGold starts one by naming the
+    trainer twice (its SetupAndStartTrainerBattle: the same trainer on both sides is a double battle)"""
+    h = os.path.join(os.path.dirname(IDS), 'canvas_trainers.h')
+    if not os.path.exists(h): return set()
+    return {int(n) for n, t in re.findall(r'\[(\d+)\] = \{.*?\.battleType = (\w+)', open(h).read(), re.S) if t == 'DOUBLE_BATTLE'}
+
+
 def rival_team_ids():
     """stage -> {rival type name: canvas trainer id}"""
     ids = json.load(open(IDS)) if os.path.exists(IDS) else {}

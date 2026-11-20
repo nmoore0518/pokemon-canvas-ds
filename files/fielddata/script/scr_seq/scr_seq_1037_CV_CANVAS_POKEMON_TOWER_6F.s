@@ -10,7 +10,7 @@
 	ScrDef PokemonTower_6F_EventScript_ItemRareCandy
 	ScrDef PokemonTower_6F_EventScript_ItemXAccuracy
 	ScrDef BerryField_EventScript_FindGhost
-	ScrDef _cv_unported_4
+	ScrDef PokemonTower_6F_EventScript_MarowakGhost
 	ScrDefEnd
 	
 PokemonTower_6F_EventScript_Angelica:
@@ -61,13 +61,25 @@ PokemonTower_6F_EventScript_MarowakGhost:
 	LockAll
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_BeGoneIntruders
 	WaitButton
-	// TODO(gba) special StartMarowakBattle
-	GoTo _cv_stop
+	CloseMsg
+	HasItem 874, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq PokemonTower_6F_cv_NoScope
+	SetFlag 63
+	WildBattle SPECIES_MAROWAK, 30, 0
+	ClearFlag 63
+	CheckBattleWon VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_mw_alive
+	WhiteOut
+	ReleaseAll
+	End
+_cv_mw_alive:
+	StaticWildWonOrCaughtCheck VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PokemonTower_6F_EventScript_DefeatedMarowakGhost
 	ApplyMovement obj_player, PokemonTower_6F_Movement_ForcePlayerUp
 	WaitMovement
-	CloseMsg
 	ReleaseAll
 	End
 	
@@ -106,6 +118,17 @@ _cv_yn_4:
 	ReleaseAll
 	End
 	
+PokemonTower_6F_cv_NoScope:
+	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_Canvas_Tower6F_Text_GhostCantBeIdentified
+	WaitButton
+	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_Canvas_Tower6F_Text_GhostGetOut
+	WaitButton
+	CloseMsg
+	ApplyMovement obj_player, PokemonTower_6F_Movement_ForcePlayerUp
+	WaitMovement
+	ReleaseAll
+	End
+	
 PokemonTower_6F_EventScript_DefeatedMarowakGhost:
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_GhostWasCubonesMother
 	WaitSE SEQ_SE_DP_SELECT
@@ -129,15 +152,6 @@ GymCandidate_EventScript_Return:
 	
 GymCandidate_EventScript_RecruitDeclined:
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_GymCandidate_Text_RecruitDeclined
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_4:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_cv_unported
 	WaitButton
 	CloseMsg
 	ReleaseAll

@@ -19,7 +19,7 @@
 Academy_EventScript_Headmaster:
 	LockAll
 	FacePlayer
-	End
+	GoTo Academy_EventScript_HeadmasterMenu
 	
 Academy_EventScript_Nadia:
 	LockAll
@@ -28,9 +28,6 @@ Academy_EventScript_Nadia:
 	WaitButton
 	SetVar 0x8004, 3
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Rene
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Reader1:
 	PlaySE SEQ_SE_DP_SELECT
@@ -103,18 +100,50 @@ Academy_EventScript_BraceletGive:
 	ReleaseAll
 	End
 	
+Academy_EventScript_HeadmasterMenu:
+	// TODO(gba) special Academy_BufferBP
+	GoTo _cv_stop
+	BufferPlayersName 6
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterHello
+	TouchscreenMenuHide
+	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	ScrCmd_559 msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptBP, 0
+	ScrCmd_559 msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptHall, 1
+	ScrCmd_559 msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptCandidates, 2
+	ScrCmd_559 msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptTeachers, 3
+	ScrCmd_559 msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_OptBye, 4
+	ScrCmd_067
+	TouchscreenMenuShow
+	CompareVarToValue VAR_SPECIAL_RESULT, 65000
+	GoToIfLt _cv_menu_2
+	SetVar VAR_SPECIAL_RESULT, 127
+_cv_menu_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Academy_EventScript_HeadmasterBP
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfEq Academy_EventScript_HeadmasterHall
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfEq Academy_EventScript_HeadmasterCandidates
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfEq Academy_EventScript_HeadmasterTeachers
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterBye
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 Academy_EventScript_CandidateBattle:
 	// TODO(gba) special Academy_SetupCandidate
 	GoTo _cv_stop
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_1
+	GoToIfEq _cv_yes_3
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_2
-_cv_yes_1:
+	GoTo _cv_yn_4
+_cv_yes_3:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_2:
+_cv_yn_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Academy_EventScript_CandidateLater
 	CopyVar 0x8008, 0x8005
@@ -143,6 +172,26 @@ Academy_EventScript_HallTransition:
 	SetVar 0x502F, 5
 	Return
 	
+Academy_EventScript_HeadmasterBP:
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterBP
+	WaitButton
+	GoTo Academy_EventScript_HeadmasterMenu
+	
+Academy_EventScript_HeadmasterHall:
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterHall
+	WaitButton
+	GoTo Academy_EventScript_HeadmasterMenu
+	
+Academy_EventScript_HeadmasterCandidates:
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterCandidates
+	WaitButton
+	GoTo Academy_EventScript_HeadmasterMenu
+	
+Academy_EventScript_HeadmasterTeachers:
+	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_HeadmasterTeachers
+	WaitButton
+	GoTo Academy_EventScript_HeadmasterMenu
+	
 Academy_EventScript_CandidateLater:
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateLater
 	WaitButton
@@ -153,32 +202,28 @@ Academy_EventScript_CandidateLater:
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_4
+	GoToIfNe _cv_won_6
 	WhiteOut
 	End
-_cv_won_4:
+_cv_won_6:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_3:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_5
+	GoToIfNe _cv_outcome_7
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_6
-_cv_outcome_5:
+	GoTo _cv_outcome_8
+_cv_outcome_7:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_6
+	GoToIfNe _cv_outcome_8
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_6:
+_cv_outcome_8:
 	Return
 	
 Academy_EventScript_CandidateBeatPlayer:
@@ -199,9 +244,6 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
-	GoTo _cv_stop
-	End
 	
 Common_EventScript_NopReturn:
 	Return

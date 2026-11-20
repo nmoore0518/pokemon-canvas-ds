@@ -90,9 +90,6 @@ Academy_EventScript_Keola:
 	WaitButton
 	SetVar 0x8004, 5
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Briony
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Student2:
 	PlaySE SEQ_SE_DP_SELECT
@@ -168,8 +165,9 @@ Academy_EventScript_Invite:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	SetVar 0x502F, 2
-	// TODO(gba) warpsilent MAP_ROUTE11, 38, 4
-	GoTo _cv_stop
+	Warp MAP_ROUTE_11, 0, 1317, 306, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -193,8 +191,9 @@ Academy_EventScript_Escort:
 	WaitFade
 	SetFlag 0x2102
 	SetVar 0x502F, 3
-	// TODO(gba) warpsilent MAP_LEADER_ACADEMY_CAMPUS, 21, 37
-	GoTo _cv_stop
+	Warp MAP_CANVAS_LEADER_ACADEMY, 0, 1318, 295, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	ReleaseAll
 	End
 	
@@ -276,7 +275,7 @@ _cv_yn_6:
 	
 Market_EventScript_CashierAskBP:
 	NPCMsg msg_0346_R11_Academy_Text_MarketAskBP
-	End
+	GoTo Market_EventScript_CashierChoose
 	
 Market_EventScript_CashierChoose:
 	TouchscreenMenuHide
@@ -334,8 +333,7 @@ Academy_EventScript_CandidateLater:
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_9
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -344,9 +342,6 @@ Academy_EventScript_Battle:
 	End
 _cv_won_10:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_9:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
@@ -380,18 +375,12 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
-	GoTo _cv_stop
-	End
 	
 Market_EventScript_CashierBP:
 	NPCMsg msg_0346_R11_Academy_Text_MarketPayBP
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-	// TODO(gba) .global Market_EventScript_TMsA
-	GoTo _cv_stop
 	End
 	
 Academy_EventScript_Route11ShowMentor:

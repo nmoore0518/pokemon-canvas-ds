@@ -173,8 +173,7 @@ MtMoon_B2F_EventScript_BattleMiguel:
 	PlayBGM SEQ_GS_GYM
 	WaitButton
 	SetVar VAR_SPECIAL_LAST_TALKED, 3
-	CheckTrainerFlag 924
-	GoToIf TRUE, _cv_beaten_5
+	CanvasCloseMsg
 	TrainerBattle 924, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -183,9 +182,6 @@ MtMoon_B2F_EventScript_BattleMiguel:
 	End
 _cv_won_6:
 	SetTrainerFlag 924
-	ReleaseAll
-	End
-_cv_beaten_5:
 	SetVar 0x5023, 1
 	NPCMsg msg_0863_CV_CANVAS_MT_MOON_B2F_MtMoon_B2F_Text_WellEachTakeAFossil
 	WaitButton

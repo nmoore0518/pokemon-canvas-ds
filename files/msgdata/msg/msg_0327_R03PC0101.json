@@ -60,6 +60,61 @@
       ]
     },
     {
+      "id": "msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_DescribeWhichGame",
+      "en_US": [
+        "I can explain game rules to you,\n",
+        "if you’d like.\r",
+        "Which game should I describe?"
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_cv_mc_wireless_minigame_0",
+      "en_US": "Pokémon Jump"
+    },
+    {
+      "id": "msg_0327_R03PC0101_cv_mc_wireless_minigame_1",
+      "en_US": "Dodrio Berry-Picking"
+    },
+    {
+      "id": "msg_0327_R03PC0101_cv_mc_wireless_minigame_2",
+      "en_US": "Exit"
+    },
+    {
+      "id": "msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo",
+      "en_US": [
+        "“Pokémon Jump”\r",
+        "Make your Pokémon skip the Vine Whip\n",
+        "rope with the A Button.\r",
+        "Only mini Pokémon around 28 inches\n",
+        "or less may participate.\r",
+        "Pokémon that only swim, burrow,\n",
+        "or fly are not good at jumping.\r",
+        "As a result, those Pokémon may not\n",
+        "participate.\r",
+        "Good things happen if everyone\n",
+        "jumps in time."
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo",
+      "en_US": [
+        "“Dodrio Berry-Picking”\r",
+        "Command Dodrio’s three heads to\n",
+        "catch falling Berries.\r",
+        "Press right, up, or left on the\n",
+        " Control Pad to move the heads.\r",
+        "To play this game, you must have\n",
+        "a Dodrio."
+      ]
+    },
+    {
+      "id": "msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay",
+      "en_US": [
+        "If you want to play a game,\n",
+        "please tell the old man beside me."
+      ]
+    },
+    {
       "id": "msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou",
       "en_US": [
         "No? You say no? I’m only doing this\n",

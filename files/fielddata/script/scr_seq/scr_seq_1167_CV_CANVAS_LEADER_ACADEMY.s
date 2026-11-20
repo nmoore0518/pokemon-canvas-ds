@@ -32,9 +32,6 @@ Academy_EventScript_Koji:
 	WaitButton
 	SetVar 0x8004, 0
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Maren
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Maren:
 	LockAll
@@ -43,9 +40,6 @@ Academy_EventScript_Maren:
 	WaitButton
 	SetVar 0x8004, 1
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Elias
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Rene:
 	LockAll
@@ -54,9 +48,6 @@ Academy_EventScript_Rene:
 	WaitButton
 	SetVar 0x8004, 4
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Keola
-	GoTo _cv_stop
-	End
 	
 Academy_EventScript_Student1:
 	PlaySE SEQ_SE_DP_SELECT
@@ -82,9 +73,6 @@ Market_EventScript_TMsA:
 	CloseMsg
 	ReleaseAll
 	End
-	// TODO(gba) .global Market_EventScript_TMsB
-	GoTo _cv_stop
-	End
 	
 Market_EventScript_TMsB:
 	LockAll
@@ -99,9 +87,6 @@ Market_EventScript_TMsB:
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-	// TODO(gba) .global Market_EventScript_TMsC
-	GoTo _cv_stop
 	End
 	
 Market_EventScript_TMsC:
@@ -118,9 +103,6 @@ Market_EventScript_TMsC:
 	CloseMsg
 	ReleaseAll
 	End
-	// TODO(gba) .global Market_EventScript_Celadon
-	GoTo _cv_stop
-	End
 	
 Market_EventScript_Celadon:
 	LockAll
@@ -135,9 +117,6 @@ Market_EventScript_Celadon:
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-	// TODO(gba) .global Market_EventScript_Held
-	GoTo _cv_stop
 	End
 	
 Market_EventScript_Held:
@@ -176,9 +155,6 @@ Market_EventScript_Held:
 	CloseMsg
 	ReleaseAll
 	End
-	// TODO(gba) .global Market_EventScript_Herbs
-	GoTo _cv_stop
-	End
 	
 Market_EventScript_Herbs:
 	LockAll
@@ -204,9 +180,6 @@ Market_EventScript_Herbs:
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-	// TODO(gba) .global Market_EventScript_Nature
-	GoTo _cv_stop
 	End
 	
 Market_EventScript_Nature:
@@ -247,9 +220,6 @@ Market_EventScript_Nature:
 	WaitButton
 	CloseMsg
 	ReleaseAll
-	End
-	// TODO(gba) .global Market_EventScript_Training
-	GoTo _cv_stop
 	End
 	
 Market_EventScript_Training:
@@ -418,8 +388,7 @@ Academy_EventScript_CandidateLater:
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -428,9 +397,6 @@ Academy_EventScript_Battle:
 	End
 _cv_won_4:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_3:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
@@ -464,9 +430,6 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
-	GoTo _cv_stop
-	End
 	
 Common_EventScript_NopReturn:
 	Return

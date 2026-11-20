@@ -119,7 +119,7 @@ _cv_has_1:
 	GoToIfEq LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute
 	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiStillWaiting
 	WaitButton
-	End
+	GoTo LavenderTown_VolunteerPokemonHouse_EventScript_FujiAskBattle
 	
 LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute:
 	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis
@@ -147,8 +147,7 @@ _cv_yn_3:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_4
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -157,9 +156,6 @@ _cv_yn_3:
 	End
 _cv_won_5:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_4:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4

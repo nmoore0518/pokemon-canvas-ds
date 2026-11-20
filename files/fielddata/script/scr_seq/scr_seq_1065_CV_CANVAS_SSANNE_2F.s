@@ -110,6 +110,7 @@ SSAnne_2F_Corridor_EventScript_RivalApproachRight:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_4
 	TrainerBattle 778, 0, 0, 0
@@ -182,6 +183,7 @@ _cv_won_16:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_18
 	TrainerBattle 778, 0, 0, 0
@@ -254,6 +256,7 @@ _cv_won_30:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_32
 	TrainerBattle 778, 0, 0, 0

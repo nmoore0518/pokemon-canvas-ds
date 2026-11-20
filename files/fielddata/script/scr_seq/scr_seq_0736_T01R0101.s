@@ -44,7 +44,7 @@ DadStory_EventScript_HouseOnLoad:
 	GoToIfEq DadStory_EventScript_HideStairs
 	CheckTrainerFlag 1085
 	GoToIf TRUE, DadStory_EventScript_OldSaveStairs
-	End
+	GoTo DadStory_EventScript_HideStairs
 	
 DadStory_EventScript_MomDadsBall:
 	LockAll
@@ -150,7 +150,7 @@ DadStory_EventScript_HideStairs:
 	
 DadStory_EventScript_OldSaveStairs:
 	SetFlag 0x200C
-	End
+	GoTo DadStory_EventScript_End
 	
 DadStory_EventScript_RevealStairs:
 	// (the GBA redraws a square here: 7, 0, 0x021, TRUE)

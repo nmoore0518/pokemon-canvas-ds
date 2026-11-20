@@ -57,7 +57,7 @@ PokemonTower_7F_EventScript_Grunt2:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt2Intro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1106, 0, 0, 0
+	TrainerBattle 1106, 1106, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_4
@@ -78,7 +78,7 @@ PokemonTower_7F_EventScript_Grunt3:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt3Intro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1107, 0, 0, 0
+	TrainerBattle 1107, 1107, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_6
@@ -345,7 +345,7 @@ PaintWorld_EventScript_FigureSketch:
 PaintWorld_EventScript_FigureMega:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_FigureMega
 	WaitButton
-	End
+	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
 	CloseMsg
@@ -353,8 +353,7 @@ PaintWorld_EventScript_FigureBattle:
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_49
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -363,9 +362,6 @@ PaintWorld_EventScript_FigureBattle:
 	End
 _cv_won_50:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_49:
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4

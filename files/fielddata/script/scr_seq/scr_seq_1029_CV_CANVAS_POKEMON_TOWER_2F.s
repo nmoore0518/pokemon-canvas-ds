@@ -193,6 +193,7 @@ PokemonTower_2F_EventScript_RivalFacePlayerDown:
 	Return
 	
 PokemonTower_2F_EventScript_RivalSquirtle:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_2
 	TrainerBattle 790, 0, 0, 0
@@ -265,6 +266,7 @@ _cv_won_14:
 	Return
 	
 PokemonTower_2F_EventScript_RivalBulbasaur:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_16
 	TrainerBattle 790, 0, 0, 0
@@ -337,6 +339,7 @@ _cv_won_28:
 	Return
 	
 PokemonTower_2F_EventScript_RivalCharmander:
+	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_30
 	TrainerBattle 790, 0, 0, 0
@@ -448,7 +451,7 @@ GymHack_EventScript_GiveStatItem:
 	BufferItemName 1, 0x8009
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_GymHack_Text_GiftSentToPC
 	WaitButton
-	End
+	GoTo GymHack_EventScript_GiveStatItemDone
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return

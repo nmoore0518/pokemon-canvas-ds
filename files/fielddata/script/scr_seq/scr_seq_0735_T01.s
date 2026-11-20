@@ -115,7 +115,7 @@ GymFinale_EventScript_CeremonyMentor:
 GymFinale_EventScript_CeremonyLeader:
 	LockAll
 	FacePlayer
-	End
+	GoTo GymFinale_EventScript_CeremonyLeaderTalk
 	
 TypeTutor_EventScript_NormalAttacks:
 	LockAll
@@ -278,7 +278,7 @@ PalletTown_EventScript_ChanseyStatue:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueLegend
 	WaitButton
 	SetFlag 0x2002
-	End
+	GoTo PalletTown_EventScript_ChanseyStatueWish
 	
 PalletTown_EventScript_OakTriggerLeft:
 	LockAll
@@ -734,7 +734,7 @@ PalletTown_EventScript_ChanseyStatueEgg:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_EventScript_ChanseyStatueEggEnd
 	SetFlag 0x2001
-	End
+	GoTo PalletTown_EventScript_ChanseyStatueEggEnd
 	
 PalletTown_EventScript_ChanseyStatueEnd:
 	ReleaseAll
@@ -927,7 +927,7 @@ TypeTutor_EventScript_Intro:
 	GoTo _cv_stop
 	// TODO(gba) special TypeTutor_GetState
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Trial
 	
 TypeTutor_EventScript_Trial:
 	// TODO(gba) special TypeTutor_BufferTrial
@@ -945,7 +945,7 @@ TypeTutor_EventScript_JustDone:
 	WaitButton
 	// TODO(gba) special TypeTutor_SetOpened
 	GoTo _cv_stop
-	End
+	GoTo TypeTutor_EventScript_Teach
 	
 TypeTutor_EventScript_Teach:
 	CopyVar 0x8004, 0x8008
@@ -977,7 +977,7 @@ _cv_menu_16:
 BerryField_EventScript_BagFull:
 	NPCMsg msg_0446_T01_BerryField_Text_BagFull
 	WaitButton
-	End
+	GoTo BerryField_EventScript_End
 	
 PalletTown_EventScript_ChanseyStatueEggEnd:
 	ReleaseAll
@@ -986,7 +986,7 @@ PalletTown_EventScript_ChanseyStatueEggEnd:
 PalletTown_EventScript_ChanseyStatueMaxed:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueMaxed
 	WaitButton
-	End
+	GoTo PalletTown_EventScript_ChanseyStatueEnd
 	
 PalletTown_EventScript_ChanseyStatueShort:
 	NPCMsg msg_0446_T01_PalletTown_Text_ChanseyStatueShort

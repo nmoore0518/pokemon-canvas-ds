@@ -26,9 +26,6 @@ Academy_EventScript_Elias:
 	WaitButton
 	SetVar 0x8004, 2
 	GoTo Academy_EventScript_CandidateBattle
-	// TODO(gba) .global Academy_EventScript_Nadia
-	GoTo _cv_stop
-	End
 	
 LeaderAcademy_PokemonCenter_OnTransition:
 	End
@@ -75,8 +72,7 @@ Academy_EventScript_CandidateLater:
 Academy_EventScript_Battle:
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
-	CheckTrainerFlag 1442
-	GoToIf TRUE, _cv_beaten_3
+	CanvasCloseMsg
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -85,9 +81,6 @@ Academy_EventScript_Battle:
 	End
 _cv_won_4:
 	SetTrainerFlag 1442
-	ReleaseAll
-	End
-_cv_beaten_3:
 	ClearFlag 0x2036
 	// TODO(gba) special GymChallenge_EndPractice
 	GoTo _cv_stop
@@ -121,9 +114,6 @@ Academy_EventScript_EarnBP:
 	WaitFanfare
 	WaitButton
 	Return
-	// TODO(gba) .global Academy_EventScript_Koji
-	GoTo _cv_stop
-	End
 
 _cv_stop:
 	NPCMsg msg_0973_CV_CANVAS_ACADEMY_CENTER_cv_unported

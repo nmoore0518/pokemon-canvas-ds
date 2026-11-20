@@ -8,7 +8,7 @@
 	InitScriptEntryEnd
 
 _cv_T10_frame:
-	// (not yet: IndigoPlateau_Exterior_EventScript_Credits)
+	InitScriptGoToIfEqual 0x502E, 1, _EV_IndigoPlateau_Exterior_EventScript_Credits + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

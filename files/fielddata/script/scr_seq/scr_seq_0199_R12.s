@@ -100,7 +100,7 @@ Route12_EventScript_Luca:
 	NPCMsg msg_0348_R12_Route12_Text_LucaIntro
 	WaitButton
 	CloseMsg
-	TrainerBattle 1030, 0, 0, 0
+	TrainerBattle 1030, 1030, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfNe _cv_won_9
