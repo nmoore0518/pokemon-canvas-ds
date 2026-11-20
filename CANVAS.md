@@ -410,6 +410,25 @@ grass beside it, as the Safari Zone's sand.
 
 ## Rules for every map we build (from Nick's review of Pallet)
 
+### For every region (Nick: what we refine once, get right the first time in all nine regions)
+These hold for every map of every region, built now or later; each was settled on a Kanto map:
+- **HeartGold's own pieces, at HeartGold's own scale**: read the piece off the HeartGold map that has that kind of
+  thing (a kit: `hg_kit.py`, `data/kit_*.json`) and lay it by what is round each square; compare with HeartGold's
+  map in the map viewer (its "HeartGold's own Kanto" and Johto groups) before calling it done.
+- **Ledges**: HeartGold's flat painted lip, its ends and its turns, a decal over the ground so the ground blends
+  (`kit_ledge.json`, `ledge_piece`; see the overworld's ledges below). Never a raised berm or a ramp.
+- **Transitions everywhere**: every ground meets the next with an edge (a made edge where HeartGold has none);
+  no two edge pieces back to back.
+- **Widths are HeartGold's, err bigger**; a room or floor that reads cramped gets plain rows and columns (`widen`),
+  the porter moving its people and redoing its scripted walks and `getplayerxy` (`unwiden`).
+- **A building's look brings its camera** (the Sprout Tower's 0, a house's 4) and **its own model set**: an area
+  whose data byte 6 is 1 places the field models (a/0/4/0), else the rooms' (a/1/4/8) - the same id is a ladder in
+  one and a shelf in the other.
+- **Signs never block doors**; nothing stands over anything else.
+- **The build order at the top of this file**, every time: build_interiors.py leaves headers and events bare until
+  the porter runs.
+- After a build that changes maps, re-export and republish the map viewer.
+
 **Build from a tile kit** (Nick, after the caves were rebuilt that way: all caves, and any map of ours in every
 region, new or already built a different way): before laying a map, read the pieces HeartGold builds that kind of
 place from out of its own lands (`bmdview.py`; `cave_kit.corner_pieces` reads Union Cave's), then lay the map a
@@ -714,13 +733,15 @@ pond's water and banks, trees one to a 2x2 block of woods at HG density, cards f
 HeartGold's ground height, 16 (as Pallet's and Cinnabar's lands: the matrix's altitude moves a land's model but not the heights people stand at, so it stays 0). Lands must stay
 under 61,400 bytes of model (`build_land` prints the biggest).
 
-**Ledges** (Nick: ledges looked flat) are a raised lip on level ground: the ground rising from the side you jump from
-to a crest 8 high, then HeartGold's cliff face (`wall01_g`, the cliff's profile squeezed into the square's front 0.42)
-down to the side you land on, its ends closed with the face's texture (`ledge` in `build_land`). HeartGold's own
-Kanto draws them flatter still (a painted strip, `allpeak_pgs`, a unit over the ground: compare in the map viewer).
-A ledge can't be a real tier step as the GBA lays them out: every area above a ledge is reached on foot some other
-way (the only stairs in its Kanto are Pallet's), so a step needs a ramp or stairs added on that way - as HeartGold's
-own Route 1 has one cliff with stairs across it. (A solver for that is not in: every ledge came out a lip.)
+**Ledges** are HeartGold's own: flat, a rock lip painted on the ground a unit over it (`allpeak_pgs` straight,
+`allpeakgs` for a run's end and for the turn of a ledge; palette `apeak`), a decal over whatever ground the square
+has, so the grass, sand or road runs on under it and blends (Nick: "make them match" HeartGold's; not raised, not a
+ramp). The pieces are read off HeartGold's own ledges (Route 1/3/4/9/22/29/30/45/46, Cerulean) into
+`data/kit_ledge.json`, a piece a square keyed by its way down and whether the squares before and after it along the
+ledge carry the lip on (`ledge_piece`); a ledge you jump north off is a south one turned round. Where a ledge down a
+column turns into one along a row, the GBA closes the square at the turn: HeartGold paints the lip's turn there
+(`corners`, `ledge_corner_key`; the square stays closed, the ground under it). HeartGold's Kanto has no ledge that
+is a real tier step either: the GBA lets you walk round every ledge's end (outside Pallet there are no stairs).
 
 **Buildings** are HeartGold's own: for each GBA door, the building HeartGold's town has for that room
 (`hg_buildings`: read once off HeartGold's Kanto as it was, kept in `data/hg_buildings.json`), its door model, and
