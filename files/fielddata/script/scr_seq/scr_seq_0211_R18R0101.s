@@ -3,10 +3,13 @@
 #include "msgdata/msg/msg_0359_R18R0101.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route18_EastEntrance_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route18_EastEntrance_1F_Frlg+Route18_EastEntrance_2F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route18_EastEntrance_1F_EventScript_Guard
+	ScrDef Route18_EastEntrance_2F_EventScript_Haden
+	ScrDef Route18_EastEntrance_2F_EventScript_LeftBinoculars
+	ScrDef Route18_EastEntrance_2F_EventScript_RightBinoculars
 	ScrDef EventScript_SetEnteringCyclingRoad
 	ScrDef Route18_EastEntrance_1F_EventScript_NeedBikeTriggerTop
 	ScrDef Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidTop
@@ -22,6 +25,55 @@ Route18_EastEntrance_1F_EventScript_Guard:
 	LockAll
 	FacePlayer
 	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_1F_Text_CyclingRoadAllUphillFromHere
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route18_EastEntrance_2F_EventScript_Haden:
+	LockAll
+	FacePlayer
+	SetVar 0x8008, 9
+	Call EventScript_GetInGameTradeSpeciesInfo
+	GoToIfSet 0x22E6, Route18_EastEntrance_2F_EventScript_AlreadyTraded
+	NPCMsg msg_0359_R18R0101_Trade_Text_LookingForMonWannaTradeForMon
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Route18_EastEntrance_2F_EventScript_DeclineTrade
+	Call EventScript_ChooseMonForInGameTrade
+	CompareVarToValue 0x8004, 6
+	GoToIfGe Route18_EastEntrance_2F_EventScript_DeclineTrade
+	Call EventScript_GetInGameTradeSpecies
+	CompareVarToVar VAR_SPECIAL_RESULT, 0x8009
+	GoToIfNe Route18_EastEntrance_2F_EventScript_NotRequestedMon
+	Call EventScript_DoInGameTrade
+	NPCMsg msg_0359_R18R0101_Trade_Text_HeyThanks
+	WaitButton
+	SetFlag 0x22E6
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route18_EastEntrance_2F_EventScript_LeftBinoculars:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_2F_Text_PalletTownInWest
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route18_EastEntrance_2F_EventScript_RightBinoculars:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_2F_Text_PeopleSwimming
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -74,6 +126,55 @@ Route18_EastEntrance_1F_OnTransition:
 	ClearFlag 0x210F
 	CallIfSet 0x20E0, Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger
 	End
+	
+EventScript_GetInGameTradeSpeciesInfo:
+	CopyVar 0x8005, 0x8008
+	SetVar 0x8009, 0  // TODO(gba) specialvar GetInGameTradeSpeciesInfo
+	GoTo _cv_stop
+	Return
+	
+Route18_EastEntrance_2F_EventScript_AlreadyTraded:
+	NPCMsg msg_0359_R18R0101_Trade_Text_IsntMyOldMonGreat
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route18_EastEntrance_2F_EventScript_DeclineTrade:
+	NPCMsg msg_0359_R18R0101_Trade_Text_AwwOhWell
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_ChooseMonForInGameTrade:
+	// TODO(gba) special ChoosePartyMon
+	GoTo _cv_stop
+	LockAll
+	FacePlayer
+	Return
+	
+EventScript_GetInGameTradeSpecies:
+	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetTradeSpecies
+	GoTo _cv_stop
+	Return
+	
+Route18_EastEntrance_2F_EventScript_NotRequestedMon:
+	BufferSpeciesName 0, 0x8009, 0, 0
+	NPCMsg msg_0359_R18R0101_Trade_Text_WhatThatsNoMon
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+EventScript_DoInGameTrade:
+	// TODO(gba) special CreateInGameTradePokemon
+	GoTo _cv_stop
+	// TODO(gba) special DoInGameTradeScene
+	GoTo _cv_stop
+	LockAll
+	FacePlayer
+	Return
 	
 Route18_EastEntrance_1F_EventScript_NeedBikeTrigger:
 	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_1F_Text_ExcuseMe

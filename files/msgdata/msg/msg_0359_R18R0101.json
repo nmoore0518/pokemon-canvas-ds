@@ -9,6 +9,53 @@
       ]
     },
     {
+      "id": "msg_0359_R18R0101_Trade_Text_LookingForMonWannaTradeForMon",
+      "en_US": [
+        "I’m looking for the Pokémon\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Wanna trade one for my\n",
+        "{STRVAR_1 3, 1, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0359_R18R0101_Trade_Text_HeyThanks",
+      "en_US": "Hey, thanks!"
+    },
+    {
+      "id": "msg_0359_R18R0101_Route18_EastEntrance_2F_Text_PalletTownInWest",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "Pallet Town is in the west."
+      ]
+    },
+    {
+      "id": "msg_0359_R18R0101_Route18_EastEntrance_2F_Text_PeopleSwimming",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "There are people swimming."
+      ]
+    },
+    {
+      "id": "msg_0359_R18R0101_Trade_Text_IsntMyOldMonGreat",
+      "en_US": "Isn’t my old {STRVAR_1 3, 1, 0} great?"
+    },
+    {
+      "id": "msg_0359_R18R0101_Trade_Text_AwwOhWell",
+      "en_US": [
+        "Awww!\n",
+        "Oh, well…"
+      ]
+    },
+    {
+      "id": "msg_0359_R18R0101_Trade_Text_WhatThatsNoMon",
+      "en_US": [
+        "What?\n",
+        "That’s no {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
       "id": "msg_0359_R18R0101_Route18_EastEntrance_1F_Text_ExcuseMe",
       "en_US": "Excuse me!"
     },

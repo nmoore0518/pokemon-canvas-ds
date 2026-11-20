@@ -3,6 +3,10 @@
 
 #define _EV_Route11_EastEntrance_1F_EventScript_TopGuard 0
 #define _EV_Route11_EastEntrance_1F_EventScript_BottomGuard 1
+#define _EV_Route11_EastEntrance_2F_EventScript_Turner 2
+#define _EV_Route11_EastEntrance_2F_EventScript_Aide 3
+#define _EV_Route11_EastEntrance_2F_EventScript_LeftBinoculars 4
+#define _EV_Route11_EastEntrance_2F_EventScript_RightBinoculars 5
 
 
 #endif

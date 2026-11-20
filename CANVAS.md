@@ -439,6 +439,11 @@ These hold for every map of every region, built now or later; each was settled o
 - **A custom-built town's land is what the lands round it see**: the lands next to one (Cinnabar) meet it as its
   builder lays it, not as the GBA had it (else a bank is drawn along their edge against the GBA's woods, out in the
   sea).
+- **Nothing upstairs is lost** (Nick, from the gatehouses): where HeartGold's room has no upstairs for the GBA's
+  (its Kanto gatehouses), the GBA's upper floor joins the lower (`'1F+2F'` in the porter's MAPS) and `UPSTAIRS`
+  stands its people and signs on squares the room's open floor reaches (binoculars on the window wall). Each GBA
+  room has its own room of HeartGold's: two of the GBA's sharing one leave a door that leads back the way it came.
+  A `.equ` in a GBA script file is that file's own (three aides each set REQUIRED_CAUGHT_MONS).
 - **Towns keep the GBA's layout, one building to each of its buildings** (Nick, from Saffron): where HeartGold's
   buildings won't fit the GBA's town, reshape the map (`reshape.py`: lines out of its spare woods, as many in
   between its buildings) rather than drop or merge buildings, and place buildings that run together by `LOTS`;

@@ -10,6 +10,90 @@
       ]
     },
     {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_GiveItemIfCaughtEnough",
+      "en_US": [
+        "Hi! Remember me?\n",
+        "I’m one of Prof. Oak’s Aides.\r",
+        "If your Pokédex has complete data\n",
+        "on {STRVAR_1 3, 0, 0} species, I’m supposed to\f",
+        "give you a reward.\r",
+        "Prof. Oak entrusted me with the\n",
+        "{STRVAR_1 3, 1, 0} for you.\r",
+        "So, {STRVAR_1 3, 6, 0}, let me ask you.\r",
+        "Have you gathered data on at least\n",
+        "{STRVAR_1 3, 0, 0} kinds of Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_GreatHereYouGo",
+      "en_US": [
+        "Great! You have caught or owned\n",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "Congratulations!\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_ReceivedItemFromAide",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the {STRVAR_1 3, 1, 0}\n",
+        "from the Aide."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_ExplainExpShare",
+      "en_US": [
+        "EXP. Share is an item to be held\n",
+        "by a Pokémon.\r",
+        "The Pokémon will receive a share\n",
+        "of the EXP. Points without having\f",
+        "to battle."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_LargeShiningBird",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "A large, shining bird is flying\n",
+        "toward the sea."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Route15_WestEntrance_2F_Text_SmallIslandOnHorizon",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "It looks like a small island on\n",
+        "the horizon!"
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Aide_Text_GetEnoughMonsComeBackForItem",
+      "en_US": [
+        "…Oh. I see.\r",
+        "When you get {STRVAR_1 3, 0, 0} kinds of Pokémon,\n",
+        "come back for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Aide_Text_HaventCaughtEnoughMonsForItem",
+      "en_US": [
+        "Let’s see…\n",
+        "Uh-oh! You have caught only\f",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "You need {STRVAR_1 3, 0, 0} kinds\n",
+        "if you want the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0353_R15R0101_Aide_Text_DontHaveAnyRoomForItem",
+      "en_US": [
+        "Oh! I see you don’t have any\n",
+        "room for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
       "id": "msg_0353_R15R0101_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

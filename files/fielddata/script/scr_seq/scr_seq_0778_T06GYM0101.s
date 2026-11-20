@@ -341,7 +341,7 @@ VermilionCity_Gym_EventScript_TrashCan:
 	CopyVar 0x8005, 0x4001
 	GoToIfSet 0x2126, VermilionCity_Gym_EventScript_LocksAlreadyOpen
 	GoToIfSet 1, VermilionCity_Gym_EventScript_TrySwitchTwo
-	CompareVarToValue 0x8004, 0x8008
+	CompareVarToVar 0x8004, 0x8008
 	GoToIfEq VermilionCity_Gym_EventScript_FoundSwitchOne
 	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_NopeOnlyTrashHere
 	WaitButton
@@ -445,7 +445,7 @@ VermilionCity_Gym_EventScript_LocksAlreadyOpen:
 	End
 	
 VermilionCity_Gym_EventScript_TrySwitchTwo:
-	CompareVarToValue 0x8005, 0x8008
+	CompareVarToVar 0x8005, 0x8008
 	GoToIfEq VermilionCity_Gym_EventScript_FoundSwitchTwo
 	NPCMsg msg_0485_T06GYM0101_VermilionCity_Gym_Text_OnlyTrashLocksWereReset
 	WaitButton

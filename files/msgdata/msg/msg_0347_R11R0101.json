@@ -24,6 +24,135 @@
       ]
     },
     {
+      "id": "msg_0347_R11R0101_Trade_Text_LookingForMonWannaTradeForMon",
+      "en_US": [
+        "I’m looking for the Pokémon\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Wanna trade one for my\n",
+        "{STRVAR_1 3, 1, 0}?"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Trade_Text_HeyThanks",
+      "en_US": "Hey, thanks!"
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30",
+      "en_US": [
+        "Hi! Remember me?\n",
+        "I’m one of Prof. Oak’s Aides.\r",
+        "If your Pokédex has complete data\n",
+        "on {STRVAR_1 3, 0, 0} species, I’m supposed to\f",
+        "give you a reward.\r",
+        "Prof. Oak entrusted me with the\n",
+        "{STRVAR_1 3, 1, 0} for you.\r",
+        "So, {STRVAR_1 3, 6, 0}, let me ask you.\r",
+        "Have you gathered data on at least\n",
+        "{STRVAR_1 3, 0, 0} kinds of Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_GreatHereYouGo",
+      "en_US": [
+        "Great! You have caught or owned\n",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "Congratulations!\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the {STRVAR_1 3, 1, 0}\n",
+        "from the Aide."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_ExplainItemfinder",
+      "en_US": [
+        "There are items on the ground that\n",
+        "may be hidden from view.\r",
+        "Use the Itemfinder to detect any\n",
+        "hidden items close to you.\r",
+        "The machine is a bit limited.\n",
+        "It can’t pinpoint item locations.\r",
+        "What it does is show the direction\n",
+        "where the item is.\r",
+        "Use it to get your bearings, then\n",
+        "search the suspect area by hand."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "A big Pokémon is asleep on a road!"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "To get to Lavender Town from\n",
+        "Cerulean City…\r",
+        "Rock Tunnel appears to be a good\n",
+        "route to take."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Trade_Text_IsntMyOldMonGreat",
+      "en_US": "Isn’t my old {STRVAR_1 3, 1, 0} great?"
+    },
+    {
+      "id": "msg_0347_R11R0101_Trade_Text_AwwOhWell",
+      "en_US": [
+        "Awww!\n",
+        "Oh, well…"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Trade_Text_WhatThatsNoMon",
+      "en_US": [
+        "What?\n",
+        "That’s no {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Aide_Text_GetEnoughMonsComeBackForItem",
+      "en_US": [
+        "…Oh. I see.\r",
+        "When you get {STRVAR_1 3, 0, 0} kinds of Pokémon,\n",
+        "come back for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Aide_Text_HaventCaughtEnoughMonsForItem",
+      "en_US": [
+        "Let’s see…\n",
+        "Uh-oh! You have caught only\f",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "You need {STRVAR_1 3, 0, 0} kinds\n",
+        "if you want the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Aide_Text_DontHaveAnyRoomForItem",
+      "en_US": [
+        "Oh! I see you don’t have any\n",
+        "room for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0347_R11R0101_Route11_EastEntrance_2F_Text_WhatABreathtakingView",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "What a breathtaking view!"
+      ]
+    },
+    {
       "id": "msg_0347_R11R0101_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

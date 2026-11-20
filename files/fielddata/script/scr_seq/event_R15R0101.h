@@ -2,6 +2,9 @@
 #define SCR_SEQ_R15R0101_H_
 
 #define _EV_Route15_WestEntrance_1F_EventScript_Guard 0
+#define _EV_Route15_WestEntrance_2F_EventScript_Aide 1
+#define _EV_Route15_WestEntrance_2F_EventScript_LeftBinoculars 2
+#define _EV_Route15_WestEntrance_2F_EventScript_RightBinoculars 3
 
 
 #endif

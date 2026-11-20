@@ -17,6 +17,23 @@
             "x": 6,
             "z": 6,
             "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSBOY1",
+            "movement": 16,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route18_EastEntrance_2F_EventScript_Haden + 1",
+            "facingDirection": 2,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 10,
+            "z": 4,
+            "y": 0
         }
     ],
     "warps": [
@@ -147,5 +164,22 @@
             "var": "0x5030"
         }
     ],
-    "bgs": []
+    "bgs": [
+        {
+            "scriptId": "_EV_Route18_EastEntrance_2F_EventScript_LeftBinoculars + 1",
+            "type": 0,
+            "x": 2,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route18_EastEntrance_2F_EventScript_RightBinoculars + 1",
+            "type": 0,
+            "x": 9,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        }
+    ]
 }

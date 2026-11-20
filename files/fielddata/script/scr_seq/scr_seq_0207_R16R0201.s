@@ -3,11 +3,16 @@
 #include "msgdata/msg/msg_0356_R16R0201.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's Route16_NorthEntrance_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's Route16_NorthEntrance_1F_Frlg+Route16_NorthEntrance_2F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef Route16_NorthEntrance_1F_EventScript_Guard
 	ScrDef Route16_NorthEntrance_1F_EventScript_OldMan
+	ScrDef Route16_NorthEntrance_2F_EventScript_LittleBoy
+	ScrDef Route16_NorthEntrance_2F_EventScript_LittleGirl
+	ScrDef Route16_NorthEntrance_2F_EventScript_Aide
+	ScrDef Route16_NorthEntrance_2F_EventScript_LeftBinoculars
+	ScrDef Route16_NorthEntrance_2F_EventScript_RightBinoculars
 	ScrDef EventScript_SetExitingCyclingRoad
 	ScrDef EventScript_SetEnteringCyclingRoad
 	ScrDef Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerTop
@@ -33,6 +38,91 @@ Route16_NorthEntrance_1F_EventScript_OldMan:
 	LockAll
 	FacePlayer
 	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_HowdYouGetInGoodEffort
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route16_NorthEntrance_2F_EventScript_LittleBoy:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_OnBikeRideWithGirlfriend
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route16_NorthEntrance_2F_EventScript_LittleGirl:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_RidingTogetherOnNewBikes
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route16_NorthEntrance_2F_EventScript_Aide:
+	LockAll
+	FacePlayer
+	Call Route16_NorthEntrance_2F_EventScript_GetAideRequestInfo
+	GoToIfSet 0x22E5, Route16_NorthEntrance_2F_EventScript_AlreadyGotAmuletCoin
+	BufferPlayersName 6
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_GiveAmuletCoinIfCaught40
+	YesNo VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_yes_1
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoTo _cv_yn_2
+_cv_yes_1:
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_yn_2:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Aide_EventScript_DeclineCheckMons
+	SetVar 0x8004, 0
+	CountNationalDexSeen 0x8005
+	CountNationalDexOwned 0x8006
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x2026, _cv_dex_3
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_dex_3:
+	BufferInt 2, 0x8006
+	Call Route16_NorthEntrance_2F_EventScript_GetAideRequestInfo
+	CompareVarToValue 0x8006, 40
+	GoToIfLt Aide_EventScript_HaventCaughtEnough
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_GreatHereYouGo
+	WaitButton
+	HasSpaceForItem ITEM_AMULET_COIN, 1, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq Aide_EventScript_NoRoomForItem
+	GiveItem ITEM_AMULET_COIN, 1, VAR_SPECIAL_RESULT
+	BufferItemName 1, ITEM_AMULET_COIN
+	BufferPlayersName 6
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ReceivedAmuletCoinFromAide
+	PlayFanfare SEQ_ME_LVUP
+	WaitFanfare
+	WaitButton
+	SetFlag 0x22E5
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ExplainAmuletCoin
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route16_NorthEntrance_2F_EventScript_LeftBinoculars:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ItsCeladonDeptStore
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Route16_NorthEntrance_2F_EventScript_RightBinoculars:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_LongPathOverWater
 	WaitButton
 	CloseMsg
 	ReleaseAll
@@ -84,6 +174,39 @@ Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerBottom:
 Route16_NorthEntrance_1F_OnTransition:
 	ClearFlag 0x210F
 	CallIfSet 0x20E0, Route16_NorthEntrance_1F_EventScript_DisableNeedBikeTrigger
+	End
+	
+Route16_NorthEntrance_2F_EventScript_GetAideRequestInfo:
+	BufferInt 0, 40
+	BufferItemName 1, ITEM_AMULET_COIN
+	Return
+	
+Route16_NorthEntrance_2F_EventScript_AlreadyGotAmuletCoin:
+	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ExplainAmuletCoin
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Aide_EventScript_DeclineCheckMons:
+	NPCMsg msg_0356_R16R0201_Aide_Text_GetEnoughMonsComeBackForItem
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Aide_EventScript_HaventCaughtEnough:
+	NPCMsg msg_0356_R16R0201_Aide_Text_HaventCaughtEnoughMonsForItem
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+Aide_EventScript_NoRoomForItem:
+	NPCMsg msg_0356_R16R0201_Aide_Text_DontHaveAnyRoomForItem
+	WaitButton
+	CloseMsg
+	ReleaseAll
 	End
 	
 Route16_NorthEntrance_1F_EventScript_NeedBikeTrigger:

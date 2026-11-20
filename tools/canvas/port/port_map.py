@@ -415,13 +415,15 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'UndergroundPath_NorthEntrance_Frlg': ('MAP_ROUTE_5_UNDERGROUND_PATH_GATE', Auto('MAP_ROUTE_5_UNDERGROUND_PATH_GATE')),
     'UndergroundPath_SouthEntrance_Frlg': ('MAP_ROUTE_6_UNDERGROUND_PATH_GATE', Auto('MAP_ROUTE_6_UNDERGROUND_PATH_GATE')),
     'UndergroundPath_NorthSouthTunnel_Frlg': ('MAP_ROUTE_5_UNDERGROUND_PATH', Auto('MAP_ROUTE_5_UNDERGROUND_PATH')),
-    'Route11_EastEntrance_1F_Frlg': ('MAP_ROUTE_19_ROUTE_12_GATEHOUSE', Auto('MAP_ROUTE_19_ROUTE_12_GATEHOUSE')),
-    'Route12_NorthEntrance_1F_Frlg': ('MAP_ROUTE_19_FUCHSIA_GATEHOUSE', Auto('MAP_ROUTE_19_FUCHSIA_GATEHOUSE')),
+    # (HeartGold's gatehouses have no upstairs: the GBA's 2F - Oak's aide with the Itemfinder, the trader, the lass,
+    # the binoculars - joins the 1F, each where UPSTAIRS puts them)
+    'Route11_EastEntrance_1F_Frlg+Route11_EastEntrance_2F_Frlg': ('MAP_ROUTE_19_ROUTE_12_GATEHOUSE', Auto('MAP_ROUTE_19_ROUTE_12_GATEHOUSE', gba='Route11_EastEntrance_1F_Frlg')),
+    'Route12_NorthEntrance_1F_Frlg+Route12_NorthEntrance_2F_Frlg': ('MAP_ROUTE_19_FUCHSIA_GATEHOUSE', Auto('MAP_ROUTE_19_FUCHSIA_GATEHOUSE', gba='Route12_NorthEntrance_1F_Frlg')),
     'Route12_FishingHouse_Frlg': ('MAP_ROUTE_12_FISHING_BROTHER_HOUSE', Auto('MAP_ROUTE_12_FISHING_BROTHER_HOUSE')),
-    'Route15_WestEntrance_1F_Frlg': ('MAP_ROUTE_15_FUCHSIA_GATEHOUSE', Auto('MAP_ROUTE_15_FUCHSIA_GATEHOUSE')),
-    'Route16_NorthEntrance_1F_Frlg': ('MAP_ROUTE_16_GATEHOUSE', Auto('MAP_ROUTE_16_GATEHOUSE')),
+    'Route15_WestEntrance_1F_Frlg+Route15_WestEntrance_2F_Frlg': ('MAP_ROUTE_15_FUCHSIA_GATEHOUSE', Auto('MAP_ROUTE_15_FUCHSIA_GATEHOUSE', gba='Route15_WestEntrance_1F_Frlg')),
+    'Route16_NorthEntrance_1F_Frlg+Route16_NorthEntrance_2F_Frlg': ('MAP_ROUTE_16_GATEHOUSE', Auto('MAP_ROUTE_16_GATEHOUSE', gba='Route16_NorthEntrance_1F_Frlg')),
     'Route16_House_Frlg': ('MAP_ROUTE_16_HOUSE', Auto('MAP_ROUTE_16_HOUSE')),
-    'Route18_EastEntrance_1F_Frlg': ('MAP_ROUTE_18_GATEHOUSE', Auto('MAP_ROUTE_18_GATEHOUSE')),
+    'Route18_EastEntrance_1F_Frlg+Route18_EastEntrance_2F_Frlg': ('MAP_ROUTE_18_GATEHOUSE', Auto('MAP_ROUTE_18_GATEHOUSE', gba='Route18_EastEntrance_1F_Frlg')),
     'Route22_NorthEntrance_Frlg': ('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE', Auto('MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE')),
     'Route2_EastBuilding_Frlg': ('MAP_ROUTE_2_SOUTHEAST_GATEHOUSE', Auto('MAP_ROUTE_2_SOUTHEAST_GATEHOUSE')),
     'IndigoPlateau_PokemonCenter_1F_Frlg': ('MAP_POKEMON_LEAGUE_ENTRANCE', Auto('MAP_POKEMON_LEAGUE_ENTRANCE')),
@@ -602,6 +604,33 @@ def unchoke(slot, objs, warps, report):
 
 
 PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
+# a GBA upstairs HeartGold's room has none for, joined to the downstairs: where its people and signs stand in
+# HeartGold's room (by script; squares the room's open floor reaches, signs on the wall above an open square)
+UPSTAIRS = {
+    'Route11_EastEntrance_1F_Frlg+Route11_EastEntrance_2F_Frlg': {
+        'Route11_EastEntrance_2F_EventScript_Aide': (10, 4), 'Route11_EastEntrance_2F_EventScript_Turner': (10, 10),
+        'Route11_EastEntrance_2F_EventScript_LeftBinoculars': (2, 3), 'Route11_EastEntrance_2F_EventScript_RightBinoculars': (9, 3)},
+    'Route12_NorthEntrance_1F_Frlg+Route12_NorthEntrance_2F_Frlg': {
+        'Route12_NorthEntrance_2F_EventScript_Lass': (9, 11),
+        'Route12_NorthEntrance_2F_EventScript_LeftBinoculars': (3, 2), 'Route12_NorthEntrance_2F_EventScript_RightBinoculars': (7, 2)},
+    'Route15_WestEntrance_1F_Frlg+Route15_WestEntrance_2F_Frlg': {
+        'Route15_WestEntrance_2F_EventScript_Aide': (10, 4),
+        'Route15_WestEntrance_2F_EventScript_LeftBinoculars': (2, 3), 'Route15_WestEntrance_2F_EventScript_RightBinoculars': (9, 3)},
+    'Route16_NorthEntrance_1F_Frlg+Route16_NorthEntrance_2F_Frlg': {
+        'Route16_NorthEntrance_2F_EventScript_Aide': (10, 10), 'Route16_NorthEntrance_2F_EventScript_LittleBoy': (1, 4),
+        'Route16_NorthEntrance_2F_EventScript_LittleGirl': (2, 10),
+        'Route16_NorthEntrance_2F_EventScript_LeftBinoculars': (2, 3), 'Route16_NorthEntrance_2F_EventScript_RightBinoculars': (10, 3)},
+    'Route18_EastEntrance_1F_Frlg+Route18_EastEntrance_2F_Frlg': {
+        'Route18_EastEntrance_2F_EventScript_Haden': (10, 4),
+        'Route18_EastEntrance_2F_EventScript_LeftBinoculars': (2, 3), 'Route18_EastEntrance_2F_EventScript_RightBinoculars': (9, 3)},
+}
+
+
+def _upstairs(key):
+    return lambda people: [dict(o, _at=UPSTAIRS[key][o['script']]) if o['script'] in UPSTAIRS[key] else o for o in people]
+
+
+for _k in UPSTAIRS: PEOPLE[_k] = _upstairs(_k)
 
 
 def room_xy(gba):
@@ -717,8 +746,9 @@ def _dest():
     out = dict(slots.SLOTS)
     for d, v in MAPS.items():
         if '#' in d: continue
-        try: out[G.map_json(d)['id']] = v[0]
-        except Exception: pass
+        for d_ in d.split('+'):           # (GBA maps joined into one of HeartGold's: each of them leads there)
+            try: out[G.map_json(d_)['id']] = v[0]
+            except Exception: pass
     for k, v in DEST_EXTRA.items(): out.setdefault(k, v)
     if WORLD:
         for d, m in WORLD['hg'].items(): out[G.map_json(d)['id']] = m
@@ -1081,7 +1111,8 @@ HG_NAMES = {'ITEM_PARALYZE_HEAL': 'ITEM_PARLYZ_HEAL', 'ITEM_TINY_MUSHROOM': 'ITE
             'ITEM_BIG_MUSHROOM': 'ITEM_BIGMUSHROOM', 'ITEM_X_SP_ATK': 'ITEM_X_SPECIAL', 'ITEM_X_SP_DEF': 'ITEM_X_SP__DEF',
             'ITEM_THUNDER_STONE': 'ITEM_THUNDERSTONE', 'ITEM_SILK_SCARF': 'ITEM_SILK_SCARF', 'ITEM_BLACK_GLASSES': 'ITEM_BLACKGLASSES',
             'ITEM_NEVER_MELT_ICE': 'ITEM_NEVERMELTICE', 'ITEM_TWISTED_SPOON': 'ITEM_TWISTEDSPOON', 'ITEM_DEEP_SEA_TOOTH': 'ITEM_DEEPSEATOOTH',
-            'ITEM_DEEP_SEA_SCALE': 'ITEM_DEEPSEASCALE', 'ITEM_ENERGY_POWDER': 'ITEM_ENERGYPOWDER', 'ITEM_HP_UP': 'ITEM_HP_UP'}
+            'ITEM_DEEP_SEA_SCALE': 'ITEM_DEEPSEASCALE', 'ITEM_ENERGY_POWDER': 'ITEM_ENERGYPOWDER', 'ITEM_HP_UP': 'ITEM_HP_UP',
+            'ITEM_ITEMFINDER': 'ITEM_DOWSING_MCHN'}       # (HeartGold's Itemfinder is its Dowsing Machine)
 # the GBA's scripts for things anyone can use (cut a tree, smash a rock...) -> HeartGold's
 STD_CALLS = {   # GBA shared scripts that HeartGold has its own of
     'EventScript_PkmnCenterNurse_Frlg': ['SetVar VAR_SPECIAL_x8007, 0', 'CallStd std_nurse_joy'],
@@ -2040,7 +2071,7 @@ def port(gba_map, g, ids, report):
     if len(objs) > 60: report.append('  TOO MANY OBJECTS: %d (HeartGold keeps 64, the player among them)' % len(objs))
     bgs = []
     for b in signs:
-        x, z = xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
+        x, z = UPSTAIRS[gba_map][b['script']] if b['script'] in UPSTAIRS.get(gba_map, {}) else xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
         x, z = SAFARI_MOVED.get(gba_map, {}).get('%d,%d' % (x, z), (x, z))      # (a sign build_safari.py moved off a door's front)
         x, z = off_furniture(slot, x, z, sign=True)
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})

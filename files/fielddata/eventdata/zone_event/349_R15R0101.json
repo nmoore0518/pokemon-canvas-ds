@@ -17,6 +17,23 @@
             "x": 6,
             "z": 6,
             "y": 0
+        },
+        {
+            "id": "2",
+            "spriteId": "SPRITE_GSASSISTANTM",
+            "movement": 14,
+            "type": 0,
+            "eventFlag": "FLAG_NOTHING",
+            "scriptId": "_EV_Route15_WestEntrance_2F_EventScript_Aide + 1",
+            "facingDirection": 0,
+            "param0": 0,
+            "param1": 0,
+            "param2": 0,
+            "xRange": 1,
+            "yRange": 1,
+            "x": 10,
+            "z": 4,
+            "y": 0
         }
     ],
     "warps": [
@@ -35,6 +52,23 @@
             "y": 0
         }
     ],
-    "bgs": [],
+    "bgs": [
+        {
+            "scriptId": "_EV_Route15_WestEntrance_2F_EventScript_LeftBinoculars + 1",
+            "type": 0,
+            "x": 2,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        },
+        {
+            "scriptId": "_EV_Route15_WestEntrance_2F_EventScript_RightBinoculars + 1",
+            "type": 0,
+            "x": 9,
+            "z": 3,
+            "y": 0,
+            "dir": 4
+        }
+    ],
     "coords": []
 }

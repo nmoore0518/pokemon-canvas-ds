@@ -9,6 +9,60 @@
       ]
     },
     {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_ReceivedTM27FromLittleGirl",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received TM27\n",
+        "from the little girl."
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_ExplainTM27",
+      "en_US": [
+        "TM27 is a move called Return…\r",
+        "If you treat your Pokémon good,\n",
+        "it will return your love by working\f",
+        "its hardest in battle."
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_TheresManFishing",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "There’s a man fishing!"
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_ItsPokemonTower",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "It’s Pokémon Tower!"
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_TakeTMDontNeedAnymoreMale",
+      "en_US": [
+        "My Pokémon’s ashes are stored in\n",
+        "Pokémon Tower.\r",
+        "You can have this TM.\n",
+        "I don’t need it anymore…"
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_TakeTMDontNeedAnymoreFemale",
+      "en_US": [
+        "My Pokémon’s ashes are stored in\n",
+        "Pokémon Tower.\r",
+        "You can have this TM.\n",
+        "I don’t need it anymore…"
+      ]
+    },
+    {
+      "id": "msg_0741_W19R0101_Route12_NorthEntrance_2F_Text_DontHaveRoomForThis",
+      "en_US": "You don’t have room for this."
+    },
+    {
       "id": "msg_0741_W19R0101_cv_unported",
       "en_US": [
         "(Canvas DS: this part of the game\n",

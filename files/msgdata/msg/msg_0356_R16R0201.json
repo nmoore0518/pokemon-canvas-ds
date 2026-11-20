@@ -16,6 +16,102 @@
       ]
     },
     {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_OnBikeRideWithGirlfriend",
+      "en_US": [
+        "I’m on a relaxing ride on my new\n",
+        "bike with my girlfriend."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_RidingTogetherOnNewBikes",
+      "en_US": [
+        "We’re going riding together on our\n",
+        "new bikes."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_GiveAmuletCoinIfCaught40",
+      "en_US": [
+        "Hi! Remember me?\n",
+        "I’m one of Prof. Oak’s Aides.\r",
+        "If your Pokédex has complete data\n",
+        "on 40 species, I’m supposed to\f",
+        "give you a reward.\r",
+        "Prof. Oak entrusted me with an\n",
+        "Amulet Coin for you.\r",
+        "So, {STRVAR_1 3, 6, 0}, let me ask you.\r",
+        "Have you gathered data on at least\n",
+        "40 kinds of Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_GreatHereYouGo",
+      "en_US": [
+        "Great! You have caught or owned\n",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "Congratulations!\n",
+        "Here you go!"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ReceivedAmuletCoinFromAide",
+      "en_US": [
+        "{STRVAR_1 3, 6, 0} received the Amulet Coin\n",
+        "from the Aide."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ExplainAmuletCoin",
+      "en_US": [
+        "An Amulet Coin is an item to be\n",
+        "held by a Pokémon.\r",
+        "If the Pokémon appears in a winning\n",
+        "battle, you will earn more money."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_ItsCeladonDeptStore",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "It’s the Celadon Dept. Store!"
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Route16_NorthEntrance_2F_Text_LongPathOverWater",
+      "en_US": [
+        "Let’s see what the binoculars have\n",
+        "to show…\r",
+        "There’s a long path over water far\n",
+        "away."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Aide_Text_GetEnoughMonsComeBackForItem",
+      "en_US": [
+        "…Oh. I see.\r",
+        "When you get {STRVAR_1 3, 0, 0} kinds of Pokémon,\n",
+        "come back for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Aide_Text_HaventCaughtEnoughMonsForItem",
+      "en_US": [
+        "Let’s see…\n",
+        "Uh-oh! You have caught only\f",
+        "{STRVAR_1 3, 2, 0} kinds of Pokémon!\r",
+        "You need {STRVAR_1 3, 0, 0} kinds\n",
+        "if you want the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "msg_0356_R16R0201_Aide_Text_DontHaveAnyRoomForItem",
+      "en_US": [
+        "Oh! I see you don’t have any\n",
+        "room for the {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
       "id": "msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_ExcuseMeWaitUp",
       "en_US": [
         "Excuse me!\n",

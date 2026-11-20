@@ -61,6 +61,7 @@ class Gba:
         cur = None
         macro = None               # (a .macro in a map's scripts: its lines, expanded where it's used; no arguments)
         local_macros = {}
+        local_equ = {}             # (a file's own .equ: three of the aides' files each set REQUIRED_CAUGHT_MONS their own way)
         pmacro, pmacros = None, {}   # (a .macro with arguments: its lines as text, the arguments put in where used)
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
         import scrapped        # (less what the port leaves out: scrapped.py)
@@ -108,7 +109,7 @@ class Gba:
                 continue
             m = re.match(r'^\.(equ|set)\s+(\w+)\s*,\s*(.+)$', s)
             if m:
-                self.equ[m.group(2)] = m.group(3).strip(); continue
+                local_equ[m.group(2)] = m.group(3).strip(); self.equ.setdefault(m.group(2), m.group(3).strip()); continue
             if s.startswith('.include') or s.startswith('.align') or s.startswith('.section'):
                 continue
             if cur is None:
@@ -120,6 +121,7 @@ class Gba:
             parts = s.split(None, 1)
             cmd = parts[0]
             args = split_args(parts[1]) if len(parts) > 1 else []
+            if local_equ: args = [local_equ.get(a, a) for a in args]
             if cmd in local_macros and not args:
                 self.labels[cur].extend(local_macros[cmd]); continue
             self.labels[cur].append((cmd, args))
