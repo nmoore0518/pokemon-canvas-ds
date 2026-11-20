@@ -339,6 +339,7 @@ RIVERS = {'Route24_Frlg', 'CeruleanCity_Frlg', 'Route10_Frlg'}     # (the GBA's 
 PENS = {'FuchsiaCity_Frlg': [(5, 7, 7, 4, 'pen_pond'), (12, 7, 7, 4, 'pen_flowers'), (31, 7, 6, 4, 'pen_bed'),
                              (37, 7, 7, 4, 'pen_flowers'), (33, 13, 9, 4, 'pen_bed'), (8, 18, 9, 5, 'pen_pond')]}
 STATUES = {'LeaderAcademy_Campus': 'cv_roserade'}
+NO_FENCES = {'LeaderAcademy_Campus': (4, 19, 19, 32)}      # a map's fences taken out, in its GBA squares (x0, y0, x1, y1)
 ROCK_TOP = 'cliff01gs'
 DOOR_MB = 0x69
 CAVE_MB = 0x6E              # (HeartGold's cave mouths: walked into)
@@ -791,6 +792,14 @@ def plan_world(W=None, woods=False):
     for (x, y), v in snap.items():
         if v == 'stone' and (x, y) not in bldg and any(snap.get(n) in ('stone', 'fence') for n in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1))):
             kind[(x, y)] = 'fence'
+    # (fences taken out, the ground under them open: the Academy's market, Nick: "it hinders movement"; and the GBA's closed squares
+    # there that read as fence - its carts' ends - after them)
+    for d, (fx0, fz0, fx1, fz1) in ([] if woods else NO_FENCES.items()):
+        if d not in W_: continue
+        mx_, mz_ = W_[d][:2]
+        for x in range(fx0, fx1 + 1):
+            for z in range(fz0, fz1 + 1):
+                if kind.get((mx_ + x, mz_ + z)) == 'fence': kind[(mx_ + x, mz_ + z)] = 'pave'
     for q, v in list(kind.items()):
         if v == 'house' and q not in stands:
             nb = [kind.get((q[0] + a, q[1] + b)) for a, b in ((0, 1), (0, -1), (1, 0), (-1, 0))]

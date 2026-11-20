@@ -814,6 +814,10 @@ palette slots the plaster freed), the glass, emblem and trim HeartGold's. It sta
 doors, 1.12 times the museum and 1.2 times taller, the squares under it closed (`ACADEMY`, `academy_hall`).
 A model of ours made from one of HeartGold's: build_pallet.py's list, run from the top of the build order.
 
+**The Academy's market is open** (Nick: its fencing "hinders movement"): every fence in it is taken out and its
+square is the plaza's paving, walkable (`NO_FENCES`: a map's fences gone over a box of its GBA squares; the GBA's
+closed squares there that read as fence, the carts' ends, too).
+
 **The Academy's front** (`PLAZAS`; Nick: "our flowers and Roserade statue... make it look pretty") is laid anew: paved,
 raised flower beds (HeartGold's grass and flowers on Fuchsia's brick), Goldenrod's street lamps (model 95) where the
 GBA's lamps stand, and the GBA's statue as HeartGold's own Roserade (its overworld frame from hg-engine,
