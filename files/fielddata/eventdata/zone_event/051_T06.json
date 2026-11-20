@@ -295,6 +295,26 @@
     ],
     "coords": [
         {
+            "scriptId": "_EV_VermilionCity_EventScript_CheckTicketLeft + 1",
+            "x": 1253,
+            "z": 325,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5028"
+        },
+        {
+            "scriptId": "_EV_VermilionCity_EventScript_CheckTicketRight + 1",
+            "x": 1254,
+            "z": 325,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x5028"
+        },
+        {
             "scriptId": "_EV_VermilionCity_EventScript_ExitedTicketCheck + 1",
             "x": 1253,
             "z": 324,

@@ -14,13 +14,13 @@
 	ScrDef Route23_EventScript_VolcanoBadgeGuard
 	ScrDef Route23_EventScript_EarthBadgeGuard
 	ScrDef Route23_EventScript_VictoryRoadGateSign
-	ScrDef _cv_unported_8
-	ScrDef _cv_unported_9
-	ScrDef _cv_unported_10
-	ScrDef _cv_unported_11
-	ScrDef _cv_unported_12
-	ScrDef _cv_unported_13
-	ScrDef _cv_unported_14
+	ScrDef Route23_EventScript_CascadeBadgeGuardTrigger
+	ScrDef Route23_EventScript_ThunderBadgeGuardTrigger
+	ScrDef Route23_EventScript_RainbowBadgeGuardTrigger
+	ScrDef Route23_EventScript_SoulBadgeGuardTrigger
+	ScrDef Route23_EventScript_MarshBadgeGuardTrigger
+	ScrDef Route23_EventScript_VolcanoBadgeGuardTrigger
+	ScrDef Route23_EventScript_EarthBadgeGuardTrigger
 	ScrDef Route23_OnTransition
 	ScrDefEnd
 	
@@ -28,8 +28,7 @@ Route23_EventScript_CascadeBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 2
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_cascade_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -37,8 +36,7 @@ Route23_EventScript_ThunderBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 3
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_thunder_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -46,8 +44,7 @@ Route23_EventScript_RainbowBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 4
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_rainbow_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -55,8 +52,7 @@ Route23_EventScript_SoulBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 5
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_soul_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -64,8 +60,7 @@ Route23_EventScript_MarshBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 6
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_marsh_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -73,8 +68,7 @@ Route23_EventScript_VolcanoBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 7
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_volcano_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -82,8 +76,7 @@ Route23_EventScript_EarthBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 8
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_earth_badge
 	GoTo Route23_EventScript_BadgeGuard
 	End
 	
@@ -100,8 +93,7 @@ Route23_EventScript_CascadeBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 2
 	SetVar 0x8009, 1
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_cascade_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -109,8 +101,7 @@ Route23_EventScript_ThunderBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 3
 	SetVar 0x8009, 2
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_thunder_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -118,8 +109,7 @@ Route23_EventScript_RainbowBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 4
 	SetVar 0x8009, 3
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_rainbow_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -127,8 +117,7 @@ Route23_EventScript_SoulBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 5
 	SetVar 0x8009, 4
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_soul_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -136,8 +125,7 @@ Route23_EventScript_MarshBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 6
 	SetVar 0x8009, 5
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_marsh_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -145,8 +133,7 @@ Route23_EventScript_VolcanoBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 7
 	SetVar 0x8009, 6
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_volcano_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -154,8 +141,7 @@ Route23_EventScript_EarthBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 8
 	SetVar 0x8009, 7
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0956_CV_CANVAS_ROUTE_23_cv_std_earth_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -374,69 +360,6 @@ Route23_EventScript_MissingBadgeTrigger:
 	ApplyMovement obj_player, Route23_Movement_WalkDown
 	ApplyMovement 0x8009, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
-	ReleaseAll
-	End
-
-_cv_unported_8:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_9:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_10:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_11:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_12:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_13:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_14:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_cv_unported
-	WaitButton
-	CloseMsg
 	ReleaseAll
 	End
 

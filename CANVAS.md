@@ -17,6 +17,7 @@ python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Poke
 python3 tools/canvas/build_cinnabar.py   # then our Cinnabar Island (the GBA town in place of HeartGold's ruin)
 python3 tools/canvas/build_overworld.py  # then the rest of Kanto's towns and routes on the GBA's layouts
 python3 tools/canvas/build_trades.py  # then the GBA's in-game trades as HeartGold's (a/1/1/2, msg_0200, data/trades.json)
+python3 tools/canvas/build_encounters.py  # then the GBA's wild Pokemon as encounter tables of ours (the Safari Zone so far)
 python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
@@ -41,6 +42,10 @@ into the spare `MAP_UNUSED` entry, through a small cache. Map ids are 16-bit, so
 (The first rooms used HeartGold's unused slots instead; those stay where they are.) hg-engine is free-use only
 (no money, no donations) and its CREDITS.md must be carried into ours.
 If `engine/build` is wiped, `touch engine/data/learnsets/learnsets.json` before rebuilding.
+Our engine code replaces whole HeartGold functions through `engine/hooks` (`arm9|0001 Func ADDR [reg]`; without a
+register the replacement takes the original's arguments) and calls HeartGold's through `engine/rom.ld`. **Never put
+a symbol hg-engine defines itself into rom.ld** (SaveGameNormal was one): the linker takes ours, and hg-engine's
+own hook on it (its save expansion) quietly goes. `make_patch.sh` keeps all of it in our engine patch.
 
 ## Our Pallet Town
 
@@ -208,6 +213,21 @@ What else it does:
   are HeartGold's long halls, so their walks are longer. The Hall of Fame's machine is HeartGold's
   (`HallOfFameAnim`); then HeartGold's registration and save, the GBA's credits scene outside, HeartGold's credits,
   and the player wakes up at home.
+- **The Safari Zone** (Fuchsia) is HeartGold's Safari game: the gate's `EnterSafariMode` is `SafariZoneAction 0`
+  (its 30 Safari Balls, its Safari battles) plus our flag 4090 (`CANVAS_FLAG_KANTO_SAFARI`) and a dynamic warp
+  back to the gate. `engine/src/canvas_safari.c` replaces two of HeartGold's functions while the flag is set: the
+  Pokemon (SafariZoneAreaSet_LoadAreaEncounters: one rolled from the map's own table, `build_encounters.py`, at
+  the GBA's rates) and the steps (FieldSystem_UpdateSafari: the GBA's 600, then HeartGold's "time's up").
+  HeartGold's ending scripts (scr_seq_0262, its `_011A` and `005`) go to ours for Kanto (`kanto_safari_std`): the
+  gate's own ending scene, as the GBA's.
+- **Water currents** (Seafoam B3F and B4F, `port/currents.py`): HeartGold has none, so each current square is a
+  trigger square of ours whose script is the ride the GBA's current gives from there, worked out over our widened
+  floor by the GBA's rules (on along water, off onto land at the ground's height, stopped by a wall, a higher
+  floor or a boulder). HeartGold keeps a map's events in 0x800 bytes (16 a trigger), so the squares are rectangles
+  and one script finds the player's square. The GBA's calm layout (`setmaplayoutindex`, both boulders down) is a
+  var of ours that turns the triggers off. Falling into the water: a frame script of ours looks on each arrival
+  whether the player stands where a fall lands, and starts them surfing (`SetAvatarBits 4`); B4F's fall ends
+  hopping off onto land (`specials.hop_off`).
 - **Items HeartGold doesn't have** (Oak's Parcel, the balloon...) are carried as flags until we add the items.
 - **Trigger squares** (coord events) come over; HeartGold doesn't respawn a removed person when their flag clears,
   so the porter shows them again itself.
@@ -433,6 +453,9 @@ grass beside it, as the Safari Zone's sand.
 
 ### For every region (Nick: what we refine once, get right the first time in all nine regions)
 These hold for every map of every region, built now or later; each was settled on a Kanto map:
+- **A map's events fit in 0x800 bytes** (HeartGold's MapEvents.event_data: people 32 bytes each, warps 12, signs
+  20, trigger squares 16): past that the map crashes as it loads. Many trigger squares go as rectangles (a coord
+  event has a width and height) with one script that finds the player's square (Seafoam's currents).
 - **HeartGold's own pieces, at HeartGold's own scale**: read the piece off the HeartGold map that has that kind of
   thing (a kit: `hg_kit.py`, `data/kit_*.json`) and lay it by what is round each square; compare with HeartGold's
   map in the map viewer (its "HeartGold's own Kanto" and Johto groups) before calling it done.

@@ -656,6 +656,7 @@ for _d, _v in list(MAPS.items()):
 for _c in _BI.INTERIORS:
     MAPS[_c['gba']] = (_c['map'], room_xy(_c['gba']) if _c.get('widen') else same)
 import build_caves as _BC           # (caves are widened where a wall is too thin for HeartGold's pieces: cave_widen)
+import currents as CUR               # (Seafoam's water currents: trigger squares of ours)
 for _c in _BC.CAVES:
     MAPS[_c['gba']] = (_c['map'], _BC.cave_xy(_c['gba']))
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
@@ -1080,7 +1081,50 @@ PEOPLE['PokemonLeague_HallOfFame_Frlg'] = lambda people: [dict(o, _at=(7, 8)) fo
 for _m, _z in (('PokemonLeague_LoreleisRoom_Frlg', 10), ('PokemonLeague_BrunosRoom_Frlg', 11), ('PokemonLeague_AgathasRoom_Frlg', 10),
                ('PokemonLeague_LancesRoom_Frlg', 10)):
     PEOPLE[_m] = (lambda z_: lambda people: [dict(o, _at=(6, z_)) for o in people])(_z)
-REWRITES = {'VermilionCity_Gym_Frlg': vermilion_gym, 'PokemonTower_6F_Frlg': tower_marowak}      # GBA map -> its scenes rewritten before the port
+def vermilion_harbour(g):
+    """The S.S. Anne's ticket check (Nick: the harbour). The GBA's sailor also runs the Seagallop to the Sevii Islands
+    (not in this game: the GBA hack has none) and, once Johto's invitation comes, the ferry to Olivine (it comes with
+    Johto): here, after the S.S. Anne has sailed, he only says so."""
+    L = g.labels
+    drop = lambda l: [c for c in L[l] if not (c[0] == 'goto_if_ge' and c[1][0] == 'VAR_JOHTO_STATE')]
+    L['VermilionCity_EventScript_CheckTicket'] = drop('VermilionCity_EventScript_CheckTicket')
+    L['VermilionCity_EventScript_FerrySailor'] = drop('VermilionCity_EventScript_FerrySailor')
+    L['VermilionCity_EventScript_CheckSeagallopPresentTrigger'] = [
+        ('msgbox', ['VermilionCity_Text_TheShipSetSail']), ('closemessage', []), ('goto', ['VermilionCity_EventScript_WalkUpPier'])]
+    L['VermilionCity_EventScript_CheckSeagallopPresent'] = [
+        ('msgbox', ['VermilionCity_Text_TheShipSetSail']), ('release', []), ('end', [])]
+
+
+def seafoam_surf(g):
+    """Seafoam B3F and B4F: the GBA starts the player surfing as they fall into the water (FallWarpEffect_End) and as
+    they come in on B3F's current (B4F's OnWarp table, which HeartGold hasn't): here the scenes that follow do it"""
+    for l in ('SeafoamIslands_B3F_EventScript_EnterByFalling', 'SeafoamIslands_B4F_EventScript_EnterByFalling',
+              'SeafoamIslands_B4F_EventScript_EnterOnCurrent'):
+        if l in g.labels and ('special', ['ForcePlayerToStartSurfing']) not in g.labels[l]:
+            i = next(k for k, c in enumerate(g.labels[l]) if c[0] == 'lockall') + 1
+            g.labels[l].insert(i, ('special', ['ForcePlayerToStartSurfing']))
+
+
+def seafoam_moves(gba, falls, extra=()):
+    """the rides EnterByFalling gives (the GBA's walks along its current) as the current goes over our floor, and
+    the GBA's other walks there over our widened squares"""
+    def moves(xy):
+        out = CUR.rides(gba, falls)
+        for label, start in extra: out[label] = rescaled(xy, start, label)
+        return out
+    return moves
+
+
+MOVES['SeafoamIslands_B3F_Frlg'] = seafoam_moves('SeafoamIslands_B3F_Frlg', {
+    'SeafoamIslands_B3F_Movement_RideCurrentFar': (23, 9), 'SeafoamIslands_B3F_Movement_RideCurrentClose': (24, 9)})
+MOVES['SeafoamIslands_B4F_Frlg'] = seafoam_moves('SeafoamIslands_B4F_Frlg', {
+    'SeafoamIslands_B4F_Movement_RideCurrentFar': (8, 17), 'SeafoamIslands_B4F_Movement_RideCurrentClose': (9, 17)},
+    [('SeafoamIslands_B4F_Movement_EnterOnCurrent', (27, 21)), ('SeafoamIslands_B4F_Movement_WalkUp', (27, 19))])
+
+
+REWRITES = {'VermilionCity_Gym_Frlg': vermilion_gym, 'PokemonTower_6F_Frlg': tower_marowak,
+            'VermilionCity_Frlg': vermilion_harbour, 'SeafoamIslands_B3F_Frlg': seafoam_surf,
+            'SeafoamIslands_B4F_Frlg': seafoam_surf}      # GBA map -> its scenes rewritten before the port
 REWRITES.update({m: league_room for m in LEAGUE})
 # HeartGold's own objects a scene of its needs, kept in our map (ids: the names the event header gives them)
 EXTRA_OBJECTS = {
@@ -1339,6 +1383,11 @@ def step(cmd):
     return simple.get(cmd)
 
 
+# the GBA's gStdStrings a script buffers (bufferstdstring), as HeartGold writes them
+STD_STRINGS = {'STDSTRING_%s_BADGE' % b.upper(): '%s Badge' % b for b in
+               ('Boulder', 'Cascade', 'Thunder', 'Rainbow', 'Soul', 'Marsh', 'Volcano', 'Earth')}
+
+
 # ---------------------------------------------------------------- scripts
 class Port:
     def __init__(self, g, ids, bank, gba_map):
@@ -1530,7 +1579,9 @@ class Port:
         if dest in MAPS: slot, xy = MAPS[dest][:2]
         elif a[0] in slots.ROOM_SLOTS: slot, xy = slots.ROOM_SLOTS[a[0]], same    # (rooms built from the GBA layouts)
         else: return None
-        if len(a) >= 3:
+        if len(a) >= 4:           # (warp map, warp id, x, y: the square wins)
+            x, y = self.g.value(a[2]), self.g.value(a[3])
+        elif len(a) >= 3:
             x, y = self.g.value(a[1]), self.g.value(a[2])
         else:
             w = G.map_json(dest)['warp_events'][self.g.value(a[1])]
@@ -1811,6 +1862,9 @@ class Port:
                               '%s %d' % ('ShowPerson' if shut else 'HidePerson', oid), skip + ':')
                 else:
                     self.emit('// (the GBA redraws a square here: %s)' % ', '.join(a))
+            elif cmd == 'setmaplayoutindex' and any(a[0] == l for l in CUR.STOPPED.values()):
+                # (Seafoam's calm layout: our var for it, which turns its currents' trigger squares off: currents.py)
+                self.emit('SetVar %s, 1' % self.var(CUR.calm_var(self.gba_map)))
             elif cmd == 'setobjectxy':          # (a person moved now, where they stand: HeartGold's MovePersonFacing)
                 x_, z_ = self.place(a[1], a[2])
                 self.emit('MovePersonFacing %s, %s, 0, %s, DIR_SOUTH' % (self.localid(a[0]), x_, z_))
@@ -1862,7 +1916,11 @@ class Port:
                 self.emit('PlayFanfare %s' % FANFARE.get(a[3] if len(a) > 3 else 'MUS_LEVEL_UP', 'SEQ_ME_ITEM'), 'WaitFanfare', 'WaitButton')
                 open_msg = True
             elif cmd == 'buffernumberstring': self.emit('BufferInt %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'getpartysize': self.emit('GetPartyCount VAR_SPECIAL_RESULT')
             elif cmd == 'bufferitemname': self.emit('BufferItemName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'bufferstdstring' and a[1] in STD_STRINGS:
+                # (the GBA's fixed names - the badges - as a message of this map's own, into the string slot)
+                self.emit('CanvasBufferMsg %d, %s' % (self.strvar(a[0]), self.own_msg('cv_std_' + a[1][10:].lower(), STD_STRINGS[a[1]])))
             elif cmd == 'bufferspeciesname': self.emit('BufferSpeciesName %d, %s, 0, 0' % (self.strvar(a[0]), self.val(a[1])))
             elif cmd == 'buffermovename': self.emit('BufferMoveName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
             elif cmd == 'buffertypename': self.emit('BufferTypeName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
@@ -2056,7 +2114,8 @@ def port(gba_map, g, ids, report):
         xy.hg_trainers = [(o['x'], o['z'], o['facingDirection'], o['movement'], o['param0']) for o in hg if o.get('type') == 1]
         xy.hg_items = [(o['x'], o['z']) for o in hg if o['spriteId'] == 'SPRITE_MONSTARBALL']
         xy.warps = [(w['x'], w['z']) for w in ev.get('warps', [])]
-    if gba_map in REWRITES: REWRITES[gba_map](g)
+    _rw = REWRITES.get(gba_map) or REWRITES.get(gba_map.split('#')[0])
+    if _rw: _rw(g)
     mj = events_json(gba_map)
     p = Port(g, ids, bank, gba_map)
     # entry points: people and signs (in order), then map scripts
@@ -2103,6 +2162,12 @@ def port(gba_map, g, ids, report):
                 lines += ['HidePerson VAR_SPECIAL_LAST_TALKED', 'WaitSE SEQ_SE_GS_IWAOTOSHI', 'End', nxt + ':']
             g.labels[lbl] = [('cv_raw', lines), ('end', [])]
             triggers = triggers + [dict(x=x, y=y, script=lbl, var=BAR_INIT, var_value=str(BOULDER_HOLE), _val=BOULDER_HOLE) for x, y in holes]
+    # the GBA's water currents: a trigger square of ours on each (currents.py), and a look on arriving for a fall in
+    arrive = None
+    if gba_map in CUR.STOPPED:
+        cur, arrive = CUR.build(gba_map, p, {xy(c['x'], c['y']) for c in triggers})
+        triggers = triggers + cur
+        CUR.fall_in(gba_map, ev['warps'])
     for c in triggers:
         if c['script'] not in entries: entries.append(c['script'])
     gdir = gba_map.split('#')[0].split('+')[0]
@@ -2117,6 +2182,9 @@ def port(gba_map, g, ids, report):
                 if c2 == 'map_script_2':
                     on.setdefault('frame', []).append(a2)
                     if a2[2] not in entries: entries.append(a2[2])
+    if arrive:                        # (first in the frame table: the scenes after it go by what it finds)
+        on.setdefault('frame', []).insert(0, [CUR.ARRIVED, '0', arrive])
+        entries.append(arrive)
     if gba_map in GYMMICK_INIT:       # (HeartGold's slide tiles need its Viridian Gym's gymmick running)
         if 'MAP_SCRIPT_ON_TRANSITION' in on:
             INSERTS[on['MAP_SCRIPT_ON_TRANSITION']] = (None, lambda p_: ['ViridianGymInit'])
@@ -2288,17 +2356,18 @@ def port(gba_map, g, ids, report):
         import gba_map as GM
         lay_ = GM.Layout(mj['layout'])
         sb = g.value('MB_STRENGTH_BUTTON')
-        switches = {(c['x'], c['y']) for c in triggers if lay_.behavior(lay_.metatile(c['x'], c['y'])) == sb}
+        switches = {(c['x'], c['y']) for c in triggers if '_ds' not in c and lay_.behavior(lay_.metatile(c['x'], c['y'])) == sb}
     for c in triggers:
-        at = xy(c['x'], c['y'], 'trigger')
+        at = c['_ds'] if '_ds' in c else xy(c['x'], c['y'], 'trigger')      # (_ds: a square of ours, not the GBA's)
         if at is None: continue                       # (a trigger square HeartGold's layout has no place for)
         x, z = at
         if c['script'] in unfinished:
             continue                                  # (a half-ported scene could leave you stuck)
-        where = [(x, z)] + [hz for gs, hz in getattr(xy, 'extra', []) if gs == (c['x'], c['y'])]
+        where = [(x, z)] + [hz for gs, hz in getattr(xy, 'extra', []) if '_ds' not in c and gs == (c['x'], c['y'])]
         for x, z in where:
-            coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': 1, 'h': 1, 'y': 0,
-                           'val': c.get('_val') or (BOULDER_SWITCH if (c['x'], c['y']) in switches else int(p.val(c['var_value']), 0)), 'var': p.var(c['var'])})
+            w_, h_ = c.get('_wh', (1, 1))
+            coords.append({'scriptId': '_EV_%s + 1' % c['script'], 'x': x, 'z': z, 'w': w_, 'h': h_, 'y': 0,
+                           'val': c.get('_val') or (BOULDER_SWITCH if (c.get('x'), c.get('y')) in switches else int(p.val(c['var_value']), 0)), 'var': p.var(c['var'])})
     if isinstance(xy, Anchored):     # (HeartGold's hidden items stay where they are, for now)
         snap = os.path.join(os.path.dirname(HERE), 'data', 'hg_events', os.path.basename(ev_path))
         bgs += [b for b in json.load(open(snap)).get('bgs', []) if str(b.get('scriptId', '')).startswith('std_hidden')]
@@ -2363,8 +2432,29 @@ def reachable(p, e):
     return seen
 
 
+def kanto_safari_std(ids):
+    """HeartGold's own Safari scripts (scr_seq_0262: time's up, out of balls, out of room, retire; and the one after a
+    battle that ran out of balls) send you to its Johto gate; in Kanto's Safari Zone (our flag) they send you to the
+    Fuchsia gate's door, with the GBA's scene for the gate set (1: the clerk sees you out; 3: after a battle)."""
+    p = os.path.join(SCR, 'scr_seq_0262.s')
+    s = open(p).read()
+    if '_cv_kanto_safari' in s: s = s.split('// Pokemon Canvas: Kanto')[0].rstrip('\n') + '\n'
+    flag = '0x%X' % (0x2000 + SP.KANTO_SAFARI_FLAG)
+    scene = ids.var('VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE')
+    _, x, z = SP.SAFARI_GATE_DOOR
+    s = re.sub(r'(?m)^(_011A:\n)(?!\tGoToIfSet)', r'\1\tGoToIfSet %s, _cv_kanto_safari_out\n' % flag, s)
+    s = re.sub(r'(?m)^(scr_seq_0262_005:\n)(?!\tGoToIfSet)', r'\1\tGoToIfSet %s, _cv_kanto_safari_battle\n' % flag, s)
+    s += '\n'.join(['', '// Pokemon Canvas: Kanto\'s Safari Zone (tools/canvas/port/port_map.py kanto_safari_std)',
+                    '_cv_kanto_safari_out:', '\tSafariZoneAction 1, 0', '\tSetVar %s, 1' % scene,
+                    '\tFadeScreen 6, 1, 0, RGB_BLACK', '\tWaitFade', '\tWarp MAP_FUCHSIA_PAL_PARK_ENTRANCE, 0, %d, %d, DIR_SOUTH' % (x, z),
+                    '\tFadeScreen 6, 1, 1, RGB_BLACK', '\tWaitFade', '\tReturn', '',
+                    '_cv_kanto_safari_battle:', '\tSafariZoneAction 1, 0', '\tSetVar %s, 3' % scene, '\tEnd', ''])
+    open(p, 'w').write(s)
+
+
 def main():
     g, ids = G.Gba(), Ids()
+    kanto_safari_std(ids)
     own_gba(g)
     report = []
     for m in sys.argv[1:] or list(MAPS):

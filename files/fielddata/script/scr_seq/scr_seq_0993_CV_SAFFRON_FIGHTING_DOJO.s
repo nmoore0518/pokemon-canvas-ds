@@ -371,8 +371,7 @@ SaffronCity_Dojo_EventScript_EndGiveMon:
 	End
 	
 Common_EventScript_GetGiftMonPartySlot:
-	// TODO(gba) getpartysize 
-	GoTo _cv_stop
+	GetPartyCount VAR_SPECIAL_RESULT
 	SubVar VAR_SPECIAL_RESULT, 1
 	CopyVar 0x8004, VAR_SPECIAL_RESULT
 	Return

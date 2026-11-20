@@ -7,15 +7,14 @@
 // or the porter, not this file.
 
 	ScrDef Route22_NorthEntrance_EventScript_BoulderBadgeGuard
-	ScrDef _cv_unported_1
+	ScrDef Route22_NorthEntrance_EventScript_BoulderBadgeGuardTrigger
 	ScrDefEnd
 	
 Route22_NorthEntrance_EventScript_BoulderBadgeGuard:
 	LockAll
 	FacePlayer
 	SetVar 0x4001, 1
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_BOULDER_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0361_R22R0101_cv_std_boulder_badge
 	GoTo Route22_NorthEntrance_EventScript_BadgeGuard
 	End
 	
@@ -23,8 +22,7 @@ Route22_NorthEntrance_EventScript_BoulderBadgeGuardTrigger:
 	LockAll
 	SetVar 0x4001, 1
 	SetVar 0x8009, 1
-	// TODO(gba) bufferstdstring STR_VAR_1, STDSTRING_BOULDER_BADGE
-	GoTo _cv_stop
+	CanvasBufferMsg 0, msg_0361_R22R0101_cv_std_boulder_badge
 	GoTo Route23_EventScript_BadgeGuardTrigger
 	End
 	
@@ -236,15 +234,6 @@ Route23_EventScript_MissingBadgeTrigger:
 	ApplyMovement obj_player, Route23_Movement_WalkDown
 	ApplyMovement 0x8009, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
-	ReleaseAll
-	End
-
-_cv_unported_1:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0361_R22R0101_cv_unported
-	WaitButton
-	CloseMsg
 	ReleaseAll
 	End
 

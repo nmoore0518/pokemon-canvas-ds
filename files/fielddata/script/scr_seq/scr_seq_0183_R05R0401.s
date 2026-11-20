@@ -161,8 +161,7 @@ Route5_PokemonDayCare_EventScript_RetrieveMon:
 	GoTo _cv_stop
 	UpdateMoneyBox
 	CopyVar 0x8008, VAR_SPECIAL_RESULT
-	// TODO(gba) getpartysize 
-	GoTo _cv_stop
+	GetPartyCount VAR_SPECIAL_RESULT
 	SubVar VAR_SPECIAL_RESULT, 1
 	// TODO(gba) bufferpartymonnick STR_VAR_1, VAR_RESULT
 	GoTo _cv_stop

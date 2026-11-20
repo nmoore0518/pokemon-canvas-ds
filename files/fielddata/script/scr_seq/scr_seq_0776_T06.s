@@ -20,8 +20,8 @@
 	ScrDef VermilionCity_EventScript_GymSign
 	ScrDef VermilionCity_EventScript_HarborSign
 	ScrDef VermilionCity_EventScript_SnorlaxNotice
-	ScrDef _cv_unported_14
-	ScrDef _cv_unported_15
+	ScrDef VermilionCity_EventScript_CheckTicketLeft
+	ScrDef VermilionCity_EventScript_CheckTicketRight
 	ScrDef VermilionCity_EventScript_ExitedTicketCheck
 	ScrDef VermilionCity_OnLoad
 	ScrDef VermilionCity_OnTransition
@@ -125,8 +125,6 @@ VermilionCity_EventScript_Sailor:
 VermilionCity_EventScript_FerrySailor:
 	LockAll
 	FacePlayer
-	CompareVarToValue 0x5009, 2
-	GoToIfGe Johto_EventScript_VermilionFerry
 	CompareVarToValue 0x5027, 3
 	GoToIfEq VermilionCity_EventScript_CheckSeagallopPresent
 	NPCMsg msg_0483_T06_VermilionCity_Text_WelcomeToTheSSAnne
@@ -298,26 +296,7 @@ VermilionCity_EventScript_ForemanLastMon:
 	ReleaseAll
 	End
 	
-Johto_EventScript_VermilionFerry:
-	NPCMsg msg_0483_T06_Johto_Text_FerryToOlivine
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_3
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_4
-_cv_yes_3:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_4:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq Johto_EventScript_FerryDeclined
-	GoTo Johto_EventScript_SailToOlivine
-	
 VermilionCity_EventScript_CheckSeagallopPresent:
-	SetVar 0x8004, 0
-	CompareVarToValue 0x5029, 5
-	GoToIfGe VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
-	CompareVarToValue 0x5029, 1
-	GoToIfGe VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	NPCMsg msg_0483_T06_VermilionCity_Text_TheShipSetSail
 	WaitButton
 	CloseMsg
@@ -340,8 +319,6 @@ VermilionCity_EventScript_CheckTicket:
 	ApplyMovement 6, Common_Movement_WalkInPlaceFasterLeft
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterRight
 	WaitMovement
-	CompareVarToValue 0x5009, 2
-	GoToIfGe Johto_EventScript_VermilionFerryTrigger
 	CompareVarToValue 0x5027, 3
 	GoToIfEq VermilionCity_EventScript_CheckSeagallopPresentTrigger
 	NPCMsg msg_0483_T06_VermilionCity_Text_DoYouHaveATicket
@@ -433,9 +410,9 @@ VermilionCity_EventScript_ForemanFind2:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_6
+	GoToIfLt _cv_menu_4
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_6:
+_cv_menu_4:
 	SetVar 0x8009, ITEM_ROOT_FOSSIL
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq VermilionCity_EventScript_ForemanClaw
@@ -456,9 +433,9 @@ VermilionCity_EventScript_ForemanFind3:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_8
+	GoToIfLt _cv_menu_6
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_8:
+_cv_menu_6:
 	SetVar 0x8009, ITEM_SKULL_FOSSIL
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq VermilionCity_EventScript_ForemanArmor
@@ -488,61 +465,6 @@ VermilionCity_EventScript_ForemanBuilt:
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ReleaseAll
-	End
-	
-Johto_EventScript_FerryDeclined:
-	NPCMsg msg_0483_T06_Johto_Text_FerryLater
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-Johto_EventScript_SailToOlivine:
-	NPCMsg msg_0483_T06_Johto_Text_FerryDeparting
-	WaitButton
-	SetVar 0x8004, 0
-	SetVar 0x8006, 11
-	GoTo EventScript_SetSail
-	
-VermilionCity_EventScript_ChooseSeagallopDestRainbowPass:
-	Call VermilionCity_EventScript_CheckHasMysticTicket
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq VermilionCity_EventScript_HasMysticTicket
-	Call VermilionCity_EventScript_CheckHasAuroraTicket
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq VermilionCity_EventScript_HasAuroraTicket
-	SetVar 0x8004, 0
-	NPCMsg msg_0483_T06_VermilionCity_Text_BoardSeagallopRainbowPass
-	GoTo EventScript_SeviiDestinationsPage1
-	CloseMsg
-	End
-	
-VermilionCity_EventScript_ChooseSeagallopDestTriPass:
-	NPCMsg msg_0483_T06_VermilionCity_Text_BoardSeagallopTriPass
-	SetVar 0x8004, 0
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0483_T06_cv_mc_seagallop_123_0, 0
-	ScrCmd_559 msg_0483_T06_cv_mc_seagallop_123_1, 1
-	ScrCmd_559 msg_0483_T06_cv_mc_seagallop_123_2, 2
-	ScrCmd_559 msg_0483_T06_cv_mc_seagallop_123_3, 3
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_10
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_10:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SailToOneIsland2
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq EventScript_SailToTwoIsland2
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq EventScript_SailToThreeIsland2
-	CompareVarToValue VAR_SPECIAL_RESULT, 3
-	GoToIfEq EventScript_CancelSail
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq EventScript_CancelSail
-	CloseMsg
 	End
 	
 TypeTutor_EventScript_Intro:
@@ -584,9 +506,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_12
+	GoToIfLt _cv_menu_8
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_12:
+_cv_menu_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
@@ -601,31 +523,11 @@ _cv_menu_12:
 	WaitButton
 	GoTo TypeTutor_EventScript_Teach
 	
-Johto_EventScript_VermilionFerryTrigger:
-	NPCMsg msg_0483_T06_Johto_Text_FerryToOlivine
-	YesNo VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_13
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_14
-_cv_yes_13:
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_14:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq VermilionCity_EventScript_WalkUpPier
-	GoTo Johto_EventScript_SailToOlivine
-	
 VermilionCity_EventScript_CheckSeagallopPresentTrigger:
-	SetVar 0x8004, 0
-	CompareVarToValue 0x5029, 5
-	GoToIfGe VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
-	CompareVarToValue 0x5029, 1
-	GoToIfGe VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	NPCMsg msg_0483_T06_VermilionCity_Text_TheShipSetSail
 	WaitButton
 	CloseMsg
 	GoTo VermilionCity_EventScript_WalkUpPier
-	End
 	
 VermilionCity_EventScript_DontHaveSSTicket:
 	BufferPlayersName 6
@@ -656,135 +558,6 @@ VermilionCity_EventScript_ForemanArmor:
 	SetVar 0x8009, ITEM_ARMOR_FOSSIL
 	Return
 	
-EventScript_SetSail:
-	CloseMsg
-	Wait 20, VAR_SPECIAL_RESULT
-	FadeScreen 6, 1, 0, RGB_BLACK
-	WaitFade
-	// TODO(gba) special DoSeagallopFerryScene
-	GoTo _cv_stop
-	End
-	
-VermilionCity_EventScript_CheckHasMysticTicket:
-	GoToIfUnset 0x20F1, EventScript_SetResultFalse
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x20F2, _cv_has_15
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_15:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SetResultFalse
-	GoTo EventScript_SetResultTrue
-	End
-	
-VermilionCity_EventScript_HasMysticTicket:
-	Call VermilionCity_EventScript_CheckHasAuroraTicket
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq VermilionCity_EventScript_HasMysticAndAuroraTickets
-	CallIfUnset 0x20F3, VermilionCity_EventScript_ShowMysticTicket
-	NPCMsg msg_0483_T06_VermilionCity_Text_BoardSeagallopFerry
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_0, 0
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_1, 1
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_2, 2
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_17
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_17:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SeviiDestinationsPage1
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq EventScript_SailToNavelRock
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq EventScript_CancelSail
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq EventScript_CancelSail
-	CloseMsg
-	End
-	
-VermilionCity_EventScript_CheckHasAuroraTicket:
-	GoToIfUnset 0x20F4, EventScript_SetResultFalse
-	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x20F5, _cv_has_18
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_has_18:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SetResultFalse
-	GoTo EventScript_SetResultTrue
-	End
-	
-VermilionCity_EventScript_HasAuroraTicket:
-	CallIfUnset 0x20F6, VermilionCity_EventScript_ShowAuroraTicket
-	NPCMsg msg_0483_T06_VermilionCity_Text_BoardSeagallopFerry
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_birth_0, 0
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_birth_1, 1
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_birth_2, 2
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_20
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_20:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SeviiDestinationsPage1
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq EventScript_SailToBirthIsland
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq EventScript_CancelSail
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq EventScript_CancelSail
-	CloseMsg
-	End
-	
-EventScript_SeviiDestinationsPage1:
-	SetVar 0x8005, 0
-	// TODO(gba) special DrawSeagallopDestinationMenu
-	GoTo _cv_stop
-	SetVar 0x8006, 0  // TODO(gba) specialvar GetSelectedSeagallopDestination
-	GoTo _cv_stop
-	CompareVarToValue 0x8006, 0
-	GoToIfEq EventScript_SailToVermilionCity
-	CompareVarToValue 0x8006, 1
-	GoToIfEq EventScript_SailToOneIsland
-	CompareVarToValue 0x8006, 2
-	GoToIfEq EventScript_SailToTwoIsland
-	CompareVarToValue 0x8006, 3
-	GoToIfEq EventScript_SailToThreeIsland
-	CompareVarToValue 0x8006, 4
-	GoToIfEq EventScript_SailToFourIsland
-	CompareVarToValue 0x8006, 254
-	GoToIfEq EventScript_SeviiDestinationsPage2
-	CompareVarToValue 0x8006, 127
-	GoToIfEq EventScript_CancelSail
-	End
-	
-EventScript_SailToOneIsland2:
-	SetVar 0x8006, 1
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToTwoIsland2:
-	SetVar 0x8006, 2
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToThreeIsland2:
-	SetVar 0x8006, 3
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_CancelSail:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar IsPlayerLeftOfVermilionSailor
-	GoTo _cv_stop
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq VermilionCity_EventScript_WalkUpPier
-	ReleaseAll
-	End
-	
 TypeTutor_EventScript_Bye:
 	NPCMsg msg_0483_T06_TypeTutor_Text_Bye
 	WaitButton
@@ -809,175 +582,6 @@ VermilionCity_EventScript_WalkUpPier:
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-	
-EventScript_SetResultFalse:
-	SetVar VAR_SPECIAL_RESULT, 0
-	Return
-	
-EventScript_SetResultTrue:
-	SetVar VAR_SPECIAL_RESULT, 1
-	Return
-	
-VermilionCity_EventScript_HasMysticAndAuroraTickets:
-	CallIfUnset 0x20F3, VermilionCity_EventScript_ShowMysticTicket
-	CallIfUnset 0x20F6, VermilionCity_EventScript_ShowAuroraTicket
-	NPCMsg msg_0483_T06_VermilionCity_Text_BoardSeagallopFerry
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_birth_0, 0
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_birth_1, 1
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_birth_2, 2
-	ScrCmd_559 msg_0483_T06_cv_mc_sevii_navel_birth_3, 3
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_22
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_22:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq EventScript_SeviiDestinationsPage1
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq EventScript_SailToNavelRock
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq EventScript_SailToBirthIsland
-	CompareVarToValue VAR_SPECIAL_RESULT, 3
-	GoToIfEq EventScript_CancelSail
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq EventScript_CancelSail
-	CloseMsg
-	End
-	
-VermilionCity_EventScript_ShowMysticTicket:
-	SetFlag 0x20F3
-	NPCMsg msg_0483_T06_VermilionCity_Text_OhMysticTicketTakeYouToNavelRock
-	WaitButton
-	Return
-	
-EventScript_SailToNavelRock:
-	NPCMsg msg_0483_T06_VermilionCity_Text_Seagallop10Departing
-	WaitButton
-	SetVar 0x8004, 0
-	SetVar 0x8006, 9
-	GoTo EventScript_SetSail
-	CloseMsg
-	End
-	
-VermilionCity_EventScript_ShowAuroraTicket:
-	SetFlag 0x20F6
-	NPCMsg msg_0483_T06_VermilionCity_Text_OhAuroraTicketTakeYouToBirthIsland
-	WaitButton
-	Return
-	
-EventScript_SailToBirthIsland:
-	NPCMsg msg_0483_T06_VermilionCity_Text_Seagallop12Departing
-	WaitButton
-	SetVar 0x8004, 0
-	SetVar 0x8006, 10
-	GoTo EventScript_SetSail
-	CloseMsg
-	End
-	
-EventScript_SailToVermilionCity:
-	SetVar 0x8006, 0
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToOneIsland:
-	SetVar 0x8006, 1
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToTwoIsland:
-	SetVar 0x8006, 2
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToThreeIsland:
-	SetVar 0x8006, 3
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToFourIsland:
-	SetVar 0x8006, 4
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SeviiDestinationsPage2:
-	SetVar 0x8005, 1
-	// TODO(gba) special DrawSeagallopDestinationMenu
-	GoTo _cv_stop
-	SetVar 0x8006, 0  // TODO(gba) specialvar GetSelectedSeagallopDestination
-	GoTo _cv_stop
-	CompareVarToValue 0x8006, 4
-	GoToIfEq EventScript_SailToFourIsland
-	CompareVarToValue 0x8006, 5
-	GoToIfEq EventScript_SailToFiveIsland
-	CompareVarToValue 0x8006, 6
-	GoToIfEq EventScript_SailToSixIsland
-	CompareVarToValue 0x8006, 7
-	GoToIfEq EventScript_SailToSevenIsland
-	CompareVarToValue 0x8006, 254
-	GoToIfEq EventScript_SeviiDestinationsPage1
-	CompareVarToValue 0x8006, 127
-	GoToIfEq EventScript_CancelSail
-	End
-	
-EventScript_SailToDest:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetSeagallopNumber
-	GoTo _cv_stop
-	BufferInt 0, VAR_SPECIAL_RESULT
-	CompareVarToValue 0x8004, 0
-	GoToIfEq EventScript_DepartingVermilion
-	CompareVarToValue 0x8004, 0
-	GoToIfNe EventScript_DepartingNotVermilion
-	End
-	
-EventScript_SailToFiveIsland:
-	SetVar 0x8006, 5
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToSixIsland:
-	SetVar 0x8006, 6
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_SailToSevenIsland:
-	SetVar 0x8006, 7
-	GoTo EventScript_SailToDest
-	End
-	
-EventScript_DepartingVermilion:
-	NPCMsg msg_0483_T06_VermilionCity_Text_Seagallop7Departing
-	WaitButton
-	GoTo EventScript_SetSail
-	CloseMsg
-	End
-	
-EventScript_DepartingNotVermilion:
-	NPCMsg msg_0483_T06_Text_AllAboardSeagallopNum
-	WaitButton
-	GoTo EventScript_SetSail
-	CloseMsg
-	End
-
-_cv_unported_14:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0483_T06_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_15:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0483_T06_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_str4:
 	BufferPlayersName 6

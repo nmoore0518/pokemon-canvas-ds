@@ -6,11 +6,14 @@
 #define _EV_SeafoamIslands_B4F_EventScript_FastCurrentSign 2
 #define _EV_SeafoamIslands_B4F_EventScript_BoulderHintSign 3
 #define _EV_SeafoamIslands_B4F_EventScript_UpwardCurrent 4
-#define _EV_SeafoamIslands_B4F_OnTransition 5
-#define _EV_SeafoamIslands_B4F_OnResume 6
-#define _EV_SeafoamIslands_B4F_OnLoad 7
-#define _EV_SeafoamIslands_B4F_EventScript_EnterOnCurrent 8
-#define _EV_SeafoamIslands_B4F_EventScript_EnterByFalling 9
+#define _EV_SeafoamIslands_B4F_cv_Currents_0 5
+#define _EV_SeafoamIslands_B4F_cv_Currents_1 6
+#define _EV_SeafoamIslands_B4F_OnTransition 7
+#define _EV_SeafoamIslands_B4F_OnResume 8
+#define _EV_SeafoamIslands_B4F_OnLoad 9
+#define _EV_SeafoamIslands_B4F_EventScript_EnterOnCurrent 10
+#define _EV_SeafoamIslands_B4F_EventScript_EnterByFalling 11
+#define _EV_SeafoamIslands_B4F_cv_Arrive 12
 
 
 #endif

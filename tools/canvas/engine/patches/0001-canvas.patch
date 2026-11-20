@@ -11434,10 +11434,10 @@ index 301b054b..bb40ee7e 100644
  a ₧₦ Trainer
 +a rival
 diff --git a/hooks b/hooks
-index 1b23ea97..e47753c5 100644
+index 1b23ea97..422078c3 100644
 --- a/hooks
 +++ b/hooks
-@@ -665,3 +665,16 @@ arm9 ScrCmd_CreateRoamer 02045264 1
+@@ -665,3 +665,19 @@ arm9 ScrCmd_CreateRoamer 02045264 1
  0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
  
  arm9 FieldSystem_RestoreMapObjectsFromSave 0203B9F4 1
@@ -11454,6 +11454,9 @@ index 1b23ea97..e47753c5 100644
 +# Pokemon Canvas: a boulder pushed onto a boulder switch (a coord event of value 0xB0B0) starts its script
 +# (src/canvas_boulders.c); replaces ov01_021F1ECC, the boulder-pushing task
 +0001 Canvas_PushBoulderTask 021F1ECC 1
++# Pokemon Canvas: the GBA's Safari Zone on HeartGold's (src/canvas_safari.c): its Pokemon and its 600 steps
++arm9 Canvas_SafariLoadAreaEncounters 020974C4
++0001 Canvas_UpdateSafari 021E79CC
 diff --git a/include/constants/file.h b/include/constants/file.h
 index 13b6cbaf..e0b46b59 100644
 --- a/include/constants/file.h
@@ -11582,6 +11585,45 @@ index 27ffefac..c2ff5964 100644
  	mkdir -p $(BUILD)/trainers
  	mkdir -p $(BUILD_NARC)
  	rm -rf $(TRAINERDATA_DIR) $(TRAINERDATA_DIR_2) $(TRAINERTEXT_DIR) $(TRAINERTEXT_DIR_2) $(BUILD)/rawtext/728 $(BUILD)/rawtext/729
+diff --git a/rom.ld b/rom.ld
+index 17a3600c..3c3c25c7 100644
+--- a/rom.ld
++++ b/rom.ld
+@@ -896,6 +896,34 @@ Pokepic_StartAnim = 0x02008550 | 1;
+ sStarterChoiceCries = 0x021E7398;
+ BufferBoxMonNickname = 0x0200BF8C | 1;
+ BufferBoxMonSpeciesName = 0x0200BF1C | 1;
++BufferSpeciesName = 0x0200BEE8 | 1;
++BufferItemName = 0x0200C0CC | 1;
++BufferTypeName = 0x0200C19C | 1;
++StartMapSceneScript = 0x0203FE74 | 1;
++MapEvents_GetLoadedEncTable = 0x0203B8B8 | 1;
++LocalFieldData_GetSafariStepsCounter = 0x0203B9BC | 1;
++LocalFieldData_GetSafariBallsCounter = 0x0203B9B8 | 1;
++Save_VarsFlags_CheckSafariSysFlag = 0x02066860 | 1;
++SafariZoneAreaSet_GetObjectsInArea = 0x02097694 | 1;
++GfGfxLoader_LoadFromNarc = 0x02007A44 | 1;
++HealParty = 0x02090C1C | 1;
++Sound_SetMasterVolume = 0x020059D0 | 1;
++Credits_LaunchApp = 0x0203F9B4 | 1;
++RegisterHallOfFame_LaunchApp = 0x0203F974 | 1;
++FieldSystem_SetGameClearTime = 0x0205565C | 1;
++Location_SetToOutsidePlayerHome = 0x0203E380 | 1;
++Location_SetToPlayerRoom = 0x0203E368 | 1;
++LocalFieldData_GetSpecialSpawnWarpPtr = 0x0203B964 | 1;
++LocalFieldData_GetDynamicWarp = 0x0203B968 | 1;
++Save_LocalFieldData_Get = 0x0203B9C4 | 1;
++PlayerProfile_SetGameClearFlag = 0x02029090 | 1;
++PlayerProfile_GetTrainerGender = 0x02028F94 | 1;
++Save_PlayerData_GetIGTAddr = 0x02028EC0 | 1;
++Save_PlayerData_GetProfile = 0x02028E9C | 1;
++SetFlag966 = 0x020667E0 | 1;
++SetGameClearFlag = 0x02066604 | 1;
++CheckGameClearFlag = 0x02066614 | 1;
++Save_VarsFlags_Get = 0x020503D0 | 1;
+ 
+ #roamers
+ PlayerLocationHistoryGetBack = 0x0202D9F4 | 1;
 diff --git a/src/canvas_boulders.c b/src/canvas_boulders.c
 new file mode 100644
 index 00000000..c4dd4fbf
@@ -11842,6 +11884,193 @@ index 00000000..f73b38b1
 +        window[j] = sCache[i][j];
 +    return MAP_HEADER_WINDOW;
 +}
+diff --git a/src/canvas_safari.c b/src/canvas_safari.c
+new file mode 100644
+index 00000000..a10ca151
+--- /dev/null
++++ b/src/canvas_safari.c
+@@ -0,0 +1,181 @@
++// Pokemon Canvas: the GBA game's Safari Zone (Fuchsia) on HeartGold's Safari machinery.
++// HeartGold's Safari game (SafariZoneAction 0: its flag, 30 Safari Balls; its Safari battles) is used as it is.
++// Two things are ours, while our flag CANVAS_FLAG_KANTO_SAFARI is set (the porter sets it as the game starts):
++//  - the Pokemon: HeartGold picks a Safari Pokemon from the area it stands in (its own Safari's block layout), so
++//    SafariZoneAreaSet_LoadAreaEncounters, which gives the ten it picks from, is replaced: for Kanto it gives ten of
++//    the one Pokemon the map's own encounter table rolls (the GBA's rates); otherwise it is HeartGold's own, below;
++//  - the steps: the GBA's game ends after 600 steps (HeartGold's has no limit), so FieldSystem_UpdateSafari, run
++//    each step, counts them in HeartGold's own Safari step counter and starts its "time's up" script.
++#include "../include/types.h"
++#include "../include/save.h"
++#include "../include/pokemon.h"
++#include "../include/encounter.h"
++#include "../include/constants/species.h"
++
++#define CANVAS_FLAG_KANTO_SAFARI 4090     // (tools/canvas/port: the same number, KANTO_SAFARI_FLAG)
++#define KANTO_SAFARI_STEPS       600
++#define std_safari_steps_out     8802
++#define std_safari_balls_out     8803
++#define NUM_ENCOUNTERS_SAFARI    10
++#define NUM_SAFARI_ENCOUNTER_TYPES 5
++#define TIMEOFDAY_WILD_MAX       3
++#define NARC_a_2_3_0             232
++
++typedef struct { u32 species; u16 maxLevel; u16 minLevel; } EncounterSlot;
++typedef struct { u16 species; u16 level; } SafariZoneAreaEncounterSlot;
++typedef struct { u8 object1_type, object1_level, object2_type, object2_level; } SafariZoneAreaBonusSlotUnlockConditions;
++typedef struct { u8 levels[4]; u8 count[4]; } SafariZoneObjectLevels;
++typedef struct {
++    SafariZoneAreaEncounterSlot *baseMons;
++    SafariZoneAreaEncounterSlot *bonusMons;
++    SafariZoneAreaBonusSlotUnlockConditions *unlockConditions;
++    int bonusMonsArraySize;
++    u8 numBonusMons;
++} LoadedSafariZoneEncounterData;
++typedef struct { u8 area_no; u8 active_object_count; u8 objects[30][4]; } SafariZoneArea;   // (SAFARIZONE_AREA)
++
++void *LONG_CALL GfGfxLoader_LoadFromNarc(int narcId, int member, BOOL compressed, u32 heapId, BOOL atEnd);
++void LONG_CALL SafariZoneAreaSet_GetObjectsInArea(void *areaSet, int area, SafariZoneObjectLevels *out);
++void *LONG_CALL Save_VarsFlags_Get(void *save);
++BOOL LONG_CALL Save_VarsFlags_CheckSafariSysFlag(void *varsFlags);
++void *LONG_CALL Save_LocalFieldData_Get(void *save);
++u16 *LONG_CALL LocalFieldData_GetSafariBallsCounter(void *fieldData);
++u16 *LONG_CALL LocalFieldData_GetSafariStepsCounter(void *fieldData);
++EncounterData *LONG_CALL MapEvents_GetLoadedEncTable(FieldSystem *fsys);
++void LONG_CALL StartMapSceneScript(FieldSystem *fsys, u16 script, void *obj);
++
++#define sFieldSysPtr (*(FieldSystem **)0x021D4158)
++
++static BOOL Canvas_KantoSafari(void)
++{
++    return (Sav2_Misc_get(SaveBlock2_get())->canvasFlags[CANVAS_FLAG_KANTO_SAFARI / 8] >> (CANVAS_FLAG_KANTO_SAFARI % 8)) & 1;
++}
++
++// the GBA's (and HeartGold's) chances of each slot: land 12, the others 5
++static const u8 sLandRates[12] = { 20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1 };
++static const u8 sOtherRates[5] = { 60, 30, 5, 4, 1 };
++
++static int Canvas_RollSlot(const u8 *rates, int n)
++{
++    int r = gf_rand() % 100, i;
++    for (i = 0; i < n - 1; i++) {
++        if (r < rates[i])
++            return i;
++        r -= rates[i];
++    }
++    return n - 1;
++}
++
++static void Canvas_KantoSafariSlots(EncounterSlot *ret, int encounterType)
++{
++    EncounterData *enc = MapEvents_GetLoadedEncTable(sFieldSysPtr);
++    u16 species;
++    u8 level;
++    int i;
++    if (encounterType == 0) {
++        i = Canvas_RollSlot(sLandRates, 12);
++        species = enc->landSlots.speciesDay[i];
++        level = enc->landSlots.levels[i];
++    } else {
++        EncounterDataSlot *slots = encounterType == 1 ? enc->surfSlots
++                                 : encounterType == 2 ? enc->oldRodSlots
++                                 : encounterType == 3 ? enc->goodRodSlots : enc->superRodSlots;
++        EncounterDataSlot *s = &slots[Canvas_RollSlot(sOtherRates, 5)];
++        species = s->species;
++        level = s->levelMin + (s->levelMax > s->levelMin ? gf_rand() % (s->levelMax - s->levelMin + 1) : 0);
++    }
++    for (i = 0; i < NUM_ENCOUNTERS_SAFARI; i++) {
++        ret[i].species = species;
++        ret[i].maxLevel = ret[i].minLevel = level;
++    }
++}
++
++// replaces SafariZoneAreaSet_LoadAreaEncounters (0x020974C4): HeartGold's own, but for Kanto's Safari Zone
++EncounterSlot *Canvas_SafariLoadAreaEncounters(void *areaSet, int area, int encounterType, int timeOfDay, u32 heapID)
++{
++    int i, offset;
++    u8 *encDataArc;
++    EncounterSlot *ret;
++    SafariZoneArea *safariZoneArea;
++    LoadedSafariZoneEncounterData *loadedEncData;
++
++    ret = sys_AllocMemoryLo(heapID, NUM_ENCOUNTERS_SAFARI * sizeof(EncounterSlot));
++    if (Canvas_KantoSafari()) {
++        Canvas_KantoSafariSlots(ret, encounterType);
++        return ret;
++    }
++
++    safariZoneArea = &((SafariZoneArea *)areaSet)[area];
++    for (i = 0; i < NUM_ENCOUNTERS_SAFARI; ++i) {
++        ret[i].species = encounterType == 0 ? SPECIES_RATTATA : SPECIES_MAGIKARP;
++        ret[i].maxLevel = ret[i].minLevel = 5;
++    }
++    encDataArc = GfGfxLoader_LoadFromNarc(NARC_a_2_3_0, safariZoneArea->area_no, FALSE, heapID, TRUE);
++    if (encDataArc == NULL)
++        return ret;
++
++    loadedEncData = sys_AllocMemoryLo(heapID, NUM_SAFARI_ENCOUNTER_TYPES * sizeof(LoadedSafariZoneEncounterData));
++    offset = 8;
++    for (i = 0; i < NUM_SAFARI_ENCOUNTER_TYPES; ++i) {
++        loadedEncData[i].baseMons = (SafariZoneAreaEncounterSlot *)&encDataArc[offset];
++        offset += TIMEOFDAY_WILD_MAX * NUM_ENCOUNTERS_SAFARI * sizeof(SafariZoneAreaEncounterSlot);
++        loadedEncData[i].bonusMons = (SafariZoneAreaEncounterSlot *)&encDataArc[offset];
++        loadedEncData[i].numBonusMons = encDataArc[i];
++        loadedEncData[i].bonusMonsArraySize = loadedEncData[i].numBonusMons * sizeof(SafariZoneAreaEncounterSlot);
++        offset += TIMEOFDAY_WILD_MAX * loadedEncData[i].bonusMonsArraySize;
++        loadedEncData[i].unlockConditions = (SafariZoneAreaBonusSlotUnlockConditions *)&encDataArc[offset];
++        offset += loadedEncData[i].numBonusMons * sizeof(SafariZoneAreaBonusSlotUnlockConditions);
++    }
++    if (loadedEncData[1].numBonusMons == 0 && encounterType > 0) {
++        sys_FreeMemoryEz(loadedEncData);
++        sys_FreeMemoryEz(encDataArc);
++        return ret;
++    }
++    offset = NUM_ENCOUNTERS_SAFARI * timeOfDay;
++    for (i = 0; i < NUM_ENCOUNTERS_SAFARI; ++i) {
++        SafariZoneAreaEncounterSlot *slot = &loadedEncData[encounterType].baseMons[offset + i];
++        ret[i].species = slot->species;
++        ret[i].maxLevel = ret[i].minLevel = slot->level;
++    }
++
++    SafariZoneObjectLevels areaObjects;
++    u8 numBonusMons = 0;
++    SafariZoneAreaSet_GetObjectsInArea(areaSet, area, &areaObjects);
++    for (i = 0; i < loadedEncData[encounterType].numBonusMons; ++i) {
++        int idx;
++        SafariZoneAreaBonusSlotUnlockConditions *unlock = &loadedEncData[encounterType].unlockConditions[i];
++        if (areaObjects.levels[unlock->object1_type - 1] < unlock->object1_level)
++            continue;
++        if (unlock->object2_type != 0 && areaObjects.levels[unlock->object2_type - 1] < unlock->object2_level)
++            continue;
++        idx = loadedEncData[encounterType].numBonusMons * timeOfDay + i;
++        ret[numBonusMons].species = loadedEncData[encounterType].bonusMons[idx].species;
++        ret[numBonusMons].maxLevel = ret[numBonusMons].minLevel = loadedEncData[encounterType].bonusMons[idx].level;
++        if (++numBonusMons > NUM_ENCOUNTERS_SAFARI - 1)
++            break;
++    }
++    sys_FreeMemoryEz(loadedEncData);
++    sys_FreeMemoryEz(encDataArc);
++    return ret;
++}
++
++// replaces FieldSystem_UpdateSafari (ov01_021E79CC): HeartGold's ball check, and for Kanto the GBA's 600 steps
++BOOL Canvas_UpdateSafari(FieldSystem *fsys)
++{
++    void *fieldData;
++    if (!Save_VarsFlags_CheckSafariSysFlag(Save_VarsFlags_Get(fsys->savedata)))
++        return FALSE;
++    fieldData = Save_LocalFieldData_Get(fsys->savedata);
++    if (*LocalFieldData_GetSafariBallsCounter(fieldData) == 0) {
++        StartMapSceneScript(fsys, std_safari_balls_out, NULL);
++        return TRUE;
++    }
++    if (Canvas_KantoSafari()) {
++        u16 *steps = LocalFieldData_GetSafariStepsCounter(fieldData);
++        if (++*steps >= KANTO_SAFARI_STEPS) {
++            StartMapSceneScript(fsys, std_safari_steps_out, NULL);
++            return TRUE;
++        }
++    }
++    return FALSE;
++}
 diff --git a/src/field/enemy_party.c b/src/field/enemy_party.c
 index cf38c7e5..42a77c8c 100644
 --- a/src/field/enemy_party.c
@@ -12048,7 +12277,7 @@ index b1df6be3..67770baa 100644
  #endif
  }
 diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
-index d4b59833..80a92b15 100644
+index d4b59833..6e0d158d 100644
 --- a/src/script_new_cmds.c
 +++ b/src/script_new_cmds.c
 @@ -2,10 +2,43 @@
@@ -12182,7 +12411,7 @@ index d4b59833..80a92b15 100644
 +void LONG_CALL RegisterHallOfFame_LaunchApp(FieldSystem *fsys, struct CanvasHofArgs *args);
 +void LONG_CALL Credits_LaunchApp(FieldSystem *fsys, struct CanvasCreditsArgs *args);
 +BOOL LONG_CALL FieldSystem_ApplicationIsRunning(FieldSystem *fsys);
-+int LONG_CALL SaveGameNormal(void *save);
++int SaveGameNormal(void *save);    // (hg-engine's own, src/save.c: its bigger save)
 +void LONG_CALL HealParty(struct Party *party);
 +void LONG_CALL Sound_SetMasterVolume(int volume);
 +

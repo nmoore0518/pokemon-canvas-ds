@@ -172,12 +172,24 @@ def hall_of_fame(port, ret):
             'Warp %s, 0, %s, %s, DIR_SOUTH' % w, 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade']
 
 
+def hop_off(port, d):
+    """the GBA's CreateStopSurfingTask: off the Pokemon and a hop onto the land ahead (`d`: North, South...)"""
+    port.movements['_cv_hop_off_' + d] = [['JumpNearFast' + d, 1]]
+    return ['SetAvatarBits 1', 'UpdateAvatarState', 'ApplyMovement obj_player, _cv_hop_off_' + d, 'WaitMovement']
+
+
 def starter_species(port, ret):
     """GetStarterPokemon: the starter the player took - their type's (the GBA's sStarterMon[VAR_STARTER_MON] is
     FireRed's three, by where the player stood in the lab; theirs is by type)"""
     ret = ret or 'VAR_SPECIAL_RESULT'
     pt = port.var('VAR_PLAYER_TYPE')
     return chain(port, pt, [(_type(port, own), ['SetVar %s, %s' % (ret, sp)]) for sp, own, _ in STARTERS])
+
+
+def pc_has_space(port, ret):
+    """-> TRUE if a box has room"""
+    ret, l = ret or 'VAR_SPECIAL_RESULT', port.new('pc')
+    return ['CountPCEmptySpace %s' % ret, 'CompareVarToValue %s, 0' % ret, 'GoToIfEq %s' % l, 'SetVar %s, 1' % ret, l + ':']
 
 
 def _mentors():
@@ -218,6 +230,8 @@ def mentor_line(port, ret, which):
 
 
 SCRATCH4 = '0x401F'
+KANTO_SAFARI_FLAG = 4090            # (our flag number; engine canvas_safari.c CANVAS_FLAG_KANTO_SAFARI)
+SAFARI_GATE_DOOR = (1, 8, 4)        # the Fuchsia gate's door into the Safari Zone: its warp, x, z
 
 
 def _pallet_mart():
@@ -311,6 +325,16 @@ SPECIALS = {
     'EventMons_PartnerReady': event_mons_partner_ready,
     'GymCandidate_BufferApprovals': candidate_approvals,
     'GymCandidate_BufferEliteFourApproval': elite_four_approval,
+    # the Safari Zone: HeartGold's Safari game (its flag, 30 Safari Balls, its Safari battles), with our flag for
+    # Kanto's (engine canvas_safari.c: the GBA's Pokemon and 600 steps; HeartGold's ending scripts take you back to
+    # the Fuchsia gate - port_map.kanto_safari_std). A battle that runs out of balls ends at the gate's door.
+    'EnterSafariMode': lambda p, r: ['SafariZoneAction 0, 0', 'SetFlag 0x%X' % (0x2000 + KANTO_SAFARI_FLAG),
+                                     'SetDynamicWarp MAP_FUCHSIA_PAL_PARK_ENTRANCE, %d, %d, %d, 1' % SAFARI_GATE_DOOR],
+    'ExitSafariMode': lambda p, r: ['SafariZoneAction 1, 0', 'ClearFlag 0x%X' % (0x2000 + KANTO_SAFARI_FLAG)],
+    # Seafoam's falls into the current (currents.py): the player surfs, and on B4F gets off onto land to the north
+    'ForcePlayerToStartSurfing': lambda p, r: ['SetAvatarBits 4', 'UpdateAvatarState'],
+    'SeafoamIslandsB4F_CurrentDumpsPlayerOnLand': lambda p, r: hop_off(p, 'North'),
+    'ScriptCheckFreePokemonStorageSpace': pc_has_space,
     # the League (HeartGold's rooms have their own lights; the trainer fan club is on Five Island, which isn't here)
     'DoPokemonLeagueLightingEffect': lambda p, r: [],
     'Script_TryGainNewFanFromCounterFrlg': lambda p, r: [], 'Script_UpdateTrainerFanClubGameClear': lambda p, r: [],

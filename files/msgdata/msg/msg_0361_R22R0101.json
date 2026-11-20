@@ -2,6 +2,10 @@
   "key": 21575,
   "messages": [
     {
+      "id": "msg_0361_R22R0101_cv_std_boulder_badge",
+      "en_US": "Boulder Badge"
+    },
+    {
       "id": "msg_0361_R22R0101_Text_OhThatsBadgeGoRightAhead",
       "en_US": [
         "Oh! That is the {STRVAR_1 3, 0, 0}!\n",

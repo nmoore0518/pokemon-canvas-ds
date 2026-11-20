@@ -592,8 +592,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull:
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon:
-	// TODO(gba) getpartysize 
-	GoTo _cv_stop
+	GetPartyCount VAR_SPECIAL_RESULT
 	SubVar VAR_SPECIAL_RESULT, 1
 	CopyVar 0x8004, VAR_SPECIAL_RESULT
 	Call Common_EventScript_NameReceivedPartyMon

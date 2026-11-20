@@ -2,8 +2,10 @@
 #define SCR_SEQ_CV_CANVAS_SEAFOAM_B3F_H_
 
 #define _EV_SeafoamIslands_B3F_Frlg_cv_BoulderFalls 0
-#define _EV_SeafoamIslands_B3F_OnTransition 1
-#define _EV_SeafoamIslands_B3F_EventScript_EnterByFalling 2
+#define _EV_SeafoamIslands_B3F_cv_Currents_0 1
+#define _EV_SeafoamIslands_B3F_OnTransition 2
+#define _EV_SeafoamIslands_B3F_EventScript_EnterByFalling 3
+#define _EV_SeafoamIslands_B3F_cv_Arrive 4
 
 
 #endif

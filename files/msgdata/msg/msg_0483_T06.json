@@ -158,15 +158,6 @@
       "en_US": "I can’t take your only Pokémon!"
     },
     {
-      "id": "msg_0483_T06_Johto_Text_FerryToOlivine",
-      "en_US": [
-        "Ah, a Gym Leader Convention\n",
-        "invitation!\r",
-        "This ferry sails to Olivine City in\n",
-        "Johto. Would you like to board?"
-      ]
-    },
-    {
       "id": "msg_0483_T06_VermilionCity_Text_TheShipSetSail",
       "en_US": "The ship set sail."
     },
@@ -232,49 +223,6 @@
       ]
     },
     {
-      "id": "msg_0483_T06_Johto_Text_FerryLater",
-      "en_US": [
-        "Come back anytime. The ferry’s\n",
-        "always ready for a Leader!"
-      ]
-    },
-    {
-      "id": "msg_0483_T06_Johto_Text_FerryDeparting",
-      "en_US": "All right! All aboard!"
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_BoardSeagallopRainbowPass",
-      "en_US": [
-        "Ah, you have a Rainbow Pass.\r",
-        "Would you like to board\n",
-        "a Seagallop ferry?"
-      ]
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_BoardSeagallopTriPass",
-      "en_US": [
-        "Ah, you have a Tri-Pass.\r",
-        "Would you like to board\n",
-        "a Seagallop ferry?"
-      ]
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_seagallop_123_0",
-      "en_US": "gText_OneIsland"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_seagallop_123_1",
-      "en_US": "gText_TwoIsland"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_seagallop_123_2",
-      "en_US": "gText_ThreeIsland"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_seagallop_123_3",
-      "en_US": "Exit"
-    },
-    {
       "id": "msg_0483_T06_TypeTutor_Text_WhichMove",
       "en_US": "Which move should I teach?"
     },
@@ -306,108 +254,10 @@
       ]
     },
     {
-      "id": "msg_0483_T06_VermilionCity_Text_BoardSeagallopFerry",
-      "en_US": [
-        "Would you like to board\n",
-        "a Seagallop ferry?"
-      ]
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_0",
-      "en_US": "gText_SeviiIslands"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_1",
-      "en_US": "Navel Rock"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_2",
-      "en_US": "Exit"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_birth_0",
-      "en_US": "gText_SeviiIslands"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_birth_1",
-      "en_US": "Birth Island"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_birth_2",
-      "en_US": "Exit"
-    },
-    {
       "id": "msg_0483_T06_TypeTutor_Text_Bye",
       "en_US": [
         "Come back any time. A Leader\n",
         "never stops learning."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_birth_0",
-      "en_US": "gText_SeviiIslands"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_birth_1",
-      "en_US": "Navel Rock"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_birth_2",
-      "en_US": "Birth Island"
-    },
-    {
-      "id": "msg_0483_T06_cv_mc_sevii_navel_birth_3",
-      "en_US": "Exit"
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_OhMysticTicketTakeYouToNavelRock",
-      "en_US": [
-        "Oh! That’s a Mysticticket!\n",
-        "Now that is rare.\r",
-        "We’ll be happy to take you to\n",
-        "Navel Rock anytime."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_Seagallop10Departing",
-      "en_US": [
-        "Okay, everything’s in order for you\n",
-        "to board a special ferry.\r",
-        "Seagallop Hi-Speed 10 will be\n",
-        "departing immediately."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_OhAuroraTicketTakeYouToBirthIsland",
-      "en_US": [
-        "Oh! That’s an Auroraticket!\n",
-        "Now that is rare.\r",
-        "We’ll be happy to take you to\n",
-        "Birth Island anytime."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_Seagallop12Departing",
-      "en_US": [
-        "Okay, everything’s in order for you\n",
-        "to board a special ferry.\r",
-        "Seagallop Hi-Speed 12 will be\n",
-        "departing immediately."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_VermilionCity_Text_Seagallop7Departing",
-      "en_US": [
-        "Okay, everything’s in order.\r",
-        "Seagallop Hi-Speed 7 will be\n",
-        "departing immediately."
-      ]
-    },
-    {
-      "id": "msg_0483_T06_Text_AllAboardSeagallopNum",
-      "en_US": [
-        "All right!\n",
-        "All aboard Seagallop Hi-Speed {STRVAR_1 3, 0, 0}!"
       ]
     },
     {

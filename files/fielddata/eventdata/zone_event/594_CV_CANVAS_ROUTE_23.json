@@ -175,5 +175,426 @@
             "y": 0
         }
     ],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuardTrigger + 1",
+            "x": 980,
+            "z": 271,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_ThunderBadgeGuardTrigger + 1",
+            "x": 974,
+            "z": 262,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_RainbowBadgeGuardTrigger + 1",
+            "x": 979,
+            "z": 245,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 978,
+            "z": 233,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 976,
+            "z": 216,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_VolcanoBadgeGuardTrigger + 1",
+            "x": 979,
+            "z": 183,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 6,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 157,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 156,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 154,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 155,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 153,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 968,
+            "z": 158,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 972,
+            "z": 157,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_EarthBadgeGuardTrigger + 1",
+            "x": 971,
+            "z": 157,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 7,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_VolcanoBadgeGuardTrigger + 1",
+            "x": 977,
+            "z": 182,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 6,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_VolcanoBadgeGuardTrigger + 1",
+            "x": 980,
+            "z": 183,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 6,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_VolcanoBadgeGuardTrigger + 1",
+            "x": 978,
+            "z": 182,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 6,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 975,
+            "z": 216,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 972,
+            "z": 214,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 974,
+            "z": 216,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 971,
+            "z": 214,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 970,
+            "z": 214,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_MarshBadgeGuardTrigger + 1",
+            "x": 969,
+            "z": 214,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 5,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_ThunderBadgeGuardTrigger + 1",
+            "x": 971,
+            "z": 261,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_ThunderBadgeGuardTrigger + 1",
+            "x": 972,
+            "z": 261,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_ThunderBadgeGuardTrigger + 1",
+            "x": 973,
+            "z": 262,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 2,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_RainbowBadgeGuardTrigger + 1",
+            "x": 977,
+            "z": 244,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_RainbowBadgeGuardTrigger + 1",
+            "x": 978,
+            "z": 244,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_RainbowBadgeGuardTrigger + 1",
+            "x": 980,
+            "z": 245,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 3,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 975,
+            "z": 231,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 976,
+            "z": 231,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 977,
+            "z": 231,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 978,
+            "z": 231,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 979,
+            "z": 231,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 979,
+            "z": 233,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 981,
+            "z": 234,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 980,
+            "z": 234,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_SoulBadgeGuardTrigger + 1",
+            "x": 982,
+            "z": 234,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 4,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuardTrigger + 1",
+            "x": 979,
+            "z": 270,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuardTrigger + 1",
+            "x": 978,
+            "z": 270,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuardTrigger + 1",
+            "x": 981,
+            "z": 271,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5036"
+        },
+        {
+            "scriptId": "_EV_Route23_EventScript_CascadeBadgeGuardTrigger + 1",
+            "x": 977,
+            "z": 270,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x5036"
+        }
+    ]
 }

@@ -2315,7 +2315,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         .radioSignal = TRUE,
                         },
     [MAP_CANVAS_SAFARI_CENTER - MAP_CANVAS_FIRST] = {
-                        .wildEncounterBank = ENCDATA_NA,
+                        .wildEncounterBank = 143,
                         .areaDataBank = 121,
                         .moveModelBank = 15,
                         .worldMapX = 0,
@@ -2345,7 +2345,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         .radioSignal = FALSE,
                         },
     [MAP_CANVAS_SAFARI_EAST - MAP_CANVAS_FIRST] = {
-                        .wildEncounterBank = ENCDATA_NA,
+                        .wildEncounterBank = 144,
                         .areaDataBank = 121,
                         .moveModelBank = 15,
                         .worldMapX = 0,
@@ -2375,7 +2375,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         .radioSignal = FALSE,
                         },
     [MAP_CANVAS_SAFARI_NORTH - MAP_CANVAS_FIRST] = {
-                        .wildEncounterBank = ENCDATA_NA,
+                        .wildEncounterBank = 145,
                         .areaDataBank = 121,
                         .moveModelBank = 15,
                         .worldMapX = 0,
@@ -2405,7 +2405,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         .radioSignal = FALSE,
                         },
     [MAP_CANVAS_SAFARI_WEST - MAP_CANVAS_FIRST] = {
-                        .wildEncounterBank = ENCDATA_NA,
+                        .wildEncounterBank = 146,
                         .areaDataBank = 121,
                         .moveModelBank = 15,
                         .worldMapX = 0,

@@ -7,9 +7,9 @@
 	InitScriptEntryEnd
 
 _cv_T08R0201_frame:
-	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitWarpIn)
-	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitEarly)
-	// (not yet: FuchsiaCity_SafariZone_Entrance_EventScript_ExitWalkIn)
+	InitScriptGoToIfEqual 0x5034, 1, _EV_FuchsiaCity_SafariZone_Entrance_EventScript_ExitWarpIn + 1
+	InitScriptGoToIfEqual 0x5034, 2, _EV_FuchsiaCity_SafariZone_Entrance_EventScript_ExitEarly + 1
+	InitScriptGoToIfEqual 0x5034, 3, _EV_FuchsiaCity_SafariZone_Entrance_EventScript_ExitWalkIn + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

@@ -53,5 +53,36 @@
         }
     ],
     "bgs": [],
-    "coords": []
+    "coords": [
+        {
+            "scriptId": "_EV_FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerMid + 1",
+            "x": 8,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerRight + 1",
+            "x": 9,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        },
+        {
+            "scriptId": "_EV_FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerLeft + 1",
+            "x": 7,
+            "z": 8,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "0x4001"
+        }
+    ]
 }

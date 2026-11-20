@@ -88,6 +88,7 @@ _0114:
 	End
 
 _011A:
+	GoToIfSet 0x2FFA, _cv_kanto_safari_out
 	SafariZoneAction 1, 0
 	Compare VAR_SCENE_SAFARI_ZONE_ENTRANCE, 3
 	GoToIfNe _0155
@@ -139,6 +140,7 @@ scr_seq_0262_004:
 	End
 
 scr_seq_0262_005:
+	GoToIfSet 0x2FFA, _cv_kanto_safari_battle
 	SetVar VAR_SCENE_SAFARI_ZONE_ENTRANCE, 2
 	SafariZoneAction 1, 0
 	End
@@ -161,3 +163,19 @@ _01FA:
 	ReleaseAll
 	End
 	.balign 4, 0
+
+// Pokemon Canvas: Kanto's Safari Zone (tools/canvas/port/port_map.py kanto_safari_std)
+_cv_kanto_safari_out:
+	SafariZoneAction 1, 0
+	SetVar 0x5034, 1
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	Warp MAP_FUCHSIA_PAL_PARK_ENTRANCE, 0, 8, 4, DIR_SOUTH
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
+	Return
+
+_cv_kanto_safari_battle:
+	SafariZoneAction 1, 0
+	SetVar 0x5034, 3
+	End

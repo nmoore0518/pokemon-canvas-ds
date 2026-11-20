@@ -2,6 +2,34 @@
   "key": 19943,
   "messages": [
     {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_cascade_badge",
+      "en_US": "Cascade Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_thunder_badge",
+      "en_US": "Thunder Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_rainbow_badge",
+      "en_US": "Rainbow Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_soul_badge",
+      "en_US": "Soul Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_marsh_badge",
+      "en_US": "Marsh Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_volcano_badge",
+      "en_US": "Volcano Badge"
+    },
+    {
+      "id": "msg_0956_CV_CANVAS_ROUTE_23_cv_std_earth_badge",
+      "en_US": "Earth Badge"
+    },
+    {
       "id": "msg_0956_CV_CANVAS_ROUTE_23_Route23_Text_VictoryRoadGateSign",
       "en_US": [
         "Victory Road Gate -\n",

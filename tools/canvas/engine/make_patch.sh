@@ -4,12 +4,12 @@
 #   tools/canvas/engine/make_patch.sh
 # Only the paths below go in: the rest of what differs in engine/ is made at build time (build_rom.sh copies our
 # data headers into engine/data and regenerates data/graphics/pokegra.mk). A new file or folder of ours must be
-# listed here.
+# listed here. (data/Encounters.c and data/canvas_encounters.h: build_encounters.py makes them.)
 set -euo pipefail
 ROOT=$(cd "$(dirname "$0")/../../.." && pwd)
 cd "$ROOT/engine"
 SPECIES="odeon assasseon hypereon poiseon subterraneon obsideon lenneon appariteon automateon valyreon"   # build_species.py
-PATHS="Makefile narcs.mk armips/include/constants.s data/codetables.mk data/Trainers.c data/text/730.txt data/text/731.txt
+PATHS="Makefile narcs.mk rom.ld armips/include/constants.s data/codetables.mk data/Trainers.c data/text/730.txt data/text/731.txt
  data/graphics/trainer_gfx data/graphics/overworlds/custom data/scr_seq hooks include src tools/source/trainerdatagen tools/narcpy.py
  data/Species.c data/BabyMons.c data/BaseExperienceTable.c data/Evolutions.c data/FollowerProperties.c data/HeightTable.c
  data/HiddenAbilityTable.c data/IconPaletteTable.c data/SpeciesToOWFormFemale.c data/SpriteOffsets.c data/learnsets/learnsets.json"
