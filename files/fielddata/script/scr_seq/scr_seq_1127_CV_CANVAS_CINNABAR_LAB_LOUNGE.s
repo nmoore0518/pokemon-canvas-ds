@@ -59,38 +59,192 @@ CinnabarIsland_PokemonLab_Lounge_EventScript_Norma:
 	FacePlayer
 	SetVar 0x8008, 11
 	CopyVar 0x8004, 0x8008
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetInGameTradeSpeciesInfo
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_4
+	LoadNPCTrade 13
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_4:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_5
+	LoadNPCTrade 14
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_5:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_6
+	LoadNPCTrade 15
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_6:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_7
+	LoadNPCTrade 16
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_7:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_8
+	LoadNPCTrade 17
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_8:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_9
+	LoadNPCTrade 18
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_9:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_10
+	LoadNPCTrade 19
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_10:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_11
+	LoadNPCTrade 20
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_11:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_12
+	LoadNPCTrade 21
+	NPCTradeGetReqSpecies VAR_SPECIAL_RESULT
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, VAR_SPECIAL_RESULT, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_3
+_cv_next_12:
+_cv_done_3:
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	GoToIfSet 0x21F9, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_Trade_Text_DoYouHaveMonWantToTradeForMon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_3
+	GoToIfEq _cv_yes_13
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_4
-_cv_yes_3:
+	GoTo _cv_yn_14
+_cv_yes_13:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_4:
+_cv_yn_14:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CopyVar 0x800A, 0x8004
 	CompareVarToValue 0x8004, 6
 	GoToIfGe CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade
 	CopyVar 0x8005, 0x800A
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetTradeSpecies
-	GoTo _cv_stop
+	GetPartyMonSpecies 0x8004, VAR_SPECIAL_RESULT
 	CopyVar 0x800B, VAR_SPECIAL_RESULT
 	CompareVarToVar VAR_SPECIAL_RESULT, 0x8009
 	GoToIfNe CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon
 	CopyVar 0x8004, 0x8008
 	CopyVar 0x8005, 0x800A
-	// TODO(gba) special CreateInGameTradePokemon
-	GoTo _cv_stop
-	// TODO(gba) special DoInGameTradeScene
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_16
+	LoadNPCTrade 13
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_16:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_17
+	LoadNPCTrade 14
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_17:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_18
+	LoadNPCTrade 15
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_18:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_19
+	LoadNPCTrade 16
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_19:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_20
+	LoadNPCTrade 17
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_20:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_21
+	LoadNPCTrade 18
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_21:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_22
+	LoadNPCTrade 19
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_22:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_23
+	LoadNPCTrade 20
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_23:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_24
+	LoadNPCTrade 21
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_15
+_cv_next_24:
+_cv_done_15:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_Trade_Text_ThanksYoureAPal
 	WaitButton
 	SetFlag 0x21F9
@@ -104,28 +258,28 @@ TrainingHouse_EventScript_Beatrix:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_BeatrixIntro
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_5
+	GoToIfEq _cv_yes_25
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_6
-_cv_yes_5:
+	GoTo _cv_yn_26
+_cv_yes_25:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_6:
+_cv_yn_26:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1459
 	CheckTrainerFlag 1459
-	GoToIf TRUE, _cv_beaten_7
+	GoToIf TRUE, _cv_beaten_27
 	TrainerBattle 1459, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_8
+	GoToIfNe _cv_won_28
 	WhiteOut
 	End
-_cv_won_8:
+_cv_won_28:
 	SetTrainerFlag 1459
 	ReleaseAll
 	End
-_cv_beaten_7:
+_cv_beaten_27:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -138,28 +292,28 @@ TrainingHouse_EventScript_Alistair:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_AlistairIntro
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_9
+	GoToIfEq _cv_yes_29
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_10
-_cv_yes_9:
+	GoTo _cv_yn_30
+_cv_yes_29:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_10:
+_cv_yn_30:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_Declined
 	ClearTrainerFlag 1460
 	CheckTrainerFlag 1460
-	GoToIf TRUE, _cv_beaten_11
+	GoToIf TRUE, _cv_beaten_31
 	TrainerBattle 1460, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_12
+	GoToIfNe _cv_won_32
 	WhiteOut
 	End
-_cv_won_12:
+_cv_won_32:
 	SetTrainerFlag 1460
 	ReleaseAll
 	End
-_cv_beaten_11:
+_cv_beaten_31:
 	NPCMsg msg_0935_CV_CANVAS_CINNABAR_LAB_LOUNGE_TrainingHouse_Text_After
 	WaitButton
 	CloseMsg
@@ -168,8 +322,97 @@ _cv_beaten_11:
 	
 EventScript_GetInGameTradeSpeciesInfo:
 	CopyVar 0x8005, 0x8008
-	SetVar 0x8009, 0  // TODO(gba) specialvar GetInGameTradeSpeciesInfo
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_34
+	LoadNPCTrade 13
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_34:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_35
+	LoadNPCTrade 14
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_35:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_36
+	LoadNPCTrade 15
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_36:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_37
+	LoadNPCTrade 16
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_37:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_38
+	LoadNPCTrade 17
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_38:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_39
+	LoadNPCTrade 18
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_39:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_40
+	LoadNPCTrade 19
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_40:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_41
+	LoadNPCTrade 20
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_41:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_42
+	LoadNPCTrade 21
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_33
+_cv_next_42:
+_cv_done_33:
 	Return
 	
 CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded:
@@ -187,15 +430,20 @@ CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade:
 	End
 	
 EventScript_ChooseMonForInGameTrade:
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	LockAll
 	FacePlayer
 	Return
 	
 EventScript_GetInGameTradeSpecies:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetTradeSpecies
-	GoTo _cv_stop
+	GetPartyMonSpecies 0x8004, VAR_SPECIAL_RESULT
 	Return
 	
 CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon:
@@ -207,10 +455,70 @@ CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon:
 	End
 	
 EventScript_DoInGameTrade:
-	// TODO(gba) special CreateInGameTradePokemon
-	GoTo _cv_stop
-	// TODO(gba) special DoInGameTradeScene
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_44
+	LoadNPCTrade 13
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_44:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_45
+	LoadNPCTrade 14
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_45:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_46
+	LoadNPCTrade 15
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_46:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_47
+	LoadNPCTrade 16
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_47:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_48
+	LoadNPCTrade 17
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_48:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_49
+	LoadNPCTrade 18
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_49:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_50
+	LoadNPCTrade 19
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_50:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_51
+	LoadNPCTrade 20
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_51:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_52
+	LoadNPCTrade 21
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_43
+_cv_next_52:
+_cv_done_43:
 	LockAll
 	FacePlayer
 	Return

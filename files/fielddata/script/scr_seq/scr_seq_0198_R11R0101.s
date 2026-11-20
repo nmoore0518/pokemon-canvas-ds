@@ -132,8 +132,97 @@ Route11_EastEntrance_2F_EventScript_RightBinoculars:
 	
 EventScript_GetInGameTradeSpeciesInfo:
 	CopyVar 0x8005, 0x8008
-	SetVar 0x8009, 0  // TODO(gba) specialvar GetInGameTradeSpeciesInfo
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_7
+	LoadNPCTrade 13
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_7:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_8
+	LoadNPCTrade 14
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_8:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_9
+	LoadNPCTrade 15
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_9:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_10
+	LoadNPCTrade 16
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_10:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_11
+	LoadNPCTrade 17
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_11:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_12
+	LoadNPCTrade 18
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_12:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_13
+	LoadNPCTrade 19
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_13:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_14
+	LoadNPCTrade 20
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_14:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_15
+	LoadNPCTrade 21
+	NPCTradeGetReqSpecies 0x8009
+	GetOfferedSpecies 0x8006
+	NPCTradeEnd
+	BufferSpeciesName 0, 0x8009, 0, 0
+	BufferSpeciesName 1, 0x8006, 0, 0
+	GoTo _cv_done_6
+_cv_next_15:
+_cv_done_6:
 	Return
 	
 Route11_EastEntrance_2F_EventScript_AlreadyTraded:
@@ -151,15 +240,20 @@ Route11_EastEntrance_2F_EventScript_DeclineTrade:
 	End
 	
 EventScript_ChooseMonForInGameTrade:
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	LockAll
 	FacePlayer
 	Return
 	
 EventScript_GetInGameTradeSpecies:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetTradeSpecies
-	GoTo _cv_stop
+	GetPartyMonSpecies 0x8004, VAR_SPECIAL_RESULT
 	Return
 	
 Route11_EastEntrance_2F_EventScript_NotRequestedMon:
@@ -171,10 +265,70 @@ Route11_EastEntrance_2F_EventScript_NotRequestedMon:
 	End
 	
 EventScript_DoInGameTrade:
-	// TODO(gba) special CreateInGameTradePokemon
-	GoTo _cv_stop
-	// TODO(gba) special DoInGameTradeScene
-	GoTo _cv_stop
+	CompareVarToValue 0x8005, 4
+	GoToIfNe _cv_next_17
+	LoadNPCTrade 13
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_17:
+	CompareVarToValue 0x8005, 5
+	GoToIfNe _cv_next_18
+	LoadNPCTrade 14
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_18:
+	CompareVarToValue 0x8005, 6
+	GoToIfNe _cv_next_19
+	LoadNPCTrade 15
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_19:
+	CompareVarToValue 0x8005, 7
+	GoToIfNe _cv_next_20
+	LoadNPCTrade 16
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_20:
+	CompareVarToValue 0x8005, 8
+	GoToIfNe _cv_next_21
+	LoadNPCTrade 17
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_21:
+	CompareVarToValue 0x8005, 9
+	GoToIfNe _cv_next_22
+	LoadNPCTrade 18
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_22:
+	CompareVarToValue 0x8005, 10
+	GoToIfNe _cv_next_23
+	LoadNPCTrade 19
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_23:
+	CompareVarToValue 0x8005, 11
+	GoToIfNe _cv_next_24
+	LoadNPCTrade 20
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_24:
+	CompareVarToValue 0x8005, 12
+	GoToIfNe _cv_next_25
+	LoadNPCTrade 21
+	NPCTradeExec 0x8004
+	NPCTradeEnd
+	GoTo _cv_done_16
+_cv_next_25:
+_cv_done_16:
 	LockAll
 	FacePlayer
 	Return

@@ -6,7 +6,7 @@ Most of the GBA game's specials are small: a table lookup, setting a few vars, b
 here in script, so they need no engine code. The ones that need the engine (party checks, the gym challenge...)
 come later as hg-engine script commands.
 """
-import os, re
+import json, os, re
 import gba as G
 
 # ---------------------------------------------------------------- the starters (src/gym_hack.c, sStarters)
@@ -208,7 +208,40 @@ def pallet_mart(port, ret):
     return out + [done + ':']
 
 
+def _trades():
+    try: return json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'trades.json')))
+    except FileNotFoundError: return {}
+
+
+TRADES = _trades()          # the GBA's trade constant -> HeartGold's trade number (build_trades.py)
+
+
+def by_trade(port, lines):
+    """lines(HeartGold's trade number) for the trade VAR_0x8005 names (the GBA's shared trade scripts copy the
+    trade there): HeartGold loads a trade by a number written in the script, so each trade has its own lines"""
+    return chain(port, '0x8005', [(port.g.value(t), lines(n)) for t, n in TRADES.items() if port.g.value(t) is not None])
+
+
+def trade_info(port, ret):
+    """GetInGameTradeSpeciesInfo: -> the species asked for; STR_VAR_1 its name, STR_VAR_2 the one offered"""
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    return by_trade(port, lambda n: ['LoadNPCTrade %d' % n, 'NPCTradeGetReqSpecies %s' % ret, 'GetOfferedSpecies 0x8006',
+                                     'NPCTradeEnd', 'BufferSpeciesName 0, %s, 0, 0' % ret, 'BufferSpeciesName 1, 0x8006, 0, 0'])
+
+
+# HeartGold's own way to choose a Pokemon for a trade (its Power Plant trade's): the party screen, the choice in
+# VAR_0x8004 (255: none - past the GBA's PARTY_SIZE, as its scripts test)
+CHOOSE_FOR_TRADE = ['CloseMsg', 'FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'ScrCmd_566', 'GetPartySelection 0x8004', 'RestoreOverworld',
+                    'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade']
+
+
 SPECIALS = {
+    # the GBA's in-game trades on HeartGold's (build_trades.py; Nick: "In-game trades don't work anywhere yet")
+    'GetInGameTradeSpeciesInfo': trade_info,
+    'ChoosePartyMon': lambda p, r: list(CHOOSE_FOR_TRADE),
+    'GetTradeSpecies': lambda p, r: ['GetPartyMonSpecies 0x8004, %s' % (r or 'VAR_SPECIAL_RESULT')],
+    'CreateInGameTradePokemon': lambda p, r: [],
+    'DoInGameTradeScene': lambda p, r: by_trade(p, lambda n: ['LoadNPCTrade %d' % n, 'NPCTradeExec 0x8004', 'NPCTradeEnd']),
     # elevators: the floor windows aren't drawn; the ride is HeartGold's elevator shake (ElevatorAnim: up or down
     # by VAR_0x8004, floors by VAR_0x8005 - set from the GBA's floor vars just before)
     'DrawElevatorCurrentFloorWindow': lambda p, r: [], 'CloseElevatorCurrentFloorWindow': lambda p, r: [],

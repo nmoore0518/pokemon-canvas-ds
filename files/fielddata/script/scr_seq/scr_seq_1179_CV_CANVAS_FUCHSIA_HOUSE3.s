@@ -65,8 +65,14 @@ _cv_beaten_5:
 FuchsiaCity_House3_EventScript_ChooseMonForMoveDeleter:
 	NPCMsg msg_0961_CV_CANVAS_FUCHSIA_HOUSE3_FuchsiaCity_House3_Text_WhichMonShouldForgetMove
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe FuchsiaCity_House3_EventScript_CancelForgetMove
 	// TODO(gba) special IsSelectedMonEgg

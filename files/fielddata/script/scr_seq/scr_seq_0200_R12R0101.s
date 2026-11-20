@@ -63,8 +63,14 @@ Route12_FishingHouse_EventScript_CheckMagikarpRecord:
 	BufferPlayersName 6
 	NPCMsg msg_0349_R12R0101_Route12_FishingHouse_Text_OhMagikarpAllowMeToSee
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CopyVar VAR_SPECIAL_RESULT, 0x8004
 	CompareVarToValue VAR_SPECIAL_RESULT, 6
 	GoToIfGe Route12_FishingHouse_EventScript_CancelShowMon

@@ -322,7 +322,7 @@ MAPS = {   # GBA map dir: (HeartGold map slot, square transform)
     'Route4_PokemonCenter_1F_Frlg': ('MAP_ROUTE_3_POKECENTER_1F', ROUTE3_CENTER),
     'PewterCity_Mart_Frlg': ('MAP_PEWTER_POKEMART', PEWTER_MART),
     'PewterCity_PokemonCenter_1F_Frlg': ('MAP_PEWTER_POKECENTER_1F', PEWTER_CENTER),
-    'PewterCity_Museum_1F_Frlg': ('MAP_PEWTER_MUSEUM_OF_SCIENCE', PEWTER_MUSEUM),
+    'PewterCity_Museum_1F_Frlg+PewterCity_Museum_2F_Frlg': ('MAP_PEWTER_MUSEUM_OF_SCIENCE', PEWTER_MUSEUM),
     'PewterCity_House1_Frlg': ('MAP_PEWTER_NORTHEAST_HOUSE', PEWTER_HOUSE_NE),
     'PewterCity_House2_Frlg': ('MAP_PEWTER_SOUTHWEST_HOUSE', PEWTER_HOUSE_SW),
     'Route2_House_Frlg': ('MAP_ROUTE_2_HOUSE', ROUTE2_HOUSE),
@@ -623,6 +623,14 @@ UPSTAIRS = {
     'Route18_EastEntrance_1F_Frlg+Route18_EastEntrance_2F_Frlg': {
         'Route18_EastEntrance_2F_EventScript_Haden': (10, 4),
         'Route18_EastEntrance_2F_EventScript_LeftBinoculars': (2, 3), 'Route18_EastEntrance_2F_EventScript_RightBinoculars': (9, 3)},
+    # (HeartGold's museum is one floor: the GBA's 2F - the space shuttle, the Moon Stone - in its display cases the
+    # 1F's fossils leave free: the shuttle the middle case, the Moon Stone the east one, their watchers beside)
+    'PewterCity_Museum_1F_Frlg+PewterCity_Museum_2F_Frlg': {
+        'PewterCity_Museum_2F_EventScript_SpaceShuttle': [(9, 8), (10, 8), (11, 8), (9, 9), (10, 9), (11, 9)],
+        'PewterCity_Museum_2F_EventScript_MoonStone': [(15, 8), (15, 9)],
+        'PewterCity_Museum_2F_EventScript_Scientist': (12, 7), 'PewterCity_Museum_2F_EventScript_LittleGirl': (9, 10),
+        'PewterCity_Museum_2F_EventScript_BaldingMan': (10, 10), 'PewterCity_Museum_2F_EventScript_OldMan': (16, 8),
+        'PewterCity_Museum_2F_EventScript_Man': (16, 12)},
 }
 
 
@@ -2070,8 +2078,13 @@ def port(gba_map, g, ids, report):
                      'xRange': 0, 'yRange': 0, 'x': x, 'z': z, 'y': 0})
     if len(objs) > 60: report.append('  TOO MANY OBJECTS: %d (HeartGold keeps 64, the player among them)' % len(objs))
     bgs = []
+    _up_n = {}
     for b in signs:
-        x, z = UPSTAIRS[gba_map][b['script']] if b['script'] in UPSTAIRS.get(gba_map, {}) else xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
+        up = UPSTAIRS.get(gba_map, {}).get(b['script'])
+        if up:          # (several squares to one script - a big exhibit: the squares in turn)
+            k_ = _up_n[b['script']] = _up_n.get(b['script'], -1) + 1
+            x, z = up[k_ % len(up)] if isinstance(up, list) else up
+        else: x, z = xy(b['x'], b['y'], 'pos' if b.get('_read') else 'sign')
         x, z = SAFARI_MOVED.get(gba_map, {}).get('%d,%d' % (x, z), (x, z))      # (a sign build_safari.py moved off a door's front)
         x, z = off_furniture(slot, x, z, sign=True)
         bgs.append({'scriptId': '_EV_%s + 1' % b['script'], 'type': 0, 'x': x, 'z': z, 'y': 0, 'dir': 4})

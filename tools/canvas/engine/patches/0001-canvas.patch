@@ -11503,6 +11503,27 @@ index eb3e4e10..f919c585 100644
  // Only used to display attributes of phone contacts
  #define TRAINERCLASS_PHONE_MOM               200
  #define TRAINERCLASS_PHONE_POKEMON_PROFESSOR 201
+diff --git a/include/npc_trade.h b/include/npc_trade.h
+index f94d7490..cef0d243 100644
+--- a/include/npc_trade.h
++++ b/include/npc_trade.h
+@@ -18,6 +18,16 @@ typedef enum NpcTradeNum {
+     NPC_TRADE_VOLTY_PIKACHU,
+     NPC_TRADE_HORNLETTE_RHYHORN,
+     NPC_TRADE_IRON_BELDUM,
++    // the GBA game's Kanto trades (tools/canvas/build_trades.py): in this order
++    NPC_TRADE_CANVAS_MIMIEN_MR_MIME,
++    NPC_TRADE_CANVAS_ZYNX_JYNX,
++    NPC_TRADE_CANVAS_MS_NIDO_NIDORAN_F,
++    NPC_TRADE_CANVAS_CHDING_FARFETCHD,
++    NPC_TRADE_CANVAS_NINA_NIDORINA,
++    NPC_TRADE_CANVAS_MARC_LICKITUNG,
++    NPC_TRADE_CANVAS_ESPHERE_ELECTRODE,
++    NPC_TRADE_CANVAS_TANGENY_TANGELA,
++    NPC_TRADE_CANVAS_SEELOR_SEEL,
+     NPC_TRADE_MAX,
+ } NpcTradeNum;
+ 
 diff --git a/include/pokemon.h b/include/pokemon.h
 index 29914b9d..56548ff5 100644
 --- a/include/pokemon.h

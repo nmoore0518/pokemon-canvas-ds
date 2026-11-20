@@ -3,7 +3,7 @@
 #include "msgdata/msg/msg_0464_T03R0101.h"
 #include "macros/script.inc"
 
-// Pokemon Canvas: ported from the GBA game's PewterCity_Museum_1F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
+// Pokemon Canvas: ported from the GBA game's PewterCity_Museum_1F_Frlg+PewterCity_Museum_2F_Frlg by tools/canvas/port/port_map.py. Edit the GBA scripts
 // or the porter, not this file.
 
 	ScrDef PewterCity_Museum_1F_EventScript_Scientist1
@@ -12,9 +12,16 @@
 	ScrDef PewterCity_Museum_1F_EventScript_OldAmber
 	ScrDef PewterCity_Museum_1F_EventScript_Scientist2
 	ScrDef PewterCity_Museum_1F_EventScript_SeismicTossTutor
+	ScrDef PewterCity_Museum_2F_EventScript_Scientist
+	ScrDef PewterCity_Museum_2F_EventScript_Man
+	ScrDef PewterCity_Museum_2F_EventScript_OldMan
+	ScrDef PewterCity_Museum_2F_EventScript_LittleGirl
+	ScrDef PewterCity_Museum_2F_EventScript_BaldingMan
 	ScrDef PewterCity_Museum_1F_EventScript_AerodactylFossil
 	ScrDef PewterCity_Museum_1F_EventScript_KabutopsFossil
 	ScrDef PewterCity_Museum_1F_EventScript_PokemonJournalBrock
+	ScrDef PewterCity_Museum_2F_EventScript_MoonStone
+	ScrDef PewterCity_Museum_2F_EventScript_SpaceShuttle
 	ScrDef PewterCity_Museum_1F_EventScript_EntranceTriggerLeft
 	ScrDef PewterCity_Museum_1F_EventScript_EntranceTriggerMid
 	ScrDef PewterCity_Museum_1F_EventScript_EntranceTriggerRight
@@ -98,6 +105,56 @@ PewterCity_Museum_1F_EventScript_SeismicTossTutor:
 	ReleaseAll
 	End
 	
+PewterCity_Museum_2F_EventScript_Scientist:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_Man:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_OldMan:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_LittleGirl:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_BaldingMan:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	FacePlayer
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_PikachuSoonIPromise
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
 PewterCity_Museum_1F_EventScript_AerodactylFossil:
 	LockAll
 	SetVar 0x8004, SPECIES_AERODACTYL
@@ -123,6 +180,24 @@ PewterCity_Museum_1F_EventScript_KabutopsFossil:
 PewterCity_Museum_1F_EventScript_PokemonJournalBrock:
 	LockAll
 	NPCMsg msg_0464_T03R0101_PokemonJournal_Text_SpecialFeatureBrock
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_MoonStone:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon
+	WaitButton
+	CloseMsg
+	ReleaseAll
+	End
+	
+PewterCity_Museum_2F_EventScript_SpaceShuttle:
+	PlaySE SEQ_SE_DP_SELECT
+	LockAll
+	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_SpaceShuttle
 	WaitButton
 	CloseMsg
 	ReleaseAll

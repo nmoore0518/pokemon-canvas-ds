@@ -191,8 +191,14 @@ LavenderTown_House2_EventScript_Answer:
 LavenderTown_House2_EventScript_ChooseMon:
 	NPCMsg msg_0480_T05R0401_LavenderTown_House2_Text_CritiqueWhichMonsNickname
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfLt LavenderTown_House2_EventScript_CheckCanRateMon
 	CompareVarToValue 0x8004, 6

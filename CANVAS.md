@@ -16,6 +16,7 @@ python3 tools/canvas/build_caves.py  # then the caves we model from the GBA layo
 python3 tools/canvas/build_interiors.py  # then the big GBA-only interiors (Pokemon Tower, Silph Co., S.S. Anne, ...)
 python3 tools/canvas/build_cinnabar.py   # then our Cinnabar Island (the GBA town in place of HeartGold's ruin)
 python3 tools/canvas/build_overworld.py  # then the rest of Kanto's towns and routes on the GBA's layouts
+python3 tools/canvas/build_trades.py  # then the GBA's in-game trades as HeartGold's (a/1/1/2, msg_0200, data/trades.json)
 python3 tools/canvas/port/port_map.py  # then the GBA game's people, signs, text and scripts onto all of them
 tools/canvas/build_rom.sh            # decomp ROM, then hg-engine on top -> build/canvas.nds
 tools/canvas/test/newgame.sh t1      # boot headless, play the intro, save st/t1_field.dst (+ .png)
@@ -443,7 +444,14 @@ These hold for every map of every region, built now or later; each was settled o
   (its Kanto gatehouses), the GBA's upper floor joins the lower (`'1F+2F'` in the porter's MAPS) and `UPSTAIRS`
   stands its people and signs on squares the room's open floor reaches (binoculars on the window wall). Each GBA
   room has its own room of HeartGold's: two of the GBA's sharing one leave a door that leads back the way it came.
-  A `.equ` in a GBA script file is that file's own (three aides each set REQUIRED_CAUGHT_MONS).
+  A `.equ` in a GBA script file is that file's own (three aides each set REQUIRED_CAUGHT_MONS). An exhibit of
+  several squares lists its squares (Pewter's museum: its 2F's space shuttle and Moon Stone in the display cases
+  the 1F's fossils leave free).
+- **In-game trades are HeartGold's** (`build_trades.py`): the GBA's trades are added after HeartGold's own 13 in its
+  trade data (a/1/1/2) and names (msg_0200), `NPC_TRADE_CANVAS_*` in both enums (the decomp's and the engine's,
+  then `engine/make_patch.sh`); the porter turns the GBA's shared trade scripts into LoadNPCTrade / NPCTradeExec
+  (one branch a trade: HeartGold names the trade in the script) and its party screen. A region's own trades go on
+  after these, the same way. (HeartGold's party screen for a trade needs a Pokemon in the party.)
 - **Towns keep the GBA's layout, one building to each of its buildings** (Nick, from Saffron): where HeartGold's
   buildings won't fit the GBA's town, reshape the map (`reshape.py`: lines out of its spare woods, as many in
   between its buildings) rather than drop or merge buildings, and place buildings that run together by `LOTS`;

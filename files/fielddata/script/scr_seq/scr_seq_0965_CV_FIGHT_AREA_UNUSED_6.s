@@ -48,8 +48,14 @@ _cv_yes_1:
 _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special BallMaker_CheckMon
@@ -106,8 +112,14 @@ _cv_yes_5:
 _cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special BallChanger_CheckMon
@@ -318,8 +330,14 @@ _cv_yes_11:
 _cv_yn_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe PlayersHouse_B1F_EventScript_MachineEnd
 	// TODO(gba) special Synthesizer_CheckMon

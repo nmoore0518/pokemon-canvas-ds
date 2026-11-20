@@ -72,8 +72,14 @@ _cv_yn_2:
 	GoToIfEq EventMons_EventScript_CostumeHints
 	NPCMsg msg_0502_T07R0202_EventMons_Text_CostumeWhich
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe EventMons_EventScript_CostumeLater
 	// TODO(gba) special EventMons_CostumeCheckMon

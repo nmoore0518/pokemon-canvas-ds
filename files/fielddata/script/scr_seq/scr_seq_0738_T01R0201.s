@@ -101,8 +101,14 @@ _cv_yn_2:
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DeclineGrooming
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_GroomWhichOne
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	LockAll
 	FacePlayer
 	CompareVarToValue 0x8004, 6

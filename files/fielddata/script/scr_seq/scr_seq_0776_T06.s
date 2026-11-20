@@ -72,8 +72,14 @@ _cv_yn_2:
 	GoToIfEq VermilionCity_EventScript_ForemanNo
 	NPCMsg msg_0483_T06_VermilionCity_Text_ForemanWhich
 	WaitButton
-	// TODO(gba) special ChoosePartyMon
-	GoTo _cv_stop
+	CloseMsg
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	ScrCmd_566
+	GetPartySelection 0x8004
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CompareVarToValue 0x8004, 6
 	GoToIfGe VermilionCity_EventScript_ForemanNo
 	// TODO(gba) special MedCenter_CheckHelper

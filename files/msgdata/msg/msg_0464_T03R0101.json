@@ -63,6 +63,43 @@
       ]
     },
     {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth",
+      "en_US": [
+        "This month, we’re running a space\n",
+        "exhibit."
+      ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone",
+      "en_US": [
+        "Moon Stone, huh?\r",
+        "What’s so special about it?\n",
+        "Looks like an ordinary rock to me."
+      ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding",
+      "en_US": [
+        "July 20, 1969!\r",
+        "Humankind first set foot on the\n",
+        "moon that day.\r",
+        "I bought a color TV just so I\n",
+        "could watch that news."
+      ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu",
+      "en_US": [
+        "I want a Pikachu!\n",
+        "It’s so cute!\r",
+        "I asked my daddy to catch me one!"
+      ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_PikachuSoonIPromise",
+      "en_US": "Yeah, a Pikachu soon, I promise!"
+    },
+    {
       "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_AerodactylFossil",
       "en_US": [
         "Aerodactyl Fossil\n",
@@ -85,6 +122,17 @@
         "Brock rarely laughs, but is said to\n",
         "be unable to stop if he starts."
       ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon",
+      "en_US": [
+        "A meteorite that fell on Mt. Moon.\n",
+        "It is thought to be a Moon Stone."
+      ]
+    },
+    {
+      "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_SpaceShuttle",
+      "en_US": "Space Shuttle"
     },
     {
       "id": "msg_0464_T03R0101_PewterCity_Museum_1F_Text_DoYouKnowWhatAmberIs",
