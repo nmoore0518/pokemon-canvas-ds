@@ -537,9 +537,19 @@ The looks (each HeartGold's own place of that kind):
 - **the Rocket Hideout**: Team Rocket HQ (area 64, its B1F, land 498): grey panelled walls with their lights and
   ducts, desks with monitors (B3F's), its potted plant (23) and blue machine (77) models, crates for the spin
   mazes' partitions (`low_inner`: a maze's walls out in a room are low);
-- **the Pokemon Tower**: Lavender's House of Memories (area 40, land 308): its cobbled floor, panelled wall with
-  windows, its gravestone as a stone a square wide (HeartGold's stand over four squares; the GBA's rows of graves
-  are a square apart); the Sprout Tower's wooden stairs up and HeartGold's stairs down (66, 67);
+- **the Pokemon Tower** (Nick: remade - the walls were off, the floor no native tile, the gravestones cubes):
+  `tower_kit.py`, the GBA's octagon square by square in the Sprout Tower's look (area 120: its own texture set 77
+  and building set; the tombstone picture brought in from the House of Memories' set). The Sprout Tower's boards
+  for the floor; its purple panelled wall (`d15_wall01`, a panel to three squares, 64 high) wherever the floor meets
+  the GBA's wall band or the dark - along the north and down both sides - its dark top over it, its shadow along
+  the north wall's foot; nothing along the south, as HeartGold's rooms; a wall with any of the room north of it
+  within three squares (the octagon stepping in toward the south) a kerb 8 high, so it never stands in front of the
+  floor. **Gravestones stand up** (HeartGold's own lie flat - a slab with the picture on top): an arched stone a
+  square wide, leaning back a little, the House of Memories' tombstone picture (`so_tomb02`) on its face, on a flat
+  stone; 10 polygons each (the 7F's 104 graves fill a land). Every GBA grave is one (by metatile, `GRAVE_MT`, not
+  by what is joined to a wall); the 7F's statues are the same stone twice as tall; the 1F's counter a low box.
+  Stairs are the Sprout Tower's own ladders (66 up, 67 down in the field models: an area whose byte 6 is 1 places
+  a/0/4/0's models, else a/1/4/8's rooms - the old tower's area drew them as shelves).
 - **Silph Co. 2F-11F**: HeartGold's offices, the Radio Tower's (land 462, its textures imported into Silph Co.'s
   set, area 39): its grey zigzag floor, cream wall with a window every few squares, its dark top (`top_solid`: one
   texel, however long the run; stretched, the top ran into the texture's grey), its desks and stairs; the lobby's
@@ -609,10 +619,6 @@ More, from the pass after it:
   floor. A warp with open floor all round is a warp pad (`pad_model`).
 - **the deck**: a rail (`maq_pt02` on its side) along every edge of the planks, sea below; widened so the bow has
   room.
-- **the Tower** has an area of its own (120, `OWN_AREAS`: the Sprout Tower's textures with room models; its own
-  area is a dungeon's and takes field models, which drew the staircase as a white block). Every closed square
-  inside a floor that is no wall's is a gravestone (they run in rows out from the walls: by connection they
-  would be wall).
 - **a look can carry its room's things**: `furniture` (metatile -> model), `wall_art` (a cabinet on the wall),
   `cushions` (a texture laid on a floor square), `low_mt` (metatiles that are a low block wherever they are),
   `floor_mt` (closed in the GBA but floor: under a plant's pot). The Safari Zone's rest houses use all five.

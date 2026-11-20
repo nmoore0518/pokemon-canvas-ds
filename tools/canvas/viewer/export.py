@@ -40,7 +40,7 @@ LANDS = world.lands()
 
 def area_of(m):
     a = AREAS[int(slots.header(m)['areaDataBank'])]
-    return u16(a, 0), u16(a, 2), a[7] == 1          # building set, texture set, outdoors
+    return u16(a, 0), u16(a, 2), a[6] == 1          # building set, texture set, outdoor models (a/0/4/0, else rooms' a/1/4/8)
 
 
 def tex_table(blob):
@@ -292,6 +292,7 @@ def write(out, name, head, mesh):
 
 
 # HeartGold's own maps to look at beside ours (its ledges, towns, routes)
+HG_ROOMS = [('MAP_LAVENDER_HOUSE_OF_MEMORIES', 'House of Memories'), ('MAP_SPROUT_TOWER_2F', 'Sprout Tower 2F')]
 HG_REFERENCE = [('MAP_ROUTE_29', 'Route 29'), ('MAP_ROUTE_45', 'Route 45'), ('MAP_ROUTE_46', 'Route 46')]
 
 
@@ -325,7 +326,7 @@ def export_hg_kanto(out, listing):
             cells = [(i % w0, i // w0) for i in range(w0 * h0) if hdr[i] == ids[m] and ls[i] != 0xFFFF]
             if not cells: continue
             ad = int(re.search(r'\[%s\] = \{.*?\.areaDataBank = (\d+)' % m, heads, re.S).group(1))
-            a = AREAS[ad]; area = (u16(a, 0), u16(a, 2), a[7] == 1)
+            a = AREAS[ad]; area = (u16(a, 0), u16(a, 2), a[6] == 1)
             cx0, cz0 = min(c[0] for c in cells), min(c[1] for c in cells)
             cx1, cz1 = max(c[0] for c in cells) + 1, max(c[1] for c in cells) + 1
             mesh = Mesh((cx0 * 32, cz0 * 32))
@@ -411,6 +412,17 @@ def main():
         listing.append(dict(name=name, title='HeartGold: ' + title, group='HeartGold\'s Johto (to compare)', file=name, size=head['size'], bytes=size, map=m))
     # HeartGold's own Kanto, as it was before ours (O.HG_REV): its towns and routes beside ours
     export_hg_kanto(out, listing)
+    for m, title in HG_ROOMS:        # (and some of its rooms)
+        w, h, lands = world.map_matrix(m)
+        mesh = Mesh((0, 0))
+        head = dict(people=[], signs=[], warps=[], triggers=[])
+        for k, lid in enumerate(lands):
+            if lid != 0xFFFF and lid < len(LANDS): add_land(mesh, lid, k % w, k // w, area_of(m))
+        add_events(mesh, m, head)
+        name = 'hg_' + m.replace('MAP_', '').lower()
+        head.update(name=name, origin=[0, 0], size=[w * 32, h * 32])
+        size = write(out, name, head, mesh)
+        listing.append(dict(name=name, title='HeartGold: ' + title, group='HeartGold\'s Johto (to compare)', file=name, size=head['size'], bytes=size, map=m))
     gmaps = {d: v for d, v in json.load(open(O.WORLD_JSON))['maps'].items()}
     listing.append(dict(name='kanto', title='Kanto (overworld)', group='Overworld', strips=strips, world=True,
                         start=[1039, 380], gba={d: v[:4] for d, v in gmaps.items()}))

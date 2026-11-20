@@ -35,14 +35,10 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # (buildings: build_ship_floor draws them. The Tower's area is our own, 120 (OWN_AREAS): the Sprout Tower's textures
     # (set 77) with room models, which its own area, a dungeon's, does not take. stretch: the texture spans two squares, as HeartGold lays these;
     # slab: a lone closed square is a stone standing up - a gravestone - not a low block)
-    # the Pokemon Tower in HeartGold's House of Memories (Lavender's own place for its Pokemon: area 40, land 308): its
-    # cobbled floor, its panelled wall with windows and their light, its gravestones (a stone of its tombstone's
-    # picture a square wide: HeartGold's stand over four squares, the GBA's rows of graves a square apart)
-    'tower': dict(area=40, stairs=(66, 66, 67, 67), kit=dict(
-        src=308, base=-4, floor=(10, 9), floor_tex={'so_yuka1'}, top=(20, 20),
-        faces={'plain': (1, 2), 'lit': (6, 2)}, lit_every=4,
-        face_drop={'table01', 'h_kage', 'so_hachi', 'so_hana2', 'so_hana3', 'so_kuki', '?'},
-        stone=dict(tex='so_tomb02', top=(2, 1, 22, 26), side=(28, 19), w=0.78, d=0.72, h=13))),
+    # the Pokemon Tower in HeartGold's own tower look (tower_kit.py: the Sprout Tower's boards and purple panelled walls,
+    # the House of Memories' gravestones), in our area 120 (the Sprout Tower's textures, OWN_AREAS); its stairs the
+    # Sprout Tower's own
+    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), tower=True),
     # Silph Co.'s upper floors as HeartGold's offices (the Radio Tower's, land 462, its textures imported into the
     # Silph Co. set, area 39): its grey zigzag floor, its cream wall with a window now and then, its dark top, its
     # desks with monitors; the lobby's (land 303) door; HeartGold's room models for the rest (furnish.KIT: plants,
@@ -273,7 +269,7 @@ STAIR_BOX = {7: (-17, 16, -12, 18, 0.75), 8: (-16, 17, -12, 18, 0.75), 9: (-13, 
              168: (-16, 16, -16, 16, 1), 169: (-16, 16, -16, 16, 1), 170: (-16, 16, -16, 16, 1), 171: (-16, 16, -16, 16, 1),
              66: (-16, 16, -24, 8, 1.5), 67: (-8, 8, -24, 8, 1.5)}     # (the Sprout Tower's wooden stairs, as Lavender's houses stand them)
 USED_MODELS = {}          # area -> the room models its maps place (ship_models lists them in the area's building set)
-OWN_AREAS = {120: (77, 40), 121: (75, 16)}   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
+OWN_AREAS = {120: (77, 77), 121: (75, 16)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
 
 
 def ship_parts(spec):
@@ -697,6 +693,9 @@ def build_room_floor(spec):
 def build_floor(spec, depth_of):
     if spec['look'] == 'safari': return build_safari_floor(spec, depth_of)
     if LOOKS[spec['look']].get('room'): return build_room_floor(spec)
+    if LOOKS[spec['look']].get('tower'):
+        import tower_kit
+        return tower_kit.build_tower_floor(spec, depth_of)
     if LOOKS[spec['look']].get('kit'):
         import interior_kit
         return interior_kit.build_kit_floor(spec, depth_of)
@@ -874,6 +873,7 @@ def ship_models():
 # tiles are the Viridian Gym's slide tiles)
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
+           77: [(40, ['so_tomb02'])],          # (the Pokemon Tower: the House of Memories' gravestone)
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01']),
                 (('bm', 204), ['y_j_warp'])],          # (Saffron Gym's warp panel, from its model)
            44: [(70, ['d_rock01'])],
@@ -979,7 +979,7 @@ def main():
         evn = new_events_file(tag, ev)
         fields = {k: v for k, v in tmpl.items() if k not in ('matrixId', 'eventsBank')}
         fields.update(matrixId=mat, eventsBank=evn, areaDataBank=str(spec.get('_area', LOOKS[spec['look']]['area'])), weather='0', **NO_SCRIPTS)
-        if LOOKS[spec['look']].get('kit'): fields['cameraType'] = '4'      # (HeartGold's indoor camera, as its own rooms of these looks have)
+        if LOOKS[spec['look']].get('kit') or LOOKS[spec['look']].get('tower'): fields['cameraType'] = '4'      # (HeartGold's indoor camera, as its own rooms of these looks have)
         if spec.get('place'):       # (the name shown on entering: the town's, where the template is elsewhere)
             fields['mapsec'] = header(spec['place'])['mapsec']
         set_header(spec['map'], fields)
