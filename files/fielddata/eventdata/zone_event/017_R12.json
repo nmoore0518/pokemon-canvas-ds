@@ -237,21 +237,21 @@
         {
             "x": 1365,
             "z": 257,
-            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
-            "anchor": 1,
+            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
+            "anchor": 0,
             "y": 0
         },
         {
             "x": 1366,
             "z": 257,
-            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
-            "anchor": 1,
+            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
+            "anchor": 0,
             "y": 0
         },
         {
             "x": 1365,
             "z": 263,
-            "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
+            "header": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
             "anchor": 1,
             "y": 0
         },
@@ -259,7 +259,7 @@
             "x": 1344,
             "z": 312,
             "header": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
-            "anchor": 0,
+            "anchor": 1,
             "y": 0
         },
         {

@@ -43,6 +43,11 @@ BRIDGE_KIT = {'gTileset_CeruleanCity': 'nugget'}        # (the rest: 'boardwalk'
 BRIDGE_CRATE = {0x2F0, 0x2F1, 0x2F2, 0x2F8, 0x2F9, 0x2FA, 0x300, 0x301, 0x302, 0x310, 0x311, 0x312}   # (its platforms)
 ROCK_MT = (set(range(0x068, 0x0BC)) - STAIR_MT - {0x0A9}) | {0x10F, 0x11F, 0x1F1, 0x1F2, 0x1F3, 0x1F4, 0x217, 0x21E, 0x21F}
 MARGIN = 2                  # (squares of woods round the whole world)
+# the GBA's rocks out in the sea: water squares it closes, each rock across a 2x2 block of them (its General set's
+# rocks, and those against a cliff's foot) - HeartGold's sea rocks there (sea_rocks)
+SEA_ROCK_MT = {0x108, 0x109, 0x110, 0x111, 0x112, 0x113, 0x118, 0x119, 0x11A, 0x11B, 0x1CB, 0x1CC, 0x1D3, 0x1D4,
+               0x212, 0x213, 0x21A, 0x21B}
+SEA_ROCKS = set()           # (world squares: world_kinds)
 
 
 def gba_dirs():
@@ -64,6 +69,7 @@ CELLS = (14, 15)
 PALLET_AT = (59, 288)
 PLACED = {'CinnabarIsland_Frlg': (68, 419)}
 CUSTOM = {(1, 9), (2, 9), (3, 9), (1, 10), (2, 10), (3, 10), (2, 13)}     # (world cells drawn by build_pallet/build_cinnabar)
+CINNABAR_CELL = (2, 13)
 OPEN_SEA = {(1, 13), (3, 13), (1, 14), (2, 14), (3, 14)}     # (round and below Cinnabar: open sea where no map is)
 
 
@@ -160,6 +166,12 @@ def kinds(d):
             elif green(m) and m < 0x280: k = 'woods'         # (the trees are the General set's; a town's green is roofs)
             else: k = 'stone'
             out[(x, y)] = k
+    # (the GBA's sand at the water's edge - its metatile half sand, half the water's border - is sand, not grass)
+    for _ in range(2):
+        for (x, y), v in list(out.items()):
+            if v == 'grass' and not green(mt(x, y)) and any(out.get(n) == 'sand' for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1))) \
+                    and any(out.get(n) == 'water' for n in ((x + a, y + b) for a in (-1, 0, 1) for b in (-1, 0, 1))):
+                out[(x, y)] = 'sand'
     # (a closed square joined to a mountain's rock is rock: its crags and shadows are other colours)
     todo = [q for q, v in out.items() if v == 'rock']
     while todo:
@@ -176,8 +188,11 @@ def world_kinds(W=None, woods=False):
     """the whole world's squares: {(gx, gz): kind}, doors [(gx, gz, GBA map, x, y)], ledges, the map each square is"""
     W_, (WW, WH) = W or world()
     kind, owner, doors, ledges = {}, {}, [], {}
+    SEA_ROCKS.clear()
     for d, (x0, y0, w, h) in W_.items():
         k, dr, lg = kinds(d)
+        lay = gba_map.Layout(gba_map.map_json(d)['layout'])
+        SEA_ROCKS.update((x0 + x, y0 + y) for (x, y), v in k.items() if v == 'water' and lay.collision(x, y) and lay.metatile(x, y) in SEA_ROCK_MT)
         if woods: k = {q: ('woods' if v == 'stone' else v) for q, v in k.items()}      # (a forest's trees are its own tiles)
         for (x, y), v in k.items():
             kind[(x0 + x, y0 + y)] = v; owner[(x0 + x, y0 + y)] = d
@@ -197,7 +212,8 @@ def world_kinds(W=None, woods=False):
         x0, y0, w, h = W_['CinnabarIsland_Frlg']
         sea |= {(x0 + i, y0 + j) for i in range(w) for j in range(h)}
     ring = [q for q in kind]
-    near = {q: q in sea for q in kind}
+    # (and every square of a map that is the sea - Route 20's Seafoam rises to its edge: the sea past it, not woods)
+    near = {q: q in sea or wetness[owner[q]] >= 0.4 for q in kind}
     while ring:
         nxt = []
         for (x, y) in ring:
@@ -966,15 +982,76 @@ def plan_world(W=None, woods=False):
     # (a way in at the foot of a rock face: a cave's mouth, HeartGold's arch in the face)
     caves = {q for q in warps if q not in door_sq and kind.get((q[0], q[1] - 1)) == 'rock' and kind.get(q) != 'house'}
     if not woods: academy_hall(W_, kind, props, door_sq, warps)
+    # (the lands round Cinnabar meet the town build_cinnabar.py lays, not the GBA's: its sea where the GBA had its
+    # woods - a bank drawn along the next land's edge against them, out in the sea)
+    if W is None:
+        import build_cinnabar as CN
+        g = CN.plan()[3]
+        for (lx, lz), k_ in g.items():
+            kind[(CINNABAR_CELL[0] * 32 + lx, CINNABAR_CELL[1] * 32 + lz)] = 'water' if k_ in ('sea', 'rock') else 'sand'
+    # the sea's edges (Nick: "rocks around the edges of routes" so no one surfs off the edge of the world): the sea
+    # no map covers is shut, and a band of HeartGold's sea rocks two squares deep stands along it where the routes'
+    # sea meets it, as HeartGold's own Routes 19-21 have; the GBA's own rocks out in the sea are shut too, HeartGold's
+    # rock on each (sea_rocks)
+    custom = lambda q: (q[0] // 32, q[1] // 32) in CUSTOM
+    fill = {q for q in SEA_FILL if kind.get(q) == 'water' and not custom(q)}
+    open_sea = {q for q, v in kind.items() if v == 'water' and q not in fill and q not in SEA_ROCKS}
+    band = {q for q in fill if any((q[0] + a, q[1] + b) in open_sea for a in (-2, -1, 0, 1, 2) for b in (-2, -1, 0, 1, 2))}
+    sea_shut = fill | SEA_ROCKS
+    rock_big, rock_small = sea_rocks(band | {q for q in SEA_ROCKS if not custom(q)})
     # (a ledge only on open ground: where our layout made the GBA's square water or a building - the river beside
     # Cerulean's bridge, a Saffron house - it is gone, its jump with it)
     ledges = {q: v for q, v in ledges.items() if kind.get(q) in ('grass', 'sand', 'pave', 'lawn', 'tall', 'flower')}
+    if W is not None: sea_shut, rock_big, rock_small = set(), [], []
     return dict(W=W_, size=(WW, WH), kind=kind, owner=owner, ledges=ledges, props=props, door_sq=door_sq, warps=warps, caves=caves, sea=sea,
+                sea_shut=sea_shut, rock_big=rock_big, rock_small=rock_small, rock_level=rock_levels(kind, caves),
                 trees=trees, loose=loose, cell_map=cell_map, street=street, moved=moved, pens=pens, pen_open=pen_open, bridge_closed=bridge_closed, on_bridge=on_bridge, bridge_pos=bridge_pos, bridge_kit=bridge_kit, bridge_cls=bridge_cls, bldg=bldg)
 
 
 _KITS = {}
 LEDGE_KIT = json.load(open(os.path.join(HERE, 'data', 'kit_ledge.json')))
+
+
+def sea_rocks(sq):
+    """HeartGold's sea rocks over a set of squares: its big rock over each 2x2 block of them (the blocks never
+    overlapping: HeartGold's stand two squares apart), its small one on a square left over -> ([top-left squares of
+    the big ones], [squares of the small ones])"""
+    big, covered = [], set()
+    for q in sorted(sq, key=lambda q: (q[1], q[0])):
+        blk = {(q[0] + a, q[1] + b) for a in (0, 1) for b in (0, 1)}
+        if blk <= sq and not blk & covered: big.append(q); covered |= blk
+    return big, sorted(sq - covered)
+
+
+def rock_levels(kind, caves):
+    """a mountain with a cave in it built up in tiers (Nick: the caves "should be built up a little so they look more
+    like mountains and not just one layer deep"), as HeartGold's Seafoam and Mt. Moon are: a tier higher every two
+    squares in from its foot, up to MOUNTAIN_TIERS -> {(x, y): tier} for its squares (1 at its foot)"""
+    out = {}
+    for c in caves:
+        q0 = (c[0], c[1] - 1)
+        if kind.get(q0) != 'rock' or q0 in out: continue
+        comp, todo = {q0}, [q0]
+        while todo:
+            q = todo.pop()
+            for n in ((q[0] + 1, q[1]), (q[0] - 1, q[1]), (q[0], q[1] + 1), (q[0], q[1] - 1)):
+                if n not in comp and kind.get(n) == 'rock': comp.add(n); todo.append(n)
+        # (squares in from its foot: its distance to the nearest square not of it, any way round)
+        dist, ring, d = {}, [q for q in comp if any((q[0] + a, q[1] + b) not in comp for a in (-1, 0, 1) for b in (-1, 0, 1))], 1
+        while ring:
+            for q in ring: dist[q] = d
+            nxt = set()
+            for q in ring:
+                for a in (-1, 0, 1):
+                    for b in (-1, 0, 1):
+                        n = (q[0] + a, q[1] + b)
+                        if n in comp and n not in dist: nxt.add(n)
+            ring, d = list(nxt), d + 1
+        for q, d in dist.items(): out[q] = min(MOUNTAIN_TIERS, 1 + (d - 1) // 2)
+    return out
+
+
+MOUNTAIN_TIERS = 3
 
 
 def ledge_piece(way, before, after):
@@ -1207,7 +1284,8 @@ def build_land(P, cx, cz, base=None):
     road_of = lambda x, y: rskin.get((x, y))
     tall = {q for q, v in kind.items() if v == 'tall' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
     water = {q for q, v in kind.items() if v == 'water' and abs(q[0] - (X0 + 16)) < 18 and abs(q[1] - (Z0 + 16)) < 18}
-    level = lambda x, y: 1 if K_(x, y) == 'rock' else 0
+    RL = P.get('rock_level', {})
+    level = lambda x, y: (RL.get((x, y), 1)) if K_(x, y) == 'rock' else 0
     perm = [0x8000] * 1024
     props = []
     edged = {}
@@ -1243,7 +1321,8 @@ def build_land(P, cx, cz, base=None):
             while e < X1 and (e, y) in tall: e += 1
             flat('egrass', x, y, e, y + 1, R.GRASS_Y)
             x = e
-    bands_u, bands_v, pond_runs, rock_tops, open_water, faces = {}, {}, {}, {}, {}, {}
+    bands_u, bands_v, pond_runs, rock_tops, open_water, faces, beach_runs = {}, {}, {}, {}, {}, {}, {}
+    BEACH = (('swave_un', [(0.0, 0.0, -15.6), (1.0, R.WATER_Y - 1, -0.4)]), ('swave_p', [(0.0, 1.0, -31.6), (1.0, R.WATER_Y, -14.4)]))
     wet = lambda q: K_(*q) in ('water', None, 'bridge') or q in P.get('on_bridge', ())     # (no bank against a walkway)
 
     EDGE_LIFT = 0.2         # (the water's edge band a little over the water's top: they lie together)
@@ -1294,7 +1373,7 @@ def build_land(P, cx, cz, base=None):
             i = (y - oz) * 32 + (x - ox)
             if (k in ('grass', 'sand', 'pave', 'flower', 'stairs', 'lawn', 'bridge') and (x, y) not in P.get('bridge_closed', ())) or (x, y) in P.get('pen_open', ()): perm[i] = 0x0000
             elif k == 'tall': perm[i] = 0x0002
-            elif k == 'water': perm[i] = 0x0010
+            elif k == 'water': perm[i] = 0x8000 if (x, y) in P.get('sea_shut', ()) else 0x0010
             if (x, y) in ledges:
                 dx, dz = ledges[(x, y)]
                 perm[i] = {(1, 0): 0x38, (-1, 0): 0x39, (0, -1): 0x3A, (0, 1): 0x3B}[(dx, dz)]
@@ -1347,24 +1426,40 @@ def build_land(P, cx, cz, base=None):
                 # HeartGold's profile (R.BANK, R.EDGE); straight sides in runs, any other square (a corner, a
                 # channel) laid by distance from the land round it, so the bank turns every corner unbroken
                 open_water.setdefault(y, []).append(x)
+                dry = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and not wet((x + dx, y + dz))]
+                if dry and (x, y) in P.get('sea', ()) and all(K_(x + dx, y + dz) == 'sand' for dx, dz in dry):
+                    # (a beach: HeartGold's, as its Cinnabar and Route 21 have - the sand sloping down under the
+                    # sea, the foam over it - not a pond's bank (Nick: Seafoam's sand "made a beach, not a raised path"))
+                    kd = K.classify(dry)
+                    if kd[0] == 'straight':
+                        n = kd[1]
+                        beach_runs.setdefault((n, y if n[1] else x), set()).add(x if n[1] else y)
+                    else:
+                        for tex, prof in BEACH:
+                            for part, rng, fd, pl in K.laid(dry, prof):
+                                al = lambda u, v, part=part: ((y + v) * 16) if part[0] == 'x' else ((x + u) * 16)
+                                poly(tex, [(((x + u) * 16, K.along_profile(prof, fd(u, v))[0], (y + v) * 16), (al(u, v), K.along_profile(prof, fd(u, v))[1])) for u, v in pl])
+                    continue
                 for dx, dz in ((0, 1), (0, -1), (1, 0), (-1, 0)):
                     if not wet((x + dx, y + dz)):
                         pond_runs.setdefault(((dx, dz), y if dz else x), set()).add(x if dz else y)
                 for cx, cz in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
                     if not wet((x + cx, y + cz)) and wet((x + cx, y)) and wet((x, y + cz)): bank_corner(x, y, cx, cz)
             elif k == 'rock':
-                lower = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and K_(x + dx, y + dz) is not None and not level(x + dx, y + dz)]
-                if not lower: rock_tops.setdefault(y, []).append(x)
+                # (a mountain in tiers - rock_levels: each tier's face stands on the tier below's top)
+                L_ = level(x, y)
+                lower = [(dx, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx or dz) and K_(x + dx, y + dz) is not None and level(x + dx, y + dz) < L_]
+                if not lower: rock_tops.setdefault((y, L_), []).append(x)
                 else:
                     n0 = next((n for n in R.SIDE if n in lower), lower[0])
-                    rr = road_of(x + n0[0], y + n0[1])
-                    ground = rr or GROUND
-                    look = dict(R.LOOK, foot='wall01_h' if rr else 'wall01_g')
+                    rr = road_of(x + n0[0], y + n0[1]) if L_ == 1 else None
+                    ground = rr or (GROUND if L_ == 1 else ROCK_TOP)
+                    look = dict(R.LOOK, foot='wall01_h' if rr or L_ > 1 else 'wall01_g')     # (a tier up: its foot on rock, no grass at it)
                     ck, what = K.classify(lower)
                     if ck == 'straight':        # (straight faces in runs along their row or column: a quad a band)
-                        faces.setdefault((what, look['foot'], y if what[1] else x), []).append((x, y))
+                        faces.setdefault((what, look['foot'], y if what[1] else x, L_), []).append((x, y))
                     else:
-                        piece(x, y, R.rock_piece(lower, x, y, BS.LAND_NARC, look), 0, ground)
+                        piece(x, y, R.rock_piece(lower, x, y, BS.LAND_NARC, look), (L_ - 1) * R.TIER, ground)
             if (x, y) in ledges:          # (a ledge: HeartGold's lip painted on the ground - ledge())
                 ledge(x, y, ledges[(x, y)])
             elif k == 'corner':           # (the turn of a ledge)
@@ -1393,16 +1488,28 @@ def build_land(P, cx, cz, base=None):
                 else: BS._card(poly, 'post', x, y)
             elif k == 'sign':
                 props.append((SIGN_MODEL, U(x + 0.5, ox), 0, U(y + 0.35, oz)))
-    for y, xs in open_water.items():         # (open water, in runs: the water as the pond's middle has it; the sea
-        sea_xs = [x for x in xs if (x, y) in P.get('sea', ())]          # HeartGold's sea, its clear layer over it)
-        riv = [x for x in xs if x not in sea_xs and owner.get((x, y)) in RIVERS]       # (HeartGold's rivers: its river)
-        for a, b in BS._runs(sorted(set(xs) - set(sea_xs) - set(riv))): flat('pond_on', a, y, b, y + 1, R.WATER_Y)
-        for a, b in BS._runs(sorted(riv)): flat('river', a, y, b, y + 1, R.WATER_Y)
-        for a, b in BS._runs(sorted(sea_xs)):
-            flat('sea_un', a, y, b, y + 1, R.WATER_Y - 1); flat('sea_on', a, y, b, y + 1, R.WATER_Y)
-    for y, xs in rock_tops.items():
-        for a, b in BS._runs(sorted(xs)): flat(ROCK_TOP, a, y, b, y + 1, R.TIER)
-    for (what, foot, line), sqs in faces.items():
+    # (open water, in runs: the water as the pond's middle has it; the sea HeartGold's sea, its clear layer over it;
+    # HeartGold's rivers its river. Runs the same from row to row are one rectangle: a land with much sea - Route
+    # 12's - has no room for a quad a row)
+    rects = {}
+    for y in sorted(open_water):
+        xs = open_water[y]
+        sea_xs = [x for x in xs if (x, y) in P.get('sea', ())]
+        riv = [x for x in xs if x not in sea_xs and owner.get((x, y)) in RIVERS]
+        for what, sq in (('pond', set(xs) - set(sea_xs) - set(riv)), ('river', riv), ('sea', sea_xs)):
+            for a, b in BS._runs(sorted(sq)):
+                r = rects.get((what, a, b))
+                if r and r[1] == y: r[1] = y + 1
+                else:
+                    if r: rects.setdefault('done', []).append((what, a, b, r[0], r[1]))
+                    rects[(what, a, b)] = [y, y + 1]
+    for (what, a, b), (y0_, y1_) in [(k, v) for k, v in rects.items() if k != 'done'] + [((w_, a, b), (y0_, y1_)) for w_, a, b, y0_, y1_ in rects.get('done', [])]:
+        if what == 'pond': flat('pond_on', a, y0_, b, y1_, R.WATER_Y)
+        elif what == 'river': flat('river', a, y0_, b, y1_, R.WATER_Y)
+        else: flat('sea_un', a, y0_, b, y1_, R.WATER_Y - 1); flat('sea_on', a, y0_, b, y1_, R.WATER_Y)
+    for (y, L_), xs in rock_tops.items():
+        for a, b in BS._runs(sorted(xs)): flat(ROCK_TOP, a, y, b, y + 1, R.TIER * L_)
+    for (what, foot, line, L_), sqs in faces.items():
         along = 0 if what[1] else 1
         pos = sorted(q[along] for q in sqs)
         look = dict(R.LOOK, foot=foot)
@@ -1411,8 +1518,17 @@ def build_land(P, cx, cz, base=None):
             qb = (b - 1, line) if along == 0 else (line, b - 1)
             A, B = R.straight(what, qa[0], qa[1], look), R.straight(what, qb[0], qb[1], look)
             for (tex, pa), (_, pb) in zip(A, B):
-                w = lambda q, v: ((q[0] * 16 + v[0], v[2], q[1] * 16 + v[1]), (v[3], v[4]))
+                w = lambda q, v: ((q[0] * 16 + v[0], v[2] + (L_ - 1) * R.TIER, q[1] * 16 + v[1]), (v[3], v[4]))
                 poly(tex, [w(qa, pa[0]), w(qb, pb[1]), w(qb, pb[2]), w(qa, pa[3])])
+    for (n, line), al_ in beach_runs.items():        # (a beach's straight sides, in runs)
+        dx, dz = n
+        for a_, b_ in BS._runs(sorted(al_)):
+            def PB(d, at_, h):
+                if dz: return (at_ * 16, h, (line + (d if dz < 0 else 1 - d)) * 16)
+                return ((line + (d if dx < 0 else 1 - d)) * 16, h, at_ * 16)
+            for tex, prof in BEACH:
+                (d0, h0, t0), (d1, h1, t1) = prof
+                poly(tex, [(PB(d0, a_, h0), (a_ * 16, t0)), (PB(d0, b_, h0), (b_ * 16, t0)), (PB(d1, b_, h1), (b_ * 16, t1)), (PB(d1, a_, h1), (a_ * 16, t1))])
     for (n, line), along in pond_runs.items():
         for a, b in BS._runs(sorted(along)):
             # (an end against land along the line - an inside corner - is mitred; one where the land turns away
@@ -1515,12 +1631,22 @@ def build_land(P, cx, cz, base=None):
         if not mine(bx, by): continue
         poly('tree01_un', [((bx * 16, 0, by * 16 + 32), (0, 32)), ((bx * 16 + 32, 0, by * 16 + 32), (32, 32)), ((bx * 16 + 32, 0, by * 16), (32, 0)), ((bx * 16, 0, by * 16), (0, 0))])
         BS._card(poly, 'tree', bx, by)
+    # (HeartGold's sea rocks, as its Route 21's: its big one leaning over a 2x2 block, its small one over a square)
+    SEA_Y = R.WATER_Y - 1
+    for bx, by in P.get('rock_big', ()):
+        if not mine(bx, by): continue
+        x0_, x1_, zf, zb = bx * 16, (bx + 2) * 16, (by + 1.71) * 16, (by + 0.29) * 16
+        poly('sea_rock', [((x0_, SEA_Y + 1.7, zf), (0, 32)), ((x1_, SEA_Y + 1.7, zf), (32, 32)), ((x1_, SEA_Y + 24.3, zb), (32, 0)), ((x0_, SEA_Y + 24.3, zb), (0, 0))])
+    for bx, by in P.get('rock_small', ()):
+        if not mine(bx, by): continue
+        x0_, x1_, zf, zb = bx * 16, (bx + 1) * 16, (by + 0.85) * 16, (by + 0.30) * 16
+        poly('sea_rock_m', [((x0_, SEA_Y + 3.3, zf), (0, 16)), ((x1_, SEA_Y + 3.3, zf), (16, 16)), ((x1_, SEA_Y + 16.8, zb), (16, 0)), ((x0_, SEA_Y + 16.8, zb), (0, 0))])
     for mdl, px, pz, py, *sc in P['props']:
         if mine(int(px), int(pz)): props.append((mdl, U(px, ox), py, U(pz, oz)) + tuple(sc))
     order = [t for t in BS.FIRST if t in meshes] + [t for t in meshes if t not in BS.FIRST and t not in BS.ANIM]
     groups = [(t, t if t in meshes else 'pond_on', pal_of(t if t in meshes else 'pond_on'), meshes.get(t, Mesh()),
                {'repeat': 3, 'size': dims[t if t in meshes else 'pond_on']}) for t in BS.ANIM] + \
-             [(t, t, pal_of(t), meshes[t], {'repeat': 0 if t in ('tree01gs', 'etc_a', 'rock01', 'fence_b', 'cv_roserade') else 3, 'size': dims[t]}) for t in order]
+             [(t, t, pal_of(t), meshes[t], {'repeat': 0 if t in ('tree01gs', 'etc_a', 'rock01', 'fence_b', 'cv_roserade', 'sea_rock', 'sea_rock_m') else 3, 'size': dims[t]}) for t in order]
     model = build_model('cv_kanto_%d_%d' % (cx, cz), groups)
     model += b'\0' * (-len(model) % 4)
     f4 = lambda v: int(round(v * 4096))
@@ -1534,6 +1660,7 @@ def build_land(P, cx, cz, base=None):
 
 
 # ---------------------------------------------------------------- into the game
+LAND_MAX = 61400            # (a land's model past this and the field runs out of room)
 WORLD_LAND_BASE = 1000      # our world's lands (interiors are 800 on); lands drawn the same are one land
 WORLD_ALT = 0               # (the matrix's altitude moves a land's model but not the heights people stand at: ours are
 WORLD_BASE = 16             # built at HeartGold's ground, 16, as Pallet's and Cinnabar's are)
@@ -1897,6 +2024,7 @@ def main():
                 cells[mc] = (mls[i], mhdr[i], malt[i]); continue
             data, n, sz = build_land(P, cx, cz)
             big = max(big, sz)
+            if sz > LAND_MAX: print('  land %d,%d over: %d bytes' % (cx, cz, sz))
             if data not in seen:
                 seen[data] = len(land); land.append(data)
             cells[mc] = (seen[data], ids[hdr_of[(cx, cz)]], WORLD_ALT)

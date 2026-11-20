@@ -76,6 +76,7 @@ def tex_of(key, blob):
 
 
 _png = {}
+FOAM = {'swave_p'}
 
 
 def texture_png(texs, pals, name, pal):
@@ -89,6 +90,11 @@ def texture_png(texs, pals, name, pal):
             im = decode(prm, data, comp, p[1] if (prm >> 26) & 7 == 5 else p[0])
         except Exception:
             im = None
+        if im is not None and name in FOAM:
+            # (HeartGold's shore foam: the game's area animation washes it up the sand and lights it to foam; the
+            # still texture is the water's blue band - on a beach it reads as the sand's edge turned inside out)
+            im = im.convert('RGBA')
+            im.putdata([(r + (255 - r) * 7 // 10, g + (255 - g) * 7 // 10, b_ + (255 - b_) * 7 // 10, min(a, 200)) for r, g, b_, a in im.getdata()])
         if im is None: _png[key] = None
         else:
             b = io.BytesIO(); im.save(b, 'PNG', optimize=True); _png[key] = (b.getvalue(), im.size, (prm >> 26) & 7, (prm >> 29) & 1)
@@ -302,7 +308,8 @@ HG_KANTO = [('MAP_PALLET', 'Pallet Town'), ('MAP_ROUTE_1', 'Route 1'), ('MAP_VIR
             ('MAP_ROUTE_24', 'Route 24'), ('MAP_ROUTE_25', 'Route 25'), ('MAP_ROUTE_9', 'Route 9'),
             ('MAP_ROUTE_10', 'Route 10'), ('MAP_LAVENDER', 'Lavender Town'), ('MAP_ROUTE_12', 'Route 12'),
             ('MAP_VERMILION', 'Vermilion City'), ('MAP_SAFFRON', 'Saffron City'), ('MAP_CELADON', 'Celadon City'),
-            ('MAP_FUCHSIA', 'Fuchsia City'), ('MAP_ROUTE_15', 'Route 15')]
+            ('MAP_FUCHSIA', 'Fuchsia City'), ('MAP_ROUTE_15', 'Route 15'),
+            ('MAP_ROUTE_19', 'Route 19'), ('MAP_ROUTE_20', 'Route 20'), ('MAP_CINNABAR_ISLAND', 'Cinnabar Island'), ('MAP_ROUTE_21', 'Route 21')]
 
 
 def export_hg_kanto(out, listing):

@@ -422,6 +422,23 @@ These hold for every map of every region, built now or later; each was settled o
   (`pond_line` then `pond_edge`, R.BANK / R.EDGE) along every side the water meets land, in runs; an inside corner
   mitred, an outside corner turned round in an arc (`bank_run`, `bank_corner`); the water's top laid in runs under
   it. Never one flat strip a side (its top rows are see-through: black dashes, and gaps at every corner).
+- **Beaches** (Nick, from Seafoam: "changed to sand and made a beach, not a raised path"): where sand meets the
+  sea, HeartGold's beach (its Cinnabar's and Route 21's): the sand sloping down under the sea (swave_un), the foam
+  over it (swave_p, which the area's animation washes), straight sides in runs. The pond's bank is for ponds,
+  rivers and the sea against grass or rock. The GBA's sand at the water's edge (half its border) is sand.
+- **The sea's edges** (Nick: "rocks around the edges of routes" so no one surfs off the edge): the sea no map
+  covers is shut, and a band of HeartGold's sea rocks two squares deep stands along it wherever a route's sea meets
+  it (`sea_rocks`: its big rock over each 2x2, its small one on a square left over), as HeartGold's Routes 19-21.
+  The GBA's own rocks out in the sea (water it closes, a rock across each 2x2: `SEA_ROCK_MT`) are shut, with
+  HeartGold's rock on each. Past a sea map's edge it is sea, never woods (a mountain at the edge is no reason for
+  trees out in the water).
+- **Mountains with caves are built up in tiers** (Nick: caves "built up a little so they look more like
+  mountains and not just one layer deep"): a tier higher every two squares in from the foot, up to three
+  (`rock_levels`), each tier's faces HeartGold's cliff pieces standing on the tier below's top, their foot rock;
+  the cave's mouth is in the lowest tier.
+- **A custom-built town's land is what the lands round it see**: the lands next to one (Cinnabar) meet it as its
+  builder lays it, not as the GBA had it (else a bank is drawn along their edge against the GBA's woods, out in the
+  sea).
 - **Towns keep the GBA's layout, one building to each of its buildings** (Nick, from Saffron): where HeartGold's
   buildings won't fit the GBA's town, reshape the map (`reshape.py`: lines out of its spare woods, as many in
   between its buildings) rather than drop or merge buildings, and place buildings that run together by `LOTS`;
@@ -918,3 +935,7 @@ world is woods or sea by whichever map is nearest, which leaves straight-edged s
 
 - `python3 tools/canvas/viewer/export.py build/viewer` writes every built map (models, textures, people, signs, warps, triggers) as `maps.json` plus `m/<map>.txt` (base64: published pages serve no plain binary files); `index.html` is the three.js viewer that reads them.
 - After a build that changes maps, re-export and republish the viewer to the same page so Nick can fly through what changed.
+- The viewer draws textures still, without the area's animations: HeartGold's shore foam (`swave_p`) is lightened
+  to foam in the export (`FOAM`), as the game shows it washing, or a beach reads as its edge turned inside out.
+  When something looks wrong in the viewer, check it in game before changing the map.
+- HeartGold's own Kanto in the viewer (`HG_KANTO`) includes its sea routes and Cinnabar, to compare shores and rocks.

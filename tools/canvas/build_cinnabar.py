@@ -73,12 +73,13 @@ def to_world(x, y):
     return CELL[0] * 32 + OX + nx(x), CELL[1] * 32 + OZ + ny(y)
 
 
-def main():
+def plan():
+    """the widened town, square by square: (the GBA's map, its layout, its doors, {(lx, lz): 'sea' | 'rock' | 'ground'
+    | 'block'}, {(lx, lz): its GBA square}). build_overworld.py reads it too: the lands round the town meet the town
+    as it is here, not as the GBA had it"""
     gm = gba_map.map_json('CinnabarIsland_Frlg')
     lay = gba_map.Layout(gm['layout'])
     W, H = lay.w, lay.h
-    dims, pals = texdims(TEXSET)
-    pal_of = lambda t: {'sea_on': 'sea_f02_pl'}.get(t) or next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
     doors = {(w['x'], w['y']): w for w in gm['warp_events']}
 
     def gba_at(x, y):
@@ -127,6 +128,15 @@ def main():
             if 0 <= n[0] < 32 and 0 <= n[1] < 32 and grid.get(n, 'sea') in ('sea', 'rock') and n not in seen: todo.append(n)
     for q, k in grid.items():
         if k == 'sea' and q not in seen: grid[q] = 'ground'
+
+    return gm, lay, doors, grid, src
+
+
+def main():
+    gm, lay, doors, grid, src = plan()
+    W, H = lay.w, lay.h
+    dims, pals = texdims(TEXSET)
+    pal_of = lambda t: {'sea_on': 'sea_f02_pl'}.get(t) or next(p for p in (t + '_pl', t, t.replace('gs', '')) if p in pals)
 
     def at(lx, lz):
         """-> 'sea' | 'rock' | 'ground' | 'block' for a square of the land"""
