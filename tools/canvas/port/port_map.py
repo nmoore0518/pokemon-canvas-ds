@@ -660,16 +660,23 @@ def _world_entries():
             prim = max(counts, key=lambda d: (W['hg'][d] == X, counts[d]))
             key = prim + '#world'
             ox, oy = W['maps'][prim][:2]
-            MAPS[key] = (X, (lambda ox, oy: lambda x, y, kind='pos': (ox + x, oy + y))(ox, oy))
+            # (a town reshape.py lays out anew: the squares its scripts name moved as its layout is)
+            import gba_map as _gm, reshape as _rs
+            _lid = G.map_json(prim)['layout']; _L = _gm.layouts()[_lid]
+            MAPS[key] = (X, (lambda ox, oy, f: lambda x, y, kind='pos': (lambda q: (ox + q[0], oy + q[1]))(f(x, y)))(
+                ox, oy, lambda x, y, _lid=_lid, _w=_L['width'], _h=_L['height']: _rs.xy(_lid, x, y, _w, _h)))
         T0 = W['maps'][prim][:2]
         base = json.loads(json.dumps(G.map_json(prim)))
+        import gba_map as _gm, reshape as _rs
+        _L = _gm.layouts()[base['layout']]; base = _rs.events(base, _L['width'], _L['height'])
         out = {k: [] for k in ('object_events', 'bg_events', 'coord_events')}
         nxt = len(base.get('object_events', [])) + 1
         for d in [prim] + sorted(d for d in counts if d != prim):
             gx0, gy0 = W['maps'][d][:2]
+            import gba_map as _gm, reshape as _rs
             mj = G.map_json(d)
-            import gba_map as _gm
             lay = _gm.Layout(mj['layout'])
+            mj = _rs.events(json.loads(json.dumps(mj)), lay.w, lay.h)      # (a town laid out anew: reshape.py)
             for k in out:
                 for i, e in enumerate(mj.get(k, [])):
                     gx, gy = gx0 + e['x'], gy0 + e['y']

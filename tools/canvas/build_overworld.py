@@ -654,12 +654,15 @@ def plan_world(W=None, woods=False):
     # (HeartGold's own buildings first: a second door beside one - the Safari Zone's Exotic hall - is then its door)
     wdest = lambda d, x, y: next(w for w in gba_map.map_json(d)['warp_events'] if (w['x'], w['y']) == (x, y))['dest_map']
     doors = sorted(doors, key=lambda t: 0 if hgb.get(dest.get(wdest(t[2], t[3], t[4]))) else 1)
+    lot_doors = set()
+    if not woods: fake_doors += place_lots(W_, kind, props, stands, door_sq, all_warps, dest, hgb, lot_doors)
     for gx, gz, d, x, y in doors:
         gm = gba_map.map_json(d)
         w = next(w for w in gm['warp_events'] if (w['x'], w['y']) == (x, y))
         room = dest.get(w['dest_map'])
         b = hgb.get(room)
         warps[(gx, gz)] = (d, w)
+        if (gx, gz) in lot_doors: continue
         if room in gates: continue
         if (gx, gz) in extra and ((gx, gz - 1) in stands or any(r == w['dest_map'] for _, r in done)): continue
         # (HeartGold's building fitted to the GBA's: squeezed or stretched a little to the closed squares round the
@@ -983,6 +986,83 @@ def ledge_piece(way, before, after):
         return [(t, [(16 - u, 16 - v, s_, t_) for u, v, s_, t_ in q]) for t, q in ledge_piece((0, 1), after, before)]
     k = '%d,%d,%d,%d' % (way[0], way[1], before or not after, after or not before)
     return P.get(k) or P['%d,%d,1,1' % way]
+
+
+# A town's buildings as the GBA draws them, one by one (Nick: Saffron "doesn't look like the same layout from the
+# GBA version"): where the GBA's blocks run together - houses side by side, the apartment blocks against Silph Co. -
+# finding buildings by their doors left whole blocks to one building and the rest bare. Each lot here (in the GBA's
+# squares, as it has them before reshape.py, x0, y0, x1, y1 inclusive) gets one building: HeartGold's own for a door
+# whose room has one (Silph Co., the Gym, the Dojo, the Mart, the Center), else the town's house, or its apartment
+# block ('tall'), fitted to the lot, its front on the lot's front. 'scenery': no door at all (the bottom row: Nick, a
+# walkway in front of them, they stay without doors).
+LOTS = {'SaffronCity_Frlg': [
+    (17, 11, 20, 14, 'house'), (21, 11, 24, 14, 'house'), (25, 11, 28, 14, 'house'),
+    (37, 8, 42, 12, 'house'), (43, 8, 49, 12, 'house'), (50, 8, 53, 11, 'house'),
+    (18, 18, 21, 21, 'house'), (22, 19, 25, 21, 'house'), (26, 18, 28, 21, 'house'), (29, 17, 37, 30, 'house'),
+    (38, 18, 41, 21, 'house'), (42, 19, 45, 21, 'house'), (46, 18, 49, 21, 'house'),
+    (19, 26, 23, 30, 'tall'), (24, 26, 28, 30, 'tall'), (38, 26, 42, 30, 'tall'), (43, 26, 47, 30, 'tall'),
+    (18, 35, 21, 38, 'house'), (22, 35, 26, 38, 'house'), (27, 36, 30, 38, 'house'), (31, 35, 34, 38, 'house'),
+    (35, 35, 38, 38, 'house'), (41, 35, 45, 38, 'house'), (46, 35, 49, 38, 'house'),
+    (19, 42, 22, 44, 'scenery'), (23, 42, 26, 44, 'scenery'), (27, 42, 30, 44, 'scenery'),
+    (39, 42, 42, 44, 'scenery'), (43, 42, 46, 44, 'scenery'), (47, 42, 50, 44, 'scenery')]}
+
+
+def place_lots(W_, kind, props, stands, door_sq, all_warps, dest, hgb, lot_doors):
+    """LOTS: each lot's building; its squares closed, its door the GBA's -> props added"""
+    import reshape
+    fake = []
+    for d, lots in LOTS.items():
+        if d not in W_: continue
+        x0, y0 = W_[d][:2]
+        gm = gba_map.map_json(d); L = gba_map.layouts()[gm['layout']]
+        to = lambda x, y: reshape.xy(gm['layout'], x, y, L['width'], L['height'])
+        st = STYLE.get(d, STYLE_DEFAULT)
+        door = {v[0]: v for v in hgb.values()}
+        for k_, (a0, b0, a1, b1, what) in enumerate(lots):
+            (ax, ay), (bx_, by) = to(a0, b0), to(a1, b1)
+            X0, Z0, X1, Z1 = x0 + ax, y0 + ay, x0 + bx_ + 1, y0 + by + 1      # (world squares, the far sides open)
+            w, h = X1 - X0, Z1 - Z0
+            wp = [(gx, gz, wd, w_) for gx, gz, wd, w_ in all_warps if X0 <= gx < X1 and Z0 <= gz < Z1]
+            e = None
+            if wp:
+                gx, gz, wd, w_ = wp[0]
+                room = dest.get(w_['dest_map'])
+                e = hgb.get(room) or style_door(w_['dest_map'], d, hgb, w, h, k_)[0]
+                lot_doors.update((q[0], q[1]) for q in wp)
+            else:
+                pool = st.get('tall', st['houses']) if what == 'tall' else st['houses']
+                m_ = _fit(pool, w, h, k_)[0]
+                if m_ in door: e = door[m_]
+                else:
+                    bx0, bz0, mw, md = model_box(m_)
+                    e = (m_, (-(bx0 + mw / 2), 0.75 - (bz0 + md)), st['dm'], (0.0, -0.3), None)
+            mdl, (mdx, mdz), dmdl, dd = e[0], e[1], e[2], e[3]
+            bx0, bz0, mw, md = model_box(mdl)
+            sx, sz = max(0.8, min(1.3, w / mw)), max(0.8, min(1.3, h / md))
+            sc = (sx, min(sx, sz), sz)
+            cz = Z1 - (bz0 + md) * sz                   # (its front on the lot's front)
+            if wp:
+                cx = gx + 0.5 + mdx * sx                  # (its door on the GBA's door)
+                cx = min(max(cx, X0 - bx0 * sx), X1 - (bx0 + mw) * sx) if mw * sx <= w + 0.01 else cx
+                if dmdl is not None: props.append((dmdl, gx + 0.5 + dd[0], gz + 0.5 + dd[1], 0))
+                for q in wp: door_sq.add((q[0], q[1]))
+            else:
+                cx = (X0 + X1) / 2 - (bx0 + mw / 2) * sx
+                if what != 'scenery' and dmdl is not None:     # (a house only to look at: its door, shut)
+                    fake.append((dmdl, cx + (dd[0] - mdx) * sx, cz + (dd[1] - mdz) * sz, 0, (sc[1],) * 3)); props.append(fake[-1])
+            props.append((mdl, cx, cz, 0, sc))
+            # (closed where the building stands, to its front; the rest of its lot open ground - no wall where
+            # nothing is seen)
+            rx0, rz0, rx1 = cx + bx0 * sx, cz + bz0 * sz, cx + (bx0 + mw) * sx
+            under = {(x, z) for x in range(math.floor(rx0 + 0.35), math.ceil(rx1 - 0.35)) for z in range(math.floor(rz0 + 0.35), Z1)}
+            for x in range(X0, X1):
+                for z in range(Z0, Z1):
+                    if (x, z) in door_sq: continue
+                    if (x, z) in under: kind[(x, z)] = 'house'; stands.add((x, z))
+                    else: kind[(x, z)] = 'pave'
+            for q in under - door_sq:
+                if kind.get(q) != 'house': kind[q] = 'house'; stands.add(q)
+    return fake
 
 
 # The Leader Academy's main hall (Nick: "a bigger version of" Pewter's museum, "with brick facade and a blue roof"):

@@ -422,6 +422,10 @@ These hold for every map of every region, built now or later; each was settled o
   (`pond_line` then `pond_edge`, R.BANK / R.EDGE) along every side the water meets land, in runs; an inside corner
   mitred, an outside corner turned round in an arc (`bank_run`, `bank_corner`); the water's top laid in runs under
   it. Never one flat strip a side (its top rows are see-through: black dashes, and gaps at every corner).
+- **Towns keep the GBA's layout, one building to each of its buildings** (Nick, from Saffron): where HeartGold's
+  buildings won't fit the GBA's town, reshape the map (`reshape.py`: lines out of its spare woods, as many in
+  between its buildings) rather than drop or merge buildings, and place buildings that run together by `LOTS`;
+  every building with a door faces open ground, and a row the GBA left without a way in front gets one.
 - **Transitions everywhere**: every ground meets the next with an edge (a made edge where HeartGold has none);
   no two edge pieces back to back.
 - **Widths are HeartGold's, err bigger**; a room or floor that reads cramped gets plain rows and columns (`widen`),
@@ -813,6 +817,21 @@ the roof's palette turned blue, the cream plaster's texels relaid as brick (a ru
 palette slots the plaster freed), the glass, emblem and trim HeartGold's. It stands with its arch on the GBA's
 doors, 1.12 times the museum and 1.2 times taller, the squares under it closed (`ACADEMY`, `academy_hall`).
 A model of ours made from one of HeartGold's: build_pallet.py's list, run from the top of the build order.
+
+**Saffron is the GBA's Saffron, laid out anew** (Nick: it "doesn't look like the same layout from the GBA version
+and the houses on the bottom row appear inaccessible. The whole map might need to be expanded"): HeartGold's
+buildings are bigger than the GBA's, so `reshape.py` takes lines of squares out where the map has room to spare
+(the woods outside its fence) and puts as many in between its rows and columns of buildings - the map stays its
+size, so its four gatehouses stay where Routes 5 to 8 meet them. Rows are drawn anew too: a street three squares
+wide along the front of the bottom row of houses (they stay without doors, as the GBA's), then the town's fence,
+then the woods - HeartGold's trees lean well over the rows in front of them from the player's camera, so a way
+along a tree line needs a fence and a square to spare before it reads as a way. `gba_map` reads the layout and the events
+reshaped, and the porter maps the squares scripts name the same way (`reshape.xy`). Then every building is placed
+by `LOTS` (build_overworld.py): one building to each of the GBA's buildings, in its own lot (houses side by side,
+the four apartment blocks round Silph Co.), HeartGold's own where its door's room has one, else Saffron's houses
+and apartment blocks; `scenery` lots get no door at all. **For a town in any region** whose buildings run together
+in the GBA's blocks, give it lots rather than leaving buildings to be found by their doors, and reshape it rather
+than squeeze HeartGold's buildings.
 
 **The Academy's market is open** (Nick: its fencing "hinders movement"): every fence in it is taken out and its
 square is the plaza's paving, walkable (`NO_FENCES`: a map's fences gone over a box of its GBA squares; the GBA's

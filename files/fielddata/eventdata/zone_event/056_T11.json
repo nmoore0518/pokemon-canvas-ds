@@ -5,22 +5,22 @@
             "scriptId": "_EV_SaffronCity_EventScript_CitySign + 1",
             "type": 0,
             "x": 1250,
-            "z": 219,
+            "z": 215,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_DojoSign + 1",
             "type": 0,
-            "x": 1263,
-            "z": 219,
+            "x": 1267,
+            "z": 215,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_SilphProductSign + 1",
             "type": 0,
-            "x": 1234,
+            "x": 1230,
             "z": 230,
             "y": 0,
             "dir": 4
@@ -28,7 +28,7 @@
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerTips2 + 1",
             "type": 0,
-            "x": 1239,
+            "x": 1232,
             "z": 235,
             "y": 0,
             "dir": 4
@@ -36,15 +36,15 @@
         {
             "scriptId": "_EV_SaffronCity_EventScript_SilphCoSign + 1",
             "type": 0,
-            "x": 1249,
-            "z": 237,
+            "x": 1250,
+            "z": 236,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerTips1 + 1",
             "type": 0,
-            "x": 1275,
+            "x": 1279,
             "z": 230,
             "y": 0,
             "dir": 4
@@ -52,15 +52,15 @@
         {
             "scriptId": "_EV_SaffronCity_EventScript_GymSign + 1",
             "type": 0,
-            "x": 1271,
-            "z": 219,
+            "x": 1276,
+            "z": 215,
             "y": 0,
             "dir": 4
         },
         {
             "scriptId": "_EV_SaffronCity_EventScript_MrPsychicsHouseSign + 1",
             "type": 0,
-            "x": 1261,
+            "x": 1265,
             "z": 243,
             "y": 0,
             "dir": 4
@@ -68,7 +68,7 @@
         {
             "scriptId": "_EV_SaffronCity_EventScript_TrainerFanClubSign + 1",
             "type": 0,
-            "x": 1270,
+            "x": 1274,
             "z": 227,
             "y": 0,
             "dir": 4
@@ -96,8 +96,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1243,
-            "z": 220,
+            "x": 1238,
+            "z": 218,
             "y": 0
         },
         {
@@ -113,7 +113,7 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1247,
+            "x": 1243,
             "z": 221,
             "y": 0
         },
@@ -130,8 +130,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1267,
-            "z": 218,
+            "x": 1271,
+            "z": 216,
             "y": 0
         },
         {
@@ -147,7 +147,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1248,
+            "x": 1244,
             "z": 227,
             "y": 0
         },
@@ -164,7 +164,7 @@
             "param2": 0,
             "xRange": 7,
             "yRange": 1,
-            "x": 1246,
+            "x": 1242,
             "z": 238,
             "y": 0
         },
@@ -215,7 +215,7 @@
             "param2": 0,
             "xRange": 4,
             "yRange": 1,
-            "x": 1269,
+            "x": 1273,
             "z": 229,
             "y": 0
         },
@@ -249,7 +249,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1242,
+            "x": 1236,
             "z": 228,
             "y": 0
         },
@@ -266,7 +266,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1260,
+            "x": 1264,
             "z": 221,
             "y": 0
         },
@@ -283,7 +283,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1265,
+            "x": 1269,
             "z": 227,
             "y": 0
         },
@@ -300,8 +300,8 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1266,
-            "z": 227,
+            "x": 1270,
+            "z": 228,
             "y": 0
         },
         {
@@ -334,7 +334,7 @@
             "param2": 0,
             "xRange": 1,
             "yRange": 1,
-            "x": 1268,
+            "x": 1272,
             "z": 229,
             "y": 0
         },
@@ -434,49 +434,49 @@
             "y": 0
         },
         {
-            "x": 1261,
-            "z": 217,
+            "x": 1263,
+            "z": 215,
             "header": "MAP_SAFFRON_FIGHTING_DOJO",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1267,
-            "z": 217,
+            "x": 1269,
+            "z": 215,
             "header": "MAP_SAFFRON_GYM",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1239,
-            "z": 219,
+            "x": 1236,
+            "z": 217,
             "header": "MAP_CANVAS_SAFFRON_TCG_HOUSE",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1243,
-            "z": 219,
+            "x": 1241,
+            "z": 217,
             "header": "MAP_SAFFRON_COPYCAT_HOUSE_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1248,
+            "x": 1246,
             "z": 226,
             "header": "MAP_CANVAS_SAFFRON_HOUSE",
             "anchor": 1,
             "y": 0
         },
         {
-            "x": 1261,
+            "x": 1263,
             "z": 226,
             "header": "MAP_SAFFRON_POKEMART",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1268,
+            "x": 1270,
             "z": 226,
             "header": "MAP_CANVAS_SAFFRON_FAN_CLUB",
             "anchor": 0,
@@ -511,14 +511,14 @@
             "y": 0
         },
         {
-            "x": 1245,
+            "x": 1243,
             "z": 243,
             "header": "MAP_SAFFRON_POKECENTER_1F",
             "anchor": 0,
             "y": 0
         },
         {
-            "x": 1264,
+            "x": 1266,
             "z": 243,
             "header": "MAP_SAFFRON_MR_PSYCHIC_HOUSE",
             "anchor": 0,

@@ -76,6 +76,8 @@ class Layout:
         if not raw:         # (squares a script opens and closes are built open: port/barriers.py)
             for sq in _barriers().get(layout_id, []):
                 if sq['base']: self.blocks[sq['y']][sq['x']] = sq['open'] | (self.blocks[sq['y']][sq['x']] & 0xF000)
+        import reshape         # (a town laid out anew inside its map: reshape.py)
+        self.blocks = reshape.blocks(layout_id, self.blocks)
 
     def metatile(self, x, y): return self.blocks[y][x] & 0x3FF
     def collision(self, x, y): return (self.blocks[y][x] >> 10) & 3
@@ -145,7 +147,10 @@ def _barriers():
 
 def map_json(map_dir):
     import scrapped        # (without what the port leaves out: scrapped.py)
-    return scrapped.clean(json.load(open(P('data/maps', map_dir, 'map.json'))))
+    import reshape         # (its events moved with a reshaped layout: reshape.py)
+    mj = scrapped.clean(json.load(open(P('data/maps', map_dir, 'map.json'))))
+    L = layouts().get(mj.get('layout'), {})
+    return reshape.events(mj, L.get('width', 0), L.get('height', 0))
 
 
 if __name__ == '__main__':
