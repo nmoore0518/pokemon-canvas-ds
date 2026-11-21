@@ -15,8 +15,9 @@ def sx(v, bits): return v - (1 << bits) if v & (1 << (bits - 1)) else v
 
 
 def dl_vertices(dl):
-    """-> [(prim, [(x,y,z,s,t), ...])] in model units (before the model's position scale)"""
-    out, cur, v, st = [], None, [0, 0, 0], (0, 0)
+    """-> [(prim, [(x,y,z,s,t,colour), ...])] in model units (before the model's position scale); colour BGR555, or
+    None before the shape's first COLOR command (the material's own then)"""
+    out, cur, v, st, col = [], None, [0, 0, 0], (0, 0), None     # (col: the vertex colour, BGR555, its COLOR command's)
     i = 0
     while i + 4 <= len(dl):
         codes = dl[i:i + 4]; i += 4
@@ -25,6 +26,7 @@ def dl_vertices(dl):
             p = [u32(dl, i + 4 * k) for k in range(n)]; i += 4 * n
             if c == 0x40: cur = (p[0], []); out.append(cur)
             elif c == 0x22: st = (sx(p[0] & 0xFFFF, 16) / 16, sx(p[0] >> 16, 16) / 16)
+            elif c == 0x20: col = p[0] & 0x7FFF
             elif c in (0x23, 0x24, 0x25, 0x26, 0x27, 0x28):
                 if c == 0x23: v = [s16(p[0] & 0xFFFF) / 4096, s16(p[0] >> 16) / 4096, s16(p[1] & 0xFFFF) / 4096]
                 elif c == 0x24: v = [sx(p[0] & 0x3FF, 10) / 64, sx((p[0] >> 10) & 0x3FF, 10) / 64, sx((p[0] >> 20) & 0x3FF, 10) / 64]
@@ -32,7 +34,7 @@ def dl_vertices(dl):
                 elif c == 0x26: v = [s16(p[0] & 0xFFFF) / 4096, v[1], s16(p[0] >> 16) / 4096]
                 elif c == 0x27: v = [v[0], s16(p[0] & 0xFFFF) / 4096, s16(p[0] >> 16) / 4096]
                 elif c == 0x28: v = [v[0] + sx(p[0] & 0x3FF, 10) / 4096, v[1] + sx((p[0] >> 10) & 0x3FF, 10) / 4096, v[2] + sx((p[0] >> 20) & 0x3FF, 10) / 4096]
-                if cur: cur[1].append((*v, *st))
+                if cur: cur[1].append((*v, *st, col))
     return out
 
 

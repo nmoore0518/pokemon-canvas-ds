@@ -25,8 +25,11 @@ class Mesh:
     normal a polygon (or a strip). A strip shares vertices between its polygons: a quad strip is pairs of vertices
     across it (v0 v1, v2 v3, ...: quads v0 v1 v3 v2, v2 v3 v5 v4, ...), a triangle strip v0 v1 v2 v3 ... (triangles
     v0 v1 v2, v1 v2 v3, ...)."""
-    def __init__(self):
+    def __init__(self, vcolour=None):
+        """vcolour: drawn as HeartGold draws its lands - lights off, each vertex its colour (a third item in a vertex,
+        BGR555), else this one"""
         self.quads, self.tris, self.strips = [], [], []
+        self.vcolour = vcolour
 
     def quad(self, verts, normal):
         self.quads.append((verts, normal))
@@ -50,7 +53,11 @@ class Mesh:
 def display_list(mesh):
     ops = []
 
-    def vertex(x, y, z, s, t):
+    last_c = [None]
+
+    def vertex(x, y, z, s, t, c=None):
+        if c is not None and c != last_c[0]:        # (a vertex colour of HeartGold's: its COLOR command, lights off)
+            ops.append((0x20, [c & 0x7FFF])); last_c[0] = c
         ss, tt = int(round(s * 16)), int(round(t * 16))
         assert -32768 <= ss < 32768 and -32768 <= tt < 32768, (s, t)
         ops.append((0x22, [(ss & 0xFFFF) | ((tt & 0xFFFF) << 16)]))
@@ -67,11 +74,12 @@ def display_list(mesh):
         ops.append((0x40, [prim]))
         last_n = None
         for verts, n in items:
-            nn = normal10(n)
-            if nn != last_n:
-                ops.append((0x21, [nn])); last_n = nn
-            for (x, y, z), (s, t) in verts:
-                vertex(x, y, z, s, t)
+            if not mesh.vcolour:
+                nn = normal10(n)
+                if nn != last_n:
+                    ops.append((0x21, [nn])); last_n = nn
+            for v in verts:
+                vertex(*v[0], *v[1], *(v[2:3] or [mesh.vcolour if mesh.vcolour else None]))
         ops.append((0x41, []))
     for prim, verts, n in mesh.strips:
         ops.append((0x40, [prim]))
@@ -90,8 +98,8 @@ def display_list(mesh):
     return bytes(out)
 
 
-def material_data(repeat=3, flip=0, alpha=31, both_faces=True, size=(0, 0)):
-    poly = 0x01 | (0xC0 if both_faces else 0x80) | (alpha << 16)
+def material_data(repeat=3, flip=0, alpha=31, both_faces=True, size=(0, 0), lit=True):
+    poly = (0x01 if lit else 0) | (0xC0 if both_faces else 0x80) | (alpha << 16)
     teximg = (1 << 30) | (repeat << 16) | (flip << 18)
     return struct.pack('<HHIIIIIIHHHHii', 0, 0x2C, 0x7FFFE739, 0, poly, 0x3F1FF8FF, teximg, 0xFFFFFFFF,
                        0, 0x1FCF | (0x10 if size[0] else 0), size[0], size[1], FX, FX)

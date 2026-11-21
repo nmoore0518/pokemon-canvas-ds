@@ -196,7 +196,7 @@
         },
         {
             "id": "202",
-            "spriteId": "7013",
+            "spriteId": "7012",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x223A",
@@ -213,7 +213,7 @@
         },
         {
             "id": "203",
-            "spriteId": "7014",
+            "spriteId": "7013",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x223B",
@@ -264,7 +264,7 @@
         },
         {
             "id": "206",
-            "spriteId": "7013",
+            "spriteId": "7012",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x223E",
@@ -281,7 +281,7 @@
         },
         {
             "id": "207",
-            "spriteId": "7014",
+            "spriteId": "7013",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x223F",

@@ -676,6 +676,30 @@ across the town are Bill's Sevii trip, which the hack removed.)
 
 ### The interior tile kit (`interior_kit.py`: a look with a `kit`)
 
+**HeartGold's pieces, with their colours** (Nick: what we built ourselves isn't as sharp - use the game's assets,
+walls too, recoloured if need be). HeartGold draws its lands with the lights off and each vertex in a colour of its
+own (COLOR commands): that is all its shading - a wall darker at its foot, a stone's sides darker than its top. A
+piece cut from its lands keeps those colours (`bmdview.dl_vertices` reads them, cutting interpolates them, `g3d.Mesh`
+with `vcolour` writes them, lights off); what we lay ourselves takes HeartGold's usual material colour, a fifth
+darker than white (`DEFAULT_COLOUR`). Without them every piece was lit evenly from above: flat, washed out.
+- **Nothing generated where HeartGold has a piece or a model**: a closed door in a wall is a stretch of that wall (the
+  Cinnabar Gym's quiz doors are its rail: `barriers.WALL_PICTURE`, a square's column cut from a screenshot); the Power
+  Plant's coils are HeartGold's drum (model 81, one a square); its headstone is HeartGold's own block (below).
+- **Recoloured sets** (`build_interiors.RECOLOURS`): a copy of one of HeartGold's texture sets with every palette's hue
+  turned (`tile_kit.recoloured_set`), at an area of ours: Saffron Gym's, warm, for the Cinnabar Gym (area 122).
+- **The tile table** (`tile_kit.py`, a look with `tiles`): for a room of one kind of wall (a gym), each GBA square is
+  given a role (rail, post, foot, back wall, a model) and gets that square of a HeartGold land, unchanged. The Cinnabar
+  Gym is Saffron Gym's: its glass rails are painted on the floor and raised a little, never tall, so they hide nobody
+  (HeartGold stands its own trainers right behind them); a rail on each GBA partition's face row, a post for each wall
+  down the room, HeartGold's terminal (136) for the quiz machines, its gym statue (78).
+- **HeartGold's headstone** is a stone block 14 units tall with a headstone painted on its top: the camera sees the
+  top at a slant and it reads as standing. The GBA puts a grave on every square; HeartGold's are a square and a half
+  wide, and smaller ones are too small to read, so the Pokemon Tower's are HeartGold's size spread over each patch of
+  graves about every other square (`spread`), the patch's squares closed as the GBA's. Its 40 polygons are made over
+  in 5 (`block_piece`: body and picture, HeartGold's colours; sides against a neighbour left off).
+- **Run `build_interiors.py` as a script**: it registers itself as `build_interiors` before the kits import it (else
+  they load a second copy, and the models they place never reach the area's building set: drawn as empty boxes).
+
 Big interiors are laid from **pieces of HeartGold's own rooms** (Nick: the tile kit, indoors too). A piece is every
 polygon of a HeartGold land in a box of squares, clipped to the box (texture coordinates carried along, with its
 material's repeat, flip and alpha), laid elsewhere unchanged; a kit names the land it cuts from (`src`) and its

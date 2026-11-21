@@ -377,7 +377,7 @@
         },
         {
             "id": "211",
-            "spriteId": "7003",
+            "spriteId": "7002",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x2267",

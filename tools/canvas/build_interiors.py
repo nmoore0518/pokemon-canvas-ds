@@ -18,6 +18,9 @@ Run after build_caves.py (our lands follow the caves'), and before the porter.
 import json, math, os, struct, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+# (run as a script, this module is __main__: the kits' `import build_interiors` must find it, not load a second
+# copy whose USED_MODELS - the models the maps place - nobody writes)
+sys.modules.setdefault('build_interiors', sys.modules[__name__])
 from nitro import read_narc, write_narc
 from g3d import Mesh, build_model
 import gba_map
@@ -31,6 +34,12 @@ LAND_NARC = os.path.join(ROOT, 'files/a/0/6/5')
 LAND_BASE = 800                 # our interiors' lands (caves are 720 on)
 WALL_H, LOW_H = 24, 12          # a wall a block and a half high; a table or a machine, three quarters of a block
 
+import tile_kit
+# (the Pokemon Tower's GBA metatiles: its graves, the 7F's statues, the 1F's counter - tower_kit.py's)
+_TOWER_GRAVES = {0x291, 0x293, 0x289, 0x2A5, 0x2A6, 0x2B1, 0x2B2, 0x2B3, 0x2BE, 0x2BF, 0x2D6, 0x2D8, 0x2D9, 0x2DA, 0x2DC, 0x2DD, 0x2E3, 0x2E4}
+_TOWER_STATUES = {0x2CF, 0x2D7}
+from interior_kit import HG_GRAVE as IK_GRAVE
+_TOWER_COUNTER = {0x2C8, 0x2C9, 0x2CA, 0x2D0, 0x2D1, 0x2D2, 0x2D3, 0x2D4}
 LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low block top, warp squares
     # (buildings: build_ship_floor draws them. The Tower's area is our own, 120 (OWN_AREAS): the Sprout Tower's textures
     # (set 77) with room models, which its own area, a dungeon's, does not take. stretch: the texture spans two squares, as HeartGold lays these;
@@ -38,7 +47,23 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # the Pokemon Tower in HeartGold's own tower look (tower_kit.py: the Sprout Tower's boards and purple panelled walls,
     # the House of Memories' gravestones), in our area 120 (the Sprout Tower's textures, OWN_AREAS); its stairs the
     # Sprout Tower's own
-    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), tower=True, camera=0),     # (the Sprout Tower's own camera, 0: further out than a house's)
+    # (Nick, again: what we built ourselves isn't as sharp - HeartGold's own pieces, walls too.) The Tower now in the
+    # House of Memories' look, Lavender's own graves in HeartGold (land 308, its textures brought into the Sprout
+    # Tower's set): its paved stone floor, its stone wall with the windows (the offering table before it left out),
+    # the wall's cap over the tops, its headstones on the GBA's graves (HeartGold's own size: a square and a half wide,
+    # where the GBA sets one on every square of a row - smaller, they were too small to read - so spread over each
+    # patch of graves about every other square, as HeartGold spaces its own), its offering table for the 1F's counter. The
+    # Sprout Tower's ladders; the House of Memories' camera (4: a house's, close enough to read the headstones)
+    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), camera=4, kit=dict(
+        src=308, base=-4, floor=(5, 10), floor_tex={'so_yuka1'}, top=(0, 2),
+        faces={'plain': (4, 2), 'lit': (6, 2, 2, 1)}, lit_every=6,
+        face_drop={'table01', 'so_hana2', 'so_hana3', 'so_hachi', 'h_kage', 'so_hikari', 'so_kuki', 'so_yuka2'},
+        things=[dict(mt=_TOWER_GRAVES, block=IK_GRAVE, scale=1.0, pivot=(1.0, 1.96), spread=(2, 2)),
+                dict(mt=_TOWER_STATUES, block=IK_GRAVE, scale=1.0, pivot=(1.0, 1.96), spread=(1, 2)),
+                dict(mt=_TOWER_COUNTER, src=308, piece=(12, 2, 1, 2), base=-4, keep={'table01'}, whole=False)],
+        tall_walls=True,
+        sides=dict(tex='so_kabe1', opt=(3, 0, 31, 'so_kabe1_pl'), s=80, face_z=0.5,
+                   bands=[(0, 19.2, 31.62, 22.31), (19.2, 38, 22.31, 20.38), (38, 42, 5, 5), (42, 48, 21.75, 21.75)]))),
     # Silph Co.'s upper floors as HeartGold's offices (the Radio Tower's, land 462, its textures imported into the
     # Silph Co. set, area 39): its grey zigzag floor, its cream wall with a window now and then, its dark top, its
     # desks with monitors; the lobby's (land 303) door; HeartGold's room models for the rest (furnish.KIT: plants,
@@ -64,11 +89,15 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # the Power Plant in HeartGold's own (Route 10's, area 44, land 367): its stone-tiled floor, its wall of machine
     # cabinets, its dark top; the GBA's rubble as HeartGold's cave boulder (Mt. Moon's set, imported) stood up as its
     # rocks stand, its coils as blocks of the generator's yellow
+    # the Cinnabar Gym: Saffron Gym's room (land 314) square for square, its rails and posts for the GBA's thin walls,
+    # in a warm recolouring of its textures (our area 122, its own texture set: RECOLOURS); HeartGold's terminal for
+    # the quiz machines, its gym statues (tile_kit.py)
+    'cinnagym': dict(area=122, texset=122, stairs=(7, 8, 9, 10), tiles=tile_kit.CINNABAR_TILES),
     'plant': dict(area=44, stairs=(168, 169, 171, 170), pad_model=157, kit=dict(
         src=367, base=46, floor=(8, 4), floor_tex={'mpwr_r02'}, top=(25, 5),
         faces={'plain': (8, 2)},
-        each=[dict(mt={0x2B5, 0x2B6, 0x2E2}, card=dict(tex='d_rock01', uv=(0, 0, 32, 32), w=1.0, h=15, zf=0.92, zt=0.4)),
-              dict(mt={0x2D8, 0x2D9}, stone=dict(tex='mpwr_ge3', top=(0, 0, 16, 16), side=(8, 8), w=0.8, d=0.8, h=14))],
+        things=[dict(mt={0x2D8, 0x2D9}, model=81, each_square=True)],     # (its coils: HeartGold's drum, one a square)
+        each=[dict(mt={0x2B5, 0x2B6, 0x2E2}, card=dict(tex='d_rock01', uv=(0, 0, 32, 32), w=1.0, h=15, zf=0.92, zt=0.4))],
         each_default=dict(stone=dict(tex='mpwr_r05', top=(0, 0, 16, 16), side=(8, 8), w=0.9, d=0.9, h=12)))),
     # (kit looks: interior_kit.build_kit_floor lays them from pieces of HeartGold's own rooms. src: the land cut
     # from; base: its floor's height; floor, top: a square of its floor, of its wall's top; faces: a square of its
@@ -173,7 +202,7 @@ INTERIORS = (
 # Cinnabar (our town: build_cinnabar.py draws the GBA's in place of HeartGold's ruin)
 CIN = {('MAP_CINNABAR_ISLAND', str(i)): ('MAP_CINNABAR_ISLAND', i) for i in range(5)}   # (build_cinnabar.py: the GBA's warps, in order)
 INTERIORS += (
-    [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='plant', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN,
+    [dict(gba='CinnabarIsland_Gym_Frlg', map='MAP_CANVAS_CINNABAR_GYM', look='cinnagym', template='MAP_SEAFOAM_ISLANDS_CINNABAR_GYM', depth=0, exits=CIN,
           place='MAP_CINNABAR_ISLAND'),
      dict(gba='CinnabarIsland_Mart_Frlg', map='MAP_CANVAS_CINNABAR_MART', look='labroom', template='MAP_VIRIDIAN_POKEMART', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND'),
      dict(gba='CinnabarIsland_PokemonLab_Entrance_Frlg', map='MAP_CANVAS_CINNABAR_LAB', look='labroom', template='MAP_SAFFRON_SILPH_CO_HQ', depth=0, exits=CIN, place='MAP_CINNABAR_ISLAND')] +
@@ -269,7 +298,13 @@ STAIR_BOX = {7: (-17, 16, -12, 18, 0.75), 8: (-16, 17, -12, 18, 0.75), 9: (-13, 
              168: (-16, 16, -16, 16, 1), 169: (-16, 16, -16, 16, 1), 170: (-16, 16, -16, 16, 1), 171: (-16, 16, -16, 16, 1),
              66: (-16, 16, -24, 8, 1.5), 67: (-8, 8, -24, 8, 1.5)}     # (the Sprout Tower's wooden stairs, as Lavender's houses stand them)
 USED_MODELS = {}          # area -> the room models its maps place (ship_models lists them in the area's building set)
-OWN_AREAS = {120: (77, 77), 121: (75, 16)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
+OWN_AREAS = {120: (77, 77), 121: (75, 16), 122: (50, 50)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
+
+
+# texture sets of ours that are HeartGold's recoloured (tile_kit.recoloured_set), at their area's number: the
+# Cinnabar Gym's is Saffron Gym's (set 50) in warm colours
+RECOLOURS = {122: (50, dict(hue=0.46, sat=1.2, val=1.2))}
+OWN_TEXSET = {a: a for a in RECOLOURS}       # (an own area whose texture set is its own number)
 
 
 def ship_parts(spec):
@@ -699,6 +734,8 @@ def build_floor(spec, depth_of):
     if LOOKS[spec['look']].get('tower'):
         import tower_kit
         return tower_kit.build_tower_floor(spec, depth_of)
+    if LOOKS[spec['look']].get('tiles'):
+        return tile_kit.build_tile_floor(spec, depth_of)
     if LOOKS[spec['look']].get('kit'):
         import interior_kit
         return interior_kit.build_kit_floor(spec, depth_of)
@@ -836,7 +873,7 @@ def ship_models():
         for lst in (areas, sets, atex): lst += [lst[model_area]] * max(0, area + 1 - len(lst))
         src = u16(areas[model_area], 0)
         sets[area], atex[area] = sets[src], atex[src]
-        areas[area] = struct.pack('<HH', area, u16(areas[tex_area], 2)) + areas[model_area][4:]
+        areas[area] = struct.pack('<HH', area, OWN_TEXSET.get(area, u16(areas[tex_area], 2))) + areas[model_area][4:]
     tpath = os.path.join(ROOT, 'files/a/0/4/4')
     texsets, tbtnf = read_narc(open(tpath, 'rb').read())
     for area, models in ROOM_AREAS.items():      # (a room of ours: an area of its own, its building set its furniture)
@@ -876,7 +913,7 @@ def ship_models():
 # tiles are the Viridian Gym's slide tiles)
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
-           77: [(40, ['so_tomb02'])],          # (the Pokemon Tower: the House of Memories' gravestone)
+           77: [(40, ['so_tomb02', 'so_yuka1', 'so_kabe1', 'so_mado1', 'table01'])],   # (the Pokemon Tower: the House of Memories' look)
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01']),
                 (('bm', 204), ['y_j_warp'])],          # (Saffron Gym's warp panel, from its model)
            44: [(70, ['d_rock01'])],
@@ -950,6 +987,9 @@ def import_textures():
             p = [x for x in p if x[0] != p_[0]] + [p_]
         ts[dst] = write_btx0(t, p)
         assert len(ts[dst]) < 56 * 1024, (dst, len(ts[dst]))
+    for dst, (src, kw) in RECOLOURS.items():
+        ts += [min(ts, key=len)] * max(0, dst + 1 - len(ts))
+        ts[dst] = tile_kit.recoloured_set(ts[src], **kw)
     open(path, 'wb').write(write_narc(ts, btnf))
 
 

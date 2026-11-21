@@ -31,8 +31,9 @@ def _materials(blob):
     out = {}
     for i, (mn, me) in enumerate(read_dict(blob, mats_o + 4)):
         o = mats_o + u32(me, 0)
-        poly, tip = u32(blob, o + 12), u32(blob, o + 20)
-        out[mn.decode()] = ((tip >> 16) & 3, (tip >> 18) & 3, (poly >> 16) & 31, pal.get(i))
+        dif_amb, poly, tip = u32(blob, o + 4), u32(blob, o + 12), u32(blob, o + 20)
+        dif = (dif_amb & 0x7FFF) if dif_amb & 0x8000 else 0x7FFF      # (its vertices' colour before any COLOR command)
+        out[mn.decode()] = ((tip >> 16) & 3, (tip >> 18) & 3, (poly >> 16) & 31, pal.get(i), dif)
     return out
 
 
@@ -100,16 +101,29 @@ def land_polys(lid):
     out = []
     cols = _colours(blob)
     for mat, tex, prims in shapes:
-        opt = mats.get(mat, (1, 0, 31, None))
+        opt = mats.get(mat, (1, 0, 31, None, DEFAULT_COLOUR))
         if tex == '?' and mat in cols: tex = '?%d,%d,%d' % cols[mat]
         for prim, vs in prims:
-            V = [((v[0] * sc + 256) / 16, v[1] * sc, (v[2] * sc + 256) / 16, v[3], v[4]) for v in vs]
+            dc = opt[4] if len(opt) > 4 else DEFAULT_COLOUR      # (no COLOR yet: the material's own)
+            V = [((v[0] * sc + 256) / 16, v[1] * sc, (v[2] * sc + 256) / 16, v[3], v[4], v[5] if len(v) > 5 and v[5] is not None else dc) for v in vs]
             if prim == 0: polys = [V[i:i + 3] for i in range(0, len(V) - 2, 3)]
             elif prim == 1: polys = [V[i:i + 4] for i in range(0, len(V) - 3, 4)]
             elif prim == 2: polys = [[V[i], V[i + 1], V[i + 2]] if i % 2 == 0 else [V[i + 1], V[i], V[i + 2]] for i in range(len(V) - 2)]
             else: polys = [[V[i], V[i + 1], V[i + 3], V[i + 2]] for i in range(0, len(V) - 3, 2)]
             out += [(tex, opt, p) for p in polys]
     return out
+
+
+# (HeartGold draws its lands with the lights off, each vertex in its own colour - the shading is baked in: a wall
+# darker at its foot, a stone's sides darker than its top. Ours keep the colours of the pieces they're cut from;
+# what we lay ourselves takes HeartGold's usual material colour, a fifth darker than white)
+DEFAULT_COLOUR = 0x6739
+
+
+def mix(a, b, f):
+    """two BGR555 colours, f of the way from a to b"""
+    ch = lambda c, k: (c >> k) & 31
+    return sum(int(round(ch(a, k) + (ch(b, k) - ch(a, k)) * f)) << k for k in (0, 5, 10))
 
 
 def _clip(poly, k, v, ge):
@@ -121,7 +135,7 @@ def _clip(poly, k, v, ge):
         if inside(a): out.append(a)
         if inside(a) != inside(b) and abs(b[k] - a[k]) > 1e-9:
             f = (v - a[k]) / (b[k] - a[k])
-            out.append(tuple(a[j] + (b[j] - a[j]) * f for j in range(5)))
+            out.append(tuple(a[j] + (b[j] - a[j]) * f for j in range(5)) + ((mix(a[5], b[5], f),) if len(a) > 5 else ()))
     return out
 
 
@@ -147,7 +161,7 @@ def cut(lid, x0, z0, x1, z1, keep=None, drop=(), ymin=-1e9, ymax=1e9, whole=Fals
         if not ymin <= cy <= ymax: continue
         if whole:
             cx_, cz_ = sum(v[0] for v in p) / len(p), sum(v[2] for v in p) / len(p)
-            if x0 <= cx_ < x1 and z0 <= cz_ < z1: out.append((tex, opt, [(x - x0, y, z - z0, s, t) for x, y, z, s, t in p]))
+            if x0 <= cx_ < x1 and z0 <= cz_ < z1: out.append((tex, opt, [(x - x0, y, z - z0, s, t, *c) for x, y, z, s, t, *c in p]))
             continue
         if max(v[0] for v in p) <= x0 or min(v[0] for v in p) >= x1 or max(v[2] for v in p) <= z0 or min(v[2] for v in p) >= z1: continue
         q = p
@@ -155,27 +169,38 @@ def cut(lid, x0, z0, x1, z1, keep=None, drop=(), ymin=-1e9, ymax=1e9, whole=Fals
             q = _clip(q, k, v, ge)
             if len(q) < 3: break
         if len(q) >= 3 and area_of(q) > 1e-4:
-            out.append((tex, opt, [(x - x0, y, z - z0, s, t) for x, y, z, s, t in q]))
+            out.append((tex, opt, [(x - x0, y, z - z0, s, t, *c) for x, y, z, s, t, *c in q]))
     return out
 
 
 class Piece:
     """polygons cut from a land, relative to the box's corner and to a height (the source's floor)"""
     def __init__(self, lid, x0, z0, w=1, h=1, base=0.0, **kw):
-        self.polys = [(t, o, [(x, y - base, z, s, tt) for x, y, z, s, tt in p]) for t, o, p in cut(lid, x0, z0, x0 + w, z0 + h, **kw)]
+        self.polys = [(t, o, [(x, y - base, z, s, tt, *c) for x, y, z, s, tt, *c in p]) for t, o, p in cut(lid, x0, z0, x0 + w, z0 + h, **kw)]
         self.w, self.h = w, h
 
     def mirrored(self):
         """the piece turned over left to right (HeartGold's materials draw both sides)"""
         m = Piece.__new__(Piece)
-        m.polys = [(t, o, [(self.w - x, y, z, s, tt) for x, y, z, s, tt in p][::-1]) for t, o, p in self.polys]
+        m.polys = [(t, o, [(self.w - x, y, z, s, tt, *c) for x, y, z, s, tt, *c in p][::-1]) for t, o, p in self.polys]
         m.w, m.h = self.w, self.h
         return m
 
     def lay(self, emit, x, z, y=0.0):
         """emit(texture, opts, [(x, y, z, s, t)] in squares and units) for each polygon, laid with its corner at x, z"""
         for t, o, p in self.polys:
-            emit(t, o, [(px + x, py + y, pz + z, s, tt) for px, py, pz, s, tt in p])
+            emit(t, o, [(px + x, py + y, pz + z, s, tt, *c) for px, py, pz, s, tt, *c in p])
+
+    def scaled(self, f, pivot, at=(0.5, 0.5), sit=True):
+        """the piece made f times its size about pivot (x, z in the piece's squares), its pivot then at `at` in a
+        square-sized piece; sit: its lowest point on the floor (a headstone HeartGold stands on a plinth, without it)"""
+        m = Piece.__new__(Piece)
+        y0 = min(v[1] for t, o, p in self.polys for v in p) if sit else 0.0
+        px, pz = pivot
+        fx, fy, fz = f if isinstance(f, tuple) else (f, f, f)       # (or each way its own: width, height, depth)
+        m.polys = [(t, o, [(at[0] + (x - px) * fx, (y - y0) * fy, at[1] + (z - pz) * fz, s, tt, *c) for x, y, z, s, tt, *c in p]) for t, o, p in self.polys]
+        m.w = m.h = 1
+        return m
 
     def lowered(self, h):
         """the piece cut down to h units tall: what stands higher is cut off, what lies higher (its top) comes down to h"""
@@ -183,11 +208,39 @@ class Piece:
         m.w, m.h, m.polys = self.w, self.h, []
         for t, o, p in self.polys:
             if min(v[1] for v in p) >= h - 1e-6:
-                m.polys.append((t, o, [(x, h, z, s, tt) for x, y, z, s, tt in p]))
+                m.polys.append((t, o, [(x, h, z, s, tt, *c) for x, y, z, s, tt, *c in p]))
             else:
                 q = _clip(p, 1, h, False)
                 if len(q) >= 3: m.polys.append((t, o, q))
         return m
+
+
+def block_piece(tex, opt, plinth, body, top, pic, plain, left=True, right=True, front=True):
+    """HeartGold's headstone made over in few polygons (its own is 40, mostly thin strips round the edges): a plinth
+    and a body, boxes of the stone's plain texel, and the picture on top as HeartGold paints it - the camera sees the
+    top at a slant, and the picture is drawn to stand up (so_tomb02: a headstone). Sizes are HeartGold's, read off
+    its model: plinth/body (x0, z0, x1, z1, height from, to), top (the body's top), pic (x0, z0, x1, z1, s0, t0, s1,
+    t1), plain (s, t). Only the faces the camera sees: the top, the front (south) and the sides"""
+    P = Piece.__new__(Piece)
+    P.polys, P.w, P.h = [], 2, 4
+    ps, pt = plain
+    # (HeartGold's own shading, baked into its vertex colours: the top a fifth darker than white, lighter towards the
+    # back; the sides 19/31, the front 16/31)
+    top_f, top_b, side_c, front_c = 0x6739, 0x7FFF, 0x4E73, 0x4210
+    for x0, z0, x1, z1, y0, y1 in ((plinth, body) if plinth else (body,)):
+        P.polys.append((tex, opt, [(x0, y1, z1, ps, pt, top_f), (x1, y1, z1, ps, pt, top_f), (x1, y1, z0, ps, pt, top_b), (x0, y1, z0, ps, pt, top_b)]))     # (its top)
+        if front: P.polys.append((tex, opt, [(x0, y0, z1, ps, pt, front_c), (x1, y0, z1, ps, pt, front_c), (x1, y1, z1, ps, pt, front_c), (x0, y1, z1, ps, pt, front_c)]))
+        if left: P.polys.append((tex, opt, [(x0, y0, z0, ps, pt, side_c), (x0, y0, z1, ps, pt, side_c), (x0, y1, z1, ps, pt, side_c), (x0, y1, z0, ps, pt, side_c)]))
+        if right: P.polys.append((tex, opt, [(x1, y0, z1, ps, pt, side_c), (x1, y0, z0, ps, pt, side_c), (x1, y1, z0, ps, pt, side_c), (x1, y1, z1, ps, pt, side_c)]))
+    x0, z0, x1, z1, s0, t0, s1, t1 = pic
+    y = body[5] + 0.05
+    P.polys.append((tex, opt, [(x0, y, z1, s0, t1, top_f), (x1, y, z1, s1, t1, top_f), (x1, y, z0, s1, t0, top_b), (x0, y, z0, s0, t0, top_b)]))
+    return P
+
+
+# the House of Memories' headstone (land 308, its grave at 12, 5: a box two squares by four round it), in its numbers
+HG_GRAVE = dict(tex='so_tomb02', opt=(3, 0, 31, 'so_tomb02_pl'), plinth=(0.25, 1.0, 1.75, 2.93, 0.0, 6.0), body=(0.38, 1.09, 1.62, 2.80, 6.0, 14.4),
+                pic=(0.52, 1.23, 1.48, 2.68, 0, 0, 24, 27), plain=(28.5, 19.5))
 
 
 class PieceSet:
@@ -204,7 +257,7 @@ class PieceSet:
 def flat_uv(piece):
     """a flat piece's texture mapping: (texture, opts, height, s = a*x + b, t = c*z + d) from its first polygon"""
     t, o, p = piece.polys[0]
-    (x0, y0, z0, s0, t0) = p[0]
+    (x0, y0, z0, s0, t0) = p[0][:5]
     a = c = 16.0
     for v in p[1:]:
         if abs(v[0] - x0) > 1e-3: a = (v[3] - s0) / (v[0] - x0)
@@ -369,11 +422,24 @@ def build_kit_floor(spec, depth_of):
     if LP and 'partition_top' in KIT:     # (the face pieces' own strip of top, too)
         ps_, pt_ = KIT['partition_top']
         for f in face_low.values():
-            f.polys = [(t, o, [(x, y, z, ps_, pt_) for x, y, z, s_, tt in p]) if all(abs(v[1] - LP) < 1e-6 for v in p) and t == KIT.get('top_tex') else (t, o, p)
+            f.polys = [(t, o, [(x, y, z, ps_, pt_, *c) for x, y, z, s_, tt, *c in p]) if all(abs(v[1] - LP) < 1e-6 for v in p) and t == KIT.get('top_tex') else (t, o, p)
                        for t, o, p in f.polys]
     things_p = {}
     for rule in KIT.get('things', []):
-        if 'piece' in rule: things_p[id(rule)] = Piece(rule.get('src', lid), *rule['piece'], base=rule.get('base', base), drop=rule.get('drop', ()), whole=True)
+        if 'block' in rule:      # (a block of HeartGold's in few polygons: one for each of its neighbours' sides - a side
+            b_ = rule['block']     #  against the next block in its row is out of sight, and left off; the plinth too)
+            body_ = b_['body'][:4] + (0.0, b_['body'][5])
+            vs_ = {}
+            for l_ in (0, 1):
+                for r_ in (0, 1):
+                    pc_ = block_piece(b_['tex'], b_['opt'], None, body_, None, b_['pic'], b_['plain'], left=not l_, right=not r_)
+                    vs_[(l_, r_)] = pc_.scaled(rule['scale'], rule['pivot']) if 'scale' in rule else pc_
+            things_p[id(rule)] = vs_
+        elif 'piece' in rule:
+            pc_ = Piece(rule.get('src', lid), *rule['piece'], base=rule.get('base', base), drop=rule.get('drop', ()), keep=rule.get('keep'),
+                        whole=rule.get('whole', True))
+            if 'scale' in rule: pc_ = pc_.scaled(rule['scale'], rule['pivot'])
+            things_p[id(rule)] = pc_
     # stairs: HeartGold's own (a piece of its room) in place of the room models _furnish stands there; no floor of
     # ours under them (the piece has its own)
     stairs_p, stair_at = None, []
@@ -420,11 +486,11 @@ def build_kit_floor(spec, depth_of):
                     rgb = tuple(int(v) for v in tex[1:].split(',')) if len(tex) > 1 else KIT.get('untextured')
                     if rgb is None: return
                     if rgb not in plain: plain[rgb] = plain_texel(texset, rgb)
-                    tex, s_, t_ = plain[rgb]; verts = [(x, y, z, s_, t_) for x, y, z, _, _ in verts]; opt = (3, 0, 31, None)
+                    tex, s_, t_ = plain[rgb]; verts = [(x, y, z, s_, t_, 0x7FFF) for x, y, z, *_ in verts]; opt = (3, 0, 31, None)
                 if tex not in dims: return
                 key = (tex, opt)
-                m = meshes.setdefault(key, Mesh())
-                vs = [(((x - ox) * 16 - 256, y, (z - oz) * 16 - 256), (s, t)) for x, y, z, s, t in verts]
+                m = meshes.setdefault(key, Mesh(vcolour=opt[4] if len(opt) > 4 else DEFAULT_COLOUR))
+                vs = [(((x - ox) * 16 - 256, y, (z - oz) * 16 - 256), (s, t), *c) for x, y, z, s, t, *c in verts]
                 if len(vs) == 4: m.quad(vs, (0, 1, 0))
                 elif len(vs) == 3: m.tri(vs, (0, 1, 0))
                 else:
@@ -545,9 +611,28 @@ def build_kit_floor(spec, depth_of):
             for rule, a0, b0, a1, b1 in laid_things:
                 if not (X0 <= a0 < X1 and Z0 <= b0 < Z1): continue
                 if 'model' in rule:
-                    props.append((rule['model'], (a0 + a1) / 2 + rule.get('dx', 0), (b0 + b1) / 2 + rule.get('dz', 0)))
+                    if rule.get('each_square'):     # (one on every square of the patch: the Power Plant's coils, drums)
+                        ri_ = KIT['things'].index(rule)
+                        props.extend((rule['model'], qx + 0.5 + rule.get('dx', 0), qz + 0.5 + rule.get('dz', 0))
+                                     for (qx, qz), r_ in furn.items() if r_ == ri_ and a0 <= qx < a1 and b0 <= qz < b1)
+                    else:
+                        props.append((rule['model'], (a0 + a1) / 2 + rule.get('dx', 0), (b0 + b1) / 2 + rule.get('dz', 0)))
                     continue
                 pc = things_p[id(rule)]
+                if isinstance(pc, dict):        # (blocks, one a square: by the squares of the patch, its neighbours known)
+                    sq_ = {c for c, r_ in furn.items() if r_ == KIT['things'].index(rule) and a0 <= c[0] < a1 and b0 <= c[1] < b1}
+                    if rule.get('spread'):      # (HeartGold's own size, spread over the patch - one about every `spread`
+                        sp_ = rule['spread']    #  squares each way, as it spaces them - on squares of the patch only)
+                        nx_s, nz_s = max(1, round((a1 - a0) / sp_[0])), max(1, round((b1 - b0) / sp_[1]))
+                        for j in range(nz_s):
+                            for i in range(nx_s):
+                                cx_ = a0 + (a1 - a0) * (i + 0.5) / nx_s
+                                cz_ = b0 + (b1 - b0) * (j + 0.5) / nz_s
+                                if (int(cx_), int(cz_)) in sq_: pc[(False, False)].lay(emit, cx_ - 0.5, cz_ - 0.5)
+                        continue
+                    for (qx, qz) in sq_:
+                        pc[((qx - 1, qz) in sq_, (qx + 1, qz) in sq_)].lay(emit, qx, qz)
+                    continue
                 nx_p, nz_p = max(1, (a1 - a0) // pc.w), max(1, (b1 - b0) // pc.h)
                 cx0 = a0 + ((a1 - a0) - nx_p * pc.w) / 2 if rule.get('center') else a0
                 cz0 = b0 + ((b1 - b0) - nz_p * pc.h) / 2 if rule.get('center') else b0
@@ -558,12 +643,12 @@ def build_kit_floor(spec, depth_of):
             # (the area's animated materials hold their places)
             groups = []
             for i, t_ in enumerate(anim):
-                groups.append(('hold%d' % i, ftex, pal_of(ftex), Mesh(), {'repeat': 3, 'size': dims[ftex]}))
+                groups.append(('hold%d' % i, ftex, pal_of(ftex), Mesh(), {'repeat': 3, 'size': dims[ftex], 'lit': False}))
             names = {}
             for (t_, o), m in meshes.items():
                 nm = t_[:16] if t_ not in names else (t_[:13] + '_%d' % len(names))
                 names[t_] = 1
-                groups.append((nm, t_, pal_of(t_, o), m, {'repeat': o[0], 'flip': o[1], 'alpha': o[2], 'size': dims[t_]}))
+                groups.append((nm, t_, pal_of(t_, o), m, {'repeat': o[0], 'flip': o[1], 'alpha': o[2], 'size': dims[t_], 'lit': False}))
             model = build_model('cv_kit_%d' % (len(lands) + 10 * (int(spec['depth']) + 20)), groups)
             model += b'\0' * (-len(model) % 4)
             f4 = lambda v: int(round(v * 4096))

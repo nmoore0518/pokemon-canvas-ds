@@ -168,9 +168,17 @@ def fronts(gdir):
     return {sq for sq in bs if (sq[0], sq[1] + 1) not in bs}
 
 
+# maps built from HeartGold's pieces whose closed doors are a stretch of the same wall: the picture is that wall as
+# the game draws it (a square's column cut from a screenshot, from the top of its sprite down: data/cinnabar_gate.png,
+# the Cinnabar Gym's rail - remake it if the gym's look changes)
+WALL_PICTURE = {'CinnabarIsland_Gym_Frlg': 'cinnabar_gate.png'}
+
+
 def image(gdir, sq):
     """the standing picture for a front square: 32x32, the column of two metatiles in its middle"""
     from PIL import Image
+    if gdir in WALL_PICTURE:
+        return Image.open(os.path.join(ROOT, 'tools/canvas/data', WALL_PICTURE[gdir])).convert('RGBA')
     import gba as G
     lay = gba_map.Layout(G.map_json(gdir)['layout'], raw=True)
     top, bot = picture(gdir, sq)

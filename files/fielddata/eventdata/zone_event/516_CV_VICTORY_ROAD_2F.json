@@ -276,7 +276,7 @@
         },
         {
             "id": "201",
-            "spriteId": "7019",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x226B",
@@ -310,7 +310,7 @@
         },
         {
             "id": "203",
-            "spriteId": "7019",
+            "spriteId": "7018",
             "movement": 0,
             "type": 0,
             "eventFlag": "0x226D",
