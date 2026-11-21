@@ -34,7 +34,7 @@ PANEL = 16                      # (texels to a square: the 32-texel panel over t
 # (HeartGold's shading, baked into vertex colours with the lights off as it draws its lands: a wall darker at its
 # foot; a gravestone's face lit, lighter at the top, its edges and base in shadow)
 WALL_TOP_C, WALL_FOOT_C = 0x6739, 0x3DEF
-STONE_FACE_TOP, STONE_FACE_FOOT, STONE_EDGE, STONE_SIDE, STONE_BASE = 0x7FFF, 0x6F7B, 0x56B5, 0x3DEF, 0x4A52
+STONE_FACE_TOP, STONE_FACE_FOOT, STONE_EDGE, STONE_SIDE, STONE_BASE = 0x7FFF, 0x7FFF, 0x6739, 0x3DEF, 0x4A52
 TOP_ST = (3.9, 0.4)             # (its wall top: one dark texel)
 COUNTER_H = 12
 # (Nick: the rooms looked much smaller than they should): every floor a third roomier - plain columns before the
@@ -66,7 +66,7 @@ _grave = {}
 # so ours stands up): an arched slab facing the camera, leaning back a little, the House of Memories' tombstone
 # picture (so_tomb02: its engraved outline, s 2..22, t 0..25) on its face, the stone's plain texel round its edge,
 # on a flat stone a little wider. 10 polygons (a land holds 1,500: the 7F has 104 graves)
-STONE = dict(w=0.78, h=15.0, thick=8.0, lean=0.2, base=(0.92, 0.75, 2.0))     # (Nick, more depth: half a square thick, leaning back so its top shows)
+STONE = dict(w=0.78, h=15.0, thick=4.5, lean=0.12, base=(0.92, 0.55, 2.0))     # (Nick: more depth - this one, of the three tried)
 ARCH = [(-0.5, 0.0), (0.5, 0.0), (0.5, 0.74), (0.24, 1.0), (-0.24, 1.0), (-0.5, 0.74)]     # (its outline, x by width, y by height)
 PLAIN = (28.2, 19.0)
 
@@ -80,7 +80,7 @@ def _stone(emit, cx, cz, k=1.0):
     IK_mix = IK.mix
     F = lambda u, v, c: (*P(u, v), 2 + (u + 0.5) * 20, 25 - v * 25, c)
     # (its face, two quads - the body and the arch's top - rather than a fan of four triangles: fewer vertices, and
-    # the 7F's 104 graves fit a land; the body a little darker than the arch, as light from above falls)
+    # the 7F's 104 graves fit a land; one colour, the face lit evenly - Nick's pick)
     emit('so_tomb02', o, [F(-0.5, 0.0, STONE_FACE_FOOT), F(0.5, 0.0, STONE_FACE_FOOT), F(0.5, 0.74, STONE_FACE_FOOT), F(-0.5, 0.74, STONE_FACE_FOOT)])
     emit('so_tomb02', o, [F(-0.5, 0.74, STONE_FACE_TOP), F(0.5, 0.74, STONE_FACE_TOP), F(0.24, 1.0, STONE_FACE_TOP), F(-0.24, 1.0, STONE_FACE_TOP)])
     for (u0, v0), (u1, v1) in zip(ARCH[1:], ARCH[2:] + ARCH[:1]):        # (its edge, round from the right foot)
