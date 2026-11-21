@@ -47,23 +47,9 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # the Pokemon Tower in HeartGold's own tower look (tower_kit.py: the Sprout Tower's boards and purple panelled walls,
     # the House of Memories' gravestones), in our area 120 (the Sprout Tower's textures, OWN_AREAS); its stairs the
     # Sprout Tower's own
-    # (Nick, again: what we built ourselves isn't as sharp - HeartGold's own pieces, walls too.) The Tower now in the
-    # House of Memories' look, Lavender's own graves in HeartGold (land 308, its textures brought into the Sprout
-    # Tower's set): its paved stone floor, its stone wall with the windows (the offering table before it left out),
-    # the wall's cap over the tops, its headstones on the GBA's graves (HeartGold's own size: a square and a half wide,
-    # where the GBA sets one on every square of a row - smaller, they were too small to read - so spread over each
-    # patch of graves about every other square, as HeartGold spaces its own), its offering table for the 1F's counter. The
-    # Sprout Tower's ladders; the House of Memories' camera (4: a house's, close enough to read the headstones)
-    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), camera=4, kit=dict(
-        src=308, base=-4, floor=(5, 10), floor_tex={'so_yuka1'}, top=(0, 2),
-        faces={'plain': (4, 2), 'lit': (6, 2, 2, 1)}, lit_every=6,
-        face_drop={'table01', 'so_hana2', 'so_hana3', 'so_hachi', 'h_kage', 'so_hikari', 'so_kuki', 'so_yuka2'},
-        things=[dict(mt=_TOWER_GRAVES, block=IK_GRAVE, scale=1.0, pivot=(1.0, 1.96), spread=(2, 2)),
-                dict(mt=_TOWER_STATUES, block=IK_GRAVE, scale=1.0, pivot=(1.0, 1.96), spread=(1, 2)),
-                dict(mt=_TOWER_COUNTER, src=308, piece=(12, 2, 1, 2), base=-4, keep={'table01'}, whole=False)],
-        tall_walls=True,
-        sides=dict(tex='so_kabe1', opt=(3, 0, 31, 'so_kabe1_pl'), s=80, face_z=0.5,
-                   bands=[(0, 19.2, 31.62, 22.31), (19.2, 38, 22.31, 20.38), (38, 42, 5, 5), (42, 48, 21.75, 21.75)]))),
+    # (Nick: the House of Memories' look was tried - he likes the Tower as it was, with more depth in its gravestones
+    # and sharper walls: tower_kit.py)
+    'tower': dict(area=120, texset=77, stairs=(66, 66, 67, 67), tower=True, camera=0),     # (the Sprout Tower's own camera, 0: further out than a house's)
     # Silph Co.'s upper floors as HeartGold's offices (the Radio Tower's, land 462, its textures imported into the
     # Silph Co. set, area 39): its grey zigzag floor, its cream wall with a window now and then, its dark top, its
     # desks with monitors; the lobby's (land 303) door; HeartGold's room models for the rest (furnish.KIT: plants,
@@ -81,7 +67,9 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # the Pokemon Mansion, burnt out, in HeartGold's Burned Tower (area 78, its 1F, land 449): charred plank walls,
     # their scorched pieces now and then, its wooden floor, its fallen rubble for the GBA's rubble and anything
     # else closed in a room, its wooden stairs (the Sprout Tower's, which its area stands)
-    'mansion': dict(area=78, stairs=(66, 66, 67, 67), kit=dict(
+    # (our area 123: the Burned Tower's textures with a house's room models - the Burned Tower's own area places field
+    # models, and the Mansion's plants, tables and statue came out as buildings - and the room set's stairs)
+    'mansion': dict(area=123, texset=78, stairs=(7, 8, 9, 10), kit=dict(
         src=449, base=0, floor=(13, 23), floor_tex={'d18_yuka01'}, top=(10, 2),
         faces={'plain': (7, 5), 'lit': (8, 5)}, lit_every=5, face_drop={'d182f_wall01', 'd182f_wall02', 'd18_yuka02'},
         # (its rubble: the Burned Tower's own charred timbers, a heap to two squares each way; its pillars - the
@@ -308,7 +296,7 @@ STAIR_BOX = {7: (-17, 16, -12, 18, 0.75), 8: (-16, 17, -12, 18, 0.75), 9: (-13, 
              168: (-16, 16, -16, 16, 1), 169: (-16, 16, -16, 16, 1), 170: (-16, 16, -16, 16, 1), 171: (-16, 16, -16, 16, 1),
              66: (-16, 16, -24, 8, 1.5), 67: (-8, 8, -24, 8, 1.5)}     # (the Sprout Tower's wooden stairs, as Lavender's houses stand them)
 USED_MODELS = {}          # area -> the room models its maps place (ship_models lists them in the area's building set)
-OWN_AREAS = {120: (77, 77), 121: (75, 16), 122: (50, 50)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
+OWN_AREAS = {120: (77, 77), 121: (75, 16), 122: (50, 50), 123: (78, 43)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
 
 
 # texture sets of ours that are HeartGold's recoloured (tile_kit.recoloured_set), at their area's number: the
@@ -923,7 +911,7 @@ def ship_models():
 # tiles are the Viridian Gym's slide tiles)
 PALS_EXTRA = {36: ('stair01', 'chair01')}       # (palettes named for something else: the Radio Tower's stairs' and chairs')
 IMPORTS = {64: [(55, ['to_j_i1', 'to_j_mark'])],
-           77: [(40, ['so_tomb02', 'so_yuka1', 'so_kabe1', 'so_mado1', 'table01'])],   # (the Pokemon Tower: the House of Memories' look)
+           77: [(40, ['so_tomb02'])],          # (the Pokemon Tower: the House of Memories' gravestone)
            39: [(36, ['rtable_l02', 'rpc_moni.1', 'rchair03', 'r_stair', 'rwall_a', 'rwin_a', 'rtop_a', 'ryuka_b']), (64, ['aj_box01']),
                 (('bm', 204), ['y_j_warp'])],          # (Saffron Gym's warp panel, from its model)
            44: [(70, ['d_rock01'])],
