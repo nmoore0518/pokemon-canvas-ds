@@ -11459,10 +11459,10 @@ index 1b23ea97..422078c3 100644
 +0001 Canvas_UpdateSafari 021E79CC
 diff --git a/include/canvas_candidate.h b/include/canvas_candidate.h
 new file mode 100644
-index 00000000..4423300d
+index 00000000..19cee961
 --- /dev/null
 +++ b/include/canvas_candidate.h
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,36 @@
 +// Pokemon Canvas: the candidacy's state (field/canvas_candidate.c). The code is in the field overlay, which is
 +// unloaded for a battle and loaded again after it (its variables start over), so what has to last through the
 +// guest's battle - the challenger, the walks, where the leader stands - lives in overlay 129 (canvas_state.c).
@@ -11471,13 +11471,20 @@ index 00000000..4423300d
 +#include "types.h"
 +
 +#define CANVAS_PATH_MAX 60
++#define CANVAS_CHALLENGER_GUEST 0     // a Guest Leader challenger: a random team
++#define CANVAS_CHALLENGER_OAK 1       // Oak, in the finale: his set team
++#define CANVAS_CHALLENGER_TRAINER 2   // a challenger at the player's gym: a random strong team
++#define CANVAS_CHALLENGER_FAMOUS 3    // a famous trainer at the player's gym: their own team, at the player's level
++#define CANVAS_PRIZE_KEEP 0xFF        // (prizeRate: leave the class's prize as it is)
 +
 +struct CanvasChallenger {
-+    u8 valid, count, trainerClass, iv, prizeRate;
++    u8 valid, count, trainerClass, iv, prizeRate, kind;     // (kind: CANVAS_CHALLENGER_*)
 +    u16 species[6], item[6];
 +    u8 level[6];
 +    u16 name[8];
 +    u32 ai;
++    u16 famousId;                 // (FAMOUS: their trainer; their levels move by levelShift)
++    s8 levelShift;
 +};
 +
 +struct CanvasCandidateState {
@@ -11621,7 +11628,7 @@ index 27ffefac..c2ff5964 100644
  	mkdir -p $(BUILD_NARC)
  	rm -rf $(TRAINERDATA_DIR) $(TRAINERDATA_DIR_2) $(TRAINERTEXT_DIR) $(TRAINERTEXT_DIR_2) $(BUILD)/rawtext/728 $(BUILD)/rawtext/729
 diff --git a/rom.ld b/rom.ld
-index 17a3600c..3c3c25c7 100644
+index 17a3600c..83cd1028 100644
 --- a/rom.ld
 +++ b/rom.ld
 @@ -896,6 +896,34 @@ Pokepic_StartAnim = 0x02008550 | 1;
@@ -11659,6 +11666,15 @@ index 17a3600c..3c3c25c7 100644
  
  #roamers
  PlayerLocationHistoryGetBack = 0x0202D9F4 | 1;
+@@ -916,4 +944,6 @@ ov12_0223B750 = 0x0223B750 | 1;
+ sub_0207294C = 0x0207294C | 1;
+ sub_02017068 = 0x02017068 | 1;
+ MapObjectManager_RestoreFromSave = 0x0205E648 | 1;
+-Save_MapObjects_Get = 0x0203B9D0 | 1;
+\ No newline at end of file
++Save_MapObjects_Get = 0x0203B9D0 | 1;SetupNativeScript = 0x0203FD58 | 1;
++ov01_021EF4DC = 0x021EF4DC | 1;
++ov01_021EF348 = 0x021EF348 | 1;
 diff --git a/src/canvas_boulders.c b/src/canvas_boulders.c
 new file mode 100644
 index 00000000..c4dd4fbf
@@ -12120,10 +12136,10 @@ index 00000000..7c4db06c
 +__attribute__((section(".data"))) struct CanvasCandidateState gCanvasCandidate;
 diff --git a/src/field/canvas_candidate.c b/src/field/canvas_candidate.c
 new file mode 100644
-index 00000000..add80f1d
+index 00000000..2589a86c
 --- /dev/null
 +++ b/src/field/canvas_candidate.c
-@@ -0,0 +1,488 @@
+@@ -0,0 +1,629 @@
 +// Pokemon Canvas: the GBA game's candidacy (its src/gym_candidate.c, src/gym_challenge.c): after a badge the leader
 +// asks the player to hold their gym against one or two challengers ("Guest Leader" battles).
 +//  - the challengers are built at the time (GymChallenge_GenerateGuest: a random class and name, a team of any type
@@ -12141,10 +12157,13 @@ index 00000000..add80f1d
 +#include "../../include/constants/species.h"
 +#include "../../include/constants/item.h"
 +#include "../../include/constants/trainerclass.h"
++#include "../../include/constants/moves.h"
++#include "../../include/constants/pokemon.h"
 +#include "../../include/canvas_candidate.h"
++#include "../../include/message.h"
 +
 +#define CANVAS_CHALLENGER_FIRST 1470        // (trainers.py: TRAINER_CANVAS_GUEST_0..)
-+#define CANVAS_CHALLENGER_COUNT 16
++#define CANVAS_CHALLENGER_COUNT 32
 +
 +struct CanvasChallengerClass { u8 trainerClass; u8 female; };
 +// the pool, a byte a species (Bulbasaur to Deoxys, then our eeveelutions after Pecharunt): its first type (bits 0-4,
@@ -12327,8 +12346,126 @@ index 00000000..add80f1d
 +    n = BuildTeam(tier, 0xFF, level, partySize);
 +    sChallenger.count = n ? n : 1;
 +    sChallenger.prizeRate = repeat ? GUEST_PRIZE_RATE : GUEST_PRIZE_RATE * 2;
++    sChallenger.kind = CANVAS_CHALLENGER_GUEST;
 +    sChallenger.valid = TRUE;
 +    return cls;
++}
++
++// GymChallenge_GenerateOakFinale: Oak's set team (the GBA's sOakFinaleTeam) a level above the player's average, 65
++// at least, every stat's IV at its best; a double battle (the porter's trainer), the hardest AI, his own prize
++static const struct {
++    u16 species, item;
++    u8 nature, evs;          // (evs: 0 physical and fast, 1 special and fast, 2 bulky)
++    u16 moves[4];
++} sOakTeam[] = {
++    {SPECIES_TAUROS, ITEM_CHOICE_BAND, NATURE_JOLLY, 0, {MOVE_DOUBLE_EDGE, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_ZEN_HEADBUTT}},
++    {SPECIES_EXEGGUTOR, ITEM_SITRUS_BERRY, NATURE_MODEST, 1, {MOVE_PSYCHIC, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER, MOVE_EXPLOSION}},
++    {SPECIES_ARCANINE, ITEM_LEFTOVERS, NATURE_ADAMANT, 0, {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILL_O_WISP}},
++    {SPECIES_GYARADOS, ITEM_LUM_BERRY, NATURE_JOLLY, 0, {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_ICE_FANG}},
++    {SPECIES_SNORLAX, ITEM_LEFTOVERS, NATURE_CAREFUL, 2, {MOVE_BODY_SLAM, MOVE_CURSE, MOVE_REST, MOVE_EARTHQUAKE}},
++    {SPECIES_DRAGONITE, ITEM_LUM_BERRY, NATURE_ADAMANT, 0, {MOVE_DRAGON_DANCE, MOVE_OUTRAGE, MOVE_EXTREME_SPEED, MOVE_EARTHQUAKE}},
++};
++// (HeartGold's order: HP, Attack, Defense, Speed, Sp. Atk, Sp. Def)
++static const u8 sOakEvs[3][6] = {{4, 252, 0, 252, 0, 0}, {4, 0, 0, 252, 252, 0}, {252, 4, 252, 0, 0, 0}};
++static const u16 sOakName[] = {0x139, 0x145, 0x14F, 0xFFFF};     // (Oak)
++
++static void Canvas_OakFinale(void)
++{
++    s32 level = Canvas_PlayerAverageLevel() + 1;
++    u32 i;
++    if (level < 65) level = 65;
++    if (level > 100) level = 100;
++    sChallenger.trainerClass = TRAINERCLASS_ELDER;
++    for (i = 0; i < 8; i++) sChallenger.name[i] = i < NELEMS(sOakName) ? sOakName[i] : 0;
++    for (i = 0; i < NELEMS(sOakTeam); i++) {
++        sChallenger.species[i] = sOakTeam[i].species;
++        sChallenger.item[i] = sOakTeam[i].item;
++        sChallenger.level[i] = level;
++    }
++    sChallenger.count = NELEMS(sOakTeam);
++    sChallenger.iv = 31;
++    sChallenger.ai = sCanvasTierAI[PRACTICE_TIERS - 1];
++    sChallenger.prizeRate = CANVAS_PRIZE_KEEP;
++    sChallenger.kind = CANVAS_CHALLENGER_OAK;
++    sChallenger.valid = TRUE;
++}
++
++// ---------------------------------------------------------------- challengers at the player's gym
++// GymChallenge_Generate (the GBA's GenerateTrainer): a random class and name, four to six strong Pokemon of any type
++// at the player's average level, good IVs, often an item; no prize from HeartGold (the script pays the streak's).
++// -> VAR_RESULT the class (its look, its name's slot), 0x8005 the name (female ones from 64)
++static void Canvas_GenerateGymTrainer(void)
++{
++    u32 cls = Rand(NELEMS(sCanvasClasses)), i, nameIdx, n;
++    BOOL female = sCanvasClasses[cls].female;
++    const u8 *name;
++    nameIdx = female ? Rand(NELEMS(sCanvasFemaleNames)) : Rand(NELEMS(sCanvasMaleNames));
++    name = female ? sCanvasFemaleNames[nameIdx] : sCanvasMaleNames[nameIdx];
++    sChallenger.trainerClass = sCanvasClasses[cls].trainerClass;
++    for (i = 0; i < 7 && name[i]; i++)
++        sChallenger.name[i] = name[i] >= 'a' ? 0x145 + name[i] - 'a' : 0x12B + name[i] - 'A';
++    sChallenger.name[i++] = 0xFFFF;
++    for (; i < 8; i++) sChallenger.name[i] = 0;
++    n = BuildTeam(PRACTICE_TIERS - 1, 0xFF, Canvas_PlayerAverageLevel(), 4 + Rand(3));
++    for (i = 0; i < n; i++)          // (40 in 100 hold something: the GBA's)
++        sChallenger.item[i] = Rand(100) < 40 ? sCanvasHeldItems[Rand(NELEMS(sCanvasHeldItems))] : 0;
++    sChallenger.count = n ? n : 1;
++    sChallenger.iv = 24;
++    sChallenger.ai = sCanvasTierAI[PRACTICE_TIERS - 1];
++    sChallenger.prizeRate = 0;
++    sChallenger.kind = CANVAS_CHALLENGER_TRAINER;
++    sChallenger.valid = TRUE;
++    SetScriptVar(VAR_RESULT, cls);
++    SetScriptVar(0x8005, nameIdx + (female ? 64 : 0));
++}
++
++// A famous trainer (the GBA's GenerateFamous / GenerateBoss): their own team from the trainer data, moved so its
++// average level is the player's (+ plus); the hardest AI; no prize from HeartGold
++static void Canvas_PrepareFamous(u16 trainerId, u32 teamAverage, u32 plus)
++{
++    sChallenger.famousId = trainerId;
++    sChallenger.levelShift = (s32)Canvas_PlayerAverageLevel() + (s32)plus - (s32)teamAverage;
++    sChallenger.prizeRate = 0;
++    sChallenger.kind = CANVAS_CHALLENGER_FAMOUS;
++    sChallenger.valid = TRUE;
++}
++
++// From the end of MakeTrainerPokemonParty (field/enemy_party.c): a famous challenger's team at the player's level
++void Canvas_AfterTrainerParty(struct BATTLE_PARAM *bp, int num)
++{
++    u32 i, n;
++    if (!sChallenger.valid || sChallenger.kind != CANVAS_CHALLENGER_FAMOUS || bp->trainer_id[num] != sChallenger.famousId)
++        return;
++    struct TrainerMoney *prize = GuestPrize();
++    bp->trainer_data[num].aibit = sCanvasTierAI[PRACTICE_TIERS - 1];
++    n = PokeParty_GetPokeCount(bp->poke_party[num]);
++    for (i = 0; i < n; i++) {
++        struct PartyPokemon *mon = Party_GetMonByIndex(bp->poke_party[num], i);
++        s32 level = (s32)GetMonData(mon, MON_DATA_LEVEL, NULL) + sChallenger.levelShift;
++        u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL), exp;
++        if (level < 2) level = 2;
++        if (level > 100) level = 100;
++        exp = PokeLevelExpGet(species, level);
++        SetMonData(mon, MON_DATA_EXPERIENCE, &exp);
++        SetMonData(mon, MON_DATA_LEVEL, &level);
++        RecalcPartyPokemonStats(mon);
++    }
++    (void)prize;
++}
++
++// A name of ours (0-63 male, 64+ female) into a string slot (the gym statue's list, the announcer)
++static void Canvas_BufferChallengerName(SCRIPTCONTEXT *ctx, u32 slot, u32 nameIdx)
++{
++    const u8 *name = nameIdx >= 64 ? sCanvasFemaleNames[(nameIdx - 64) % NELEMS(sCanvasFemaleNames)]
++                                   : sCanvasMaleNames[nameIdx % NELEMS(sCanvasMaleNames)];
++    u16 buf[8];
++    u32 i;
++    for (i = 0; i < 7 && name[i]; i++) buf[i] = name[i] >= 'a' ? 0x145 + name[i] - 'a' : 0x12B + name[i] - 'A';
++    buf[i] = 0xFFFF;
++    String *str = String_New(8, HEAP_ID_FIELD1);
++    CopyU16ArrayToString(str, buf);
++    SetStringAsPlaceholder(*(MessageFormat **)Cv_SysAttr(ctx->fsys, SCRIPTENV_MSGFMT), slot, str, NULL);
++    String_Delete(str);
 +}
 +
 +// From MakeTrainerPokemonParty (field/enemy_party.c): our challenger's party and name, for the trainers that are ours
@@ -12339,7 +12476,7 @@ index 00000000..add80f1d
 +    if (id < CANVAS_CHALLENGER_FIRST || id >= CANVAS_CHALLENGER_FIRST + CANVAS_CHALLENGER_COUNT || !sChallenger.valid)
 +        return FALSE;
 +    TRAINER_DATA *td = &bp->trainer_data[num];
-+    struct TrainerMoney *prize = GuestPrize();
++    struct TrainerMoney *prize = sChallenger.prizeRate != CANVAS_PRIZE_KEEP ? GuestPrize() : NULL;
 +    if (prize != NULL) {          // (HeartGold doubles a double battle's prize itself)
 +        if (!sPrizeWas) sPrizeWas = prize->multiplier;
 +        prize->multiplier = sChallenger.prizeRate / ((bp->fight_type & BATTLE_TYPE_DOUBLES) ? 2 : 1);
@@ -12352,7 +12489,13 @@ index 00000000..add80f1d
 +    for (i = 0; i < sChallenger.count; i++) {
 +        struct PartyPokemon *mon = AllocMonZeroed(heapID);
 +        u32 pid = ((u32)gf_rand() << 16) | gf_rand();            // (a random nature and gender: the GBA's)
-+        PokeParaSet(mon, sChallenger.species[i], sChallenger.level[i], sChallenger.iv, 1, pid, 2, 0);
++        if (sChallenger.kind == CANVAS_CHALLENGER_OAK) {
++            u32 j, ev;
++            PokeParaSetChr(mon, sChallenger.species[i], sChallenger.level[i], sChallenger.iv, sOakTeam[i].nature);
++            for (j = 0; j < 4; j++) SetPartyPokemonMoveAtPos(mon, sOakTeam[i].moves[j], j);
++            for (j = 0; j < 6; j++) { ev = sOakEvs[sOakTeam[i].evs][j]; SetMonData(mon, MON_DATA_HP_EV + j, &ev); }
++        } else
++            PokeParaSet(mon, sChallenger.species[i], sChallenger.level[i], sChallenger.iv, 1, pid, 2, 0);
 +        if (sChallenger.item[i]) SetMonData(mon, MON_DATA_HELD_ITEM, &sChallenger.item[i]);
 +        RecalcPartyPokemonStats(mon);
 +        PokeParty_Add(bp->poke_party[num], mon);
@@ -12539,10 +12682,15 @@ index 00000000..add80f1d
 +            // (forward is back toward where the player stood; the side, square to it)
 +            int dx = -f * sDx[facing] + l * sDz[facing], dz = -f * sDz[facing] + l * sDx[facing];
 +            int a = l < 0 ? -l : l, cost = (f > 2 ? f - 2 : 2 - f) + (a > 3 ? a - 3 : 3 - a) + (a < 2 ? 4 : 0);
-+            if (cost < best && (l || f) && !(dx == px - sLeaderX && dz == pz - sLeaderZ)
-+             && dx >= -HOLD_R && dx <= HOLD_R && dz >= -HOLD_R && dz <= HOLD_R && sq[dz + HOLD_R][dx + HOLD_R] == 2) {
-+                best = cost; sAsideX = sLeaderX + dx; sAsideZ = sLeaderZ + dz;
-+            }
++            const struct CvWarp *w;
++            if (dx < -HOLD_R || dx > HOLD_R || dz < -HOLD_R || dz > HOLD_R || sq[dz + HOLD_R][dx + HOLD_R] != 2
++             || (!l && !f) || (dx == px - sLeaderX && dz == pz - sLeaderZ))
++                continue;
++            // (a wall right below hides all but their head; a warp - a door, a pad - isn't a place to stand)
++            if (dz + 1 > HOLD_R || !sq[dz + 1 + HOLD_R][dx + HOLD_R]) cost += 3;
++            for (i = 0; (w = Cv_Warp(fsys, i)) != NULL; i++)
++                if (w->x == sLeaderX + dx && w->z == sLeaderZ + dz) cost = 99;
++            if (cost < best) { best = cost; sAsideX = sLeaderX + dx; sAsideZ = sLeaderZ + dz; }
 +        }
 +    if (best < 99) {
 +        sHoldLeaderId = GetScriptVar(VAR_LAST_TALKED);
@@ -12604,6 +12752,15 @@ index 00000000..add80f1d
 +        dirs[0] = a ? sOpposite[sHoldDir] : sHoldDir;
 +        Apply(fsys, OBJ_PLAYER, dirs, 1, MOVE_FAST, a ? sHoldDir : sOpposite[sHoldDir]);
 +        break;
++    case 13: Canvas_OakFinale(); break;                                               // GymChallenge_GenerateOakFinale
++    case 14: Canvas_GenerateGymTrainer(); break;                                      // a challenger at the player's gym
++    case 15: Canvas_PrepareFamous(a, b, c); break;                                    // a: trainer, b: their average level, c: + levels
++    case 16: Canvas_BufferChallengerName(ctx, a, b); break;                           // a: slot, b: name
++    case 17: {                                                                        // a: a person, put at b, c (the player's height)
++        void *o = Cv_GetObjectById(fsys, a), *pl = Cv_GetObjectById(fsys, OBJ_PLAYER);
++        if (o && pl) Cv_ObjPlace(o, b, Cv_ObjY(pl), c, d);
++        break;
++    }
 +    case 12:                                                                          // (after the battle)
 +        sChallenger.valid = FALSE;
 +        if (sPrizeWas && GuestPrize() != NULL) GuestPrize()->multiplier = sPrizeWas;
@@ -12614,10 +12771,10 @@ index 00000000..add80f1d
 +}
 diff --git a/src/field/canvas_field.c b/src/field/canvas_field.c
 new file mode 100644
-index 00000000..a9231094
+index 00000000..bf1f11a0
 --- /dev/null
 +++ b/src/field/canvas_field.c
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,26 @@
 +// Pokemon Canvas: the entry to our script commands that live in the field overlay (131), called from
 +// script_new_cmds.c by address: it goes first in the overlay (the .init section), at 0x023C8000 (build_rom.sh
 +// checks). New field-time engine code goes in src/field and is reached from here.
@@ -12626,16 +12783,26 @@ index 00000000..a9231094
 +
 +#define CANVAS_CMD_CANDIDATE 112
 +BOOL Canvas_CandidateCmd(SCRIPTCONTEXT *ctx, u16 op);
++// CanvasMsg msg: NPCMsg with a 16-bit message id (HeartGold's message commands read or cast it to a byte, and a
++// ported map's bank can hold more than 256 messages: the Pallet gym's does)
++#define CANVAS_CMD_MSG 113
++void LONG_CALL ov01_021EF4DC(SCRIPTCONTEXT *ctx, void *msgData, u16 msg, u8 canSpeedUp, void *unk);
++BOOL LONG_CALL ov01_021EF348(SCRIPTCONTEXT *ctx);
++void LONG_CALL SetupNativeScript(SCRIPTCONTEXT *ctx, BOOL (*fn)(SCRIPTCONTEXT *));
 +
 +__attribute__((section(".init"))) BOOL Canvas_FieldCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 arg0)
 +{
 +    switch (sw) {
 +    case CANVAS_CMD_CANDIDATE: return Canvas_CandidateCmd(ctx, arg0);
++    case CANVAS_CMD_MSG:
++        ov01_021EF4DC(ctx, ctx->msg_data, arg0, TRUE, NULL);
++        SetupNativeScript(ctx, ov01_021EF348);
++        return TRUE;
 +    }
 +    return FALSE;
 +}
 diff --git a/src/field/enemy_party.c b/src/field/enemy_party.c
-index cf38c7e5..e978c100 100644
+index cf38c7e5..e67117e1 100644
 --- a/src/field/enemy_party.c
 +++ b/src/field/enemy_party.c
 @@ -9,6 +9,7 @@
@@ -12673,6 +12840,17 @@ index cf38c7e5..e978c100 100644
      if (TT_TrainerTypeSexGet(bp->trainer_data[num].tr_type) == 1) // if trainer is female
      {
          rnd_tmp = 120;
+@@ -407,6 +421,10 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
+     TestBattle_OverrideParties(bp);
+ #endif
+ 
++    // Pokemon Canvas: a famous challenger at the player's gym, at the player's level (field/canvas_candidate.c)
++    extern void Canvas_AfterTrainerParty(struct BATTLE_PARAM *bp, int num);
++    Canvas_AfterTrainerParty(bp, num);
++
+     // Change battle forms for player party
+     for (int i = 0; i < 4; i++) {
+         for (int j = 0; j < 6; j++) {
 diff --git a/src/field/overworld_table.c b/src/field/overworld_table.c
 index e0101f32..d01f0033 100644
 --- a/src/field/overworld_table.c
@@ -12852,7 +13030,7 @@ index b1df6be3..67770baa 100644
  #endif
  }
 diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
-index d4b59833..a430cd4a 100644
+index d4b59833..4e540df2 100644
 --- a/src/script_new_cmds.c
 +++ b/src/script_new_cmds.c
 @@ -2,10 +2,49 @@
@@ -12905,7 +13083,7 @@ index d4b59833..a430cd4a 100644
  
  #define SCRIPT_NEW_CMD_MAX 256
  
-@@ -23,6 +62,62 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -23,6 +62,63 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
  #endif
          break;
  
@@ -12919,6 +13097,7 @@ index d4b59833..a430cd4a 100644
 +        return Canvas_RunCmd(ctx, sw, arg0);
 +
 +    case CANVAS_CMD_CANDIDATE:
++    case 113: // CanvasMsg (field/canvas_field.c)
 +        return Canvas_FieldCmd(ctx, sw, arg0);
 +
 +    case CANVAS_CMD_BUFFER_MSG: {
@@ -12968,7 +13147,7 @@ index d4b59833..a430cd4a 100644
      default:
          break;
      }
-@@ -30,6 +125,162 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -30,6 +126,162 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
      return FALSE;
  }
  

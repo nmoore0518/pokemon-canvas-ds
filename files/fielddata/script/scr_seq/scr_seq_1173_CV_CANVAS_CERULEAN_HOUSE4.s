@@ -72,7 +72,17 @@ CeruleanCity_House4_EventScript_Reward_RecvSmall:
 	Call CeruleanCity_House4_EventScript_MovementReactionToNews
 	NPCMsg msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_NewNewsInformativeHaveThis
 	WaitButton
-	GiveItem 0x8008, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8008
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House4_EventScript_NoRoomForBerries
 	CloseMsg
@@ -83,7 +93,17 @@ CeruleanCity_House4_EventScript_Reward_RecvBig:
 	Call CeruleanCity_House4_EventScript_MovementReactionToNews
 	NPCMsg msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_IncredibleNewsHaveBerries
 	WaitButton
-	GiveItem 0x8008, 4, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8008
+	SetOrCopyVar 0x8005, 4
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_7
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_8
+_cv_full_7:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House4_EventScript_NoRoomForBerries
 	CloseMsg
@@ -103,7 +123,17 @@ CeruleanCity_House4_EventScript_Reward_SentSmall:
 	Call CeruleanCity_House4_EventScript_MovementReactionToNews
 	NPCMsg msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_ThanksForSpreadingNewsTakeThis
 	WaitButton
-	GiveItem 0x8008, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8008
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_9
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_10
+_cv_full_9:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House4_EventScript_NoRoomForBerries
 	CloseMsg
@@ -114,7 +144,17 @@ CeruleanCity_House4_EventScript_Reward_SentBig:
 	Call CeruleanCity_House4_EventScript_MovementReactionToNews
 	NPCMsg msg_0958_CV_CANVAS_CERULEAN_HOUSE4_CeruleanCity_House4_Text_MagnificentNewsSpreadHaveBerries
 	WaitButton
-	GiveItem 0x8008, 4, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8008
+	SetOrCopyVar 0x8005, 4
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_11
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_12
+_cv_full_11:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House4_EventScript_NoRoomForBerries
 	CloseMsg

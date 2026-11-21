@@ -1087,6 +1087,628 @@
       ]
     },
     {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_rock",
+      "en_US": [
+        "Brock: Hi there! I’m Brock, the\n",
+        "Pewter City Gym Leader.\r",
+        "Prof. Oak wrote to me about you.\n",
+        "A Rock trainer with a Gym plan!\r",
+        "That’s great! I’ll be keeping an\n",
+        "eye out for you on the road."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_normal",
+      "en_US": [
+        "Brock: Hey! I’m Brock, Leader of\n",
+        "the Pewter City Gym.\r",
+        "Oak says you raise Normal types.\n",
+        "No tricks, just basics, huh?\r",
+        "That’s how I train too. I’ll be\n",
+        "keeping tabs on you!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_water",
+      "en_US": [
+        "Misty: So you’re the kid from\n",
+        "Oak’s letter? I’m Misty.\r",
+        "I run the Cerulean Gym. The Water\n",
+        "Gym. The Only one in Kanto!\r",
+        "A Water Gym in Pallet Town?\n",
+        "I’m keeping my eye on you!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_electric",
+      "en_US": [
+        "Lt. Surge: Ten-hut! Lt. Surge,\n",
+        "Vermilion City Gym!\r",
+        "Oak says you train Electric types\n",
+        "and want a Gym. That’s my turf!\r",
+        "I’ll be watching you, kid.\n",
+        "Don’t short out!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_steel",
+      "en_US": [
+        "Lt. Surge: Ten-hut! Lt. Surge,\n",
+        "Vermilion City Gym!\r",
+        "Oak says you raise Steel types.\n",
+        "Tough as tanks. I like that.\r",
+        "But a Steel Gym in Pallet?\n",
+        "I don’t buy it. Prove me wrong!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_grass",
+      "en_US": [
+        "Erika: Oh, hello… I’m Erika,\n",
+        "from the Celadon City Gym.\r",
+        "Prof. Oak told me you love Grass\n",
+        "Pokémon. How delightful!\r",
+        "I would love to help your Gym\n",
+        "grow. I’ll come to see you."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_poison",
+      "en_US": [
+        "Koga: …You did not hear me come\n",
+        "in. Good.\r",
+        "I am Koga, of the Fuchsia City\n",
+        "Gym. Oak says you train Poison.\r",
+        "Hmph. A ninja does not share his\n",
+        "secrets lightly. Earn them."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_bug",
+      "en_US": [
+        "Koga: Fwahaha! You did not see me\n",
+        "enter. I am Koga, of Fuchsia’s Gym.\r",
+        "Oak says you train Bug types.\n",
+        "Most call them weak.\r",
+        "Prove them wrong, child. I will\n",
+        "be watching from the shadows."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_psychic",
+      "en_US": [
+        "Sabrina: …I am Sabrina, of the\n",
+        "Saffron City Gym.\r",
+        "I knew you would be here. A\n",
+        "second Psychic Gym in Kanto.\r",
+        "I foresaw it. I do not like it.\n",
+        "But I will watch over you."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_fairy",
+      "en_US": [
+        "Sabrina: I am Sabrina, of the\n",
+        "Saffron City Gym.\r",
+        "I saw you in a dream. A child with\n",
+        "Fairy Pokémon and a Gym.\r",
+        "They have minds of their own.\n",
+        "As do you. We will meet again."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_fire",
+      "en_US": [
+        "Blaine: Hah! Quiz time! Who’s the\n",
+        "hotheaded Fire expert of Kanto?\r",
+        "Answer: Blaine of Cinnabar Gym!\n",
+        "That’s me!\r",
+        "Oak says you’re a Fire trainer!\n",
+        "I’ll be cheering you on, kid!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_ground",
+      "en_US": [
+        "Bruno: Hoo hah! I’m Bruno, of the\n",
+        "Elite Four!\r",
+        "Oak says you train Ground types.\n",
+        "My Onix would like you!\r",
+        "Train hard. I’ll come find you\n",
+        "on the road!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_dark",
+      "en_US": [
+        "Agatha: So you’re Oak’s little\n",
+        "Dark trainer. I’m Agatha.\r",
+        "Elite Four, since before you were\n",
+        "born. Dark Pokémon, eh?\r",
+        "They fight dirty. Good! I’ll be\n",
+        "keeping an eye on you."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_ice",
+      "en_US": [
+        "Lorelei: Hello. I’m Lorelei, of\n",
+        "the Elite Four.\r",
+        "Prof. Oak wrote to me about a\n",
+        "young Ice trainer. Refreshing.\r",
+        "Few have the patience for them.\n",
+        "I’ll check on you now and then."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_fighting",
+      "en_US": [
+        "Bruno: Hoo hah! I’m Bruno, of the\n",
+        "Elite Four!\r",
+        "Oak says you train Fighting types!\n",
+        "I’ll help you grow stronger!\r",
+        "Train hard. I’ll come find you\n",
+        "on the road!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_ghost",
+      "en_US": [
+        "Agatha: So you’re Oak’s little\n",
+        "Ghost trainer. I’m Agatha.\r",
+        "Elite Four, since before you were\n",
+        "born. And Oak wants a Gym, eh?\r",
+        "Hah! I’ll be keeping an eye on\n",
+        "you, whippersnapper."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_dragon",
+      "en_US": [
+        "Lance: I am Lance, of the Elite\n",
+        "Four. Oak says you raise Dragons.\r",
+        "They are the pride of the Elite\n",
+        "Four. My pride.\r",
+        "A child with a Dragon Gym?\n",
+        "Then prove you’re worthy."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_intro_flying",
+      "en_US": [
+        "Lance: I am Lance, of the Elite\n",
+        "Four. Oak says you train Flying\f",
+        "types.\r",
+        "My Dragonite rules the skies.\n",
+        "Let’s see if yours can keep up."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_0",
+      "en_US": [
+        "Brock: My dad ran the Pewter Gym\n",
+        "before me. When he left, I had to\f",
+        "raise my brothers and hold the Gym.\r",
+        "Here’s what I learned: a Gym isn’t\n",
+        "walls and statues.\r",
+        "It’s a promise that its Leader is\n",
+        "there, every day, for every\f",
+        "challenger. Rock solid!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_1",
+      "en_US": [
+        "Misty: Listen up. I became a Leader\n",
+        "because my sisters wouldn’t stop\f",
+        "showing off.\r",
+        "So I trained harder than all of\n",
+        "them. Every challenger who walks\f",
+        "in tests that.\r",
+        "A Gym is only as tough as its\n",
+        "Leader on their worst day!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_2",
+      "en_US": [
+        "Lt. Surge: In the war, I learned one\n",
+        "thing: you hold your position, no\f",
+        "matter what!\r",
+        "A Gym is a base. Challengers storm\n",
+        "it. Your job is to make them earn\f",
+        "every inch!\r",
+        "Discipline, kid! Drill your team\n",
+        "like soldiers!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_3",
+      "en_US": [
+        "Erika: I tend a garden in my Gym.\n",
+        "Each flower needs its own care…\r",
+        "Just like each challenger. Some need\n",
+        "a gentle lesson. Others need a\f",
+        "thorny one.\r",
+        "A good Leader helps them grow…\n",
+        "even when they lose."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_4",
+      "en_US": [
+        "Koga: A ninja’s Gym hides its secrets\n",
+        "in plain sight. Invisible walls.\f",
+        "Hidden traps.\r",
+        "A challenger who reaches me has\n",
+        "been tested a dozen times.\r",
+        "Build your Gym like a ninja, child.\n",
+        "Make every step a lesson."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_5",
+      "en_US": [
+        "Sabrina: Most Leaders react to their\n",
+        "challengers. I see them coming.\r",
+        "You cannot read minds. But you can\n",
+        "read people. How they walk in.\f",
+        "What they fear.\r",
+        "A Leader who understands their\n",
+        "challenger has already won."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_6",
+      "en_US": [
+        "Blaine: My Gym is a quiz! Answer\n",
+        "right, and the path opens. Answer\f",
+        "wrong, and you battle!\r",
+        "A Gym should teach! Knowledge\n",
+        "burns brighter than any Fire\f",
+        "Blast!\r",
+        "Wahahah! Well… almost any."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_9",
+      "en_US": [
+        "Bruno: I train in caves and on\n",
+        "mountains. Alone, with my Pokémon.\r",
+        "A Gym is no different! Your Pokémon\n",
+        "must trust you. Your challengers\f",
+        "must respect you.\r",
+        "Both come from hard work!\n",
+        "Hoo hah!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_10",
+      "en_US": [
+        "Agatha: I battled beside Oak when we\n",
+        "were young. Did he tell you that?\r",
+        "Hah! Of course not.\r",
+        "He wants this Gym more than he\n",
+        "lets on. Don’t you forget it.\r",
+        "And don’t you dare go soft on\n",
+        "your challengers!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_8",
+      "en_US": [
+        "Lorelei: Before the Elite Four, I\n",
+        "trained on Four Island, far to the\f",
+        "south.\r",
+        "The hardest part wasn’t battling.\n",
+        "It was staying calm when a\f",
+        "challenger was better than I\f",
+        "expected.\r",
+        "Keep a cool head. Always."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_story_11",
+      "en_US": [
+        "Lance: The Elite Four faces every\n",
+        "challenger who gets past the Gyms.\r",
+        "Too many arrive soft. Their Leaders\n",
+        "went easy on them.\r",
+        "A Leader’s duty is to the League.\n",
+        "Make your challengers worthy."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_0",
+      "en_US": [
+        "Brock: So, {STRVAR_1 3, 6, 0}… Can challengers\n",
+        "count on you, every single day?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_1",
+      "en_US": [
+        "Misty: Well? You really think you\n",
+        "can beat me at my own game?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_2",
+      "en_US": [
+        "Lt. Surge: Are you ready to follow\n",
+        "orders, private?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_3",
+      "en_US": [
+        "Erika: Tell me… do you love your\n",
+        "Pokémon?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_4",
+      "en_US": [
+        "Koga: Will you train in secret, as a\n",
+        "ninja does?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_5",
+      "en_US": "Sabrina: Do you believe in fate?"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_6",
+      "en_US": "Blaine: Quiz! Is Fire the best type?"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_9",
+      "en_US": [
+        "Bruno: Are you ready to train until\n",
+        "you drop?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_10",
+      "en_US": [
+        "Agatha: Think you’re tougher than\n",
+        "Oak’s other brat?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_8",
+      "en_US": [
+        "Lorelei: Can you stay calm when\n",
+        "things go wrong?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_question_11",
+      "en_US": [
+        "Lance: Will you make your challengers\n",
+        "worthy of the League?"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_0",
+      "en_US": [
+        "Brock: Honest! That’s a start.\n",
+        "Confidence comes with practice."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_1",
+      "en_US": [
+        "Misty: Then why even try?\n",
+        "…Ugh, fine. Prove yourself wrong."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_2",
+      "en_US": [
+        "Lt. Surge: What?! …Ha! You’ve got\n",
+        "guts, I’ll give you that."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_3",
+      "en_US": [
+        "Erika: Oh my… Shy, perhaps? They\n",
+        "seem to love you, at least."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_4",
+      "en_US": [
+        "Koga: Hmph. Then they will see you\n",
+        "coming, child."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_5",
+      "en_US": [
+        "Sabrina: …Neither did I.\n",
+        "Once."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_6",
+      "en_US": [
+        "Blaine: Wrong!! …But I admire your\n",
+        "nerve, kid!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_9",
+      "en_US": [
+        "Bruno: Ha! You’ll change your mind\n",
+        "once you feel the power!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_10",
+      "en_US": [
+        "Agatha: Hmph. At least you’re no\n",
+        "liar."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_8",
+      "en_US": [
+        "Lorelei: Honest. Then that’s what\n",
+        "we’ll work on."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_no_11",
+      "en_US": [
+        "Lance: …Then perhaps you’re not\n",
+        "ready. Prove me wrong."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_0",
+      "en_US": [
+        "Brock: Ha! That’s what I like to\n",
+        "hear!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_1",
+      "en_US": [
+        "Misty: Hmph! Big talk.\n",
+        "We’ll see about that!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_2",
+      "en_US": "Lt. Surge: Ha! That’s the spirit!"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_3",
+      "en_US": [
+        "Erika: I could tell. They seem to\n",
+        "glow around you."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_4",
+      "en_US": "Koga: Fwahaha! Then we shall see."
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_5",
+      "en_US": [
+        "Sabrina: Then you already know we\n",
+        "will meet again."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_6",
+      "en_US": "Blaine: Correct!! Wahahahah!"
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_9",
+      "en_US": [
+        "Bruno: Hoo hah! That’s what I like\n",
+        "to hear!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_10",
+      "en_US": [
+        "Agatha: Hah! Cocky.\n",
+        "I like that."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_8",
+      "en_US": [
+        "Lorelei: Good. Ice doesn’t melt\n",
+        "under pressure."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_yes_11",
+      "en_US": "Lance: Then we understand each other."
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_0",
+      "en_US": [
+        "Brock: I’ll come find you once you’re\n",
+        "through Mt. Moon. Good luck!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_1",
+      "en_US": [
+        "Misty: Don’t think this means I like\n",
+        "you! See you around, kid."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_2",
+      "en_US": [
+        "Lt. Surge: Move out, soldier!\n",
+        "I’ll be checking on you!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_3",
+      "en_US": [
+        "Erika: I’ll come see how you’ve\n",
+        "grown. Please take care…"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_4",
+      "en_US": [
+        "Koga: I will be watching.\n",
+        "Always."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_5",
+      "en_US": [
+        "Sabrina: We will meet again soon.\n",
+        "I have seen it."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_6",
+      "en_US": [
+        "Blaine: I’ll be cheering for you!\n",
+        "Fire it up! Wahahah!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_9",
+      "en_US": [
+        "Bruno: Train hard! I’ll see you on\n",
+        "the road!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_10",
+      "en_US": [
+        "Agatha: Don’t make me regret coming\n",
+        "all this way, whippersnapper!"
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_8",
+      "en_US": [
+        "Lorelei: Stay cool, {STRVAR_1 3, 6, 0}.\n",
+        "I’ll be in touch."
+      ]
+    },
+    {
+      "id": "msg_0451_T01R0301_cv_mentor_farewell_11",
+      "en_US": [
+        "Lance: I’ll be watching your progress\n",
+        "closely, {STRVAR_1 3, 6, 0}."
+      ]
+    },
+    {
       "id": "msg_0451_T01R0301_GymCandidate_Text_OakAfterMentor",
       "en_US": [
         "Oak: My, my! One letter, and\n",

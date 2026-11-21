@@ -62,7 +62,17 @@ VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman:
 	NPCMsg msg_0486_T06PC0101_VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain
 	WaitButton
 	SetFlag 0x2121
-	GiveItem 443, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 443
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_1
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_2
+_cv_full_1:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
 	NPCMsg msg_0486_T06PC0101_VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches

@@ -32506,3 +32506,390 @@
             },
         },
     },
+
+    [1476] = {   // TRAINER_CANVAS_OAK_FINALE
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ELDER,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Ho… ho ho…\\nSplendid. Truly splendid.",
+            },
+        },
+    },
+
+    [1477] = {   // TRAINER_CANVAS_GYM_0
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "I can’t believe it…",
+            },
+        },
+    },
+
+    [1478] = {   // TRAINER_CANVAS_GYM_1
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You earned that win.",
+            },
+        },
+    },
+
+    [1479] = {   // TRAINER_CANVAS_GYM_2
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "So that’s a Gym Leader’s\\npower!",
+            },
+        },
+    },
+
+    [1480] = {   // TRAINER_CANVAS_GYM_3
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "I’ll train harder and\\ncome back!",
+            },
+        },
+    },
+
+    [1481] = {   // TRAINER_CANVAS_GYM_4
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Wow… that was close!",
+            },
+        },
+    },
+
+    [1482] = {   // TRAINER_CANVAS_GYM_5
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Your one-type team got me…",
+            },
+        },
+    },
+
+    [1483] = {   // TRAINER_CANVAS_GYM_DOUBLE_0
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "I can’t believe it…",
+            },
+        },
+    },
+
+    [1484] = {   // TRAINER_CANVAS_GYM_DOUBLE_1
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You earned that win.",
+            },
+        },
+    },
+
+    [1485] = {   // TRAINER_CANVAS_GYM_DOUBLE_2
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "So that’s a Gym Leader’s\\npower!",
+            },
+        },
+    },
+
+    [1486] = {   // TRAINER_CANVAS_GYM_DOUBLE_3
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "I’ll train harder and\\ncome back!",
+            },
+        },
+    },
+
+    [1487] = {   // TRAINER_CANVAS_GYM_DOUBLE_4
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Wow… that was close!",
+            },
+        },
+    },
+
+    [1488] = {   // TRAINER_CANVAS_GYM_DOUBLE_5
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Your one-type team got me…",
+            },
+        },
+    },

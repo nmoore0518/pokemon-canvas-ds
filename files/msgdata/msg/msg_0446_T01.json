@@ -38,10 +38,111 @@
       ]
     },
     {
+      "id": "msg_0446_T01_cv_name_Brock",
+      "en_US": "Brock"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Misty",
+      "en_US": "Misty"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_LtSurge",
+      "en_US": "Lt. Surge"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Erika",
+      "en_US": "Erika"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Koga",
+      "en_US": "Koga"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Sabrina",
+      "en_US": "Sabrina"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Blaine",
+      "en_US": "Blaine"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Bruno",
+      "en_US": "Bruno"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Agatha",
+      "en_US": "Agatha"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Lorelei",
+      "en_US": "Lorelei"
+    },
+    {
+      "id": "msg_0446_T01_cv_name_Lance",
+      "en_US": "Lance"
+    },
+    {
       "id": "msg_0446_T01_GymFinale_Text_CeremonyMentorAfter",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Go on, Leader. Your Gym’s\n",
         "waiting!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd0_Text",
+      "en_US": [
+        "A Gym right here in Pallet Town!\n",
+        "Who’d have thought it?"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd1_Text",
+      "en_US": [
+        "When I grow up, I’m going to be\n",
+        "your first challenger!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd2_Text",
+      "en_US": [
+        "I came all the way from Viridian\n",
+        "City to see this!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd3_Text",
+      "en_US": [
+        "Congratulations, Leader!\n",
+        "Pallet Town is so proud of you!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd4_Text",
+      "en_US": [
+        "I’ve lived in Pallet Town all my\n",
+        "life. Never thought I’d see a Gym\f",
+        "open here!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd5_Text",
+      "en_US": [
+        "My Pokémon and I are training\n",
+        "hard. We’ll challenge you soon!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd6_Text",
+      "en_US": [
+        "The whole town turned out for\n",
+        "this. What a day!"
+      ]
+    },
+    {
+      "id": "msg_0446_T01_GymFinale_EventScript_Crowd7_Text",
+      "en_US": [
+        "Prof. Oak must be so proud…\n",
+        "I wonder where he is?"
       ]
     },
     {

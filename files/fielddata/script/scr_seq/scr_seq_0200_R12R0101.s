@@ -198,7 +198,17 @@ Route12_FishingHouse_EventScript_NewRecordMagikarp:
 	SetFlag 0x2159
 	NPCMsg msg_0349_R12R0101_Route12_FishingHouse_Text_WhoaXSizeTakeThis
 	WaitButton
-	GiveItem ITEM_NET_BALL, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, ITEM_NET_BALL
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_7
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_8
+_cv_full_7:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route12_FishingHouse_EventScript_NoRoomForNetBall
 	NPCMsg msg_0349_R12R0101_Route12_FishingHouse_Text_LookForwardToGreaterRecords

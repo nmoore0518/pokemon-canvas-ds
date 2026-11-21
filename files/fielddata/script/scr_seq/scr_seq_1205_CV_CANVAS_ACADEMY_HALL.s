@@ -90,7 +90,17 @@ Academy_EventScript_BraceletGive:
 	WaitButton
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet2
 	WaitButton
-	GiveItem 696, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 696
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_1
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_2
+_cv_full_1:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_2:
 	SetFlag 0x222F
 	SetVar 0x502F, 4
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet3
@@ -117,9 +127,9 @@ Academy_EventScript_HeadmasterMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_2
+	GoToIfLt _cv_menu_4
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_2:
+_cv_menu_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Academy_EventScript_HeadmasterBP
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -140,12 +150,12 @@ Academy_EventScript_CandidateBattle:
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_CandidateAsk
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_3
+	GoToIfEq _cv_yes_5
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_4
-_cv_yes_3:
+	GoTo _cv_yn_6
+_cv_yes_5:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_4:
+_cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Academy_EventScript_CandidateLater
 	CopyVar 0x8008, 0x8005
@@ -208,23 +218,23 @@ Academy_EventScript_Battle:
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_6
+	GoToIfNe _cv_won_8
 	WhiteOut
 	End
-_cv_won_6:
+_cv_won_8:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
 	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_7
+	GoToIfNe _cv_outcome_9
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_8
-_cv_outcome_7:
+	GoTo _cv_outcome_10
+_cv_outcome_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_8
+	GoToIfNe _cv_outcome_10
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_8:
+_cv_outcome_10:
 	Return
 	
 Academy_EventScript_CandidateBeatPlayer:

@@ -63,29 +63,39 @@ RocketHideout_B4F_EventScript_SilphScope:
 	FacePlayer
 	HidePerson 2
 	SetFlag 0x205E
-	GiveItem 874, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 874
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
-	CanvasCloseMsg
+	CloseMsg
 	ReleaseAll
 	End
 	
 RocketHideout_B4F_EventScript_Grunt1:
 	CheckTrainerFlag 1104
-	GoToIf TRUE, _cv_beaten_5
+	GoToIf TRUE, _cv_beaten_7
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt1Intro
 	WaitButton
 	CloseMsg
 	TrainerBattle 1104, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_6
+	GoToIfNe _cv_won_8
 	WhiteOut
 	End
-_cv_won_6:
+_cv_won_8:
 	SetTrainerFlag 1104
 	GoTo RocketHideout_B4F_EventScript_DefeatedGrunt1
-_cv_beaten_5:
+_cv_beaten_7:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt1PostBattle
 	WaitButton
 	CloseMsg
@@ -98,29 +108,39 @@ RocketHideout_B4F_EventScript_LiftKey:
 	SetFlag 0x21EA
 	HidePerson 4
 	SetFlag 0x205D
-	GiveItem 878, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 878
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_9
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_10
+_cv_full_9:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
-	CanvasCloseMsg
+	CloseMsg
 	ReleaseAll
 	End
 	
 RocketHideout_B4F_EventScript_Grunt3:
 	CheckTrainerFlag 1103
-	GoToIf TRUE, _cv_beaten_7
+	GoToIf TRUE, _cv_beaten_11
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt3Intro
 	WaitButton
 	CloseMsg
 	TrainerBattle 1103, 1103, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_8
+	GoToIfNe _cv_won_12
 	WhiteOut
 	End
-_cv_won_8:
+_cv_won_12:
 	SetTrainerFlag 1103
 	GoTo RocketHideout_B4F_EventScript_DefeatedGrunt3
-_cv_beaten_7:
+_cv_beaten_11:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt3PostBattle
 	WaitButton
 	CloseMsg
@@ -128,20 +148,20 @@ _cv_beaten_7:
 	
 RocketHideout_B4F_EventScript_Grunt2:
 	CheckTrainerFlag 1102
-	GoToIf TRUE, _cv_beaten_9
+	GoToIf TRUE, _cv_beaten_13
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt2Intro
 	WaitButton
 	CloseMsg
 	TrainerBattle 1102, 1102, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_10
+	GoToIfNe _cv_won_14
 	WhiteOut
 	End
-_cv_won_10:
+_cv_won_14:
 	SetTrainerFlag 1102
 	GoTo RocketHideout_B4F_EventScript_DefeatedGrunt2
-_cv_beaten_9:
+_cv_beaten_13:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt2PostBattle
 	WaitButton
 	CloseMsg
@@ -205,14 +225,14 @@ EventScript_BagIsFull:
 RocketHideout_B4F_EventScript_DefeatedGrunt1:
 	NPCMsg msg_0931_CV_CANVAS_ROCKET_HIDEOUT_B4F_RocketHideout_B4F_Text_Grunt1PostBattle
 	WaitButton
-	GoToIfUnset 0x205D, _cv_show_11
+	GoToIfUnset 0x205D, _cv_show_15
 	ClearFlag 0x205D
 	ShowPerson 4
 	SetFlag 0x205D
-	GoTo _cv_shown_12
-_cv_show_11:
+	GoTo _cv_shown_16
+_cv_show_15:
 	ShowPerson 4
-_cv_shown_12:
+_cv_shown_16:
 	ClearFlag 0x205D
 	CloseMsg
 	ReleaseAll
@@ -251,30 +271,30 @@ RocketHideout_B4F_EventScript_CountGruntDefeated:
 	Return
 	
 RocketHideout_B4F_EventScript_SetBarrier:
-	GoToIfUnset 0x22B8, _cv_bar_13
+	GoToIfUnset 0x22B8, _cv_bar_17
 	ClearFlag 0x22B8
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_13
+	GoToIfEq _cv_bar_17
 	ShowPerson 200
-_cv_bar_13:
-	GoToIfUnset 0x22B9, _cv_bar_14
+_cv_bar_17:
+	GoToIfUnset 0x22B9, _cv_bar_18
 	ClearFlag 0x22B9
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_14
+	GoToIfEq _cv_bar_18
 	ShowPerson 201
-_cv_bar_14:
-	GoToIfUnset 0x22BA, _cv_bar_15
+_cv_bar_18:
+	GoToIfUnset 0x22BA, _cv_bar_19
 	ClearFlag 0x22BA
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_15
+	GoToIfEq _cv_bar_19
 	ShowPerson 202
-_cv_bar_15:
-	GoToIfUnset 0x22BB, _cv_bar_16
+_cv_bar_19:
+	GoToIfUnset 0x22BB, _cv_bar_20
 	ClearFlag 0x22BB
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_16
+	GoToIfEq _cv_bar_20
 	ShowPerson 203
-_cv_bar_16:
+_cv_bar_20:
 	// (the GBA redraws a square here: 17, 14, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
 	// (the GBA redraws a square here: 18, 14, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
 	Return
@@ -290,30 +310,30 @@ RocketHideout_B4F_OnLoad_cv_init:
 	Return
 	
 RocketHideout_B4F_EventScript_RemoveBarrier:
-	GoToIfSet 0x22B8, _cv_bar_17
+	GoToIfSet 0x22B8, _cv_bar_21
 	SetFlag 0x22B8
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_17
+	GoToIfEq _cv_bar_21
 	HidePerson 200
-_cv_bar_17:
-	GoToIfSet 0x22B9, _cv_bar_18
+_cv_bar_21:
+	GoToIfSet 0x22B9, _cv_bar_22
 	SetFlag 0x22B9
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_18
+	GoToIfEq _cv_bar_22
 	HidePerson 201
-_cv_bar_18:
-	GoToIfSet 0x22BA, _cv_bar_19
+_cv_bar_22:
+	GoToIfSet 0x22BA, _cv_bar_23
 	SetFlag 0x22BA
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_19
+	GoToIfEq _cv_bar_23
 	HidePerson 202
-_cv_bar_19:
-	GoToIfSet 0x22BB, _cv_bar_20
+_cv_bar_23:
+	GoToIfSet 0x22BB, _cv_bar_24
 	SetFlag 0x22BB
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_20
+	GoToIfEq _cv_bar_24
 	HidePerson 203
-_cv_bar_20:
+_cv_bar_24:
 	// (the GBA redraws a square here: 17, 14, METATILE_SilphCo_HideoutFloor_ShadeFull, 0)
 	// (the GBA redraws a square here: 18, 14, METATILE_SilphCo_HideoutFloor, 0)
 	Return

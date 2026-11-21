@@ -268,6 +268,29 @@ What else it does:
   Thumb bit, which puts a variable one byte off). Battle code goes in the battle overlay, 130 (`engine/src/battle`,
   about 9KB free); hg-engine can add overlays of their own (`src/individual`) when that fills. Code in one overlay
   calls a function in another with `LONG_CALL` in its declaration (a plain call to it lands in ARM mode).
+- **The mentors** (`candidacy.py`, the GBA's `sMentorPeople`): the mentor walks in, says their lines (yes/no answers
+  on `VAR_SPECIAL_RESULT`) and walks out by the same searched walks; their sprite goes in var sprite 101
+  (`VAR_OBJ_GFX_ID_0`). Not yet: their gifts (row 37's items) and decorations.
+- **The finale** (`port/finale.py`): the ceremony on Pallet's plateau, with the mentor and the last leader in var
+  sprites 101-103. HeartGold's plateau is smaller than the GBA's, so a crowd stands on the ground round it
+  (`CROWD`, 14 people in rows below and beside it, the aisle up the middle left clear, each with a line of their
+  own). Oak's battle is trainer 1476 (a double battle, his GBA team). Map-load scripts can't use
+  `CanvasBufferMsg` (no messages are loaded yet), so the ceremony's names are buffered only in scripts run later.
+- **Gym challenges once you're Leader** (`port/gymchallenge.py`): the aide sends in challenger after challenger
+  until one beats you. A challenger is one of our trainers 1477-1488 (a random class and name, a team of the
+  player's team's average level by the GBA's rules, doubles two in three), a famous trainer every 7th (or by
+  chance), and at 14 in a row the type's boss (+3 levels); they walk in from the door and the leader's spot is
+  the player's. A win pays 2000 + 200 a win in the streak (up to 40; twice that for a famous trainer or the boss),
+  sometimes with an item; a loss hands over the badge and puts the winner on the statue (the last four).
+  **The story change**: only the starter's type is mastered here (15 in a row); the rest are mastered in the new
+  areas, so Oak's type switches after the mastery are left out and the aide's goal says so.
+  Not yet: the practice trainers from the gym PC (row 25: they're gym decorations, which aren't in yet).
+- **Messages past the 256th**: HeartGold's message commands take a byte id (the var forms cast it to one too); a
+  map whose bank holds more (the Pallet gym's) shows those with our `CanvasMsg` (208/113, a 16-bit `NPCMsg`).
+  Menus (`ScrCmd_559`) and `CanvasBufferMsg` take 16 bits already; any other command naming one stops the port.
+- **`giveitem`** is the GBA's add plus its "Obtained the X!" (with the fanfare and the pocket line, the box left
+  open): HeartGold's `std_give_item_verbose`, item and count in 0x8004/0x8005. No room: `VAR_RESULT` 0 and nothing
+  said, as on the GBA. (`additem` stays silent; `giveitem_msg` says its own line.)
 - **Team rules before the gym leaders' and the rival's battles**: right after the leader's intro (where the GBA's
   `dotrainerbattle` checks), `CanvasCheckTeam`; broken, the rule's message, and the map loads again with the player
   where they stand.
@@ -279,7 +302,7 @@ What else it does:
 - **Closing the message box**: the GBA's `closemessage` and `release` close it if open and do nothing otherwise;
   HeartGold's `CloseMsg` frees the window again (a crash), so both become `CanvasCloseMsg`.
 - **Not yet**: type tutors, the painter's loft in Pewter (her paintings), the fossil pictures, Mom's Dad's Ball
-  scene (Type Balls, row 36), Oak's finale in the player's gym.
+  scene (Type Balls, row 36), the badge icon in the ceremony (row 26), the Gym Legend (row 27).
 - **The Sevii Islands stay out**, as in the GBA game: Cinnabar's Bill scenes and the ferry back are dropped from its
   frame scripts (`cinnabar_no_sevii`).
 - **The GBA's `#ifdef`s** are followed when its scripts and constants are read (`gba.py`, FIRERED defined).

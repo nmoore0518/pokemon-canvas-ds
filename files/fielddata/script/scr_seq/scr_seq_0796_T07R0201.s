@@ -60,7 +60,17 @@ CeladonCity_Condominiums_1F_EventScript_TeaWoman:
 	NPCMsg msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead
 	WaitButton
 	SetFlag 0x2131
-	GiveItem 113, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 113
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_1
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_2
+_cv_full_1:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
 	NPCMsg msg_0501_T07R0201_CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea
@@ -137,22 +147,22 @@ PaintWorld_EventScript_FigureBattle:
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_2
+	GoToIfNe _cv_won_4
 	WhiteOut
 	End
-_cv_won_2:
+_cv_won_4:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_3
+	GoToIfNe _cv_outcome_5
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_4
-_cv_outcome_3:
+	GoTo _cv_outcome_6
+_cv_outcome_5:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_4
+	GoToIfNe _cv_outcome_6
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_4:
+_cv_outcome_6:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0501_T07R0201_PaintWorld_Text_Dissolve
@@ -218,9 +228,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_6
+	GoToIfLt _cv_menu_8
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_6:
+_cv_menu_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

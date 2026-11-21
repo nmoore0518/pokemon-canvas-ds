@@ -414,8 +414,19 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize:
 	ScriptOverlayCmd 3, 0
 	ScrCmd_118 0
 	ScriptOverlayCmd 3, 1
-	GiveItem 0x4001, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x4001
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_14
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_15
+_cv_full_14:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_15:
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
+	CloseMsg
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon:
@@ -452,12 +463,12 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty:
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_14
+	GoToIfEq _cv_yes_16
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_15
-_cv_yes_14:
+	GoTo _cv_yn_17
+_cv_yes_16:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_15:
+_cv_yn_17:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
@@ -479,12 +490,12 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC:
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_16
+	GoToIfEq _cv_yes_18
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_17
-_cv_yes_16:
+	GoTo _cv_yn_19
+_cv_yes_18:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_17:
+_cv_yn_19:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
 	Call Common_EventScript_NameReceivedBoxMon

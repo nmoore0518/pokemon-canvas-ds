@@ -57,7 +57,17 @@ DadStory_EventScript_MomDadsBall:
 	WaitButton
 	// TODO(gba) special DadStory_GetGymTypeBall
 	GoTo _cv_stop
-	GiveItem VAR_SPECIAL_RESULT, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_1
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_2
+_cv_full_1:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_2:
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomMoveExtractor
 	WaitButton
 	CanvasCloseMsg

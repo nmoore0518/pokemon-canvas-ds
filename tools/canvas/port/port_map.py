@@ -604,7 +604,7 @@ def unchoke(slot, objs, warps, report):
             o['x'], o['z'] = best
 
 
-PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
+PEOPLE = {'ViridianCity_PennysHouse_Frlg': pennys_plushes, 'PalletTown_Frlg': lambda people: FIN.crowd(people)}     # GBA map -> its people, changed (an '_at' is a HeartGold square)
 # a GBA upstairs HeartGold's room has none for, joined to the downstairs: where its people and signs stand in
 # HeartGold's room (by script; squares the room's open floor reaches, signs on the wall above an open square)
 UPSTAIRS = {
@@ -659,6 +659,10 @@ import build_caves as _BC           # (caves are widened where a wall is too thi
 import currents as CUR               # (Seafoam's water currents: trigger squares of ours)
 import candidacy as CA              # (the Guest Leader challenges after each badge)
 SP.SPECIALS.update(CA.SPECIALS)
+import finale as FIN                # (the finale: the ceremony, Oak's challenge)
+SP.SPECIALS.update(FIN.SPECIALS)
+import gymchallenge as GCH          # (the challengers at the player's own gym)
+SP.SPECIALS.update(GCH.SPECIALS)
 for _c in _BC.CAVES:
     MAPS[_c['gba']] = (_c['map'], _BC.cave_xy(_c['gba']))
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
@@ -1607,6 +1611,19 @@ class Port:
         if x is None or y is None: return None
         return (slot,) + tuple(xy(x, y))
 
+    def give_verbose(self, item, n):
+        """the GBA's giveitem: additem, then its "Obtained the X!" with the fanfare and the pocket line, leaving the
+        box open (STD_OBTAIN_ITEM); no room, VAR_RESULT FALSE and nothing said. HeartGold's std_give_item_verbose is
+        the same (item and count in 0x8004/0x8005). An item HeartGold doesn't have yet stays a flag (item())."""
+        if item.startswith('ITEM_') and HG_NAMES.get(item, item) not in HG_DEFINES and item not in ENGINE_DEFINES:
+            return False
+        full, done = self.new('full'), self.new('given')
+        self.emit('SetOrCopyVar 0x8004, %s' % self.val(item), 'SetOrCopyVar 0x8005, %s' % self.val(n),
+                  'HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
+                  'GoToIfEq %s' % full, 'CallStd std_give_item_verbose', 'SetVar VAR_SPECIAL_RESULT, 1',
+                  'GoTo %s' % done, full + ':', 'SetVar VAR_SPECIAL_RESULT, 0', done + ':')
+        return True
+
     def item(self, cmd, item, n):
         if item.startswith('ITEM_') and HG_NAMES.get(item, item) not in HG_DEFINES and item not in ENGINE_DEFINES:
             # (an item HeartGold doesn't have yet: carried as a flag until we add it)
@@ -1970,6 +1987,8 @@ class Port:
             elif cmd == 'fadedefaultbgm': self.emit('ResetBGM')
             elif cmd in NO_OPS: pass
             elif cmd == 'callnative' and a[0] in SP.CALLNATIVE_NO_OPS: pass
+            elif cmd == 'giveitem' and self.give_verbose(a[0], a[1] if len(a) > 1 else '1'):
+                open_msg = True
             elif cmd in ('giveitem', 'additem', 'checkitem', 'removeitem', 'checkitemspace'):
                 self.item(cmd, a[0], a[1] if len(a) > 1 else '1')
             elif cmd == 'giveitem_msg':
@@ -2078,6 +2097,27 @@ class Port:
         for e in entry_points: self.label(e)
         while self.queue:
             self.script(self.queue.pop(0))
+
+
+WIDE_MSG_CMDS = ('CanvasBufferMsg', 'CanvasMsg', 'ScrCmd_559')     # (the commands that take a 16-bit message id)
+
+
+def wide_messages(out, port, bank):
+    """HeartGold's message commands take a byte id; a message past the 256th of its bank is shown by our CanvasMsg
+    (a 16-bit NPCMsg). Any other command naming one can't reach it, so that stops the port."""
+    index = {'%s_%s' % (bank, k): i for i, k in enumerate(port.msg_order)}
+    res = []
+    for l in out:
+        m = re.match(r'(\s*)(\w+) (%s_\w+)\s*$' % re.escape(bank), l)
+        if m and index.get(m.group(3), 0) > 255:
+            if m.group(2) == 'NPCMsg': l = '%sCanvasMsg %s' % (m.group(1), m.group(3))
+            elif m.group(2) not in WIDE_MSG_CMDS: raise SystemExit('%s: %s names message %d (past 255)' % (bank, l.strip(), index[m.group(3)]))
+        elif m is None:
+            for name in re.findall(r'%s_\w+' % re.escape(bank), l):
+                if index.get(name, 0) > 255 and not l.strip().startswith(WIDE_MSG_CMDS):
+                    raise SystemExit('%s: %s names message %d (past 255)' % (bank, l.strip(), index[name]))
+        res.append(l)
+    return res
 
 
 def write_messages(port, msg_file):
@@ -2323,6 +2363,7 @@ def port(gba_map, g, ids, report):
         out += ['', '\t.balign 4, 0', l + ':']
         out += ['\t%s%s' % (s, ' %d' % n if n > 1 else '') for s, n in steps] + ['\tEndMovement']
     out += ['\t.balign 4, 0', '']
+    out = wide_messages(out, p, bank)
     open(os.path.join(SCR, scr), 'w').write('\n'.join(out))
     write_messages(p, bank + '.json')
     # ---- the map-script header
@@ -2527,6 +2568,8 @@ def main():
     kanto_safari_std(ids)
     own_gba(g)
     CA.rewrite(g)
+    FIN.rewrite(g)
+    GCH.rewrite(g)
     import challengers; challengers.main()
     report = []
     for m in sys.argv[1:] or list(MAPS):

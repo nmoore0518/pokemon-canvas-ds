@@ -323,7 +323,17 @@ VermilionCity_MedicalCenter_1F_EventScript_AddCured:
 	Return
 	
 VermilionCity_MedicalCenter_1F_EventScript_GiveFive:
-	GiveItem 0x8009, 5, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8009
+	SetOrCopyVar 0x8005, 5
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_GiveFiveDone
 	BufferItemName 1, 0x8009

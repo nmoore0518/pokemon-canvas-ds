@@ -111,7 +111,17 @@ _cv_yn_4:
 	GoToIfNe Academy_EventScript_MegaLost
 	NPCMsg msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaWon
 	WaitButton
-	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8009
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	NPCMsg msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_Academy_Text_MegaPartyBack
 	WaitButton
 	CloseMsg
@@ -130,23 +140,23 @@ Academy_EventScript_Battle:
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_6
+	GoToIfNe _cv_won_8
 	WhiteOut
 	End
-_cv_won_6:
+_cv_won_8:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
 	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_7
+	GoToIfNe _cv_outcome_9
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_8
-_cv_outcome_7:
+	GoTo _cv_outcome_10
+_cv_outcome_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_8
+	GoToIfNe _cv_outcome_10
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_8:
+_cv_outcome_10:
 	Return
 	
 Academy_EventScript_MegaLost:

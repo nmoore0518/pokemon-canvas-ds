@@ -248,21 +248,31 @@ SilphCo_11F_EventScript_GiovanniApproachRight:
 DadStory_EventScript_SilphGiovanniGives:
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_DadStory_Text_GiovanniSilphGift
 	WaitButton
-	GiveItem ITEM_MASTER_BALL, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, ITEM_MASTER_BALL
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_7
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_8
+_cv_full_7:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_8:
 	SetFlag 0x21C4
 	Call GymHack_EventScript_SilphGiovanniGift
 	CanvasCloseMsg
 	CompareVarToValue 0x5008, 5
 	GoToIfGe Common_EventScript_NopReturn
 	ClearFlag 0x21C3
-	GoToIfUnset 0x21C3, _cv_show_7
+	GoToIfUnset 0x21C3, _cv_show_9
 	ClearFlag 0x21C3
 	ShowPerson 6
 	SetFlag 0x21C3
-	GoTo _cv_shown_8
-_cv_show_7:
+	GoTo _cv_shown_10
+_cv_show_9:
 	ShowPerson 6
-_cv_shown_8:
+_cv_shown_10:
 	CompareVarToValue 0x4001, 0
 	CallIfEq DadStory_EventScript_SilphMomLeft
 	ApplyMovement 6, DadStory_Movement_MomRunIn
@@ -302,24 +312,24 @@ EventScript_Open2FDoor1:
 EventScript_Open2FDoor2:
 	// (the GBA redraws a square here: 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
 	// (the GBA redraws a square here: 6, 15, METATILE_SilphCo_Floor, 0)
-	GoToIfSet 0x22B4, _cv_bar_9
+	GoToIfSet 0x22B4, _cv_bar_11
 	SetFlag 0x22B4
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_9
+	GoToIfEq _cv_bar_11
 	HidePerson 200
-_cv_bar_9:
-	GoToIfSet 0x22B5, _cv_bar_10
+_cv_bar_11:
+	GoToIfSet 0x22B5, _cv_bar_12
 	SetFlag 0x22B5
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_10
+	GoToIfEq _cv_bar_12
 	HidePerson 201
-_cv_bar_10:
-	GoToIfSet 0x22B7, _cv_bar_11
+_cv_bar_12:
+	GoToIfSet 0x22B7, _cv_bar_13
 	SetFlag 0x22B7
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_11
+	GoToIfEq _cv_bar_13
 	HidePerson 203
-_cv_bar_11:
+_cv_bar_13:
 	Return
 	
 EventScript_Open3FDoor1:
@@ -388,18 +398,18 @@ EventScript_Open6FDoor:
 	// (the GBA redraws a square here: 6, 14, METATILE_SilphCo_Wall_RightEdge, 1)
 	// (the GBA redraws a square here: 5, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
 	// (the GBA redraws a square here: 6, 15, METATILE_SilphCo_Floor_ShadeFull, 0)
-	GoToIfSet 0x22B4, _cv_bar_12
+	GoToIfSet 0x22B4, _cv_bar_14
 	SetFlag 0x22B4
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_12
+	GoToIfEq _cv_bar_14
 	HidePerson 200
-_cv_bar_12:
-	GoToIfSet 0x22B5, _cv_bar_13
+_cv_bar_14:
+	GoToIfSet 0x22B5, _cv_bar_15
 	SetFlag 0x22B5
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_13
+	GoToIfEq _cv_bar_15
 	HidePerson 201
-_cv_bar_13:
+_cv_bar_15:
 	Return
 	
 EventScript_Open7FDoor1:
@@ -478,30 +488,30 @@ EventScript_Open10FDoor:
 	Return
 	
 EventScript_Open11FDoor:
-	GoToIfSet 0x22B4, _cv_bar_14
+	GoToIfSet 0x22B4, _cv_bar_16
 	SetFlag 0x22B4
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_14
+	GoToIfEq _cv_bar_16
 	HidePerson 200
-_cv_bar_14:
-	GoToIfSet 0x22B5, _cv_bar_15
+_cv_bar_16:
+	GoToIfSet 0x22B5, _cv_bar_17
 	SetFlag 0x22B5
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_15
+	GoToIfEq _cv_bar_17
 	HidePerson 201
-_cv_bar_15:
-	GoToIfSet 0x22B6, _cv_bar_16
+_cv_bar_17:
+	GoToIfSet 0x22B6, _cv_bar_18
 	SetFlag 0x22B6
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_16
+	GoToIfEq _cv_bar_18
 	HidePerson 202
-_cv_bar_16:
-	GoToIfSet 0x22B7, _cv_bar_17
+_cv_bar_18:
+	GoToIfSet 0x22B7, _cv_bar_19
 	SetFlag 0x22B7
 	CompareVarToValue 0x5044, 1
-	GoToIfEq _cv_bar_17
+	GoToIfEq _cv_bar_19
 	HidePerson 203
-_cv_bar_17:
+_cv_bar_19:
 	// (the GBA redraws a square here: 6, 18, METATILE_SilphCo_Floor, 0)
 	Return
 	
@@ -539,7 +549,17 @@ GymHack_EventScript_GiftsDone:
 	Return
 	
 GymHack_EventScript_GiveStatItem:
-	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8009
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_20
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_21
+_cv_full_20:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_21:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymHack_EventScript_GiveStatItemDone
 	BufferItemName 1, 0x8009

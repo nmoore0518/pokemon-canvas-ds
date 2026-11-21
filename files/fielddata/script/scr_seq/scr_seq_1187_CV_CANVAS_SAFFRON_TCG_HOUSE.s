@@ -96,7 +96,17 @@ _cv_menu_7:
 	WaitButton
 	CopyVar 0x8005, 0x8004
 	AddVar 0x8005, 0
-	GiveItem 0x8005, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8005
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_8
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_9
+_cv_full_8:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_9:
 	NPCMsg msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_AboutEnergy
 	WaitButton
 	CloseMsg

@@ -5140,6 +5140,13 @@ _start:
 	.short \d
 	.endm
 
+	// CanvasMsg msg: NPCMsg with a 16-bit message id (for a bank of more than 256 messages)
+	.macro CanvasMsg msg
+	.short 208
+	.byte 113
+	.short \msg
+	.endm
+
 	// CanvasBufferMsg slot, msg: puts one of this script's messages into a string slot ({STRVAR_1 3, slot, 0})
 	.macro CanvasBufferMsg slot, msg
 	.short 208

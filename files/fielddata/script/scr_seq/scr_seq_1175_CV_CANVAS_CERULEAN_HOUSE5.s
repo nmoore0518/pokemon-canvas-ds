@@ -214,7 +214,17 @@ _cv_yn_4:
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House5_EventScript_NotEnoughBerryPowder
-	GiveItem 0x8008, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8008
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeruleanCity_House5_EventScript_BagIsFull
 	CopyVar 0x8004, 0x8009
@@ -225,12 +235,12 @@ _cv_yn_4:
 	NPCMsg msg_0959_CV_CANVAS_CERULEAN_HOUSE5_CeruleanCity_House1_Text_TradeMoreBerryPowder
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_5
+	GoToIfEq _cv_yes_7
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_6
-_cv_yes_5:
+	GoTo _cv_yn_8
+_cv_yes_7:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_6:
+_cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq CeruleanCity_House5_EventScript_ChooseExchangeItem
 	NPCMsg msg_0959_CV_CANVAS_CERULEAN_HOUSE5_CeruleanCity_House1_Text_HopeToSeeYouAgain

@@ -416,7 +416,17 @@ MoveExtractor_EventScript_ThirdVisit:
 	Return
 	
 GymHack_EventScript_GiveStatItem:
-	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8009
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymHack_EventScript_GiveStatItemDone
 	BufferItemName 1, 0x8009

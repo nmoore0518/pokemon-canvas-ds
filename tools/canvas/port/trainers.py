@@ -250,6 +250,9 @@ def trainer_texts(g, tid, ts):
     return {k: v for k, v in t.items() if v in g.texts}
 
 
+OAK_FINALE = 'TRAINER_CANVAS_OAK_FINALE'
+
+
 def main():
     ids = json.load(open(IDS)) if os.path.exists(IDS) else {}
     known_species = set(re.findall(r'#define\s+(SPECIES_\w+)', open(ENGINE_SPECIES).read()))
@@ -271,6 +274,16 @@ def main():
             tid = (CH.GUEST_DOUBLES if double else CH.GUEST_TRAINERS) % k
             teams.append(dict(gym, id=tid, mons=gym['mons'] * 2, **{'Double Battle': 'Yes'}) if double else dict(gym, id=tid))
             synth[tid] = line
+    # (the challengers at the player's gym: a trainer for each of their defeat lines, as the guests')
+    import gymchallenge as GC
+    for double in (False, True):
+        for k, line in enumerate(CH.strings('sTrainerDefeats')):
+            tid = (GC.GYM_DOUBLES if double else GC.GYM_TRAINERS) % k
+            teams.append(dict(gym, id=tid, mons=gym['mons'] * 2, **{'Double Battle': 'Yes'}) if double else dict(gym, id=tid))
+            synth[tid] = line
+    # (Oak in the finale: his set team, built by the engine at the time - canvas_candidate.c Canvas_OakFinale)
+    teams.append(dict(gym, id=OAK_FINALE, Class='Pkmn Prof', mons=gym['mons'] * 2, **{'Double Battle': 'Yes'}))
+    synth[OAK_FINALE] = 'Ho… ho ho…\nSplendid. Truly splendid.'
     for t in teams:
         if t['id'] not in ids: ids[t['id']] = FIRST + len(ids)
     by_num = sorted(teams, key=lambda t: ids[t['id']])

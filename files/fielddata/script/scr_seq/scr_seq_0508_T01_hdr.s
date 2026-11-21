@@ -9,7 +9,7 @@
 	InitScriptEntryEnd
 
 _cv_T01_frame:
-	// (not yet: GymFinale_EventScript_Ceremony)
+	InitScriptGoToIfEqual 0x5004, 4, _EV_GymFinale_EventScript_Ceremony + 1
 	InitScriptGoToIfEqual 0x5004, 1, _EV_GymFinale_EventScript_OakAtTheDoor + 1
 	InitScriptGoToIfEqual 0x5007, 2, _EV_PalletTown_EventScript_OakRatingScene + 1
 	InitScriptGoToIfEqual 0x5008, 1, _EV_DadStory_EventScript_Sendoff + 1

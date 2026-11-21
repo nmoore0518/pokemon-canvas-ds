@@ -185,12 +185,89 @@ SPECIALS = {
     # (the mentor's gifts after the Cerulean and Cinnabar badges are the Type Guard and Type Edge items, which
     # HeartGold doesn't have yet: none for now)
     'GymCandidate_PrepareMentorGift': lambda p, r: ['SetVar %s, %d' % (r or 'VAR_SPECIAL_RESULT', MENTOR_GIFT_NONE)],
-    'GymCandidate_BufferMentorGift': lambda p, r: [], 'GymCandidate_GiveMentorDecor': lambda p, r: [],
+    'GymCandidate_BufferMentorGift': lambda p, r: [],
     '_cv_GuestIntro': say_line('intro'),
     '_cv_GuestAfter': say_line('after'),
     '_cv_GuestWin': say_line('win'),
     '_cv_GuestBattle': battle,
 }
+
+
+# ---------------------------------------------------------------- the mentor (Oak's lab, then the gyms' gifts)
+MENTOR_FIELDS = ('guardGift', 'edgeGift', 'story', 'question', 'yes', 'no', 'farewell')
+
+
+def mentor_people():
+    """sMentorPeople: who (0-11) -> {gfx, guardGift, edgeGift, story, question, yes, no, farewell}"""
+    src = open(G.P('src/gym_candidate.c')).read()
+    body = src[src.index('} sMentorPeople['):]
+    body = body[:body.index('\n};')]
+    out = []
+    for chunk in re.split(r'\n    \{OBJ_EVENT_GFX_', body)[1:]:
+        gfx = re.match(r'(\w+),', chunk).group(1)
+        texts = re.findall(r'COMPOUND_STRING\("((?:[^"\\]|\\.)*)"\)', chunk)
+        out.append(dict(gfx=gfx, **dict(zip(MENTOR_FIELDS, texts))))
+    assert len(out) == 12, len(out)
+    return out
+
+
+def _by_mentor(port, lines_for):
+    """a chain on the player's type: lines_for(who, type) for the type's mentor"""
+    import specials as SP
+    return SP.chain(port, port.var('VAR_PLAYER_TYPE'), [(SP._type(port, t), lines_for(w, t)) for t, (w, *_) in SP.MENTOR_TEXTS.items()])
+
+
+def mentor_line_of(field):
+    """gStringVar4 = the player's mentor's `field` line (their story, question, farewell...)"""
+    def special(port, ret):
+        import specials as SP
+        P = mentor_people()
+        return _by_mentor(port, lambda w, t: ['SetVar %s, %d' % (SP.SCRATCH4, port.str4('cv_mentor_%s_%d' % (field, w), P[w][field]))])
+    return special
+
+
+def mentor_answer(port, ret):
+    """gStringVar4 = the mentor's reply to the player's yes (VAR_RESULT 1) or no"""
+    import specials as SP
+    P = mentor_people()
+    yes, done = port.new('answer'), port.new('answer')
+    return (['CompareVarToValue VAR_SPECIAL_RESULT, 1', 'GoToIfEq %s' % yes]
+            + _by_mentor(port, lambda w, t: ['SetVar %s, %d' % (SP.SCRATCH4, port.str4('cv_mentor_no_%d' % w, P[w]['no']))])
+            + ['GoTo %s' % done, yes + ':']
+            + _by_mentor(port, lambda w, t: ['SetVar %s, %d' % (SP.SCRATCH4, port.str4('cv_mentor_yes_%d' % w, P[w]['yes']))])
+            + [done + ':'])
+
+
+def mentor_intro_prepare(port, ret):
+    """the meeting in Oak's lab, once: VAR_RESULT = it happens now; the mentor's look (VAR_OBJ_GFX_ID_0), STR_VAR_1
+    their name (the GBA's VAR_MENTOR_STAGE bits are flags of ours)"""
+    import specials as SP
+    P = mentor_people()
+    met, done = port.flag('CV_MENTOR_MET'), port.new('mentor')
+    out = ['SetVar VAR_SPECIAL_RESULT, 0', 'GoToIfSet %s, %s' % (met, done), 'SetFlag %s' % met]
+    out += _by_mentor(port, lambda w, t: ['SetVar %s, %s' % (port.var('VAR_OBJ_GFX_ID_0'), port.val('OBJ_EVENT_GFX_' + P[w]['gfx']))])
+    out += SP.candidate_mentor_name(port, None)      # (STR_VAR_1, and VAR_RESULT = 1)
+    return out + [done + ':']
+
+
+SPECIALS.update({
+    'GymCandidate_PrepareMentorIntro': mentor_intro_prepare,
+    'GymCandidate_BufferMentorStory': mentor_line_of('story'),
+    'GymCandidate_BufferMentorQuestion': mentor_line_of('question'),
+    'GymCandidate_BufferMentorFarewell': mentor_line_of('farewell'),
+    'GymCandidate_BufferMentorAnswer': mentor_answer,
+    'GymCandidate_BufferMentorIntro': lambda p, r: _mentor_intro(p, r),
+    # (the housewarming decoration waits on the gym's decorations: none for now)
+    'GymCandidate_GiveMentorDecor': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],
+})
+
+
+def _mentor_intro(port, ret):
+    """gStringVar4 = the mentor's introduction (sMentors' intro: by the player's type)"""
+    import specials as SP
+    return SP.chain(port, port.var('VAR_PLAYER_TYPE'), [
+        (SP._type(port, t), ['SetVar %s, %d' % (SP.SCRATCH4, port.str4('cv_mentor_intro_%s' % t.lower(), intro))])
+        for t, (w, intro, first, approve) in SP.MENTOR_TEXTS.items()])
 
 
 def rewrite(g):

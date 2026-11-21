@@ -178,7 +178,17 @@ ViridianCity_PennysHouse_EventScript_Teach:
 	GoToIfEq ViridianCity_PennysHouse_EventScript_TeachFairy
 	NPCMsg msg_0860_CV_CANVAS_VIRIDIAN_PENNYS_HOUSE_ViridianCity_PennysHouse_Text_ForThisType
 	WaitButton
-	GiveItem 0x8005, 1, VAR_SPECIAL_RESULT
+	SetOrCopyVar 0x8004, 0x8005
+	SetOrCopyVar 0x8005, 1
+	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfEq _cv_full_5
+	CallStd std_give_item_verbose
+	SetVar VAR_SPECIAL_RESULT, 1
+	GoTo _cv_given_6
+_cv_full_5:
+	SetVar VAR_SPECIAL_RESULT, 0
+_cv_given_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq ViridianCity_PennysHouse_EventScript_BagFull
 	// TODO(gba) special Penny_MarkGiven

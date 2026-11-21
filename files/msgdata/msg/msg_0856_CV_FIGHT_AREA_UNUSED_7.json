@@ -12,8 +12,7 @@
         "You have several challengers today.\r",
         "Wins in a row: {STRVAR_1 3, 0, 0}.\n",
         "Best streak: {STRVAR_1 3, 1, 0}.\r",
-        "All-time record: {STRVAR_1 3, 2, 0}\n",
-        "(wins-losses)."
+        "All-time record: {STRVAR_1 3, 2, 0}-{STRVAR_1 3, 3, 0} (wins-losses)."
       ]
     },
     {
@@ -411,8 +410,8 @@
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_AideGoal",
       "en_US": [
         "Your goal: {STRVAR_1 3, 0, 0} wins in a row!\n",
-        "Prof. Oak says he has something\f",
-        "in mind for when you get there."
+        "Do that, and you’ll have mastered\f",
+        "your type!"
       ]
     },
     {
@@ -450,8 +449,166 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText",
-      "en_US": "(missing text)"
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_0",
+      "en_US": [
+        "Brock: I heard Pallet Town has a\n",
+        "new Gym Leader.\r",
+        "Time for a rock-solid challenge!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_1",
+      "en_US": [
+        "Misty: Don’t think being a Gym\n",
+        "Leader makes you special!\r",
+        "I’m one too, you know!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_2",
+      "en_US": [
+        "Lt. Surge: Hey, kid!\n",
+        "Ready for a shocking rematch?!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_3",
+      "en_US": [
+        "Erika: What a lovely Gym.\n",
+        "Shall we have a gentle battle?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_4",
+      "en_US": [
+        "Koga: Fwahahaha! A ninja tests his\n",
+        "students when they least expect it!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_5",
+      "en_US": [
+        "Sabrina: I foresaw this battle.\r",
+        "I also foresaw how it ends."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_6",
+      "en_US": [
+        "Blaine: Hah! Pop quiz!\n",
+        "Who’s about to get burned?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_8",
+      "en_US": [
+        "Lorelei: I took a day off from the\n",
+        "League just to freeze you solid!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_9",
+      "en_US": [
+        "Bruno: I trained in the mountains\n",
+        "for this battle. Hoo hah!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_10",
+      "en_US": [
+        "Agatha: So you’re Oak’s pet project.\n",
+        "Let’s see what you’ve got!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_intro_11",
+      "en_US": [
+        "Lance: The League sent me to check\n",
+        "on its newest Gym.\r",
+        "Show me your power!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_boss_intro",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 6, 0}! {STRVAR_1 3, 2, 0} wins\n",
+        "in a row? I had to see it myself!\r",
+        "As your mentor, I’ll test you with\n",
+        "my real team.\r",
+        "Show me you’ve mastered\n",
+        "{STRVAR_1 3, 1, 0}-type Pokémon!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_0",
+      "en_US": [
+        "I came all the way to Pallet Town\n",
+        "for this! Let’s battle, Leader!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_1",
+      "en_US": [
+        "They say the new Gym Leader is\n",
+        "tough. Let’s see about that!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_2",
+      "en_US": [
+        "I’ve beaten the Elite Four twice.\n",
+        "You’re next, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_3",
+      "en_US": [
+        "Nice Gym!\r",
+        "But I’m not here to sightsee.\n",
+        "Let’s go!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_4",
+      "en_US": [
+        "I trained my team just for you.\n",
+        "Don’t hold back!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_5",
+      "en_US": [
+        "I heard you only use one type.\n",
+        "That’ll be your downfall!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_6",
+      "en_US": [
+        "I’ve been in line since sunrise.\n",
+        "Finally! Let’s battle!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_7",
+      "en_US": [
+        "My team is on a winning streak too.\n",
+        "Only one of us keeps it today!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_8",
+      "en_US": [
+        "Prof. Oak says you’re the best.\n",
+        "Prove it!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_intro_9",
+      "en_US": [
+        "I caught a legend for this battle.\n",
+        "Hope you’re ready!"
+      ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymPractice_Text_Offer",
@@ -582,8 +739,80 @@
         "Pallet Town Pokémon Gym\n",
         "Leader: {STRVAR_1 3, 6, 0}\r",
         "Best streak: {STRVAR_1 3, 1, 0} in a row.\n",
-        "Record: {STRVAR_1 3, 2, 0}."
+        "Record: {STRVAR_1 3, 2, 0}-{STRVAR_1 3, 3, 0}."
       ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_normal",
+      "en_US": "Vanilla Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_fighting",
+      "en_US": "Knockout Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_flying",
+      "en_US": "Rocket Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_poison",
+      "en_US": "Venom Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_ground",
+      "en_US": "Shovel Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_rock",
+      "en_US": "Obsidian Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_bug",
+      "en_US": "Infestation Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_ghost",
+      "en_US": "Death Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_steel",
+      "en_US": "Wrench Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_fire",
+      "en_US": "Lava Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_water",
+      "en_US": "Monsoon Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_grass",
+      "en_US": "Weed Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_electric",
+      "en_US": "Amp Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_psychic",
+      "en_US": "ESPN Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_ice",
+      "en_US": "Sub-Zero Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_dragon",
+      "en_US": "Egg Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_dark",
+      "en_US": "Evil Badge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_badge_fairy",
+      "en_US": "Elder Badge"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_StatueVictors",
@@ -591,6 +820,146 @@
         "Challengers who beat {STRVAR_1 3, 6, 0} and\n",
         "earned the {STRVAR_1 3, 0, 0}:"
       ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_statue_victor",
+      "en_US": "{STRVAR_1 3, 0, 0} {STRVAR_1 3, 1, 0}"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_statue_famous",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_0",
+      "en_US": "Cooltrainer"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_1",
+      "en_US": "Cooltrainer"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_2",
+      "en_US": "Cooltrainer"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_3",
+      "en_US": "Cooltrainer"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_4",
+      "en_US": "Black Belt"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_5",
+      "en_US": "Gentleman"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_6",
+      "en_US": "Hiker"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_7",
+      "en_US": "Rocker"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_8",
+      "en_US": "Biker"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_9",
+      "en_US": "Engineer"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_10",
+      "en_US": "Scientist"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_11",
+      "en_US": "Pokemaniac"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_12",
+      "en_US": "Camper"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_13",
+      "en_US": "Sailor"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_14",
+      "en_US": "Fisherman"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_15",
+      "en_US": "Youngster"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_16",
+      "en_US": "Beauty"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_17",
+      "en_US": "Lass"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_18",
+      "en_US": "Picnicker"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_19",
+      "en_US": "Crush Girl"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_20",
+      "en_US": "Swimmer F"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_class_21",
+      "en_US": "Swimmer M"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_0",
+      "en_US": "Brock"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_1",
+      "en_US": "Misty"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_2",
+      "en_US": "Lt. Surge"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_3",
+      "en_US": "Erika"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_4",
+      "en_US": "Koga"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_5",
+      "en_US": "Sabrina"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_6",
+      "en_US": "Blaine"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_8",
+      "en_US": "Lorelei"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_9",
+      "en_US": "Bruno"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_10",
+      "en_US": "Agatha"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_11",
+      "en_US": "Lance"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymDecor_Text_WhatToDo",
@@ -796,8 +1165,103 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeAfterText",
-      "en_US": "(missing text)"
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_0",
+      "en_US": [
+        "Brock: Hah! You’ve built something\n",
+        "great here, {STRVAR_1 3, 6, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_1",
+      "en_US": [
+        "Misty: Fine, you’re good.\n",
+        "Happy now?"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_2",
+      "en_US": [
+        "Lt. Surge: You run a tight Gym,\n",
+        "soldier!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_3",
+      "en_US": [
+        "Erika: Your Gym could use more\n",
+        "flowers, I think."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_4",
+      "en_US": [
+        "Koga: You learn quickly. My\n",
+        "daughter could learn from you."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_5",
+      "en_US": [
+        "Sabrina: The future isn’t set.\n",
+        "You proved that."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_6",
+      "en_US": "Blaine: Hah! Correct answer!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_8",
+      "en_US": [
+        "Lorelei: You’re a credit to the\n",
+        "League, {STRVAR_1 3, 6, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_9",
+      "en_US": [
+        "Bruno: Your Pokémon are strong.\n",
+        "I respect that."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_10",
+      "en_US": [
+        "Agatha: Tell Oak I said hello.\n",
+        "Or don’t."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_after_11",
+      "en_US": "Lance: The League chose well."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_boss_after",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: You’ve truly mastered\n",
+        "{STRVAR_1 3, 1, 0}-type Pokémon, {STRVAR_1 3, 6, 0}.\r",
+        "I’m proud to have been\n",
+        "your mentor!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_after_0",
+      "en_US": "I’ll be back with a stronger team!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_after_1",
+      "en_US": "Good battle, Leader. Really."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_after_2",
+      "en_US": "Your Gym is going to be famous."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_after_3",
+      "en_US": [
+        "Next time, I’m bringing\n",
+        "a Water-type!"
+      ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_Won",
@@ -829,8 +1293,98 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeWinText",
-      "en_US": "(missing text)"
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_0",
+      "en_US": [
+        "Brock: Solid as a rock!\n",
+        "Keep training, {STRVAR_1 3, 6, 0}."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_1",
+      "en_US": "Misty: Ha! Who’s the boss now?"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_2",
+      "en_US": [
+        "Lt. Surge: Ahahaha! Lightning never\n",
+        "strikes twice? Wrong!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_3",
+      "en_US": [
+        "Erika: Oh my. I seem to have won.\n",
+        "Please don’t be sad."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_4",
+      "en_US": "Koga: You let your guard down!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_5",
+      "en_US": "Sabrina: Just as I foresaw."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_6",
+      "en_US": "Blaine: Hah! The answer was you!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_8",
+      "en_US": [
+        "Lorelei: Ice beats everything,\n",
+        "if you do it right."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_9",
+      "en_US": "Bruno: Hoo hah! Strength wins!"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_10",
+      "en_US": [
+        "Agatha: Kekeke!\n",
+        "Back to school with you!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_famous_win_11",
+      "en_US": [
+        "Lance: A Gym Leader must be\n",
+        "stronger than that."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_boss_win",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Not yet, {STRVAR_1 3, 6, 0}!\n",
+        "Come back stronger!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_win_0",
+      "en_US": [
+        "Ha! I did it!\n",
+        "I beat a Gym Leader!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_win_1",
+      "en_US": [
+        "Wait until everyone hears about\n",
+        "this!"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_win_2",
+      "en_US": [
+        "Good battle, {STRVAR_1 3, 6, 0}!\n",
+        "Your type has a weak spot after all."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_gym_win_3",
+      "en_US": "My name’s going on that statue!"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_AwardBadge",
@@ -907,6 +1461,14 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_NotYet",
       "en_US": "???: …Don’t take too long."
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText",
+      "en_US": "(missing text)"
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeWinText",
+      "en_US": "(missing text)"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillLost",
@@ -1001,31 +1563,6 @@
       "en_US": "Everything’s back in storage."
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth",
-      "en_US": [
-        "Oak: W-What on earth!?\n",
-        "That’s {STRVAR_1 3, 0, 0}!\r",
-        "They say no {STRVAR_1 3, 1, 0}-type\n",
-        "Pokémon is more powerful!\r",
-        "It must have sensed a new\n",
-        "{STRVAR_1 3, 1, 0} Gym in Kanto…"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt",
-      "en_US": [
-        "Oak: Most Gym Leaders don’t use\n",
-        "legendary Pokémon, you know.\r",
-        "But there’s no rule against it!\r",
-        "And challengers are getting\n",
-        "stronger these days, {STRVAR_1 3, 6, 0}…\r",
-        "If you can catch it, it might be\n",
-        "just what your Gym needs!\r",
-        "It’s waiting for you on the\n",
-        "stage. Good luck!"
-      ]
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakRulesStillApply",
       "en_US": [
         "Oak: Hold on!\r",
@@ -1082,33 +1619,6 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakWillCome",
-      "en_US": [
-        "Prof. Oak will be thrilled!\n",
-        "He’ll come by when your streak\f",
-        "is over."
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_WhatNext",
-      "en_US": [
-        "Your Pokémon are rested.\n",
-        "What would you like to do?"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_KeepGoing",
-      "en_US": "Keep Going"
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CallItADay",
-      "en_US": "Call it A Day"
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_TakeABreak",
-      "en_US": "Take A Break"
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_OptWithdraw",
       "en_US": "Withdraw a Pokémon"
     },
@@ -1136,6 +1646,10 @@
         "Bill: …I’ll be here.\n",
         "I’m always here."
       ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeAfterText",
+      "en_US": "(missing text)"
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillLast",
@@ -1288,15 +1802,6 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother",
-      "en_US": [
-        "Oak: Another legendary Pokémon,\n",
-        "drawn to your new Gym!\r",
-        "It’s waiting for you on the\n",
-        "stage. Good luck, {STRVAR_1 3, 6, 0}!"
-      ]
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Text_GymHack_WrongType",
       "en_US": [
         "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
@@ -1323,35 +1828,6 @@
         "More than one is holding\n",
         "{STRVAR_1 3, 0, 0}!\r",
         "Take one off and come back."
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_CalledItADay",
-      "en_US": [
-        "What a run! {STRVAR_1 3, 0, 0} wins in a row,\n",
-        "and nobody could beat you!\r",
-        "I’ll send the rest home."
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakMastered",
-      "en_US": [
-        "Oak: {STRVAR_1 3, 6, 0}! I heard all about\n",
-        "it from your mentor!\r",
-        "You’ve truly mastered {STRVAR_1 3, 2, 0}-type\n",
-        "Pokémon. At this rate, nobody will\f",
-        "ever earn your badge again!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTryAnother",
-      "en_US": [
-        "So how about a new challenge?\n",
-        "Your Gym could take a new type!\r",
-        "You won’t lose {STRVAR_1 3, 2, 0}, either.\n",
-        "Any type your Gym has had, you can\f",
-        "switch back to at my Lab, free.\r",
-        "Would you like to try another type?"
       ]
     },
     {
@@ -1485,50 +1961,6 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakTeraTip",
-      "en_US": [
-        "Oh, and your Tera Orb! {STRVAR_1 3, 2, 0} is\n",
-        "yours for good now. Even when your\f",
-        "Gym changes type, your Pokémon can\f",
-        "Terastallize into it.\r",
-        "Not in League battles, mind you. In\n",
-        "a Gym, against the Elite Four or your\f",
-        "rival, the rules say a Leader’s\f",
-        "Pokémon Terastallize into the Gym’s\f",
-        "type, whatever their Tera Type is.\r",
-        "Everywhere else, each Pokémon uses\n",
-        "its own Tera Type, as long as it’s a\f",
-        "type you’ve mastered.\r",
-        "Archer in Viridian can change your\n",
-        "Pokémon’s Tera Types. Go and see him!\r",
-        "You can check a Pokémon’s Tera Type\n",
-        "on its Skills page."
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakKeepItUp",
-      "en_US": [
-        "Splendid work, {STRVAR_1 3, 6, 0}!\n",
-        "Keep it up!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakOfferStands",
-      "en_US": [
-        "Oak: I see! Well, you’ve earned it,\n",
-        "so the offer stands.\r",
-        "If you change your mind, come see\n",
-        "me at my Lab!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_WhichTypeStars",
-      "en_US": [
-        "Which type will your Gym be?\n",
-        "(: it’s had it before. Free!)"
-      ]
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimWrongTeam",
       "en_US": [
         "Simulation: That isn’t the team\n",
@@ -1583,25 +2015,6 @@
       "en_US": [
         "Sent {STRVAR_1 3, 0, 0}{STRVAR_1 3, 2, 0}\n",
         "to the Gym’s storage!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OakAllMastered",
-      "en_US": [
-        "And that’s every type there is!\n",
-        "{STRVAR_1 3, 6, 0}, you’ve mastered them All!\r",
-        "I never thought I’d see the day…"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_WhichType",
-      "en_US": "Which type will your Gym be?"
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmOld",
-      "en_US": [
-        "Switch your Gym back to\n",
-        "{STRVAR_1 3, 0, 0} type?"
       ]
     },
     {
@@ -1666,28 +2079,6 @@
       ]
     },
     {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_ConfirmNew",
-      "en_US": [
-        "A {STRVAR_1 3, 0, 0}-type Gym!\n",
-        "Is that your choice?"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_NowType",
-      "en_US": [
-        "{STRVAR_1 3, 6, 0}’s Gym is now a\n",
-        "{STRVAR_1 3, 0, 0}-type Gym!\r",
-        "It awards the {STRVAR_1 3, 1, 0}!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_BackToType",
-      "en_US": [
-        "Oak: Back to {STRVAR_1 3, 0, 0} type!\n",
-        "Challengers, beware!"
-      ]
-    },
-    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_PrizeSim",
       "en_US": [
         "The simulator printed out a prize\n",
@@ -1739,37 +2130,6 @@
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_SimBreak",
       "en_US": "Simulation paused."
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Outfits_Text_ReceivedAllGymUniforms",
-      "en_US": [
-        "{STRVAR_1 3, 6, 0} received a Gym Uniform\n",
-        "for every type!"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Outfits_Text_AllInWardrobe",
-      "en_US": "They’re in the wardrobe at home."
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_OldLegendLeaves",
-      "en_US": [
-        "Oak: Hm? {STRVAR_1 3, 2, 0} left your Gym…\r",
-        "I bet it’s gone somewhere only\n",
-        "the toughest Trainers go…"
-      ]
-    },
-    {
-      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymSwitch_Text_NewTypeTips",
-      "en_US": [
-        "Oak: Challengers will expect\n",
-        "{STRVAR_1 3, 0, 0}-type Pokémon now, so\f",
-        "you’ll need a new team!\r",
-        "And remember: you can switch back\n",
-        "to any type your Gym has had.\r",
-        "It’s free! Just come see me at\n",
-        "my Lab."
-      ]
     },
     {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_Tourney_Text_RarePrizeSim",
