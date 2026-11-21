@@ -68,8 +68,8 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # their scorched pieces now and then, its wooden floor, its fallen rubble for the GBA's rubble and anything
     # else closed in a room, its wooden stairs (the Sprout Tower's, which its area stands)
     # (our area 123: the Burned Tower's textures with a house's room models - the Burned Tower's own area places field
-    # models, and the Mansion's plants, tables and statue came out as buildings - and the room set's stairs)
-    'mansion': dict(area=123, texset=78, stairs=(7, 8, 9, 10), kit=dict(
+    # models, and the Mansion's plants, tables and statue came out as buildings - and the room set's wooden ladders)
+    'mansion': dict(area=123, texset=78, stairs=(145, 145, 144, 144), kit=dict(
         src=449, base=0, floor=(13, 23), floor_tex={'d18_yuka01'}, top=(10, 2),
         faces={'plain': (7, 5), 'lit': (8, 5)}, lit_every=5, face_drop={'d182f_wall01', 'd182f_wall02', 'd18_yuka02'},
         # (its rubble: the Burned Tower's own charred timbers, a heap to two squares each way; its pillars - the
@@ -294,7 +294,8 @@ SHIP_PORTHOLES = {0x282, 0x33A, 0x33B}    # GBA wall metatiles with a porthole
 # each one's box about where it is placed (x0, x1, z0, z1 in units), and how far down the square's row it stands
 STAIR_BOX = {7: (-17, 16, -12, 18, 0.75), 8: (-16, 17, -12, 18, 0.75), 9: (-13, 15, -12, 18, 0.75), 10: (-15, 13, -12, 18, 0.75),
              168: (-16, 16, -16, 16, 1), 169: (-16, 16, -16, 16, 1), 170: (-16, 16, -16, 16, 1), 171: (-16, 16, -16, 16, 1),
-             66: (-16, 16, -24, 8, 1.5), 67: (-8, 8, -24, 8, 1.5)}     # (the Sprout Tower's wooden stairs, as Lavender's houses stand them)
+             66: (-16, 16, -24, 8, 1.5), 67: (-8, 8, -24, 8, 1.5),
+             145: (-8, 8, -24, 8, 1.5), 144: (-8, 8, -24, 8, 1.5)}    # (the room set's wooden ladders, tall and short)     # (the Sprout Tower's wooden stairs, as Lavender's houses stand them)
 USED_MODELS = {}          # area -> the room models its maps place (ship_models lists them in the area's building set)
 OWN_AREAS = {120: (77, 77), 121: (75, 16), 122: (50, 50), 123: (78, 43)}   # (120, the Pokemon Tower: the Sprout Tower's own - its stairs are its room models, textured by its set)   # an area of ours: (the area whose textures it has, the area whose room-model set it starts from)
 

@@ -697,13 +697,15 @@ darker than white (`DEFAULT_COLOUR`). Without them every piece was lit evenly fr
   Pokemon Tower, where the GBA sets one on every square, and dropped (Nick liked the Tower's own). The kit can still
   make it over in few polygons (`block_piece`, `HG_GRAVE`, `spread`).
 - **The Pokemon Tower** (`tower_kit.py`) keeps its arched standing stones and the Sprout Tower's purple panelled wall,
-  with (Nick) more depth and sharper walls: the stones thicker, shaded as HeartGold shades (face lit, edges and plinth
-  darker; lights off); the wall's panel a texel to a unit - two squares across, the wall 32 high, the GBA's two
+  with (Nick) more depth and sharper walls: the stones half a square thick and leaning back so their top shows,
+  shaded as HeartGold shades (the arch lit, the body a little darker, the top edge darker still, the sides and
+  plinth in shadow; lights off); the wall's panel a texel to a unit - two squares across, the wall 32 high, the GBA's two
   squares - where the Sprout Tower stretches it over 64 and three squares (that was the blur), darker at its foot.
   Each stone's face is two quads, not a fan of four triangles, so the 7F's 104 graves fit a land.
 - **Furniture models and an area's kind**: an area whose byte 6 is 1 (the Burned Tower's, 78) places field models
   (a/0/4/0), not room models (a/1/4/8): the Mansion's plants, tables and statue came out as buildings. The Mansion
-  has its own area (123: the Burned Tower's textures, a house's room models, the room set's stairs).
+  has its own area (123: the Burned Tower's textures, a house's room models, the room set's wooden ladders, 145 up
+  and 144 down, for the Sprout Tower's).
 - **The Power Plant**: HeartGold's panelled machine wall everywhere the GBA has wall (tall, a wall across the floor
   cut down to 32 with the wall's dark on top; a short wall's end the same panel), its coils HeartGold's drums, its
   rubble Mt. Moon's boulder card as before.
