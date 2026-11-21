@@ -89,7 +89,8 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
         things=[dict(mt={0x324}, model=23),
                 dict(mt={0x2CB, 0x2CC}, src=449, piece=(7, 5, 2, 2), keep={'en_yake_3'}, center=True)],
         furnish=True, tall_walls=True, partition=28,
-        block=(7, 5, 1, 1), block_src=449, block_base=0)),
+        block=(7, 5, 1, 1), block_src=449, block_base=0,
+        block_keep={'d181f_wall01', 'd181f_wall03', 'd181f_wall04'})),    # (not the basement's walls below it)
     # the Power Plant in HeartGold's own (Route 10's, area 44, land 367): its stone-tiled floor, its wall of machine
     # cabinets, its dark top; the GBA's rubble as HeartGold's cave boulder (Mt. Moon's set, imported) stood up as its
     # rocks stand, its coils as blocks of the generator's yellow
