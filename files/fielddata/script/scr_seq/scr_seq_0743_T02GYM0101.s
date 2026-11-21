@@ -22,6 +22,9 @@ ViridianCity_Gym_EventScript_Giovanni:
 	NPCMsg msg_0454_T02GYM0101_ViridianCity_Gym_Text_GiovanniIntro
 	WaitButton
 	CloseMsg
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	TrainerBattle 1086, 1086, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -37,13 +40,14 @@ _cv_beaten_1:
 	Call GymCandidate_EventScript_ViridianCityTalk
 	NPCMsg msg_0454_T02GYM0101_ViridianCity_Gym_Text_GiovanniPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 8
 	SetFlag 0x214F
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -102,6 +106,15 @@ DadStory_EventScript_GiovanniRematch:
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_GiovanniRematch
 	WaitButton
 	GoTo DadStory_EventScript_GiovanniLastBattle
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
 	
 ViridianCity_Gym_EventScript_DefeatedGiovanni:
 	SetFlag 0x20CA
@@ -222,7 +235,7 @@ DadStory_EventScript_ViridianGymTransition:
 	Return
 	
 DadStory_EventScript_GiovanniLastBattle:
-	CloseMsg
+	CanvasCloseMsg
 	SetFlag 0x2036
 	ClearTrainerFlag 1467
 	SetVar VAR_SPECIAL_LAST_TALKED, 8
@@ -254,6 +267,21 @@ _cv_outcome_8:
 	CloseMsg
 	ReleaseAll
 	End
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0454_T02GYM0101_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0454_T02GYM0101_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0454_T02GYM0101_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
 	
 Common_EventScript_SetGymTrainers_Frlg:
 	CompareVarToValue 0x8008, 1
@@ -316,24 +344,102 @@ GymHack_EventScript_GiveStatItem:
 	
 GymCandidate_EventScript_TalkAgain:
 	Call GymCandidate_EventScript_MentorGift
-	// TODO(gba) special GymCandidate_IsApproved
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_appr_9
+	GoToIfUnset 0x2093, _cv_appr_9
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_9:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_appr_10
+	GoToIfUnset 0x2094, _cv_appr_10
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_10:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_appr_11
+	GoToIfUnset 0x2095, _cv_appr_11
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_11:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_appr_12
+	GoToIfUnset 0x2096, _cv_appr_12
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_12:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_appr_13
+	GoToIfUnset 0x2097, _cv_appr_13
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_13:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_appr_14
+	GoToIfUnset 0x2098, _cv_appr_14
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_14:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_appr_15
+	GoToIfUnset 0x2099, _cv_appr_15
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_15:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_appr_16
+	GoToIfUnset 0x2007, _cv_appr_16
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_appr_16:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_Offer
 	CompareVarToValue 0x8009, 7
 	GoToIfEq GymCandidate_EventScript_Return
 	GoToIfSet 0x2008, GymCandidate_EventScript_OwnGym
-	// TODO(gba) special GymCandidate_BufferRepeatOffer
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_18
+	SetVar 0x401F, 1
+	GoTo _cv_done_17
+_cv_next_18:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_19
+	SetVar 0x401F, 2
+	GoTo _cv_done_17
+_cv_next_19:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_20
+	SetVar 0x401F, 3
+	GoTo _cv_done_17
+_cv_next_20:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_21
+	SetVar 0x401F, 4
+	GoTo _cv_done_17
+_cv_next_21:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_22
+	SetVar 0x401F, 5
+	GoTo _cv_done_17
+_cv_next_22:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_23
+	SetVar 0x401F, 6
+	GoTo _cv_done_17
+_cv_next_23:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_24
+	SetVar 0x401F, 7
+	GoTo _cv_done_17
+_cv_next_24:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_25
+	SetVar 0x401F, 8
+	GoTo _cv_done_17
+_cv_next_25:
+_cv_done_17:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_9
+	GoToIfEq _cv_yes_26
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_10
-_cv_yes_9:
+	GoTo _cv_yn_27
+_cv_yes_26:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_10:
+_cv_yn_27:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_NotYet
 	SetVar 0x8007, 1
@@ -354,12 +460,12 @@ GymTera_EventScript_ArcherTune:
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_ArcherTuneOffer
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_11
+	GoToIfEq _cv_yes_28
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_12
-_cv_yes_11:
+	GoTo _cv_yn_29
+_cv_yes_28:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_12:
+_cv_yn_29:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymTera_EventScript_Later
 	CloseMsg
@@ -385,13 +491,13 @@ _cv_yn_12:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_14
+	GoToIfLt _cv_menu_31
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_14:
+_cv_menu_31:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymTera_EventScript_Later
 	CopyVar 0x8005, VAR_SPECIAL_RESULT
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special GymTera_CheckPrice
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -401,12 +507,12 @@ _cv_menu_14:
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_ArcherTunePrice
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_15
+	GoToIfEq _cv_yes_32
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_16
-_cv_yes_15:
+	GoTo _cv_yn_33
+_cv_yes_32:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_16:
+_cv_yn_33:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymTera_EventScript_Later
 	// TODO(gba) special GymTera_SetType
@@ -438,7 +544,7 @@ DadStory_EventScript_GiovanniFinale:
 	GoTo _cv_stop
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_GiovanniHow
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GetPlayerCoords 0x8004, 0x8005
 	SubVar 0x8004, 1
 	CompareVarToValue 0x8004, 1
@@ -449,51 +555,50 @@ DadStory_EventScript_GiovanniFinale:
 	WaitMovement
 	Wait 30, VAR_SPECIAL_RESULT
 	ClearFlag 0x2153
-	GoToIfUnset 0x2153, _cv_show_17
+	GoToIfUnset 0x2153, _cv_show_34
 	ClearFlag 0x2153
 	ShowPerson 13
 	SetFlag 0x2153
-	GoTo _cv_shown_18
-_cv_show_17:
+	GoTo _cv_shown_35
+_cv_show_34:
 	ShowPerson 13
-_cv_shown_18:
+_cv_shown_35:
 	ApplyMovement 13, DadStory_Movement_MomUpToGiovanni
 	WaitMovement
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_MomLastTime
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	Wait 20, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	ClearFlag 0x2154
-	GoToIfUnset 0x2154, _cv_show_19
+	GoToIfUnset 0x2154, _cv_show_36
 	ClearFlag 0x2154
 	ShowPerson 14
 	SetFlag 0x2154
-	GoTo _cv_shown_20
-_cv_show_19:
+	GoTo _cv_shown_37
+_cv_show_36:
 	ShowPerson 14
-_cv_shown_20:
+_cv_shown_37:
 	PlayCry SPECIES_CHANSEY, 0
 	WaitCry
 	Wait 20, VAR_SPECIAL_RESULT
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_ChanseyGlows
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x8004, 2
 	SetVar 0x8005, 2
 	SetVar 0x8006, 16
 	SetVar 0x8007, 3
 	PlaySE SEQ_SE_DP_SELECT
-	// TODO(gba) special ShakeCamera
-	GoTo _cv_stop
+	ScreenShake 0x8005, 0x8004, 0x8007, 0x8006
 	ApplyMovement 14, DadStory_Movement_ChanseyAttacks
 	WaitMovement
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_ChanseyUnleashes
 	WaitButton
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_GiovanniOverwhelmed
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
@@ -506,7 +611,7 @@ _cv_shown_20:
 	Wait 60, VAR_SPECIAL_RESULT
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_GiovanniGone
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 30, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	HidePerson 14
@@ -537,13 +642,14 @@ _cv_shown_20:
 	BufferPlayersName 6
 	NPCMsg msg_0454_T02GYM0101_DadStory_Text_MomConfession
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetFlag 0x2153
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	Warp MAP_PALLET, 0, 1061, 360, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -622,131 +728,131 @@ DadStory_EventScript_GiovanniStory:
 GymCandidate_EventScript_AfterBadge:
 	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue 0x8009, 0
-	GoToIfNe _cv_mentor_21
+	GoToIfNe _cv_mentor_38
 	CompareVarToValue 0x5019, 5
-	GoToIfNe _cv_mentor_21
-	SetVar 0x401F, 1
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_21:
-	CompareVarToValue 0x8009, 0
-	GoToIfNe _cv_mentor_22
-	CompareVarToValue 0x5019, 0
-	GoToIfNe _cv_mentor_22
-	SetVar 0x401F, 2
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_22:
-	CompareVarToValue 0x8009, 1
-	GoToIfNe _cv_mentor_23
-	CompareVarToValue 0x5019, 11
-	GoToIfNe _cv_mentor_23
-	SetVar 0x401F, 3
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_23:
-	CompareVarToValue 0x8009, 2
-	GoToIfNe _cv_mentor_24
-	CompareVarToValue 0x5019, 13
-	GoToIfNe _cv_mentor_24
-	SetVar 0x401F, 4
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_24:
-	CompareVarToValue 0x8009, 2
-	GoToIfNe _cv_mentor_25
-	CompareVarToValue 0x5019, 8
-	GoToIfNe _cv_mentor_25
-	SetVar 0x401F, 5
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_25:
-	CompareVarToValue 0x8009, 3
-	GoToIfNe _cv_mentor_26
-	CompareVarToValue 0x5019, 12
-	GoToIfNe _cv_mentor_26
-	SetVar 0x401F, 6
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_26:
-	CompareVarToValue 0x8009, 4
-	GoToIfNe _cv_mentor_27
-	CompareVarToValue 0x5019, 3
-	GoToIfNe _cv_mentor_27
-	SetVar 0x401F, 7
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_27:
-	CompareVarToValue 0x8009, 4
-	GoToIfNe _cv_mentor_28
-	CompareVarToValue 0x5019, 6
-	GoToIfNe _cv_mentor_28
-	SetVar 0x401F, 8
-	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_28:
-	CompareVarToValue 0x8009, 5
-	GoToIfNe _cv_mentor_29
-	CompareVarToValue 0x5019, 14
-	GoToIfNe _cv_mentor_29
+	GoToIfNe _cv_mentor_38
 	SetVar 0x401F, 9
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_29:
-	CompareVarToValue 0x8009, 5
-	GoToIfNe _cv_mentor_30
-	CompareVarToValue 0x5019, 9
-	GoToIfNe _cv_mentor_30
+_cv_mentor_38:
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_mentor_39
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_mentor_39
 	SetVar 0x401F, 10
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_30:
-	CompareVarToValue 0x8009, 6
-	GoToIfNe _cv_mentor_31
-	CompareVarToValue 0x5019, 10
-	GoToIfNe _cv_mentor_31
+_cv_mentor_39:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_mentor_40
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_mentor_40
 	SetVar 0x401F, 11
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_31:
-	CompareVarToValue 0x8009, 9
-	GoToIfNe _cv_mentor_32
-	CompareVarToValue 0x5019, 4
-	GoToIfNe _cv_mentor_32
+_cv_mentor_40:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_41
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_mentor_41
 	SetVar 0x401F, 12
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_32:
-	CompareVarToValue 0x8009, 10
-	GoToIfNe _cv_mentor_33
-	CompareVarToValue 0x5019, 17
-	GoToIfNe _cv_mentor_33
+_cv_mentor_41:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_mentor_42
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_mentor_42
 	SetVar 0x401F, 13
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_33:
-	CompareVarToValue 0x8009, 8
-	GoToIfNe _cv_mentor_34
-	CompareVarToValue 0x5019, 15
-	GoToIfNe _cv_mentor_34
+_cv_mentor_42:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_mentor_43
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_mentor_43
 	SetVar 0x401F, 14
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_34:
-	CompareVarToValue 0x8009, 9
-	GoToIfNe _cv_mentor_35
-	CompareVarToValue 0x5019, 1
-	GoToIfNe _cv_mentor_35
+_cv_mentor_43:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_44
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_mentor_44
 	SetVar 0x401F, 15
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_35:
-	CompareVarToValue 0x8009, 10
-	GoToIfNe _cv_mentor_36
-	CompareVarToValue 0x5019, 7
-	GoToIfNe _cv_mentor_36
+_cv_mentor_44:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_mentor_45
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_mentor_45
 	SetVar 0x401F, 16
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_36:
-	CompareVarToValue 0x8009, 11
-	GoToIfNe _cv_mentor_37
-	CompareVarToValue 0x5019, 16
-	GoToIfNe _cv_mentor_37
+_cv_mentor_45:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_46
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_mentor_46
 	SetVar 0x401F, 17
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_37:
-	CompareVarToValue 0x8009, 11
-	GoToIfNe _cv_mentor_38
-	CompareVarToValue 0x5019, 2
-	GoToIfNe _cv_mentor_38
+_cv_mentor_46:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_mentor_47
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_mentor_47
 	SetVar 0x401F, 18
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_mentor_38:
+_cv_mentor_47:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_mentor_48
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_mentor_48
+	SetVar 0x401F, 19
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_48:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_49
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_mentor_49
+	SetVar 0x401F, 20
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_49:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_50
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_mentor_50
+	SetVar 0x401F, 21
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_50:
+	CompareVarToValue 0x8009, 8
+	GoToIfNe _cv_mentor_51
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_mentor_51
+	SetVar 0x401F, 22
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_51:
+	CompareVarToValue 0x8009, 9
+	GoToIfNe _cv_mentor_52
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_mentor_52
+	SetVar 0x401F, 23
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_52:
+	CompareVarToValue 0x8009, 10
+	GoToIfNe _cv_mentor_53
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_mentor_53
+	SetVar 0x401F, 24
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_53:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_54
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_mentor_54
+	SetVar 0x401F, 25
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_54:
+	CompareVarToValue 0x8009, 11
+	GoToIfNe _cv_mentor_55
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_mentor_55
+	SetVar 0x401F, 26
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_mentor_55:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymCandidate_EventScript_ShowText4
 	Call GymCandidate_EventScript_MentorGift
@@ -757,8 +863,7 @@ GymHack_EventScript_GiveStatItemDone:
 	Return
 	
 GymCandidate_EventScript_MentorGift:
-	// TODO(gba) special GymCandidate_PrepareMentorGift
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_Return
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -767,24 +872,63 @@ GymCandidate_EventScript_MentorGift:
 	BufferPlayersName 6
 	NPCMsg msg_0454_T02GYM0101_GymCandidate_Text_SomeoneToSeeYou
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call GymCandidate_EventScript_VisitorWalksIn
 	Call GymCandidate_EventScript_MentorGiveItem
 	Call GymCandidate_EventScript_VisitorWalksOut
 	Return
 	
 GymCandidate_EventScript_Offer:
-	// TODO(gba) special GymCandidate_BufferOffer
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_57
+	SetVar 0x401F, 27
+	GoTo _cv_done_56
+_cv_next_57:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_58
+	SetVar 0x401F, 28
+	GoTo _cv_done_56
+_cv_next_58:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_59
+	SetVar 0x401F, 29
+	GoTo _cv_done_56
+_cv_next_59:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_60
+	SetVar 0x401F, 30
+	GoTo _cv_done_56
+_cv_next_60:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_61
+	SetVar 0x401F, 31
+	GoTo _cv_done_56
+_cv_next_61:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_62
+	SetVar 0x401F, 32
+	GoTo _cv_done_56
+_cv_next_62:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_63
+	SetVar 0x401F, 33
+	GoTo _cv_done_56
+_cv_next_63:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_64
+	SetVar 0x401F, 34
+	GoTo _cv_done_56
+_cv_next_64:
+_cv_done_56:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_39
+	GoToIfEq _cv_yes_65
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_40
-_cv_yes_39:
+	GoTo _cv_yn_66
+_cv_yes_65:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_40:
+_cv_yn_66:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_NotYet
 	SetVar 0x8007, 0
@@ -794,8 +938,47 @@ GymCandidate_EventScript_Return:
 	Return
 	
 GymCandidate_EventScript_OwnGym:
-	// TODO(gba) special GymCandidate_BufferOwnGym
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_68
+	SetVar 0x401F, 35
+	GoTo _cv_done_67
+_cv_next_68:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_69
+	SetVar 0x401F, 36
+	GoTo _cv_done_67
+_cv_next_69:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_70
+	SetVar 0x401F, 37
+	GoTo _cv_done_67
+_cv_next_70:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_71
+	SetVar 0x401F, 38
+	GoTo _cv_done_67
+_cv_next_71:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_72
+	SetVar 0x401F, 39
+	GoTo _cv_done_67
+_cv_next_72:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_73
+	SetVar 0x401F, 40
+	GoTo _cv_done_67
+_cv_next_73:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_74
+	SetVar 0x401F, 41
+	GoTo _cv_done_67
+_cv_next_74:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_75
+	SetVar 0x401F, 42
+	GoTo _cv_done_67
+_cv_next_75:
+_cv_done_67:
 	Call _cv_str4
 	WaitButton
 	CloseMsg
@@ -874,8 +1057,6 @@ GymCandidate_EventScript_ShowText4:
 	Return
 	
 GymCandidate_EventScript_MentorGiveItem:
-	// TODO(gba) special GymCandidate_BufferMentorGift
-	GoTo _cv_stop
 	Call _cv_str4
 	WaitButton
 	GiveItem 0x8004, 1, VAR_SPECIAL_RESULT
@@ -887,35 +1068,28 @@ GymCandidate_EventScript_MentorGiveItem:
 	GoTo GymCandidate_EventScript_MentorItemExplain
 	
 GymCandidate_EventScript_VisitorWalksIn:
-	// TODO(gba) special GymCandidate_PlanVisitorWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorAppears
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	ApplyMovement 0x800A, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	Return
 	
 GymCandidate_EventScript_VisitorWalksOut:
-	// TODO(gba) special GymCandidate_VisitorWalked
-	GoTo _cv_stop
+	CanvasCandidate 6
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_GuestLeaves
-	CloseMsg
-	ApplyMovement 0x800A, gMentorWalkOut
+	CanvasCloseMsg
+	CanvasCandidate 5, 0x800A, 1
 	WaitMovement
 	HidePerson 0x800A
 	SetFlag 0x2017
 	PlaySE SEQ_SE_DP_KAIDAN2
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	Return
 	
 GymCandidate_EventScript_TeamBreaksRules:
@@ -928,20 +1102,104 @@ GymCandidate_EventScript_TeamBreaksRules:
 	End
 	
 GymCandidate_EventScript_TakeLeadersPlace:
-	// TODO(gba) special GymCandidate_PlanHold
-	GoTo _cv_stop
+	CanvasCandidate 7
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_Return
-	// TODO(gba) special GymCandidate_BufferHoldText
-	GoTo _cv_stop
+	CompareVarToValue 0x8007, 0
+	GoToIfEq _cv_hold_76
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_78
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_0
+	GoTo _cv_done_77
+_cv_next_78:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_79
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_1
+	GoTo _cv_done_77
+_cv_next_79:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_80
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_2
+	GoTo _cv_done_77
+_cv_next_80:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_81
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_3
+	GoTo _cv_done_77
+_cv_next_81:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_82
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_4
+	GoTo _cv_done_77
+_cv_next_82:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_83
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_5
+	GoTo _cv_done_77
+_cv_next_83:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_84
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_6
+	GoTo _cv_done_77
+_cv_next_84:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_85
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_7
+	GoTo _cv_done_77
+_cv_next_85:
+_cv_done_77:
+	SetVar 0x401F, 43
+	GoTo _cv_hold_86
+_cv_hold_76:
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_88
+	SetVar 0x401F, 44
+	GoTo _cv_done_87
+_cv_next_88:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_89
+	SetVar 0x401F, 45
+	GoTo _cv_done_87
+_cv_next_89:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_90
+	SetVar 0x401F, 46
+	GoTo _cv_done_87
+_cv_next_90:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_91
+	SetVar 0x401F, 47
+	GoTo _cv_done_87
+_cv_next_91:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_92
+	SetVar 0x401F, 48
+	GoTo _cv_done_87
+_cv_next_92:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_93
+	SetVar 0x401F, 49
+	GoTo _cv_done_87
+_cv_next_93:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_94
+	SetVar 0x401F, 50
+	GoTo _cv_done_87
+_cv_next_94:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_95
+	SetVar 0x401F, 51
+	GoTo _cv_done_87
+_cv_next_95:
+_cv_done_87:
+_cv_hold_86:
 	Call _cv_str4
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_HoldLeaderAside
-	GoTo _cv_stop
-	ApplyMovement obj_player, gHoldPlayerIn
+	CanvasCandidate 8, 0x8007
+	CanvasCandidate 11, 0
 	WaitMovement
 	Wait 30, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 1, RGB_BLACK
@@ -950,57 +1208,468 @@ GymCandidate_EventScript_TakeLeadersPlace:
 	
 GymCandidate_EventScript_NextGuest:
 	HealParty
-	// TODO(gba) special GymCandidate_GenerateGuest
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_guest_96
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_0
+	CanvasCandidate 0, 12, 2, 0, 0x8007
+_cv_guest_96:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_guest_97
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_1
+	CanvasCandidate 0, 20, 3, 0, 0x8007
+_cv_guest_97:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_guest_98
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_2
+	CanvasCandidate 0, 24, 3, 1, 0x8007
+_cv_guest_98:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_guest_99
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_3
+	CanvasCandidate 0, 29, 4, 1, 0x8007
+_cv_guest_99:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_guest_100
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_4
+	CanvasCandidate 0, 37, 4, 1, 0x8007
+_cv_guest_100:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_guest_101
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_5
+	CanvasCandidate 0, 40, 4, 2, 0x8007
+_cv_guest_101:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_guest_102
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_6
+	CanvasCandidate 0, 44, 5, 2, 0x8007
+_cv_guest_102:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_guest_103
+	CanvasBufferMsg 2, msg_0454_T02GYM0101_cv_leader_7
+	CanvasCandidate 0, 47, 5, 2, 0x8007
+_cv_guest_103:
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_next_105
+	SetVar 0x4020, SPRITE_GSMAN3
+	GoTo _cv_done_104
+_cv_next_105:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe _cv_next_106
+	SetVar 0x4020, SPRITE_GSWOMAN3
+	GoTo _cv_done_104
+_cv_next_106:
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfNe _cv_next_107
+	SetVar 0x4020, SPRITE_GSMAN3
+	GoTo _cv_done_104
+_cv_next_107:
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfNe _cv_next_108
+	SetVar 0x4020, SPRITE_GSWOMAN3
+	GoTo _cv_done_104
+_cv_next_108:
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_next_109
+	SetVar 0x4020, SPRITE_GSFIGHTER
+	GoTo _cv_done_104
+_cv_next_109:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_next_110
+	SetVar 0x4020, SPRITE_GSGENTLEMAN
+	GoTo _cv_done_104
+_cv_next_110:
+	CompareVarToValue VAR_SPECIAL_RESULT, 6
+	GoToIfNe _cv_next_111
+	SetVar 0x4020, SPRITE_MOUNT_2
+	GoTo _cv_done_104
+_cv_next_111:
+	CompareVarToValue VAR_SPECIAL_RESULT, 7
+	GoToIfNe _cv_next_112
+	SetVar 0x4020, SPRITE_GSMAN2
+	GoTo _cv_done_104
+_cv_next_112:
+	CompareVarToValue VAR_SPECIAL_RESULT, 8
+	GoToIfNe _cv_next_113
+	SetVar 0x4020, SPRITE_BADMAN
+	GoTo _cv_done_104
+_cv_next_113:
+	CompareVarToValue VAR_SPECIAL_RESULT, 9
+	GoToIfNe _cv_next_114
+	SetVar 0x4020, SPRITE_WORKMAN
+	GoTo _cv_done_104
+_cv_next_114:
+	CompareVarToValue VAR_SPECIAL_RESULT, 10
+	GoToIfNe _cv_next_115
+	SetVar 0x4020, SPRITE_GSASSISTANTM
+	GoTo _cv_done_104
+_cv_next_115:
+	CompareVarToValue VAR_SPECIAL_RESULT, 11
+	GoToIfNe _cv_next_116
+	SetVar 0x4020, SPRITE_MANIA
+	GoTo _cv_done_104
+_cv_next_116:
+	CompareVarToValue VAR_SPECIAL_RESULT, 12
+	GoToIfNe _cv_next_117
+	SetVar 0x4020, SPRITE_CAMPBOY_2
+	GoTo _cv_done_104
+_cv_next_117:
+	CompareVarToValue VAR_SPECIAL_RESULT, 13
+	GoToIfNe _cv_next_118
+	SetVar 0x4020, SPRITE_SEAMAN_2
+	GoTo _cv_done_104
+_cv_next_118:
+	CompareVarToValue VAR_SPECIAL_RESULT, 14
+	GoToIfNe _cv_next_119
+	SetVar 0x4020, SPRITE_FISHING_2
+	GoTo _cv_done_104
+_cv_next_119:
+	CompareVarToValue VAR_SPECIAL_RESULT, 15
+	GoToIfNe _cv_next_120
+	SetVar 0x4020, SPRITE_GSBOY2
+	GoTo _cv_done_104
+_cv_next_120:
+	CompareVarToValue VAR_SPECIAL_RESULT, 16
+	GoToIfNe _cv_next_121
+	SetVar 0x4020, SPRITE_WOMAN2
+	GoTo _cv_done_104
+_cv_next_121:
+	CompareVarToValue VAR_SPECIAL_RESULT, 17
+	GoToIfNe _cv_next_122
+	SetVar 0x4020, SPRITE_GSGIRL2
+	GoTo _cv_done_104
+_cv_next_122:
+	CompareVarToValue VAR_SPECIAL_RESULT, 18
+	GoToIfNe _cv_next_123
+	SetVar 0x4020, SPRITE_PICNICGIRL_2
+	GoTo _cv_done_104
+_cv_next_123:
+	CompareVarToValue VAR_SPECIAL_RESULT, 19
+	GoToIfNe _cv_next_124
+	SetVar 0x4020, SPRITE_GSGIRL3
+	GoTo _cv_done_104
+_cv_next_124:
+	CompareVarToValue VAR_SPECIAL_RESULT, 20
+	GoToIfNe _cv_next_125
+	SetVar 0x4020, SPRITE_GSSWIMMERW
+	GoTo _cv_done_104
+_cv_next_125:
+	CompareVarToValue VAR_SPECIAL_RESULT, 21
+	GoToIfNe _cv_next_126
+	SetVar 0x4020, SPRITE_GSSWIMMERM
+	GoTo _cv_done_104
+_cv_next_126:
+_cv_done_104:
+	Random 0x5048, 4
+	Random 0x5049, 3
+	Random 0x504A, 3
+	Random 0x504B, 2
+	SetVar 0x504C, 0
+	GoToIfUnset 0x208D, _cv_single_127
+	Random 0x401E, 3
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_single_127
+	SetVar 0x504C, 1
+_cv_single_127:
 	CompareVarToValue 0x800B, 0
 	CallIfEq GymCandidate_EventScript_LaterThatDay
 	CompareVarToValue 0x800B, 0
 	CallIfNe GymCandidate_EventScript_AnotherOne
-	CloseMsg
-	Call GymCandidate_EventScript_ChallengerWalksIn
-	NPCMsg msg_0454_T02GYM0101_gGymChallengeIntroText
-	WaitButton
-	CloseMsg
-	ClearTrainerFlag 1442
-	SetFlag 0x2036
 	CanvasCloseMsg
-	TrainerBattle 1442, 0, 0, 0
+	Call GymCandidate_EventScript_ChallengerWalksIn
+	CompareVarToValue 0x5048, 0
+	GoToIfNe _cv_line_129
+	NPCMsg msg_0454_T02GYM0101_cv_guest_intro_0
+	WaitButton
+	GoTo _cv_line_128
+_cv_line_129:
+	CompareVarToValue 0x5048, 1
+	GoToIfNe _cv_line_130
+	NPCMsg msg_0454_T02GYM0101_cv_guest_intro_1
+	WaitButton
+	GoTo _cv_line_128
+_cv_line_130:
+	CompareVarToValue 0x5048, 2
+	GoToIfNe _cv_line_131
+	NPCMsg msg_0454_T02GYM0101_cv_guest_intro_2
+	WaitButton
+	GoTo _cv_line_128
+_cv_line_131:
+	CompareVarToValue 0x5048, 3
+	GoToIfNe _cv_line_132
+	NPCMsg msg_0454_T02GYM0101_cv_guest_intro_3
+	WaitButton
+	GoTo _cv_line_128
+_cv_line_132:
+_cv_line_128:
+	CanvasCloseMsg
+	CanvasCloseMsg
+	CompareVarToValue 0x504C, 0
+	GoToIfNe _cv_battle_134
+	CompareVarToValue 0x5049, 0
+	GoToIfNe _cv_battle_134
+	ClearTrainerFlag 1470
+	TrainerBattle 1470, 0, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_134:
+	CompareVarToValue 0x504C, 0
+	GoToIfNe _cv_battle_135
+	CompareVarToValue 0x5049, 1
+	GoToIfNe _cv_battle_135
+	ClearTrainerFlag 1471
+	TrainerBattle 1471, 0, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_135:
+	CompareVarToValue 0x504C, 0
+	GoToIfNe _cv_battle_136
+	CompareVarToValue 0x5049, 2
+	GoToIfNe _cv_battle_136
+	ClearTrainerFlag 1472
+	TrainerBattle 1472, 0, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_136:
+	CompareVarToValue 0x504C, 1
+	GoToIfNe _cv_battle_137
+	CompareVarToValue 0x5049, 0
+	GoToIfNe _cv_battle_137
+	ClearTrainerFlag 1473
+	TrainerBattle 1473, 1473, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_137:
+	CompareVarToValue 0x504C, 1
+	GoToIfNe _cv_battle_138
+	CompareVarToValue 0x5049, 1
+	GoToIfNe _cv_battle_138
+	ClearTrainerFlag 1474
+	TrainerBattle 1474, 1474, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_138:
+	CompareVarToValue 0x504C, 1
+	GoToIfNe _cv_battle_139
+	CompareVarToValue 0x5049, 2
+	GoToIfNe _cv_battle_139
+	ClearTrainerFlag 1475
+	TrainerBattle 1475, 1475, 1, 0
+	GoTo _cv_battle_133
+_cv_battle_139:
+_cv_battle_133:
 	CheckBattleWon VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_42
-	WhiteOut
-	End
-_cv_won_42:
-	SetTrainerFlag 1442
-	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
-	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
-	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_43
-	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_44
-_cv_outcome_43:
-	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_44
-	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_44:
+	CanvasCandidate 12
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfNe GymCandidate_EventScript_GuestWon
 	HealParty
-	NPCMsg msg_0454_T02GYM0101_gGymChallengeAfterText
+	CompareVarToValue 0x504A, 0
+	GoToIfNe _cv_line_141
+	NPCMsg msg_0454_T02GYM0101_cv_guest_after_0
 	WaitButton
+	GoTo _cv_line_140
+_cv_line_141:
+	CompareVarToValue 0x504A, 1
+	GoToIfNe _cv_line_142
+	NPCMsg msg_0454_T02GYM0101_cv_guest_after_1
+	WaitButton
+	GoTo _cv_line_140
+_cv_line_142:
+	CompareVarToValue 0x504A, 2
+	GoToIfNe _cv_line_143
+	NPCMsg msg_0454_T02GYM0101_cv_guest_after_2
+	WaitButton
+	GoTo _cv_line_140
+_cv_line_143:
+_cv_line_140:
 	Call GymCandidate_EventScript_VisitorWalksOut
 	AddVar 0x800B, 1
-	// TODO(gba) special GymCandidate_MoreGuests
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	SetVar 0x401E, 1
+	CompareVarToValue 0x8007, 0
+	GoToIfNe _cv_guests_144
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_146
+	SetVar 0x401E, 1
+	GoTo _cv_done_145
+_cv_next_146:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_147
+	SetVar 0x401E, 1
+	GoTo _cv_done_145
+_cv_next_147:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_148
+	SetVar 0x401E, 1
+	GoTo _cv_done_145
+_cv_next_148:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_149
+	SetVar 0x401E, 1
+	GoTo _cv_done_145
+_cv_next_149:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_150
+	SetVar 0x401E, 2
+	GoTo _cv_done_145
+_cv_next_150:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_151
+	SetVar 0x401E, 2
+	GoTo _cv_done_145
+_cv_next_151:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_152
+	SetVar 0x401E, 2
+	GoTo _cv_done_145
+_cv_next_152:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_153
+	SetVar 0x401E, 2
+	GoTo _cv_done_145
+_cv_next_153:
+_cv_done_145:
+_cv_guests_144:
+	CompareVarToVar 0x800B, 0x401E
+	GoToIfGe _cv_guests_154
+	SetVar VAR_SPECIAL_RESULT, 1
+_cv_guests_154:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq GymCandidate_EventScript_NextGuest
 	Call GymCandidate_EventScript_ReturnLeadersPlace
 	CompareVarToValue 0x8007, 1
 	GoToIfEq GymCandidate_EventScript_ShiftDone
-	// TODO(gba) special GymCandidate_Approve
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_174
+	SetFlag 0x2093
+	SetVar 0x401F, 52
+	CompareVarToValue 0x5019, 5
+	GoToIfNe _cv_next_156
+	SetVar 0x401F, 53
+	GoTo _cv_done_155
+_cv_next_156:
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_157
+	SetVar 0x401F, 54
+	GoTo _cv_done_155
+_cv_next_157:
+_cv_done_155:
+	GoTo _cv_done_173
+_cv_next_174:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_175
+	SetFlag 0x2094
+	SetVar 0x401F, 55
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_159
+	SetVar 0x401F, 56
+	GoTo _cv_done_158
+_cv_next_159:
+_cv_done_158:
+	GoTo _cv_done_173
+_cv_next_175:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_176
+	SetFlag 0x2095
+	SetVar 0x401F, 57
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_next_161
+	SetVar 0x401F, 58
+	GoTo _cv_done_160
+_cv_next_161:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_162
+	SetVar 0x401F, 59
+	GoTo _cv_done_160
+_cv_next_162:
+_cv_done_160:
+	GoTo _cv_done_173
+_cv_next_176:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_177
+	SetFlag 0x2096
+	SetVar 0x401F, 60
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_164
+	SetVar 0x401F, 61
+	GoTo _cv_done_163
+_cv_next_164:
+_cv_done_163:
+	GoTo _cv_done_173
+_cv_next_177:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_178
+	SetFlag 0x2097
+	SetVar 0x401F, 62
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_next_166
+	SetVar 0x401F, 63
+	GoTo _cv_done_165
+_cv_next_166:
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_next_167
+	SetVar 0x401F, 64
+	GoTo _cv_done_165
+_cv_next_167:
+_cv_done_165:
+	GoTo _cv_done_173
+_cv_next_178:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_179
+	SetFlag 0x2098
+	SetVar 0x401F, 65
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_169
+	SetVar 0x401F, 66
+	GoTo _cv_done_168
+_cv_next_169:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_170
+	SetVar 0x401F, 67
+	GoTo _cv_done_168
+_cv_next_170:
+_cv_done_168:
+	GoTo _cv_done_173
+_cv_next_179:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_180
+	SetFlag 0x2099
+	SetVar 0x401F, 68
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_next_172
+	SetVar 0x401F, 69
+	GoTo _cv_done_171
+_cv_next_172:
+_cv_done_171:
+	GoTo _cv_done_173
+_cv_next_180:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_181
+	SetFlag 0x2007
+	SetVar 0x401F, 70
+	GoTo _cv_done_173
+_cv_next_181:
+_cv_done_173:
+	SetVar VAR_SPECIAL_RESULT, 0
+	GoToIfUnset 0x2093, _cv_appr_182
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_182:
+	GoToIfUnset 0x2094, _cv_appr_183
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_183:
+	GoToIfUnset 0x2095, _cv_appr_184
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_184:
+	GoToIfUnset 0x2096, _cv_appr_185
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_185:
+	GoToIfUnset 0x2097, _cv_appr_186
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_186:
+	GoToIfUnset 0x2098, _cv_appr_187
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_187:
+	GoToIfUnset 0x2099, _cv_appr_188
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_188:
+	GoToIfUnset 0x2007, _cv_appr_189
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_appr_189:
+	BufferInt 0, VAR_SPECIAL_RESULT
 	PlayFanfare SEQ_ME_LVUP
 	Call _cv_str4
 	WaitButton
@@ -1031,34 +1700,29 @@ GymCandidate_EventScript_MentorItemExplain:
 GymCandidate_EventScript_MentorAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorNoRoom
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 0x800A
 	SetFlag 0x2017
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	Return
 	
 GymCandidate_EventScript_ItemClause:
 	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1073,27 +1737,33 @@ GymCandidate_EventScript_AnotherOne:
 	Return
 	
 GymCandidate_EventScript_ChallengerWalksIn:
-	// TODO(gba) special GymCandidate_PlanChallengerWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_ChallengerAppears
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
 	PlaySE SEQ_SE_DP_KAIDAN2
-	ApplyMovement 0x800A, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	Return
 	
 GymCandidate_EventScript_GuestWon:
 	HealParty
-	NPCMsg msg_0454_T02GYM0101_gGymChallengeWinText
+	CompareVarToValue 0x504B, 0
+	GoToIfNe _cv_line_191
+	NPCMsg msg_0454_T02GYM0101_cv_guest_win_0
 	WaitButton
+	GoTo _cv_line_190
+_cv_line_191:
+	CompareVarToValue 0x504B, 1
+	GoToIfNe _cv_line_192
+	NPCMsg msg_0454_T02GYM0101_cv_guest_win_1
+	WaitButton
+	GoTo _cv_line_190
+_cv_line_192:
+_cv_line_190:
 	Call GymCandidate_EventScript_VisitorWalksOut
 	Call GymCandidate_EventScript_ReturnLeadersPlace
 	NPCMsg msg_0454_T02GYM0101_GymCandidate_Text_TryAgain
@@ -1103,24 +1773,61 @@ GymCandidate_EventScript_GuestWon:
 	End
 	
 GymCandidate_EventScript_ReturnLeadersPlace:
-	// TODO(gba) special GymCandidate_IsHolding
-	GoTo _cv_stop
+	CanvasCandidate 9
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_Return
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	ApplyMovement obj_player, gHoldPlayerOut
+	CanvasCandidate 11, 1
 	WaitMovement
-	// TODO(gba) special GymCandidate_HoldLeaderBack
-	GoTo _cv_stop
+	CanvasCandidate 10
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	Return
 	
 GymCandidate_EventScript_ShiftDone:
-	// TODO(gba) special GymCandidate_BufferRepeatThanks
-	GoTo _cv_stop
+	CompareVarToValue 0x8009, 0
+	GoToIfNe _cv_next_194
+	SetVar 0x401F, 71
+	GoTo _cv_done_193
+_cv_next_194:
+	CompareVarToValue 0x8009, 1
+	GoToIfNe _cv_next_195
+	SetVar 0x401F, 72
+	GoTo _cv_done_193
+_cv_next_195:
+	CompareVarToValue 0x8009, 2
+	GoToIfNe _cv_next_196
+	SetVar 0x401F, 73
+	GoTo _cv_done_193
+_cv_next_196:
+	CompareVarToValue 0x8009, 3
+	GoToIfNe _cv_next_197
+	SetVar 0x401F, 74
+	GoTo _cv_done_193
+_cv_next_197:
+	CompareVarToValue 0x8009, 4
+	GoToIfNe _cv_next_198
+	SetVar 0x401F, 75
+	GoTo _cv_done_193
+_cv_next_198:
+	CompareVarToValue 0x8009, 5
+	GoToIfNe _cv_next_199
+	SetVar 0x401F, 76
+	GoTo _cv_done_193
+_cv_next_199:
+	CompareVarToValue 0x8009, 6
+	GoToIfNe _cv_next_200
+	SetVar 0x401F, 77
+	GoTo _cv_done_193
+_cv_next_200:
+	CompareVarToValue 0x8009, 7
+	GoToIfNe _cv_next_201
+	SetVar 0x401F, 78
+	GoTo _cv_done_193
+_cv_next_201:
+_cv_done_193:
 	Call _cv_str4
 	WaitButton
 	CloseMsg
@@ -1157,30 +1864,16 @@ GymCandidate_EventScript_MentorNoRoom:
 	WaitFade
 	Return
 	
-EventScript_GymHack_ShowTeamRuleMessage:
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	CallIfEq EventScript_GymHack_MsgWrongType
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	CallIfEq EventScript_GymHack_MsgDuplicate
-	CompareVarToValue VAR_SPECIAL_RESULT, 3
-	CallIfEq EventScript_GymHack_MsgDuplicateItem
-	Return
-	
 GymCandidate_EventScript_ChallengerAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_GuestNoRoom
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymCandidate_EventScript_GuestNoRoom
 	
 GymTera_EventScript_Skip_FLYING:
@@ -1192,21 +1885,6 @@ GymTera_EventScript_Skip_FLYING:
 	GoTo GymTera_EventScript_Skip_POISON
 	
 Outfits_EventScript_Return:
-	Return
-	
-EventScript_GymHack_MsgWrongType:
-	NPCMsg msg_0454_T02GYM0101_Text_GymHack_WrongType
-	WaitButton
-	Return
-	
-EventScript_GymHack_MsgDuplicate:
-	NPCMsg msg_0454_T02GYM0101_Text_GymHack_Duplicate
-	WaitButton
-	Return
-	
-EventScript_GymHack_MsgDuplicateItem:
-	NPCMsg msg_0454_T02GYM0101_Text_GymHack_DuplicateItem
-	WaitButton
 	Return
 	
 GymCandidate_EventScript_GuestNoRoom:
@@ -1334,100 +2012,409 @@ _cv_str4:
 	BufferRivalsName 7
 	CompareVarToValue 0x401F, 1
 	GoToIfNe _cv_str4_0
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_rock
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_0
 	Return
 _cv_str4_0:
 	CompareVarToValue 0x401F, 2
 	GoToIfNe _cv_str4_1
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_normal
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_1
 	Return
 _cv_str4_1:
 	CompareVarToValue 0x401F, 3
 	GoToIfNe _cv_str4_2
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_water
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_2
 	Return
 _cv_str4_2:
 	CompareVarToValue 0x401F, 4
 	GoToIfNe _cv_str4_3
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_electric
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_3
 	Return
 _cv_str4_3:
 	CompareVarToValue 0x401F, 5
 	GoToIfNe _cv_str4_4
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_steel
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_4
 	Return
 _cv_str4_4:
 	CompareVarToValue 0x401F, 6
 	GoToIfNe _cv_str4_5
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_grass
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_5
 	Return
 _cv_str4_5:
 	CompareVarToValue 0x401F, 7
 	GoToIfNe _cv_str4_6
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_poison
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_6
 	Return
 _cv_str4_6:
 	CompareVarToValue 0x401F, 8
 	GoToIfNe _cv_str4_7
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_bug
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatOffer_7
 	Return
 _cv_str4_7:
 	CompareVarToValue 0x401F, 9
 	GoToIfNe _cv_str4_8
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_psychic
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_rock
 	Return
 _cv_str4_8:
 	CompareVarToValue 0x401F, 10
 	GoToIfNe _cv_str4_9
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fairy
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_normal
 	Return
 _cv_str4_9:
 	CompareVarToValue 0x401F, 11
 	GoToIfNe _cv_str4_10
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fire
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_water
 	Return
 _cv_str4_10:
 	CompareVarToValue 0x401F, 12
 	GoToIfNe _cv_str4_11
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ground
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_electric
 	Return
 _cv_str4_11:
 	CompareVarToValue 0x401F, 13
 	GoToIfNe _cv_str4_12
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_dark
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_steel
 	Return
 _cv_str4_12:
 	CompareVarToValue 0x401F, 14
 	GoToIfNe _cv_str4_13
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ice
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_grass
 	Return
 _cv_str4_13:
 	CompareVarToValue 0x401F, 15
 	GoToIfNe _cv_str4_14
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fighting
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_poison
 	Return
 _cv_str4_14:
 	CompareVarToValue 0x401F, 16
 	GoToIfNe _cv_str4_15
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ghost
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_bug
 	Return
 _cv_str4_15:
 	CompareVarToValue 0x401F, 17
 	GoToIfNe _cv_str4_16
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_dragon
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_psychic
 	Return
 _cv_str4_16:
 	CompareVarToValue 0x401F, 18
 	GoToIfNe _cv_str4_17
-	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_flying
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fairy
 	Return
 _cv_str4_17:
+	CompareVarToValue 0x401F, 19
+	GoToIfNe _cv_str4_18
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fire
+	Return
+_cv_str4_18:
+	CompareVarToValue 0x401F, 20
+	GoToIfNe _cv_str4_19
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ground
+	Return
+_cv_str4_19:
+	CompareVarToValue 0x401F, 21
+	GoToIfNe _cv_str4_20
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_dark
+	Return
+_cv_str4_20:
+	CompareVarToValue 0x401F, 22
+	GoToIfNe _cv_str4_21
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ice
+	Return
+_cv_str4_21:
+	CompareVarToValue 0x401F, 23
+	GoToIfNe _cv_str4_22
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_fighting
+	Return
+_cv_str4_22:
+	CompareVarToValue 0x401F, 24
+	GoToIfNe _cv_str4_23
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_ghost
+	Return
+_cv_str4_23:
+	CompareVarToValue 0x401F, 25
+	GoToIfNe _cv_str4_24
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_dragon
+	Return
+_cv_str4_24:
+	CompareVarToValue 0x401F, 26
+	GoToIfNe _cv_str4_25
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_first_flying
+	Return
+_cv_str4_25:
+	CompareVarToValue 0x401F, 27
+	GoToIfNe _cv_str4_26
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_0
+	Return
+_cv_str4_26:
+	CompareVarToValue 0x401F, 28
+	GoToIfNe _cv_str4_27
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_1
+	Return
+_cv_str4_27:
+	CompareVarToValue 0x401F, 29
+	GoToIfNe _cv_str4_28
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_2
+	Return
+_cv_str4_28:
+	CompareVarToValue 0x401F, 30
+	GoToIfNe _cv_str4_29
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_3
+	Return
+_cv_str4_29:
+	CompareVarToValue 0x401F, 31
+	GoToIfNe _cv_str4_30
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_4
+	Return
+_cv_str4_30:
+	CompareVarToValue 0x401F, 32
+	GoToIfNe _cv_str4_31
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_5
+	Return
+_cv_str4_31:
+	CompareVarToValue 0x401F, 33
+	GoToIfNe _cv_str4_32
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_6
+	Return
+_cv_str4_32:
+	CompareVarToValue 0x401F, 34
+	GoToIfNe _cv_str4_33
+	NPCMsg msg_0454_T02GYM0101_cv_leader_offer_7
+	Return
+_cv_str4_33:
+	CompareVarToValue 0x401F, 35
+	GoToIfNe _cv_str4_34
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_0
+	Return
+_cv_str4_34:
+	CompareVarToValue 0x401F, 36
+	GoToIfNe _cv_str4_35
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_1
+	Return
+_cv_str4_35:
+	CompareVarToValue 0x401F, 37
+	GoToIfNe _cv_str4_36
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_2
+	Return
+_cv_str4_36:
+	CompareVarToValue 0x401F, 38
+	GoToIfNe _cv_str4_37
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_3
+	Return
+_cv_str4_37:
+	CompareVarToValue 0x401F, 39
+	GoToIfNe _cv_str4_38
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_4
+	Return
+_cv_str4_38:
+	CompareVarToValue 0x401F, 40
+	GoToIfNe _cv_str4_39
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_5
+	Return
+_cv_str4_39:
+	CompareVarToValue 0x401F, 41
+	GoToIfNe _cv_str4_40
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_6
+	Return
+_cv_str4_40:
+	CompareVarToValue 0x401F, 42
+	GoToIfNe _cv_str4_41
+	NPCMsg msg_0454_T02GYM0101_cv_leader_ownGym_7
+	Return
+_cv_str4_41:
+	CompareVarToValue 0x401F, 43
+	GoToIfNe _cv_str4_42
+	NPCMsg msg_0454_T02GYM0101_cv_hold_shift
+	Return
+_cv_str4_42:
+	CompareVarToValue 0x401F, 44
+	GoToIfNe _cv_str4_43
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_0
+	Return
+_cv_str4_43:
+	CompareVarToValue 0x401F, 45
+	GoToIfNe _cv_str4_44
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_1
+	Return
+_cv_str4_44:
+	CompareVarToValue 0x401F, 46
+	GoToIfNe _cv_str4_45
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_2
+	Return
+_cv_str4_45:
+	CompareVarToValue 0x401F, 47
+	GoToIfNe _cv_str4_46
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_3
+	Return
+_cv_str4_46:
+	CompareVarToValue 0x401F, 48
+	GoToIfNe _cv_str4_47
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_4
+	Return
+_cv_str4_47:
+	CompareVarToValue 0x401F, 49
+	GoToIfNe _cv_str4_48
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_5
+	Return
+_cv_str4_48:
+	CompareVarToValue 0x401F, 50
+	GoToIfNe _cv_str4_49
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_6
+	Return
+_cv_str4_49:
+	CompareVarToValue 0x401F, 51
+	GoToIfNe _cv_str4_50
+	NPCMsg msg_0454_T02GYM0101_cv_leader_observe_7
+	Return
+_cv_str4_50:
+	CompareVarToValue 0x401F, 52
+	GoToIfNe _cv_str4_51
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_0
+	Return
+_cv_str4_51:
+	CompareVarToValue 0x401F, 53
+	GoToIfNe _cv_str4_52
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_rock
+	Return
+_cv_str4_52:
+	CompareVarToValue 0x401F, 54
+	GoToIfNe _cv_str4_53
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_normal
+	Return
+_cv_str4_53:
+	CompareVarToValue 0x401F, 55
+	GoToIfNe _cv_str4_54
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_1
+	Return
+_cv_str4_54:
+	CompareVarToValue 0x401F, 56
+	GoToIfNe _cv_str4_55
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_water
+	Return
+_cv_str4_55:
+	CompareVarToValue 0x401F, 57
+	GoToIfNe _cv_str4_56
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_2
+	Return
+_cv_str4_56:
+	CompareVarToValue 0x401F, 58
+	GoToIfNe _cv_str4_57
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_electric
+	Return
+_cv_str4_57:
+	CompareVarToValue 0x401F, 59
+	GoToIfNe _cv_str4_58
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_steel
+	Return
+_cv_str4_58:
+	CompareVarToValue 0x401F, 60
+	GoToIfNe _cv_str4_59
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_3
+	Return
+_cv_str4_59:
+	CompareVarToValue 0x401F, 61
+	GoToIfNe _cv_str4_60
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_grass
+	Return
+_cv_str4_60:
+	CompareVarToValue 0x401F, 62
+	GoToIfNe _cv_str4_61
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_4
+	Return
+_cv_str4_61:
+	CompareVarToValue 0x401F, 63
+	GoToIfNe _cv_str4_62
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_poison
+	Return
+_cv_str4_62:
+	CompareVarToValue 0x401F, 64
+	GoToIfNe _cv_str4_63
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_bug
+	Return
+_cv_str4_63:
+	CompareVarToValue 0x401F, 65
+	GoToIfNe _cv_str4_64
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_5
+	Return
+_cv_str4_64:
+	CompareVarToValue 0x401F, 66
+	GoToIfNe _cv_str4_65
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_psychic
+	Return
+_cv_str4_65:
+	CompareVarToValue 0x401F, 67
+	GoToIfNe _cv_str4_66
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_fairy
+	Return
+_cv_str4_66:
+	CompareVarToValue 0x401F, 68
+	GoToIfNe _cv_str4_67
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_6
+	Return
+_cv_str4_67:
+	CompareVarToValue 0x401F, 69
+	GoToIfNe _cv_str4_68
+	NPCMsg msg_0454_T02GYM0101_cv_mentor_approve_fire
+	Return
+_cv_str4_68:
+	CompareVarToValue 0x401F, 70
+	GoToIfNe _cv_str4_69
+	NPCMsg msg_0454_T02GYM0101_cv_leader_approve_7
+	Return
+_cv_str4_69:
+	CompareVarToValue 0x401F, 71
+	GoToIfNe _cv_str4_70
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_0
+	Return
+_cv_str4_70:
+	CompareVarToValue 0x401F, 72
+	GoToIfNe _cv_str4_71
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_1
+	Return
+_cv_str4_71:
+	CompareVarToValue 0x401F, 73
+	GoToIfNe _cv_str4_72
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_2
+	Return
+_cv_str4_72:
+	CompareVarToValue 0x401F, 74
+	GoToIfNe _cv_str4_73
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_3
+	Return
+_cv_str4_73:
+	CompareVarToValue 0x401F, 75
+	GoToIfNe _cv_str4_74
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_4
+	Return
+_cv_str4_74:
+	CompareVarToValue 0x401F, 76
+	GoToIfNe _cv_str4_75
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_5
+	Return
+_cv_str4_75:
+	CompareVarToValue 0x401F, 77
+	GoToIfNe _cv_str4_76
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_6
+	Return
+_cv_str4_76:
+	CompareVarToValue 0x401F, 78
+	GoToIfNe _cv_str4_77
+	NPCMsg msg_0454_T02GYM0101_cv_leader_repeatThanks_7
+	Return
+_cv_str4_77:
 	Return
 
 _cv_stop:
 	NPCMsg msg_0454_T02GYM0101_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_VIRIDIAN_GYM, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 
@@ -1468,21 +2455,5 @@ DadStory_Movement_PlayerFromLeft:
 DadStory_Movement_PlayerFromRight:
 	WalkNormalSouth
 	WalkNormalWest
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkIn:
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkOut:
-	EndMovement
-
-	.balign 4, 0
-gHoldPlayerIn:
-	EndMovement
-
-	.balign 4, 0
-gHoldPlayerOut:
 	EndMovement
 	.balign 4, 0

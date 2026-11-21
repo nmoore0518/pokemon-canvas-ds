@@ -68,7 +68,7 @@ Academy_EventScript_HallNext:
 	WaitButton
 	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfNe Academy_EventScript_HallLost
@@ -113,7 +113,7 @@ _cv_yn_6:
 	HealParty
 	NPCMsg msg_0975_CV_CANVAS_ACADEMY_BATTLE_HALL_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	HealParty
@@ -177,8 +177,7 @@ Academy_EventScript_Battle:
 _cv_won_12:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_13

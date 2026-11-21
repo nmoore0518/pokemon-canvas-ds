@@ -31,9 +31,10 @@ PalletTown_RivalsHouse_EventScript_Daisy:
 	BufferRivalsName 7
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_HiBrothersAtLab
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -119,7 +120,7 @@ _cv_yn_2:
 	GoToIfEq PalletTown_RivalsHouse_EventScript_CantGroomEgg
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_LookingNiceInNoTime
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	PlayFanfare SEQ_ME_ASA
@@ -187,7 +188,7 @@ PalletTown_RivalsHouse_EventScript_ExplainTownMap:
 PalletTown_RivalsHouse_EventScript_GiveTownMap:
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_ErrandForGrandpaThisWillHelp
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HasSpaceForItem ITEM_TOWN_MAP, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PalletTown_RivalsHouse_EventScript_NoRoomForTownMap
@@ -279,7 +280,7 @@ _cv_yn_15:
 	GoToIfEq PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd
 	NPCMsg msg_0449_T01R0201_PalletTown_RivalsHouse_Text_DaisyLetMeSee
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	PlayFanfare SEQ_ME_LVUP
@@ -355,6 +356,7 @@ PalletTown_RivalsHouse_EventScript_DaisyCoinsDecline:
 	GoTo PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd
 	
 PalletTown_RivalsHouse_EventScript_DaisyCoinsEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

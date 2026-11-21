@@ -122,7 +122,8 @@ _cv_yn_8:
 	
 GymDecor_EventScript_LogOff:
 	PlaySE SEQ_SE_DP_SELECT
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -193,7 +194,8 @@ GymDecor_EventScript_HowToPaint:
 	End
 	
 GymDecor_EventScript_StartEditing:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	// TODO(gba) special GymDecor_StartEditing
 	GoTo _cv_stop

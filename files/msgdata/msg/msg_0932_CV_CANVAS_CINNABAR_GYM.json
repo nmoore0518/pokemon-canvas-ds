@@ -327,6 +327,35 @@
       "en_US": "TM28 contains Tombstony?"
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_CinnabarIsland_Gym_Text_ExplainVolcanoBadge",
       "en_US": [
         "Hah!\r",
@@ -377,6 +406,77 @@
       "en_US": [
         "Your Bag is full, so the\n",
         "{STRVAR_1 3, 1, 0} was sent to your PC."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_0",
+      "en_US": [
+        "Brock: Back again, {STRVAR_1 3, 6, 0}?\n",
+        "Perfect timing!\r",
+        "I’ve got a stew on the stove.\n",
+        "Mind watching the Gym for a bit?"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_1",
+      "en_US": [
+        "Misty: Oh, it’s you. Great timing!\r",
+        "I’m going for a swim. You watch\n",
+        "the Gym… if you’re up to it."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_2",
+      "en_US": [
+        "Lt. Surge: Hey, soldier! Reporting\n",
+        "for duty?\r",
+        "I need some R&R. Hold the fort\n",
+        "for me!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_3",
+      "en_US": [
+        "Erika: Oh, hello again…\n",
+        "I was just about to take a nap.\r",
+        "Would you mind looking after the\n",
+        "Gym for a little while?"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_4",
+      "en_US": [
+        "Koga: Fwahaha! You return.\r",
+        "A ninja must train in secret now\n",
+        "and then. Guard my Gym while I\f",
+        "vanish!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_5",
+      "en_US": [
+        "Sabrina: I knew you would come\n",
+        "back today.\r",
+        "A challenger is on the way.\n",
+        "You will take my place."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_6",
+      "en_US": [
+        "Blaine: Hah! Quiz time! Who’s\n",
+        "covering my Gym while I soak in\f",
+        "the hot springs?\r",
+        "Answer: you!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatOffer_7",
+      "en_US": [
+        "Giovanni: You again.\n",
+        "I have… business elsewhere.\r",
+        "Watch my Gym. Don’t disappoint\n",
+        "me."
       ]
     },
     {
@@ -566,6 +666,163 @@
       ]
     },
     {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_0",
+      "en_US": [
+        "Brock: So you want to be a Gym\n",
+        "Leader yourself? Good for you.\r",
+        "But a Leader’s job doesn’t end\n",
+        "with one battle.\r",
+        "Challengers come every day, and\n",
+        "they all expect the Leader.\r",
+        "How about you watch my Gym for an\n",
+        "afternoon? Prove you can hold it!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_1",
+      "en_US": [
+        "Misty: A Gym of your own, huh?\n",
+        "Fine. Here’s the deal.\r",
+        "I need a break. You watch my Gym,\n",
+        "and if a challenger shows up…\r",
+        "you beat them. Easy, right?\n",
+        "Unless you’re scared!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_2",
+      "en_US": [
+        "Lt. Surge: Hey, kid! Word is\n",
+        "you’re after a Gym of your own!\r",
+        "In the army, we’d call this a\n",
+        "field test!\r",
+        "You hold my Gym against the next\n",
+        "challenger. Roger that?"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_3",
+      "en_US": [
+        "Erika: Oh my… A Gym in Pallet\n",
+        "Town? How lovely.\r",
+        "Would you mind watching my Gym\n",
+        "while I tend to the flowers?\r",
+        "If a challenger comes, please\n",
+        "greet them for me."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_4",
+      "en_US": [
+        "Koga: Fwahahaha! So the child\n",
+        "would be a Leader?\r",
+        "A ninja tests his student in\n",
+        "secret. Hold my Gym while I…\r",
+        "watch from the shadows. Two\n",
+        "challengers approach. Ready?"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_5",
+      "en_US": [
+        "Sabrina: I knew you would ask.\n",
+        "I saw this moment a week ago.\r",
+        "Two challengers will come\n",
+        "through my Gym today.\r",
+        "You will face them. I already\n",
+        "know how it ends… Do you?"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_6",
+      "en_US": [
+        "Blaine: Hah! A future Leader!\n",
+        "Here’s a quiz for you!\r",
+        "Question: who holds a Gym when\n",
+        "its Leader is out?\r",
+        "Answer: you do! Two challengers\n",
+        "are on their way. Fire it up!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_offer_7",
+      "en_US": [
+        "Giovanni: So. You want the\n",
+        "League’s blessing as well.\r",
+        "Then hold my Gym. Two\n",
+        "challengers are waiting.\r",
+        "Let us see if you can protect\n",
+        "what is yours."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_0",
+      "en_US": [
+        "Brock: Hey, Leader! You’ve got\n",
+        "your own Gym to run now.\r",
+        "Your challengers are waiting in\n",
+        "Pallet Town!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_1",
+      "en_US": [
+        "Misty: Don’t you have your own Gym\n",
+        "now? Go run it!\r",
+        "I’m not sharing my challengers!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_2",
+      "en_US": [
+        "Lt. Surge: Ha! You’ve got your own\n",
+        "base to defend now, Leader!\r",
+        "Get back to Pallet!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_3",
+      "en_US": [
+        "Erika: Oh my, you have a Gym of\n",
+        "your own now.\r",
+        "Your challengers will miss you.\n",
+        "Please, go to them."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_4",
+      "en_US": [
+        "Koga: A Leader guards their own\n",
+        "Gym, not another’s.\r",
+        "Return to Pallet Town!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_5",
+      "en_US": [
+        "Sabrina: I see a Gym in Pallet\n",
+        "Town… and challengers waiting\f",
+        "for you. Go."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_6",
+      "en_US": [
+        "Blaine: Quiz! Who has their own\n",
+        "Gym now?\r",
+        "Answer: you! So go run it!\n",
+        "Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_ownGym_7",
+      "en_US": [
+        "Giovanni: You have a Gym of your\n",
+        "own now. Guard it.\r",
+        "Mine needs no help from you."
+      ]
+    },
+    {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_NotYet",
       "en_US": [
         "Come back when you’re ready.\n",
@@ -582,12 +839,325 @@
       ]
     },
     {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeIntroText",
-      "en_US": "(missing text)"
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_hold_shift",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} left you in charge of\n",
+        "the Gym."
+      ]
     },
     {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeAfterText",
-      "en_US": "(missing text)"
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_0",
+      "en_US": "Brock"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_1",
+      "en_US": "Misty"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_2",
+      "en_US": "Lt. Surge"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_3",
+      "en_US": "Erika"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_4",
+      "en_US": "Koga"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_5",
+      "en_US": "Sabrina"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_6",
+      "en_US": "Blaine"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_7",
+      "en_US": "Giovanni"
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_0",
+      "en_US": [
+        "Brock: Great! I’ll stand over here\n",
+        "and watch. Pretend I’m not here!\r",
+        "Take my spot, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_1",
+      "en_US": [
+        "Misty: I’ll be right over there,\n",
+        "watching Everything.\r",
+        "Don’t you dare mess up my Gym!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_2",
+      "en_US": [
+        "Lt. Surge: I’ll observe from the\n",
+        "flank, soldier!\r",
+        "You take the command post!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_3",
+      "en_US": [
+        "Erika: I’ll sit with my flowers over\n",
+        "there… and watch quietly.\r",
+        "Please, take my place."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_4",
+      "en_US": [
+        "Koga: I shall vanish into the\n",
+        "shadows… and watch.\r",
+        "Take my place, child."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_5",
+      "en_US": [
+        "Sabrina: I will watch from over\n",
+        "there.\r",
+        "Though I already know how it ends."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_6",
+      "en_US": [
+        "Blaine: I’ll watch from the sidelines!\r",
+        "Pop quiz: who’s Leader today?\n",
+        "Answer: you!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_observe_7",
+      "en_US": [
+        "Giovanni: I will be watching.\r",
+        "Take my place… for now."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_intro_0",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} isn’t battling today?\r",
+        "You’re filling in? Then you’re the\n",
+        "one I have to beat!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_intro_1",
+      "en_US": [
+        "I came all this way to battle\n",
+        "{STRVAR_1 3, 2, 0}…\r",
+        "Fine! A stand-in will do!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_intro_2",
+      "en_US": [
+        "A substitute Leader?\n",
+        "This Badge is as good as mine!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_intro_3",
+      "en_US": [
+        "{STRVAR_1 3, 2, 0} sent you? Is this\n",
+        "some kind of test?\r",
+        "Whatever. Let’s battle!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_after_0",
+      "en_US": [
+        "Tell {STRVAR_1 3, 2, 0} I’ll be back…\n",
+        "for both of you!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_after_1",
+      "en_US": [
+        "You’d make a great Leader.\n",
+        "No, really!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_after_2",
+      "en_US": [
+        "Man… I’ll train harder and\n",
+        "come back!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_0",
+      "en_US": [
+        "Brock: Solid work! You held my\n",
+        "Gym like a real Leader.\r",
+        "The League will hear that you have\n",
+        "my approval. Rock on, {STRVAR_1 3, 6, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_rock",
+      "en_US": [
+        "Brock: Two Rock Gyms in Kanto!\n",
+        "I couldn’t be prouder, {STRVAR_1 3, 6, 0}.\r",
+        "The League will hear that you have\n",
+        "my approval. Rock on!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_normal",
+      "en_US": [
+        "Brock: Basics win battles. You\n",
+        "proved it today!\r",
+        "The League will hear that you have\n",
+        "my approval!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_1",
+      "en_US": [
+        "Misty: Hmph. Not bad.\n",
+        "Not bad at all.\r",
+        "OK, OK! You’ve got my approval.\n",
+        "Don’t let it go to your head!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_water",
+      "en_US": [
+        "Misty: …Fine. Fine!\n",
+        "You’re really good with them.\r",
+        "Maybe Kanto can handle two Water\n",
+        "Gyms. Maybe.\r",
+        "You’ve got my approval. Now get\n",
+        "out before I change my mind!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_2",
+      "en_US": [
+        "Lt. Surge: Outstanding, soldier!\r",
+        "You’ve got my approval, kid!\n",
+        "I’ll radio it to the League!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_electric",
+      "en_US": [
+        "Lt. Surge: Ha! I’ll admit it, kid.\n",
+        "You’ve got a real spark.\r",
+        "You’ve got my approval! And if\n",
+        "you need parts, call me!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_steel",
+      "en_US": [
+        "Lt. Surge: Your Gym’s built like\n",
+        "a fortress! I take it back!\r",
+        "You’ve got my approval, soldier!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_3",
+      "en_US": [
+        "Erika: How wonderful. You welcomed\n",
+        "them as a Leader should.\r",
+        "You have my approval, of course.\n",
+        "I shall tell the League today."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_grass",
+      "en_US": [
+        "Erika: Your Pokémon were in full\n",
+        "bloom today.\r",
+        "You have my approval, and my\n",
+        "friendship. Please, take care."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_4",
+      "en_US": [
+        "Koga: …Hmm! You did not falter.\r",
+        "Very well. Koga, master of\n",
+        "Poison, grants his approval!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_poison",
+      "en_US": [
+        "Koga: …Fwahaha. I was wrong to\n",
+        "doubt you.\r",
+        "A true Poison master. You have\n",
+        "my approval… and my respect."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_bug",
+      "en_US": [
+        "Koga: Fwahaha! Your Bug Pokémon\n",
+        "strike like ninja.\r",
+        "You have my approval!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_5",
+      "en_US": [
+        "Sabrina: …Just as I foresaw.\r",
+        "You have my approval. The\n",
+        "League knows it already."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_psychic",
+      "en_US": [
+        "Sabrina: I saw a Psychic Gym in\n",
+        "Pallet Town. I resented it.\r",
+        "Now I see why it was there.\n",
+        "You have my approval."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_fairy",
+      "en_US": [
+        "Sabrina: Your Fairy Pokémon\n",
+        "trust you completely.\r",
+        "You have my approval."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_6",
+      "en_US": [
+        "Blaine: Correct answer! You’ve\n",
+        "got fire in you, kid!\r",
+        "My approval is yours!\n",
+        "Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_mentor_approve_fire",
+      "en_US": [
+        "Blaine: That’s the spirit! Two\n",
+        "Fire Gyms in Kanto!\r",
+        "My approval is yours, kid!\n",
+        "Wahahahah!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_approve_7",
+      "en_US": [
+        "Giovanni: …You protect what is\n",
+        "yours. I respect that.\r",
+        "The League will have my approval.\n",
+        "Now leave me."
+      ]
     },
     {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_ApprovalCount",
@@ -617,8 +1187,18 @@
       "en_US": "Here comes the next challenger!"
     },
     {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_gGymChallengeWinText",
-      "en_US": "(missing text)"
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_win_0",
+      "en_US": [
+        "Ha! Some stand-in!\n",
+        "Go get {STRVAR_1 3, 2, 0}!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_guest_win_1",
+      "en_US": [
+        "Better luck next time,\n",
+        "sub!"
+      ]
     },
     {
       "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_GymCandidate_Text_TryAgain",
@@ -627,6 +1207,62 @@
         "sometimes.\r",
         "Come back when you’re ready, and\n",
         "we’ll try again."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_0",
+      "en_US": [
+        "Brock: Thanks for covering,\n",
+        "{STRVAR_1 3, 6, 0}! Come back any time."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_1",
+      "en_US": [
+        "Misty: Hmph. Not bad. You can\n",
+        "cover again sometime. Maybe."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_2",
+      "en_US": [
+        "Lt. Surge: Mission accomplished!\n",
+        "Dismissed, soldier!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_3",
+      "en_US": [
+        "Erika: Thank you ever so much…\n",
+        "I feel so refreshed."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_4",
+      "en_US": [
+        "Koga: …Well guarded. I saw\n",
+        "everything, of course."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_5",
+      "en_US": [
+        "Sabrina: As I foresaw.\n",
+        "Thank you."
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_6",
+      "en_US": [
+        "Blaine: Correct! Fire it up again\n",
+        "any time!"
+      ]
+    },
+    {
+      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_cv_leader_repeatThanks_7",
+      "en_US": [
+        "Giovanni: Adequate.\n",
+        "You may go."
       ]
     },
     {
@@ -650,35 +1286,6 @@
       "en_US": [
         "{STRVAR_1 3, 6, 0} put it in the wardrobe\n",
         "upstairs."
-      ]
-    },
-    {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_WrongType",
-      "en_US": [
-        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
-        "Pokémon may be on your team.\r",
-        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
-        "Leave it in a PC and come back."
-      ]
-    },
-    {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_Duplicate",
-      "en_US": [
-        "League Rules: No two Pokémon on\n",
-        "your team may be the same species.\r",
-        "You have more than one\n",
-        "{STRVAR_1 3, 0, 0}!\r",
-        "Leave one in a PC and come back."
-      ]
-    },
-    {
-      "id": "msg_0932_CV_CANVAS_CINNABAR_GYM_Text_GymHack_DuplicateItem",
-      "en_US": [
-        "League Rules: No two Pokémon on\n",
-        "your team may hold the same item.\r",
-        "More than one is holding\n",
-        "{STRVAR_1 3, 0, 0}!\r",
-        "Take one off and come back."
       ]
     },
     {

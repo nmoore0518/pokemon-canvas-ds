@@ -46,9 +46,10 @@ Route7_EastEntrance_EventScript_GuardTrigger:
 	GoToIfSet 0x2131, Route7_EastEntrance_EventScript_GiveTea
 	NPCMsg msg_0337_R07R0101_Route7_EastEntrance_Text_ThirstyOnGuardDuty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route7_EastEntrance_Movement_BlockPlayerEntry
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -60,7 +61,7 @@ Route7_EastEntrance_EventScript_GiveTea:
 Route7_EastEntrance_EventScript_GuardDrinkTea:
 	NPCMsg msg_0337_R07R0101_Route7_EastEntrance_Text_ThatTeaLooksTasty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route7_EastEntrance_WalkToGuardTop
 	CompareVarToValue 0x4001, 1

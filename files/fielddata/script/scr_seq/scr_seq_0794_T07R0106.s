@@ -155,7 +155,7 @@ CeladonCity_DepartmentStore_Roof_EventScript_CheckGotAllDrinksDone:
 CeladonCity_DepartmentStore_Roof_EventScript_Finale:
 	NPCMsg msg_0499_T07R0106_CeladonCity_DepartmentStore_Roof_Text_StillStuck
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	PlaySE SEQ_SE_DP_SELECT
@@ -209,6 +209,7 @@ CeladonCity_DepartmentStore_Roof_EventScript_SetHasLemonade:
 	Return
 	
 CeladonCity_DepartmentStore_Roof_EventScript_DontGiveDrink:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -368,6 +369,7 @@ CeladonCity_DepartmentStore_Roof_EventScript_BuyLemonade:
 	
 CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine:
 	HideMoneyBox
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

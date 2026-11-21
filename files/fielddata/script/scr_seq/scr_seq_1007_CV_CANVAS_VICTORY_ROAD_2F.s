@@ -115,6 +115,7 @@ _cv_bar_4:
 	GetPersonCoords 11, 0x401E, 0x401F
 	MovePerson 11, 0x401E, 0x401F
 	SetVar 0x5039, 100
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -139,6 +140,7 @@ _cv_bar_6:
 	GetPersonCoords 12, 0x401E, 0x401F
 	MovePerson 12, 0x401E, 0x401F
 	SetVar 0x503A, 100
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -240,14 +242,17 @@ _cv_outcome_11:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq MtEmber_Summit_EventScript_RanFromMoltres
 	SetFlag 0x2165
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -310,6 +315,7 @@ VictoryRoad_2F_OnLoad_cv_init:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -342,6 +348,7 @@ EventScript_RemoveStaticMon:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

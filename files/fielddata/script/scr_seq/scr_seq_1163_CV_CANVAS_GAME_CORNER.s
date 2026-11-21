@@ -60,8 +60,9 @@ CeladonCity_GameCorner_EventScript_CoinsClerk:
 	LockAll
 	FacePlayer
 	ShowMoneyBox 20, 2
-	// TODO(gba) showcoinsbox 0, 5
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_116 0, 20, 7
+	ScriptOverlayCmd 3, 1
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_WelcomeBuySomeCoins
 	TouchscreenMenuHide
 	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
@@ -111,12 +112,14 @@ CeladonCity_GameCorner_EventScript_Fisher:
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_DoYouWantToPlay
 	WaitButton
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_EventScript_GamblerNoCoinCase
-	// TODO(gba) checkcoins VAR_TEMP_1
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount 0x4001
+	ScriptOverlayCmd 3, 1
 	CompareVarToValue 0x4001, 9990
 	GoToIfGe CeladonCity_GameCorner_EventScript_FisherNoRoomForCoins
-	// TODO(gba) addcoins 10
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GiveCoins 10
+	ScriptOverlayCmd 3, 1
 	BufferPlayersName 6
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_Received10CoinsFromMan
 	WaitButton
@@ -162,12 +165,14 @@ CeladonCity_GameCorner_EventScript_Scientist:
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_WantSomeCoins
 	WaitButton
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_EventScript_GamblerNoCoinCase
-	// TODO(gba) checkcoins VAR_TEMP_1
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount 0x4001
+	ScriptOverlayCmd 3, 1
 	CompareVarToValue 0x4001, 9980
 	GoToIfGe CeladonCity_GameCorner_EventScript_ScientistNoRoomForCoins
-	// TODO(gba) addcoins 20
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GiveCoins 20
+	ScriptOverlayCmd 3, 1
 	BufferPlayersName 6
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_Received20CoinsFromNiceGuy
 	WaitButton
@@ -185,12 +190,14 @@ CeladonCity_GameCorner_EventScript_Gentleman:
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_HereAreSomeCoinsShoo
 	WaitButton
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_EventScript_GamblerNoCoinCase
-	// TODO(gba) checkcoins VAR_TEMP_1
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount 0x4001
+	ScriptOverlayCmd 3, 1
 	CompareVarToValue 0x4001, 9980
 	GoToIfGe CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins
-	// TODO(gba) addcoins 20
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GiveCoins 20
+	ScriptOverlayCmd 3, 1
 	BufferPlayersName 6
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_Received20CoinsFromMan
 	WaitButton
@@ -458,9 +465,10 @@ CeladonCity_GameCorner_EventScript_ClerkDeclineBuy:
 	End
 	
 CeladonCity_GameCorner_EventScript_FaceSlotMachine:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement VAR_SPECIAL_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -523,13 +531,14 @@ CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins:
 CeladonCity_GameCorner_Text_DefeatedGrunt:
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_GruntPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 2
 	CallIfEq CeladonCity_GameCorner_Text_GruntExitWest
 	CompareVarToValue 0x5002, 2
 	CallIfNe CeladonCity_GameCorner_Text_GruntExit
 	HidePerson 11
 	SetFlag 0x213B
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -546,30 +555,154 @@ _cv_yes_9:
 _cv_yn_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_EventScript_DontPlaySlotMachine
-	// TODO(gba) setfieldeffectargument 0, LOCALID_PLAYER
-	GoTo _cv_stop
-	// TODO(gba) #ifdef BUGFIX
-	GoTo _cv_stop
-	// TODO(gba) setfieldeffectargument 1, MAP_NUM(MAP_CELADON_CITY_GAME_CORNER)
-	GoTo _cv_stop
-	// TODO(gba) setfieldeffectargument 2, MAP_GROUP(MAP_CELADON_CITY_GAME_CORNER)
-	GoTo _cv_stop
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) setfieldeffectargument 1, MAP_GROUP(MAP_CELADON_CITY_GAME_CORNER)
-	GoTo _cv_stop
-	// TODO(gba) setfieldeffectargument 2, MAP_NUM(MAP_CELADON_CITY_GAME_CORNER)
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) dofieldeffect FLDEFF_SMILEY_FACE_ICON
-	GoTo _cv_stop
-	// TODO(gba) waitfieldeffect FLDEFF_SMILEY_FACE_ICON
-	GoTo _cv_stop
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetRandomSlotMachineId
-	GoTo _cv_stop
-	// TODO(gba) playslotmachine VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	FadeScreen 6, 1, 0, RGB_BLACK
+	WaitFade
+	CompareVarToValue 0x8004, 0
+	GoToIfNe _cv_slot_12
+	CasinoGame 0, 1
+	GoTo _cv_slots_11
+_cv_slot_12:
+	CompareVarToValue 0x8004, 1
+	GoToIfNe _cv_slot_13
+	CasinoGame 1, 1
+	GoTo _cv_slots_11
+_cv_slot_13:
+	CompareVarToValue 0x8004, 2
+	GoToIfNe _cv_slot_14
+	CasinoGame 2, 1
+	GoTo _cv_slots_11
+_cv_slot_14:
+	CompareVarToValue 0x8004, 3
+	GoToIfNe _cv_slot_15
+	CasinoGame 3, 1
+	GoTo _cv_slots_11
+_cv_slot_15:
+	CompareVarToValue 0x8004, 4
+	GoToIfNe _cv_slot_16
+	CasinoGame 4, 1
+	GoTo _cv_slots_11
+_cv_slot_16:
+	CompareVarToValue 0x8004, 5
+	GoToIfNe _cv_slot_17
+	CasinoGame 5, 1
+	GoTo _cv_slots_11
+_cv_slot_17:
+	CompareVarToValue 0x8004, 6
+	GoToIfNe _cv_slot_18
+	CasinoGame 6, 1
+	GoTo _cv_slots_11
+_cv_slot_18:
+	CompareVarToValue 0x8004, 7
+	GoToIfNe _cv_slot_19
+	CasinoGame 7, 1
+	GoTo _cv_slots_11
+_cv_slot_19:
+	CompareVarToValue 0x8004, 8
+	GoToIfNe _cv_slot_20
+	CasinoGame 8, 1
+	GoTo _cv_slots_11
+_cv_slot_20:
+	CompareVarToValue 0x8004, 9
+	GoToIfNe _cv_slot_21
+	CasinoGame 9, 1
+	GoTo _cv_slots_11
+_cv_slot_21:
+	CompareVarToValue 0x8004, 10
+	GoToIfNe _cv_slot_22
+	CasinoGame 10, 1
+	GoTo _cv_slots_11
+_cv_slot_22:
+	CompareVarToValue 0x8004, 11
+	GoToIfNe _cv_slot_23
+	CasinoGame 11, 1
+	GoTo _cv_slots_11
+_cv_slot_23:
+	CompareVarToValue 0x8004, 12
+	GoToIfNe _cv_slot_24
+	CasinoGame 12, 1
+	GoTo _cv_slots_11
+_cv_slot_24:
+	CompareVarToValue 0x8004, 13
+	GoToIfNe _cv_slot_25
+	CasinoGame 13, 1
+	GoTo _cv_slots_11
+_cv_slot_25:
+	CompareVarToValue 0x8004, 14
+	GoToIfNe _cv_slot_26
+	CasinoGame 0, 1
+	GoTo _cv_slots_11
+_cv_slot_26:
+	CompareVarToValue 0x8004, 15
+	GoToIfNe _cv_slot_27
+	CasinoGame 1, 1
+	GoTo _cv_slots_11
+_cv_slot_27:
+	CompareVarToValue 0x8004, 16
+	GoToIfNe _cv_slot_28
+	CasinoGame 2, 1
+	GoTo _cv_slots_11
+_cv_slot_28:
+	CompareVarToValue 0x8004, 17
+	GoToIfNe _cv_slot_29
+	CasinoGame 3, 1
+	GoTo _cv_slots_11
+_cv_slot_29:
+	CompareVarToValue 0x8004, 18
+	GoToIfNe _cv_slot_30
+	CasinoGame 4, 1
+	GoTo _cv_slots_11
+_cv_slot_30:
+	CompareVarToValue 0x8004, 19
+	GoToIfNe _cv_slot_31
+	CasinoGame 5, 1
+	GoTo _cv_slots_11
+_cv_slot_31:
+	CompareVarToValue 0x8004, 20
+	GoToIfNe _cv_slot_32
+	CasinoGame 6, 1
+	GoTo _cv_slots_11
+_cv_slot_32:
+	CompareVarToValue 0x8004, 21
+	GoToIfNe _cv_slot_33
+	CasinoGame 7, 1
+	GoTo _cv_slots_11
+_cv_slot_33:
+	CompareVarToValue 0x8004, 22
+	GoToIfNe _cv_slot_34
+	CasinoGame 8, 1
+	GoTo _cv_slots_11
+_cv_slot_34:
+	CompareVarToValue 0x8004, 23
+	GoToIfNe _cv_slot_35
+	CasinoGame 9, 1
+	GoTo _cv_slots_11
+_cv_slot_35:
+	CompareVarToValue 0x8004, 24
+	GoToIfNe _cv_slot_36
+	CasinoGame 10, 1
+	GoTo _cv_slots_11
+_cv_slot_36:
+	CompareVarToValue 0x8004, 25
+	GoToIfNe _cv_slot_37
+	CasinoGame 11, 1
+	GoTo _cv_slots_11
+_cv_slot_37:
+	CompareVarToValue 0x8004, 26
+	GoToIfNe _cv_slot_38
+	CasinoGame 12, 1
+	GoTo _cv_slots_11
+_cv_slot_38:
+	CompareVarToValue 0x8004, 27
+	GoToIfNe _cv_slot_39
+	CasinoGame 13, 1
+	GoTo _cv_slots_11
+_cv_slot_39:
+	CasinoGame 0, 1
+_cv_slots_11:
+	RestoreOverworld
+	FadeScreen 6, 1, 1, RGB_BLACK
+	WaitFade
 	CloseMsg
 	ReleaseAll
 	End
@@ -586,6 +719,7 @@ CeladonCity_GameCorner_EventScript_OpenRocketHideout:
 	
 CeladonCity_GameCorner_EventScript_DeclinePhoto:
 	HideMoneyBox
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -633,37 +767,43 @@ CeladonCity_GameCorner_EventScript_ClerkNoCoinCase:
 	End
 	
 CeladonCity_GameCorner_EventScript_Buy50Coins:
-	// TODO(gba) checkcoins VAR_TEMP_1
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount 0x4001
+	ScriptOverlayCmd 3, 1
 	CompareVarToValue 0x4001, 9950
 	GoToIfGe CeladonCity_GameCorner_EventScript_ClerkNoRoomForCoins
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 1000
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_EventScript_ClerkNotEnoughMoney
-	// TODO(gba) addcoins 50
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GiveCoins 50
+	ScriptOverlayCmd 3, 1
 	SubMoneyImmediate 1000
 	GoTo CeladonCity_GameCorner_EventScript_BoughtCoins
 	End
 	
 CeladonCity_GameCorner_EventScript_Buy500Coins:
-	// TODO(gba) checkcoins VAR_TEMP_1
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount 0x4001
+	ScriptOverlayCmd 3, 1
 	CompareVarToValue 0x4001, 9500
 	GoToIfGe CeladonCity_GameCorner_EventScript_ClerkNoRoomForCoins
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 10000
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_EventScript_ClerkNotEnoughMoney
-	// TODO(gba) addcoins 500
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GiveCoins 500
+	ScriptOverlayCmd 3, 1
 	SubMoneyImmediate 10000
 	GoTo CeladonCity_GameCorner_EventScript_BoughtCoins
 	End
 	
 CeladonCity_GameCorner_EventScript_ClerkEnd:
 	HideMoneyBox
-	// TODO(gba) hidecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_117
+	ScriptOverlayCmd 3, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -685,6 +825,7 @@ CeladonCity_GameCorner_EventScript_SlotMachineNoCoinCase:
 	End
 	
 CeladonCity_GameCorner_EventScript_DontPlaySlotMachine:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -719,8 +860,9 @@ CeladonCity_GameCorner_EventScript_ClerkNotEnoughMoney:
 	
 CeladonCity_GameCorner_EventScript_BoughtCoins:
 	UpdateMoneyBox
-	// TODO(gba) updatecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_118 0
+	ScriptOverlayCmd 3, 1
 	PlaySE SEQ_SE_DP_SELECT
 	NPCMsg msg_0953_CV_CANVAS_GAME_CORNER_CeladonCity_GameCorner_Text_HereAreYourCoins
 	WaitButton

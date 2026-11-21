@@ -8,7 +8,7 @@
 	InitScriptEntryEnd
 
 _cv_T11_frame:
-	// (not yet: MoveExtractor_EventScript_SaffronVisit)
+	InitScriptGoToIfEqual 0x4009, 1, _EV_MoveExtractor_EventScript_SaffronVisit + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

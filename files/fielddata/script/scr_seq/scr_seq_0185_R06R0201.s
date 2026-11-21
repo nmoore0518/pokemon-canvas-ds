@@ -46,9 +46,10 @@ Route6_NorthEntrance_EventScript_GuardTrigger:
 	GoToIfSet 0x2131, Route6_NorthEntrance_EventScript_GiveTea
 	NPCMsg msg_0335_R06R0201_Route6_NorthEntrance_Text_ThirstyOnGuardDuty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route6_NorthEntrance_Movement_BlockPlayerEntry
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -60,7 +61,7 @@ Route6_NorthEntrance_EventScript_GiveTea:
 Route6_NorthEntrance_EventScript_GuardDrinkTea:
 	NPCMsg msg_0335_R06R0201_Route6_NorthEntrance_Text_ThatTeaLooksTasty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route6_NorthEntrance_EventScript_WalkToGuardLeft
 	CompareVarToValue 0x4001, 1

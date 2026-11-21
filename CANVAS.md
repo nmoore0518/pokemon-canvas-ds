@@ -240,9 +240,38 @@ What else it does:
   `msgbox gStringVar4` shows the one picked (`_cv_str4`). Used for the mentors' lines (`specials.MENTOR_TEXTS`,
   read from `src/gym_candidate.c`).
 - **hg-engine's own items, Pokemon and moves** (Bottle Cap...) go into scripts by number.
-- **Not yet**: the Guest Leader challenges after each badge (GymCandidate_*: Brock's badge, TM and gifts work, then
-  "not ported yet"), type tutors, the painter's loft in Pewter (her paintings), the fossil pictures; the team rules
-  are checked where a script asks (the League's door) but not yet before the gym leaders' and rival's battles.
+- **The candidacy** (a Guest Leader challenge after each badge, `port/candidacy.py`): the leaders' lines and
+  numbers come from the GBA's `src/gym_candidate.c`; the challenger is built by our engine
+  (`engine/src/canvas_candidate.c`, script command `CanvasCandidate op, ...` = 208/112): a random class, name and
+  team by the GBA's rules (`port/challengers.py` -> `canvas_challengers.h`: its classes, names, held items and
+  species pool, a byte a species), given to one of our trainers 1470-1475 as the battle starts
+  (`Canvas_MakeChallengerParty`, from hg-engine's `MakeTrainerPokemonParty`). A trainer's in-battle defeat line is
+  its own text in HeartGold, so there's a trainer for each of the GBA's defeat lines, and one more of each for
+  double battles (two in three from the fourth badge). The walks in and out are worked out over the map by a
+  search from the door to the player (`PlanVisitorWalk`); the leader steps aside to a free square near their spot
+  while the player holds the gym (`PlanHold`: HeartGold's leaders stand on narrow daises, so it looks a little
+  further off than the GBA). The same walks serve the Gym Legend's rival, Oak at the gym switch and the Move
+  Extractor's grunt. A loss doesn't black out (the leader comes back). The prize is a Gym Leader's (25 a level,
+  doubled the first time), paid through hg-engine's prize table for the trainers' class while the battle lasts.
+  Code that runs from another hg-engine overlay calls into overlay 129 with `LONG_CALL` (a plain call lands in
+  ARM mode). Overlay 129 has about 500 bytes left: more engine code needs room found first.
+  Not yet: the mentors' gifts at Cerulean and Cinnabar (the Type Guard and Type Edge items, row 37), the gym
+  decorations.
+- **Team rules before the gym leaders' and the rival's battles**: right after the leader's intro (where the GBA's
+  `dotrainerbattle` checks), `CanvasCheckTeam`; broken, the rule's message, and the map loads again with the player
+  where they stand.
+- **The Game Corner**: coins are HeartGold's (its coin box, `GiveCoins`/`TakeCoins`; those commands live in
+  overlay 22, loaded round each one with `ScriptOverlayCmd 3, 0/1`); a slot machine is HeartGold's Voltorb Flip
+  (`CasinoGame`, one of Celadon's 14 machines).
+- **Fossils**: the fossil menu lists only the fossils in the bag (`menu` items with an item, one page);
+  `Fossil_*` specials buffer the species.
+- **Closing the message box**: the GBA's `closemessage` and `release` close it if open and do nothing otherwise;
+  HeartGold's `CloseMsg` frees the window again (a crash), so both become `CanvasCloseMsg`.
+- **Not yet**: type tutors, the painter's loft in Pewter (her paintings), the fossil pictures, Mom's Dad's Ball
+  scene (Type Balls, row 36), Oak's finale in the player's gym.
+- **The Sevii Islands stay out**, as in the GBA game: Cinnabar's Bill scenes and the ferry back are dropped from its
+  frame scripts (`cinnabar_no_sevii`).
+- **The GBA's `#ifdef`s** are followed when its scripts and constants are read (`gba.py`, FIRERED defined).
 - **Split maps**: a GBA map HeartGold splits in two (Route 2) gets two `MAPS` entries, `Map#part`, each with a
   test for which squares it takes.
 - **Testing**: a savestate made with an older build can't be used with a new one (the game keeps the ROM's file

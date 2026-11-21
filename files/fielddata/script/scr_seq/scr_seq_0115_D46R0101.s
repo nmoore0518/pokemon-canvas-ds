@@ -227,6 +227,7 @@ EventMons_EventScript_Cap:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -248,6 +249,7 @@ EventMons_EventScript_CapNoCase:
 	End
 	
 EventMons_EventScript_ReleaseAllEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

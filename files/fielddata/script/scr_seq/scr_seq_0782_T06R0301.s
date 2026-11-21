@@ -77,10 +77,11 @@ VermilionCity_PokemonFanClub_EventScript_Woman:
 	GoToIfSet 3, VermilionCity_PokemonFanClub_EventScript_WomanSpokeToFatMan
 	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdoreMySeel
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 5, Common_Movement_FaceOriginalDirection
 	WaitMovement
 	SetFlag 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -90,10 +91,11 @@ VermilionCity_PokemonFanClub_EventScript_FatMan:
 	GoToIfSet 2, VermilionCity_PokemonFanClub_EventScript_FatManSpokeToWoman
 	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_AdmirePikachusTail
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 6, Common_Movement_FaceOriginalDirection
 	WaitMovement
 	SetFlag 3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -154,20 +156,22 @@ VermilionCity_PokemonFanClub_EventScript_WorkerFGameClear:
 VermilionCity_PokemonFanClub_EventScript_WomanSpokeToFatMan:
 	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_SeelFarMoreAttractive
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 5, Common_Movement_FaceOriginalDirection
 	WaitMovement
 	ClearFlag 3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 VermilionCity_PokemonFanClub_EventScript_FatManSpokeToWoman:
 	NPCMsg msg_0488_T06R0301_VermilionCity_PokemonFanClub_Text_PikachuTwiceAsCute
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 6, Common_Movement_FaceOriginalDirection
 	WaitMovement
 	ClearFlag 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

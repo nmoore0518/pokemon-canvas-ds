@@ -139,7 +139,7 @@ PokemonTower_2F_EventScript_Rival:
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_PokemonTower_2F_Text_RivalPostBattle
 	WaitButton
 	Call GymHack_EventScript_RivalTowerGift
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
 	CallIfEq PokemonTower_2F_EventScript_RivalExitRight
@@ -151,6 +151,7 @@ PokemonTower_2F_EventScript_Rival:
 	HidePerson 1
 	SetFlag 0x2182
 	SetVar 0x503D, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -171,7 +172,7 @@ TowerGraves_EventScript_GhostGirl:
 	SetFlag 0x2184
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_GirlKeepThemAsTheyAre
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special TowerGraves_DismissGhosts
 	GoTo _cv_stop
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_Gone
@@ -193,6 +194,9 @@ PokemonTower_2F_EventScript_RivalFacePlayerDown:
 	Return
 	
 PokemonTower_2F_EventScript_RivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_2
@@ -266,6 +270,9 @@ _cv_won_14:
 	Return
 	
 PokemonTower_2F_EventScript_RivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_16
@@ -339,6 +346,9 @@ _cv_won_28:
 	Return
 	
 PokemonTower_2F_EventScript_RivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_30
@@ -435,11 +445,21 @@ PokemonTower_2F_EventScript_RivalExitDown:
 TowerGraves_EventScript_NoRoom:
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_TowerGraves_Text_GirlNoRoom
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special TowerGraves_DismissGhosts
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
 	
 GymHack_EventScript_GiftsDone:
 	Return
@@ -453,6 +473,21 @@ GymHack_EventScript_GiveStatItem:
 	WaitButton
 	GoTo GymHack_EventScript_GiveStatItemDone
 	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
+	
 GymHack_EventScript_GiveStatItemDone:
 	Return
 
@@ -460,6 +495,15 @@ _cv_stop:
 	NPCMsg msg_0886_CV_CANVAS_POKEMON_TOWER_2F_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_CANVAS_POKEMON_TOWER_2F, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

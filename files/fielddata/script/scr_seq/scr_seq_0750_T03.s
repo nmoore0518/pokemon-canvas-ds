@@ -45,7 +45,7 @@ _cv_yn_2:
 	GoToIfEq PewterCity_EventScript_CheckedOutMuseum
 	NPCMsg msg_0460_T03_PewterCity_Text_ReallyYouHaveToGo
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_TSURETEKE1
 	CompareVarToValue 0x5002, 0
@@ -58,7 +58,7 @@ _cv_yn_2:
 	CallIfEq PewterCity_EventScript_LeadToMuseumEast
 	NPCMsg msg_0460_T03_PewterCity_Text_ThisIsTheMuseum
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	ApplyMovement 2, PewterCity_Movement_MuseumGuideExit
 	WaitMovement
@@ -67,6 +67,7 @@ _cv_yn_2:
 	SetFlag 0x20B3
 	ClearFlag 0x20B3
 	ShowPerson 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

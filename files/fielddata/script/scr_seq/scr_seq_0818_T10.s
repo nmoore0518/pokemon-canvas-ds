@@ -67,6 +67,7 @@ _cv_shown_4:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	CanvasCredits
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

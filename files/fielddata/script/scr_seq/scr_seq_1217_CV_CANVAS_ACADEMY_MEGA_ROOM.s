@@ -101,7 +101,7 @@ _cv_yn_4:
 	GoTo _cv_stop
 	NPCMsg msg_0980_CV_CANVAS_ACADEMY_MEGA_ROOM_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8008, VAR_SPECIAL_RESULT
 	// TODO(gba) special Academy_RentalEnd
@@ -136,8 +136,7 @@ Academy_EventScript_Battle:
 _cv_won_6:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_7

@@ -30,7 +30,7 @@
 	ScrDef Route22_EventScript_LateRivalTriggerTop
 	ScrDef Route22_EventScript_LateRivalTriggerMid
 	ScrDef ViridianCity_OnTransition
-	ScrDef _cv_unported_24
+	ScrDef MoveExtractor_EventScript_ViridianVisit
 	ScrDefEnd
 	
 ViridianCity_EventScript_OldMan:
@@ -40,9 +40,10 @@ ViridianCity_EventScript_OldMan:
 	GoToIfEq ViridianCity_EventScript_OldManGymLeaderReturned
 	NPCMsg msg_0452_T02_ViridianCity_Text_GymClosedWonderWhoLeaderIs
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 3, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -182,9 +183,10 @@ ViridianCity_EventScript_RoadBlocked:
 	LockAll
 	NPCMsg msg_0452_T02_ViridianCity_Text_ThisIsPrivateProperty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, ViridianCity_Movement_WalkDown
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -195,9 +197,10 @@ ViridianCity_EventScript_GymDoorLocked:
 	Wait 20, VAR_SPECIAL_RESULT
 	NPCMsg msg_0452_T02_ViridianCity_Text_GymDoorsAreLocked
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, ViridianCity_Movement_JumpDownLedge
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -208,6 +211,7 @@ ViridianCity_EventScript_TutorialTriggerLeft:
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterRight
 	WaitMovement
 	Call ViridianCity_EventScript_DoTutorialBattle
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -218,6 +222,7 @@ ViridianCity_EventScript_TutorialTriggerRight:
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterLeft
 	WaitMovement
 	Call ViridianCity_EventScript_DoTutorialBattle
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -299,22 +304,25 @@ ViridianCity_EventScript_TutorialCompleted:
 	
 ViridianCity_EventScript_TutorialStart:
 	Call ViridianCity_EventScript_DoTutorialBattle
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 ViridianCity_EventScript_TutorialNotReady:
 	NPCMsg msg_0452_T02_ViridianCity_Text_ThisIsPrivateProperty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 ViridianCity_EventScript_WomanRoadBlocked:
 	NPCMsg msg_0452_T02_ViridianCity_Text_GrandpaHasntHadCoffeeYet
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 5, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -347,7 +355,7 @@ TypeTutor_EventScript_Talk:
 ViridianCity_EventScript_DoTutorialBattle:
 	NPCMsg msg_0452_T02_ViridianCity_Text_ShowYouHowToCatchMons
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CatchingTutorial
 	SetFlag 0x20A3
 	LockAll
@@ -390,7 +398,7 @@ _cv_shown_6:
 	CallIfEq Route22_EventScript_EarlyRivalCharmander
 	NPCMsg msg_0452_T02_Route22_Text_EarlyRivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
@@ -403,6 +411,7 @@ _cv_shown_6:
 	HidePerson 15
 	SetFlag 0x2063
 	SetVar 0x5013, 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -436,7 +445,7 @@ _cv_shown_8:
 	BufferPlayersName 6
 	NPCMsg msg_0452_T02_Route22_Text_LateRivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
 	ApplyMovement 15, Route22_Movement_LateRivalExit
@@ -445,6 +454,7 @@ _cv_shown_8:
 	HidePerson 15
 	SetFlag 0x2063
 	SetVar 0x5013, 4
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -478,19 +488,13 @@ ViridianCity_EventScript_TryUnlockGym:
 MoveExtractor_EventScript_Visit:
 	LockAll
 	SetVar 0x4009, 0
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq MoveExtractor_EventScript_VisitNoRoom
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1015
-	CopyVar 0x401F, 0x8006
-	AddVar 0x401F, 272
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2089
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 0x800A, Common_Movement_ExclamationMark
 	WaitMovement
@@ -498,7 +502,7 @@ MoveExtractor_EventScript_Visit:
 	CallIfEq MoveExtractor_EventScript_SecondVisit
 	CompareVarToValue 0x8008, 3
 	CallIfEq MoveExtractor_EventScript_ThirdVisit
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 0x800A
@@ -524,7 +528,7 @@ _cv_yes_9:
 _cv_yn_10:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq ViridianCity_EventScript_ShowAgainNo
-	CloseMsg
+	CanvasCloseMsg
 	CatchingTutorial
 	SetFlag 0x20A3
 	LockAll
@@ -603,6 +607,9 @@ Route22_EventScript_EarlyRivalApproachBottom:
 	Return
 	
 Route22_EventScript_EarlyRivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_14
@@ -670,6 +677,9 @@ _cv_battle_13:
 	Return
 	
 Route22_EventScript_EarlyRivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_27
@@ -737,6 +747,9 @@ _cv_battle_26:
 	Return
 	
 Route22_EventScript_EarlyRivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_40
@@ -825,6 +838,9 @@ Route22_EventScript_LateRivalApproachBottom:
 	Return
 	
 Route22_EventScript_LateRivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_53
@@ -898,6 +914,9 @@ _cv_won_65:
 	Return
 	
 Route22_EventScript_LateRivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_67
@@ -971,6 +990,9 @@ _cv_won_79:
 	Return
 	
 Route22_EventScript_LateRivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_81
@@ -1047,6 +1069,7 @@ Common_EventScript_NopReturn:
 	Return
 	
 MoveExtractor_EventScript_VisitNoRoom:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1071,6 +1094,7 @@ MoveExtractor_EventScript_ThirdVisit:
 	Return
 	
 ViridianCity_EventScript_ShowAgainNo:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1088,6 +1112,15 @@ EventScript_ChooseMoveTutorMon:
 	FacePlayer
 	Return
 	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
 GymHack_EventScript_GiveStatItem:
 	GiveItem 0x8009, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
@@ -1097,17 +1130,23 @@ GymHack_EventScript_GiveStatItem:
 	WaitButton
 	GoTo GymHack_EventScript_GiveStatItemDone
 	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0452_T02_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0452_T02_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0452_T02_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
+	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-
-_cv_unported_24:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0452_T02_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_str4:
 	BufferPlayersName 6
@@ -1118,6 +1157,15 @@ _cv_stop:
 	NPCMsg msg_0452_T02_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_VIRIDIAN, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

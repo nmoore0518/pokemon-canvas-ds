@@ -96,7 +96,7 @@ SilphCo_11F_EventScript_BattleGiovanni:
 	BufferPlayersName 6
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_GiovanniIntro
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq SilphCo_11F_EventScript_GiovanniApproachLeft
 	CompareVarToValue 0x4001, 1
@@ -115,7 +115,7 @@ _cv_won_2:
 	NPCMsg msg_0901_CV_CANVAS_SILPH_CO_11F_SilphCo_11F_Text_GiovanniPostBattle
 	WaitButton
 	Call DadStory_EventScript_SilphGiovanniGives
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 1
@@ -134,6 +134,7 @@ _cv_won_2:
 	GoToIfEq DadStory_EventScript_SilphWarpHome
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -250,7 +251,7 @@ DadStory_EventScript_SilphGiovanniGives:
 	GiveItem ITEM_MASTER_BALL, 1, VAR_SPECIAL_RESULT
 	SetFlag 0x21C4
 	Call GymHack_EventScript_SilphGiovanniGift
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5008, 5
 	GoToIfGe Common_EventScript_NopReturn
 	ClearFlag 0x21C3
@@ -276,7 +277,7 @@ _cv_shown_8:
 	CallIfEq DadStory_EventScript_MomSilphBoy
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq DadStory_EventScript_MomSilphGirl
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5008, 5
 	Return
 	
@@ -286,6 +287,7 @@ DadStory_EventScript_SilphWarpHome:
 	Warp MAP_PALLET_TOWN_REDS_HOUSE_1F, 0, 10, 5, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -192,11 +192,12 @@ SilphCo_Elevator_EventScript_To1F:
 	End
 	
 SilphCo_Elevator_EventScript_ExitFloorSelect:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 SilphCo_Elevator_EventScript_MoveElevator:
-	CloseMsg
+	CanvasCloseMsg
 	WaitSE SEQ_SE_DP_SELECT
 	ElevatorAnim 1, 2
 	SetFlag 2

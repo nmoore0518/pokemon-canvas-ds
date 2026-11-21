@@ -28,8 +28,8 @@
 	ScrDef GymFinale_EventScript_FirstDay
 	ScrDef PalletTown_Gym_EventScript_OakShowsGym
 	ScrDef _cv_unported_21
-	ScrDef _cv_unported_22
-	ScrDef _cv_unported_23
+	ScrDef GymLegend_EventScript_RivalEscaped
+	ScrDef GymLegend_EventScript_RivalCaught
 	ScrDef _cv_unported_24
 	ScrDef _cv_unported_25
 	ScrDef Gauntlet_EventScript_Arrives
@@ -85,7 +85,7 @@ _cv_yn_2:
 	CallIfEq GymChallenge_EventScript_StageBlocked
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymChallenge_Text_TakeYourPlace
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, gGymChallengePlayerPath
 	WaitMovement
 	GoTo GymChallenge_EventScript_NextChallenger
@@ -156,7 +156,7 @@ GymLegend_EventScript_Legend:
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_Challenge
 	WaitButton
 	WaitCry
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5014, 1
 	// TODO(gba) special GymLegend_CreateMon
 	GoTo _cv_stop
@@ -188,7 +188,7 @@ _cv_outcome_5:
 	GoTo _cv_stop
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_Fled
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GoTo GymLegend_EventScript_RivalEscaped
 	End
 	
@@ -292,7 +292,7 @@ PalletTown_Gym_EventScript_OakShowsGym:
 	BufferRivalsName 7
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_RivalSeeYouAtTheTop
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	ApplyMovement obj_player, PalletTown_Gym_Movement_WatchRivalLeave
 	ApplyMovement 2, PalletTown_Gym_Movement_RivalLeave
@@ -307,7 +307,7 @@ PalletTown_Gym_EventScript_OakShowsGym:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_PalletTown_Gym_Text_OakWaitingForYou
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, PalletTown_Gym_Movement_OakLeave
 	WaitMovement
 	HidePerson 1
@@ -318,6 +318,7 @@ PalletTown_Gym_EventScript_OakShowsGym:
 	SetFlag 0x2000
 	SetVar 0x5005, 2
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -385,7 +386,7 @@ GymLegend_EventScript_ArrivesLater:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_AideWhatOnEarth
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ResetBGM
 	GoTo GymLegend_EventScript_ArrivesLaterEnd
 	
@@ -1012,7 +1013,7 @@ _cv_yn_104:
 	GoToIfNe GymFinale_EventScript_TeamBreaksRules
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakThenShowMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HealParty
 	// TODO(gba) special GymChallenge_GenerateOakFinale
 	GoTo _cv_stop
@@ -1125,7 +1126,7 @@ GymChallenge_EventScript_NextChallenger:
 	CallIfEq GymChallenge_EventScript_AnnounceTrainer
 	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	CallIfEq GymSwitch_EventScript_AnnounceMentor
-	CloseMsg
+	CanvasCloseMsg
 	ClearFlag 0x2017
 	GoToIfUnset 0x2017, _cv_show_117
 	ClearFlag 0x2017
@@ -1144,7 +1145,7 @@ _cv_shown_118:
 	WaitMovement
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CanvasCloseMsg
@@ -1192,7 +1193,7 @@ _cv_yn_124:
 	GoTo _cv_stop
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymPractice_Text_Go
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ClearTrainerFlag 1442
 	SetFlag 0x2036
 	CanvasCloseMsg
@@ -1205,8 +1206,7 @@ _cv_yn_124:
 _cv_won_126:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	HealParty
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
@@ -1267,7 +1267,7 @@ _cv_yn_132:
 	GoToIfEq Gauntlet_EventScript_NotYet
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_Reveal1
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 30, VAR_SPECIAL_RESULT
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
@@ -1422,9 +1422,9 @@ GymFinale_EventScript_AideAndLegend:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHowItWorks
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call GymLegend_EventScript_Arrives
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, PalletTown_Gym_Movement_OakLeave
 	WaitMovement
 	HidePerson 1
@@ -1432,6 +1432,7 @@ GymFinale_EventScript_AideAndLegend:
 	PlaySE SEQ_SE_DP_KAIDAN2
 	SetFlag 0x2034
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1471,8 +1472,7 @@ GymFinale_EventScript_OakSkippedTheCeremony:
 GymLegend_EventScript_RivalWalksIn:
 	PlayBGM SEQ_GS_E_RIVAL1
 	SetVar 0x800A, 2
-	// TODO(gba) special GymCandidate_PlanVisitorWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymLegend_EventScript_RivalAppears
 	CopyVar 0x401E, 0x8005
@@ -1487,20 +1487,18 @@ GymLegend_EventScript_RivalWalksIn:
 _cv_show_141:
 	ShowPerson 2
 _cv_shown_142:
-	ApplyMovement 2, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	Return
 	
 GymLegend_EventScript_RivalWalksOut:
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
-	// TODO(gba) special GymCandidate_VisitorWalked
-	GoTo _cv_stop
+	CanvasCandidate 6
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymLegend_EventScript_RivalVanishes
-	ApplyMovement 2, gMentorWalkOut
+	CanvasCandidate 5, 0x800A, 1
 	WaitMovement
 	GoTo GymLegend_EventScript_RivalVanishes
 	
@@ -1522,14 +1520,13 @@ GymLegend_EventScript_Appears:
 	SetVar 0x8005, 2
 	SetVar 0x8006, 12
 	SetVar 0x8007, 4
-	// TODO(gba) special ShakeCamera
-	GoTo _cv_stop
+	ScreenShake 0x8005, 0x8004, 0x8007, 0x8006
 	PlaySE SEQ_SE_DP_SELECT
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_LightsOut
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ClearFlag 0x203A
 	GoToIfUnset 0x203A, _cv_show_143
 	ClearFlag 0x203A
@@ -1562,6 +1559,7 @@ _cv_shown_144:
 	Return
 	
 GymLegend_EventScript_ArrivesLaterEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1584,19 +1582,15 @@ Johto_EventScript_InvitationByMail:
 	End
 	
 GymCandidate_EventScript_VisitorWalksIn:
-	// TODO(gba) special GymCandidate_PlanVisitorWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorAppears
-	CopyVar 0x401E, 0x8005
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	ApplyMovement 0x800A, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	Return
 	
 Johto_EventScript_ReceiveInvitation:
@@ -1612,18 +1606,16 @@ Johto_EventScript_ReceiveGymCharm:
 	Return
 	
 GymCandidate_EventScript_VisitorWalksOut:
-	// TODO(gba) special GymCandidate_VisitorWalked
-	GoTo _cv_stop
+	CanvasCandidate 6
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_GuestLeaves
-	CloseMsg
-	ApplyMovement 0x800A, gMentorWalkOut
+	CanvasCloseMsg
+	CanvasCandidate 5, 0x800A, 1
 	WaitMovement
 	HidePerson 0x800A
 	SetFlag 0x2017
 	PlaySE SEQ_SE_DP_KAIDAN2
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	Return
 	
 GymFinale_EventScript_PutOff:
@@ -1642,6 +1634,7 @@ GymFinale_EventScript_TeamBreaksRules:
 	CallIfNe GymFinale_EventScript_OakRulesMsg
 	SetVar 0x5004, 2
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1662,7 +1655,7 @@ GymFinale_EventScript_LostToOak:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakStillHasIt
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5004, 2
 	SetFlag 0x2034
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -1670,11 +1663,13 @@ GymFinale_EventScript_LostToOak:
 	Warp MAP_PALLET_TOWN_REDS_HOUSE_1F, 0, 9, 6, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 GymChallenge_EventScript_ItemClause:
 	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1866,7 +1861,7 @@ Gauntlet_EventScript_BillBattle:
 	GoTo _cv_stop
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special Gauntlet_ShowBillCard
@@ -2101,7 +2096,8 @@ _cv_yn_168:
 	
 GymDecor_EventScript_LogOff:
 	PlaySE SEQ_SE_DP_SELECT
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2134,8 +2130,7 @@ EventScript_PalmPilotReturn:
 GymLegend_EventScript_RivalAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymLegend_EventScript_RivalNoRoom
 	CopyVar 0x401E, 0x8005
@@ -2150,16 +2145,14 @@ GymLegend_EventScript_RivalAppears:
 _cv_show_169:
 	ShowPerson 2
 _cv_shown_170:
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymLegend_EventScript_RivalNoRoom
 	
 GymLegend_EventScript_RivalVanishes:
 	HidePerson 2
 	SetFlag 0x2033
 	PlaySE SEQ_SE_DP_KAIDAN2
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	ResetBGM
 	Return
 	
@@ -2171,27 +2164,22 @@ GymLegend_EventScript_NoLegend:
 GymCandidate_EventScript_MentorAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorNoRoom
-	CopyVar 0x401E, 0x8005
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 0x800A
 	SetFlag 0x2017
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	Return
@@ -2218,7 +2206,7 @@ GymFinale_EventScript_HallOfFame:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakHallOfFame
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5005, 4
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
@@ -2228,6 +2216,7 @@ GymFinale_EventScript_HallOfFame:
 	Warp MAP_INDIGO_PLATEAU, 0, 978, 108, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2245,7 +2234,7 @@ GymFinale_EventScript_Badge:
 	Return
 	
 GymChallenge_EventScript_ChallengerLeaves:
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x8004, 1
 	// TODO(gba) special GymChallenge_PlanChallengerWalk
 	GoTo _cv_stop
@@ -2314,19 +2303,18 @@ _cv_menu_172:
 	End
 	
 GymChallenge_EventScript_KeepGoing:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
 	GoTo GymChallenge_EventScript_NextChallenger
 	End
 	
 GymSwitch_EventScript_OakComes:
-	CloseMsg
+	CanvasCloseMsg
 	ClearFlag 0x201F
 	PlayBGM SEQ_GS_OHKIDO
 	SetVar 0x800A, 1
-	// TODO(gba) special GymCandidate_PlanChallengerWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakAppears
 	CopyVar 0x401E, 0x8005
@@ -2341,10 +2329,9 @@ GymSwitch_EventScript_OakComes:
 _cv_show_173:
 	ShowPerson 1
 _cv_shown_174:
-	ApplyMovement 1, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymSwitch_EventScript_OakHere
 	
 Gauntlet_EventScript_PilotMenuWithdraw:
@@ -2400,7 +2387,7 @@ Gauntlet_EventScript_BillWon:
 	BufferPlayersName 6
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_Gauntlet_Text_BillLast
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 17, Gauntlet_Movement_Collapse
 	WaitMovement
 	PlayCry SPECIES_CLEFABLE, 0
@@ -2451,7 +2438,7 @@ Tourney_EventScript_Match:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymChallenge_EventScript_CantReachSpot
 	Call Tourney_EventScript_SayTakeYourPlace
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, gGymChallengePlayerPath
 	WaitMovement
 	GoTo Tourney_EventScript_NextMatch
@@ -2485,7 +2472,7 @@ Tourney_EventScript_SimBill:
 	WaitButton
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special Gauntlet_ShowBillCard
@@ -2544,6 +2531,7 @@ Tourney_EventScript_BreaksClause:
 	CallIfEq Tourney_EventScript_SpeciesClause
 	CompareVarToValue VAR_SPECIAL_RESULT, 3
 	CallIfEq Tourney_EventScript_ItemClause
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2561,7 +2549,7 @@ Tourney_EventScript_SimFormat:
 _cv_menu_186:
 	// TODO(gba) special Tourney_SetSimFormat
 	GoTo _cv_stop
-	CloseMsg
+	CanvasCloseMsg
 	Return
 	
 Tourney_EventScript_SayDraw:
@@ -2659,7 +2647,8 @@ GymDecor_EventScript_HowToPaint:
 	End
 	
 GymDecor_EventScript_StartEditing:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	// TODO(gba) special GymDecor_StartEditing
 	GoTo _cv_stop
@@ -2730,8 +2719,7 @@ GymSwitch_EventScript_CallItADay:
 GymSwitch_EventScript_OakAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakNoRoom
 	CopyVar 0x401E, 0x8005
@@ -2746,8 +2734,7 @@ GymSwitch_EventScript_OakAppears:
 _cv_show_193:
 	ShowPerson 1
 _cv_shown_194:
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymSwitch_EventScript_OakNoRoom
 	
 GymSwitch_EventScript_OakHere:
@@ -2780,19 +2767,19 @@ _cv_yn_196:
 	GoToIfEq GymSwitch_EventScript_OakDeclined
 	CompareVarToValue 0x5014, 5
 	GoToIfNe GymSwitch_EventScript_OakLeaves
-	CloseMsg
+	CanvasCloseMsg
 	Call GymLegend_EventScript_Arrives
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 1
 	SetFlag 0x2034
 	SetFlag 0x2034
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2820,7 +2807,7 @@ Tourney_EventScript_NextMatch:
 	// TODO(gba) special Tourney_SetupNext
 	GoTo _cv_stop
 	Call Tourney_EventScript_SayAnnounce
-	CloseMsg
+	CanvasCloseMsg
 	ClearFlag 0x2017
 	GoToIfUnset 0x2017, _cv_show_197
 	ClearFlag 0x2017
@@ -2839,7 +2826,7 @@ _cv_shown_198:
 	WaitMovement
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special Tourney_ShowTitleCard
@@ -3144,12 +3131,11 @@ GymSwitch_EventScript_ChooseType:
 	End
 	
 GymSwitch_EventScript_OakLeaves:
-	CloseMsg
-	// TODO(gba) special GymCandidate_VisitorWalked
-	GoTo _cv_stop
+	CanvasCloseMsg
+	CanvasCandidate 6
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymSwitch_EventScript_OakGone
-	ApplyMovement 1, gMentorWalkOut
+	CanvasCandidate 5, 0x800A, 1
 	WaitMovement
 	PlaySE SEQ_SE_DP_KAIDAN2
 	GoTo GymSwitch_EventScript_OakGone
@@ -3294,9 +3280,9 @@ GymSwitch_EventScript_OakGone:
 	HidePerson 1
 	SetFlag 0x2034
 	SetFlag 0x2034
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -3475,7 +3461,7 @@ Tourney_EventScript_SayWonSim:
 	Return
 	
 Tourney_EventScript_Continue:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
 	GoTo Tourney_EventScript_NextMatch
@@ -3543,24 +3529,6 @@ Tourney_EventScript_SayNextQuestionSim:
 	Return
 
 _cv_unported_21:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_22:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_23:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0856_CV_FIGHT_AREA_UNUSED_7_cv_unported
@@ -3659,14 +3627,6 @@ Common_Movement_WalkInPlaceFasterRight:
 	.balign 4, 0
 GymFinale_Movement_PlayerLookAtAide:
 	WalkOnSpotFasterEast
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkIn:
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkOut:
 	EndMovement
 
 	.balign 4, 0

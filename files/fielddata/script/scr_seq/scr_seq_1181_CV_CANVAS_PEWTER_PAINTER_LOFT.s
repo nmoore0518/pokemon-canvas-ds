@@ -85,10 +85,11 @@ _cv_yn_2:
 	BufferPlayersName 6
 	NPCMsg msg_0962_CV_CANVAS_PEWTER_PAINTER_LOFT_PainterLoft_Text_SteppingIn
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	// TODO(gba) special Painter_Enter
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -270,6 +271,7 @@ PainterLoft_EventScript_EaselTooFew:
 	End
 	
 PainterLoft_EventScript_EaselNotYet:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

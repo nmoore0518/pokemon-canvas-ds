@@ -43,6 +43,7 @@ CeruleanCity_House5_EventScript_BerryCrushRankings:
 	LockAll
 	// TODO(gba) special ShowBerryCrushRankings
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

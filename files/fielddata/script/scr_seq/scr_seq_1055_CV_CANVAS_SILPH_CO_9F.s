@@ -24,7 +24,7 @@ SilphCo_9F_EventScript_HealWoman:
 	GoToIfGe SilphCo_9F_EventScript_HealWomanRocketsGone
 	NPCMsg msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_YouShouldTakeQuickNap
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Common_EventScript_OutOfCenterPartyHeal
 	NPCMsg msg_0899_CV_CANVAS_SILPH_CO_9F_SilphCo_9F_Text_DontGiveUp
 	WaitButton

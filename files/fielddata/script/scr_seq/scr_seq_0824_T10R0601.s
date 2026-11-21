@@ -54,7 +54,7 @@ _cv_shown_2:
 	BufferPlayersName 6
 	NPCMsg msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakPlayer
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, PokemonLeague_ChampionsRoom_Movement_PlayerWatchOakEnter
 	ApplyMovement 1, PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter
 	ApplyMovement 2, PokemonLeague_ChampionsRoom_Movement_OakEnter
@@ -159,7 +159,7 @@ _cv_done_3:
 	WaitMovement
 	CallIfUnset FLAG_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_GymFinaleOakToRival
 	CallIfSet FLAG_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_OakToRival
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 2, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
 	Wait 20, VAR_SPECIAL_RESULT
@@ -168,7 +168,7 @@ _cv_done_3:
 	BufferPlayersName 6
 	NPCMsg msg_0527_T10R0601_PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 13, VAR_SPECIAL_RESULT
 	ApplyMovement 2, PokemonLeague_ChampionsRoom_Movement_OakExit
 	ApplyMovement obj_player, PokemonLeague_ChampionsRoom_Movement_PlayerExit
@@ -179,6 +179,7 @@ _cv_done_3:
 	Warp MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0, 6, 22, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -213,7 +214,7 @@ _cv_shown_23:
 	BufferRivalsName 7
 	NPCMsg msg_0527_T10R0601_GymFinale_Text_OakWait
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, PokemonLeague_ChampionsRoom_Movement_PlayerWatchOakEnter
 	ApplyMovement 1, PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter
 	ApplyMovement 2, PokemonLeague_ChampionsRoom_Movement_OakEnter
@@ -228,7 +229,7 @@ _cv_shown_23:
 	WaitButton
 	NPCMsg msg_0527_T10R0601_GymFinale_Text_OakThisBattleDecides
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 2, GymFinale_Movement_OakStepBack
 	WaitMovement
 	HidePerson 2
@@ -299,7 +300,7 @@ GymFinale_EventScript_ToTheCeremony:
 	BufferPlayersName 6
 	NPCMsg msg_0527_T10R0601_GymFinale_Text_OakSeeYouAtTheCeremony
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5004, 4
 	HealParty
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -307,6 +308,7 @@ GymFinale_EventScript_ToTheCeremony:
 	Warp MAP_PALLET, 0, 1039, 379, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

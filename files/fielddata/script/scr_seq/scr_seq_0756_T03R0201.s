@@ -36,6 +36,7 @@ PewterCity_House1_EventScript_Nidoran:
 	Call PewterCity_House1_EventScript_DoNidoranCry
 	ApplyMovement 3, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

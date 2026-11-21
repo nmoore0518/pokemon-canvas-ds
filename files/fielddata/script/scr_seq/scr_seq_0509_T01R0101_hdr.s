@@ -9,7 +9,7 @@
 
 _cv_T01R0101_frame:
 	// (not yet: DadStory_EventScript_MomDadsBall)
-	// (not yet: DadStory_EventScript_MomWhyWithHim)
+	InitScriptGoToIfEqual 0x5008, 5, _EV_DadStory_EventScript_MomWhyWithHim + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

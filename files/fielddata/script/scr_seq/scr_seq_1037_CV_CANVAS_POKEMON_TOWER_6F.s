@@ -61,7 +61,7 @@ PokemonTower_6F_EventScript_MarowakGhost:
 	LockAll
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_PokemonTower_6F_Text_BeGoneIntruders
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HasItem 874, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PokemonTower_6F_cv_NoScope
@@ -80,6 +80,7 @@ _cv_mw_alive:
 	GoToIfEq PokemonTower_6F_EventScript_DefeatedMarowakGhost
 	ApplyMovement obj_player, PokemonTower_6F_Movement_ForcePlayerUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -123,9 +124,10 @@ PokemonTower_6F_cv_NoScope:
 	WaitButton
 	NPCMsg msg_0890_CV_CANVAS_POKEMON_TOWER_6F_Canvas_Tower6F_Text_GhostGetOut
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, PokemonTower_6F_Movement_ForcePlayerUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -144,6 +146,7 @@ PokemonTower_6F_EventScript_DefeatedMarowakGhost:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

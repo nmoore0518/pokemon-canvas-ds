@@ -97,6 +97,7 @@ Route5_PokemonDayCare_EventScript_TryGiveMon:
 	
 Route5_PokemonDayCare_EventScript_CloseMoneyBox:
 	HideMoneyBox
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -60,7 +60,7 @@ ViridianCity_Mart_EventScript_ParcelScene:
 	WaitMovement
 	NPCMsg msg_0453_T02FS0101_ViridianCity_Mart_Text_YouCameFromPallet
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, ViridianCity_Mart_Movement_FacePlayer
 	ApplyMovement obj_player, ViridianCity_Mart_Movement_ApproachCounter
 	WaitMovement

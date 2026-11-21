@@ -21,6 +21,7 @@ Route4_PokemonCenter_1F_EventScript_Nurse:
 	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -77,12 +78,7 @@ Route4_PokemonCenter_1F_OnTransition:
 	
 CableClub_OnResume:
 	// TODO(gba) special InitUnionRoom
-	// TODO(gba) .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
-	Return
-	// TODO(gba) .else 
 	End
-	// TODO(gba) .endif 
-	GoTo MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 	
 Route4_PokemonCenter_1F_EventScript_AlreadyBoughtMagikarp:
 	NPCMsg msg_0327_R03PC0101_Route4_PokemonCenter_1F_Text_IDontGiveRefunds
@@ -119,32 +115,6 @@ _cv_yn_4:
 	CloseMsg
 	End
 	
-MossdeepCity_GameCorner_1F_EventScript_InfoMan2:
-	LockAll
-	FacePlayer
-	NPCMsg msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_DescribeWhichGame
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0327_R03PC0101_cv_mc_wireless_minigame_0, 0
-	ScrCmd_559 msg_0327_R03PC0101_cv_mc_wireless_minigame_1, 1
-	ScrCmd_559 msg_0327_R03PC0101_cv_mc_wireless_minigame_2, 2
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_6
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_6:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-	CloseMsg
-	End
-	
 Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route4_PokemonCenter_1F_EventScript_DeclineMagikarp
@@ -159,27 +129,6 @@ Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp:
 	GoToIfEq Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	GoToIfEq Route4_PokemonCenter_1F_EventScript_NoRoomForMagikarp
-	End
-	
-MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo:
-	NPCMsg msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo:
-	NPCMsg msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit:
-	NPCMsg msg_0327_R03PC0101_MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay
-	WaitButton
-	CloseMsg
-	ReleaseAll
 	End
 	
 Route4_PokemonCenter_1F_EventScript_DeclineMagikarp:
@@ -203,12 +152,12 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty:
 	NPCMsg msg_0327_R03PC0101_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_7
+	GoToIfEq _cv_yes_5
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_8
-_cv_yes_7:
+	GoTo _cv_yn_6
+_cv_yes_5:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_8:
+_cv_yn_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route4_PokemonCenter_1F_EventScript_EndPurchaseMagikarp
 	Call Common_EventScript_GetGiftMonPartySlot
@@ -225,12 +174,12 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC:
 	NPCMsg msg_0327_R03PC0101_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_9
+	GoToIfEq _cv_yes_7
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_10
-_cv_yes_9:
+	GoTo _cv_yn_8
+_cv_yes_7:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_10:
+_cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq Route4_PokemonCenter_1F_EventScript_TransferMagikarpCloseMoneyBox
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -274,6 +223,7 @@ Common_EventScript_GetGiftMonPartySlot:
 	
 Route4_PokemonCenter_1F_EventScript_BoughtMagikarp:
 	SetFlag 0x20CF
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -288,16 +238,14 @@ Route4_PokemonCenter_1F_EventScript_TransferMagikarp:
 	End
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
 	Return
 	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0327_R03PC0101_gText_PkmnTransferredSomeonesPC
@@ -305,8 +253,7 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0327_R03PC0101_gText_PkmnTransferredLanettesPC
@@ -314,19 +261,15 @@ EventScript_TransferredLanettesPC:
 	Return
 	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0327_R03PC0101_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0327_R03PC0101_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return

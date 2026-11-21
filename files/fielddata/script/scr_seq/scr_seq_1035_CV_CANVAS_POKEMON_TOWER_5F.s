@@ -55,6 +55,7 @@ PokemonTower_5F_EventScript_PurifiedZone:
 PokemonTower_5F_EventScript_ExitPurifiedZone:
 	LockAll
 	SetVar 0x4001, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

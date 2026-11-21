@@ -51,6 +51,7 @@ _cv_bar_2:
 	GetPersonCoords 10, 0x401E, 0x401F
 	MovePerson 10, 0x401E, 0x401F
 	SetVar 0x503B, 100
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -98,6 +99,7 @@ VictoryRoad_3F_Frlg_cv_Barriers:
 	End
 	
 VictoryRoad_3F_EventScript_FloorSwitchAlreadyPressed:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -65,6 +65,7 @@ _cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq CeruleanCave_B1F_EventScript_RanFromMewtwo
 	SetFlag 0x2176
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -112,6 +113,7 @@ EventScript_RemoveStaticMon:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

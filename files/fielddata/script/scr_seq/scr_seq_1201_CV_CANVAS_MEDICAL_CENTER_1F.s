@@ -41,7 +41,7 @@ _cv_yn_2:
 	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_ReceptionistBye
 	NPCMsg msg_0972_CV_CANVAS_MEDICAL_CENTER_1F_VermilionCity_MedicalCenter_1F_Text_RightAway
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	PlayFanfare SEQ_ME_ASA
@@ -303,7 +303,7 @@ _cv_menu_4:
 	GoToIfEq VermilionCity_MedicalCenter_1F_EventScript_TreatCancel
 	CompareVarToVar VAR_SPECIAL_RESULT, 0x8005
 	GoToIfNe VermilionCity_MedicalCenter_1F_EventScript_TreatWrong
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry 0x8007, 0
@@ -332,12 +332,13 @@ VermilionCity_MedicalCenter_1F_EventScript_GiveFive:
 	GoTo VermilionCity_MedicalCenter_1F_EventScript_GiveFiveDone
 	
 VermilionCity_MedicalCenter_1F_EventScript_TreatCancel:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 VermilionCity_MedicalCenter_1F_EventScript_TreatWrong:
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	PlayCry 0x8007, 0

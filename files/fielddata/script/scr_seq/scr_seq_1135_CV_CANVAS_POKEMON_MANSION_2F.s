@@ -43,6 +43,7 @@ PokemonMansion_2F_EventScript_Statue:
 	Call PokemonMansion_EventScript_SecretSwitch
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

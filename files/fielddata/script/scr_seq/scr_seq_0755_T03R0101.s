@@ -273,10 +273,11 @@ _cv_yn_4:
 	GoToIfEq PewterCity_Museum_1F_EventScript_TryPayForTicket
 	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_ComeAgain
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HideMoneyBox
 	ApplyMovement obj_player, PewterCity_Museum_1F_Movement_ForcePlayerExit
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -302,7 +303,7 @@ PewterCity_Museum_1F_EventScript_TryPayForTicket:
 	HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, 50
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PewterCity_Museum_1F_EventScript_NotEnoughMoney
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq PewterCity_Museum_1F_EventScript_PlayerApproachCounterLeft
 	CompareVarToValue 0x4001, 1
@@ -324,10 +325,11 @@ PewterCity_Museum_1F_EventScript_TryPayForTicket:
 PewterCity_Museum_1F_EventScript_NotEnoughMoney:
 	NPCMsg msg_0464_T03R0101_PewterCity_Museum_1F_Text_DontHaveEnoughMoney
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HideMoneyBox
 	ApplyMovement obj_player, PewterCity_Museum_1F_Movement_ForcePlayerExit
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

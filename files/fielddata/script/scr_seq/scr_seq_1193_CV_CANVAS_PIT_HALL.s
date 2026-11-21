@@ -16,7 +16,7 @@ Pit_EventScript_Doorman:
 	GoToIfSet 0x2224, Pit_EventScript_DoormanLetIn
 	NPCMsg msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanStop
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Pit_AskPassword
 	GoTo _cv_stop
 	// TODO(gba) special Pit_CheckPassword
@@ -25,7 +25,7 @@ Pit_EventScript_Doorman:
 	GoToIfEq Pit_EventScript_DoormanWrong
 	NPCMsg msg_0968_CV_CANVAS_PIT_HALL_Pit_Text_DoormanRight
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GetPlayerCoords 0x8004, 0x8005
 	CompareVarToValue 0x8004, 5
 	CallIfEq Pit_EventScript_DoormanStepBack
@@ -33,6 +33,7 @@ Pit_EventScript_Doorman:
 	CallIfNe Pit_EventScript_DoormanStepRight
 	SetFlag 0x2224
 	Call Pit_EventScript_DoormanAside
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

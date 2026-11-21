@@ -28,7 +28,7 @@
 	ScrDef PalletTown_EventScript_ChanseyStatue
 	ScrDef PalletTown_EventScript_OakTriggerLeft
 	ScrDef PalletTown_EventScript_OakTriggerRight
-	ScrDef _cv_unported_22
+	ScrDef PalletTown_EventScript_SignLadyTrigger
 	ScrDef PalletTown_OnLoad
 	ScrDef PalletTown_OnTransition
 	ScrDef _cv_unported_25
@@ -58,7 +58,7 @@ PalletTown_EventScript_SignLady:
 	WaitMovement
 	NPCMsg msg_0446_T01_PalletTown_Text_OhLookLook
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 3
 	CallIfEq PalletTown_EventScript_SignLadyMoveOutOfWayRight
 	CompareVarToValue 0x5002, 3
@@ -66,6 +66,7 @@ PalletTown_EventScript_SignLady:
 	GetPersonCoords 1, 0x401E, 0x401F
 	MovePerson 1, 0x401E, 0x401F
 	SetFlag 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -249,7 +250,7 @@ _cv_yes_1:
 _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq BerryField_EventScript_End
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Bag_ChooseBerry
 	GoTo _cv_stop
 	CompareVarToValue 0x5003, ITEM_NONE
@@ -298,6 +299,7 @@ PalletTown_EventScript_SignLadyTrigger:
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterLeft
 	WaitMovement
 	Call PalletTown_EventScript_SignLadyShowSign
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -379,7 +381,7 @@ GymFinale_EventScript_Ceremony:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyMomHere
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 7, Common_Movement_WalkInPlaceFasterUp
 	ApplyMovement 8, Common_Movement_WalkInPlaceFasterUp
 	ApplyMovement 9, Common_Movement_WalkInPlaceFasterUp
@@ -392,7 +394,7 @@ GymFinale_EventScript_Ceremony:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyOfficial2
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 7, Common_Movement_ExclamationMark
 	ApplyMovement 8, Common_Movement_ExclamationMark
@@ -404,7 +406,7 @@ GymFinale_EventScript_Ceremony:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyOfficial3
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayFanfare SEQ_ME_BADGE
 	WaitFanfare
 	// TODO(gba) special GymCandidate_SetupCeremony
@@ -421,12 +423,12 @@ GymFinale_EventScript_Ceremony:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyDaisyWheresGrandpa
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyOfficialGoIn
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 6
@@ -438,6 +440,7 @@ GymFinale_EventScript_Ceremony:
 	SetVar 0x5004, 5
 	SetVar 0x5005, 3
 	ResetBGM
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -460,7 +463,7 @@ _cv_shown_5:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_GymFinale_Text_OakComeToTheGym
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 3
@@ -470,6 +473,7 @@ _cv_shown_5:
 	Warp MAP_FIGHT_AREA_UNUSED_7, 0, 12, 25, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -510,7 +514,7 @@ _cv_dex_8:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_PalletTown_Text_CaughtXImpressiveFollowMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_TSURETEKE1
 	ApplyMovement obj_player, PalletTown_Movement_FromHouse_PlayerWalkToLab
 	ApplyMovement 3, PalletTown_Movement_FromHouse_OakWalkToLab
@@ -526,6 +530,7 @@ _cv_dex_8:
 	Warp MAP_PALLET_TOWN_OAKS_LAB, 0, 6, 12, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -538,13 +543,14 @@ DadStory_EventScript_Sendoff:
 	BufferPlayersName 6
 	NPCMsg msg_0446_T01_DadStory_Text_MomSendoff
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 4, PalletTown_Movement_MomSendoffGoHome
 	WaitMovement
 	HidePerson 4
 	SetFlag 0x2006
 	SetFlag 0x2006
 	SetVar 0x5008, 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -583,7 +589,7 @@ DadStory_EventScript_Memorial:
 	WaitMovement
 	NPCMsg msg_0446_T01_DadStory_Text_MemorialMom3
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetFlag 0x2007
 	SetVar 0x5008, 9
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -602,6 +608,7 @@ DadStory_EventScript_Memorial:
 	SetObjectFacing 3, 0
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -627,6 +634,7 @@ PalletTown_EventScript_SignLadyStartShowSign:
 	FacePlayer
 	WaitMovement
 	Call PalletTown_EventScript_SignLadyShowSign
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -683,7 +691,8 @@ PalletTown_EventScript_GymDoorOpen:
 	End
 	
 BerryField_EventScript_End:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -737,6 +746,7 @@ PalletTown_EventScript_ChanseyStatueEgg:
 	GoTo PalletTown_EventScript_ChanseyStatueEggEnd
 	
 PalletTown_EventScript_ChanseyStatueEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -776,7 +786,7 @@ PalletTown_EventScript_OakTrigger:
 	PlayBGM SEQ_GS_OHKIDO
 	NPCMsg msg_0446_T01_PalletTown_Text_OakDontGoOut
 	Wait 85, VAR_SPECIAL_RESULT
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
 	PlaySE SEQ_SE_DP_SELECT
@@ -798,7 +808,7 @@ _cv_shown_14:
 	Wait 30, VAR_SPECIAL_RESULT
 	NPCMsg msg_0446_T01_PalletTown_Text_OakGrassUnsafeNeedMon
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 30, VAR_SPECIAL_RESULT
 	CompareVarToValue 0x4001, 0
 	CallIfEq PalletTown_EventScript_OakLeadPlayerToLabLeft
@@ -820,19 +830,18 @@ _cv_shown_14:
 	Warp MAP_PALLET_TOWN_OAKS_LAB, 0, 6, 12, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 PalletTown_EventScript_SignLadyShowSign:
 	NPCMsg msg_0446_T01_PalletTown_Text_LookCopiedTrainerTipsSign
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 20, VAR_SPECIAL_RESULT
 	SetFlag 0x200A
 	SetVar 0x5000, 1
 	SetVar 0x4002, 0
-	// TODO(gba) special SetWalkingIntoSignVars
-	GoTo _cv_stop
 	NPCMsg msg_0446_T01_PalletTown_Text_PressStartToOpenMenuCopy
 	WaitButton
 	Return
@@ -891,7 +900,7 @@ GymFinale_EventScript_CeremonyMentorSpeaks:
 	WaitMovement
 	NPCMsg msg_0446_T01_GymFinale_Text_CeremonyMentor
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Return
 	
 PalletTown_EventScript_NotBeenToOneIslandYet:
@@ -915,6 +924,7 @@ DadStory_EventScript_MemorialGoThere:
 	Warp MAP_PALLET, 0, 1061, 360, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -980,6 +990,7 @@ BerryField_EventScript_BagFull:
 	GoTo BerryField_EventScript_End
 	
 PalletTown_EventScript_ChanseyStatueEggEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1045,12 +1056,13 @@ PalletTown_EventScript_MoveSignLadyToRouteEntrance:
 	Return
 	
 PalletTown_EventScript_EndOakRatingScene:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 3, PalletTown_Movement_OakExit
 	WaitMovement
 	HidePerson 3
 	SetFlag 0x2004
 	SetVar 0x5007, 3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1067,15 +1079,6 @@ EventScript_ChooseMoveTutorMon:
 	LockAll
 	FacePlayer
 	Return
-
-_cv_unported_22:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0446_T01_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_unported_25:
 	PlaySE SEQ_SE_DP_SELECT

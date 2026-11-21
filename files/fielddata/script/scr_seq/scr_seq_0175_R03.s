@@ -42,13 +42,13 @@ PewterCity_EventScript_GymGuide:
 	FacePlayer
 	NPCMsg msg_0326_R03_PewterCity_Text_BrocksLookingForChallengersFollowMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_TSURETEKE1
 	CompareVarToValue 0x5002, 3
 	CallIfEq PewterCity_EventScript_WalkToGymEast
 	NPCMsg msg_0326_R03_PewterCity_Text_GoTakeOnBrock
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 11, PewterCity_Movement_GymGuideExit
 	WaitMovement
 	ResetBGM
@@ -56,6 +56,7 @@ PewterCity_EventScript_GymGuide:
 	SetFlag 0x20B4
 	ClearFlag 0x20B4
 	ShowPerson 11
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -64,6 +65,7 @@ PewterCity_EventScript_RunningShoesAide:
 	FacePlayer
 	SetVar 0x4001, 0
 	Call PewterCity_EventScript_AideGiveRunningShoes
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -104,6 +106,7 @@ PewterCity_EventScript_RunningShoesAideTriggerTop:
 	LockAll
 	SetVar 0x4001, 1
 	Call PewterCity_EventScript_AideGiveRunningShoes
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -111,6 +114,7 @@ PewterCity_EventScript_RunningShoesAideTriggerMid:
 	LockAll
 	SetVar 0x4001, 2
 	Call PewterCity_EventScript_AideGiveRunningShoes
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -118,6 +122,7 @@ PewterCity_EventScript_RunningShoesAideTriggerBottom:
 	LockAll
 	SetVar 0x4001, 3
 	Call PewterCity_EventScript_AideGiveRunningShoes
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -168,7 +173,7 @@ PewterCity_EventScript_AideGiveRunningShoes:
 	Call EventScript_RestorePrevTextColor
 	NPCMsg msg_0326_R03_PewterCity_Text_MustBeGoingBackToLab
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq PewterCity_EventScript_AideExit0
 	CompareVarToValue 0x4001, 1
@@ -181,7 +186,7 @@ PewterCity_EventScript_AideGiveRunningShoes:
 	BufferPlayersName 6
 	NPCMsg msg_0326_R03_PewterCity_Text_RunningShoesLetterFromMom
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HidePerson 12
 	SetFlag 0x205B
 	SetFlag 0x20B5
@@ -192,7 +197,7 @@ PewterCity_EventScript_AideGiveRunningShoes:
 PewterCity_EventScript_GymGuideTrigger:
 	NPCMsg msg_0326_R03_PewterCity_Text_BrocksLookingForChallengersFollowMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_TSURETEKE1
 	CompareVarToValue 0x4001, 0
 	CallIfEq PewterCity_EventScript_WalkToGymTop
@@ -202,7 +207,7 @@ PewterCity_EventScript_GymGuideTrigger:
 	CallIfEq PewterCity_EventScript_WalkToGymBottom
 	NPCMsg msg_0326_R03_PewterCity_Text_GoTakeOnBrock
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 11, PewterCity_Movement_GymGuideExit
 	WaitMovement
 	ResetBGM
@@ -210,6 +215,7 @@ PewterCity_EventScript_GymGuideTrigger:
 	SetFlag 0x20B4
 	ClearFlag 0x20B4
 	ShowPerson 11
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -219,18 +225,18 @@ PewterCity_EventScript_AideNoticePlayer:
 	Return
 	
 PewterCity_EventScript_AideApproachPlayer0:
-	CloseMsg
+	CanvasCloseMsg
 	Wait 20, VAR_SPECIAL_RESULT
 	Return
 	
 PewterCity_EventScript_AideApproachPlayer1:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	Return
 	
 PewterCity_EventScript_AideApproachPlayer2:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 12, PewterCity_Movement_AideApproachPlayerMid
 	WaitMovement
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
@@ -238,7 +244,7 @@ PewterCity_EventScript_AideApproachPlayer2:
 	Return
 	
 PewterCity_EventScript_AideApproachPlayer3:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 12, PewterCity_Movement_AideApproachPlayerBottom
 	WaitMovement
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp

@@ -149,7 +149,7 @@ _cv_yes_7:
 _cv_yn_8:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq PlayersHouse_B1F_EventScript_MachineEnd
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special BallChanger_ShowBalls
 	GoTo _cv_stop
 	PlaySE SEQ_SE_DP_SELECT
@@ -203,6 +203,7 @@ PlayersHouse_B1F_EventScript_Paper1:
 	SetVar 0x8004, 0
 	// TODO(gba) special ShowNotePage
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -211,6 +212,7 @@ PlayersHouse_B1F_EventScript_Paper2:
 	SetVar 0x8004, 1
 	// TODO(gba) special ShowNotePage
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -219,6 +221,7 @@ PlayersHouse_B1F_EventScript_Paper3:
 	SetVar 0x8004, 2
 	// TODO(gba) special ShowNotePage
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -227,6 +230,7 @@ PlayersHouse_B1F_EventScript_Paper4:
 	SetVar 0x8004, 3
 	// TODO(gba) special ShowNotePage
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -302,13 +306,14 @@ DadStory_EventScript_Basement:
 	BufferPlayersName 6
 	NPCMsg msg_0854_CV_FIGHT_AREA_UNUSED_6_DadStory_Text_MomBasement
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, DadStory_Movement_MomUpstairs
 	WaitMovement
 	HidePerson 1
 	SetFlag 0x200F
 	SetFlag 0x200F
 	SetVar 0x5008, 6
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -380,6 +385,7 @@ _cv_yn_14:
 	End
 	
 PlayersHouse_B1F_EventScript_MachineEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -142,7 +142,7 @@ _cv_yn_3:
 	GoToIfEq LavenderTown_VolunteerPokemonHouse_EventScript_FujiLater
 	NPCMsg msg_0478_T05R0201_LavenderTown_VolunteerPokemonHouse_Text_FujiBattleIntro
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special GymChallenge_SetupFuji
 	GoTo _cv_stop
 	ClearTrainerFlag 1442

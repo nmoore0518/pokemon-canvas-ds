@@ -33,6 +33,7 @@ CeruleanCity_EventScript_Slowbro:
 	CallIfEq CeruleanCity_EventScript_SlowbroText3
 	CompareVarToValue 0x8008, 3
 	CallIfEq CeruleanCity_EventScript_SlowbroText4
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -57,6 +58,7 @@ CeruleanCity_EventScript_Lass:
 	CallIfEq CeruleanCity_EventScript_SlowbroFailed2
 	CompareVarToValue 0x8008, 2
 	CallIfEq CeruleanCity_EventScript_SlowbroFailed3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -65,9 +67,10 @@ CeruleanCity_EventScript_Woman:
 	FacePlayer
 	NPCMsg msg_0329_R05_CeruleanCity_Text_WantBrightRedBicycle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 6, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

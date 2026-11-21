@@ -41,6 +41,7 @@ PokemonLeague_AgathasRoom_EventScript_EnterRoom:
 	LockAll
 	Call PokemonLeague_EventScript_EnterRoom
 	SetVar 0x501D, 3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

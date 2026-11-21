@@ -260,6 +260,17 @@ def main():
     others = [t for t in read_party(G.P('src/data/trainers_frlg.party'))
               if t['id'] != 'TRAINER_NONE' and t.get('Class') not in RIVAL_CLASSES]
     teams += others
+    # (the candidacy's challengers: a trainer for each of their defeat lines, built at the time: challengers.py)
+    import challengers as CH
+    # (their class in the data stays the GBA challenger's, Ace Trainer: the engine pays their prize by it,
+    # canvas_candidate.c GUEST_PRIZE_CLASS)
+    gym = next(t for t in others if t['id'] == 'TRAINER_GYM_CHALLENGER')
+    synth = {}
+    for double in (False, True):       # (from the fourth badge most are double battles: HeartGold's own, by trainer)
+        for k, line in enumerate(CH.guest_texts()['defeat']):
+            tid = (CH.GUEST_DOUBLES if double else CH.GUEST_TRAINERS) % k
+            teams.append(dict(gym, id=tid, mons=gym['mons'] * 2, **{'Double Battle': 'Yes'}) if double else dict(gym, id=tid))
+            synth[tid] = line
     for t in teams:
         if t['id'] not in ids: ids[t['id']] = FIRST + len(ids)
     by_num = sorted(teams, key=lambda t: ids[t['id']])
@@ -276,6 +287,9 @@ def main():
         else:
             labels = trainer_texts(g, t['id'], ts)
         texts = {k: c_text(g, v) for k, v in labels.items()}
+        if t['id'] in synth:
+            g.texts['_cv_' + t['id']] = synth[t['id']]
+            texts = {'TRMSG_LOSE': c_text(g, '_cv_' + t['id'])}
         out += entry(t, ids[t['id']], known_species, known_items, report, texts, known_moves)
         order.append('    %d,' % ids[t['id']])
     open(os.path.join(DATA, 'canvas_trainers.h'), 'w').write('\n'.join(out))

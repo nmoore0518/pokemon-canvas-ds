@@ -16,6 +16,7 @@ Academy_EventScript_Nurse:
 	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -48,7 +49,7 @@ _cv_yn_2:
 	HealParty
 	NPCMsg msg_0973_CV_CANVAS_ACADEMY_CENTER_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	HealParty
@@ -82,8 +83,7 @@ Academy_EventScript_Battle:
 _cv_won_4:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_5

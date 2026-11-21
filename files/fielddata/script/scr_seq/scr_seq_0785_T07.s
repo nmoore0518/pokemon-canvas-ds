@@ -47,9 +47,10 @@ CeladonCity_EventScript_FatMan:
 	FacePlayer
 	NPCMsg msg_0491_T07_CeladonCity_Text_MyTrustedPalPoliwrath
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 2, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -60,10 +61,11 @@ CeladonCity_EventScript_Poliwrath:
 	PlayCry SPECIES_POLIWRATH, 0
 	NPCMsg msg_0491_T07_CeladonCity_Text_Poliwrath
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	WaitCry
 	ApplyMovement 3, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

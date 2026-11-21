@@ -168,6 +168,7 @@ Route20_EventScript_ResetSeafoamBouldersForB4F:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

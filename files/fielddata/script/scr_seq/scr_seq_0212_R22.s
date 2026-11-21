@@ -71,7 +71,7 @@ Route22_EventScript_EarlyRival:
 	CallIfEq Route22_EventScript_EarlyRivalCharmander
 	NPCMsg msg_0360_R22_Route22_Text_EarlyRivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
@@ -83,6 +83,7 @@ Route22_EventScript_EarlyRival:
 	ResetBGM
 	HidePerson 15
 	SetVar 0x5013, 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -109,7 +110,7 @@ Route22_EventScript_LateRival:
 	BufferPlayersName 6
 	NPCMsg msg_0360_R22_Route22_Text_LateRivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
 	ApplyMovement 15, Route22_Movement_LateRivalExit
@@ -117,6 +118,7 @@ Route22_EventScript_LateRival:
 	ResetBGM
 	HidePerson 15
 	SetVar 0x5013, 4
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -132,6 +134,9 @@ Route22_EventScript_EarlyRivalApproachBottom:
 	Return
 	
 Route22_EventScript_EarlyRivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_2
@@ -199,6 +204,9 @@ _cv_battle_1:
 	Return
 	
 Route22_EventScript_EarlyRivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_15
@@ -266,6 +274,9 @@ _cv_battle_14:
 	Return
 	
 Route22_EventScript_EarlyRivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_28
@@ -354,6 +365,9 @@ Route22_EventScript_LateRivalApproachBottom:
 	Return
 	
 Route22_EventScript_LateRivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_41
@@ -427,6 +441,9 @@ _cv_won_53:
 	Return
 	
 Route22_EventScript_LateRivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_55
@@ -500,6 +517,9 @@ _cv_won_67:
 	Return
 	
 Route22_EventScript_LateRivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_69
@@ -571,11 +591,44 @@ _cv_battle_68:
 _cv_won_81:
 	SetFlag 0x20B2
 	Return
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0360_R22_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0360_R22_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0360_R22_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
 
 _cv_stop:
 	NPCMsg msg_0360_R22_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_ROUTE_22, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

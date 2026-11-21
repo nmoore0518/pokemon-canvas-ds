@@ -207,7 +207,7 @@ SaffronCity_PokemonTrainerFanClub_EventScript_MeetFirstFans:
 	WaitMovement
 	NPCMsg msg_0971_CV_CANVAS_SAFFRON_FAN_CLUB_SaffronCity_PokemonTrainerFanClub_Text_HuhYou
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, SaffronCity_PokemonTrainerFanClub_Movement_FanApproachPlayer
 	WaitMovement
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterRight

@@ -59,6 +59,7 @@ _cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq SeafoamIslands_B4F_EventScript_RanFromArticuno
 	SetFlag 0x217F
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -91,6 +92,7 @@ SeafoamIslands_B4F_EventScript_UpwardCurrent:
 	LockAll
 	ApplyMovement obj_player, SeafoamIslands_B4F_Movement_WalkUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1901,6 +1903,7 @@ SeafoamIslands_B4F_EventScript_EnterOnCurrent:
 	ApplyMovement obj_player, SeafoamIslands_B4F_Movement_EnterOnCurrent
 	WaitMovement
 	SetVar 0x503C, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2022,6 +2025,7 @@ _cv_unwiden_24:
 	ApplyMovement obj_player, _cv_hop_off_North
 	WaitMovement
 	SetVar 0x4001, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2098,6 +2102,7 @@ SeafoamIslands_B4F_EventScript_SetCalmWaterNearStairs:
 	
 SeafoamIslands_B4F_EventScript_CurrentBlocked:
 	SetVar 0x4001, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2117,6 +2122,7 @@ EventScript_RemoveStaticMon:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

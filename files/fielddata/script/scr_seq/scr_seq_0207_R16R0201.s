@@ -132,12 +132,14 @@ EventScript_SetExitingCyclingRoad:
 	LockAll
 	ClearFlag 0x210F
 	SetVar 0x5030, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 EventScript_SetEnteringCyclingRoad:
 	LockAll
 	SetVar 0x5030, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -212,7 +214,7 @@ Aide_EventScript_NoRoomForItem:
 Route16_NorthEntrance_1F_EventScript_NeedBikeTrigger:
 	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_ExcuseMeWaitUp
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	Wait 20, VAR_SPECIAL_RESULT
@@ -226,9 +228,10 @@ Route16_NorthEntrance_1F_EventScript_NeedBikeTrigger:
 	CallIfEq Route16_NorthEntrance_1F_EventScript_PlayerWalkToCounterBottom
 	NPCMsg msg_0356_R16R0201_Route16_NorthEntrance_1F_Text_NoPedestriansOnCyclingRoad
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route16_NorthEntrance_1F_Movement_WalkRight
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

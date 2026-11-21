@@ -42,6 +42,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Nurse:
 	FacePlayer
 	SetVar VAR_SPECIAL_x8007, 0
 	CallStd std_nurse_joy
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -106,9 +107,10 @@ IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamCheck:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamOk
 	Call EventScript_GymHack_ShowTeamRuleMessage
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkDown
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -120,12 +122,7 @@ IndigoPlateau_PokemonCenter_1F_OnTransition:
 	
 CableClub_OnResume:
 	// TODO(gba) special InitUnionRoom
-	// TODO(gba) .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
-	Return
-	// TODO(gba) .else 
 	End
-	// TODO(gba) .endif 
-	GoTo MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 	
 IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipOffer:
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipOffer
@@ -144,13 +141,14 @@ _cv_yn_2:
 	GoToIfNe IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipTeam
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_ChampionSkipGo
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlaySE SEQ_SE_DP_KAIDAN2
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	Warp MAP_POKEMON_LEAGUE_LANCE_ROOM, 0, 6, 28, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -198,6 +196,7 @@ _cv_appr_10:
 	Return
 	
 IndigoPlateau_PokemonCenter_1F_EventScript_LeagueTeamOk:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -233,32 +232,6 @@ EventScript_ResetEliteFour:
 	SetVar 0x501D, 0
 	Return
 	
-MossdeepCity_GameCorner_1F_EventScript_InfoMan2:
-	LockAll
-	FacePlayer
-	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_DescribeWhichGame
-	TouchscreenMenuHide
-	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
-	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_0, 0
-	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_1, 1
-	ScrCmd_559 msg_0522_T10R0101_cv_mc_wireless_minigame_2, 2
-	ScrCmd_067
-	TouchscreenMenuShow
-	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_12
-	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_12:
-	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
-	CompareVarToValue VAR_SPECIAL_RESULT, 1
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
-	CompareVarToValue VAR_SPECIAL_RESULT, 2
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-	CompareVarToValue VAR_SPECIAL_RESULT, 127
-	GoToIfEq MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-	CloseMsg
-	End
-	
 IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo:
 	NPCMsg msg_0522_T10R0101_IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	WaitButton
@@ -268,6 +241,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipNo:
 	
 IndigoPlateau_PokemonCenter_1F_EventScript_ChampionSkipTeam:
 	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -310,9 +284,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_14
+	GoToIfLt _cv_menu_12
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_14:
+_cv_menu_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008
@@ -330,9 +304,10 @@ _cv_menu_14:
 GymCandidate_EventScript_NotApproved:
 	NPCMsg msg_0522_T10R0101_GymCandidate_Text_NeedApprovals
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkDown
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -350,27 +325,6 @@ EventScript_GymHack_MsgDuplicateItem:
 	NPCMsg msg_0522_T10R0101_Text_GymHack_DuplicateItem
 	WaitButton
 	Return
-	
-MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo:
-	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo:
-	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-	
-MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit:
-	NPCMsg msg_0522_T10R0101_MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 	
 TypeTutor_EventScript_Bye:
 	NPCMsg msg_0522_T10R0101_TypeTutor_Text_Bye

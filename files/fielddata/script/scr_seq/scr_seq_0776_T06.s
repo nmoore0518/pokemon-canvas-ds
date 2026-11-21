@@ -213,6 +213,7 @@ VermilionCity_EventScript_CheckTicketRight:
 VermilionCity_EventScript_ExitedTicketCheck:
 	LockAll
 	SetVar 0x5028, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -230,6 +231,7 @@ VermilionCity_EventScript_ExitSSAnne:
 	ApplyMovement obj_player, VermilionCity_Movement_ExitSSAnne
 	WaitMovement
 	SetVar 0x5027, 3
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -449,7 +451,7 @@ _cv_menu_6:
 VermilionCity_EventScript_ForemanBuilt:
 	NPCMsg msg_0483_T06_VermilionCity_Text_ForemanBuilding
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	PlaySE SEQ_SE_DP_SELECT
@@ -464,6 +466,7 @@ VermilionCity_EventScript_ForemanBuilt:
 	Warp MAP_VERMILION, 0, 1266, 306, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -526,14 +529,14 @@ _cv_menu_8:
 VermilionCity_EventScript_CheckSeagallopPresentTrigger:
 	NPCMsg msg_0483_T06_VermilionCity_Text_TheShipSetSail
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GoTo VermilionCity_EventScript_WalkUpPier
 	
 VermilionCity_EventScript_DontHaveSSTicket:
 	BufferPlayersName 6
 	NPCMsg msg_0483_T06_VermilionCity_Text_DontHaveNeededSSTicket
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GoTo VermilionCity_EventScript_WalkUpPier
 	End
 	
@@ -573,10 +576,11 @@ EventScript_ChooseMoveTutorMon:
 	Return
 	
 VermilionCity_EventScript_WalkUpPier:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 6, Common_Movement_FaceOriginalDirection
 	ApplyMovement obj_player, VermilionCity_Movement_WalkUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -315,8 +315,9 @@ Route23_EventScript_MissingBadge:
 	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_Text_OnlyPassWithBadgeDontHaveYet
 	PlaySE SEQ_SE_DP_SELECT
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	WaitSE SEQ_SE_DP_SELECT
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -336,10 +337,11 @@ Route23_EventScript_MissingBoulderBadgeTrigger:
 	PlaySE SEQ_SE_DP_SELECT
 	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_Text_CantLetYouPass
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route23_Movement_WalkDown
 	ApplyMovement 0x8009, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -355,11 +357,12 @@ Route23_EventScript_MissingBadgeTrigger:
 	NPCMsg msg_0956_CV_CANVAS_ROUTE_23_Text_OnlyPassWithBadgeDontHaveYet
 	PlaySE SEQ_SE_DP_SELECT
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	WaitSE SEQ_SE_DP_SELECT
 	ApplyMovement obj_player, Route23_Movement_WalkDown
 	ApplyMovement 0x8009, Common_Movement_WalkInPlaceFasterDown
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

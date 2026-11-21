@@ -110,12 +110,13 @@ _cv_menu_4:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq ViridianCity_PennysHouse_EventScript_Maybe
 	CopyVar 0x8004, VAR_SPECIAL_RESULT
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Penny_WasGiven
 	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq ViridianCity_PennysHouse_EventScript_Already
 	Call ViridianCity_PennysHouse_EventScript_Teach
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -199,6 +200,7 @@ ViridianCity_PennysHouse_EventScript_StillLooking:
 	End
 	
 ViridianCity_PennysHouse_EventScript_End:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

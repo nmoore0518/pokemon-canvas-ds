@@ -62,6 +62,7 @@ _cv_outcome_5:
 	GoToIfEq Route16_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq Route16_EventScript_FoughtSnorlax
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -100,6 +101,7 @@ Route16_EventScript_SnorlaxNoPokeFlute:
 	End
 	
 Route16_EventScript_DontUsePokeFlute:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

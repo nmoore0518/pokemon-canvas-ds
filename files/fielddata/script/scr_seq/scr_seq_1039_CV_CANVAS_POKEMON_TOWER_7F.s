@@ -21,12 +21,13 @@ PokemonTower_7F_EventScript_MrFuji:
 	SetFlag 0x20FA
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_MrFujiThankYouFollowMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	Warp MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE, 0, 5, 12, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -107,7 +108,7 @@ PaintWorld_EventScript_Figure:
 PokemonTower_7F_EventScript_DefeatedGrunt1:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt1PostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GetPlayerCoords 0x8004, 0x8005
 	CompareVarToValue 0x8004, 19
 	GoToIfLt _cv_unwiden_7
@@ -186,7 +187,7 @@ _cv_unwiden_19:
 PokemonTower_7F_EventScript_DefeatedGrunt2:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt2PostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GetPlayerCoords 0x8004, 0x8005
 	CompareVarToValue 0x8004, 19
 	GoToIfLt _cv_unwiden_21
@@ -263,7 +264,7 @@ _cv_unwiden_33:
 PokemonTower_7F_EventScript_DefeatedGrunt3:
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PokemonTower_7F_Text_Grunt3PostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	GetPlayerCoords 0x8004, 0x8005
 	CompareVarToValue 0x8004, 19
 	GoToIfLt _cv_unwiden_35
@@ -348,7 +349,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -377,12 +378,13 @@ _cv_outcome_52:
 	GoTo _cv_stop
 	NPCMsg msg_0891_CV_CANVAS_POKEMON_TOWER_7F_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -409,6 +411,7 @@ PokemonTower_7F_EventScript_Grunt1ExitLeft:
 PokemonTower_7F_EventScript_RemoveGrunt1:
 	HidePerson 2
 	SetFlag 0x2193
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -427,6 +430,7 @@ PokemonTower_7F_EventScript_Grunt2ExitRight:
 PokemonTower_7F_EventScript_RemoveGrunt2:
 	HidePerson 3
 	SetFlag 0x2194
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -445,6 +449,7 @@ PokemonTower_7F_EventScript_Grunt3ExitLeft:
 PokemonTower_7F_EventScript_RemoveGrunt3:
 	HidePerson 4
 	SetFlag 0x2195
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

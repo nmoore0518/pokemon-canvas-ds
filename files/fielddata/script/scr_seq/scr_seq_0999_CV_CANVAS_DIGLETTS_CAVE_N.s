@@ -42,7 +42,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -71,12 +71,13 @@ _cv_outcome_4:
 	GoTo _cv_stop
 	NPCMsg msg_0871_CV_CANVAS_DIGLETTS_CAVE_N_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

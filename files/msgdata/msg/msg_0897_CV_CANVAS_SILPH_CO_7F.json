@@ -169,9 +169,37 @@
       "en_US": [
         "{STRVAR_1 3, 1, 0} was transferred to\n",
         "Bill’s PC.\r",
-        "Lanette’s PC.\r",
         "It was placed in \n",
         "Box “{STRVAR_1 3, 0, 0}.”"
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_WrongType",
+      "en_US": [
+        "League Rules: Only {STRVAR_1 3, 2, 0}-type\n",
+        "Pokémon may be on your team.\r",
+        "{STRVAR_1 3, 0, 0} is {STRVAR_1 3, 1, 0}-type!\r",
+        "Leave it in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_Duplicate",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may be the same species.\r",
+        "You have more than one\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Leave one in a PC and come back."
+      ]
+    },
+    {
+      "id": "msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_DuplicateItem",
+      "en_US": [
+        "League Rules: No two Pokémon on\n",
+        "your team may hold the same item.\r",
+        "More than one is holding\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Take one off and come back."
       ]
     },
     {
@@ -188,7 +216,6 @@
       "en_US": [
         "Box “{STRVAR_1 3, 2, 0}” on\n",
         "Bill’s PC was full.\r",
-        "Lanette’s PC was full.\r",
         "{STRVAR_1 3, 1, 0} was transferred to\n",
         "Box “{STRVAR_1 3, 0, 0}.”"
       ]

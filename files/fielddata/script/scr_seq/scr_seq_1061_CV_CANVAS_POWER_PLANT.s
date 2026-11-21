@@ -92,6 +92,7 @@ _cv_outcome_3:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq PowerPlant_EventScript_RanFromZapdos
 	SetFlag 0x21C8
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -129,6 +130,7 @@ _cv_outcome_6:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq PowerPlant_EventScript_FoughtElectrode2
 	SetFlag 0x21C9
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -166,6 +168,7 @@ _cv_outcome_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq PowerPlant_EventScript_FoughtElectrode1
 	SetFlag 0x21CA
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -221,7 +224,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -250,12 +253,13 @@ _cv_outcome_13:
 	GoTo _cv_stop
 	NPCMsg msg_0902_CV_CANVAS_POWER_PLANT_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -293,6 +297,7 @@ EventScript_RemoveStaticMon:
 	HidePerson VAR_SPECIAL_LAST_TALKED
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

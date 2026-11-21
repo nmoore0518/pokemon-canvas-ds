@@ -66,7 +66,7 @@ Route19_BeachHouse_EventScript_Answer:
 	GoToIfEq Route19_BeachHouse_EventScript_NotToday
 	NPCMsg msg_0963_CV_CANVAS_ROUTE19_HOUSE_Route19_BeachHouse_Text_HangTen
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special SurfingMinigame_Start

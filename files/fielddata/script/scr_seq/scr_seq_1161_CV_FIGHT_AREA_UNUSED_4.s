@@ -212,7 +212,7 @@ _cv_yes_25:
 _cv_yn_26:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq TrainingHouse_EventScript_AttendantBye
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	PlayFanfare SEQ_ME_ITEM

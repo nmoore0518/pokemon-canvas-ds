@@ -161,13 +161,14 @@ Academy_EventScript_Invite:
 	BufferPlayersName 6
 	NPCMsg msg_0346_R11_Academy_Text_InviteCall
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	SetVar 0x502F, 2
 	Warp MAP_ROUTE_11, 0, 1317, 306, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -180,13 +181,13 @@ Academy_EventScript_Escort:
 	WaitMovement
 	NPCMsg msg_0346_R11_Academy_Text_Escort1
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 16, Academy_Movement_WalkUp2
 	ApplyMovement obj_player, Academy_Movement_WalkUp2
 	WaitMovement
 	NPCMsg msg_0346_R11_Academy_Text_Guard1
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	SetFlag 0x2102
@@ -194,6 +195,7 @@ Academy_EventScript_Escort:
 	Warp MAP_CANVAS_LEADER_ACADEMY, 0, 1318, 295, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -259,7 +261,7 @@ _cv_yn_6:
 	HealParty
 	NPCMsg msg_0346_R11_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	HealParty
@@ -310,6 +312,7 @@ Academy_EventScript_Route11Transition:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -343,8 +346,7 @@ Academy_EventScript_Battle:
 _cv_won_10:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_11

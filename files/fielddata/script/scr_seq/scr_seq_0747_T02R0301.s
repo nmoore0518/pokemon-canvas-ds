@@ -19,9 +19,10 @@ ViridianCity_School_EventScript_Woman:
 	FacePlayer
 	NPCMsg msg_0457_T02R0301_ViridianCity_School_Text_ReadBlackboardCarefully
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -30,9 +31,10 @@ ViridianCity_School_EventScript_Lass:
 	FacePlayer
 	NPCMsg msg_0457_T02R0301_ViridianCity_School_Text_TryingToMemorizeNotes
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 2, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -127,7 +129,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -156,16 +158,18 @@ _cv_outcome_10:
 	GoTo _cv_stop
 	NPCMsg msg_0457_T02R0301_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 ViridianCity_School_EventScript_StopReadingNotebook:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -238,6 +242,7 @@ ViridianCity_School_EventScript_ReadFreeze:
 	End
 	
 ViridianCity_School_EventScript_ExitBlackboard:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

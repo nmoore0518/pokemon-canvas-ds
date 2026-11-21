@@ -23,7 +23,7 @@ _cv_yes_1:
 _cv_yn_2:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq SSAnne_1F_Room6_EventScript_DeclineHeal
-	CloseMsg
+	CanvasCloseMsg
 	Call Common_EventScript_OutOfCenterPartyHeal
 	NPCMsg msg_0915_CV_CANVAS_SSANNE_1F_R6_SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed
 	WaitButton

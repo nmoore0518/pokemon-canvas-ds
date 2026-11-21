@@ -33,6 +33,7 @@ CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall:
 	GoToIfEq CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveePC
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	GoToIfEq Common_EventScript_NoMoreRoomForPokemon
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -154,11 +155,13 @@ CeladonCity_Condominiums_RoofRoom_EventScript_UnionRoom:
 	End
 	
 CeladonCity_Condominiums_RoofRoom_EventScript_ExitBlackboard:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee:
 	SetFlag 0x2134
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -182,7 +185,7 @@ CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC:
 Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	SetVar 0x8004, 0
+	SetVar 0x8004, 254
 	NicknameInput 0x8004, VAR_SPECIAL_RESULT
 	LockAll
 	FacePlayer
@@ -216,16 +219,14 @@ _cv_menu_8:
 	End
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
 	Return
 	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0505_T07R0205_gText_PkmnTransferredSomeonesPC
@@ -233,8 +234,7 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0505_T07R0205_gText_PkmnTransferredLanettesPC
@@ -242,19 +242,15 @@ EventScript_TransferredLanettesPC:
 	Return
 	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0505_T07R0205_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0505_T07R0205_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return

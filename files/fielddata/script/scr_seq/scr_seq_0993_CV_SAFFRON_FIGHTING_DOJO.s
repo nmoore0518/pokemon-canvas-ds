@@ -147,6 +147,7 @@ SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft:
 	SetVar 0x5033, 1
 	ApplyMovement 5, Common_Movement_WalkInPlaceFasterLeft
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -155,6 +156,7 @@ SaffronCity_Dojo_EventScript_TriggerMasterBattleRight:
 	SetVar 0x5033, 1
 	ApplyMovement 5, Common_Movement_WalkInPlaceFasterRight
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -195,6 +197,7 @@ _cv_yn_10:
 	
 SaffronCity_Dojo_EventScript_DefeatedMasterKoichi:
 	SetVar 0x5033, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -224,6 +227,7 @@ SaffronCity_Dojo_EventScript_GiveHitmon:
 	GoToIfEq SaffronCity_Dojo_EventScript_ReceivedHitmonPC
 	CompareVarToValue VAR_SPECIAL_RESULT, 2
 	GoToIfEq Common_EventScript_NoMoreRoomForPokemon
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -241,6 +245,7 @@ TypeTutor_EventScript_Talk:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -367,6 +372,7 @@ _cv_menu_16:
 	GoTo TypeTutor_EventScript_Teach
 	
 SaffronCity_Dojo_EventScript_EndGiveMon:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -390,7 +396,7 @@ SaffronCity_Dojo_EventScript_TransferredHitmonToPC:
 Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	SetVar 0x8004, 0
+	SetVar 0x8004, 254
 	NicknameInput 0x8004, VAR_SPECIAL_RESULT
 	LockAll
 	FacePlayer
@@ -411,16 +417,14 @@ EventScript_ChooseMoveTutorMon:
 	Return
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
 	Return
 	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredSomeonesPC
@@ -428,8 +432,7 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredLanettesPC
@@ -437,19 +440,15 @@ EventScript_TransferredLanettesPC:
 	Return
 	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return

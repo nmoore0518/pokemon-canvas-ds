@@ -147,6 +147,7 @@ EventMons_EventScript_Gift:
 	Return
 	
 EventMons_EventScript_ReleaseEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

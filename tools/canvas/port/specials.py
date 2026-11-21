@@ -172,6 +172,44 @@ def hall_of_fame(port, ret):
             'Warp %s, 0, %s, %s, DIR_SOUTH' % w, 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade']
 
 
+# the Cinnabar Lab's doctor revives any fossil in the bag (src/medical_center.c sFossils: the Vermilion
+# foreman's dig turns up more than FireRed's three)
+FOSSILS = [('ITEM_HELIX_FOSSIL', 'SPECIES_OMANYTE', 'Helix Fossil'), ('ITEM_DOME_FOSSIL', 'SPECIES_KABUTO', 'Dome Fossil'),
+           ('ITEM_OLD_AMBER', 'SPECIES_AERODACTYL', 'Old Amber'), ('ITEM_ROOT_FOSSIL', 'SPECIES_LILEEP', 'Root Fossil'),
+           ('ITEM_CLAW_FOSSIL', 'SPECIES_ANORITH', 'Claw Fossil'), ('ITEM_SKULL_FOSSIL', 'SPECIES_CRANIDOS', 'Skull Fossil'),
+           ('ITEM_ARMOR_FOSSIL', 'SPECIES_SHIELDON', 'Armor Fossil')]
+OLD_FOSSILS = {1: 'SPECIES_OMANYTE', 2: 'SPECIES_KABUTO', 3: 'SPECIES_AERODACTYL'}     # (FireRed's 1-3, older saves)
+
+
+def fossil_list(port, ret):
+    """Fossil_PushList: the fossils in the bag as the next menu (each item there only while the bag has it; its
+    value is its place in FOSSILS); VAR_RESULT = how many"""
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    out = ['SetVar %s, 0' % ret]
+    port.dyn = []
+    for i, (item, _, name) in enumerate(FOSSILS):
+        skip = port.new('fossil')
+        out += ['HasItem %s, 1, 0x401E' % item, 'CompareVarToValue 0x401E, 0', 'GoToIfEq %s' % skip, 'AddVar %s, 1' % ret, skip + ':']
+        port.own_msg('cv_fossil_%d' % i, name)
+        port.dyn.append(('cv_fossil_%d' % i, str(i), item))
+    return out
+
+
+def fossil_pick(port, ret):
+    """Fossil_Pick: the menu's choice -> VAR_0x8005 its item; STR_VAR_1 the Pokemon, STR_VAR_2 the fossil"""
+    v = port.var('VAR_0x8005')
+    return chain(port, 'VAR_SPECIAL_RESULT', [(str(i), ['SetVar %s, %s' % (v, item), 'BufferSpeciesName 0, %s, 0, 0' % sp,
+                                                       'BufferItemName 1, %s' % item]) for i, (item, sp, _) in enumerate(FOSSILS)])
+
+
+def fossil_revived(port, ret):
+    """Fossil_BufferRevived: VAR_0x8005 (the fossil's item, or FireRed's 1-3) -> VAR_0x8004 its Pokemon, STR_VAR_1 its name"""
+    v, out = port.var('VAR_0x8005'), port.var('VAR_0x8004')
+    cases = [(item, sp) for item, sp, _ in FOSSILS] + [(str(k), sp) for k, sp in OLD_FOSSILS.items()]
+    return ['SetVar %s, 0' % out] + chain(port, v, [(k, ['SetVar %s, %s' % (out, sp)]) for k, sp in cases]) + \
+        ['BufferSpeciesName 0, %s, 0, 0' % out]
+
+
 def hop_off(port, d):
     """the GBA's CreateStopSurfingTask: off the Pokemon and a hop onto the land ahead (`d`: North, South...)"""
     port.movements['_cv_hop_off_' + d] = [['JumpNearFast' + d, 1]]
@@ -332,6 +370,17 @@ SPECIALS = {
                                      'SetDynamicWarp MAP_FUCHSIA_PAL_PARK_ENTRANCE, %d, %d, %d, 1' % SAFARI_GATE_DOOR],
     'ExitSafariMode': lambda p, r: ['SafariZoneAction 1, 0', 'ClearFlag 0x%X' % (0x2000 + KANTO_SAFARI_FLAG)],
     # Seafoam's falls into the current (currents.py): the player surfs, and on B4F gets off onto land to the north
+    # (HeartGold sends a Pokemon to the first box with room: never "the box was full")
+    'ShouldShowBoxWasFullMessage': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],
+    'GetPCBoxToSendMon': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],
+    'SetWalkingIntoSignVars': lambda p, r: [],      # (the GBA hack's does nothing: its body is commented out)
+    'GetRandomSlotMachineId': lambda p, r: ['SetVar %s, 0' % (r or 'VAR_SPECIAL_RESULT')],   # (HeartGold's game: by machine)
+    # the GBA's camera shake (VAR_0x8004 up and down, 0x8005 side to side, 0x8006 shakes, 0x8007 frames between):
+    # HeartGold's ScreenShake (side to side, up and down, frames between, shakes)
+    'ShakeCamera': lambda p, r: ['ScreenShake %s, %s, %s, %s' % (p.var('VAR_0x8005'), p.var('VAR_0x8004'), p.var('VAR_0x8007'), p.var('VAR_0x8006'))],
+    'Fossil_PushList': fossil_list,
+    'Fossil_Pick': fossil_pick,
+    'Fossil_BufferRevived': fossil_revived,
     'ForcePlayerToStartSurfing': lambda p, r: ['SetAvatarBits 4', 'UpdateAvatarState'],
     'SeafoamIslandsB4F_CurrentDumpsPlayerOnLand': lambda p, r: hop_off(p, 'North'),
     'ScriptCheckFreePokemonStorageSpace': pc_has_space,

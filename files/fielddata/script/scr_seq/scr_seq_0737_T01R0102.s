@@ -67,7 +67,7 @@ _cv_menu_2:
 	CompareVarToVar VAR_SPECIAL_RESULT, 0x500A
 	GoToIfEq Outfits_EventScript_Done
 	CopyVar 0x8004, VAR_SPECIAL_RESULT
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	// TODO(gba) special Outfit_Wear
@@ -103,7 +103,8 @@ Outfits_EventScript_PushList:
 	GoTo Outfits_EventScript_Skip_CASUAL
 	
 Outfits_EventScript_Done:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

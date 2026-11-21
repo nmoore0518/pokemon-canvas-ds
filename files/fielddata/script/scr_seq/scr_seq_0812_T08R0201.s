@@ -57,12 +57,13 @@ FuchsiaCity_SafariZone_Entrance_EventScript_ExitWarpIn:
 	LockAll
 	NPCMsg msg_0516_T08R0201_FuchsiaCity_SafariZone_Entrance_Text_CatchFairShareComeAgain
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_Exit
 	WaitMovement
 	SafariZoneAction 1, 0
 	ClearFlag 0x2FFA
 	SetVar 0x5034, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -81,12 +82,13 @@ _cv_yn_4:
 	GoToIfEq FuchsiaCity_SafariZone_Entrance_EventScript_ReturnToSafariZone
 	NPCMsg msg_0516_T08R0201_FuchsiaCity_SafariZone_Entrance_Text_PleaseReturnSafariBalls
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_Exit
 	WaitMovement
 	SafariZoneAction 1, 0
 	ClearFlag 0x2FFA
 	SetVar 0x5034, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -96,12 +98,13 @@ FuchsiaCity_SafariZone_Entrance_EventScript_ExitWalkIn:
 	WaitMovement
 	NPCMsg msg_0516_T08R0201_FuchsiaCity_SafariZone_Entrance_Text_CatchFairShareComeAgain
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_Exit2
 	WaitMovement
 	SafariZoneAction 1, 0
 	ClearFlag 0x2FFA
 	SetVar 0x5034, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -138,7 +141,7 @@ _cv_yn_6:
 FuchsiaCity_SafariZone_Entrance_EventScript_ReturnToSafariZone:
 	NPCMsg msg_0516_T08R0201_FuchsiaCity_SafariZone_Entrance_Text_GoodLuck
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_ReEnter
 	WaitMovement
 	FadeScreen 6, 1, 0, RGB_BLACK
@@ -164,7 +167,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:
 	Call EventScript_RestorePrevTextColor
 	NPCMsg msg_0516_T08R0201_FuchsiaCity_SafariZone_Entrance_Text_CallYouOnPAWhenYouRunOut
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HideMoneyBox
 	CompareVarToValue 0x4002, 0
 	CallIfEq FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZoneMid
@@ -184,10 +187,11 @@ FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:
 	End
 	
 FuchsiaCity_SafariZone_Entrance_EventScript_ForcePlayerBack:
-	CloseMsg
+	CanvasCloseMsg
 	HideMoneyBox
 	ApplyMovement obj_player, FuchsiaCity_SafariZone_Entrance_Movement_ForceBack
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

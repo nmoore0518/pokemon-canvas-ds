@@ -85,7 +85,7 @@ _cv_menu_7:
 	AddVar 0x8004, 1
 	NPCMsg msg_0965_CV_CANVAS_SAFFRON_TCG_HOUSE_SaffronCity_TcgHouse_Text_LetsDuel
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special StartTcgDuel
 	GoTo _cv_stop
 	LockAll

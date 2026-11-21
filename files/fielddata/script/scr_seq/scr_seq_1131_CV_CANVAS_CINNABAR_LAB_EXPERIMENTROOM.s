@@ -49,32 +49,149 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist:
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon
 	CompareVarToValue 0x5040, 1
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving
-	// TODO(gba) special Fossil_PushList
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	HasItem ITEM_HELIX_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_3
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_3:
+	HasItem ITEM_DOME_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_4
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_4:
+	HasItem ITEM_OLD_AMBER, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_5
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_5:
+	HasItem ITEM_ROOT_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_6
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_6:
+	HasItem ITEM_CLAW_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_7
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_7:
+	HasItem ITEM_SKULL_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_8
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_8:
+	HasItem ITEM_ARMOR_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_fossil_9
+	AddVar VAR_SPECIAL_RESULT, 1
+_cv_fossil_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NoFossil
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe
 	TouchscreenMenuHide
 	ScrCmd_065 1, 1, 0, 1, VAR_SPECIAL_RESULT
+	HasItem ITEM_HELIX_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_11
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_0, 0
+_cv_item_11:
+	HasItem ITEM_DOME_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_12
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_1, 1
+_cv_item_12:
+	HasItem ITEM_OLD_AMBER, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_13
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_2, 2
+_cv_item_13:
+	HasItem ITEM_ROOT_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_14
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_3, 3
+_cv_item_14:
+	HasItem ITEM_CLAW_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_15
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_4, 4
+_cv_item_15:
+	HasItem ITEM_SKULL_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_16
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_5, 5
+_cv_item_16:
+	HasItem ITEM_ARMOR_FOSSIL, 1, 0x401E
+	CompareVarToValue 0x401E, 0
+	GoToIfEq _cv_item_17
+	ScrCmd_559 msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_6, 6
+_cv_item_17:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_4
+	GoToIfLt _cv_menu_18
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_4:
+_cv_menu_18:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil
-	// TODO(gba) special Fossil_Pick
-	GoTo _cv_stop
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_next_20
+	SetVar 0x8005, ITEM_HELIX_FOSSIL
+	BufferSpeciesName 0, SPECIES_OMANYTE, 0, 0
+	BufferItemName 1, ITEM_HELIX_FOSSIL
+	GoTo _cv_done_19
+_cv_next_20:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	GoToIfNe _cv_next_21
+	SetVar 0x8005, ITEM_DOME_FOSSIL
+	BufferSpeciesName 0, SPECIES_KABUTO, 0, 0
+	BufferItemName 1, ITEM_DOME_FOSSIL
+	GoTo _cv_done_19
+_cv_next_21:
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	GoToIfNe _cv_next_22
+	SetVar 0x8005, ITEM_OLD_AMBER
+	BufferSpeciesName 0, SPECIES_AERODACTYL, 0, 0
+	BufferItemName 1, ITEM_OLD_AMBER
+	GoTo _cv_done_19
+_cv_next_22:
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	GoToIfNe _cv_next_23
+	SetVar 0x8005, ITEM_ROOT_FOSSIL
+	BufferSpeciesName 0, SPECIES_LILEEP, 0, 0
+	BufferItemName 1, ITEM_ROOT_FOSSIL
+	GoTo _cv_done_19
+_cv_next_23:
+	CompareVarToValue VAR_SPECIAL_RESULT, 4
+	GoToIfNe _cv_next_24
+	SetVar 0x8005, ITEM_CLAW_FOSSIL
+	BufferSpeciesName 0, SPECIES_ANORITH, 0, 0
+	BufferItemName 1, ITEM_CLAW_FOSSIL
+	GoTo _cv_done_19
+_cv_next_24:
+	CompareVarToValue VAR_SPECIAL_RESULT, 5
+	GoToIfNe _cv_next_25
+	SetVar 0x8005, ITEM_SKULL_FOSSIL
+	BufferSpeciesName 0, SPECIES_CRANIDOS, 0, 0
+	BufferItemName 1, ITEM_SKULL_FOSSIL
+	GoTo _cv_done_19
+_cv_next_25:
+	CompareVarToValue VAR_SPECIAL_RESULT, 6
+	GoToIfNe _cv_next_26
+	SetVar 0x8005, ITEM_ARMOR_FOSSIL
+	BufferSpeciesName 0, SPECIES_SHIELDON, 0, 0
+	BufferItemName 1, ITEM_ARMOR_FOSSIL
+	GoTo _cv_done_19
+_cv_next_26:
+_cv_done_19:
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_5
+	GoToIfEq _cv_yes_27
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_6
-_cv_yes_5:
+	GoTo _cv_yn_28
+_cv_yes_27:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_6:
+_cv_yn_28:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil
 	BufferPlayersName 6
@@ -103,96 +220,96 @@ PaintWorld_EventScript_Figure:
 EventScript_GetInGameTradeSpeciesInfo:
 	CopyVar 0x8005, 0x8008
 	CompareVarToValue 0x8005, 4
-	GoToIfNe _cv_next_8
+	GoToIfNe _cv_next_30
 	LoadNPCTrade 13
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_8:
+	GoTo _cv_done_29
+_cv_next_30:
 	CompareVarToValue 0x8005, 5
-	GoToIfNe _cv_next_9
+	GoToIfNe _cv_next_31
 	LoadNPCTrade 14
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_9:
+	GoTo _cv_done_29
+_cv_next_31:
 	CompareVarToValue 0x8005, 6
-	GoToIfNe _cv_next_10
+	GoToIfNe _cv_next_32
 	LoadNPCTrade 15
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_10:
+	GoTo _cv_done_29
+_cv_next_32:
 	CompareVarToValue 0x8005, 7
-	GoToIfNe _cv_next_11
+	GoToIfNe _cv_next_33
 	LoadNPCTrade 16
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_11:
+	GoTo _cv_done_29
+_cv_next_33:
 	CompareVarToValue 0x8005, 8
-	GoToIfNe _cv_next_12
+	GoToIfNe _cv_next_34
 	LoadNPCTrade 17
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_12:
+	GoTo _cv_done_29
+_cv_next_34:
 	CompareVarToValue 0x8005, 9
-	GoToIfNe _cv_next_13
+	GoToIfNe _cv_next_35
 	LoadNPCTrade 18
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_13:
+	GoTo _cv_done_29
+_cv_next_35:
 	CompareVarToValue 0x8005, 10
-	GoToIfNe _cv_next_14
+	GoToIfNe _cv_next_36
 	LoadNPCTrade 19
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_14:
+	GoTo _cv_done_29
+_cv_next_36:
 	CompareVarToValue 0x8005, 11
-	GoToIfNe _cv_next_15
+	GoToIfNe _cv_next_37
 	LoadNPCTrade 20
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_15:
+	GoTo _cv_done_29
+_cv_next_37:
 	CompareVarToValue 0x8005, 12
-	GoToIfNe _cv_next_16
+	GoToIfNe _cv_next_38
 	LoadNPCTrade 21
 	NPCTradeGetReqSpecies 0x8009
 	GetOfferedSpecies 0x8006
 	NPCTradeEnd
 	BufferSpeciesName 0, 0x8009, 0, 0
 	BufferSpeciesName 1, 0x8006, 0, 0
-	GoTo _cv_done_7
-_cv_next_16:
-_cv_done_7:
+	GoTo _cv_done_29
+_cv_next_38:
+_cv_done_29:
 	Return
 	
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded:
@@ -236,77 +353,128 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon:
 	
 EventScript_DoInGameTrade:
 	CompareVarToValue 0x8005, 4
-	GoToIfNe _cv_next_18
+	GoToIfNe _cv_next_40
 	LoadNPCTrade 13
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_18:
+	GoTo _cv_done_39
+_cv_next_40:
 	CompareVarToValue 0x8005, 5
-	GoToIfNe _cv_next_19
+	GoToIfNe _cv_next_41
 	LoadNPCTrade 14
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_19:
+	GoTo _cv_done_39
+_cv_next_41:
 	CompareVarToValue 0x8005, 6
-	GoToIfNe _cv_next_20
+	GoToIfNe _cv_next_42
 	LoadNPCTrade 15
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_20:
+	GoTo _cv_done_39
+_cv_next_42:
 	CompareVarToValue 0x8005, 7
-	GoToIfNe _cv_next_21
+	GoToIfNe _cv_next_43
 	LoadNPCTrade 16
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_21:
+	GoTo _cv_done_39
+_cv_next_43:
 	CompareVarToValue 0x8005, 8
-	GoToIfNe _cv_next_22
+	GoToIfNe _cv_next_44
 	LoadNPCTrade 17
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_22:
+	GoTo _cv_done_39
+_cv_next_44:
 	CompareVarToValue 0x8005, 9
-	GoToIfNe _cv_next_23
+	GoToIfNe _cv_next_45
 	LoadNPCTrade 18
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_23:
+	GoTo _cv_done_39
+_cv_next_45:
 	CompareVarToValue 0x8005, 10
-	GoToIfNe _cv_next_24
+	GoToIfNe _cv_next_46
 	LoadNPCTrade 19
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_24:
+	GoTo _cv_done_39
+_cv_next_46:
 	CompareVarToValue 0x8005, 11
-	GoToIfNe _cv_next_25
+	GoToIfNe _cv_next_47
 	LoadNPCTrade 20
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_25:
+	GoTo _cv_done_39
+_cv_next_47:
 	CompareVarToValue 0x8005, 12
-	GoToIfNe _cv_next_26
+	GoToIfNe _cv_next_48
 	LoadNPCTrade 21
 	NPCTradeExec 0x8004
 	NPCTradeEnd
-	GoTo _cv_done_17
-_cv_next_26:
-_cv_done_17:
+	GoTo _cv_done_39
+_cv_next_48:
+_cv_done_39:
 	LockAll
 	FacePlayer
 	Return
 	
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon:
 	CopyVar 0x8005, 0x5041
-	// TODO(gba) special Fossil_BufferRevived
-	GoTo _cv_stop
+	SetVar 0x8004, 0
+	CompareVarToValue 0x8005, ITEM_HELIX_FOSSIL
+	GoToIfNe _cv_next_50
+	SetVar 0x8004, SPECIES_OMANYTE
+	GoTo _cv_done_49
+_cv_next_50:
+	CompareVarToValue 0x8005, ITEM_DOME_FOSSIL
+	GoToIfNe _cv_next_51
+	SetVar 0x8004, SPECIES_KABUTO
+	GoTo _cv_done_49
+_cv_next_51:
+	CompareVarToValue 0x8005, ITEM_OLD_AMBER
+	GoToIfNe _cv_next_52
+	SetVar 0x8004, SPECIES_AERODACTYL
+	GoTo _cv_done_49
+_cv_next_52:
+	CompareVarToValue 0x8005, ITEM_ROOT_FOSSIL
+	GoToIfNe _cv_next_53
+	SetVar 0x8004, SPECIES_LILEEP
+	GoTo _cv_done_49
+_cv_next_53:
+	CompareVarToValue 0x8005, ITEM_CLAW_FOSSIL
+	GoToIfNe _cv_next_54
+	SetVar 0x8004, SPECIES_ANORITH
+	GoTo _cv_done_49
+_cv_next_54:
+	CompareVarToValue 0x8005, ITEM_SKULL_FOSSIL
+	GoToIfNe _cv_next_55
+	SetVar 0x8004, SPECIES_CRANIDOS
+	GoTo _cv_done_49
+_cv_next_55:
+	CompareVarToValue 0x8005, ITEM_ARMOR_FOSSIL
+	GoToIfNe _cv_next_56
+	SetVar 0x8004, SPECIES_SHIELDON
+	GoTo _cv_done_49
+_cv_next_56:
+	CompareVarToValue 0x8005, 1
+	GoToIfNe _cv_next_57
+	SetVar 0x8004, SPECIES_OMANYTE
+	GoTo _cv_done_49
+_cv_next_57:
+	CompareVarToValue 0x8005, 2
+	GoToIfNe _cv_next_58
+	SetVar 0x8004, SPECIES_KABUTO
+	GoTo _cv_done_49
+_cv_next_58:
+	CompareVarToValue 0x8005, 3
+	GoToIfNe _cv_next_59
+	SetVar 0x8004, SPECIES_AERODACTYL
+	GoTo _cv_done_49
+_cv_next_59:
+_cv_done_49:
+	BufferSpeciesName 0, 0x8004, 0, 0
 	CopyVar 0x4001, 0x8004
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
 	WaitButton
@@ -365,7 +533,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -374,32 +542,33 @@ PaintWorld_EventScript_FigureBattle:
 	TrainerBattle 1442, 0, 0, 0
 	CheckBattleWon VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfNe _cv_won_28
+	GoToIfNe _cv_won_61
 	WhiteOut
 	End
-_cv_won_28:
+_cv_won_61:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
-	GoToIfNe _cv_outcome_29
+	GoToIfNe _cv_outcome_62
 	SetVar VAR_SPECIAL_RESULT, 7
-	GoTo _cv_outcome_30
-_cv_outcome_29:
+	GoTo _cv_outcome_63
+_cv_outcome_62:
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
-	GoToIfNe _cv_outcome_30
+	GoToIfNe _cv_outcome_63
 	SetVar VAR_SPECIAL_RESULT, 4
-_cv_outcome_30:
+_cv_outcome_63:
 	// TODO(gba) special Painter_RecordBattle
 	GoTo _cv_stop
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -431,12 +600,12 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty:
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_31
+	GoToIfEq _cv_yes_64
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_32
-_cv_yes_31:
+	GoTo _cv_yn_65
+_cv_yes_64:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_32:
+_cv_yn_65:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
 	Call Common_EventScript_GetGiftMonPartySlot
@@ -454,12 +623,12 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC:
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_33
+	GoToIfEq _cv_yes_66
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_34
-_cv_yes_33:
+	GoTo _cv_yn_67
+_cv_yes_66:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_34:
+_cv_yn_67:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
 	Call Common_EventScript_NameReceivedBoxMon
@@ -468,6 +637,7 @@ _cv_yn_34:
 	End
 	
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -491,23 +661,21 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC:
 Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	SetVar 0x8004, 0
+	SetVar 0x8004, 254
 	NicknameInput 0x8004, VAR_SPECIAL_RESULT
 	LockAll
 	FacePlayer
 	Return
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
 	Return
 	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredSomeonesPC
@@ -515,8 +683,7 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredLanettesPC
@@ -524,19 +691,15 @@ EventScript_TransferredLanettesPC:
 	Return
 	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return

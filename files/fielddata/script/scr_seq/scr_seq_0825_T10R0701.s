@@ -20,7 +20,7 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:
 	BufferPlayersName 6
 	NPCMsg msg_0528_T10R0701_PokemonLeague_HallOfFame_Text_OakCongratulations
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, Common_Movement_WalkInPlaceFasterUp
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
@@ -38,6 +38,7 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:
 	Warp MAP_INDIGO_PLATEAU, 0, 978, 108, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

@@ -657,6 +657,16 @@
             "y": 0,
             "val": 0,
             "var": "0x5007"
+        },
+        {
+            "scriptId": "_EV_PalletTown_EventScript_SignLadyTrigger + 1",
+            "x": 1040,
+            "z": 354,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 1,
+            "var": "0x4002"
         }
     ]
 }

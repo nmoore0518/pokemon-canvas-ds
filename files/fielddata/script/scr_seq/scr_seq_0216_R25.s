@@ -95,6 +95,7 @@ EventMons_EventScript_CapNoCase:
 	End
 	
 EventMons_EventScript_ReleaseAllEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

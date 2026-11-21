@@ -76,7 +76,7 @@ _cv_shown_2:
 	BufferRivalsName 7
 	NPCMsg msg_0904_CV_CANVAS_SSANNE_2F_SSAnne_2F_Corridor_Text_RivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
@@ -89,6 +89,7 @@ _cv_shown_2:
 	HidePerson 1
 	SetFlag 0x2060
 	SetVar 0x502A, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -110,6 +111,9 @@ SSAnne_2F_Corridor_EventScript_RivalApproachRight:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_4
@@ -183,6 +187,9 @@ _cv_won_16:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_18
@@ -256,6 +263,9 @@ _cv_won_30:
 	Return
 	
 SSAnne_2F_Corridor_EventScript_RivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_32
@@ -342,11 +352,44 @@ SSAnne_2F_Corridor_EventScript_RivalExitRight:
 	ApplyMovement 1, SSAnne_2F_Corridor_Movement_RivalExitRight
 	WaitMovement
 	Return
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0904_CV_CANVAS_SSANNE_2F_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0904_CV_CANVAS_SSANNE_2F_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0904_CV_CANVAS_SSANNE_2F_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
 
 _cv_stop:
 	NPCMsg msg_0904_CV_CANVAS_SSANNE_2F_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_CANVAS_SSANNE_2F, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

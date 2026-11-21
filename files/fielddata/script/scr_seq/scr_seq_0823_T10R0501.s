@@ -46,6 +46,7 @@ PokemonLeague_LancesRoom_EventScript_EnterRoom:
 	PlaySE SEQ_SE_DP_SELECT
 	WaitSE SEQ_SE_DP_SELECT
 	SetVar 0x501D, 4
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -234,7 +235,8 @@ PokemonLeague_LancesRoom_EventScript_DefeatedLance:
 	WaitButton
 	SetVar 0x8009, 11
 	Call GymCandidate_EventScript_EliteFourApprove
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

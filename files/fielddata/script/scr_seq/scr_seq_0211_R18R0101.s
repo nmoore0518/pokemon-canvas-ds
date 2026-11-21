@@ -82,6 +82,7 @@ Route18_EastEntrance_2F_EventScript_RightBinoculars:
 EventScript_SetEnteringCyclingRoad:
 	LockAll
 	SetVar 0x5030, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -119,6 +120,7 @@ EventScript_SetExitingCyclingRoad:
 	LockAll
 	ClearFlag 0x210F
 	SetVar 0x5030, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -333,7 +335,7 @@ _cv_done_13:
 Route18_EastEntrance_1F_EventScript_NeedBikeTrigger:
 	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_1F_Text_ExcuseMe
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	Wait 20, VAR_SPECIAL_RESULT
@@ -347,9 +349,10 @@ Route18_EastEntrance_1F_EventScript_NeedBikeTrigger:
 	CallIfEq Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterBottom
 	NPCMsg msg_0359_R18R0101_Route18_EastEntrance_1F_Text_NeedBicycleForCyclingRoad
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route18_EastEntrance_1F_Movement_WalkRight
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

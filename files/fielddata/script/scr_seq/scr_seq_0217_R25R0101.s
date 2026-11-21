@@ -118,7 +118,7 @@ Route25_SeaCottage_EventScript_RunCellSeparator:
 	BufferPlayersName 6
 	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ClearFlag 2
 	SetFlag 0x20EA
 	ApplyMovement 127, Route25_SeaCottage_Movement_CameraPanToTeleporters
@@ -166,6 +166,7 @@ _cv_shown_6:
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 1, Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -219,7 +220,7 @@ Route25_SeaCottage_EventScript_BillAskForHelp:
 	CallIfEq Route25_SeaCottage_EventScript_DeclineHelpBill
 	NPCMsg msg_0364_R25R0101_Route25_SeaCottage_Text_RunCellSeparationOnPC
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	CompareVarToValue 0x5002, 1
 	CallIfEq Route25_SeaCottage_EventScript_BillWalkToTeleporterSouth
@@ -235,6 +236,7 @@ Route25_SeaCottage_EventScript_BillAskForHelp:
 	SetFlag 0x20ED
 	PlaySE SEQ_SE_DP_SELECT
 	SetFlag 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -320,6 +322,7 @@ Route25_SeaCottage_EventScript_ViewVaporeon:
 	End
 	
 Route25_SeaCottage_EventScript_ExitBillsMonList:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

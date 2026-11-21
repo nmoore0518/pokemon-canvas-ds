@@ -105,7 +105,7 @@ TowerGraves_EventScript_GhostGirl:
 	SetFlag 0x2184
 	NPCMsg msg_0887_CV_CANVAS_POKEMON_TOWER_3F_TowerGraves_Text_GirlKeepThemAsTheyAre
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special TowerGraves_DismissGhosts
 	GoTo _cv_stop
 	NPCMsg msg_0887_CV_CANVAS_POKEMON_TOWER_3F_TowerGraves_Text_Gone
@@ -117,9 +117,10 @@ TowerGraves_EventScript_GhostGirl:
 TowerGraves_EventScript_NoRoom:
 	NPCMsg msg_0887_CV_CANVAS_POKEMON_TOWER_3F_TowerGraves_Text_GirlNoRoom
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special TowerGraves_DismissGhosts
 	GoTo _cv_stop
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

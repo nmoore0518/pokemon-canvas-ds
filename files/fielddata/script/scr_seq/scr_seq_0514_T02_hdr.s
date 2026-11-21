@@ -8,7 +8,7 @@
 	InitScriptEntryEnd
 
 _cv_T02_frame:
-	// (not yet: MoveExtractor_EventScript_ViridianVisit)
+	InitScriptGoToIfEqual 0x4009, 1, _EV_MoveExtractor_EventScript_ViridianVisit + 1
 	InitScriptFrameTableEnd
 
 	InitScriptEnd

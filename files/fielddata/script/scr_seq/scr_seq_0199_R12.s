@@ -91,6 +91,7 @@ _cv_outcome_7:
 	GoToIfEq Route12_EventScript_FoughtSnorlax
 	CompareVarToValue VAR_SPECIAL_RESULT, 5
 	GoToIfEq Route12_EventScript_FoughtSnorlax
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -199,6 +200,7 @@ Route12_EventScript_SnorlaxNoPokeFlute:
 	End
 	
 Route12_EventScript_DontUsePokeFlute:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -238,6 +240,7 @@ Route12_EventScript_TryRemoveSnorlax:
 	
 GymCandidate_EventScript_RecruitAfterBattle:
 	Call GymCandidate_EventScript_RecruitOffer
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

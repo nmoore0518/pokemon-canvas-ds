@@ -312,7 +312,7 @@ Academy_EventScript_Welcome:
 	BufferPlayersName 6
 	NPCMsg msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_Welcome4
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 18, Common_Movement_FaceRight
 	ApplyMovement obj_player, Common_Movement_FaceLeft
 	WaitMovement
@@ -321,7 +321,7 @@ Academy_EventScript_Welcome:
 	BufferPlayersName 6
 	NPCMsg msg_0955_CV_CANVAS_LEADER_ACADEMY_Academy_Text_MentorBye
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 18, Academy_Movement_WalkDown2
 	WaitMovement
 	HidePerson 18
@@ -332,6 +332,7 @@ Academy_EventScript_Welcome:
 	SetFlag 0x2103
 	SetFlag 0x221A
 	SetVar 0x502F, 4
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -353,7 +354,7 @@ _cv_yn_2:
 	HealParty
 	NPCMsg msg_0955_CV_CANVAS_LEADER_ACADEMY_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	HealParty
@@ -398,8 +399,7 @@ Academy_EventScript_Battle:
 _cv_won_4:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_5

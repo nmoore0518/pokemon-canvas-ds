@@ -33,7 +33,7 @@
 	ScrDef SaffronCity_EventScript_TrainerFanClubSign
 	ScrDef Route5_EventScript_UndergroundPathSign
 	ScrDef SaffronCity_OnTransition
-	ScrDef _cv_unported_27
+	ScrDef MoveExtractor_EventScript_SaffronVisit
 	ScrDefEnd
 	
 SaffronCity_EventScript_RocketGrunt1:
@@ -321,7 +321,7 @@ PaintWorld_EventScript_FigureMega:
 	GoTo PaintWorld_EventScript_FigureBattle
 	
 PaintWorld_EventScript_FigureBattle:
-	CloseMsg
+	CanvasCloseMsg
 	// TODO(gba) special Painter_SetupFigure
 	GoTo _cv_stop
 	ClearTrainerFlag 1442
@@ -350,12 +350,13 @@ _cv_outcome_4:
 	GoTo _cv_stop
 	NPCMsg msg_0529_T11_PaintWorld_Text_Dissolve
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_WHITE
 	WaitFade
 	Warp MAP_CANVAS_PEWTER_PAINTER_LOFT, 0, 8, 4, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -366,19 +367,13 @@ SaffronCity_EventScript_MoveDoorGuardGrunt:
 MoveExtractor_EventScript_Visit:
 	LockAll
 	SetVar 0x4009, 0
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq MoveExtractor_EventScript_VisitNoRoom
-	CopyVar 0x401E, 0x8005
-	AddVar 0x401E, 1221
-	CopyVar 0x401F, 0x8006
-	AddVar 0x401F, 205
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2089
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 0x800A, Common_Movement_ExclamationMark
 	WaitMovement
@@ -386,7 +381,7 @@ MoveExtractor_EventScript_Visit:
 	CallIfEq MoveExtractor_EventScript_SecondVisit
 	CompareVarToValue 0x8008, 3
 	CallIfEq MoveExtractor_EventScript_ThirdVisit
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 0x800A
@@ -396,6 +391,7 @@ MoveExtractor_EventScript_Visit:
 	GoTo MoveExtractor_EventScript_VisitNoRoom
 	
 MoveExtractor_EventScript_VisitNoRoom:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -430,15 +426,6 @@ GymHack_EventScript_GiveStatItem:
 	
 GymHack_EventScript_GiveStatItemDone:
 	Return
-
-_cv_unported_27:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0529_T11_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0529_T11_cv_unported

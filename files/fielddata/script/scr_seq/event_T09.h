@@ -9,9 +9,6 @@
 #define _EV_CinnabarIsland_EventScript_GymSign 5
 #define _EV_CinnabarIsland_EventScript_GymDoorLocked 6
 #define _EV_CinnabarIsland_OnTransition 7
-#define _EV_CinnabarIsland_EventScript_ExitPokeCenterForOneIsland 8
-#define _EV_CinnabarIsland_EventScript_BillScene 9
-#define _EV_CinnabarIsland_EventScript_ReturnFromSeviiIslands 10
 
 #define LOCALID_CINNABAR_BILL 3
 #define LOCALID_CINNABAR_SEAGALLOP 4

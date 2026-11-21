@@ -22,6 +22,9 @@ def split_args(s):
     return out
 
 
+DEFINED = {'FIRERED'}          # (the GBA game is built as FireRed: its #ifdef FIRERED parts, not LEAFGREEN's)
+
+
 class Gba:
     def __init__(self):
         self.labels = {}       # label -> list of (cmd, args)          (scripts and movements)
@@ -32,13 +35,11 @@ class Gba:
         files = sorted(glob.glob(P('data/maps/*/scripts.inc')) + glob.glob(P('data/maps/*/movements.inc')) +
                        glob.glob(P('data/maps/*/text.inc')) + glob.glob(P('data/scripts/*.inc')) +
                        glob.glob(P('data/text/*.inc')) + [P('data/event_scripts.s')])
-        for f in files:
-            self._read(f)
         self.defines = {}
-        for h in sorted(glob.glob(P('include/constants/*.h'))) + [P('include/global.h')]:
+        for h in sorted(glob.glob(P('include/constants/*.h'))) + [P('include/global.h')] + sorted(glob.glob(P('include/config/*.h'))):
             if not os.path.exists(h): continue
             src = open(h, errors='ignore').read()
-            for n, v in re.findall(r'#define\s+(\w+)\s+([^\s/]+)', src):
+            for n, v in re.findall(r'#define[ \t]+(\w+)[ \t]+([^\s/]+)', src):     # (on one line: a guard's bare #define takes no value)
                 self.defines.setdefault(n, v)
             src = re.sub(r'//[^\n]*|/\*.*?\*/', '', src, flags=re.S)
             for body in re.findall(r'\benum\s*\w*\s*\{([^}]*)\}', src):     # enum members count up
@@ -57,6 +58,8 @@ class Gba:
                     else:
                         if i is not None: self.defines.setdefault(n, str(i))
                     if i is not None: i += 1
+        for f in files:          # (after the constants: the scripts' .if lines read them)
+            self._read(f)
 
     def _read(self, f):
         cur = None
@@ -67,8 +70,25 @@ class Gba:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
         import scrapped        # (less what the port leaves out: scrapped.py)
         queue = scrapped.edit_source(f, open(f, errors='ignore').read()).splitlines(True)
+        cond = []                  # (#ifdef / .if blocks: whether each one, and the ones round it, are taken)
         while queue:
             raw = queue.pop(0)
+            c = raw.split('@')[0].strip()
+            mc = re.match(r'^(#ifdef|#ifndef|\.ifdef|\.ifndef)\s+(\w+)', c)
+            if mc:
+                on = (mc.group(2) in DEFINED) == mc.group(1).endswith('ifdef')
+                cond.append([on, all(x[0] for x in cond)]); continue
+            mc = re.match(r'^(#if|\.if)\s+(.+)$', c)
+            if mc:
+                cond.append([bool(self._cond(mc.group(2))), all(x[0] for x in cond)]); continue
+            if c in ('#else', '.else'):
+                if cond: cond[-1][0] = not cond[-1][0]
+                continue
+            if c in ('#endif', '.endif'):
+                if cond: cond.pop()
+                continue
+            if cond and not all(x[0] for x in cond):
+                continue
             if pmacro is not None:
                 if raw.strip() == '.endm': pmacro = None
                 else: pmacro[1].append(raw)
@@ -127,6 +147,20 @@ class Gba:
             if cmd in local_macros and not args:
                 self.labels[cur].extend(local_macros[cmd]); continue
             self.labels[cur].append((cmd, args))
+
+    def _cond(self, expr):
+        """an .if / #if line's condition (unknown names: 0)"""
+        expr = expr.replace('&&', ' and ').replace('||', ' or ')
+        expr = re.sub(r'!(?!=)', ' not ', expr)
+        out = []
+        for t in re.split(r'(\W)', expr):
+            if re.match(r'^[A-Za-z_]\w*$', t) and t not in ('and', 'or', 'not'):
+                if t == 'defined': out.append('defined'); continue
+                v = 1 if t in DEFINED else self.value(t)
+                out.append(str(v if v is not None else 0))
+            else: out.append(t)
+        try: return eval(''.join(out), {'__builtins__': {}, 'defined': lambda x: x != 0})
+        except Exception: return False
 
     def value(self, name):
         """resolve a constant to an int where we can (equ, defines, numbers)"""

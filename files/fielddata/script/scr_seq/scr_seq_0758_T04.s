@@ -30,9 +30,10 @@ CeruleanCity_EventScript_Policeman:
 	FacePlayer
 	NPCMsg msg_0467_T04_CeruleanCity_Text_PeopleHereWereRobbed
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -197,7 +198,7 @@ CeruleanCity_EventScript_GruntDefeated:
 	WaitButton
 	NPCMsg msg_0467_T04_CeruleanCity_Text_BetterGetMovingBye
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 2
@@ -205,6 +206,7 @@ CeruleanCity_EventScript_GruntDefeated:
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	SetFlag 0x20D5
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -254,7 +256,7 @@ _cv_shown_4:
 	BufferRivalsName 7
 	NPCMsg msg_0467_T04_CeruleanCity_Text_RivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
 	CallIfEq CeruleanCity_EventScript_RivalStartExit
@@ -270,12 +272,13 @@ _cv_shown_4:
 	SetVar VAR_SPECIAL_RESULT, 1
 	NPCMsg msg_0467_T04_CeruleanCity_Text_ExplainFameCheckerSmellYa
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 8, CeruleanCity_Movement_RivalExit
 	WaitMovement
 	ResetBGM
 	HidePerson 8
 	SetFlag 0x205F
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -371,6 +374,9 @@ _cv_menu_8:
 	GoTo TypeTutor_EventScript_Teach
 	
 CeruleanCity_EventScript_RivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_10
@@ -444,6 +450,9 @@ _cv_won_22:
 	Return
 	
 CeruleanCity_EventScript_RivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_24
@@ -517,6 +526,9 @@ _cv_won_36:
 	Return
 	
 CeruleanCity_EventScript_RivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_38
@@ -614,6 +626,30 @@ EventScript_ChooseMoveTutorMon:
 	LockAll
 	FacePlayer
 	Return
+	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0467_T04_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0467_T04_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0467_T04_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
 
 _cv_str4:
 	BufferPlayersName 6
@@ -624,6 +660,15 @@ _cv_stop:
 	NPCMsg msg_0467_T04_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_CERULEAN, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

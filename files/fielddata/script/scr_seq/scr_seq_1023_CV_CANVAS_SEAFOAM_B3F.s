@@ -973,6 +973,7 @@ _cv_unwiden_25:
 	Warp MAP_CANVAS_SEAFOAM_B4F, 0, 33, 28, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1014,6 +1015,7 @@ SeafoamIslands_B3F_EventScript_AddBoulderPresent:
 	
 SeafoamIslands_B3F_EventScript_CurrentBlocked:
 	SetVar 0x4001, 0
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

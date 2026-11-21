@@ -10,7 +10,7 @@
 	ScrDef PalletTown_PlayersHouse_1F_EventScript_TV
 	ScrDef DadStory_EventScript_HouseOnLoad
 	ScrDef _cv_unported_3
-	ScrDef _cv_unported_4
+	ScrDef DadStory_EventScript_MomWhyWithHim
 	ScrDefEnd
 	
 PalletTown_PlayersHouse_1F_EventScript_Mom:
@@ -22,9 +22,10 @@ PalletTown_PlayersHouse_1F_EventScript_Mom:
 	CallIfEq PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, Common_Movement_FaceOriginalDirection
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -59,10 +60,11 @@ DadStory_EventScript_MomDadsBall:
 	GiveItem VAR_SPECIAL_RESULT, 1, VAR_SPECIAL_RESULT
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomMoveExtractor
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	SetVar 0x5008, 4
 	ApplyMovement 1, Common_Movement_WalkInPlaceFasterLeft
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -73,7 +75,7 @@ DadStory_EventScript_MomWhyWithHim:
 	WaitMovement
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomWhyWithHim
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, DadStory_Movement_MomToBookcase
 	ApplyMovement obj_player, DadStory_Movement_PlayerToBookcase
 	WaitMovement
@@ -83,8 +85,7 @@ DadStory_EventScript_MomWhyWithHim:
 	SetVar 0x8006, 6
 	SetVar 0x8007, 3
 	PlaySE SEQ_SE_DP_SELECT
-	// TODO(gba) special ShakeCamera
-	GoTo _cv_stop
+	ScreenShake 0x8005, 0x8004, 0x8007, 0x8006
 	Call DadStory_EventScript_RevealStairs
 	SetFlag 0x200C
 	Wait 40, VAR_SPECIAL_RESULT
@@ -96,6 +97,7 @@ DadStory_EventScript_MomWhyWithHim:
 	Warp MAP_FIGHT_AREA_UNUSED_6, 0, 12, 3, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -105,7 +107,7 @@ PalletTown_PlayersHouse_1F_EventScript_MomHeal:
 	BufferPlayersName 6
 	NPCMsg msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Common_EventScript_OutOfCenterPartyHeal
 	NPCMsg msg_0447_T01R0101_PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare
 	WaitButton
@@ -129,6 +131,7 @@ PalletTown_PlayersHouse_1F_EventScript_TVScreen:
 	CallIfEq PalletTown_PlayersHouse_1F_EventScript_TVScreenMale
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -199,15 +202,6 @@ DadStory_EventScript_MomArcherNudge:
 	Return
 
 _cv_unported_3:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0447_T01R0101_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
-
-_cv_unported_4:
 	PlaySE SEQ_SE_DP_SELECT
 	LockAll
 	NPCMsg msg_0447_T01R0101_cv_unported

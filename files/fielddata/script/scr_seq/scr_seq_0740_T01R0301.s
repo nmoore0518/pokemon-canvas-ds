@@ -167,9 +167,10 @@ PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger:
 	WaitMovement
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakHeyDontGoAwayYet
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, PalletTown_ProfessorOaksLab_Movement_PlayerWalkUp
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -232,13 +233,13 @@ _cv_rival_named:
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalFedUpWithWaiting
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 60, VAR_SPECIAL_RESULT
 	BufferPlayersName 6
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 30, VAR_SPECIAL_RESULT
 	ApplyMovement 5, PalletTown_ProfessorOaksLab_Movement_RivalReact
 	WaitMovement
@@ -462,6 +463,7 @@ PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex:
 PalletTown_ProfessorOaksLab_EventScript_RatePokedex:
 	Call PokedexRating_EventScript_RateInPerson
 	GoToIfSet 0x201B, PalletTown_ProfessorOaksLab_EventScript_DexCompleted
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -481,7 +483,7 @@ _cv_dex_19:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	Call PokedexRating_EventScript_RateInPerson
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x8009, 60
 	GoToIfLt PalletTown_ProfessorOaksLab_EventScript_DontStartNationalDexScene
 	GoToIfUnset 0x2005, PalletTown_ProfessorOaksLab_EventScript_DontStartNationalDexScene
@@ -691,7 +693,7 @@ _cv_done_30:
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalGramps
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_DexSceneRivalEnterNorth
 	CompareVarToValue 0x5002, 1
@@ -704,7 +706,7 @@ _cv_done_30:
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalWhatDidYouCallMeFor
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 30, VAR_SPECIAL_RESULT
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 4, Common_Movement_ExclamationMark
@@ -721,7 +723,7 @@ _cv_done_30:
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_DexSceneOakFacePlayerAndRivalNorth
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakHaveRequestForYouTwo
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_DexSceneOakWalkToDeskNorth
 	CompareVarToValue 0x5002, 1
@@ -732,13 +734,13 @@ _cv_done_30:
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_DexSceneOakWalkToDeskWest
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakPokedexOnDesk
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 40, VAR_SPECIAL_RESULT
 	BufferPlayersName 6
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakTakeTheseWithYou
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 4, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	HidePerson 6
@@ -792,7 +794,7 @@ _cv_done_30:
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalTellSisNotToGiveYouMap
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_RivalExitNorth
@@ -813,6 +815,7 @@ _cv_done_30:
 	SetVar 0x800A, 8
 	Call GymCandidate_EventScript_MentorIntro
 	Call DadStory_EventScript_ArmSendoff
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1242,7 +1245,7 @@ PalletTown_ProfessorOaksLab_EventScript_RivalBattle:
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalLetsCheckOutMons
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 4, Common_Movement_FaceDown
 	WaitMovement
 	CompareVarToValue 0x5018, 0
@@ -1283,7 +1286,7 @@ PalletTown_ProfessorOaksLab_EventScript_NationalDexScene:
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakSightingsOfRareMons
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterNorth
 	CompareVarToValue 0x5002, 1
@@ -1305,7 +1308,7 @@ PalletTown_ProfessorOaksLab_EventScript_NationalDexScene:
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_PlayerFaceOakWest
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakTookBothPokedexUnits
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call EventScript_RestorePrevTextColor
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_OakBringDexesToDeskNorth
@@ -1334,7 +1337,7 @@ _cv_shown_99:
 	Wait 30, VAR_SPECIAL_RESULT
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakNowTheseUnitsCanRecordMoreData
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HidePerson 6
 	SetFlag 0x2025
 	HidePerson 7
@@ -1361,7 +1364,7 @@ _cv_shown_99:
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x5002, 0
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_RivalExitNorth
@@ -1375,6 +1378,7 @@ _cv_shown_99:
 	SetFlag 0x2024
 	ResetBGM
 	SetVar 0x5006, 8
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1614,6 +1618,7 @@ GymSwitch_EventScript_LabAnswer:
 	GoToIfEq GymSwitch_EventScript_LabNo
 	CompareVarToValue 0x5014, 5
 	GoToIfEq GymSwitch_EventScript_LabLegendHint
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1624,7 +1629,7 @@ PokedexRating_EventScript_RateInPerson:
 	Return
 	
 PalletTown_ProfessorOaksLab_EventScript_DexCompleted:
-	CloseMsg
+	CanvasCloseMsg
 	Wait 40, VAR_SPECIAL_RESULT
 	NPCMsg msg_0451_T01R0301_PokedexRating_Text_Wroooaaarrr
 	CompareVarToValue 0x5002, 0
@@ -1637,7 +1642,7 @@ PalletTown_ProfessorOaksLab_EventScript_DexCompleted:
 	CallIfEq PalletTown_ProfessorOaksLab_EventScript_OakExcitedWest
 	FacePlayer
 	WaitMovement
-	CloseMsg
+	CanvasCloseMsg
 	Wait 70, VAR_SPECIAL_RESULT
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_PokedexRating_Text_ThankYouMadeDreamReality
@@ -1648,6 +1653,7 @@ PalletTown_ProfessorOaksLab_EventScript_DexCompleted:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_DontStartNationalDexScene:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -1845,7 +1851,7 @@ GymCandidate_EventScript_MentorIntro:
 	PlaySE SEQ_SE_DP_DOOR
 	NPCMsg msg_0451_T01R0301_GymCandidate_Text_MentorAtDoor
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call GymCandidate_EventScript_VisitorWalksIn
 	PlaySE SEQ_SE_DP_SELECT
 	ApplyMovement 4, Common_Movement_ExclamationMark
@@ -1986,8 +1992,6 @@ _cv_yn_147:
 	GoTo _cv_stop
 	Call _cv_str4
 	WaitButton
-	// TODO(gba) special GymCandidate_GiveMentorDecor
-	GoTo _cv_stop
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq GymCandidate_EventScript_MentorDecorGift
 	// TODO(gba) special GymCandidate_BufferMentorFarewell
@@ -2162,7 +2166,8 @@ LeaderAide_EventScript_Tutors:
 	GoTo LeaderAide_EventScript_Menu
 	
 PalletTown_ProfessorOaksLab_EventScript_CancelTypeMenu:
-	CloseMsg
+	CanvasCloseMsg
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2172,6 +2177,7 @@ PalletTown_ProfessorOaksLab_EventScript_HardType:
 	Return
 	
 PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2349,6 +2355,7 @@ EventMons_EventScript_Gift:
 	Return
 	
 EventMons_EventScript_ReleaseEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -2466,19 +2473,15 @@ PalletTown_ProfessorOaksLab_EventScript_PlayerOutOfBalls:
 	End
 	
 GymCandidate_EventScript_VisitorWalksIn:
-	// TODO(gba) special GymCandidate_PlanVisitorWalk
-	GoTo _cv_stop
+	CanvasCandidate 4, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorAppears
-	CopyVar 0x401E, 0x8005
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	ApplyMovement 0x800A, gMentorWalkIn
+	CanvasCandidate 5, 0x800A, 0
 	WaitMovement
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	Return
 	
 GymCandidate_EventScript_MentorDecorGift:
@@ -2492,18 +2495,16 @@ GymCandidate_EventScript_MentorDecorGift:
 	Return
 	
 GymCandidate_EventScript_VisitorWalksOut:
-	// TODO(gba) special GymCandidate_VisitorWalked
-	GoTo _cv_stop
+	CanvasCandidate 6
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_GuestLeaves
-	CloseMsg
-	ApplyMovement 0x800A, gMentorWalkOut
+	CanvasCloseMsg
+	CanvasCandidate 5, 0x800A, 1
 	WaitMovement
 	HidePerson 0x800A
 	SetFlag 0x2017
 	PlaySE SEQ_SE_DP_KAIDAN2
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	Return
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalSpotRight:
@@ -2521,7 +2522,7 @@ EventScript_GiveNicknameToStarter:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter:
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	GoToIfEq PalletTown_ProfessorOaksLab_EventScript_RivalWalksToCharmander
 	CompareVarToValue 0x4001, 1
@@ -2678,27 +2679,22 @@ PalletTown_ProfessorOaksLab_EventScript_GivePlayerMoreBalls:
 GymCandidate_EventScript_MentorAppears:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	// TODO(gba) special GymCandidate_PlaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 1
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_MentorNoRoom
-	CopyVar 0x401E, 0x8005
-	CopyVar 0x401F, 0x8006
-	MovePerson 0x800A, 0x401E, 0x401F
+	MovePerson 0x800A, 0x8005, 0x8006
 	ClearFlag 0x2017
 	ShowPerson 0x800A
-	// TODO(gba) special GymCandidate_FaceGuest
-	GoTo _cv_stop
+	CanvasCandidate 2, 0x800A
 	GoTo GymCandidate_EventScript_MentorNoRoom
 	
 GymCandidate_EventScript_GuestLeaves:
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	HidePerson 0x800A
 	SetFlag 0x2017
-	// TODO(gba) special GymCandidate_FaceBack
-	GoTo _cv_stop
+	CanvasCandidate 3
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
 	Return
@@ -2728,6 +2724,9 @@ PalletTown_ProfessorOaksLab_EventScript_RivalWalksToSquirtle:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_182
@@ -2796,6 +2795,9 @@ _cv_battle_181:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_195
@@ -2864,6 +2866,9 @@ _cv_battle_194:
 	End
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalBattleSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_208
@@ -3062,19 +3067,28 @@ _cv_done_222:
 	ReleaseAll
 	End
 	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
 PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle:
 	HealParty
 	BufferPlayersName 6
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_RivalGoToughenMyMon
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 4, Common_Movement_FaceDown
 	WaitMovement
 	BufferRivalsName 7
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakFollowMeToGym
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HidePerson 5
 	SetFlag 0x2024
 	SetVar 0x5006, 4
@@ -3085,6 +3099,7 @@ PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle:
 	Warp MAP_FIGHT_AREA_UNUSED_7, 0, 12, 25, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -3116,6 +3131,21 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyEndSignLadyScene:
 	SetVar 0x5000, 1
 	Return
 	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0451_T01R0301_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0451_T01R0301_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0451_T01R0301_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
+	
 Outfits_EventScript_Return:
 	Return
 
@@ -3128,6 +3158,15 @@ _cv_stop:
 	NPCMsg msg_0451_T01R0301_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_PALLET_TOWN_OAKS_LAB, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 
@@ -3315,14 +3354,6 @@ PalletTown_ProfessorOaksLab_Movement_OakExcitedWest:
 	WalkOnSpotNormalEast 2
 	WalkOnSpotFastEast
 	WalkOnSpotNormalEast
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkIn:
-	EndMovement
-
-	.balign 4, 0
-gMentorWalkOut:
 	EndMovement
 
 	.balign 4, 0

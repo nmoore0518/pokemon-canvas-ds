@@ -2629,7 +2629,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2683,7 +2683,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2737,7 +2737,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2791,7 +2791,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2845,7 +2845,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2899,7 +2899,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -2953,7 +2953,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -3007,7 +3007,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -3061,7 +3061,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -3115,7 +3115,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -3169,7 +3169,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -3223,7 +3223,7 @@
         .text = {
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh, man!\\nSo, you are ready for Boss\\fROCKET!",
+                .text = "Oh, man!\\nSo, you are ready for Boss\\fRocket!",
             },
         },
     },
@@ -6105,7 +6105,7 @@
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "No!\\nCATERPIE can’t hack it!",
+                .text = "No!\\nCaterpie can’t hack it!",
             },
         },
     },
@@ -6467,7 +6467,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "People call this the Nugget\\nBRIDGE!\\rBeat us five Trainers and win\\na fabulous prize!\\rThink you got what it takes?",
+                .text = "People call this the Nugget\\nBridge!\\rBeat us five Trainers and win\\na fabulous prize!\\rThink you got what it takes?",
             },
             {
                 .type = TRMSG_LOSE,
@@ -6523,7 +6523,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "I like bugs, so I’m going back to\\nVIRIDIAN Forest.",
+                .text = "I like bugs, so I’m going back to\\nViridian Forest.",
             },
         },
     },
@@ -6762,7 +6762,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Route 4 is at the foot of\\nMT. Moon.",
+                .text = "Route 4 is at the foot of\\nMt. Moon.",
             },
         },
     },
@@ -6795,7 +6795,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 31,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_LENNEON,
                 .ballSeal = 0,
             },
         },
@@ -7534,7 +7534,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Did you see the Fishing Guru in\\nVERMILION City?",
+                .text = "Did you see the Fishing Guru in\\nVermilion City?",
             },
         },
     },
@@ -8009,7 +8009,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "What? You?\\nI’m more than good enough for you!\\rMISTY won’t have to be bothered.",
+                .text = "What? You?\\nI’m more than good enough for you!\\rMisty won’t have to be bothered.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -8663,7 +8663,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Pokémon cosplay is dressing up as\\nPokémon for fun.\\rCLEFAIRY is a favorite.",
+                .text = "Pokémon cosplay is dressing up as\\nPokémon for fun.\\rClefairy is a favorite.",
             },
         },
     },
@@ -8730,7 +8730,7 @@
                 .ivs = 25,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 40,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_VALYREON,
                 .ballSeal = 0,
             },
         },
@@ -9361,7 +9361,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "The trail below is a shortcut to\\nCERULEAN City.",
+                .text = "The trail below is a shortcut to\\nCerulean City.",
             },
         },
     },
@@ -9622,7 +9622,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "In mountains, you’ll often find\\nROCK-type Pokémon.",
+                .text = "In mountains, you’ll often find\\nRock-type Pokémon.",
             },
         },
     },
@@ -9966,7 +9966,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Life’s too short.\\nIt’s cool to live as an outlaw.\\fTEAM Rocket Rules!",
+                .text = "Life’s too short.\\nIt’s cool to live as an outlaw.\\fTeam Rocket Rules!",
             },
         },
     },
@@ -10086,7 +10086,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 33,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_POISEON,
                 .ballSeal = 0,
             },
         },
@@ -10101,7 +10101,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "We’ll always be hanging around here\\neven if you don’t like it.\\rYou can detour to Vermilion from\\nFUCHSIA going along the coast.",
+                .text = "We’ll always be hanging around here\\neven if you don’t like it.\\rYou can detour to Vermilion from\\nFuchsia going along the coast.",
             },
         },
     },
@@ -10229,7 +10229,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "I got my Voltorb at the abandoned\\nPOWER Plant.",
+                .text = "I got my Voltorb at the abandoned\\nPower Plant.",
             },
         },
     },
@@ -10768,7 +10768,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Okay, I’ll talk!\\rLT. Surge said he hid door\\nswitches inside something.",
+                .text = "Okay, I’ll talk!\\rLt. Surge said he hid door\\nswitches inside something.",
             },
         },
     },
@@ -11060,7 +11060,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "The Fishing Fool versus Pokémon\\nKID!",
+                .text = "The Fishing Fool versus Pokémon\\nKid!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -12294,7 +12294,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Maybe some Pokémon need element\\nSTONES to evolve.",
+                .text = "Maybe some Pokémon need element\\nStones to evolve.",
             },
         },
     },
@@ -12826,7 +12826,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 27,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_ODEON,
                 .ballSeal = 0,
             },
             {
@@ -13200,7 +13200,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "It’s still a long way to go to\\nSEAFOAM Islands…\\rI want to go back to Fuchsia…",
+                .text = "It’s still a long way to go to\\nSeafoam Islands…\\rI want to go back to Fuchsia…",
             },
         },
     },
@@ -13241,7 +13241,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "My boyfriend wanted to swim to\\nSEAFOAM Islands.",
+                .text = "My boyfriend wanted to swim to\\nSeafoam Islands.",
             },
         },
     },
@@ -13289,7 +13289,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "If I were to ride a Pokémon on\\nthe sea, I’d like a Lapras.\\rLAPRAS is so big, I bet it\\nwould keep me dry on water.",
+                .text = "If I were to ride a Pokémon on\\nthe sea, I’d like a Lapras.\\rLapras is so big, I bet it\\nwould keep me dry on water.",
             },
         },
     },
@@ -13429,7 +13429,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Sabrina just wiped out the Karate\\nMASTER next door.",
+                .text = "Sabrina just wiped out the Karate\\nMaster next door.",
             },
         },
     },
@@ -13677,7 +13677,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Ah, so you wish to challenge the\\nELITE Four?",
+                .text = "Ah, so you wish to challenge the\\nElite Four?",
             },
             {
                 .type = TRMSG_LOSE,
@@ -13979,7 +13979,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Stop right there!\\rThe famed invisible walls of\\nFUCHSIA Gym have you frustrated?",
+                .text = "Stop right there!\\rThe famed invisible walls of\\nFuchsia Gym have you frustrated?",
             },
             {
                 .type = TRMSG_LOSE,
@@ -14158,7 +14158,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "You earned the right to be on\\nVICTORY Road…",
+                .text = "You earned the right to be on\\nVictory Road…",
             },
         },
     },
@@ -14225,7 +14225,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 29,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_HYPEREON,
                 .ballSeal = 0,
             },
         },
@@ -14353,7 +14353,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "I wish I could fly like Pidgey and\\nPIDGEOTTO…",
+                .text = "I wish I could fly like Pidgey and\\nPidgeotto…",
             },
         },
     },
@@ -14394,7 +14394,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Well, the winged mirages are the\\nlegendary bird Pokémon.\\rThere are three of them: Articuno,\\nZAPDOS, and Moltres.",
+                .text = "Well, the winged mirages are the\\nlegendary bird Pokémon.\\rThere are three of them: Articuno,\\nZapdos, and Moltres.",
             },
         },
     },
@@ -14927,7 +14927,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "They have TMs on sale at the\\nCELADON Dept. Store.\\rTMs aren’t really rare, but not\\nmany people have HMs.",
+                .text = "They have TMs on sale at the\\nCeladon Dept. Store.\\rTMs aren’t really rare, but not\\nmany people have HMs.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -15135,7 +15135,7 @@
                 .ivs = 99,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 36,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_ASSASSEON,
                 .item = ITEM_BLACK_BELT,
                 .ballSeal = 0,
             },
@@ -15202,7 +15202,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Hwaah!\\rYou’re trespassing in our\\nFIGHTING Dojo!",
+                .text = "Hwaah!\\rYou’re trespassing in our\\nFighting Dojo!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -15494,7 +15494,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "I work for both Silph and Team\\nROCKET.",
+                .text = "I work for both Silph and Team\\nRocket.",
             },
         },
     },
@@ -15585,7 +15585,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Humph…\\rTEAM Rocket said that if I helped\\nthem, they’d let me study Pokémon.",
+                .text = "Humph…\\rTeam Rocket said that if I helped\\nthem, they’d let me study Pokémon.",
             },
         },
     },
@@ -15678,7 +15678,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "We worked on the ultimate Poké\\nBALL which would catch anything.",
+                .text = "We worked on the ultimate Poké\\nBall which would catch anything.",
             },
         },
     },
@@ -15827,7 +15827,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "So, what do you think of Silph\\nBUILDING’s maze?",
+                .text = "So, what do you think of Silph\\nBuilding’s maze?",
             },
         },
     },
@@ -15952,7 +15952,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 33,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_AUTOMATEON,
                 .ballSeal = 0,
             },
         },
@@ -16154,7 +16154,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Fwahahaha!\\nWelcome to my hideout!\\rIt shall be so until I can restore\\nTEAM Rocket to its former glory.\\rBut, you have found me again.\\nSo be it.\\fThis time, I’m not holding back!\\rOnce more, you shall face\\nGIOVANNI, the greatest Trainer!",
+                .text = "Fwahahaha!\\nWelcome to my hideout!\\rIt shall be so until I can restore\\nTeam Rocket to its former glory.\\rBut, you have found me again.\\nSo be it.\\fThis time, I’m not holding back!\\rOnce more, you shall face\\nGiovanni, the greatest Trainer!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -16199,7 +16199,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "You made me mad!\\nTEAM Rocket will blacklist you!",
+                .text = "You made me mad!\\nTeam Rocket will blacklist you!",
             },
         },
     },
@@ -16430,7 +16430,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "The Team Rocket Hideout might\\nbe discovered!\\rWait, you’re that inventor from\\nPALLET Town!\\rOh, wait… never mind.\\rI better tell Boss!",
+                .text = "The Team Rocket Hideout might\\nbe discovered!\\rWait, you’re that inventor from\\nPallet Town!\\rOh, wait… never mind.\\rI better tell Boss!",
             },
         },
     },
@@ -16471,7 +16471,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Blast it… You’re dissing Team\\nROCKET, aren’t you?",
+                .text = "Blast it… You’re dissing Team\\nRocket, aren’t you?",
             },
         },
     },
@@ -16865,7 +16865,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Do you have something against Team\\nROCKET?",
+                .text = "Do you have something against Team\\nRocket?",
             },
         },
     },
@@ -17035,7 +17035,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "This old guy marched right up to\\nour Hideout.\\rThen, he starts ranting about how\\nTEAM Rocket’s abusing Pokémon.\\rSo, we’re just talking it over as\\nadults.",
+                .text = "This old guy marched right up to\\nour Hideout.\\rThen, he starts ranting about how\\nTeam Rocket’s abusing Pokémon.\\rSo, we’re just talking it over as\\nadults.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -17228,7 +17228,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Silph Co. will be associated with\\nTEAM Rocket!",
+                .text = "Silph Co. will be associated with\\nTeam Rocket!",
             },
         },
     },
@@ -17406,7 +17406,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "It’s not smart to pick a fight with\\nTEAM Rocket!",
+                .text = "It’s not smart to pick a fight with\\nTeam Rocket!",
             },
         },
     },
@@ -17447,7 +17447,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Which reminds me.\\rKOFFING evolves into Weezing!",
+                .text = "Which reminds me.\\rKoffing evolves into Weezing!",
             },
         },
     },
@@ -17480,7 +17480,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I am one of the four Rocket\\nBROTHERS!",
+                .text = "I am one of the four Rocket\\nBrothers!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -17628,7 +17628,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I am one of the four Rocket\\nBROTHERS!",
+                .text = "I am one of the four Rocket\\nBrothers!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -17772,7 +17772,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I am one of the four Rocket\\nBROTHERS!",
+                .text = "I am one of the four Rocket\\nBrothers!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -17868,7 +17868,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I am one of the four Rocket\\nBROTHERS!",
+                .text = "I am one of the four Rocket\\nBrothers!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -18087,7 +18087,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "You can go on to the Pokémon\\nLEAGUE only by defeating our Gym\\fLeader!",
+                .text = "You can go on to the Pokémon\\nLeague only by defeating our Gym\\fLeader!",
             },
         },
     },
@@ -18114,8 +18114,8 @@
                 .ivs = 99,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 42,
-                .species = SPECIES_EEVEE,
-                .moves = { MOVE_BITE, MOVE_COPYCAT, MOVE_BATON_PASS, MOVE_TAKE_DOWN },
+                .species = SPECIES_OBSIDEON,
+                .moves = { MOVE_ROCK_TOMB, MOVE_ROCK_SLIDE, MOVE_STEALTH_ROCK, MOVE_ROCK_POLISH },
                 .ballSeal = 0,
             },
             {
@@ -18586,8 +18586,8 @@
                 .ivs = 99,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 37,
-                .species = SPECIES_EEVEE,
-                .moves = { MOVE_SWIFT, MOVE_BITE, MOVE_COPYCAT, MOVE_BATON_PASS },
+                .species = SPECIES_SUBTERRANEON,
+                .moves = { MOVE_BULLDOZE, MOVE_SAND_TOMB, MOVE_DIG, MOVE_STEALTH_ROCK },
                 .ballSeal = 0,
             },
             {
@@ -19409,7 +19409,7 @@
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "I took you for granted, and so\\nI lost.\\rAs proof of your victory, I confer\\non you this…the official Pokémon\\fLEAGUE Boulderbadge.\\ryou received the Boulderbadge\\nfrom Brock!\\rJust having the Boulderbadge makes\\nyour Pokémon more powerful.\\rIt also enables the use of the\\nmove Flash outside of battle.\\rOf course, a Pokémon must know the\\nmove Flash to use it.",
+                .text = "I took you for granted, and so\\nI lost.\\rAs proof of your victory, I confer\\non you this…the official Pokémon\\fLeague Boulderbadge.\\ryou received the Boulderbadge\\nfrom Brock!\\rJust having the Boulderbadge makes\\nyour Pokémon more powerful.\\rIt also enables the use of the\\nmove Flash outside of battle.\\rOf course, a Pokémon must know the\\nmove Flash to use it.",
             },
         },
     },
@@ -19538,11 +19538,11 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Hello…\\nLovely weather, isn’t it?\\fIt’s so pleasant…\\r…Oh, dear…\\nI must have dozed off. Welcome.\\rMy name is Erika.\\nI am the Leader of Celadon Gym.\\rI am a student of the art of\\nflower arranging.\\rMy Pokémon are solely of the\\nGRASS type.\\r…Oh, I’m sorry, I had no idea that\\nyou wished to challenge me.\\rVery well, but I shall not lose.",
+                .text = "Hello…\\nLovely weather, isn’t it?\\fIt’s so pleasant…\\r…Oh, dear…\\nI must have dozed off. Welcome.\\rMy name is Erika.\\nI am the Leader of Celadon Gym.\\rI am a student of the art of\\nflower arranging.\\rMy Pokémon are solely of the\\nGrass type.\\r…Oh, I’m sorry, I had no idea that\\nyou wished to challenge me.\\rVery well, but I shall not lose.",
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "Oh!\\nI concede defeat.\\fYou are remarkably strong.\\rI must confer on you the\\nRAINBOWBADGE.",
+                .text = "Oh!\\nI concede defeat.\\fYou are remarkably strong.\\rI must confer on you the\\nRainbowbadge.",
             },
         },
     },
@@ -19593,7 +19593,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Koga: Fwahahaha!\\rA mere child like you dares to\\nchallenge me?\\rThe very idea makes me shiver\\nwith mirth!\\rVery well, I shall show you true\\nterror as a ninja master.\\rPoison brings steady doom.\\nSleep renders foes helpless.\\rDespair to the creeping horror of\\nPOISON-type Pokémon!",
+                .text = "Koga: Fwahahaha!\\rA mere child like you dares to\\nchallenge me?\\rThe very idea makes me shiver\\nwith mirth!\\rVery well, I shall show you true\\nterror as a ninja master.\\rPoison brings steady doom.\\nSleep renders foes helpless.\\rDespair to the creeping horror of\\nPoison-type Pokémon!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -19707,7 +19707,7 @@
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "This loss shocks me!\\nBut, a loss is a loss.\\rI admit, I didn’t work hard enough\\nto win.\\rYour victory has earned you the\\nMARSHBADGE.",
+                .text = "This loss shocks me!\\nBut, a loss is a loss.\\rI admit, I didn’t work hard enough\\nto win.\\rYour victory has earned you the\\nMarshbadge.",
             },
         },
     },
@@ -19819,7 +19819,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "It’s not easy opening that door.\\rLT. Surge was always famous for\\nhis cautious nature in the Army.",
+                .text = "It’s not easy opening that door.\\rLt. Surge was always famous for\\nhis cautious nature in the Army.",
             },
         },
     },
@@ -20461,7 +20461,7 @@
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 33,
-                .species = SPECIES_EEVEE,
+                .species = SPECIES_APPARITEON,
                 .ballSeal = 0,
             },
             {
@@ -21409,11 +21409,11 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Eli: I caught my Pokémon with\\nANNE!",
+                .text = "Eli: I caught my Pokémon with\\nAnne!",
             },
             {
                 .type = TRMSG_DBL_AFTER_1,
-                .text = "Eli: I caught my Pokémon with\\nANNE!",
+                .text = "Eli: I caught my Pokémon with\\nAnne!",
             },
         },
     },
@@ -21792,7 +21792,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Lil: Huh? A battle?\\nIAN, can’t you do it alone?",
+                .text = "Lil: Huh? A battle?\\nIan, can’t you do it alone?",
             },
             {
                 .type = TRMSG_LOSE,
@@ -21800,7 +21800,7 @@
             },
             {
                 .type = TRMSG_DBL_INTRO_1,
-                .text = "Lil: Huh? A battle?\\nIAN, can’t you do it alone?",
+                .text = "Lil: Huh? A battle?\\nIan, can’t you do it alone?",
             },
             {
                 .type = TRMSG_DBL_LOSE_1,
@@ -23244,7 +23244,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "Did you come here knowing it’s\\nTEAM Rocket’s Warehouse?",
+                .text = "Did you come here knowing it’s\\nTeam Rocket’s Warehouse?",
             },
             {
                 .type = TRMSG_LOSE,
@@ -23387,11 +23387,11 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "That’s quite enough of you \\nplaying the hero, kid.\\rSpreading lies about how Team\\nROCKET has disbanded…\\rIt’s such an obvious attempt to\\ncause confusion in our ranks.\\rFortunately, we’re not so ignorant\\nto fall for the lies of a child!\\rAnd now, I’ll show you how scary\\nan angry adult can be!",
+                .text = "That’s quite enough of you \\nplaying the hero, kid.\\rSpreading lies about how Team\\nRocket has disbanded…\\rIt’s such an obvious attempt to\\ncause confusion in our ranks.\\rFortunately, we’re not so ignorant\\nto fall for the lies of a child!\\rAnd now, I’ll show you how scary\\nan angry adult can be!",
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "Urgh…\\nYou were too strong…\\r…\\nTh-that’s Giovanni’s Badge!\\rSo it’s true?\\nTEAM Rocket really has disbanded?",
+                .text = "Urgh…\\nYou were too strong…\\r…\\nTh-that’s Giovanni’s Badge!\\rSo it’s true?\\nTeam Rocket really has disbanded?",
             },
             {
                 .type = TRMSG_AFTER,
@@ -23454,7 +23454,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I almost managed to sell the\\nSAPPHIRE for huge money…\\rThen, you just had to come along\\nand blow the whole deal apart!\\rFufu… Fufufufu…\\nThere’s no forgiveness for you!",
+                .text = "I almost managed to sell the\\nSapphire for huge money…\\rThen, you just had to come along\\nand blow the whole deal apart!\\rFufu… Fufufufu…\\nThere’s no forgiveness for you!",
             },
             {
                 .type = TRMSG_LOSE,
@@ -24170,7 +24170,7 @@
             },
             {
                 .type = TRMSG_LOSE,
-                .text = "Joy: Ohh…\\nMEG!",
+                .text = "Joy: Ohh…\\nMeg!",
             },
             {
                 .type = TRMSG_DBL_INTRO_1,
@@ -24178,11 +24178,11 @@
             },
             {
                 .type = TRMSG_DBL_LOSE_1,
-                .text = "Joy: Ohh…\\nMEG!",
+                .text = "Joy: Ohh…\\nMeg!",
             },
             {
                 .type = TRMSG_DBL_1POKE_1,
-                .text = "Joy: I really want to battle with\\nMEG.\\rOne Pokémon isn’t enough.",
+                .text = "Joy: I really want to battle with\\nMeg.\\rOne Pokémon isn’t enough.",
             },
             {
                 .type = TRMSG_AFTER,
@@ -24606,7 +24606,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I’m the eldest of the Bird\\nBROTHERS.\\rThe best thing about birds…\\nIt has to be the beak.",
+                .text = "I’m the eldest of the Bird\\nBrothers.\\rThe best thing about birds…\\nIt has to be the beak.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -24647,7 +24647,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I’m the middle kid of the Bird\\nBROTHERS.\\rThe best thing about birds…\\nIt has to be the wings.",
+                .text = "I’m the middle kid of the Bird\\nBrothers.\\rThe best thing about birds…\\nIt has to be the wings.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -24688,7 +24688,7 @@
         .text = {
             {
                 .type = TRMSG_INTRO,
-                .text = "I’m the youngest of the Bird\\nBROTHERS.\\rThe best thing about birds…\\nIt has to be the down.",
+                .text = "I’m the youngest of the Bird\\nBrothers.\\rThe best thing about birds…\\nIt has to be the down.",
             },
             {
                 .type = TRMSG_LOSE,
@@ -25117,7 +25117,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "There are several ruins on the\\nSEVII Islands.\\rThe majority of them date back\\na long way.",
+                .text = "There are several ruins on the\\nSevii Islands.\\rThe majority of them date back\\na long way.",
             },
         },
     },
@@ -25413,11 +25413,11 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Eve: I’m going to work harder with\\nJON.",
+                .text = "Eve: I’m going to work harder with\\nJon.",
             },
             {
                 .type = TRMSG_DBL_AFTER_1,
-                .text = "Eve: I’m going to work harder with\\nJON.",
+                .text = "Eve: I’m going to work harder with\\nJon.",
             },
         },
     },
@@ -25822,7 +25822,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "Your mom bought those snazzy\\nRUNNING Shoes for you?\\rShe must adore you.",
+                .text = "Your mom bought those snazzy\\nRunning Shoes for you?\\rShe must adore you.",
             },
         },
     },
@@ -26699,7 +26699,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "I’m going to keep on collecting\\nBUG Pokémon.\\rAm I the only girl like that?",
+                .text = "I’m going to keep on collecting\\nBug Pokémon.\\rAm I the only girl like that?",
             },
         },
     },
@@ -26836,7 +26836,7 @@
             },
             {
                 .type = TRMSG_AFTER,
-                .text = "There are places here in Pattern\\nBUSH where grass won’t grow.\\rWhat could be the cause of such\\na phenomenon?",
+                .text = "There are places here in Pattern\\nBush where grass won’t grow.\\rWhat could be the cause of such\\na phenomenon?",
             },
         },
     },
@@ -32326,6 +32326,183 @@
             {
                 .type = TRMSG_LOSE,
                 .text = "A clean bill of health!",
+            },
+        },
+    },
+
+    [1470] = {   // TRAINER_CANVAS_GUEST_0
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You’re tougher than\\nyou look!",
+            },
+        },
+    },
+
+    [1471] = {   // TRAINER_CANVAS_GUEST_1
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "So that’s a Leader’s\\nstrength…",
+            },
+        },
+    },
+
+    [1472] = {   // TRAINER_CANVAS_GUEST_2
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Some substitute!",
+            },
+        },
+    },
+
+    [1473] = {   // TRAINER_CANVAS_GUEST_DOUBLE_0
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You’re tougher than\\nyou look!",
+            },
+        },
+    },
+
+    [1474] = {   // TRAINER_CANVAS_GUEST_DOUBLE_1
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "So that’s a Leader’s\\nstrength…",
+            },
+        },
+    },
+
+    [1475] = {   // TRAINER_CANVAS_GUEST_DOUBLE_2
+        .name = "Challenger",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M_GS,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
+            .battleType = DOUBLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 0,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_PIKACHU,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Some substitute!",
             },
         },
     },

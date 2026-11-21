@@ -162,7 +162,7 @@ _cv_shown_6:
 	BufferRivalsName 7
 	NPCMsg msg_0362_R24_DadStory_Text_RivalMomHasSomething
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	ApplyMovement 9, DadStory_Movement_RivalDownTheBridge
 	WaitMovement
@@ -176,6 +176,7 @@ _cv_shown_6:
 	Warp MAP_PALLET_TOWN_REDS_HOUSE_1F, 0, 10, 5, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -192,11 +193,12 @@ Route24_EventScript_RocketMotionToPlayer:
 Route24_EventScript_NoRoomForNuggetTrigger:
 	NPCMsg msg_0362_R24_Route24_Text_YouDontHaveAnyRoom
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route24_Movement_WalkDown
 	WaitMovement
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route24_EventScript_RocketWalkBackToPos
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -229,6 +231,7 @@ DadStory_EventScript_Joined:
 	Return
 	
 DadStory_EventScript_ReleaseAll:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

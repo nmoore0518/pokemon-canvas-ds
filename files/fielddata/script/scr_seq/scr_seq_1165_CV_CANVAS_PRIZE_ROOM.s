@@ -37,8 +37,9 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons:
 	LockAll
 	FacePlayer
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
-	// TODO(gba) showcoinsbox 0, 0
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_116 0, 20, 2
+	ScriptOverlayCmd 3, 1
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
 	WaitButton
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeMon
@@ -49,8 +50,9 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkTMs:
 	LockAll
 	FacePlayer
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
-	// TODO(gba) showcoinsbox 0, 0
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_116 0, 20, 2
+	ScriptOverlayCmd 3, 1
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
 	WaitButton
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeTM
@@ -61,8 +63,9 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkItems:
 	LockAll
 	FacePlayer
 	GoToIfUnset 0x2136, CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase
-	// TODO(gba) showcoinsbox 0, 0
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_116 0, 20, 2
+	ScriptOverlayCmd 3, 1
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
 	WaitButton
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeItem
@@ -190,98 +193,40 @@ _cv_menu_7:
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_Abra:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	SetVar 0x4001, SPECIES_ABRA
 	SetVar 0x4002, 180
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	SetVar 0x4001, SPECIES_ABRA
-	SetVar 0x4002, 120
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_Clefairy:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	SetVar 0x4001, SPECIES_CLEFAIRY
 	SetVar 0x4002, 500
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	SetVar 0x4001, SPECIES_CLEFAIRY
-	SetVar 0x4002, 750
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_DratiniPinsir:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	SetVar 0x4001, SPECIES_DRATINI
 	SetVar 0x4002, 2800
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	SetVar 0x4001, SPECIES_PINSIR
-	SetVar 0x4002, 2500
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_ScytherDratini:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	SetVar 0x4001, SPECIES_SCYTHER
 	SetVar 0x4002, 5500
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	SetVar 0x4001, SPECIES_DRATINI
-	SetVar 0x4002, 4600
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_Porygon:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	SetVar 0x4001, SPECIES_PORYGON
 	SetVar 0x4002, 9999
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	SetVar 0x4001, SPECIES_PORYGON
-	SetVar 0x4002, 6500
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange:
-	// TODO(gba) hidecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_117
+	ScriptOverlayCmd 3, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -363,8 +308,9 @@ _cv_yes_8:
 _cv_yn_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
-	// TODO(gba) checkcoins VAR_RESULT
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount VAR_SPECIAL_RESULT
+	ScriptOverlayCmd 3, 1
 	CompareVarToVar VAR_SPECIAL_RESULT, 0x4002
 	GoToIfLt CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins
 	CompareVarToValue 0x4001, SPECIES_ABRA
@@ -423,50 +369,17 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins:
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveAbra:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	GiveMon 0x4001, 9, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	GiveMon 0x4001, 7, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveClefairy:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	GiveMon 0x4001, 8, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	GiveMon 0x4001, 12, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveDratini:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	GiveMon 0x4001, 18, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	GiveMon 0x4001, 24, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	End
 	
@@ -476,18 +389,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_GiveScyther:
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_GivePorygon:
-	// TODO(gba) #ifdef FIRERED
-	GoTo _cv_stop
 	GiveMon 0x4001, 26, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #else 
-	GoTo _cv_stop
-	// TODO(gba) #ifdef LEAFGREEN
-	GoTo _cv_stop
-	GiveMon 0x4001, 18, 0, 0, 0, VAR_SPECIAL_RESULT
-	// TODO(gba) #endif 
-	GoTo _cv_stop
-	// TODO(gba) #endif 
-	GoTo _cv_stop
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	End
 	
@@ -498,17 +400,20 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_GivePinsir:
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize:
 	BufferItemName 0, 0x4001
-	// TODO(gba) checkcoins VAR_RESULT
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	GetCoinAmount VAR_SPECIAL_RESULT
+	ScriptOverlayCmd 3, 1
 	CompareVarToVar VAR_SPECIAL_RESULT, 0x4002
 	GoToIfLt CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins
 	HasSpaceForItem 0x4001, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull
-	// TODO(gba) removecoins VAR_TEMP_2
-	GoTo _cv_stop
-	// TODO(gba) updatecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	TakeCoins 0x4002
+	ScriptOverlayCmd 3, 1
+	ScriptOverlayCmd 3, 0
+	ScrCmd_118 0
+	ScriptOverlayCmd 3, 1
 	GiveItem 0x4001, 1, VAR_SPECIAL_RESULT
 	GoTo CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	End
@@ -525,17 +430,20 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon:
 CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull:
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_TooBadBagIsFull
 	WaitButton
-	// TODO(gba) hidecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_117
+	ScriptOverlayCmd 3, 1
 	CloseMsg
 	ReleaseAll
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty:
-	// TODO(gba) removecoins VAR_TEMP_2
-	GoTo _cv_stop
-	// TODO(gba) updatecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	TakeCoins 0x4002
+	ScriptOverlayCmd 3, 1
+	ScriptOverlayCmd 3, 0
+	ScrCmd_118 0
+	ScriptOverlayCmd 3, 1
 	BufferSpeciesName 0, 0x4001, 0, 0
 	PlayFanfare SEQ_ME_LVUP
 	BufferPlayersName 6
@@ -557,10 +465,12 @@ _cv_yn_15:
 	End
 	
 CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC:
-	// TODO(gba) removecoins VAR_TEMP_2
-	GoTo _cv_stop
-	// TODO(gba) updatecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	TakeCoins 0x4002
+	ScriptOverlayCmd 3, 1
+	ScriptOverlayCmd 3, 0
+	ScrCmd_118 0
+	ScriptOverlayCmd 3, 1
 	BufferSpeciesName 0, 0x4001, 0, 0
 	PlayFanfare SEQ_ME_LVUP
 	BufferPlayersName 6
@@ -585,8 +495,9 @@ _cv_yn_17:
 CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull:
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_NoMoreRoomForPokemon
 	WaitButton
-	// TODO(gba) hidecoinsbox 
-	GoTo _cv_stop
+	ScriptOverlayCmd 3, 0
+	ScrCmd_117
+	ScriptOverlayCmd 3, 1
 	CloseMsg
 	ReleaseAll
 	End
@@ -607,7 +518,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC:
 Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	SetVar 0x8004, 0
+	SetVar 0x8004, 254
 	NicknameInput 0x8004, VAR_SPECIAL_RESULT
 	LockAll
 	FacePlayer
@@ -620,16 +531,14 @@ Common_EventScript_NameReceivedPartyMon:
 	Return
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
 	Return
 	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_PkmnTransferredSomeonesPC
@@ -637,8 +546,7 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_PkmnTransferredLanettesPC
@@ -646,19 +554,15 @@ EventScript_TransferredLanettesPC:
 	Return
 	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0954_CV_CANVAS_PRIZE_ROOM_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return

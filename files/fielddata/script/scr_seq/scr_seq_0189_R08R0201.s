@@ -46,9 +46,10 @@ Route8_WestEntrance_EventScript_GuardTrigger:
 	GoToIfSet 0x2131, Route8_WestEntrance_EventScript_GiveTea
 	NPCMsg msg_0339_R08R0201_Route8_WestEntrance_Text_ThirstyOnGuardDuty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route8_WestEntrance_Movement_BlockPlayerEntry
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -60,7 +61,7 @@ Route8_WestEntrance_EventScript_GiveTea:
 Route8_WestEntrance_EventScript_GuardDrinkTea:
 	NPCMsg msg_0339_R08R0201_Route8_WestEntrance_Text_ThatTeaLooksTasty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route8_WestEntrance_EventScript_WalkToGuardTop
 	CompareVarToValue 0x4001, 1

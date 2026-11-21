@@ -15,6 +15,34 @@
       "en_US": "Hey, thanks!"
     },
     {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_0",
+      "en_US": "Helix Fossil"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_1",
+      "en_US": "Dome Fossil"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_2",
+      "en_US": "Old Amber"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_3",
+      "en_US": "Root Fossil"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_4",
+      "en_US": "Claw Fossil"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_5",
+      "en_US": "Skull Fossil"
+    },
+    {
+      "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_cv_fossil_6",
+      "en_US": "Armor Fossil"
+    },
+    {
       "id": "msg_0937_CV_CANVAS_CINNABAR_LAB_EXPERIMENTROOM_CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
       "en_US": [
         "Hiya!\r",
@@ -161,7 +189,6 @@
       "en_US": [
         "{STRVAR_1 3, 1, 0} was transferred to\n",
         "Bill’s PC.\r",
-        "Lanette’s PC.\r",
         "It was placed in \n",
         "Box “{STRVAR_1 3, 0, 0}.”"
       ]
@@ -180,7 +207,6 @@
       "en_US": [
         "Box “{STRVAR_1 3, 2, 0}” on\n",
         "Bill’s PC was full.\r",
-        "Lanette’s PC was full.\r",
         "{STRVAR_1 3, 1, 0} was transferred to\n",
         "Box “{STRVAR_1 3, 0, 0}.”"
       ]

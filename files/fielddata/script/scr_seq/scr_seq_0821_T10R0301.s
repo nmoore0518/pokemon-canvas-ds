@@ -41,13 +41,14 @@ PokemonLeague_BrunosRoom_EventScript_EnterRoom:
 	LockAll
 	Call PokemonLeague_EventScript_EnterRoom
 	SetVar 0x501D, 2
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
 PokemonLeague_BrunosRoom_EventScript_PostBattle:
 	NPCMsg msg_0524_T10R0301_PokemonLeague_BrunosRoom_Text_PostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 0
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayRight
 	CompareVarToValue 0x5002, 1
@@ -56,6 +57,7 @@ PokemonLeague_BrunosRoom_EventScript_PostBattle:
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayDown
 	CompareVarToValue 0x5002, 3
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayDown
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -232,7 +234,7 @@ PokemonLeague_BrunosRoom_EventScript_DefeatedBruno:
 	WaitButton
 	SetVar 0x8009, 9
 	Call GymCandidate_EventScript_EliteFourApprove
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x5002, 0
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayRight
 	CompareVarToValue 0x5002, 1
@@ -241,6 +243,7 @@ PokemonLeague_BrunosRoom_EventScript_DefeatedBruno:
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayDown
 	CompareVarToValue 0x5002, 3
 	CallIfEq PokemonLeague_BrunosRoom_EventScript_BrunoLookAwayDown
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

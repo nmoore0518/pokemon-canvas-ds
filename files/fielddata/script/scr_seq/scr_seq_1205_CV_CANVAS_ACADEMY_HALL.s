@@ -71,13 +71,14 @@ Academy_EventScript_BraceletCall:
 	BufferPlayersName 6
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_BraceletCall
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
 	SetVar 0x502F, 6
 	Warp MAP_CANVAS_ACADEMY_HALL, 0, 12, 5, DIR_SOUTH
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -94,9 +95,10 @@ Academy_EventScript_BraceletGive:
 	SetVar 0x502F, 4
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_Academy_Text_Bracelet3
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	HidePerson 5
 	SetFlag 0x222F
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -150,7 +152,7 @@ _cv_yn_4:
 	HealParty
 	NPCMsg msg_0974_CV_CANVAS_ACADEMY_HALL_gGymChallengeIntroText
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Call Academy_EventScript_Battle
 	CopyVar 0x8009, VAR_SPECIAL_RESULT
 	HealParty
@@ -212,8 +214,7 @@ Academy_EventScript_Battle:
 _cv_won_6:
 	SetTrainerFlag 1442
 	ClearFlag 0x2036
-	// TODO(gba) special GymChallenge_EndPractice
-	GoTo _cv_stop
+	CanvasCandidate 12
 	GetStaticEncounterOutcome VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 4
 	GoToIfNe _cv_outcome_7

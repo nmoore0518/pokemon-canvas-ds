@@ -5129,6 +5129,17 @@ _start:
 	.short 0
 	.endm
 
+	// CanvasCandidate op, a, b, c, d: the GBA's candidacy (engine/src/canvas_candidate.c; a-d values or vars)
+	.macro CanvasCandidate op, a=0, b=0, c=0, d=0
+	.short 208
+	.byte 112
+	.short \op
+	.short \a
+	.short \b
+	.short \c
+	.short \d
+	.endm
+
 	// CanvasBufferMsg slot, msg: puts one of this script's messages into a string slot ({STRVAR_1 3, slot, 0})
 	.macro CanvasBufferMsg slot, msg
 	.short 208

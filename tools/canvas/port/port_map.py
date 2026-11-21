@@ -657,6 +657,8 @@ for _c in _BI.INTERIORS:
     MAPS[_c['gba']] = (_c['map'], room_xy(_c['gba']) if _c.get('widen') else same)
 import build_caves as _BC           # (caves are widened where a wall is too thin for HeartGold's pieces: cave_widen)
 import currents as CUR               # (Seafoam's water currents: trigger squares of ours)
+import candidacy as CA              # (the Guest Leader challenges after each badge)
+SP.SPECIALS.update(CA.SPECIALS)
 for _c in _BC.CAVES:
     MAPS[_c['gba']] = (_c['map'], _BC.cave_xy(_c['gba']))
 # GBA map constant -> HeartGold map, for pairing doors (rooms we port, and places we only need to find)
@@ -1122,8 +1124,20 @@ MOVES['SeafoamIslands_B4F_Frlg'] = seafoam_moves('SeafoamIslands_B4F_Frlg', {
     [('SeafoamIslands_B4F_Movement_EnterOnCurrent', (27, 21)), ('SeafoamIslands_B4F_Movement_WalkUp', (27, 19))])
 
 
+def cinnabar_no_sevii(g):
+    """Bill's trip to the Sevii Islands: gone in the GBA hack (Johto takes their place), and here too (Nick: they
+    stay out completely). The GBA keeps its scenes, but nothing starts them; here they're left out."""
+    sevii = ('CinnabarIsland_EventScript_ExitPokeCenterForOneIsland', 'CinnabarIsland_EventScript_BillScene',
+             'CinnabarIsland_EventScript_ReturnFromSeviiIslands')
+    L = g.labels
+    if 'CinnabarIsland_OnFrame' in L:
+        L['CinnabarIsland_OnFrame'] = [c for c in L['CinnabarIsland_OnFrame'] if not (c[0] == 'map_script_2' and c[1][2] in sevii)]
+    L['CinnabarIsland_OnTransition'] = [c for c in L.get('CinnabarIsland_OnTransition', [])
+                                        if not (c[0] == 'call_if_eq' and c[1][2].startswith('CinnabarIsland_EventScript_ReadyObjects'))]
+
+
 REWRITES = {'VermilionCity_Gym_Frlg': vermilion_gym, 'PokemonTower_6F_Frlg': tower_marowak,
-            'VermilionCity_Frlg': vermilion_harbour, 'SeafoamIslands_B3F_Frlg': seafoam_surf,
+            'VermilionCity_Frlg': vermilion_harbour, 'CinnabarIsland_Frlg': cinnabar_no_sevii, 'SeafoamIslands_B3F_Frlg': seafoam_surf,
             'SeafoamIslands_B4F_Frlg': seafoam_surf}      # GBA map -> its scenes rewritten before the port
 REWRITES.update({m: league_room for m in LEAGUE})
 # HeartGold's own objects a scene of its needs, kept in our map (ids: the names the event header gives them)
@@ -1357,6 +1371,9 @@ BARRIERS = json.load(open(os.path.join(os.path.dirname(HERE), 'data', 'barriers.
     os.path.join(os.path.dirname(HERE), 'data', 'barriers.json')) else {}
 BAR_INIT = 'VAR_CV_BARRIER_INIT'     # 1 while a map's barrier flags are being set up (OnTransition: no objects yet)
 MENU_PAGE, MENU_MORE = 6, 254
+# the battles the GBA checks the team rules right before (src/gym_hack.c GymHack_IsRuleBattleTrainer: the gym leaders,
+# and the rival but as Champion; the Elite Four's are checked at the League's door)
+RULE_LEADERS = {'TRAINER_LEADER_' + l for l in ('BROCK', 'MISTY', 'LT_SURGE', 'ERIKA', 'KOGA', 'SABRINA', 'BLAINE', 'GIOVANNI')}
 OWN_TEXT = {'cv_more': ['More…']}       # free temp vars (the GBA's VAR_TEMP_0..F are 0x4000..0x400F)
 
 STEP = {'up': 'North', 'down': 'South', 'left': 'West', 'right': 'East'}
@@ -1401,6 +1418,7 @@ class Port:
         self.dyn, self.faded = [], False
         self.mapscript_labels = set()
         self.bars = {}                # a GBA square a script opens and closes -> (its flag, its object's id): barriers.py
+        self.team_check, self.slot = False, MAPS[gba_map][0]
         self.ox, self.oy = self.xy(0, 0)
         self.hide_flags = {}          # a person's flag -> their local ids
         self.flag_of = {}             # a person's local id -> their flag
@@ -1612,14 +1630,22 @@ class Port:
         if not re.match(r'^\d+$', first): first = '0'      # (HeartGold's menus start on a fixed item)
         if not items: self.todo.append('menu items pushed in another script (%s)' % self.cur)
         # (HeartGold's script menus don't scroll: a long list goes in pages of 6, with "More" between them)
-        pages = [items[i:i + MENU_PAGE] for i in range(0, len(items), MENU_PAGE)] or [[]]
+        # (a list of what's in the bag - the fossils - shows only those, rarely more than a few: one page of up to 8)
+        per = len(items) if items and len(items) <= 8 and all(len(it) > 2 for it in items) else MENU_PAGE
+        pages = [items[i:i + per] for i in range(0, len(items), per)] or [[]]
         names = [self.new('page') for _ in pages]
         self.emit('TouchscreenMenuHide')          # (or the list never shows: the touch screen keeps the input)
         for k, page in enumerate(pages):
             if len(pages) > 1: self.emit(names[k] + ':')
             # (the top-screen list: its window is as wide as the longest item)
             self.emit('ScrCmd_065 1, 1, %s, %d, VAR_SPECIAL_RESULT' % (first if k == 0 else '0', 0 if b else 1))
-            for t, v in page: self.emit('ScrCmd_559 %s, %s' % (self.msg(t), self.val(v)))
+            for it in page:
+                t, v = it[:2]
+                if len(it) > 2:         # (an item only there while the bag has it: specials.fossil_list)
+                    skip = self.new('item')
+                    self.emit('HasItem %s, 1, %s' % (it[2], SCRATCH[0]), 'CompareVarToValue %s, 0' % SCRATCH[0], 'GoToIfEq %s' % skip)
+                self.emit('ScrCmd_559 %s, %s' % (self.msg(t), self.val(v)))
+                if len(it) > 2: self.emit(skip + ':')
             if len(pages) > 1: self.emit('ScrCmd_559 %s, %d' % (self.msg('cv_more'), MENU_MORE))
             self.emit('ScrCmd_067')
             if len(pages) > 1:
@@ -1645,6 +1671,7 @@ class Port:
         scripted = cmd == 'trainerbattle_no_intro' and not cont
         if not scripted: self.emit('CheckTrainerFlag %d' % n, 'GoToIf TRUE, %s' % beaten)
         if intro and intro in self.g.texts: self.say(intro); self.emit('CloseMsg')
+        if a[0] in RULE_LEADERS: self.team_rules()
         if scripted: self.emit('CanvasCloseMsg')       # (its words may be open, from a script it called)
         self.emit('TrainerBattle %d, %d, 0, 0' % (n, n if n in DOUBLES else 0), 'CheckBattleWon VAR_SPECIAL_RESULT', 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
                   'GoToIfNe %s' % won, 'WhiteOut', 'End', won + ':', 'SetTrainerFlag %d' % n)
@@ -1653,9 +1680,19 @@ class Port:
         else: self.emit('ReleaseAll', 'End')
         self.emit(beaten + ':')
 
+    def team_rules(self):
+        """the GBA's team rules right before a gym leader's or the rival's battle (its dotrainerbattle:
+        GymHack_GetBlockedBattleScript): broken, the rule's message, and the map loads again with the player where
+        they stand (GymHack_WarpInPlace: whoever walked up for the battle goes back)"""
+        self.label('EventScript_GymHack_ShowTeamRuleMessage')
+        self.team_check = True
+        self.emit('CanvasCheckTeam 7, %s' % self.var('VAR_PLAYER_TYPE'), 'CompareVarToValue VAR_SPECIAL_RESULT, 0',
+                  'GoToIfNe _cv_team_not_allowed')
+
     def rival_battle(self, trainer, lose_ok):
         """the rival's team is the one for this stage and the type he took (VAR_RIVAL_TYPE)"""
         teams = RIVAL_TEAMS.get(RIVAL_STAGES[trainer], {})
+        if not RIVAL_STAGES[trainer].startswith('CHAMPION'): self.team_rules()
         done = self.new('battle')
         rv = self.var('VAR_RIVAL_TYPE')
         self.emit('CanvasCloseMsg')
@@ -1711,7 +1748,8 @@ class Port:
             elif cmd == 'return': self.emit('Return')
             elif cmd == 'cv_raw': self.emit(*a)
             elif cmd in ('lock', 'lockall'): self.emit('LockAll')
-            elif cmd in ('release', 'releaseall'): self.emit(*close, 'ReleaseAll'); open_msg = False
+            # (the GBA's release closes the message box: one may be open from the script that came here by goto)
+            elif cmd in ('release', 'releaseall'): self.emit(*(close or ['CanvasCloseMsg']), 'ReleaseAll'); open_msg = False
             elif cmd == 'faceplayer': self.emit('FacePlayer')
             elif cmd == 'goto': self.emit('GoTo %s' % self.label(a[0]))
             elif cmd == 'call' and a[0] in STD_CALLS: self.emit(*STD_CALLS[a[0]])
@@ -1737,7 +1775,9 @@ class Port:
             elif cmd == 'message': self.say(a[0], wait=False); open_msg = True
             elif cmd in ('waitmessage', 'textcolor', 'famechecker', 'setflashlevel'): pass
             elif cmd == 'waitbuttonpress': self.emit('WaitButton')
-            elif cmd == 'closemessage': self.emit('CloseMsg'); open_msg = False
+            # (CanvasCloseMsg: the GBA's closemessage does nothing with no message open, HeartGold's CloseMsg would
+            # free its window a second time - the candidacy closes twice)
+            elif cmd == 'closemessage': self.emit('CanvasCloseMsg'); open_msg = False
             elif cmd == 'setflag':
                 set_here.append(self.alias(a[0]))
                 self.emit('SetFlag %s' % self.flag(a[0]))
@@ -1823,6 +1863,29 @@ class Port:
             elif cmd == 'checkmoney': self.emit('HasEnoughMoneyImmediate VAR_SPECIAL_RESULT, %s' % self.val(a[0]))
             elif cmd == 'removemoney': self.emit('SubMoneyImmediate %s' % self.val(a[0]))
             elif cmd == 'addmoney': self.emit('AddMoney %s' % self.val(a[0]))
+            # coins: HeartGold's own (its coin box, the Coin Case's count). The GBA's case holds 9999 (its scripts
+            # check that themselves); HeartGold's holds more
+            # (HeartGold's coin commands are in overlay 22, loaded for them: ScriptOverlayCmd 3, 0 / 3, 1)
+            elif cmd in ('showcoinsbox', 'hidecoinsbox', 'updatecoinsbox', 'checkcoins', 'addcoins', 'removecoins'):
+                c = {'showcoinsbox': lambda: 'ScrCmd_116 0, 20, %d' % (2 if self.val(a[1]) == '0' else 7),
+                     'hidecoinsbox': lambda: 'ScrCmd_117', 'updatecoinsbox': lambda: 'ScrCmd_118 0',
+                     'checkcoins': lambda: 'GetCoinAmount %s' % self.var(a[0]),
+                     'addcoins': lambda: 'GiveCoins %s' % self.val(a[0]),
+                     'removecoins': lambda: 'TakeCoins %s' % self.val(a[0])}[cmd]()
+                self.emit('ScriptOverlayCmd 3, 0', c, 'ScriptOverlayCmd 3, 1')
+            elif cmd == 'playslotmachine':
+                # (the GBA's slot machines: HeartGold's Game Corner game, Voltorb Flip in this version - its machine
+                # luck by machine (Celadon has 14: the GBA's 28 machines share them); VAR_0x8004 = the machine)
+                done = self.new('slots')
+                cases = []
+                for k in range(28):
+                    nxt = self.new('slot')
+                    cases += ['CompareVarToValue %s, %d' % (self.var('VAR_0x8004'), k), 'GoToIfNe %s' % nxt,
+                              'CasinoGame %d, 1' % (k % 14), 'GoTo %s' % done, nxt + ':']
+                self.emit('FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', *cases)
+                self.emit('CasinoGame 0, 1', done + ':', 'RestoreOverworld', 'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade')
+            elif cmd in ('setfieldeffectargument', 'waitfieldeffect') or (cmd == 'dofieldeffect' and a[0] == 'FLDEFF_SMILEY_FACE_ICON'):
+                pass                  # (the GBA's smiley over the player at a slot machine: HeartGold has none)
             elif cmd == 'set_gym_trainers_frlg':
                 self.emit('SetVar %s, %s' % (self.var('VAR_0x8008'), self.val(a[0])),
                           'Call %s' % self.label('Common_EventScript_SetGymTrainers_Frlg'))
@@ -1924,6 +1987,8 @@ class Port:
             elif cmd == 'bufferspeciesname': self.emit('BufferSpeciesName %d, %s, 0, 0' % (self.strvar(a[0]), self.val(a[1])))
             elif cmd == 'buffermovename': self.emit('BufferMoveName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
             elif cmd == 'buffertypename': self.emit('BufferTypeName %d, %s' % (self.strvar(a[0]), self.val(a[1])))
+            elif cmd == 'bufferboxname':      # (only after ShouldShowBoxWasFullMessage, which is never TRUE here)
+                self.emit('// (a box name: HeartGold sends a Pokemon to the first box with room)')
             elif cmd == 'dynmultipush': self.dyn.append((a[0], a[1]))
             elif cmd == 'dynmultistack':
                 if a[6] not in ('DYN_MULTICHOICE_CB_NONE', 'NULL'): self.todo.append('menu callback %s (%s)' % (a[6], label))
@@ -2249,6 +2314,11 @@ def port(gba_map, g, ids, report):
                     '\tNPCMsg %s_%s' % (bank, k), '\tReturn', '_cv_str4_%d:' % i]
         out += ['\tReturn']
     out += ['', '_cv_stop:', '\tNPCMsg %s' % p_msg_unported, '\tWaitButton', '\tCloseMsg', '\tReleaseAll', '\tEnd']
+    if p.team_check:
+        out += ['', '_cv_team_not_allowed:',
+                '\tCall EventScript_GymHack_ShowTeamRuleMessage', '\tCanvasCloseMsg',
+                '\tGetPlayerCoords 0x8008, 0x8009', '\tGetPlayerFacing 0x800A', '\tWarp %s, 0, 0x8008, 0x8009, 0x800A' % p.slot,
+                '\tReleaseAll', '\tEnd']
     for l, steps in p.movements.items():
         out += ['', '\t.balign 4, 0', l + ':']
         out += ['\t%s%s' % (s, ' %d' % n if n > 1 else '') for s, n in steps] + ['\tEndMovement']
@@ -2456,6 +2526,8 @@ def main():
     g, ids = G.Gba(), Ids()
     kanto_safari_std(ids)
     own_gba(g)
+    CA.rewrite(g)
+    import challengers; challengers.main()
     report = []
     for m in sys.argv[1:] or list(MAPS):
         port(m, g, ids, report)

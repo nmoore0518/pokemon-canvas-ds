@@ -45,6 +45,7 @@ PokemonLeague_LoreleisRoom_EventScript_EnterRoom:
 	LockAll
 	Call PokemonLeague_EventScript_EnterRoom
 	SetVar 0x501D, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

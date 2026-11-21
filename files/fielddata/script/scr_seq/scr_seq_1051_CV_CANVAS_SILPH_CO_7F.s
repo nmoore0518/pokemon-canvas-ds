@@ -290,7 +290,7 @@ SilphCo_7F_EventScript_RivalScene:
 	BufferPlayersName 6
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_SilphCo_7F_Text_RivalPostBattle
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	PlayBGM SEQ_GS_E_RIVAL2
 	CompareVarToValue 0x4001, 0
 	CallIfEq SilphCo_7F_EventScript_RivalExitTop
@@ -302,6 +302,7 @@ SilphCo_7F_EventScript_RivalScene:
 	SetFlag 0x21AF
 	WaitSE SEQ_SE_DP_SELECT
 	SetVar 0x503F, 1
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -428,7 +429,7 @@ SilphCo_7F_EventScript_LaprasTransferredToPC:
 Common_EventScript_NameReceivedBoxMon:
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	SetVar 0x8004, 0
+	SetVar 0x8004, 254
 	NicknameInput 0x8004, VAR_SPECIAL_RESULT
 	LockAll
 	FacePlayer
@@ -495,7 +496,7 @@ EventScript_NeedCardKey:
 	End
 	
 SilphCo_7F_EventScript_RivalApproachTop:
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement 1, SilphCo_7F_Movement_RivalApproachTop
 	WaitMovement
 	Return
@@ -504,6 +505,9 @@ SilphCo_7F_EventScript_RivalApproachBottom:
 	Return
 	
 SilphCo_7F_EventScript_RivalSquirtle:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_18
@@ -577,6 +581,9 @@ _cv_won_30:
 	Return
 	
 SilphCo_7F_EventScript_RivalBulbasaur:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_32
@@ -650,6 +657,9 @@ _cv_won_44:
 	Return
 	
 SilphCo_7F_EventScript_RivalCharmander:
+	CanvasCheckTeam 7, 0x5019
+	CompareVarToValue VAR_SPECIAL_RESULT, 0
+	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
 	GoToIfNe _cv_next_46
@@ -733,8 +743,7 @@ SilphCo_7F_EventScript_RivalExitBottom:
 	Return
 	
 Common_EventScript_TransferredToPC:
-	// TODO(gba) bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
-	GoTo _cv_stop
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	BufferSpeciesName 1, 0x5024, 0, 0
 	CallIfUnset 0x20D0, EventScript_TransferredSomeonesPC
 	CallIfSet 0x20D0, EventScript_TransferredLanettesPC
@@ -969,9 +978,17 @@ EventScript_Open11FDoor:
 	// (the GBA redraws a square here: 6, 18, METATILE_SilphCo_Floor, 0)
 	Return
 	
+EventScript_GymHack_ShowTeamRuleMessage:
+	CompareVarToValue VAR_SPECIAL_RESULT, 1
+	CallIfEq EventScript_GymHack_MsgWrongType
+	CompareVarToValue VAR_SPECIAL_RESULT, 2
+	CallIfEq EventScript_GymHack_MsgDuplicate
+	CompareVarToValue VAR_SPECIAL_RESULT, 3
+	CallIfEq EventScript_GymHack_MsgDuplicateItem
+	Return
+	
 EventScript_TransferredSomeonesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_SomeonesPCBoxFull
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredSomeonesPC
@@ -979,28 +996,38 @@ EventScript_TransferredSomeonesPC:
 	Return
 	
 EventScript_TransferredLanettesPC:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar ShouldShowBoxWasFullMessage
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_LanettesPCBoxFull
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredLanettesPC
 	WaitButton
 	Return
 	
+EventScript_GymHack_MsgWrongType:
+	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_WrongType
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicate:
+	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_Duplicate
+	WaitButton
+	Return
+	
+EventScript_GymHack_MsgDuplicateItem:
+	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_Text_GymHack_DuplicateItem
+	WaitButton
+	Return
+	
 EventScript_SomeonesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredSomeonesPCBoxFull
 	WaitButton
 	Return
 	
 EventScript_LanettesPCBoxFull:
-	SetVar VAR_SPECIAL_RESULT, 0  // TODO(gba) specialvar GetPCBoxToSendMon
-	GoTo _cv_stop
-	// TODO(gba) bufferboxname STR_VAR_3, VAR_RESULT
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 0
+	// (a box name: HeartGold sends a Pokemon to the first box with room)
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_gText_PkmnTransferredLanettesPCBoxFull
 	WaitButton
 	Return
@@ -1009,6 +1036,15 @@ _cv_stop:
 	NPCMsg msg_0897_CV_CANVAS_SILPH_CO_7F_cv_unported
 	WaitButton
 	CloseMsg
+	ReleaseAll
+	End
+
+_cv_team_not_allowed:
+	Call EventScript_GymHack_ShowTeamRuleMessage
+	CanvasCloseMsg
+	GetPlayerCoords 0x8008, 0x8009
+	GetPlayerFacing 0x800A
+	Warp MAP_CANVAS_SILPH_CO_7F, 0, 0x8008, 0x8009, 0x800A
 	ReleaseAll
 	End
 

@@ -46,9 +46,10 @@ Route5_SouthEntrance_EventScript_GuardTrigger:
 	GoToIfSet 0x2131, Route5_SouthEntrance_EventScript_GiveTea
 	NPCMsg msg_0332_R05R0301_Route5_SouthEntrance_Text_ThirstyOnGuardDuty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	ApplyMovement obj_player, Route5_SouthEntrance_Movement_BlockPlayerEntry
 	WaitMovement
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -60,7 +61,7 @@ Route5_SouthEntrance_EventScript_GiveTea:
 Route5_SouthEntrance_EventScript_GuardDrinkTea:
 	NPCMsg msg_0332_R05R0301_Route5_SouthEntrance_Text_ThatTeaLooksTasty
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	CompareVarToValue 0x4001, 0
 	CallIfEq Route5_SouthEntrance_EventScript_WalkToGuardLeft
 	CompareVarToValue 0x4001, 1

@@ -39,7 +39,7 @@ _cv_won_2:
 	WaitButton
 	FadeScreen 6, 1, 0, RGB_BLACK
 	WaitFade
-	CloseMsg
+	CanvasCloseMsg
 	HidePerson 1
 	SetFlag 0x21E9
 	GoToIfUnset 0x205E, _cv_show_3
@@ -54,6 +54,7 @@ _cv_shown_4:
 	SetFlag 0x20F7
 	FadeScreen 6, 1, 1, RGB_BLACK
 	WaitFade
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -65,6 +66,7 @@ RocketHideout_B4F_EventScript_SilphScope:
 	GiveItem 874, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -99,6 +101,7 @@ RocketHideout_B4F_EventScript_LiftKey:
 	GiveItem 878, 1, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq EventScript_BagIsFull
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -225,6 +228,7 @@ RocketHideout_B4F_EventScript_DefeatedGrunt3:
 	CallIfEq RocketHideout_B4F_EventScript_RemoveBarrier
 	CompareVarToValue 0x4001, 2
 	CallIfEq RocketHideout_B4F_EventScript_DrawMapForBarrierRemoval
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -238,6 +242,7 @@ RocketHideout_B4F_EventScript_DefeatedGrunt2:
 	CallIfEq RocketHideout_B4F_EventScript_RemoveBarrier
 	CompareVarToValue 0x4001, 2
 	CallIfEq RocketHideout_B4F_EventScript_DrawMapForBarrierRemoval
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	

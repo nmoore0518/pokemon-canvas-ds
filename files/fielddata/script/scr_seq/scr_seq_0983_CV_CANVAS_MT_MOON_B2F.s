@@ -40,7 +40,7 @@ _cv_yn_2:
 	PlayFanfare SEQ_ME_ITEM
 	WaitFanfare
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	ApplyMovement 3, MtMoon_B2F_Movement_MiguelToHelixFossil
 	WaitMovement
@@ -79,7 +79,7 @@ _cv_yn_4:
 	PlayFanfare SEQ_ME_ITEM
 	WaitFanfare
 	WaitButton
-	CloseMsg
+	CanvasCloseMsg
 	Wait 10, VAR_SPECIAL_RESULT
 	ApplyMovement 3, MtMoon_B2F_Movement_MiguelToDomeFossil
 	WaitMovement
@@ -103,6 +103,7 @@ MtMoon_B2F_EventScript_Miguel:
 	CheckTrainerFlag 924
 	GoToIf TRUE, MtMoon_B2F_EventScript_MiguelGoPickFossil
 	Call MtMoon_B2F_EventScript_BattleMiguel
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -143,6 +144,7 @@ MtMoon_B2F_EventScript_MiguelTrigger:
 	ApplyMovement 3, Common_Movement_WalkInPlaceFasterRight
 	WaitMovement
 	Call MtMoon_B2F_EventScript_BattleMiguel
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -151,6 +153,7 @@ MtMoon_B2F_OnTransition:
 	End
 	
 MtMoon_B2F_EventScript_DontTakeFossil:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
@@ -219,6 +222,7 @@ EventMons_EventScript_CapNoCase:
 	End
 	
 EventMons_EventScript_ReleaseAllEnd:
+	CanvasCloseMsg
 	ReleaseAll
 	End
 

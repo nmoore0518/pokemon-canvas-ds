@@ -44,6 +44,7 @@ SaffronCity_CopycatsHouse_2F_EventScript_Copycat:
 	CallIfEq SaffronCity_CopycatsHouse_2F_EventScript_MimicPlayerMale
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	CallIfEq SaffronCity_CopycatsHouse_2F_EventScript_MimicPlayerFemale
+	CanvasCloseMsg
 	ReleaseAll
 	End
 	
