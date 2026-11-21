@@ -67,6 +67,8 @@ SaffronCity_Dojo_EventScript_HitmonleeBall:
 	LockAll
 	FacePlayer
 	GoToIfSet 0x213F, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
+	ScrCmd_452 SPECIES_HITMONLEE, 0
+	SetVar 0x5065, 1
 	SetVar 0x4001, SPECIES_HITMONLEE
 	ApplyMovement 5, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
@@ -82,6 +84,11 @@ _cv_yn_6:
 	Call EventScript_RestorePrevTextColor
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq SaffronCity_Dojo_EventScript_GiveHitmon
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_7
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_7:
 	CloseMsg
 	ReleaseAll
 	End
@@ -90,21 +97,28 @@ SaffronCity_Dojo_EventScript_HitmonchanBall:
 	LockAll
 	FacePlayer
 	GoToIfSet 0x213F, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
+	ScrCmd_452 SPECIES_HITMONCHAN, 0
+	SetVar 0x5065, 1
 	SetVar 0x4001, SPECIES_HITMONCHAN
 	ApplyMovement 5, Common_Movement_WalkInPlaceFasterUp
 	WaitMovement
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_SaffronCity_Dojo_Text_YouWantHitmonchan
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_7
+	GoToIfEq _cv_yes_8
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_8
-_cv_yes_7:
+	GoTo _cv_yn_9
+_cv_yes_8:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_8:
+_cv_yn_9:
 	Call EventScript_RestorePrevTextColor
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq SaffronCity_Dojo_EventScript_GiveHitmon
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_10
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_10:
 	CloseMsg
 	ReleaseAll
 	End
@@ -175,12 +189,12 @@ GymCandidate_EventScript_RecruitOffer:
 	Call _cv_str4
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_9
+	GoToIfEq _cv_yes_11
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_10
-_cv_yes_9:
+	GoTo _cv_yn_12
+_cv_yes_11:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_10:
+_cv_yn_12:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq GymCandidate_EventScript_RecruitDeclined
 	// TODO(gba) special GymCandidate_Recruit
@@ -220,6 +234,11 @@ EventScript_RestorePrevTextColor:
 	Return
 	
 SaffronCity_Dojo_EventScript_GiveHitmon:
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_13
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_13:
 	GiveMon 0x4001, 25, 0, 0, 0, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq SaffronCity_Dojo_EventScript_ReceivedHitmonParty
@@ -270,12 +289,12 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonParty:
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_11
+	GoToIfEq _cv_yes_14
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_12
-_cv_yes_11:
+	GoTo _cv_yn_15
+_cv_yes_14:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_12:
+_cv_yn_15:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq SaffronCity_Dojo_EventScript_EndGiveMon
 	Call Common_EventScript_GetGiftMonPartySlot
@@ -295,12 +314,12 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonPC:
 	NPCMsg msg_0868_CV_SAFFRON_FIGHTING_DOJO_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_13
+	GoToIfEq _cv_yes_16
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_14
-_cv_yes_13:
+	GoTo _cv_yn_17
+_cv_yes_16:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_14:
+_cv_yn_17:
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
 	GoToIfEq SaffronCity_Dojo_EventScript_TransferredHitmonToPC
 	Call Common_EventScript_NameReceivedBoxMon
@@ -354,9 +373,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_16
+	GoToIfLt _cv_menu_19
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_16:
+_cv_menu_19:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

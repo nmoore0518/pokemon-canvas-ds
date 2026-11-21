@@ -73,8 +73,15 @@ Route15_WestEntrance_2F_EventScript_LeftBinoculars:
 	LockAll
 	NPCMsg msg_0353_R15R0101_Route15_WestEntrance_2F_Text_LargeShiningBird
 	WaitButton
+	ScrCmd_452 SPECIES_ARTICUNO, 0
+	SetVar 0x5065, 1
 	Wait 20, VAR_SPECIAL_RESULT
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_4
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_4:
 	SetVar 0x8004, SPECIES_ARTICUNO
 	CloseMsg
 	ReleaseAll

@@ -1253,7 +1253,8 @@ def text(s):
 
 # ---------------------------------------------------------------- sounds, items, sprites, movement
 SE = {'SE_SELECT': 'SEQ_SE_DP_SELECT', 'SE_PIN': 'SEQ_SE_DP_SELECT', 'SE_DOOR': 'SEQ_SE_DP_DOOR', 'SE_EXIT': 'SEQ_SE_DP_KAIDAN2',
-      'SE_SUCCESS': 'SEQ_SE_DP_SELECT', 'SE_FAILURE': 'SEQ_SE_DP_BOX03', 'SE_BALL': 'SEQ_SE_DP_SELECT'}
+      'SE_SUCCESS': 'SEQ_SE_DP_SELECT', 'SE_FAILURE': 'SEQ_SE_DP_BOX03', 'SE_BALL': 'SEQ_SE_DP_SELECT',
+      'SE_M_NIGHTMARE': 'SEQ_SE_DP_HYUN2', 'SE_THUNDER': 'SEQ_SE_DP_T_KAMI'}
 FANFARE = {'MUS_OBTAIN_ITEM': 'SEQ_ME_ITEM', 'MUS_OBTAIN_KEY_ITEM': 'SEQ_ME_KEYITEM', 'MUS_LEVEL_UP': 'SEQ_ME_LVUP',
            'MUS_OBTAIN_BADGE': 'SEQ_ME_BADGE', 'MUS_HEAL': 'SEQ_ME_ASA', 'MUS_OBTAIN_TMHM': 'SEQ_ME_WAZA'}
 
@@ -1303,7 +1304,7 @@ for _n, _v in re.findall(r'#define SPECIES_([A-Z0-9_]+)\s+\(MAX_CANONICAL_MON_NU
     SPRITE.setdefault(_n, '#%d' % (2500 + _last + int(_v)))
 
 NO_OPS = ('addpcitem', 'opendoor', 'closedoor', 'waitdooranim', 'signmsg', 'normalmsg', 'waitstate', 'savebgm',
-          'fadeoutbgm', 'fadeinbgm', 'showmonpic', 'hidemonpic', 'setrespawn')
+          'fadeoutbgm', 'fadeinbgm', 'setrespawn')
 MOVETYPE = {'MOVEMENT_TYPE_NONE': 0, 'MOVEMENT_TYPE_LOOK_AROUND': 2, 'MOVEMENT_TYPE_WANDER_AROUND': 3,
             'MOVEMENT_TYPE_WANDER_UP_AND_DOWN': 4, 'MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT': 5, 'MOVEMENT_TYPE_FACE_UP': 14,
             'MOVEMENT_TYPE_FACE_DOWN': 15, 'MOVEMENT_TYPE_FACE_LEFT': 16, 'MOVEMENT_TYPE_FACE_RIGHT': 17}
@@ -1868,6 +1869,14 @@ class Port:
             elif cmd == 'waitfanfare': self.emit('WaitFanfare')
             elif cmd == 'checkplayergender': self.emit('GetPlayerGender VAR_SPECIAL_RESULT')
             elif cmd == 'playmoncry': self.emit('PlayCry %s, 0' % self.val(a[0]))
+            elif cmd == 'showmonpic':
+                # (HeartGold's picture window, ScrCmd_452 species, gender: in the middle of the screen. Closing one
+                # that isn't open would write through a stale pointer, so our var says whether one is)
+                self.emit('ScrCmd_452 %s, 0' % self.val(a[0]), 'SetVar %s, 1' % self.var('CV_MONPIC_SHOWN'))
+            elif cmd == 'hidemonpic':
+                skip = self.new('nopic')
+                self.emit('CompareVarToValue %s, 1' % self.var('CV_MONPIC_SHOWN'), 'GoToIfNe %s' % skip, 'ScrCmd_453',
+                          'SetVar %s, 0' % self.var('CV_MONPIC_SHOWN'), skip + ':')
             elif cmd == 'waitmoncry': self.emit('WaitCry')
             elif cmd == 'specialvar':
                 lines = SP.special(self, a[1], self.var(a[0]))
@@ -2233,6 +2242,8 @@ def port(gba_map, g, ids, report):
               and o['script'] not in ('0x0', '0')]
     people = [o for o in people if not (o['graphics_id'] == '0' and o['movement_type'] == 'MOVEMENT_TYPE_INVISIBLE')]
     if gba_map in PEOPLE: people = PEOPLE[gba_map](people)
+    p.people_lids = {o['graphics_id']: o.get('_lid') or (g.value(o['local_id']) if o.get('local_id') else i + 1)
+                     for i, o in enumerate(people)}      # (a look -> its person's id: specials find people by it)
     def trainer_of(o):
         """a trainer whose script is just their battle and a line after: HeartGold's own trainer script runs it"""
         c = g.labels.get(o['script'], [])

@@ -2,6 +2,126 @@
   "key": 19874,
   "messages": [
     {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_00",
+      "en_US": "Timmy"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_01",
+      "en_US": "Margaret"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_02",
+      "en_US": "Leon"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_03",
+      "en_US": "Emma"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_04",
+      "en_US": "Hank"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_05",
+      "en_US": "Lily"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_06",
+      "en_US": "Sammy"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_07",
+      "en_US": "Gus"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_08",
+      "en_US": "Marina"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_09",
+      "en_US": "Joey"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_10",
+      "en_US": "Rusty"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_11",
+      "en_US": "Dorothy"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_12",
+      "en_US": "Walt"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_13",
+      "en_US": "Vincent"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_14",
+      "en_US": "Pearl"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_15",
+      "en_US": "Annie"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_16",
+      "en_US": "Oscar"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_17",
+      "en_US": "Felix"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_18",
+      "en_US": "Irene"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_19",
+      "en_US": "Otis"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_20",
+      "en_US": "Nora"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_21",
+      "en_US": "???"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_22",
+      "en_US": "Clara"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_23",
+      "en_US": "August"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_24",
+      "en_US": "Duke"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_25",
+      "en_US": "Milo"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_26",
+      "en_US": "Betty"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_27",
+      "en_US": "Tommy"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_28",
+      "en_US": "Fern"
+    },
+    {
+      "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_cv_grave_trainer_29",
+      "en_US": "Harold"
+    },
+    {
       "id": "msg_0887_CV_CANVAS_POKEMON_TOWER_3F_TowerGraves_Text_Grave",
       "en_US": [
         "{STRVAR_1 3, 0, 0}\n",

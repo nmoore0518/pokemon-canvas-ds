@@ -1563,6 +1563,31 @@
       "en_US": "Everything’s back in storage."
     },
     {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakWhatOnEarth",
+      "en_US": [
+        "Oak: W-What on earth!?\n",
+        "That’s {STRVAR_1 3, 0, 0}!\r",
+        "They say no {STRVAR_1 3, 1, 0}-type\n",
+        "Pokémon is more powerful!\r",
+        "It must have sensed a new\n",
+        "{STRVAR_1 3, 1, 0} Gym in Kanto…"
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchIt",
+      "en_US": [
+        "Oak: Most Gym Leaders don’t use\n",
+        "legendary Pokémon, you know.\r",
+        "But there’s no rule against it!\r",
+        "And challengers are getting\n",
+        "stronger these days, {STRVAR_1 3, 6, 0}…\r",
+        "If you can catch it, it might be\n",
+        "just what your Gym needs!\r",
+        "It’s waiting for you on the\n",
+        "stage. Good luck!"
+      ]
+    },
+    {
       "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymFinale_Text_OakRulesStillApply",
       "en_US": [
         "Oak: Hold on!\r",
@@ -1799,6 +1824,15 @@
         "up a piece in front).\r",
         "L and R: switch to a decoration\n",
         "or another floor. B: finish."
+      ]
+    },
+    {
+      "id": "msg_0856_CV_FIGHT_AREA_UNUSED_7_GymLegend_Text_OakCatchAnother",
+      "en_US": [
+        "Oak: Another legendary Pokémon,\n",
+        "drawn to your new Gym!\r",
+        "It’s waiting for you on the\n",
+        "stage. Good luck, {STRVAR_1 3, 6, 0}!"
       ]
     },
     {

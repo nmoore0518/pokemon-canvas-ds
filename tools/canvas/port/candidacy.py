@@ -182,10 +182,6 @@ SPECIALS = {
     'GymCandidate_IsHolding': cmd(9),
     'GymCandidate_HoldLeaderBack': cmd(10),
     'GymChallenge_EndPractice': cmd(12),
-    # (the mentor's gifts after the Cerulean and Cinnabar badges are the Type Guard and Type Edge items, which
-    # HeartGold doesn't have yet: none for now)
-    'GymCandidate_PrepareMentorGift': lambda p, r: ['SetVar %s, %d' % (r or 'VAR_SPECIAL_RESULT', MENTOR_GIFT_NONE)],
-    'GymCandidate_BufferMentorGift': lambda p, r: [],
     '_cv_GuestIntro': say_line('intro'),
     '_cv_GuestAfter': say_line('after'),
     '_cv_GuestWin': say_line('win'),
@@ -299,3 +295,50 @@ def rewrite(g):
             else:
                 out.append((c, a))
         L[lbl] = out
+
+
+# ---------------------------------------------------------------- the mentor's gifts (after the Cerulean and Cinnabar badges)
+MENTOR_GIFT_LEADER, MENTOR_GIFT_VISIT = 1, 2
+GIFT_GYMS = {1: ('GUARD', 0), 6: ('EDGE', 1)}       # the gym -> (which, sTypeItems' column)
+
+
+def type_items():
+    """src/gym_candidate.c sTypeItems: TYPE -> (the Guard item, the Edge item) (tools/canvas/build_items.py's)"""
+    src = open(G.P('src/gym_candidate.c')).read()
+    body = src[src.index('sTypeItems[NUMBER_OF_MON_TYPES][2] ='):]
+    return {t: (a, b) for t, a, b in re.findall(r'\[TYPE_(\w+)\] = \{(ITEM_\w+), (ITEM_\w+)\}', body[:body.index('};')])}
+
+
+def mentor_gift_prepare(port, ret):
+    """VAR_0x8009 = the gym whose badge was just won: at the Cerulean Gym (1) the mentor gives the Type Guard of the
+    player's type, at the Cinnabar Gym (6) the Type Edge, once each (flags of ours for the GBA's VAR_MENTOR_STAGE bits).
+    VAR_RESULT = MENTOR_GIFT_*; VAR_0x8004 = the item, VAR_OBJ_GFX_ID_0 = the mentor's look"""
+    import specials as SP
+    P, items = mentor_people(), type_items()
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    done = port.new('gift')
+    out = ['SetVar %s, %d' % (ret, MENTOR_GIFT_NONE)]
+    for gym, (which, col) in GIFT_GYMS.items():
+        nxt, gave = port.new('gift'), port.flag('CV_MENTOR_GAVE_' + which)
+        out += ['CompareVarToValue %s, %d' % (port.var('VAR_0x8009'), gym), 'GoToIfNe %s' % nxt, 'GoToIfSet %s, %s' % (gave, done)]
+        out += _by_mentor(port, lambda w, t: ['SetFlag %s' % gave, 'SetVar 0x8004, %s' % port.val(items[t][col]),
+                                              'SetVar %s, %s' % (port.var('VAR_OBJ_GFX_ID_0'), port.val('OBJ_EVENT_GFX_' + P[w]['gfx'])),
+                                              'SetVar %s, %d' % (ret, MENTOR_GIFT_LEADER if w == gym else MENTOR_GIFT_VISIT)])
+        out += ['GoTo %s' % done, nxt + ':']
+    return out + [done + ':']
+
+
+def mentor_gift_text(port, ret):
+    """gStringVar4 = what the mentor says with the gift (VAR_0x8009: 1 the Guard, 6 the Edge)"""
+    import specials as SP
+    P = mentor_people()
+    edge, done = port.new('gift'), port.new('gift')
+    line = lambda field: _by_mentor(port, lambda w, t: ['SetVar %s, %d' % (SP.SCRATCH4, port.str4('cv_mentor_%s_%d' % (field, w), P[w][field]))])
+    return (['CompareVarToValue %s, 6' % port.var('VAR_0x8009'), 'GoToIfEq %s' % edge] + line('guardGift')
+            + ['GoTo %s' % done, edge + ':'] + line('edgeGift') + [done + ':'])
+
+
+SPECIALS.update({
+    'GymCandidate_PrepareMentorGift': mentor_gift_prepare,
+    'GymCandidate_BufferMentorGift': mentor_gift_text,
+})

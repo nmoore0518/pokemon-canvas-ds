@@ -138,8 +138,15 @@ FuchsiaCity_EventScript_WardensHomeSign:
 FuchsiaCity_EventScript_VoltorbSign:
 	LockAll
 	SetVar 0x8004, SPECIES_VOLTORB
+	ScrCmd_452 SPECIES_VOLTORB, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_VoltorbSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_1
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_1:
 	CloseMsg
 	ReleaseAll
 	End
@@ -147,8 +154,15 @@ FuchsiaCity_EventScript_VoltorbSign:
 FuchsiaCity_EventScript_SlowpokeSign:
 	LockAll
 	SetVar 0x8004, SPECIES_SLOWPOKE
+	ScrCmd_452 SPECIES_SLOWPOKE, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_SlowpokeSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_2
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_2:
 	CloseMsg
 	ReleaseAll
 	End
@@ -156,8 +170,15 @@ FuchsiaCity_EventScript_SlowpokeSign:
 FuchsiaCity_EventScript_ChanseySign:
 	LockAll
 	SetVar 0x8004, SPECIES_CHANSEY
+	ScrCmd_452 SPECIES_CHANSEY, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_ChanseySign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_3
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_3:
 	CloseMsg
 	ReleaseAll
 	End
@@ -165,8 +186,15 @@ FuchsiaCity_EventScript_ChanseySign:
 FuchsiaCity_EventScript_KangaskhanSign:
 	LockAll
 	SetVar 0x8004, SPECIES_KANGASKHAN
+	ScrCmd_452 SPECIES_KANGASKHAN, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_KangaskhanSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_4
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_4:
 	CloseMsg
 	ReleaseAll
 	End
@@ -175,8 +203,15 @@ FuchsiaCity_EventScript_FossilMonSign:
 	LockAll
 	GoToIfSet 0x20C7, FuchsiaCity_EventScript_OmanyteSign
 	SetVar 0x8004, SPECIES_KABUTO
+	ScrCmd_452 SPECIES_KABUTO, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_KabutoSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_5
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_5:
 	CloseMsg
 	ReleaseAll
 	End
@@ -184,8 +219,15 @@ FuchsiaCity_EventScript_FossilMonSign:
 FuchsiaCity_EventScript_LaprasSign:
 	LockAll
 	SetVar 0x8004, SPECIES_LAPRAS
+	ScrCmd_452 SPECIES_LAPRAS, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_LaprasSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_6
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_6:
 	CloseMsg
 	ReleaseAll
 	End
@@ -228,8 +270,15 @@ TypeTutor_EventScript_Talk:
 	
 FuchsiaCity_EventScript_OmanyteSign:
 	SetVar 0x8004, SPECIES_OMANYTE
+	ScrCmd_452 SPECIES_OMANYTE, 0
+	SetVar 0x5065, 1
 	NPCMsg msg_0512_T08_FuchsiaCity_Text_OmanyteSign
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_7
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_7:
 	CloseMsg
 	ReleaseAll
 	End
@@ -281,9 +330,9 @@ TypeTutor_EventScript_Teach:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_2
+	GoToIfLt _cv_menu_9
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_2:
+_cv_menu_9:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq TypeTutor_EventScript_Bye
 	CopyVar 0x8004, 0x8008

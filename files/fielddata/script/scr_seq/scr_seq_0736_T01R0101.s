@@ -9,7 +9,7 @@
 	ScrDef PalletTown_PlayersHouse_1F_EventScript_Mom
 	ScrDef PalletTown_PlayersHouse_1F_EventScript_TV
 	ScrDef DadStory_EventScript_HouseOnLoad
-	ScrDef _cv_unported_3
+	ScrDef DadStory_EventScript_MomDadsBall
 	ScrDef DadStory_EventScript_MomWhyWithHim
 	ScrDefEnd
 	
@@ -55,19 +55,109 @@ DadStory_EventScript_MomDadsBall:
 	BufferPlayersName 6
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomDadsBall
 	WaitButton
-	// TODO(gba) special DadStory_GetGymTypeBall
-	GoTo _cv_stop
+	SetVar VAR_SPECIAL_RESULT, 2722
+	CompareVarToValue 0x5019, 0
+	GoToIfNe _cv_next_2
+	SetVar VAR_SPECIAL_RESULT, 2722
+	GoTo _cv_done_1
+_cv_next_2:
+	CompareVarToValue 0x5019, 1
+	GoToIfNe _cv_next_3
+	SetVar VAR_SPECIAL_RESULT, 2723
+	GoTo _cv_done_1
+_cv_next_3:
+	CompareVarToValue 0x5019, 2
+	GoToIfNe _cv_next_4
+	SetVar VAR_SPECIAL_RESULT, 2724
+	GoTo _cv_done_1
+_cv_next_4:
+	CompareVarToValue 0x5019, 3
+	GoToIfNe _cv_next_5
+	SetVar VAR_SPECIAL_RESULT, 2725
+	GoTo _cv_done_1
+_cv_next_5:
+	CompareVarToValue 0x5019, 4
+	GoToIfNe _cv_next_6
+	SetVar VAR_SPECIAL_RESULT, 2726
+	GoTo _cv_done_1
+_cv_next_6:
+	CompareVarToValue 0x5019, 5
+	GoToIfNe _cv_next_7
+	SetVar VAR_SPECIAL_RESULT, 2727
+	GoTo _cv_done_1
+_cv_next_7:
+	CompareVarToValue 0x5019, 6
+	GoToIfNe _cv_next_8
+	SetVar VAR_SPECIAL_RESULT, 2728
+	GoTo _cv_done_1
+_cv_next_8:
+	CompareVarToValue 0x5019, 7
+	GoToIfNe _cv_next_9
+	SetVar VAR_SPECIAL_RESULT, 2729
+	GoTo _cv_done_1
+_cv_next_9:
+	CompareVarToValue 0x5019, 8
+	GoToIfNe _cv_next_10
+	SetVar VAR_SPECIAL_RESULT, 2730
+	GoTo _cv_done_1
+_cv_next_10:
+	CompareVarToValue 0x5019, 10
+	GoToIfNe _cv_next_11
+	SetVar VAR_SPECIAL_RESULT, 2731
+	GoTo _cv_done_1
+_cv_next_11:
+	CompareVarToValue 0x5019, 11
+	GoToIfNe _cv_next_12
+	SetVar VAR_SPECIAL_RESULT, 2732
+	GoTo _cv_done_1
+_cv_next_12:
+	CompareVarToValue 0x5019, 12
+	GoToIfNe _cv_next_13
+	SetVar VAR_SPECIAL_RESULT, 2733
+	GoTo _cv_done_1
+_cv_next_13:
+	CompareVarToValue 0x5019, 13
+	GoToIfNe _cv_next_14
+	SetVar VAR_SPECIAL_RESULT, 2734
+	GoTo _cv_done_1
+_cv_next_14:
+	CompareVarToValue 0x5019, 14
+	GoToIfNe _cv_next_15
+	SetVar VAR_SPECIAL_RESULT, 2735
+	GoTo _cv_done_1
+_cv_next_15:
+	CompareVarToValue 0x5019, 15
+	GoToIfNe _cv_next_16
+	SetVar VAR_SPECIAL_RESULT, 2736
+	GoTo _cv_done_1
+_cv_next_16:
+	CompareVarToValue 0x5019, 16
+	GoToIfNe _cv_next_17
+	SetVar VAR_SPECIAL_RESULT, 2737
+	GoTo _cv_done_1
+_cv_next_17:
+	CompareVarToValue 0x5019, 17
+	GoToIfNe _cv_next_18
+	SetVar VAR_SPECIAL_RESULT, 2738
+	GoTo _cv_done_1
+_cv_next_18:
+	CompareVarToValue 0x5019, 9
+	GoToIfNe _cv_next_19
+	SetVar VAR_SPECIAL_RESULT, 2739
+	GoTo _cv_done_1
+_cv_next_19:
+_cv_done_1:
 	SetOrCopyVar 0x8004, VAR_SPECIAL_RESULT
 	SetOrCopyVar 0x8005, 1
 	HasSpaceForItem 0x8004, 0x8005, VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_full_1
+	GoToIfEq _cv_full_20
 	CallStd std_give_item_verbose
 	SetVar VAR_SPECIAL_RESULT, 1
-	GoTo _cv_given_2
-_cv_full_1:
+	GoTo _cv_given_21
+_cv_full_20:
 	SetVar VAR_SPECIAL_RESULT, 0
-_cv_given_2:
+_cv_given_21:
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomMoveExtractor
 	WaitButton
 	CanvasCloseMsg
@@ -210,15 +300,6 @@ DadStory_EventScript_MomArcherNudge:
 	NPCMsg msg_0447_T01R0101_DadStory_Text_MomArcherNudge
 	WaitButton
 	Return
-
-_cv_unported_3:
-	PlaySE SEQ_SE_DP_SELECT
-	LockAll
-	NPCMsg msg_0447_T01R0101_cv_unported
-	WaitButton
-	CloseMsg
-	ReleaseAll
-	End
 
 _cv_stop:
 	NPCMsg msg_0447_T01R0101_cv_unported

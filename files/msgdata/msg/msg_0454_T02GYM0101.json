@@ -976,6 +976,202 @@
       "en_US": "Dad’s Chansey was sent to the PC."
     },
     {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_0",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! I heard you made it\n",
+        "through Mt. Moon. Knew you would!\r",
+        "Here, I made this for you.\n",
+        "Let one of your Pokémon hold it."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_1",
+      "en_US": [
+        "Misty: …And before you go. Oak\n",
+        "made me promise to give you this.\r",
+        "Don’t get the wrong idea! I don’t\n",
+        "want my rival losing to a fluke!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_2",
+      "en_US": [
+        "Lt. Surge: Ten-hut! Heard you’re\n",
+        "still in the fight, kid!\r",
+        "Every soldier needs armor.\n",
+        "Take this and keep your head down!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_3",
+      "en_US": [
+        "Erika: Oh, there you are… I came\n",
+        "all the way from Celadon.\r",
+        "Mt. Moon must have been so dark.\n",
+        "This will keep your Pokémon safe."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_4",
+      "en_US": [
+        "Koga: Fwahaha! Did you notice me\n",
+        "following you through Mt. Moon?\r",
+        "No? Good. A ninja’s armor.\n",
+        "Take it… and tell no one."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_5",
+      "en_US": [
+        "Sabrina: I saw you leave Mt. Moon.\n",
+        "I saw you take this from me.\r",
+        "So… take it."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_6",
+      "en_US": [
+        "Blaine: Hah! Quiz time! What keeps\n",
+        "a Pokémon safe from its weakness?\r",
+        "Answer: this! Take it, kid!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_9",
+      "en_US": [
+        "Bruno: Hoo! You made it through\n",
+        "Mt. Moon!\r",
+        "A true fighter guards his body.\n",
+        "Take this!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_10",
+      "en_US": [
+        "Agatha: Hmph. Oak pestered me\n",
+        "until I brought you this.\r",
+        "Take it before I change my mind,\n",
+        "whippersnapper!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_8",
+      "en_US": [
+        "Lorelei: Hello again, {STRVAR_1 3, 6, 0}.\n",
+        "I was in Cerulean… shopping.\r",
+        "This is for you. No weakness will\n",
+        "crack your Pokémon with this."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_guardGift_11",
+      "en_US": [
+        "Lance: You made it past Mt. Moon.\n",
+        "Not bad.\r",
+        "A Pokémon is only as strong as its\n",
+        "weakest point. Cover yours."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_0",
+      "en_US": [
+        "Brock: {STRVAR_1 3, 6, 0}! I took the ferry\n",
+        "all the way out here!\r",
+        "You’ve learned to take a hit.\n",
+        "Now learn to land one. Here!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_1",
+      "en_US": [
+        "Misty: Ugh, it’s so hot here!\n",
+        "…Fine. Here.\r",
+        "I said I’d find you when you were\n",
+        "ready. Don’t make me regret it!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_2",
+      "en_US": [
+        "Lt. Surge: Kid! You’ve survived the\n",
+        "front lines. Time for artillery!\r",
+        "With this, nothing can stop your\n",
+        "attacks cold!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_3",
+      "en_US": [
+        "Erika: My, what a long boat ride…\n",
+        "I dozed off twice.\r",
+        "Please take this. May nothing\n",
+        "stand in your Pokémon’s way."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_4",
+      "en_US": [
+        "Koga: Fwahaha! Surprised? A ninja\n",
+        "goes where his student goes.\r",
+        "You are ready for my secret\n",
+        "technique. Take it!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_5",
+      "en_US": [
+        "Sabrina: Seven Badges. I saw this\n",
+        "day, too.\r",
+        "Take it. No wall will hold your\n",
+        "Pokémon back now."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_6",
+      "en_US": [
+        "Blaine: Hah! One more quiz! What\n",
+        "lets an attack hit when it\f",
+        "shouldn’t?\r",
+        "Answer: this! I’ve been saving it\n",
+        "for you!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_9",
+      "en_US": [
+        "Bruno: Hoo hah! Seven Badges!\n",
+        "You’ve built a fine guard.\r",
+        "Now, a fine strike! Take this!"
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_10",
+      "en_US": [
+        "Agatha: Seven Badges, eh? I suppose\n",
+        "I can’t call you whippersnapper.\r",
+        "…Well, I can. But take this\n",
+        "anyway."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_8",
+      "en_US": [
+        "Lorelei: Cinnabar is far too warm\n",
+        "for me. I won’t stay long.\r",
+        "This is for you. No foe will shrug\n",
+        "off your attacks with it."
+      ]
+    },
+    {
+      "id": "msg_0454_T02GYM0101_cv_mentor_edgeGift_11",
+      "en_US": [
+        "Lance: Seven Badges. You’ve proven\n",
+        "yourself.\r",
+        "Take this. No Pokémon will ignore\n",
+        "your attacks again."
+      ]
+    },
+    {
       "id": "msg_0454_T02GYM0101_GymCandidate_Text_TeamBreaksRules",
       "en_US": [
         "Hold on. A Gym Leader battles with\n",

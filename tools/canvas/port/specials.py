@@ -327,6 +327,85 @@ CHOOSE_FOR_TRADE = ['CloseMsg', 'FadeScreen 6, 1, 0, RGB_BLACK', 'WaitFade', 'Sc
                     'FadeScreen 6, 1, 1, RGB_BLACK', 'WaitFade']
 
 
+# ---------------------------------------------------------------- the Pokemon Tower's graves (src/tower_graves.c)
+def _graves():
+    """tools/gym_hack/build_tower_graves.py GRAVES -> [(species or None for DAD's ace, trainer, unevolved)]"""
+    src = open(G.P('tools/gym_hack/build_tower_graves.py')).read()
+    return [(sp or None, tr, bool(un)) for sp, tr, un in
+            re.findall(r'\(\d, \d+, \d+, (?:DAD|"(\w+)"), "([^"]+)"\),[ \t]*(#\s*\(unevolved\))?', src)]
+
+
+def _dad_aces():
+    """src/dad_story.c sDadsAce: TYPE_ -> species"""
+    src = open(G.P('src/dad_story.c')).read()
+    body = src[src.index('sDadsAce[NUMBER_OF_MON_TYPES] ='):]
+    return re.findall(r'\[TYPE_(\w+)\]\s*=\s*(SPECIES_\w+)', body[:body.index('};')])
+
+
+GRAVES = _graves()
+GHOST_FLAG = 'FLAG_TEMP_1F'         # (the girl's and her Scyther's, on 2F-4F)
+
+
+def tower_graves_read(port, ret):
+    # VAR_0x8004 = the grave -> VAR_0x8005 = its Pokemon, STR_VAR_1 its name, STR_VAR_2 its trainer; the unevolved ten
+    # each have a flag of ours (the GBA's VAR_TOWER_GRAVES bits); VAR_RESULT = whether the girl comes now (all ten
+    # read, and no Eviolate yet)
+    sp = '0x8005'
+    cases = []
+    for i, (species, trainer, unevolved) in enumerate(GRAVES):
+        if species is None:
+            lines = chain(port, port.var('VAR_PLAYER_TYPE'), [(_type(port, t), ['SetVar %s, %s' % (sp, port.val(a))]) for t, a in _dad_aces()])
+            lines = ['SetVar %s, %s' % (sp, port.val('SPECIES_CHARIZARD'))] + lines
+        else:
+            lines = ['SetVar %s, %s' % (sp, port.val('SPECIES_' + species))]
+        name = trainer if trainer == '???' else trainer.capitalize()
+        lines.append('CanvasBufferMsg 1, %s' % port.own_msg('cv_grave_trainer_%02d' % i, name))
+        if unevolved: lines.append('SetFlag %s' % port.flag('CV_TOWER_GRAVE_%02d' % i))
+        cases.append((i, lines))
+    done = port.new('graves')
+    out = chain(port, '0x8004', cases) + ['BufferSpeciesName 0, %s, 0, 0' % sp, 'SetVar VAR_SPECIAL_RESULT, 0',
+                                          'GoToIfSet %s, %s' % (port.flag('FLAG_GOT_EVIOLATE'), done)]
+    out += ['GoToIfUnset %s, %s' % (port.flag('CV_TOWER_GRAVE_%02d' % i), done) for i, g in enumerate(GRAVES) if g[2]]
+    return out + ['SetVar VAR_SPECIAL_RESULT, 1', done + ':']
+
+
+def dad_type_ball(port, ret):
+    # (Mom's gift from Dad, after Nugget Bridge) VAR_RESULT = the Type Ball of the player's type (tools/canvas/build_items.py)
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    return ['SetVar %s, %s' % (ret, port.val('ITEM_NORMAL_BALL'))] + chain(
+        port, port.var('VAR_PLAYER_TYPE'), [(_type(port, t), ['SetVar %s, %s' % (ret, port.val('ITEM_%s_BALL' % t))]) for t in HG_TYPE_NAMES])
+
+
+HG_TYPE_NAMES = ['NORMAL', 'FIGHTING', 'FLYING', 'POISON', 'GROUND', 'ROCK', 'BUG', 'GHOST', 'STEEL', 'FIRE', 'WATER', 'GRASS',
+                 'ELECTRIC', 'PSYCHIC', 'ICE', 'DRAGON', 'DARK', 'FAIRY']
+
+
+def gym_has_switched(port, ret):
+    # VAR_RESULT = whether the gym has had the player's type before (the GBA's FLAG_GYM_TYPE_OWNED + type: set as the
+    # gym changes type, row 28; flags of ours by type)
+    ret = ret or 'VAR_SPECIAL_RESULT'
+    done = port.new('owned')
+    return ['SetVar %s, 0' % ret] + chain(port, port.var('VAR_PLAYER_TYPE'), [
+        (_type(port, t), ['GoToIfUnset %s, %s' % (port.flag('FLAG_GYM_TYPE_OWNED_' + t), done), 'SetVar %s, 1' % ret])
+        for t in HG_TYPE_NAMES], done)
+
+
+def _ghosts(port):
+    lids = getattr(port, 'people_lids', {})
+    return lids.get('OBJ_EVENT_GFX_LITTLE_GIRL_FRLG'), lids.get('OBJ_EVENT_GFX_SPECIES(SCYTHER)')
+
+
+def tower_ghosts(port, ret, come):
+    # the girl and her Scyther flicker in near the player, half there, and later away (engine canvas_candidate.c:
+    # CanvasCandidate 18 / 19)
+    girl, scyther = _ghosts(port)
+    if girl is None or scyther is None: return []
+    f = port.flag(GHOST_FLAG)
+    if come:
+        return ['ClearFlag %s' % f, 'ShowPerson %s' % girl, 'ShowPerson %s' % scyther, 'CanvasCandidate 18, %s, %s' % (girl, scyther)]
+    return ['CanvasCandidate 19, %s, %s' % (girl, scyther), 'HidePerson %s' % girl, 'HidePerson %s' % scyther, 'SetFlag %s' % f]
+
+
 SPECIALS = {
     # the GBA's in-game trades on HeartGold's (build_trades.py; Nick: "In-game trades don't work anywhere yet")
     'GetInGameTradeSpeciesInfo': trade_info,
@@ -400,7 +479,6 @@ SPECIALS = {
     'GymDecor_DrawRoom': lambda p, r: [],
     'Gauntlet_OnTransition': lambda p, r: ['SetFlag %s' % p.flag('FLAG_HIDE_GAUNTLET_FIGURE')],
     'Gauntlet_OnLoad': lambda p, r: [],
-    'GymLegend_OnLoad': lambda p, r: [],
     'GymDecor_MarkUnlocksSeen': lambda p, r: [],      # (the gym decorations come later)
     'GymHack_PrepareStarterChoice': prepare_starter_choice,
     'GymHack_LockInPlayerType': lock_in_player_type,
@@ -418,6 +496,11 @@ SPECIALS = {
     'Outfit_CountUnlocked': lambda p, r: ['SetVar VAR_SPECIAL_RESULT, 1'],
     'Outfit_CatchUp': lambda p, r: [],
     'Outfit_GiveGymUniform': lambda p, r: [],
+    'TowerGraves_Read': tower_graves_read,
+    'DadStory_GetGymTypeBall': dad_type_ball,
+    'GymSwitch_HasSwitched': gym_has_switched,
+    'TowerGraves_SummonGhosts': lambda p, r: tower_ghosts(p, r, True),
+    'TowerGraves_DismissGhosts': lambda p, r: tower_ghosts(p, r, False),
 }
 
 CALLNATIVE_NO_OPS = ('UpdateFollowingPokemon',)

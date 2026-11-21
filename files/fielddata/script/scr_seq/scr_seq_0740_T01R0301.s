@@ -1091,6 +1091,8 @@ _cv_done_56:
 	BufferTypeName 1, 0x401E
 	CompareVarToValue VAR_SPECIAL_RESULT, 14
 	CallIfGe PalletTown_ProfessorOaksLab_EventScript_HardType
+	ScrCmd_452 0x4002, 0
+	SetVar 0x5065, 1
 	BufferPlayersName 6
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakConfirmType
 	YesNo VAR_SPECIAL_RESULT
@@ -2922,6 +2924,11 @@ PalletTown_ProfessorOaksLab_EventScript_HardType:
 	Return
 	
 PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter:
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_322
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_322:
 	CanvasCloseMsg
 	ReleaseAll
 	End
@@ -2936,6 +2943,11 @@ PalletTown_ProfessorOaksLab_EventScript_SetRivalSpot:
 	Return
 	
 PalletTown_ProfessorOaksLab_EventScript_ChoseStarter:
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_323
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_323:
 	NPCMsg msg_0451_T01R0301_PalletTown_ProfessorOaksLab_Text_OakThisMonIsEnergetic
 	WaitButton
 	Call EventScript_RestorePrevTextColor
@@ -2951,12 +2963,12 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter:
 	NPCMsg msg_0451_T01R0301_gText_NicknameThisPokemon
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_322
+	GoToIfEq _cv_yes_324
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_323
-_cv_yes_322:
+	GoTo _cv_yn_325
+_cv_yes_324:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_323:
+_cv_yn_325:
 	CompareVarToValue VAR_SPECIAL_RESULT, 1
 	GoToIfEq EventScript_GiveNicknameToStarter
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
@@ -2996,22 +3008,6 @@ Common_EventScript_NopReturn:
 	
 PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterNorth:
 	MovePerson 5, 5, 10
-	GoToIfUnset 0x2024, _cv_show_324
-	ClearFlag 0x2024
-	ShowPerson 5
-	SetFlag 0x2024
-	GoTo _cv_shown_325
-_cv_show_324:
-	ShowPerson 5
-_cv_shown_325:
-	PlayBGM SEQ_GS_E_RIVAL1
-	ApplyMovement obj_player, PalletTown_ProfessorOaksLab_Movement_WatchRivalEnterNorth
-	ApplyMovement 5, PalletTown_ProfessorOaksLab_Movement_RivalEnter
-	WaitMovement
-	Return
-	
-PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterSouth:
-	MovePerson 5, 6, 10
 	GoToIfUnset 0x2024, _cv_show_326
 	ClearFlag 0x2024
 	ShowPerson 5
@@ -3021,12 +3017,12 @@ _cv_show_326:
 	ShowPerson 5
 _cv_shown_327:
 	PlayBGM SEQ_GS_E_RIVAL1
-	ApplyMovement 4, Common_Movement_WalkInPlaceFasterDown
+	ApplyMovement obj_player, PalletTown_ProfessorOaksLab_Movement_WatchRivalEnterNorth
 	ApplyMovement 5, PalletTown_ProfessorOaksLab_Movement_RivalEnter
 	WaitMovement
 	Return
 	
-PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterEastWest:
+PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterSouth:
 	MovePerson 5, 6, 10
 	GoToIfUnset 0x2024, _cv_show_328
 	ClearFlag 0x2024
@@ -3036,6 +3032,22 @@ PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterEastWest:
 _cv_show_328:
 	ShowPerson 5
 _cv_shown_329:
+	PlayBGM SEQ_GS_E_RIVAL1
+	ApplyMovement 4, Common_Movement_WalkInPlaceFasterDown
+	ApplyMovement 5, PalletTown_ProfessorOaksLab_Movement_RivalEnter
+	WaitMovement
+	Return
+	
+PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterEastWest:
+	MovePerson 5, 6, 10
+	GoToIfUnset 0x2024, _cv_show_330
+	ClearFlag 0x2024
+	ShowPerson 5
+	SetFlag 0x2024
+	GoTo _cv_shown_331
+_cv_show_330:
+	ShowPerson 5
+_cv_shown_331:
 	PlayBGM SEQ_GS_E_RIVAL1
 	ApplyMovement 4, Common_Movement_WalkInPlaceFasterDown
 	ApplyMovement obj_player, PalletTown_ProfessorOaksLab_Movement_WatchRivalEnterEastWest
@@ -3148,9 +3160,9 @@ PokedexRating_EventScript_Rate:
 	CountNationalDexSeen 0x8005
 	CountNationalDexOwned 0x8006
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_330
+	GoToIfUnset 0x2026, _cv_dex_332
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_330:
+_cv_dex_332:
 	CopyVar 0x8008, 0x8005
 	CopyVar 0x8009, 0x8006
 	CopyVar 0x800A, VAR_SPECIAL_RESULT
@@ -3166,9 +3178,9 @@ _cv_dex_330:
 	CountNationalDexSeen 0x8005
 	CountNationalDexOwned 0x8006
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoToIfUnset 0x2026, _cv_dex_331
+	GoToIfUnset 0x2026, _cv_dex_333
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_dex_331:
+_cv_dex_333:
 	CopyVar 0x8008, 0x8005
 	CopyVar 0x8009, 0x8006
 	BufferInt 0, 0x8008
@@ -3348,9 +3360,9 @@ GymSwitch_EventScript_TypeMenu:
 	ScrCmd_067
 	TouchscreenMenuShow
 	CompareVarToValue VAR_SPECIAL_RESULT, 65000
-	GoToIfLt _cv_menu_333
+	GoToIfLt _cv_menu_335
 	SetVar VAR_SPECIAL_RESULT, 127
-_cv_menu_333:
+_cv_menu_335:
 	CompareVarToValue VAR_SPECIAL_RESULT, 127
 	GoToIfEq GymSwitch_EventScript_ChoiceCancelled
 	// TODO(gba) special GymSwitch_BufferChoice
@@ -3361,12 +3373,12 @@ _cv_menu_333:
 	CanvasMsg msg_0451_T01R0301_GymSwitch_Text_ConfirmOld
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_334
+	GoToIfEq _cv_yes_336
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_335
-_cv_yes_334:
+	GoTo _cv_yn_337
+_cv_yes_336:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_335:
+_cv_yn_337:
 	GoTo GymSwitch_EventScript_Confirmed
 	CloseMsg
 	End
@@ -3474,67 +3486,67 @@ PalletTown_ProfessorOaksLab_EventScript_RivalBattleCharmander:
 	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_337
-	TrainerBattle 742, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_337:
-	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_338
-	TrainerBattle 746, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_338:
-	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_339
-	TrainerBattle 740, 0, 1, 0
-	GoTo _cv_battle_336
+	TrainerBattle 742, 0, 1, 0
+	GoTo _cv_battle_338
 _cv_next_339:
-	CompareVarToValue 0x501A, 10
+	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_340
-	TrainerBattle 738, 0, 1, 0
-	GoTo _cv_battle_336
+	TrainerBattle 746, 0, 1, 0
+	GoTo _cv_battle_338
 _cv_next_340:
-	CompareVarToValue 0x501A, 12
+	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_341
-	TrainerBattle 748, 0, 1, 0
-	GoTo _cv_battle_336
+	TrainerBattle 740, 0, 1, 0
+	GoTo _cv_battle_338
 _cv_next_341:
-	CompareVarToValue 0x501A, 4
+	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_342
-	TrainerBattle 743, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_342:
-	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_343
-	TrainerBattle 745, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_343:
-	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_344
-	TrainerBattle 747, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_344:
-	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_345
-	TrainerBattle 741, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_345:
-	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_346
-	TrainerBattle 749, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_346:
-	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_347
-	TrainerBattle 744, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_347:
-	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_348
-	TrainerBattle 739, 0, 1, 0
-	GoTo _cv_battle_336
-_cv_next_348:
 	TrainerBattle 738, 0, 1, 0
-_cv_battle_336:
+	GoTo _cv_battle_338
+_cv_next_342:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_343
+	TrainerBattle 748, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_343:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_344
+	TrainerBattle 743, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_344:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_345
+	TrainerBattle 745, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_345:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_346
+	TrainerBattle 747, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_346:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_347
+	TrainerBattle 741, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_347:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_348
+	TrainerBattle 749, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_348:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_349
+	TrainerBattle 744, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_349:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_350
+	TrainerBattle 739, 0, 1, 0
+	GoTo _cv_battle_338
+_cv_next_350:
+	TrainerBattle 738, 0, 1, 0
+_cv_battle_338:
 	SetFlag 0x202F
 	GoTo PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle
 	End
@@ -3545,67 +3557,67 @@ PalletTown_ProfessorOaksLab_EventScript_RivalBattleBulbasaur:
 	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_350
-	TrainerBattle 742, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_350:
-	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_351
-	TrainerBattle 746, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_351:
-	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_352
-	TrainerBattle 740, 0, 1, 0
-	GoTo _cv_battle_349
+	TrainerBattle 742, 0, 1, 0
+	GoTo _cv_battle_351
 _cv_next_352:
-	CompareVarToValue 0x501A, 10
+	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_353
-	TrainerBattle 738, 0, 1, 0
-	GoTo _cv_battle_349
+	TrainerBattle 746, 0, 1, 0
+	GoTo _cv_battle_351
 _cv_next_353:
-	CompareVarToValue 0x501A, 12
+	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_354
-	TrainerBattle 748, 0, 1, 0
-	GoTo _cv_battle_349
+	TrainerBattle 740, 0, 1, 0
+	GoTo _cv_battle_351
 _cv_next_354:
-	CompareVarToValue 0x501A, 4
+	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_355
-	TrainerBattle 743, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_355:
-	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_356
-	TrainerBattle 745, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_356:
-	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_357
-	TrainerBattle 747, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_357:
-	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_358
-	TrainerBattle 741, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_358:
-	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_359
-	TrainerBattle 749, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_359:
-	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_360
-	TrainerBattle 744, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_360:
-	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_361
-	TrainerBattle 739, 0, 1, 0
-	GoTo _cv_battle_349
-_cv_next_361:
 	TrainerBattle 738, 0, 1, 0
-_cv_battle_349:
+	GoTo _cv_battle_351
+_cv_next_355:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_356
+	TrainerBattle 748, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_356:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_357
+	TrainerBattle 743, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_357:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_358
+	TrainerBattle 745, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_358:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_359
+	TrainerBattle 747, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_359:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_360
+	TrainerBattle 741, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_360:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_361
+	TrainerBattle 749, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_361:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_362
+	TrainerBattle 744, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_362:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_363
+	TrainerBattle 739, 0, 1, 0
+	GoTo _cv_battle_351
+_cv_next_363:
+	TrainerBattle 738, 0, 1, 0
+_cv_battle_351:
 	SetFlag 0x2030
 	GoTo PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle
 	End
@@ -3616,67 +3628,67 @@ PalletTown_ProfessorOaksLab_EventScript_RivalBattleSquirtle:
 	GoToIfNe _cv_team_not_allowed
 	CanvasCloseMsg
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_363
-	TrainerBattle 742, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_363:
-	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_364
-	TrainerBattle 746, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_364:
-	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_365
-	TrainerBattle 740, 0, 1, 0
-	GoTo _cv_battle_362
+	TrainerBattle 742, 0, 1, 0
+	GoTo _cv_battle_364
 _cv_next_365:
-	CompareVarToValue 0x501A, 10
+	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_366
-	TrainerBattle 738, 0, 1, 0
-	GoTo _cv_battle_362
+	TrainerBattle 746, 0, 1, 0
+	GoTo _cv_battle_364
 _cv_next_366:
-	CompareVarToValue 0x501A, 12
+	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_367
-	TrainerBattle 748, 0, 1, 0
-	GoTo _cv_battle_362
+	TrainerBattle 740, 0, 1, 0
+	GoTo _cv_battle_364
 _cv_next_367:
-	CompareVarToValue 0x501A, 4
+	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_368
-	TrainerBattle 743, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_368:
-	CompareVarToValue 0x501A, 15
-	GoToIfNe _cv_next_369
-	TrainerBattle 745, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_369:
-	CompareVarToValue 0x501A, 3
-	GoToIfNe _cv_next_370
-	TrainerBattle 747, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_370:
-	CompareVarToValue 0x501A, 14
-	GoToIfNe _cv_next_371
-	TrainerBattle 741, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_371:
-	CompareVarToValue 0x501A, 5
-	GoToIfNe _cv_next_372
-	TrainerBattle 749, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_372:
-	CompareVarToValue 0x501A, 8
-	GoToIfNe _cv_next_373
-	TrainerBattle 744, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_373:
-	CompareVarToValue 0x501A, 11
-	GoToIfNe _cv_next_374
-	TrainerBattle 739, 0, 1, 0
-	GoTo _cv_battle_362
-_cv_next_374:
 	TrainerBattle 738, 0, 1, 0
-_cv_battle_362:
+	GoTo _cv_battle_364
+_cv_next_368:
+	CompareVarToValue 0x501A, 12
+	GoToIfNe _cv_next_369
+	TrainerBattle 748, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_369:
+	CompareVarToValue 0x501A, 4
+	GoToIfNe _cv_next_370
+	TrainerBattle 743, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_370:
+	CompareVarToValue 0x501A, 15
+	GoToIfNe _cv_next_371
+	TrainerBattle 745, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_371:
+	CompareVarToValue 0x501A, 3
+	GoToIfNe _cv_next_372
+	TrainerBattle 747, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_372:
+	CompareVarToValue 0x501A, 14
+	GoToIfNe _cv_next_373
+	TrainerBattle 741, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_373:
+	CompareVarToValue 0x501A, 5
+	GoToIfNe _cv_next_374
+	TrainerBattle 749, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_374:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_375
+	TrainerBattle 744, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_375:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_376
+	TrainerBattle 739, 0, 1, 0
+	GoTo _cv_battle_364
+_cv_next_376:
+	TrainerBattle 738, 0, 1, 0
+_cv_battle_364:
 	SetFlag 0x2031
 	GoTo PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle
 	End
@@ -3689,12 +3701,12 @@ GymSwitch_EventScript_ConfirmNew:
 	CanvasMsg msg_0451_T01R0301_GymSwitch_Text_ConfirmNew
 	YesNo VAR_SPECIAL_RESULT
 	CompareVarToValue VAR_SPECIAL_RESULT, 0
-	GoToIfEq _cv_yes_375
+	GoToIfEq _cv_yes_377
 	SetVar VAR_SPECIAL_RESULT, 0
-	GoTo _cv_yn_376
-_cv_yes_375:
+	GoTo _cv_yn_378
+_cv_yes_377:
 	SetVar VAR_SPECIAL_RESULT, 1
-_cv_yn_376:
+_cv_yn_378:
 	GoTo GymSwitch_EventScript_Confirmed
 	
 GymSwitch_EventScript_Confirmed:
@@ -3702,11 +3714,13 @@ GymSwitch_EventScript_Confirmed:
 	GoToIfEq GymSwitch_EventScript_ChooseType
 	// TODO(gba) special GymSwitch_SetType
 	GoTo _cv_stop
+	CanvasCandidate 20, 0x5019
 	PlayFanfare SEQ_ME_BADGE
 	BufferPlayersName 6
 	CanvasMsg msg_0451_T01R0301_GymSwitch_Text_NowType
 	WaitButton
 	WaitFanfare
+	CanvasCandidate 21
 	Call Outfits_EventScript_AllGymUniforms
 	CompareVarToValue 0x8007, 1
 	CallIfEq GymSwitch_EventScript_OldLegendLeaves
@@ -3732,66 +3746,66 @@ GymCandidate_EventScript_MentorNoRoom:
 	
 PalletTown_ProfessorOaksLab_EventScript_RivalTakesStarter:
 	CompareVarToValue 0x501A, 17
-	GoToIfNe _cv_next_378
-	BufferSpeciesName 0, SPECIES_POOCHYENA, 0, 0
-	GoTo _cv_done_377
-_cv_next_378:
-	CompareVarToValue 0x501A, 13
-	GoToIfNe _cv_next_379
-	BufferSpeciesName 0, SPECIES_PIKACHU, 0, 0
-	GoTo _cv_done_377
-_cv_next_379:
-	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_380
-	BufferSpeciesName 0, SPECIES_TYROGUE, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_POOCHYENA, 0, 0
+	GoTo _cv_done_379
 _cv_next_380:
-	CompareVarToValue 0x501A, 10
+	CompareVarToValue 0x501A, 13
 	GoToIfNe _cv_next_381
-	BufferSpeciesName 0, SPECIES_CHARMANDER, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_PIKACHU, 0, 0
+	GoTo _cv_done_379
 _cv_next_381:
-	CompareVarToValue 0x501A, 12
+	CompareVarToValue 0x501A, 1
 	GoToIfNe _cv_next_382
-	BufferSpeciesName 0, SPECIES_BULBASAUR, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_TYROGUE, 0, 0
+	GoTo _cv_done_379
 _cv_next_382:
-	CompareVarToValue 0x501A, 4
+	CompareVarToValue 0x501A, 10
 	GoToIfNe _cv_next_383
-	BufferSpeciesName 0, SPECIES_SANDSHREW, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_CHARMANDER, 0, 0
+	GoTo _cv_done_379
 _cv_next_383:
-	CompareVarToValue 0x501A, 15
+	CompareVarToValue 0x501A, 12
 	GoToIfNe _cv_next_384
-	BufferSpeciesName 0, SPECIES_SPHEAL, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_BULBASAUR, 0, 0
+	GoTo _cv_done_379
 _cv_next_384:
-	CompareVarToValue 0x501A, 3
+	CompareVarToValue 0x501A, 4
 	GoToIfNe _cv_next_385
-	BufferSpeciesName 0, SPECIES_EKANS, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_SANDSHREW, 0, 0
+	GoTo _cv_done_379
 _cv_next_385:
-	CompareVarToValue 0x501A, 14
+	CompareVarToValue 0x501A, 15
 	GoToIfNe _cv_next_386
-	BufferSpeciesName 0, SPECIES_RALTS, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_SPHEAL, 0, 0
+	GoTo _cv_done_379
 _cv_next_386:
-	CompareVarToValue 0x501A, 5
+	CompareVarToValue 0x501A, 3
 	GoToIfNe _cv_next_387
-	BufferSpeciesName 0, SPECIES_LARVITAR, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_EKANS, 0, 0
+	GoTo _cv_done_379
 _cv_next_387:
-	CompareVarToValue 0x501A, 8
+	CompareVarToValue 0x501A, 14
 	GoToIfNe _cv_next_388
-	BufferSpeciesName 0, SPECIES_BELDUM, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_RALTS, 0, 0
+	GoTo _cv_done_379
 _cv_next_388:
-	CompareVarToValue 0x501A, 11
+	CompareVarToValue 0x501A, 5
 	GoToIfNe _cv_next_389
-	BufferSpeciesName 0, SPECIES_SQUIRTLE, 0, 0
-	GoTo _cv_done_377
+	BufferSpeciesName 0, SPECIES_LARVITAR, 0, 0
+	GoTo _cv_done_379
 _cv_next_389:
-_cv_done_377:
+	CompareVarToValue 0x501A, 8
+	GoToIfNe _cv_next_390
+	BufferSpeciesName 0, SPECIES_BELDUM, 0, 0
+	GoTo _cv_done_379
+_cv_next_390:
+	CompareVarToValue 0x501A, 11
+	GoToIfNe _cv_next_391
+	BufferSpeciesName 0, SPECIES_SQUIRTLE, 0, 0
+	GoTo _cv_done_379
+_cv_next_391:
+_cv_done_379:
 	BufferTypeName 1, 0x5019
 	BufferTypeName 2, 0x501A
 	BufferRivalsName 7

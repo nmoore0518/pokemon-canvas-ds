@@ -298,25 +298,53 @@ Route25_SeaCottage_EventScript_BillWalkToTeleporter:
 	Return
 	
 Route25_SeaCottage_EventScript_ViewEevee:
+	ScrCmd_452 SPECIES_EEVEE, 0
+	SetVar 0x5065, 1
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_10
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_10:
 	SetVar 0x8004, SPECIES_EEVEE
 	GoTo Route25_SeaCottage_EventScript_BillsMonList
 	End
 	
 Route25_SeaCottage_EventScript_ViewFlareon:
+	ScrCmd_452 SPECIES_FLAREON, 0
+	SetVar 0x5065, 1
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_11
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_11:
 	SetVar 0x8004, SPECIES_FLAREON
 	GoTo Route25_SeaCottage_EventScript_BillsMonList
 	End
 	
 Route25_SeaCottage_EventScript_ViewJolteon:
+	ScrCmd_452 SPECIES_JOLTEON, 0
+	SetVar 0x5065, 1
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_12
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_12:
 	SetVar 0x8004, SPECIES_JOLTEON
 	GoTo Route25_SeaCottage_EventScript_BillsMonList
 	End
 	
 Route25_SeaCottage_EventScript_ViewVaporeon:
+	ScrCmd_452 SPECIES_VAPOREON, 0
+	SetVar 0x5065, 1
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_13
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_13:
 	SetVar 0x8004, SPECIES_VAPOREON
 	GoTo Route25_SeaCottage_EventScript_BillsMonList
 	End

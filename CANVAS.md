@@ -255,8 +255,7 @@ What else it does:
   a script). The same walks serve the Gym Legend's rival, Oak at the gym switch and the Move Extractor's grunt. A
   loss doesn't black out (the leader comes back). The prize is a Gym Leader's (25 a level, doubled the first
   time), paid through hg-engine's prize table for the trainers' class while the battle lasts.
-  Not yet: the mentors' gifts at Cerulean and Cinnabar (the Type Guard and Type Edge items, row 37), the gym
-  decorations.
+  Not yet: the gym decorations.
 - **Where our engine code goes** (hg-engine's overlays): overlay 129 (`engine/src/*.c`, always loaded) is 32KB
   and nearly full (about 5KB left): only small things that must be there go in it (script command dispatch, our
   flags and vars, hooks other overlays call). Field-time code goes in the field overlay, 131 (`engine/src/field`,
@@ -270,7 +269,9 @@ What else it does:
   calls a function in another with `LONG_CALL` in its declaration (a plain call to it lands in ARM mode).
 - **The mentors** (`candidacy.py`, the GBA's `sMentorPeople`): the mentor walks in, says their lines (yes/no answers
   on `VAR_SPECIAL_RESULT`) and walks out by the same searched walks; their sprite goes in var sprite 101
-  (`VAR_OBJ_GFX_ID_0`). Not yet: their gifts (row 37's items) and decorations.
+  (`VAR_OBJ_GFX_ID_0`). Their gifts: after the Cerulean badge the Type Guard of the player's type, after the
+  Cinnabar badge its Type Edge (`mentor_gift_prepare`: once each, flags of ours `CV_MENTOR_GAVE_GUARD/EDGE` for the
+  GBA's `VAR_MENTOR_STAGE` bits); the mentor hands it over at their own gym, else drops by. Not yet: decorations.
 - **The finale** (`port/finale.py`): the ceremony on Pallet's plateau, with the mentor and the last leader in var
   sprites 101-103. HeartGold's plateau is smaller than the GBA's, so a crowd stands on the ground round it
   (`CROWD`, 14 people in rows below and beside it, the aisle up the middle left clear, each with a line of their
@@ -354,6 +355,60 @@ Wild battles the GBA sets up (`setwildbattle`, then `dowildbattle` or `special B
 are HeartGold's `WildBattle` (lose and you white out); `GetBattleOutcome` gives the GBA's numbers (caught 7, ran 4)
 from HeartGold's outcome. Someone whose flag the script sets before the battle with `FLAG_SYS_CTRL_OBJ_DELETE` is
 taken away after it (Snorlax).
+
+## Our own items (`build_items.py`)
+
+The GBA game's items are hg-engine items after its last (Canari Bread, 2684): ids kept (saves hold them).
+- 2685 the **Eviolate** (Eviolite's offensive twin: Attack and Sp. Atk x1.5 for a Pokemon that can still evolve,
+  `CalcBaseDamage.c` beside Choice Band); 2686-2721 the mentors' **type gear**, a Guard and an Edge per type in the
+  GBA's order (Guard: a super-effective hit on the holder does normal damage; Edge: the holder's damaging moves do
+  at least normal damage, immunities by type too - both in `GetTypeEffectiveness`, on top of the chart; never tossed
+  (their data), never taken: `CanItemBeRemovedFromSpecies` and Bestow); 2722-2739 the **Type Balls** (3.5x on a
+  Pokemon of the ball's type, `CalculateBallShakes.c`).
+- What the script writes: the defines (plain numbers: the porter reads them), `itemdata.c`, the names (bank 222, a
+  line an item id) and hg-engine's banks for items past its own (221 descriptions, 223 "a X", 224 plurals, 829
+  give-item; a line an item from 2685), the icons (the GBA's 24x24 in the middle of the DS's 32x32) and
+  `itemgra.mk`. Hold effects 221-223 are ours (`HOLD_EFFECT_CANVAS_*`); `include/canvas_items.h` says where each
+  item works.
+- **A caught Pokemon's Type Ball**: HeartGold keeps a ball as a number up to 25 and has no picture for ours, so
+  `SetBoxMonData` (`engine/src/pokemon.c`) records it as a Poke Ball and keeps the ball's type + 1 in block C's spare
+  byte (`MON_DATA_UNK_121`). Its boost (the GBA's `GetTypeBallStatBoosts`: a Pokemon of the ball's type has its
+  lowest base stat, all of them if several tie, x1.5) is in `Canvas_CalcMonStats`, which takes the place of
+  HeartGold's CalcMonStats (hooks); `Canvas_SetCaughtBall` (in place of sub_020720FC) works the stats out again as
+  the ball is set. Checked: a level-2 Vulpix caught in a Fire Ball has 19 HP (13-14 without).
+- Mom's gift after Nugget Bridge is the Type Ball of the player's type (`DadStory_GetGymTypeBall`). Not yet: the Ball
+  Maker in Dad's basement.
+
+## The player's badge (`build_badges.py`)
+
+The GBA's 18 badge pictures (32x32) as 4bpp tiles in `engine/data/canvas_badges.h`, by HeartGold's type number.
+`GymBadge_ShowIcon` / `HideIcon` are `CanvasCandidate 20 type` / `21` (`engine/src/field/canvas_badge.c`): a window
+above the message box with HeartGold's picture frame (the one its Pokemon picture has: tiles 0x3D9, palette 11), the
+picture doubled to 64x64 (window tiles from 0x2C0, palette 14; its clear pixels white). The pedestal decoration waits
+on the gym decorations.
+
+## The Gym Legend (`port/finale.py`)
+
+The legendary of the player's type (the GBA's `gGymLegends`) arrives as the GBA's does: the lights go out (the
+"Huh!? The lights!" line comes just before the dark: HeartGold's fade darkens the message box too), it appears in
+square 12, 18 (the GBA's spot when there's no battle stage: the middle of the room), the camera goes to it and back
+(HeartGold's camera object, `ScrCmd_102`/`103`, walked by `CanvasCandidate 22 x, z` / `23`), and it waits there until
+it's caught: a HeartGold wild battle at 70 (lose and you white out), the rival's scenes after. Its place and look are
+set on the gym's transition as well as its load (HeartGold makes a map's people before its OnLoad script).
+`GymSwitch_HasSwitched` reads flags of ours by type (`FLAG_GYM_TYPE_OWNED_<TYPE>`), set when the gym's type
+changes (row 28). Not yet: the 1-in-100 encounter in Cerulean Cave once it has got away (the rival's hint is there).
+
+## The Pokemon Tower's graves and the ghost girl
+
+30 graves on 2F-4F (the GBA's `build_tower_graves.py`) show their Pokemon (HeartGold's picture window,
+`ScrCmd_452`/`453`: the porter's `showmonpic`/`hidemonpic` everywhere now, with a var of ours saying whether one is
+open), its name and its trainer. The ten that never evolved each set a flag of ours (`CV_TOWER_GRAVE_nn`); the tenth
+read brings the girl and her Scyther (`CanvasCandidate 18 girl, scyther` / `19`, `canvas_candidate.c`): they appear
+near the player (the GBA's squares: the girl two off, else three, else one, her Scyther beside her), flicker in,
+are there every other frame while she speaks (the GBA blends them half there; HeartGold's billboards share one
+model, so a sys task of ours shows and hides them), and flicker out. She gives the Eviolate. Note on overworld
+sprites: hg-engine numbers its Pokemon overworlds after ours (`MON_OVERWORLD_GFX_START`), so a stale file in
+`engine/build/pokemonow` (an old `2_00nn` of ours) shifts every one by a place (the Scyther showed as Mr. Mime).
 
 ## Our own species (the ten new Eeveelutions)
 

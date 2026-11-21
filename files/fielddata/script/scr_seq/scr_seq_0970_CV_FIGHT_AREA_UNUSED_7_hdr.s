@@ -14,7 +14,7 @@ _cv_CV_FIGHT_AREA_UNUSED_7_frame:
 	InitScriptGoToIfEqual 0x5005, 3, _EV_PalletTown_Gym_EventScript_OakWantsTheGym + 1
 	InitScriptGoToIfEqual 0x5014, 1, _EV_GymLegend_EventScript_RivalEscaped + 1
 	InitScriptGoToIfEqual 0x5014, 3, _EV_GymLegend_EventScript_RivalCaught + 1
-	// (not yet: GymLegend_EventScript_ArrivesLater)
+	InitScriptGoToIfEqual 0x5014, 5, _EV_GymLegend_EventScript_ArrivesLater + 1
 	// (not yet: Johto_EventScript_Invitation)
 	InitScriptGoToIfEqual 0x501B, 1, _EV_Gauntlet_EventScript_Arrives + 1
 	InitScriptFrameTableEnd

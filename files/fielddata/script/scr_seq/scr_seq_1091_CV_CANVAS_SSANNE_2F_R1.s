@@ -14,7 +14,14 @@ SSAnne_2F_Room1_EventScript_Gentleman:
 	FacePlayer
 	NPCMsg msg_0917_CV_CANVAS_SSANNE_2F_R1_SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis
 	SetVar 0x8004, SPECIES_SNORLAX
+	ScrCmd_452 SPECIES_SNORLAX, 0
+	SetVar 0x5065, 1
 	WaitButton
+	CompareVarToValue 0x5065, 1
+	GoToIfNe _cv_nopic_1
+	ScrCmd_453
+	SetVar 0x5065, 0
+_cv_nopic_1:
 	CloseMsg
 	ReleaseAll
 	End

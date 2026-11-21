@@ -4,7 +4,8 @@
 #   tools/canvas/engine/make_patch.sh
 # Only the paths below go in: the rest of what differs in engine/ is made at build time (build_rom.sh copies our
 # data headers into engine/data and regenerates data/graphics/pokegra.mk). A new file or folder of ours must be
-# listed here. (data/Encounters.c and data/canvas_encounters.h: build_encounters.py makes them.)
+# listed here. (data/Encounters.c and data/canvas_encounters.h: build_encounters.py makes them.) Our items and badges
+# (build_items.py, build_badges.py) are in it.
 set -euo pipefail
 ROOT=$(cd "$(dirname "$0")/../../.." && pwd)
 cd "$ROOT/engine"
@@ -12,7 +13,9 @@ SPECIES="odeon assasseon hypereon poiseon subterraneon obsideon lenneon apparite
 PATHS="Makefile narcs.mk rom.ld armips/include/constants.s data/codetables.mk data/Trainers.c data/text/730.txt data/text/731.txt
  data/graphics/trainer_gfx data/graphics/overworlds/custom data/scr_seq hooks include src tools/source/trainerdatagen tools/narcpy.py
  data/Species.c data/BabyMons.c data/BaseExperienceTable.c data/Evolutions.c data/FollowerProperties.c data/HeightTable.c
- data/HiddenAbilityTable.c data/IconPaletteTable.c data/SpeciesToOWFormFemale.c data/SpriteOffsets.c data/learnsets/learnsets.json"
+ data/HiddenAbilityTable.c data/IconPaletteTable.c data/SpeciesToOWFormFemale.c data/SpriteOffsets.c data/learnsets/learnsets.json
+ data/itemdata/itemdata.c data/text/221.txt data/text/222.txt data/text/223.txt data/text/224.txt data/text/829.txt
+ data/graphics/itemgra.mk data/graphics/item data/canvas_badges.h"
 for s in $SPECIES; do PATHS="$PATHS data/graphics/sprites/$s"; done
 git add -N $PATHS 2>/dev/null || true        # (new files show in a diff only once git knows of them)
 git diff --binary -- $PATHS > "$ROOT/tools/canvas/engine/patches/0001-canvas.patch"
