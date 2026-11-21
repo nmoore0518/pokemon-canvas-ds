@@ -66,7 +66,7 @@ def build_tile_floor(spec, depth_of):
         pieces[name] = p.mirrored() if v.get('mirror') else p
     roles = {(x, y): T['role'](lay, x, y, P) for y in range(H) for x in range(W)}
     for (x, y), r in roles.items():
-        if r in T.get('models', {}):
+        if not isinstance(r, tuple) and r in T.get('models', {}):
             m, dx, dz = T['models'][r]
             props.append((m, x + 0.5 + dx, y + 0.5 + dz))
     nx_, nz_ = math.ceil(W / 32), math.ceil(H / 32)
@@ -96,12 +96,13 @@ def build_tile_floor(spec, depth_of):
                     if walk(x, y) and (x, y) not in closed:
                         perm[(y - oz) * 32 + (x - ox)] = kind.get((x, y), 0)
                 # the floor, in runs, under every square that has floor (its texture running on, as HeartGold lays it)
-                xs = [x for x in range(X0, X1) if roles[(x, y)] not in T.get('no_floor', ()) and roles[(x, y)] != 'void']
+                first = lambda r: r[0] if isinstance(r, tuple) else r       # (a square can take more than one piece)
+                xs = [x for x in range(X0, X1) if first(roles[(x, y)]) not in T.get('no_floor', ()) and first(roles[(x, y)]) != 'void']
                 for x0_, n_ in K._runs(xs):
                     run_quad(x0_, x0_ + n_, y, y + 1)
                 for x in range(X0, X1):
-                    r = roles[(x, y)]
-                    if r in pieces: pieces[r].lay(emit, x, y)
+                    for r in (roles[(x, y)] if isinstance(roles[(x, y)], tuple) else (roles[(x, y)],)):
+                        if r in pieces: pieces[r].lay(emit, x, y)
             if not meshes:
                 run_quad(X0, X0 + 0.1, Z0, Z0 + 0.1)
             groups = []
@@ -175,3 +176,29 @@ CINNABAR_TILES = dict(
     no_floor=('back', 'corner'),
     role=cinnabar_role,
     models={'machine': (136, 0.5, 0.0), 'statue': (78, 0, 0)})
+
+
+# ---------------------------------------------------------------- the Underground Path's tunnel: HeartGold's own
+# HeartGold's Kanto has the Underground Path too (Route 5's, land 368), a corridor running north-south: its plain
+# floor, its back wall with the light along it, the teal cap over its walls, its stairs at the end. The GBA's tunnel
+# runs east-west: the back wall along its north side (a light where the GBA hangs one), the cap over the wall's top
+# row and its ends, the stairs at either end (the east's turned over); nothing along the south, as HeartGold's rooms
+def underground_role(lay, x, y, P):
+    mt = lambda x_, y_: lay.metatile(x_, y_) if 0 <= x_ < lay.w and 0 <= y_ < lay.h else 0
+    m = mt(x, y)
+    if y == lay.h - 1: return 'void'
+    if (x, y) == (0, 2): return ('top', 'stairs_w')
+    if (x, y) == (lay.w - 4, 0): return ('top', 'stairs_e')
+    if y == 0: return 'top'
+    if y == 1: return 'lit' if m == 0x29D else 'face'
+    if x == 0 or x == lay.w - 1: return 'top'
+    return 'floor'
+
+
+UNDERGROUND_TILES = dict(
+    src=368, base=-3, floor=(6, 10), floor_tex={'kn_c_yuka2'},
+    pieces={'top': dict(at=(10, 5)), 'face': dict(at=(6, 2), drop={'kn_c_light'}), 'lit': dict(at=(6, 2)),
+            'stairs_w': dict(at=(1, 2), size=(4, 5), drop={'kn_c_light', 'kn_c_kabe1'}),
+            'stairs_e': dict(at=(1, 2), size=(4, 5), drop={'kn_c_light', 'kn_c_kabe1'}, mirror=True)},
+    no_floor=('top',),
+    role=underground_role)

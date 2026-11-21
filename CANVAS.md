@@ -697,6 +697,14 @@ darker than white (`DEFAULT_COLOUR`). Without them every piece was lit evenly fr
   wide, and smaller ones are too small to read, so the Pokemon Tower's are HeartGold's size spread over each patch of
   graves about every other square (`spread`), the patch's squares closed as the GBA's. Its 40 polygons are made over
   in 5 (`block_piece`: body and picture, HeartGold's colours; sides against a neighbour left off).
+- **The Power Plant**: HeartGold's panelled machine wall everywhere the GBA has wall (tall, a wall across the floor
+  cut down to 32 with the wall's dark on top; a short wall's end the same panel), its coils HeartGold's drums, its
+  rubble Mt. Moon's boulder card as before.
+- **The Pokemon Mansion**: the Burned Tower's walls (a wall across the floor cut down to 28), its own charred timbers
+  for the GBA's rubble (a heap to two squares each way), its wall panel for the GBA's one-square pillars.
+- **The Underground Path's tunnel** is HeartGold's own Underground Path (Route 5's, land 368) laid by a tile table:
+  its back wall with the light along it on the GBA's north wall, its teal cap, its plain floor, its stairs at both
+  ends (the east's turned over); a square can take more than one piece (the cap and the stairs over it).
 - **Run `build_interiors.py` as a script**: it registers itself as `build_interiors` before the kits import it (else
   they load a second copy, and the models they place never reach the area's building set: drawn as empty boxes).
 
@@ -860,9 +868,9 @@ More, from the pass after it:
     trees, as HeartGold's areas' ways out are.
 - the porter keeps people clear of doors and stairs and of each other (`clear_of`): anyone who stood three or
   more squares from someone on the GBA stays at least a square apart here.
-Still rough: the low blocks (tables, machines) are plain boxes, and inner walls are low kerbs with a flat top
-(Silph, the Hideout, the Power Plant, the Mansion read as floor plans more than rooms); no elevator, card-key
-doors or spin tiles; the Game Corner's machines do nothing.
+Still rough: the S.S. Anne's block of cabins is a low wall with HeartGold's ceiling grey on top (its doors face
+north, which HeartGold's camera can't show); the S.S. Anne's deck, the Game Corner, the Prize Room and the Safari
+Zone's rest houses still have walls we draw (in HeartGold's textures); the Game Corner's machines do nothing.
 
 ## Where our land meets HeartGold's (the sea round Cinnabar and below Pallet)
 

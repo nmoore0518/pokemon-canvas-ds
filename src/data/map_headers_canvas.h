@@ -3456,7 +3456,7 @@ static const MapHeader sCanvasMapHeaders[] = {
                         },
     [MAP_CANVAS_UNDERGROUND_EW - MAP_CANVAS_FIRST] = {
                         .wildEncounterBank = ENCDATA_NA,
-                        .areaDataBank = 42,
+                        .areaDataBank = 44,
                         .moveModelBank = 15,
                         .worldMapX = 40,
                         .worldMapY = 5,

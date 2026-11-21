@@ -84,8 +84,12 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     'mansion': dict(area=78, stairs=(66, 66, 67, 67), kit=dict(
         src=449, base=0, floor=(13, 23), floor_tex={'d18_yuka01'}, top=(10, 2),
         faces={'plain': (7, 5), 'lit': (8, 5)}, lit_every=5, face_drop={'d182f_wall01', 'd182f_wall02', 'd18_yuka02'},
-        things=[dict(mt={0x324}, model=23)], furnish=True, tall_walls=True,
-        stone=dict(tex='d181f_wall01', top=(0, 0, 16, 12), side=(8, 20), w=0.9, d=0.8, h=12))),
+        # (its rubble: the Burned Tower's own charred timbers, a heap to two squares each way; its pillars - the
+        # GBA's walls a square round - its wall panel; a wall across the floor cut down to 28, so it hides nobody)
+        things=[dict(mt={0x324}, model=23),
+                dict(mt={0x2CB, 0x2CC}, src=449, piece=(7, 5, 2, 2), keep={'en_yake_3'}, center=True)],
+        furnish=True, tall_walls=True, partition=28,
+        block=(7, 5, 1, 1), block_src=449, block_base=0)),
     # the Power Plant in HeartGold's own (Route 10's, area 44, land 367): its stone-tiled floor, its wall of machine
     # cabinets, its dark top; the GBA's rubble as HeartGold's cave boulder (Mt. Moon's set, imported) stood up as its
     # rocks stand, its coils as blocks of the generator's yellow
@@ -93,12 +97,17 @@ LOOKS = {   # HeartGold texture set (and area), floor, wall face, wall top, low 
     # in a warm recolouring of its textures (our area 122, its own texture set: RECOLOURS); HeartGold's terminal for
     # the quiz machines, its gym statues (tile_kit.py)
     'cinnagym': dict(area=122, texset=122, stairs=(7, 8, 9, 10), tiles=tile_kit.CINNABAR_TILES),
+    # the Underground Path's tunnel: HeartGold's own (Route 5's, area 44) square for square (tile_kit.py)
+    'underground': dict(area=44, stairs=(7, 8, 9, 10), tiles=tile_kit.UNDERGROUND_TILES),
     'plant': dict(area=44, stairs=(168, 169, 171, 170), pad_model=157, kit=dict(
         src=367, base=46, floor=(8, 4), floor_tex={'mpwr_r02'}, top=(25, 5),
         faces={'plain': (8, 2)},
         things=[dict(mt={0x2D8, 0x2D9}, model=81, each_square=True)],     # (its coils: HeartGold's drum, one a square)
         each=[dict(mt={0x2B5, 0x2B6, 0x2E2}, card=dict(tex='d_rock01', uv=(0, 0, 32, 32), w=1.0, h=15, zf=0.92, zt=0.4))],
-        each_default=dict(stone=dict(tex='mpwr_r05', top=(0, 0, 16, 16), side=(8, 8), w=0.9, d=0.9, h=12)))),
+        # (its walls are HeartGold's panelled machine wall, tall; one across the floor - floor north of it too - cut
+        # down to 32, its top the wall's dark; a short wall's end the same panel, as a block)
+        tall_walls=True, partition=32, partition_top=(7.5, 15.0), top_tex='mpwr_r06',
+        block=(8, 2, 1, 1), block_base=46)),
     # (kit looks: interior_kit.build_kit_floor lays them from pieces of HeartGold's own rooms. src: the land cut
     # from; base: its floor's height; floor, top: a square of its floor, of its wall's top; faces: a square of its
     # wall face (plain, its ends, its art), (x, z[, w, h]); art: GBA wall metatile -> face; things: furniture by the
@@ -243,7 +252,7 @@ _H = 'MAP_SAFFRON_MR_PSYCHIC_HOUSE'
 ROOM_LOOK = {'VermilionCity_MedicalCenter_1F': 'labroom', 'LeaderAcademy_PokemonCenter': 'labroom', 'LeaderAcademy_LectureA': 'labroom',
              'LeaderAcademy_LectureB': 'labroom', 'LeaderAcademy_LectureC': 'labroom', 'LeaderAcademy_LectureD': 'labroom',
              'UndergroundPath_WestEntrance_Frlg': 'labroom', 'UndergroundPath_EastEntrance_Frlg': 'labroom',
-             'CeladonCity_PitHall': 'house', 'UndergroundPath_EastWestTunnel_Frlg': 'house'}
+             'CeladonCity_PitHall': 'house', 'UndergroundPath_EastWestTunnel_Frlg': 'underground'}
 INTERIORS += [dict(gba=g, map=m, look=ROOM_LOOK.get(g, 'room'), template=t, depth=0, place=pl) for g, m, t, pl in [
     ('CeladonCity_Hotel_Frlg', 'MAP_CANVAS_CELADON_HOTEL', _H, 'MAP_CELADON'),
     ('CeladonCity_PitHall', 'MAP_CANVAS_PIT_HALL', _H, 'MAP_CELADON'),
