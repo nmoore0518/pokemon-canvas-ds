@@ -11457,6 +11457,41 @@ index 1b23ea97..422078c3 100644
 +# Pokemon Canvas: the GBA's Safari Zone on HeartGold's (src/canvas_safari.c): its Pokemon and its 600 steps
 +arm9 Canvas_SafariLoadAreaEncounters 020974C4
 +0001 Canvas_UpdateSafari 021E79CC
+diff --git a/include/canvas_candidate.h b/include/canvas_candidate.h
+new file mode 100644
+index 00000000..4423300d
+--- /dev/null
++++ b/include/canvas_candidate.h
+@@ -0,0 +1,29 @@
++// Pokemon Canvas: the candidacy's state (field/canvas_candidate.c). The code is in the field overlay, which is
++// unloaded for a battle and loaded again after it (its variables start over), so what has to last through the
++// guest's battle - the challenger, the walks, where the leader stands - lives in overlay 129 (canvas_state.c).
++#ifndef CANVAS_CANDIDATE_H
++#define CANVAS_CANDIDATE_H
++#include "types.h"
++
++#define CANVAS_PATH_MAX 60
++
++struct CanvasChallenger {
++    u8 valid, count, trainerClass, iv, prizeRate;
++    u16 species[6], item[6];
++    u8 level[6];
++    u16 name[8];
++    u32 ai;
++};
++
++struct CanvasCandidateState {
++    struct CanvasChallenger challenger;
++    u16 prizeWas;
++    u8 guestDir, facingBefore, visitorWalked;
++    u8 walkIn[CANVAS_PATH_MAX + 2], walkOut[CANVAS_PATH_MAX + 2], walkLen;
++    u8 holding, holdDir;
++    u16 holdLeaderId;
++    s16 leaderX, leaderZ, asideX, asideZ;
++};
++
++extern struct CanvasCandidateState gCanvasCandidate;
++#endif
 diff --git a/include/constants/file.h b/include/constants/file.h
 index 13b6cbaf..e0b46b59 100644
 --- a/include/constants/file.h
@@ -11724,472 +11759,6 @@ index 00000000..c4dd4fbf
 +        if (Canvas_BoulderOnSwitch(taskManager, fieldSystem, rock))
 +            return FALSE;         // (the task goes on as the switch's script)
 +        return TRUE;
-+    }
-+    return FALSE;
-+}
-diff --git a/src/canvas_candidate.c b/src/canvas_candidate.c
-new file mode 100644
-index 00000000..2a567810
---- /dev/null
-+++ b/src/canvas_candidate.c
-@@ -0,0 +1,460 @@
-+// Pokemon Canvas: the GBA game's candidacy (its src/gym_candidate.c, src/gym_challenge.c): after a badge the leader
-+// asks the player to hold their gym against one or two challengers ("Guest Leader" battles).
-+//  - the challengers are built at the time (GymChallenge_GenerateGuest: a random class and name, a team of any type
-+//    from the first three generations and the new eeveelutions, by the leader's tier), into the trainer the script
-+//    battles (CANVAS_CHALLENGER_FIRST..: one a defeat line), whose party and name MakeTrainerPokemonParty takes here;
-+//  - the visitors (the challenger, the mentor) walk in from the map's door to the player by a search over the map,
-+//    or appear beside them; the player takes the leader's spot while the leader watches from aside.
-+// Data: data/canvas_challengers.h (tools/canvas/port/challengers.py). Command CanvasCandidate (script_new_cmds.c).
-+#include "../include/types.h"
-+#include "../include/battle.h"
-+#include "../include/pokemon.h"
-+#include "../include/save.h"
-+#include "../include/script.h"
-+#include "../include/trainer_data.h"
-+#include "../include/constants/species.h"
-+#include "../include/constants/item.h"
-+#include "../include/constants/trainerclass.h"
-+
-+#define CANVAS_CHALLENGER_FIRST 1470        // (trainers.py: TRAINER_CANVAS_GUEST_0..)
-+#define CANVAS_CHALLENGER_COUNT 16
-+
-+struct CanvasChallengerClass { u8 trainerClass; u8 female; };
-+// the pool, a byte a species (Bulbasaur to Deoxys, then our eeveelutions after Pecharunt): its first type (bits 0-4,
-+// POOL_LEGENDARY for one never picked), how many times it has evolved (5-6), whether it evolves (7)
-+#define POOL_TYPE(b) ((b) & 0x1F)
-+#define POOL_STAGE(b) (((b) >> 5) & 3)
-+#define POOL_EVOLVES(b) ((b) >> 7)
-+#define POOL_LEGENDARY 0x1F
-+#define POOL_GEN3 386
-+#define POOL_SPECIES(i) ((i) < POOL_GEN3 ? (i) + 1 : 1076 + (i) - POOL_GEN3)
-+#include "../data/canvas_challengers.h"
-+
-+#define FN(addr, ret, args) ((ret (*) args)((addr) | 1))
-+#define Cv_Heap_Alloc FN(0x0201AA8C, void *, (u32, u32))
-+#define Cv_Heap_Free FN(0x0201AB0C, void, (void *))
-+#define Cv_GetObjectById FN(0x02041C70, void *, (FieldSystem *, u16))             // sub_02041C70 (0xFF: the player)
-+#define Cv_GetObjectAt FN(0x0205FB58, void *, (void *, u32, u32, BOOL))         // MapObjectManager_GetFirstObjectWithXAndZ
-+#define Cv_Blocked FN(0x020548C0, BOOL, (FieldSystem *, int, int))              // sub_020548C0: the square's collision
-+#define Cv_ObjX FN(0x0205F914, u32, (void *))
-+#define Cv_ObjZ FN(0x0205F934, u32, (void *))
-+#define Cv_ObjY FN(0x0205F924, s32, (void *))
-+#define Cv_ObjFace FN(0x0205F290, void, (void *, u32))                          // MapObject_SetFacingDirection
-+#define Cv_ObjFacing FN(0x0205F2A8, u32, (void *))                              // MapObject_GetFacingDirection
-+#define Cv_ObjSetVisible FN(0x0205F690, void, (void *, BOOL))                    // (TRUE: hidden)
-+#define Cv_ObjPlace FN(0x0205FC2C, void, (void *, u32, u32, u32, u32))          // MapObject_SetPositionFromXYZAndDirection
-+#define Cv_Warp FN(0x0203B6E8, const struct CvWarp *, (FieldSystem *, u32))     // Field_GetWarpEventI
-+#define Cv_MovementCreate FN(0x02062214, void *, (void *, void *))              // EventObjectMovementMan_Create
-+#define Cv_MovementSchedule FN(0x02041CC4, void, (FieldSystem *, void *, void *)) // _ScheduleObjectEventMovement
-+#define Cv_SysAttr FN(0x020402F0, void *, (FieldSystem *, int))                 // FieldSysGetAttrAddr
-+#define SCRIPTENV_NUM_ACTIVE_MOVEMENT 4
-+#define HEAP_ID_FIELD1 4
-+#define OBJ_PLAYER 0xFF
-+#define VAR_RESULT 0x800C
-+#define VAR_LAST_TALKED 0x800D      // (VAR_SPECIAL_LAST_TALKED)
-+
-+struct CvWarp { u16 x; u16 z; u16 header; u16 anchor; u32 y; };
-+struct CvMove { u16 command; u16 length; };
-+enum { DIR_N, DIR_S, DIR_W, DIR_E };
-+#define MOVE_FACE 0
-+#define MOVE_WALK 12
-+#define MOVE_FAST 16
-+#define MOVE_END 254
-+static const s8 sDx[] = {0, 0, -1, 1}, sDz[] = {-1, 1, 0, 0};
-+static const u8 sOpposite[] = {DIR_S, DIR_N, DIR_E, DIR_W};
-+
-+// ---------------------------------------------------------------- the challenger
-+#define PRACTICE_TIERS 3
-+static const u8 sTierIv[PRACTICE_TIERS] = {5, 16, 31};          // (sPracticeTiers: iv, held item chance)
-+static const u8 sTierItemChance[PRACTICE_TIERS] = {0, 20, 60};
-+static const s8 sLevelSpread[7][6] = {{0}, {0}, {-1, 1}, {-1, 0, 1}, {-1, 0, 0, 1}, {-2, -1, 0, 1, 2}, {-2, -1, 0, 0, 1, 2}};
-+
-+static struct {
-+    u8 valid, count, trainerClass, iv, prizeRate;
-+    u16 species[6], item[6];
-+    u8 level[6];
-+    u16 name[8];
-+    u32 ai;
-+} sChallenger;
-+
-+// The prize: a Gym Leader's (GYM_GUEST_PRIZE_RATE a level, doubled the first time: the GBA's Cmd_getmoneyreward).
-+// HeartGold pays by the class in the trainer's data (our trainers': GUEST_PRIZE_CLASS), so that class's rate in
-+// hg-engine's table is the guest's for the battle, and put back after it
-+#define GUEST_PRIZE_RATE 25
-+#define GUEST_PRIZE_CLASS TRAINERCLASS_ACE_TRAINER_M_GS
-+struct TrainerMoney { u16 class; u16 multiplier; };
-+extern struct TrainerMoney PrizeMoney[];
-+static u16 sPrizeWas;
-+static struct TrainerMoney *GuestPrize(void)
-+{
-+    u32 i;
-+    for (i = 0; i < 300; i++)
-+        if (PrizeMoney[i].class == GUEST_PRIZE_CLASS) return &PrizeMoney[i];
-+    return NULL;
-+}
-+
-+struct Party *LONG_CALL SaveArray_Party_Get(void *saveData);
-+int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
-+
-+static u32 Rand(u32 n) { return n ? gf_rand() % n : 0; }
-+
-+u32 Canvas_PlayerAverageLevel(void)
-+{
-+    struct Party *party = SaveArray_Party_Get(SaveBlock2_get());
-+    int n = PokeParty_GetPokeCount(party), i, count = 0, total = 0;
-+    for (i = 0; i < n; i++) {
-+        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
-+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == 0 || GetMonData(mon, MON_DATA_IS_EGG, NULL))
-+            continue;
-+        total += GetMonData(mon, MON_DATA_LEVEL, NULL);
-+        count++;
-+    }
-+    return count ? (total + count / 2) / count : 50;
-+}
-+
-+static u32 ClampLevel(s32 level) { return level < 1 ? 1 : level > 100 ? 100 : level; }
-+
-+// The GBA's PracticePreference: 0 = what the tier is about, 1 = also fine, 2 = only if there's nothing else
-+static u32 Preference(u8 m, u32 tier)
-+{
-+    if (tier == 0) return POOL_STAGE(m) == 0 ? 0 : (POOL_STAGE(m) == 1 ? 1 : 2);
-+    if (tier == 1) return POOL_STAGE(m) == 1 ? 0 : (POOL_STAGE(m) == 0 ? 1 : 2);
-+    return !POOL_EVOLVES(m) ? 0 : (POOL_STAGE(m) >= 1 ? 1 : 2);
-+}
-+
-+// The GBA's BuildTeam: a team of a type (or any: 0xFF), no legendaries, no two alike, by the tier's preference
-+static u32 BuildTeam(u32 tier, u32 type, u32 level, u32 count)
-+{
-+    u16 *lists[3];
-+    u32 counts[3] = {0, 0, 0}, i, k, n, total;
-+    s8 spread[6];
-+    for (k = 0; k < 3; k++)
-+        lists[k] = sys_AllocMemory(HEAP_ID_FIELD1, NELEMS(sCanvasPool) * sizeof(u16));
-+    for (i = 0; i < NELEMS(sCanvasPool); i++) {
-+        u8 m = sCanvasPool[i];
-+        if (POOL_TYPE(m) == POOL_LEGENDARY || (type != 0xFF && POOL_TYPE(m) != type))
-+            continue;
-+        k = Preference(m, tier);
-+        lists[k][counts[k]++] = i;
-+    }
-+    total = counts[0] + counts[1] + counts[2];
-+    n = count ? (count > 6 ? 6 : count) : 3 + Rand(3);
-+    if (n > total) n = total;
-+    for (i = 0; i < 6; i++) spread[i] = sLevelSpread[n][i];
-+    for (i = n - 1; i > 0 && n > 0; i--) {            // (ShuffleLevels)
-+        u32 j = Rand(i + 1);
-+        s8 t = spread[i]; spread[i] = spread[j]; spread[j] = t;
-+    }
-+    for (i = 0; i < n; i++) {
-+        u32 order[3] = {0, 1, 2}, pick = 0;
-+        if (tier != 2 && Rand(3) == 0) { order[0] = 1; order[1] = 0; }     // (the earlier forms mix now and then)
-+        for (k = 0; k < 3; k++) {
-+            u32 *c = &counts[order[k]];
-+            if (*c) {
-+                u16 *list = lists[order[k]];
-+                u32 j = Rand(*c);
-+                pick = list[j];
-+                list[j] = list[--*c];
-+                break;
-+            }
-+        }
-+        sChallenger.species[i] = POOL_SPECIES(pick);
-+        sChallenger.level[i] = ClampLevel((s32)level + spread[i]);
-+        sChallenger.item[i] = Rand(100) < sTierItemChance[tier] ? sCanvasHeldItems[Rand(NELEMS(sCanvasHeldItems))] : 0;
-+    }
-+    for (k = 0; k < 3; k++)
-+        sys_FreeMemoryEz(lists[k]);
-+    return n;
-+}
-+
-+// GymChallenge_GenerateGuest(baseLevel, partySize, tier, repeat) -> the class picked (the porter gives it its look)
-+static u32 Canvas_GenerateGuest(u32 baseLevel, u32 partySize, u32 tier, BOOL repeat)
-+{
-+    u32 cls = Rand(NELEMS(sCanvasClasses)), i;
-+    const u8 *name = sCanvasClasses[cls].female ? sCanvasFemaleNames[Rand(NELEMS(sCanvasFemaleNames))]
-+                                                 : sCanvasMaleNames[Rand(NELEMS(sCanvasMaleNames))];
-+    s32 avg = Canvas_PlayerAverageLevel(), level = (s32)baseLevel > avg - 3 ? (s32)baseLevel : avg - 3, n;
-+    if (repeat) {      // (a stand-in shift after the approval: one at the player's level, more evolved as they grow)
-+        u32 t = avg >= 40 ? 2 : avg >= 25 ? 1 : 0;
-+        level = avg - 2 + (s32)Rand(6);
-+        if (level < 5) level = 5;
-+        if (level > 100) level = 100;
-+        if (tier < t) tier = t;
-+    }
-+    if (tier >= PRACTICE_TIERS) tier = PRACTICE_TIERS - 1;
-+    sChallenger.trainerClass = sCanvasClasses[cls].trainerClass;
-+    for (i = 0; i < 7 && name[i]; i++)        // (ASCII letters -> HeartGold's: A 0x12B, a 0x145)
-+        sChallenger.name[i] = name[i] >= 'a' ? 0x145 + name[i] - 'a' : 0x12B + name[i] - 'A';
-+    sChallenger.name[i++] = 0xFFFF;
-+    for (; i < 8; i++) sChallenger.name[i] = 0;
-+    sChallenger.iv = sTierIv[tier];
-+    sChallenger.ai = sCanvasTierAI[tier];
-+    n = BuildTeam(tier, 0xFF, level, partySize);
-+    sChallenger.count = n ? n : 1;
-+    sChallenger.prizeRate = repeat ? GUEST_PRIZE_RATE : GUEST_PRIZE_RATE * 2;
-+    sChallenger.valid = TRUE;
-+    return cls;
-+}
-+
-+// From MakeTrainerPokemonParty (field/enemy_party.c): our challenger's party and name, for the trainers that are ours
-+BOOL Canvas_MakeChallengerParty(struct BATTLE_PARAM *bp, int num, int heapID)
-+{
-+    extern u32 gLastPokemonLevelForMoneyCalc;
-+    u32 id = bp->trainer_id[num], i;
-+    if (id < CANVAS_CHALLENGER_FIRST || id >= CANVAS_CHALLENGER_FIRST + CANVAS_CHALLENGER_COUNT || !sChallenger.valid)
-+        return FALSE;
-+    TRAINER_DATA *td = &bp->trainer_data[num];
-+    struct TrainerMoney *prize = GuestPrize();
-+    if (prize != NULL) {          // (HeartGold doubles a double battle's prize itself)
-+        if (!sPrizeWas) sPrizeWas = prize->multiplier;
-+        prize->multiplier = sChallenger.prizeRate / ((bp->fight_type & BATTLE_TYPE_DOUBLES) ? 2 : 1);
-+    }
-+    td->tr_type = sChallenger.trainerClass;
-+    td->poke_count = sChallenger.count;
-+    td->aibit = sChallenger.ai;
-+    for (i = 0; i < 8; i++) td->name[i] = sChallenger.name[i];
-+    PokeParty_Init(bp->poke_party[num], 6);
-+    for (i = 0; i < sChallenger.count; i++) {
-+        struct PartyPokemon *mon = AllocMonZeroed(heapID);
-+        u32 pid = ((u32)gf_rand() << 16) | gf_rand();            // (a random nature and gender: the GBA's)
-+        PokeParaSet(mon, sChallenger.species[i], sChallenger.level[i], sChallenger.iv, 1, pid, 2, 0);
-+        if (sChallenger.item[i]) SetMonData(mon, MON_DATA_HELD_ITEM, &sChallenger.item[i]);
-+        RecalcPartyPokemonStats(mon);
-+        PokeParty_Add(bp->poke_party[num], mon);
-+        sys_FreeMemoryEz(mon);
-+        gLastPokemonLevelForMoneyCalc = sChallenger.level[i];
-+    }
-+    return TRUE;
-+}
-+
-+// ---------------------------------------------------------------- where visitors stand and walk
-+static u8 sGuestDir, sFacingBefore, sVisitorWalked;
-+#define PATH_MAX 60
-+static u8 sWalkIn[PATH_MAX + 2], sWalkOut[PATH_MAX + 2], sWalkLen;
-+
-+static BOOL Free(FieldSystem *fsys, int x, int z)
-+{
-+    return !Cv_Blocked(fsys, x, z) && Cv_GetObjectAt(fsys->mapObjectMan, x, z, FALSE) == NULL;
-+}
-+
-+static void PlayerXZ(FieldSystem *fsys, int *x, int *z, u32 *facing)
-+{
-+    void *p = Cv_GetObjectById(fsys, OBJ_PLAYER);
-+    *x = Cv_ObjX(p); *z = Cv_ObjZ(p);
-+    if (facing) *facing = Cv_ObjFacing(p);
-+}
-+
-+// GymCandidate_PlaceGuest: a free square next to the player, behind them first -> 0x8005/6, result
-+static void Canvas_PlaceGuest(FieldSystem *fsys)
-+{
-+    int px, pz, i;
-+    u32 facing, order[4];
-+    PlayerXZ(fsys, &px, &pz, &facing);
-+    sGuestDir = sOpposite[facing];
-+    sFacingBefore = facing;
-+    sVisitorWalked = FALSE;
-+    order[0] = sOpposite[facing];
-+    order[1] = (facing == DIR_N || facing == DIR_S) ? DIR_W : DIR_N;
-+    order[2] = sOpposite[order[1]];
-+    order[3] = facing;
-+    SetScriptVar(VAR_RESULT, FALSE);
-+    for (i = 0; i < 4; i++) {
-+        int x = px + sDx[order[i]], z = pz + sDz[order[i]];
-+        if (Free(fsys, x, z)) {
-+            SetScriptVar(0x8005, x); SetScriptVar(0x8006, z);
-+            sGuestDir = order[i];
-+            SetScriptVar(VAR_RESULT, TRUE);
-+            return;
-+        }
-+    }
-+}
-+
-+// GymCandidate_FaceGuest / FaceBack
-+static void Canvas_FaceGuest(FieldSystem *fsys, u16 objId)
-+{
-+    void *o = Cv_GetObjectById(fsys, objId);
-+    if (o) Cv_ObjFace(o, sOpposite[sGuestDir]);
-+    Cv_ObjFace(Cv_GetObjectById(fsys, OBJ_PLAYER), sGuestDir);
-+}
-+
-+// GymCandidate_PlanVisitorWalk: from the map's door (its lowest warp) to the player, by a search over the squares
-+// round them (frontOnly: ending right in front of the player) -> 0x8005/6 the door, result; the walks in sWalkIn/Out
-+#define BOX 48
-+static void Canvas_PlanVisitorWalk(FieldSystem *fsys, BOOL frontOnly)
-+{
-+    int px, pz, sx = -1, sz = -1, x0, z0, i, head = 0, tail = 0, start, goal = -1;
-+    u32 facing;
-+    const struct CvWarp *w;
-+    s16 *from, *queue;
-+    u8 *dir;
-+    SetScriptVar(VAR_RESULT, FALSE);
-+    sVisitorWalked = FALSE;
-+    PlayerXZ(fsys, &px, &pz, &facing);
-+    sFacingBefore = facing;
-+    for (i = 0; (w = Cv_Warp(fsys, i)) != NULL; i++)
-+        if (w->z > sz) { sx = w->x; sz = w->z; }
-+    if (sx < 0) return;
-+    x0 = ((px + sx) / 2) - BOX / 2;                     // (the box searched: round the player and the door)
-+    z0 = ((pz + sz) / 2) - BOX / 2;
-+    if (sx - x0 < 0 || sx - x0 >= BOX || sz - z0 < 0 || sz - z0 >= BOX || px - x0 < 0 || px - x0 >= BOX || pz - z0 < 0 || pz - z0 >= BOX)
-+        return;
-+    from = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX * sizeof(s16));
-+    queue = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX * sizeof(s16));
-+    dir = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX);
-+    for (i = 0; i < BOX * BOX; i++) from[i] = -1;
-+    start = (sx - x0) + (sz - z0) * BOX;
-+    from[start] = start;
-+    queue[tail++] = start;
-+    while (head < tail && goal < 0) {
-+        int cur = queue[head++], x = cur % BOX, z = cur / BOX;
-+        for (i = 0; i < 4; i++) {
-+            if (x + x0 + sDx[i] == px && z + z0 + sDz[i] == pz
-+             && (!frontOnly || (x + x0 == px + sDx[sFacingBefore] && z + z0 == pz + sDz[sFacingBefore]))) {
-+                goal = cur;
-+                dir[start] = i;      // (the way to face, kept in an unused slot)
-+                break;
-+            }
-+        }
-+        for (i = 0; i < 4 && goal < 0; i++) {
-+            int nx = x + sDx[i], nz = z + sDz[i], next = nx + nz * BOX;
-+            if (nx < 0 || nz < 0 || nx >= BOX || nz >= BOX || from[next] >= 0 || !Free(fsys, nx + x0, nz + z0))
-+                continue;
-+            from[next] = cur;
-+            dir[next] = i;
-+            queue[tail++] = next;
-+        }
-+    }
-+    if (goal >= 0 && goal != start) {
-+        int steps = 0, c, faceDir = dir[start];
-+        for (c = goal; c != start; c = from[c]) steps++;
-+        if (steps <= PATH_MAX) {
-+            int n = steps;
-+            for (c = goal; c != start; c = from[c]) {
-+                n--;
-+                sWalkIn[n] = dir[c];
-+                sWalkOut[steps - 1 - n] = sOpposite[dir[c]];      // (the way back, in reverse)
-+            }
-+            sWalkIn[steps] = faceDir;
-+            sWalkLen = steps;
-+            sGuestDir = sOpposite[faceDir];
-+            SetScriptVar(0x8005, sx); SetScriptVar(0x8006, sz);
-+            SetScriptVar(VAR_RESULT, TRUE);
-+            sVisitorWalked = TRUE;
-+        }
-+    }
-+    Cv_Heap_Free(from); Cv_Heap_Free(queue); Cv_Heap_Free(dir);
-+}
-+
-+// A walk of ours for a person, as ApplyMovement does (ScrCmd_563's way: the commands freed when it's done)
-+static void Apply(FieldSystem *fsys, u16 objId, const u8 *dirs, int n, u32 kind, int face)
-+{
-+    void *o = Cv_GetObjectById(fsys, objId), *man;
-+    struct CvMove *cmd;
-+    int i, k = 0;
-+    if (o == NULL) return;
-+    cmd = Cv_Heap_Alloc(HEAP_ID_FIELD1, (n + 2) * sizeof(struct CvMove));
-+    for (i = 0; i < n; i++) {
-+        if (k && cmd[k - 1].command == kind + dirs[i]) cmd[k - 1].length++;
-+        else { cmd[k].command = kind + dirs[i]; cmd[k].length = 1; k++; }
-+    }
-+    if (face >= 0) { cmd[k].command = MOVE_FACE + face; cmd[k].length = 1; k++; }
-+    cmd[k].command = MOVE_END; cmd[k].length = 0;
-+    man = Cv_MovementCreate(o, cmd);
-+    (*(u8 *)Cv_SysAttr(fsys, SCRIPTENV_NUM_ACTIVE_MOVEMENT))++;
-+    Cv_MovementSchedule(fsys, man, cmd);
-+}
-+
-+// ---------------------------------------------------------------- holding the gym: the player on the leader's spot
-+static u8 sHolding, sHoldDir;
-+static u16 sHoldLeaderId;
-+static int sLeaderX, sLeaderZ, sAsideX, sAsideZ;
-+
-+// GymCandidate_PlanHold: the leader (the last one talked to) right in front of the player; a square aside for them
-+static void Canvas_PlanHold(FieldSystem *fsys)
-+{
-+    static const s8 aside[][2] = {{-2, 0}, {2, 0}, {-2, -1}, {2, -1}, {-3, 0}, {3, 0}, {-2, 1}, {2, 1},
-+                                  {-1, -1}, {1, -1}, {-1, 1}, {1, 1}, {-3, -1}, {3, -1},
-+                                  // (HeartGold's leaders often stand on a narrow dais: a little further off, to the front)
-+                                  {-1, 2}, {1, 2}, {-2, 2}, {2, 2}, {-3, 1}, {3, 1}, {-3, 2}, {3, 2}};
-+    int px, pz;
-+    u32 facing, i;
-+    void *leader = Cv_GetObjectById(fsys, GetScriptVar(VAR_LAST_TALKED));
-+    SetScriptVar(VAR_RESULT, FALSE);
-+    sHolding = FALSE;
-+    if (leader == NULL) return;
-+    PlayerXZ(fsys, &px, &pz, &facing);
-+    if (px + sDx[facing] != (int)Cv_ObjX(leader) || pz + sDz[facing] != (int)Cv_ObjZ(leader)) return;
-+    sHoldDir = facing;
-+    sLeaderX = Cv_ObjX(leader); sLeaderZ = Cv_ObjZ(leader);
-+    for (i = 0; i < NELEMS(aside); i++) {
-+        int x = sLeaderX + aside[i][0], z = sLeaderZ + aside[i][1];
-+        if (Free(fsys, x, z) && !(x == px && z == pz)) {
-+            sAsideX = x; sAsideZ = z;
-+            sHoldLeaderId = GetScriptVar(VAR_LAST_TALKED);
-+            sHolding = TRUE;
-+            SetScriptVar(VAR_RESULT, TRUE);
-+            return;
-+        }
-+    }
-+}
-+
-+static u32 DirToward(int fx, int fz, int tx, int tz)
-+{
-+    int dx = tx - fx, dz = tz - fz;
-+    if ((dx < 0 ? -dx : dx) > (dz < 0 ? -dz : dz)) return dx < 0 ? DIR_W : DIR_E;
-+    return dz < 0 ? DIR_N : DIR_S;
-+}
-+
-+// GymCandidate_HoldLeaderAside (in the dark: aside, facing their spot, or out of sight for a shift) / Back
-+static void Canvas_HoldLeader(FieldSystem *fsys, BOOL back, BOOL shift)
-+{
-+    void *leader = sHolding ? Cv_GetObjectById(fsys, sHoldLeaderId) : NULL;
-+    if (leader == NULL) return;
-+    if (back) {
-+        Cv_ObjPlace(leader, sLeaderX, Cv_ObjY(leader), sLeaderZ, sOpposite[sHoldDir]);
-+        Cv_ObjSetVisible(leader, FALSE);
-+        sHolding = FALSE;
-+    } else {
-+        Cv_ObjPlace(leader, sAsideX, Cv_ObjY(leader), sAsideZ, DirToward(sAsideX, sAsideZ, sLeaderX, sLeaderZ));
-+        Cv_ObjSetVisible(leader, shift);
-+    }
-+}
-+
-+// ---------------------------------------------------------------- the command
-+// CanvasCandidate op, a, b, c, d (a..d: values, or vars)
-+BOOL Canvas_CandidateCmd(SCRIPTCONTEXT *ctx, u16 op)
-+{
-+    FieldSystem *fsys = ctx->fsys;
-+    u16 a = GetScriptVar(ScriptReadHalfword(ctx)), b = GetScriptVar(ScriptReadHalfword(ctx));
-+    u16 c = GetScriptVar(ScriptReadHalfword(ctx)), d = GetScriptVar(ScriptReadHalfword(ctx));
-+    u8 dirs[2];
-+    switch (op) {
-+    case 0: SetScriptVar(VAR_RESULT, Canvas_GenerateGuest(a, b, c, d)); break;      // level, party size, tier, repeat
-+    case 1: Canvas_PlaceGuest(fsys); break;
-+    case 2: Canvas_FaceGuest(fsys, a); break;                                         // the visitor's id
-+    case 3: Cv_ObjFace(Cv_GetObjectById(fsys, OBJ_PLAYER), sFacingBefore); break;    // FaceBack
-+    case 4:                                                                            // a: front only (else anywhere)
-+        Canvas_PlanVisitorWalk(fsys, a);
-+        if (a && !GetScriptVar(VAR_RESULT)) Canvas_PlanVisitorWalk(fsys, FALSE);
-+        break;
-+    case 5:                                                                            // a: the visitor, b: 0 in / 1 out
-+        if (b) Apply(fsys, a, sWalkOut, sWalkLen, MOVE_WALK, -1);
-+        else Apply(fsys, a, sWalkIn, sWalkLen, MOVE_WALK, sWalkIn[sWalkLen]);
-+        break;
-+    case 6: SetScriptVar(VAR_RESULT, sVisitorWalked); break;
-+    case 7: Canvas_PlanHold(fsys); break;
-+    case 8: Canvas_HoldLeader(fsys, FALSE, a); break;                                 // a: a shift (the leader leaves)
-+    case 9: SetScriptVar(VAR_RESULT, sHolding); break;
-+    case 10: Canvas_HoldLeader(fsys, TRUE, FALSE); break;
-+    case 11:                                                                           // a: 0 the player steps in / 1 back
-+        dirs[0] = a ? sOpposite[sHoldDir] : sHoldDir;
-+        Apply(fsys, OBJ_PLAYER, dirs, 1, MOVE_FAST, a ? sHoldDir : sOpposite[sHoldDir]);
-+        break;
-+    case 12:                                                                          // (after the battle)
-+        sChallenger.valid = FALSE;
-+        if (sPrizeWas && GuestPrize() != NULL) GuestPrize()->multiplier = sPrizeWas;
-+        sPrizeWas = 0;
-+        break;
 +    }
 +    return FALSE;
 +}
@@ -12537,8 +12106,536 @@ index 00000000..a10ca151
 +    }
 +    return FALSE;
 +}
+diff --git a/src/canvas_state.c b/src/canvas_state.c
+new file mode 100644
+index 00000000..7c4db06c
+--- /dev/null
++++ b/src/canvas_state.c
+@@ -0,0 +1,6 @@
++// Pokemon Canvas: state of our field-overlay code that must last through a battle (include/canvas_candidate.h).
++// In .data: the field overlay finds it through build/rom_gen.ld, and generate_ld.py gives the overlay's other
++// symbols (its .text, and the zeroed variables this linker script puts there) the Thumb bit, an address off by one
++#include "../include/canvas_candidate.h"
++
++__attribute__((section(".data"))) struct CanvasCandidateState gCanvasCandidate;
+diff --git a/src/field/canvas_candidate.c b/src/field/canvas_candidate.c
+new file mode 100644
+index 00000000..add80f1d
+--- /dev/null
++++ b/src/field/canvas_candidate.c
+@@ -0,0 +1,488 @@
++// Pokemon Canvas: the GBA game's candidacy (its src/gym_candidate.c, src/gym_challenge.c): after a badge the leader
++// asks the player to hold their gym against one or two challengers ("Guest Leader" battles).
++//  - the challengers are built at the time (GymChallenge_GenerateGuest: a random class and name, a team of any type
++//    from the first three generations and the new eeveelutions, by the leader's tier), into the trainer the script
++//    battles (CANVAS_CHALLENGER_FIRST..: one a defeat line), whose party and name MakeTrainerPokemonParty takes here;
++//  - the visitors (the challenger, the mentor) walk in from the map's door to the player by a search over the map,
++//    or appear beside them; the player takes the leader's spot while the leader watches from aside.
++// Data: data/canvas_challengers.h (tools/canvas/port/challengers.py). Command CanvasCandidate (script_new_cmds.c).
++#include "../../include/types.h"
++#include "../../include/battle.h"
++#include "../../include/pokemon.h"
++#include "../../include/save.h"
++#include "../../include/script.h"
++#include "../../include/trainer_data.h"
++#include "../../include/constants/species.h"
++#include "../../include/constants/item.h"
++#include "../../include/constants/trainerclass.h"
++#include "../../include/canvas_candidate.h"
++
++#define CANVAS_CHALLENGER_FIRST 1470        // (trainers.py: TRAINER_CANVAS_GUEST_0..)
++#define CANVAS_CHALLENGER_COUNT 16
++
++struct CanvasChallengerClass { u8 trainerClass; u8 female; };
++// the pool, a byte a species (Bulbasaur to Deoxys, then our eeveelutions after Pecharunt): its first type (bits 0-4,
++// POOL_LEGENDARY for one never picked), how many times it has evolved (5-6), whether it evolves (7)
++#define POOL_TYPE(b) ((b) & 0x1F)
++#define POOL_STAGE(b) (((b) >> 5) & 3)
++#define POOL_EVOLVES(b) ((b) >> 7)
++#define POOL_LEGENDARY 0x1F
++#define POOL_GEN3 386
++#define POOL_SPECIES(i) ((i) < POOL_GEN3 ? (i) + 1 : 1076 + (i) - POOL_GEN3)
++#include "../../data/canvas_challengers.h"
++
++#define FN(addr, ret, args) ((ret (*) args)((addr) | 1))
++#define Cv_Heap_Alloc FN(0x0201AA8C, void *, (u32, u32))
++#define Cv_Heap_Free FN(0x0201AB0C, void, (void *))
++#define Cv_GetObjectById FN(0x02041C70, void *, (FieldSystem *, u16))             // sub_02041C70 (0xFF: the player)
++#define Cv_GetObjectAt FN(0x0205FB58, void *, (void *, u32, u32, BOOL))         // MapObjectManager_GetFirstObjectWithXAndZ
++#define Cv_Blocked FN(0x020548C0, BOOL, (FieldSystem *, int, int))              // sub_020548C0: the square's collision
++#define Cv_ObjX FN(0x0205F914, u32, (void *))
++#define Cv_ObjZ FN(0x0205F934, u32, (void *))
++#define Cv_ObjY FN(0x0205F924, s32, (void *))
++#define Cv_ObjFace FN(0x0205F290, void, (void *, u32))                          // MapObject_SetFacingDirection
++#define Cv_ObjFacing FN(0x0205F2A8, u32, (void *))                              // MapObject_GetFacingDirection
++#define Cv_ObjSetVisible FN(0x0205F690, void, (void *, BOOL))                    // (TRUE: hidden)
++#define Cv_ObjPlace FN(0x0205FC2C, void, (void *, u32, u32, u32, u32))          // MapObject_SetPositionFromXYZAndDirection
++#define Cv_Warp FN(0x0203B6E8, const struct CvWarp *, (FieldSystem *, u32))     // Field_GetWarpEventI
++#define Cv_MovementCreate FN(0x02062214, void *, (void *, void *))              // EventObjectMovementMan_Create
++#define Cv_MovementSchedule FN(0x02041CC4, void, (FieldSystem *, void *, void *)) // _ScheduleObjectEventMovement
++#define Cv_SysAttr FN(0x020402F0, void *, (FieldSystem *, int))                 // FieldSysGetAttrAddr
++#define SCRIPTENV_NUM_ACTIVE_MOVEMENT 4
++#define HEAP_ID_FIELD1 4
++#define OBJ_PLAYER 0xFF
++#define VAR_RESULT 0x800C
++#define VAR_LAST_TALKED 0x800D      // (VAR_SPECIAL_LAST_TALKED)
++
++struct CvWarp { u16 x; u16 z; u16 header; u16 anchor; u32 y; };
++struct CvMove { u16 command; u16 length; };
++enum { DIR_N, DIR_S, DIR_W, DIR_E };
++#define MOVE_FACE 0
++#define MOVE_WALK 12
++#define MOVE_FAST 16
++#define MOVE_END 254
++static const s8 sDx[] = {0, 0, -1, 1}, sDz[] = {-1, 1, 0, 0};
++static const u8 sOpposite[] = {DIR_S, DIR_N, DIR_E, DIR_W};
++
++// ---------------------------------------------------------------- the challenger
++#define PRACTICE_TIERS 3
++static const u8 sTierIv[PRACTICE_TIERS] = {5, 16, 31};          // (sPracticeTiers: iv, held item chance)
++static const u8 sTierItemChance[PRACTICE_TIERS] = {0, 20, 60};
++static const s8 sLevelSpread[7][6] = {{0}, {0}, {-1, 1}, {-1, 0, 1}, {-1, 0, 0, 1}, {-2, -1, 0, 1, 2}, {-2, -1, 0, 0, 1, 2}};
++
++// (what lasts through the battle is in overlay 129: include/canvas_candidate.h)
++#define sChallenger gCanvasCandidate.challenger
++#define sPrizeWas gCanvasCandidate.prizeWas
++#define sGuestDir gCanvasCandidate.guestDir
++#define sFacingBefore gCanvasCandidate.facingBefore
++#define sVisitorWalked gCanvasCandidate.visitorWalked
++#define sWalkIn gCanvasCandidate.walkIn
++#define sWalkOut gCanvasCandidate.walkOut
++#define sWalkLen gCanvasCandidate.walkLen
++#define sHolding gCanvasCandidate.holding
++#define sHoldDir gCanvasCandidate.holdDir
++#define sHoldLeaderId gCanvasCandidate.holdLeaderId
++#define sLeaderX gCanvasCandidate.leaderX
++#define sLeaderZ gCanvasCandidate.leaderZ
++#define sAsideX gCanvasCandidate.asideX
++#define sAsideZ gCanvasCandidate.asideZ
++
++// The prize: a Gym Leader's (GYM_GUEST_PRIZE_RATE a level, doubled the first time: the GBA's Cmd_getmoneyreward).
++// HeartGold pays by the class in the trainer's data (our trainers': GUEST_PRIZE_CLASS), so that class's rate in
++// hg-engine's table is the guest's for the battle, and put back after it
++#define GUEST_PRIZE_RATE 25
++#define GUEST_PRIZE_CLASS TRAINERCLASS_ACE_TRAINER_M_GS
++struct TrainerMoney { u16 class; u16 multiplier; };
++extern struct TrainerMoney PrizeMoney[];
++static struct TrainerMoney *GuestPrize(void)
++{
++    u32 i;
++    for (i = 0; i < 300; i++)
++        if (PrizeMoney[i].class == GUEST_PRIZE_CLASS) return &PrizeMoney[i];
++    return NULL;
++}
++
++struct Party *LONG_CALL SaveArray_Party_Get(void *saveData);
++int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
++
++static u32 Rand(u32 n) { return n ? gf_rand() % n : 0; }
++
++u32 Canvas_PlayerAverageLevel(void)
++{
++    struct Party *party = SaveArray_Party_Get(SaveBlock2_get());
++    int n = PokeParty_GetPokeCount(party), i, count = 0, total = 0;
++    for (i = 0; i < n; i++) {
++        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
++        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == 0 || GetMonData(mon, MON_DATA_IS_EGG, NULL))
++            continue;
++        total += GetMonData(mon, MON_DATA_LEVEL, NULL);
++        count++;
++    }
++    return count ? (total + count / 2) / count : 50;
++}
++
++static u32 ClampLevel(s32 level) { return level < 1 ? 1 : level > 100 ? 100 : level; }
++
++// The GBA's PracticePreference: 0 = what the tier is about, 1 = also fine, 2 = only if there's nothing else
++static u32 Preference(u8 m, u32 tier)
++{
++    if (tier == 0) return POOL_STAGE(m) == 0 ? 0 : (POOL_STAGE(m) == 1 ? 1 : 2);
++    if (tier == 1) return POOL_STAGE(m) == 1 ? 0 : (POOL_STAGE(m) == 0 ? 1 : 2);
++    return !POOL_EVOLVES(m) ? 0 : (POOL_STAGE(m) >= 1 ? 1 : 2);
++}
++
++// The GBA's BuildTeam: a team of a type (or any: 0xFF), no legendaries, no two alike, by the tier's preference
++static u32 BuildTeam(u32 tier, u32 type, u32 level, u32 count)
++{
++    u16 *lists[3];
++    u32 counts[3] = {0, 0, 0}, i, k, n, total;
++    s8 spread[6];
++    for (k = 0; k < 3; k++)
++        lists[k] = sys_AllocMemory(HEAP_ID_FIELD1, NELEMS(sCanvasPool) * sizeof(u16));
++    for (i = 0; i < NELEMS(sCanvasPool); i++) {
++        u8 m = sCanvasPool[i];
++        if (POOL_TYPE(m) == POOL_LEGENDARY || (type != 0xFF && POOL_TYPE(m) != type))
++            continue;
++        k = Preference(m, tier);
++        lists[k][counts[k]++] = i;
++    }
++    total = counts[0] + counts[1] + counts[2];
++    n = count ? (count > 6 ? 6 : count) : 3 + Rand(3);
++    if (n > total) n = total;
++    for (i = 0; i < 6; i++) spread[i] = sLevelSpread[n][i];
++    for (i = n - 1; i > 0 && n > 0; i--) {            // (ShuffleLevels)
++        u32 j = Rand(i + 1);
++        s8 t = spread[i]; spread[i] = spread[j]; spread[j] = t;
++    }
++    for (i = 0; i < n; i++) {
++        u32 order[3] = {0, 1, 2}, pick = 0;
++        if (tier != 2 && Rand(3) == 0) { order[0] = 1; order[1] = 0; }     // (the earlier forms mix now and then)
++        for (k = 0; k < 3; k++) {
++            u32 *c = &counts[order[k]];
++            if (*c) {
++                u16 *list = lists[order[k]];
++                u32 j = Rand(*c);
++                pick = list[j];
++                list[j] = list[--*c];
++                break;
++            }
++        }
++        sChallenger.species[i] = POOL_SPECIES(pick);
++        sChallenger.level[i] = ClampLevel((s32)level + spread[i]);
++        sChallenger.item[i] = Rand(100) < sTierItemChance[tier] ? sCanvasHeldItems[Rand(NELEMS(sCanvasHeldItems))] : 0;
++    }
++    for (k = 0; k < 3; k++)
++        sys_FreeMemoryEz(lists[k]);
++    return n;
++}
++
++// GymChallenge_GenerateGuest(baseLevel, partySize, tier, repeat) -> the class picked (the porter gives it its look)
++static u32 Canvas_GenerateGuest(u32 baseLevel, u32 partySize, u32 tier, BOOL repeat)
++{
++    u32 cls = Rand(NELEMS(sCanvasClasses)), i;
++    const u8 *name = sCanvasClasses[cls].female ? sCanvasFemaleNames[Rand(NELEMS(sCanvasFemaleNames))]
++                                                 : sCanvasMaleNames[Rand(NELEMS(sCanvasMaleNames))];
++    s32 avg = Canvas_PlayerAverageLevel(), level = (s32)baseLevel > avg - 3 ? (s32)baseLevel : avg - 3, n;
++    if (repeat) {      // (a stand-in shift after the approval: one at the player's level, more evolved as they grow)
++        u32 t = avg >= 40 ? 2 : avg >= 25 ? 1 : 0;
++        level = avg - 2 + (s32)Rand(6);
++        if (level < 5) level = 5;
++        if (level > 100) level = 100;
++        if (tier < t) tier = t;
++    }
++    if (tier >= PRACTICE_TIERS) tier = PRACTICE_TIERS - 1;
++    sChallenger.trainerClass = sCanvasClasses[cls].trainerClass;
++    for (i = 0; i < 7 && name[i]; i++)        // (ASCII letters -> HeartGold's: A 0x12B, a 0x145)
++        sChallenger.name[i] = name[i] >= 'a' ? 0x145 + name[i] - 'a' : 0x12B + name[i] - 'A';
++    sChallenger.name[i++] = 0xFFFF;
++    for (; i < 8; i++) sChallenger.name[i] = 0;
++    sChallenger.iv = sTierIv[tier];
++    sChallenger.ai = sCanvasTierAI[tier];
++    n = BuildTeam(tier, 0xFF, level, partySize);
++    sChallenger.count = n ? n : 1;
++    sChallenger.prizeRate = repeat ? GUEST_PRIZE_RATE : GUEST_PRIZE_RATE * 2;
++    sChallenger.valid = TRUE;
++    return cls;
++}
++
++// From MakeTrainerPokemonParty (field/enemy_party.c): our challenger's party and name, for the trainers that are ours
++BOOL Canvas_MakeChallengerParty(struct BATTLE_PARAM *bp, int num, int heapID)
++{
++    extern u32 gLastPokemonLevelForMoneyCalc;
++    u32 id = bp->trainer_id[num], i;
++    if (id < CANVAS_CHALLENGER_FIRST || id >= CANVAS_CHALLENGER_FIRST + CANVAS_CHALLENGER_COUNT || !sChallenger.valid)
++        return FALSE;
++    TRAINER_DATA *td = &bp->trainer_data[num];
++    struct TrainerMoney *prize = GuestPrize();
++    if (prize != NULL) {          // (HeartGold doubles a double battle's prize itself)
++        if (!sPrizeWas) sPrizeWas = prize->multiplier;
++        prize->multiplier = sChallenger.prizeRate / ((bp->fight_type & BATTLE_TYPE_DOUBLES) ? 2 : 1);
++    }
++    td->tr_type = sChallenger.trainerClass;
++    td->poke_count = sChallenger.count;
++    td->aibit = sChallenger.ai;
++    for (i = 0; i < 8; i++) td->name[i] = sChallenger.name[i];
++    PokeParty_Init(bp->poke_party[num], 6);
++    for (i = 0; i < sChallenger.count; i++) {
++        struct PartyPokemon *mon = AllocMonZeroed(heapID);
++        u32 pid = ((u32)gf_rand() << 16) | gf_rand();            // (a random nature and gender: the GBA's)
++        PokeParaSet(mon, sChallenger.species[i], sChallenger.level[i], sChallenger.iv, 1, pid, 2, 0);
++        if (sChallenger.item[i]) SetMonData(mon, MON_DATA_HELD_ITEM, &sChallenger.item[i]);
++        RecalcPartyPokemonStats(mon);
++        PokeParty_Add(bp->poke_party[num], mon);
++        sys_FreeMemoryEz(mon);
++        gLastPokemonLevelForMoneyCalc = sChallenger.level[i];
++    }
++    return TRUE;
++}
++
++// ---------------------------------------------------------------- where visitors stand and walk
++#define PATH_MAX CANVAS_PATH_MAX
++
++// (a square nobody stands on: the player's following Pokemon doesn't count - it's out of sight while a script
++// runs, and the visitor would otherwise stand beside the player instead of in front)
++#define OBJ_FOLLOWER 253
++static BOOL Free(FieldSystem *fsys, int x, int z)
++{
++    void *o = Cv_GetObjectAt(fsys->mapObjectMan, x, z, FALSE);
++    return !Cv_Blocked(fsys, x, z) && (o == NULL || *(u32 *)((u8 *)o + 8) == OBJ_FOLLOWER);
++}
++
++static void PlayerXZ(FieldSystem *fsys, int *x, int *z, u32 *facing)
++{
++    void *p = Cv_GetObjectById(fsys, OBJ_PLAYER);
++    *x = Cv_ObjX(p); *z = Cv_ObjZ(p);
++    if (facing) *facing = Cv_ObjFacing(p);
++}
++
++// GymCandidate_PlaceGuest: a free square next to the player, behind them first -> 0x8005/6, result
++static void Canvas_PlaceGuest(FieldSystem *fsys)
++{
++    int px, pz, i;
++    u32 facing, order[4];
++    PlayerXZ(fsys, &px, &pz, &facing);
++    sGuestDir = sOpposite[facing];
++    sFacingBefore = facing;
++    sVisitorWalked = FALSE;
++    order[0] = sOpposite[facing];
++    order[1] = (facing == DIR_N || facing == DIR_S) ? DIR_W : DIR_N;
++    order[2] = sOpposite[order[1]];
++    order[3] = facing;
++    SetScriptVar(VAR_RESULT, FALSE);
++    for (i = 0; i < 4; i++) {
++        int x = px + sDx[order[i]], z = pz + sDz[order[i]];
++        if (Free(fsys, x, z)) {
++            SetScriptVar(0x8005, x); SetScriptVar(0x8006, z);
++            sGuestDir = order[i];
++            SetScriptVar(VAR_RESULT, TRUE);
++            return;
++        }
++    }
++}
++
++// GymCandidate_FaceGuest / FaceBack
++static void Canvas_FaceGuest(FieldSystem *fsys, u16 objId)
++{
++    void *o = Cv_GetObjectById(fsys, objId);
++    if (o) Cv_ObjFace(o, sOpposite[sGuestDir]);
++    Cv_ObjFace(Cv_GetObjectById(fsys, OBJ_PLAYER), sGuestDir);
++}
++
++// GymCandidate_PlanVisitorWalk: from the map's door (its lowest warp) to the player, by a search over the squares
++// round them (frontOnly: ending right in front of the player) -> 0x8005/6 the door, result; the walks in sWalkIn/Out
++#define BOX 48
++static void Canvas_PlanVisitorWalk(FieldSystem *fsys, BOOL frontOnly)
++{
++    int px, pz, sx = -1, sz = -1, x0, z0, i, head = 0, tail = 0, start, goal = -1;
++    u32 facing;
++    const struct CvWarp *w;
++    s16 *from, *queue;
++    u8 *dir;
++    SetScriptVar(VAR_RESULT, FALSE);
++    sVisitorWalked = FALSE;
++    PlayerXZ(fsys, &px, &pz, &facing);
++    sFacingBefore = facing;
++    for (i = 0; (w = Cv_Warp(fsys, i)) != NULL; i++)
++        if (w->z > sz) { sx = w->x; sz = w->z; }
++    if (sx < 0) return;
++    x0 = ((px + sx) / 2) - BOX / 2;                     // (the box searched: round the player and the door)
++    z0 = ((pz + sz) / 2) - BOX / 2;
++    if (sx - x0 < 0 || sx - x0 >= BOX || sz - z0 < 0 || sz - z0 >= BOX || px - x0 < 0 || px - x0 >= BOX || pz - z0 < 0 || pz - z0 >= BOX)
++        return;
++    from = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX * sizeof(s16));
++    queue = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX * sizeof(s16));
++    dir = Cv_Heap_Alloc(HEAP_ID_FIELD1, BOX * BOX);
++    for (i = 0; i < BOX * BOX; i++) from[i] = -1;
++    start = (sx - x0) + (sz - z0) * BOX;
++    from[start] = start;
++    queue[tail++] = start;
++    while (head < tail && goal < 0) {
++        int cur = queue[head++], x = cur % BOX, z = cur / BOX;
++        for (i = 0; i < 4; i++) {
++            if (x + x0 + sDx[i] == px && z + z0 + sDz[i] == pz
++             && (!frontOnly || (x + x0 == px + sDx[sFacingBefore] && z + z0 == pz + sDz[sFacingBefore]))) {
++                goal = cur;
++                dir[start] = i;      // (the way to face, kept in an unused slot)
++                break;
++            }
++        }
++        for (i = 0; i < 4 && goal < 0; i++) {
++            int nx = x + sDx[i], nz = z + sDz[i], next = nx + nz * BOX;
++            if (nx < 0 || nz < 0 || nx >= BOX || nz >= BOX || from[next] >= 0 || !Free(fsys, nx + x0, nz + z0))
++                continue;
++            from[next] = cur;
++            dir[next] = i;
++            queue[tail++] = next;
++        }
++    }
++    if (goal >= 0 && goal != start) {
++        int steps = 0, c, faceDir = dir[start];
++        for (c = goal; c != start; c = from[c]) steps++;
++        if (steps <= PATH_MAX) {
++            int n = steps;
++            for (c = goal; c != start; c = from[c]) {
++                n--;
++                sWalkIn[n] = dir[c];
++                sWalkOut[steps - 1 - n] = sOpposite[dir[c]];      // (the way back, in reverse)
++            }
++            sWalkIn[steps] = faceDir;
++            sWalkLen = steps;
++            sGuestDir = sOpposite[faceDir];
++            SetScriptVar(0x8005, sx); SetScriptVar(0x8006, sz);
++            SetScriptVar(VAR_RESULT, TRUE);
++            sVisitorWalked = TRUE;
++        }
++    }
++    Cv_Heap_Free(from); Cv_Heap_Free(queue); Cv_Heap_Free(dir);
++}
++
++// A walk of ours for a person, as ApplyMovement does (ScrCmd_563's way: the commands freed when it's done)
++static void Apply(FieldSystem *fsys, u16 objId, const u8 *dirs, int n, u32 kind, int face)
++{
++    void *o = Cv_GetObjectById(fsys, objId), *man;
++    struct CvMove *cmd;
++    int i, k = 0;
++    if (o == NULL) return;
++    cmd = Cv_Heap_Alloc(HEAP_ID_FIELD1, (n + 2) * sizeof(struct CvMove));
++    for (i = 0; i < n; i++) {
++        if (k && cmd[k - 1].command == kind + dirs[i]) cmd[k - 1].length++;
++        else { cmd[k].command = kind + dirs[i]; cmd[k].length = 1; k++; }
++    }
++    if (face >= 0) { cmd[k].command = MOVE_FACE + face; cmd[k].length = 1; k++; }
++    cmd[k].command = MOVE_END; cmd[k].length = 0;
++    man = Cv_MovementCreate(o, cmd);
++    (*(u8 *)Cv_SysAttr(fsys, SCRIPTENV_NUM_ACTIVE_MOVEMENT))++;
++    Cv_MovementSchedule(fsys, man, cmd);
++}
++
++// ---------------------------------------------------------------- holding the gym: the player on the leader's spot
++
++// GymCandidate_PlanHold: the leader (the last one talked to) right in front of the player; a square for them to
++// watch from. The GBA's leader steps two squares to the side; HeartGold's leaders stand on narrow daises, so ours
++// looks over the squares they can walk to round the spot for one off to the side and a little out in front (out
++// of the way of the challenger's walk up the middle): best about 3 squares aside and 2 forward
++#define HOLD_R 5
++#define HOLD_N (2 * HOLD_R + 1)
++static void Canvas_PlanHold(FieldSystem *fsys)
++{
++    int px, pz, l, f, i, best = 99, grown = 1;
++    u8 sq[HOLD_N][HOLD_N];         // (round the spot: 0 closed, 1 open, 2 open and reached from the spot)
++    u32 facing;
++    void *leader = Cv_GetObjectById(fsys, GetScriptVar(VAR_LAST_TALKED));
++    SetScriptVar(VAR_RESULT, FALSE);
++    sHolding = FALSE;
++    if (leader == NULL) return;
++    PlayerXZ(fsys, &px, &pz, &facing);
++    if (px + sDx[facing] != (int)Cv_ObjX(leader) || pz + sDz[facing] != (int)Cv_ObjZ(leader)) return;
++    sHoldDir = facing;
++    sLeaderX = Cv_ObjX(leader); sLeaderZ = Cv_ObjZ(leader);
++    for (i = 0; i < HOLD_N * HOLD_N; i++) {
++        int x = sLeaderX - HOLD_R + i % HOLD_N, z = sLeaderZ - HOLD_R + i / HOLD_N;
++        sq[i / HOLD_N][i % HOLD_N] = (x == px && z == pz) || Free(fsys, x, z);
++    }
++    sq[HOLD_R][HOLD_R] = 2;
++    while (grown)                  // (the squares they can walk to from the spot, without leaving the box)
++        for (grown = 0, i = 0; i < HOLD_N * HOLD_N; i++) {
++            int r = i / HOLD_N, c = i % HOLD_N;
++            if (sq[r][c] == 1 && ((r && sq[r - 1][c] == 2) || (r < HOLD_N - 1 && sq[r + 1][c] == 2)
++                               || (c && sq[r][c - 1] == 2) || (c < HOLD_N - 1 && sq[r][c + 1] == 2)))
++                sq[r][c] = 2, grown = 1;
++        }
++    for (f = 0; f <= 4; f++)                 // (f: squares out in front of the spot, l: to the side)
++        for (l = -HOLD_R; l <= HOLD_R; l++) {
++            // (forward is back toward where the player stood; the side, square to it)
++            int dx = -f * sDx[facing] + l * sDz[facing], dz = -f * sDz[facing] + l * sDx[facing];
++            int a = l < 0 ? -l : l, cost = (f > 2 ? f - 2 : 2 - f) + (a > 3 ? a - 3 : 3 - a) + (a < 2 ? 4 : 0);
++            if (cost < best && (l || f) && !(dx == px - sLeaderX && dz == pz - sLeaderZ)
++             && dx >= -HOLD_R && dx <= HOLD_R && dz >= -HOLD_R && dz <= HOLD_R && sq[dz + HOLD_R][dx + HOLD_R] == 2) {
++                best = cost; sAsideX = sLeaderX + dx; sAsideZ = sLeaderZ + dz;
++            }
++        }
++    if (best < 99) {
++        sHoldLeaderId = GetScriptVar(VAR_LAST_TALKED);
++        sHolding = TRUE;
++        SetScriptVar(VAR_RESULT, TRUE);
++    }
++}
++
++static u32 DirToward(int fx, int fz, int tx, int tz)
++{
++    int dx = tx - fx, dz = tz - fz;
++    if ((dx < 0 ? -dx : dx) > (dz < 0 ? -dz : dz)) return dx < 0 ? DIR_W : DIR_E;
++    return dz < 0 ? DIR_N : DIR_S;
++}
++
++// GymCandidate_HoldLeaderAside (in the dark: aside, facing their spot, or out of sight for a shift) / Back
++static void Canvas_HoldLeader(FieldSystem *fsys, BOOL back, BOOL shift)
++{
++    void *leader = sHolding ? Cv_GetObjectById(fsys, sHoldLeaderId) : NULL;
++    if (leader == NULL) return;
++    if (back) {
++        Cv_ObjPlace(leader, sLeaderX, Cv_ObjY(leader), sLeaderZ, sOpposite[sHoldDir]);
++        Cv_ObjSetVisible(leader, FALSE);
++        sHolding = FALSE;
++    } else {
++        Cv_ObjPlace(leader, sAsideX, Cv_ObjY(leader), sAsideZ,      // (facing the battle: the square before the spot)
++                    DirToward(sAsideX, sAsideZ, sLeaderX - sDx[sHoldDir], sLeaderZ - sDz[sHoldDir]));
++        Cv_ObjSetVisible(leader, shift);
++    }
++}
++
++// ---------------------------------------------------------------- the command
++// CanvasCandidate op, a, b, c, d (a..d: values, or vars)
++BOOL Canvas_CandidateCmd(SCRIPTCONTEXT *ctx, u16 op)
++{
++    FieldSystem *fsys = ctx->fsys;
++    u16 a = GetScriptVar(ScriptReadHalfword(ctx)), b = GetScriptVar(ScriptReadHalfword(ctx));
++    u16 c = GetScriptVar(ScriptReadHalfword(ctx)), d = GetScriptVar(ScriptReadHalfword(ctx));
++    u8 dirs[2];
++    switch (op) {
++    case 0: SetScriptVar(VAR_RESULT, Canvas_GenerateGuest(a, b, c, d)); break;      // level, party size, tier, repeat
++    case 1: Canvas_PlaceGuest(fsys); break;
++    case 2: Canvas_FaceGuest(fsys, a); break;                                         // the visitor's id
++    case 3: Cv_ObjFace(Cv_GetObjectById(fsys, OBJ_PLAYER), sFacingBefore); break;    // FaceBack
++    case 4:                                                                            // a: front only (else anywhere)
++        Canvas_PlanVisitorWalk(fsys, a);
++        if (a && !GetScriptVar(VAR_RESULT)) Canvas_PlanVisitorWalk(fsys, FALSE);
++        break;
++    case 5:                                                                            // a: the visitor, b: 0 in / 1 out
++        if (b) Apply(fsys, a, sWalkOut, sWalkLen, MOVE_WALK, -1);
++        else Apply(fsys, a, sWalkIn, sWalkLen, MOVE_WALK, sWalkIn[sWalkLen]);
++        break;
++    case 6: SetScriptVar(VAR_RESULT, sVisitorWalked); break;
++    case 7: Canvas_PlanHold(fsys); break;
++    case 8: Canvas_HoldLeader(fsys, FALSE, a); break;                                 // a: a shift (the leader leaves)
++    case 9: SetScriptVar(VAR_RESULT, sHolding); break;
++    case 10: Canvas_HoldLeader(fsys, TRUE, FALSE); break;
++    case 11:                                                                           // a: 0 the player steps in / 1 back
++        dirs[0] = a ? sOpposite[sHoldDir] : sHoldDir;
++        Apply(fsys, OBJ_PLAYER, dirs, 1, MOVE_FAST, a ? sHoldDir : sOpposite[sHoldDir]);
++        break;
++    case 12:                                                                          // (after the battle)
++        sChallenger.valid = FALSE;
++        if (sPrizeWas && GuestPrize() != NULL) GuestPrize()->multiplier = sPrizeWas;
++        sPrizeWas = 0;
++        break;
++    }
++    return FALSE;
++}
+diff --git a/src/field/canvas_field.c b/src/field/canvas_field.c
+new file mode 100644
+index 00000000..a9231094
+--- /dev/null
++++ b/src/field/canvas_field.c
+@@ -0,0 +1,16 @@
++// Pokemon Canvas: the entry to our script commands that live in the field overlay (131), called from
++// script_new_cmds.c by address: it goes first in the overlay (the .init section), at 0x023C8000 (build_rom.sh
++// checks). New field-time engine code goes in src/field and is reached from here.
++#include "../../include/types.h"
++#include "../../include/script.h"
++
++#define CANVAS_CMD_CANDIDATE 112
++BOOL Canvas_CandidateCmd(SCRIPTCONTEXT *ctx, u16 op);
++
++__attribute__((section(".init"))) BOOL Canvas_FieldCmd(SCRIPTCONTEXT *ctx, u8 sw, u16 arg0)
++{
++    switch (sw) {
++    case CANVAS_CMD_CANDIDATE: return Canvas_CandidateCmd(ctx, arg0);
++    }
++    return FALSE;
++}
 diff --git a/src/field/enemy_party.c b/src/field/enemy_party.c
-index cf38c7e5..9dfed85a 100644
+index cf38c7e5..e978c100 100644
 --- a/src/field/enemy_party.c
 +++ b/src/field/enemy_party.c
 @@ -9,6 +9,7 @@
@@ -12554,7 +12651,7 @@ index cf38c7e5..9dfed85a 100644
      u8 pow;
  
 +    // Pokemon Canvas: a challenger built at the time (the GBA's TRAINER_GYM_CHALLENGER: canvas_candidate.c)
-+    extern BOOL LONG_CALL Canvas_MakeChallengerParty(struct BATTLE_PARAM *bp, int num, int heapID);   // (in overlay 129: called by address)
++    extern BOOL Canvas_MakeChallengerParty(struct BATTLE_PARAM *bp, int num, int heapID);     // (field/canvas_candidate.c)
 +    if (Canvas_MakeChallengerParty(bp, num, heapID))
 +        return;
 +
@@ -12755,10 +12852,10 @@ index b1df6be3..67770baa 100644
  #endif
  }
 diff --git a/src/script_new_cmds.c b/src/script_new_cmds.c
-index d4b59833..5be136bd 100644
+index d4b59833..a430cd4a 100644
 --- a/src/script_new_cmds.c
 +++ b/src/script_new_cmds.c
-@@ -2,10 +2,45 @@
+@@ -2,10 +2,49 @@
  #include "../include/constants/file.h"
  #include "../include/repel.h"
  #include "../include/roamer.h"
@@ -12791,7 +12888,11 @@ index d4b59833..5be136bd 100644
 +#define CANVAS_CMD_HALL_OF_FAME 109 // CanvasHallOfFame: HeartGold's game clear (its CallTask_GameClear) without the credits
 +#define CANVAS_CMD_CREDITS      110 // CanvasCredits: HeartGold's credits, then the reset its game clear ends with
 +#define CANVAS_CMD_CANDIDATE    112 // CanvasCandidate op, a, b, c, d: the GBA's candidacy (canvas_candidate.c)
-+BOOL Canvas_CandidateCmd(SCRIPTCONTEXT *ctx, u16 op);
++// Commands of ours that live in hg-engine's field overlay (131, src/field: far more room than this one, 129). This
++// overlay is linked before that one and can't name its functions, so their entry, Canvas_FieldCmd
++// (field/canvas_field.c), is the first thing in it, at the overlay's start (build_rom.sh checks)
++#define CANVAS_FIELD_OVERLAY_START 0x023C8000
++#define Canvas_FieldCmd ((BOOL (*)(SCRIPTCONTEXT *, u8, u16))(CANVAS_FIELD_OVERLAY_START | 1))
 +#define CANVAS_CMD_CLOSE_MSG    111 // CanvasCloseMsg: CloseMsg, if a message is open (a GBA script may leave one open
 +                                    // in a script it called; HeartGold's battles must start with none)
 +void LONG_CALL ClearFrameAndWindow2(void *window, BOOL dont_copy_to_vram);
@@ -12804,7 +12905,7 @@ index d4b59833..5be136bd 100644
  
  #define SCRIPT_NEW_CMD_MAX 256
  
-@@ -23,6 +58,62 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -23,6 +62,62 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
  #endif
          break;
  
@@ -12818,7 +12919,7 @@ index d4b59833..5be136bd 100644
 +        return Canvas_RunCmd(ctx, sw, arg0);
 +
 +    case CANVAS_CMD_CANDIDATE:
-+        return Canvas_CandidateCmd(ctx, arg0);
++        return Canvas_FieldCmd(ctx, sw, arg0);
 +
 +    case CANVAS_CMD_BUFFER_MSG: {
 +        MessageFormat **fmt = FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_MSGFMT);
@@ -12867,7 +12968,7 @@ index d4b59833..5be136bd 100644
      default:
          break;
      }
-@@ -30,6 +121,162 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
+@@ -30,6 +125,162 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
      return FALSE;
  }
  

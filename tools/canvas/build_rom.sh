@@ -13,5 +13,7 @@ cp build/heartgold.us/pokeheartgold.us.nds engine/rom.nds
 (cd engine && .venv/bin/python scripts/reformat_sprite_data.py build_pokegra.mk && { cmp -s build_pokegra.mk data/graphics/pokegra.mk || cp build_pokegra.mk data/graphics/pokegra.mk; } && rm -f build_pokegra.mk)
 mkdir -p engine/build/narc     # (a fresh engine checkout lacks it, and its NARC rules write there)
 make -C engine ROM_TOOL=tools/ndstool -j"$(nproc)"
+# our field-overlay commands are called by address: their entry must open the field overlay (script_new_cmds.c)
+arm-none-eabi-nm engine/build/field_linked.o | grep -q '^023c8000 T Canvas_FieldCmd$' || { echo "Canvas_FieldCmd is not at the field overlay's start"; exit 1; }
 cp engine/test.nds build/canvas.nds
 echo "built build/canvas.nds"

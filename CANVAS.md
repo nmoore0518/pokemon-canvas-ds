@@ -248,15 +248,26 @@ What else it does:
   (`Canvas_MakeChallengerParty`, from hg-engine's `MakeTrainerPokemonParty`). A trainer's in-battle defeat line is
   its own text in HeartGold, so there's a trainer for each of the GBA's defeat lines, and one more of each for
   double battles (two in three from the fourth badge). The walks in and out are worked out over the map by a
-  search from the door to the player (`PlanVisitorWalk`); the leader steps aside to a free square near their spot
-  while the player holds the gym (`PlanHold`: HeartGold's leaders stand on narrow daises, so it looks a little
-  further off than the GBA). The same walks serve the Gym Legend's rival, Oak at the gym switch and the Move
-  Extractor's grunt. A loss doesn't black out (the leader comes back). The prize is a Gym Leader's (25 a level,
-  doubled the first time), paid through hg-engine's prize table for the trainers' class while the battle lasts.
-  Code that runs from another hg-engine overlay calls into overlay 129 with `LONG_CALL` (a plain call lands in
-  ARM mode). Overlay 129 has about 500 bytes left: more engine code needs room found first.
+  search from the door to the player (`PlanVisitorWalk`). The leader watches from a square they can walk to off to
+  the side and a little out in front of their spot, about 3 aside and 2 forward, facing the battle (`PlanHold`:
+  the GBA's leader steps 2 to the side, but HeartGold's leaders stand on narrow daises: Brock watches from the floor
+  below his, on the right). The player's following Pokemon doesn't count as in the way (it's out of sight during
+  a script). The same walks serve the Gym Legend's rival, Oak at the gym switch and the Move Extractor's grunt. A
+  loss doesn't black out (the leader comes back). The prize is a Gym Leader's (25 a level, doubled the first
+  time), paid through hg-engine's prize table for the trainers' class while the battle lasts.
   Not yet: the mentors' gifts at Cerulean and Cinnabar (the Type Guard and Type Edge items, row 37), the gym
   decorations.
+- **Where our engine code goes** (hg-engine's overlays): overlay 129 (`engine/src/*.c`, always loaded) is 32KB
+  and nearly full (about 5KB left): only small things that must be there go in it (script command dispatch, our
+  flags and vars, hooks other overlays call). Field-time code goes in the field overlay, 131 (`engine/src/field`,
+  64KB before it would reach 129, about 40KB free): our commands reach it through `Canvas_FieldCmd`
+  (`field/canvas_field.c`), the overlay's first function (129 is linked before 131 and can't name its functions,
+  so it calls that address; `build_rom.sh` checks it's there). The field overlay is unloaded for a battle and
+  loaded again after it, so its variables start over: what must last through a battle lives in 129
+  (`canvas_state.c`, `include/canvas_candidate.h`), in `.data` (`generate_ld.py` gives 129's other symbols the
+  Thumb bit, which puts a variable one byte off). Battle code goes in the battle overlay, 130 (`engine/src/battle`,
+  about 9KB free); hg-engine can add overlays of their own (`src/individual`) when that fills. Code in one overlay
+  calls a function in another with `LONG_CALL` in its declaration (a plain call to it lands in ARM mode).
 - **Team rules before the gym leaders' and the rival's battles**: right after the leader's intro (where the GBA's
   `dotrainerbattle` checks), `CanvasCheckTeam`; broken, the rule's message, and the map loads again with the player
   where they stand.
